@@ -1,25 +1,23 @@
 class ScopeGroupEntry():
-    """ A scope group name and its description.
+    """A scope group name and its description.
 
     Attributes
     ----------
     description : string
-        The description of the scope group.
-    name : string
-        The name of the scope group.
-    scopes : str
+        The description of the scope group.    name : string
+        The name of the scope group.    scopes : str
         The set of scopes for this scope group.
-
     """
 
     __slots__ = ["description", "name", "scopes"]
+
     def __init__(self, name, description, scopes):
-            self.description = description
-            self.name = name
-            self.scopes = scopes
-    
+        self.description = description
+        self.name = name
+        self.scopes = scopes
+
     def _validate(self):
-        return any(x for x in ['name', 'description', 'scopes'] if __dict__[x] is not None)
+        return any(x for x in ['name', 'description', 'scopes'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class ScopeGroupEntry():
         return NotImplemented
 
     def __hash__(self):
-        return hash((description, name, scopes))
+        return hash((self.description, self.name, self.scopes))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["description", "name", "scopes"]}
+
         return cls(**valid_data)

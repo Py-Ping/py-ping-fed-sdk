@@ -1,22 +1,21 @@
 class MetadataEventNotificationSettings():
-    """ Notification settings for metadata update events.
+    """Notification settings for metadata update events.
 
     Attributes
     ----------
     emailAddress : string
-        The email address where metadata update notifications are sent.
-    notificationPublisherRef : str
+        The email address where metadata update notifications are sent.    notificationPublisherRef : str
         Reference to the associated notification publisher.
-
     """
 
     __slots__ = ["emailAddress", "notificationPublisherRef"]
+
     def __init__(self, emailAddress, notificationPublisherRef=None):
-            self.emailAddress = emailAddress
-            self.notificationPublisherRef = notificationPublisherRef
-    
+        self.emailAddress = emailAddress
+        self.notificationPublisherRef = notificationPublisherRef
+
     def _validate(self):
-        return any(x for x in ['emailAddress'] if __dict__[x] is not None)
+        return any(x for x in ['emailAddress'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class MetadataEventNotificationSettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((emailAddress, notificationPublisherRef))
+        return hash((self.emailAddress, self.notificationPublisherRef))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["emailAddress", "notificationPublisherRef"]}
+
         return cls(**valid_data)

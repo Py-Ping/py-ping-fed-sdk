@@ -1,22 +1,21 @@
 class AuthenticationPolicyTreeNode():
-    """ An authentication policy tree node.
+    """An authentication policy tree node.
 
     Attributes
     ----------
     action : str
-        The result action.
-    children : array
+        The result action.    children : array
         The nodes inside the authentication policy tree node.
-
     """
 
     __slots__ = ["action", "children"]
+
     def __init__(self, action, children=None):
-            self.action = action
-            self.children = children
-    
+        self.action = action
+        self.children = children
+
     def _validate(self):
-        return any(x for x in ['action'] if __dict__[x] is not None)
+        return any(x for x in ['action'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class AuthenticationPolicyTreeNode():
         return NotImplemented
 
     def __hash__(self):
-        return hash((action, children))
+        return hash((self.action, self.children))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["action", "children"]}
+
         return cls(**valid_data)

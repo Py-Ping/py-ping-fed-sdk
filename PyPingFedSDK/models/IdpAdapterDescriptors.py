@@ -1,19 +1,19 @@
 class IdpAdapterDescriptors():
-    """ A collection of IdP adapter descriptors.
+    """A collection of IdP adapter descriptors.
 
     Attributes
     ----------
     items : array
         The list of IdP adapter descriptors.
-
     """
 
     __slots__ = ["items"]
+
     def __init__(self, items=None):
-            self.items = items
-    
+        self.items = items
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class IdpAdapterDescriptors():
         return NotImplemented
 
     def __hash__(self):
-        return hash((items))
+        return hash((self.items))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["items"]}
+
         return cls(**valid_data)

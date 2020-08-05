@@ -1,19 +1,19 @@
 class Version():
-    """ Server version.
+    """Server version.
 
     Attributes
     ----------
     version : string
         Server version.
-
     """
 
     __slots__ = ["version"]
+
     def __init__(self, version=None):
-            self.version = version
-    
+        self.version = version
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class Version():
         return NotImplemented
 
     def __hash__(self):
-        return hash((version))
+        return hash((self.version))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["version"]}
+
         return cls(**valid_data)

@@ -1,22 +1,21 @@
 class ConfigRow():
-    """ A row of configuration values for a plugin configuration table.
+    """A row of configuration values for a plugin configuration table.
 
     Attributes
     ----------
     defaultRow : boolean
-        Whether this row is the default.
-    fields : array
+        Whether this row is the default.    fields : array
         The configuration fields in the row.
-
     """
 
     __slots__ = ["defaultRow", "fields"]
+
     def __init__(self, fields, defaultRow=None):
-            self.defaultRow = defaultRow
-            self.fields = fields
-    
+        self.defaultRow = defaultRow
+        self.fields = fields
+
     def _validate(self):
-        return any(x for x in ['fields'] if __dict__[x] is not None)
+        return any(x for x in ['fields'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class ConfigRow():
         return NotImplemented
 
     def __hash__(self):
-        return hash((defaultRow, fields))
+        return hash((self.defaultRow, self.fields))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["defaultRow", "fields"]}
+
         return cls(**valid_data)

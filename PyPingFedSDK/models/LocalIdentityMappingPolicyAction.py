@@ -1,31 +1,27 @@
 class LocalIdentityMappingPolicyAction():
-    """ A local identity profile selection action.
+    """A local identity profile selection action.
 
     Attributes
     ----------
     context : string
-        The result context.
-    inboundMapping : str
-        Inbound mappings into the local identity profile fields.
-    localIdentityRef : str
-        Reference to the associated local identity profile.
-    outboundAttributeMapping : str
-        Authentication policy contract mappings associated with this local Identity profile.
-    type : str
+        The result context.    inboundMapping : str
+        Inbound mappings into the local identity profile fields.    localIdentityRef : str
+        Reference to the associated local identity profile.    outboundAttributeMapping : str
+        Authentication policy contract mappings associated with this local Identity profile.    type : str
         The authentication selection type.
-
     """
 
     __slots__ = ["context", "inboundMapping", "localIdentityRef", "outboundAttributeMapping", "type"]
+
     def __init__(self, type, localIdentityRef, outboundAttributeMapping, context=None, inboundMapping=None):
-            self.context = context
-            self.inboundMapping = inboundMapping
-            self.localIdentityRef = localIdentityRef
-            self.outboundAttributeMapping = outboundAttributeMapping
-            self.type = type
-    
+        self.context = context
+        self.inboundMapping = inboundMapping
+        self.localIdentityRef = localIdentityRef
+        self.outboundAttributeMapping = outboundAttributeMapping
+        self.type = type
+
     def _validate(self):
-        return any(x for x in ['type', 'localIdentityRef', 'outboundAttributeMapping'] if __dict__[x] is not None)
+        return any(x for x in ['type', 'localIdentityRef', 'outboundAttributeMapping'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -39,10 +35,10 @@ class LocalIdentityMappingPolicyAction():
         return NotImplemented
 
     def __hash__(self):
-        return hash((context, inboundMapping, localIdentityRef, outboundAttributeMapping, type))
+        return hash((self.context, self.inboundMapping, self.localIdentityRef, self.outboundAttributeMapping, self.type))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["context", "inboundMapping", "localIdentityRef", "outboundAttributeMapping", "type"]}
+
         return cls(**valid_data)

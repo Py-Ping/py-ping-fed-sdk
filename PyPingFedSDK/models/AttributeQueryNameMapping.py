@@ -1,22 +1,21 @@
 class AttributeQueryNameMapping():
-    """ The attribute query name mappings between the SP and the IdP.
+    """The attribute query name mappings between the SP and the IdP.
 
     Attributes
     ----------
     localName : string
-        The local attribute name.
-    remoteName : string
+        The local attribute name.    remoteName : string
         The remote attribute name as defined by the attribute authority.
-
     """
 
     __slots__ = ["localName", "remoteName"]
+
     def __init__(self, localName, remoteName):
-            self.localName = localName
-            self.remoteName = remoteName
-    
+        self.localName = localName
+        self.remoteName = remoteName
+
     def _validate(self):
-        return any(x for x in ['localName', 'remoteName'] if __dict__[x] is not None)
+        return any(x for x in ['localName', 'remoteName'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class AttributeQueryNameMapping():
         return NotImplemented
 
     def __hash__(self):
-        return hash((localName, remoteName))
+        return hash((self.localName, self.remoteName))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["localName", "remoteName"]}
+
         return cls(**valid_data)

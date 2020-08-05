@@ -1,31 +1,27 @@
 class KeyAlgorithm():
-    """ Details for a key algorithm.
+    """Details for a key algorithm.
 
     Attributes
     ----------
     defaultKeySize : integer
-        Default key size for this algorithm.
-    defaultSignatureAlgorithm : string
-        Default signature algorithm for this key algorithm.
-    keySizes : array
-        Possible key sizes for this algorithm, in bits.
-    name : string
-        Name of the key algorithm.
-    signatureAlgorithms : array
+        Default key size for this algorithm.    defaultSignatureAlgorithm : string
+        Default signature algorithm for this key algorithm.    keySizes : array
+        Possible key sizes for this algorithm, in bits.    name : string
+        Name of the key algorithm.    signatureAlgorithms : array
         Possible signature algorithms for this key algorithm.
-
     """
 
     __slots__ = ["defaultKeySize", "defaultSignatureAlgorithm", "keySizes", "name", "signatureAlgorithms"]
+
     def __init__(self, defaultKeySize=None, defaultSignatureAlgorithm=None, keySizes=None, name=None, signatureAlgorithms=None):
-            self.defaultKeySize = defaultKeySize
-            self.defaultSignatureAlgorithm = defaultSignatureAlgorithm
-            self.keySizes = keySizes
-            self.name = name
-            self.signatureAlgorithms = signatureAlgorithms
-    
+        self.defaultKeySize = defaultKeySize
+        self.defaultSignatureAlgorithm = defaultSignatureAlgorithm
+        self.keySizes = keySizes
+        self.name = name
+        self.signatureAlgorithms = signatureAlgorithms
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -39,10 +35,10 @@ class KeyAlgorithm():
         return NotImplemented
 
     def __hash__(self):
-        return hash((defaultKeySize, defaultSignatureAlgorithm, keySizes, name, signatureAlgorithms))
+        return hash((self.defaultKeySize, self.defaultSignatureAlgorithm, self.keySizes, self.name, self.signatureAlgorithms))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["defaultKeySize", "defaultSignatureAlgorithm", "keySizes", "name", "signatureAlgorithms"]}
+
         return cls(**valid_data)

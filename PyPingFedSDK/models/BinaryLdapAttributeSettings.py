@@ -1,19 +1,19 @@
 class BinaryLdapAttributeSettings():
-    """ Binary settings for a LDAP attribute.
+    """Binary settings for a LDAP attribute.
 
     Attributes
     ----------
     binaryEncoding : str
         Get the encoding type for this attribute. If not specified, the default is BASE64.
-
     """
 
     __slots__ = ["binaryEncoding"]
+
     def __init__(self, binaryEncoding=None):
-            self.binaryEncoding = binaryEncoding
-    
+        self.binaryEncoding = binaryEncoding
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class BinaryLdapAttributeSettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((binaryEncoding))
+        return hash((self.binaryEncoding))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["binaryEncoding"]}
+
         return cls(**valid_data)

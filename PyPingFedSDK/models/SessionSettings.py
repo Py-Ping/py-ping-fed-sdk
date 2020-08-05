@@ -1,25 +1,23 @@
 class SessionSettings():
-    """ General settings related to session management.
+    """General settings related to session management.
 
     Attributes
     ----------
     revokeUserSessionOnLogout : boolean
-        Determines whether the user's session is revoked on logout. If this property is not provided on a PUT, the setting is left unchanged.
-    sessionRevocationLifetime : integer
-        How long a session revocation is tracked and stored, in minutes. If this property is not provided on a PUT, the setting is left unchanged.
-    trackAdapterSessionsForLogout : boolean
+        Determines whether the user's session is revoked on logout. If this property is not provided on a PUT, the setting is left unchanged.    sessionRevocationLifetime : integer
+        How long a session revocation is tracked and stored, in minutes. If this property is not provided on a PUT, the setting is left unchanged.    trackAdapterSessionsForLogout : boolean
         Determines whether adapter sessions are tracked for cleanup during single logout. The default is false.
-
     """
 
     __slots__ = ["revokeUserSessionOnLogout", "sessionRevocationLifetime", "trackAdapterSessionsForLogout"]
+
     def __init__(self, revokeUserSessionOnLogout=None, sessionRevocationLifetime=None, trackAdapterSessionsForLogout=None):
-            self.revokeUserSessionOnLogout = revokeUserSessionOnLogout
-            self.sessionRevocationLifetime = sessionRevocationLifetime
-            self.trackAdapterSessionsForLogout = trackAdapterSessionsForLogout
-    
+        self.revokeUserSessionOnLogout = revokeUserSessionOnLogout
+        self.sessionRevocationLifetime = sessionRevocationLifetime
+        self.trackAdapterSessionsForLogout = trackAdapterSessionsForLogout
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class SessionSettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((revokeUserSessionOnLogout, sessionRevocationLifetime, trackAdapterSessionsForLogout))
+        return hash((self.revokeUserSessionOnLogout, self.sessionRevocationLifetime, self.trackAdapterSessionsForLogout))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["revokeUserSessionOnLogout", "sessionRevocationLifetime", "trackAdapterSessionsForLogout"]}
+
         return cls(**valid_data)

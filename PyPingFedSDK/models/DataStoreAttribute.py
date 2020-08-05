@@ -1,25 +1,23 @@
 class DataStoreAttribute():
-    """ The data store attribute.
+    """The data store attribute.
 
     Attributes
     ----------
     metadata : str
-        The data store attribute metadata.
-    name : string
-        The data store attribute name.
-    type : str
+        The data store attribute metadata.    name : string
+        The data store attribute name.    type : str
         The data store attribute type.
-
     """
 
     __slots__ = ["metadata", "name", "type"]
+
     def __init__(self, type, name, metadata=None):
-            self.metadata = metadata
-            self.name = name
-            self.type = type
-    
+        self.metadata = metadata
+        self.name = name
+        self.type = type
+
     def _validate(self):
-        return any(x for x in ['type', 'name'] if __dict__[x] is not None)
+        return any(x for x in ['type', 'name'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class DataStoreAttribute():
         return NotImplemented
 
     def __hash__(self):
-        return hash((metadata, name, type))
+        return hash((self.metadata, self.name, self.type))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["metadata", "name", "type"]}
+
         return cls(**valid_data)

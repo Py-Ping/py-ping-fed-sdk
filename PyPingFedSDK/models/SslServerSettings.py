@@ -1,28 +1,25 @@
 class SslServerSettings():
-    """ Settings for the SSL Server certificate configuration.
+    """Settings for the SSL Server certificate configuration.
 
     Attributes
     ----------
     activeAdminConsoleCerts : array
-        The active SSL Server Certificate Key pairs for PF Administrator Console.
-    activeRuntimeServerCerts : array
-        The active SSL Server Certificate Key pairs for Runtime Server.
-    adminConsoleCertRef : str
-        Reference to the default SSL Server Certificate Key pair active for PF Administrator Console.
-    runtimeServerCertRef : str
+        The active SSL Server Certificate Key pairs for PF Administrator Console.    activeRuntimeServerCerts : array
+        The active SSL Server Certificate Key pairs for Runtime Server.    adminConsoleCertRef : str
+        Reference to the default SSL Server Certificate Key pair active for PF Administrator Console.    runtimeServerCertRef : str
         Reference to the default SSL Server Certificate Key pair active for Runtime Server.
-
     """
 
     __slots__ = ["activeAdminConsoleCerts", "activeRuntimeServerCerts", "adminConsoleCertRef", "runtimeServerCertRef"]
+
     def __init__(self, runtimeServerCertRef, adminConsoleCertRef, activeAdminConsoleCerts=None, activeRuntimeServerCerts=None):
-            self.activeAdminConsoleCerts = activeAdminConsoleCerts
-            self.activeRuntimeServerCerts = activeRuntimeServerCerts
-            self.adminConsoleCertRef = adminConsoleCertRef
-            self.runtimeServerCertRef = runtimeServerCertRef
-    
+        self.activeAdminConsoleCerts = activeAdminConsoleCerts
+        self.activeRuntimeServerCerts = activeRuntimeServerCerts
+        self.adminConsoleCertRef = adminConsoleCertRef
+        self.runtimeServerCertRef = runtimeServerCertRef
+
     def _validate(self):
-        return any(x for x in ['runtimeServerCertRef', 'adminConsoleCertRef'] if __dict__[x] is not None)
+        return any(x for x in ['runtimeServerCertRef', 'adminConsoleCertRef'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -36,10 +33,10 @@ class SslServerSettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((activeAdminConsoleCerts, activeRuntimeServerCerts, adminConsoleCertRef, runtimeServerCertRef))
+        return hash((self.activeAdminConsoleCerts, self.activeRuntimeServerCerts, self.adminConsoleCertRef, self.runtimeServerCertRef))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["activeAdminConsoleCerts", "activeRuntimeServerCerts", "adminConsoleCertRef", "runtimeServerCertRef"]}
+
         return cls(**valid_data)

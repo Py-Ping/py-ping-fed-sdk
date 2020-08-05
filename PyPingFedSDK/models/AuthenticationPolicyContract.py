@@ -1,28 +1,25 @@
 class AuthenticationPolicyContract():
-    """ Authentication Policy Contracts carry user attributes from the identity provider to the service provider.
+    """Authentication Policy Contracts carry user attributes from the identity provider to the service provider.
 
     Attributes
     ----------
     coreAttributes : array
-        A list of read-only assertion attributes (for example, subject) that are automatically populated by PingFederate.
-    extendedAttributes : array
-        A list of additional attributes as needed.
-    id : string
-        The persistent, unique ID for the authentication policy contract. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
-    name : string
+        A list of read-only assertion attributes (for example, subject) that are automatically populated by PingFederate.    extendedAttributes : array
+        A list of additional attributes as needed.    id : string
+        The persistent, unique ID for the authentication policy contract. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.    name : string
         The Authentication Policy Contract Name. Name is unique.
-
     """
 
     __slots__ = ["coreAttributes", "extendedAttributes", "id", "name"]
+
     def __init__(self, coreAttributes=None, extendedAttributes=None, id=None, name=None):
-            self.coreAttributes = coreAttributes
-            self.extendedAttributes = extendedAttributes
-            self.id = id
-            self.name = name
-    
+        self.coreAttributes = coreAttributes
+        self.extendedAttributes = extendedAttributes
+        self.id = id
+        self.name = name
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -36,10 +33,10 @@ class AuthenticationPolicyContract():
         return NotImplemented
 
     def __hash__(self):
-        return hash((coreAttributes, extendedAttributes, id, name))
+        return hash((self.coreAttributes, self.extendedAttributes, self.id, self.name))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes", "id", "name"]}
+
         return cls(**valid_data)

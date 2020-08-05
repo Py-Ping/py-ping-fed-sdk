@@ -1,22 +1,21 @@
 class ApplicationSessionPolicy():
-    """ Session controls for user facing PingFederate application endpoints, such as the profile management endpoint.
+    """Session controls for user facing PingFederate application endpoints, such as the profile management endpoint.
 
     Attributes
     ----------
     idleTimeoutMins : integer
-        The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.
-    maxTimeoutMins : integer
+        The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.    maxTimeoutMins : integer
         The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.
-
     """
 
     __slots__ = ["idleTimeoutMins", "maxTimeoutMins"]
+
     def __init__(self, idleTimeoutMins=None, maxTimeoutMins=None):
-            self.idleTimeoutMins = idleTimeoutMins
-            self.maxTimeoutMins = maxTimeoutMins
-    
+        self.idleTimeoutMins = idleTimeoutMins
+        self.maxTimeoutMins = maxTimeoutMins
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class ApplicationSessionPolicy():
         return NotImplemented
 
     def __hash__(self):
-        return hash((idleTimeoutMins, maxTimeoutMins))
+        return hash((self.idleTimeoutMins, self.maxTimeoutMins))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["idleTimeoutMins", "maxTimeoutMins"]}
+
         return cls(**valid_data)

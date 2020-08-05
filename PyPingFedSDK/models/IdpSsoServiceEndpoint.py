@@ -1,22 +1,21 @@
 class IdpSsoServiceEndpoint():
-    """ The settings that define an endpoint to an IdP SSO service.
+    """The settings that define an endpoint to an IdP SSO service.
 
     Attributes
     ----------
     binding : str
-        The binding of this endpoint, if applicable - usually only required for SAML 2.0 endpoints.
-    url : string
+        The binding of this endpoint, if applicable - usually only required for SAML 2.0 endpoints.    url : string
         The absolute or relative URL of the endpoint. A relative URL can be specified if a base URL for the connection has been defined.
-
     """
 
     __slots__ = ["binding", "url"]
+
     def __init__(self, binding, url):
-            self.binding = binding
-            self.url = url
-    
+        self.binding = binding
+        self.url = url
+
     def _validate(self):
-        return any(x for x in ['binding', 'url'] if __dict__[x] is not None)
+        return any(x for x in ['binding', 'url'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class IdpSsoServiceEndpoint():
         return NotImplemented
 
     def __hash__(self):
-        return hash((binding, url))
+        return hash((self.binding, self.url))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["binding", "url"]}
+
         return cls(**valid_data)

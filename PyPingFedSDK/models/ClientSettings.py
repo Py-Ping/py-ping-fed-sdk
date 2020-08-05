@@ -1,22 +1,21 @@
 class ClientSettings():
-    """ The client settings.
+    """The client settings.
 
     Attributes
     ----------
     clientMetadata : array
-        The client metadata.
-    dynamicClientRegistration : str
+        The client metadata.    dynamicClientRegistration : str
         Dynamic client registration settings.
-
     """
 
     __slots__ = ["clientMetadata", "dynamicClientRegistration"]
+
     def __init__(self, clientMetadata=None, dynamicClientRegistration=None):
-            self.clientMetadata = clientMetadata
-            self.dynamicClientRegistration = dynamicClientRegistration
-    
+        self.clientMetadata = clientMetadata
+        self.dynamicClientRegistration = dynamicClientRegistration
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class ClientSettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((clientMetadata, dynamicClientRegistration))
+        return hash((self.clientMetadata, self.dynamicClientRegistration))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["clientMetadata", "dynamicClientRegistration"]}
+
         return cls(**valid_data)

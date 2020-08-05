@@ -1,19 +1,19 @@
 class LicenseFile():
-    """ License to import.
+    """License to import.
 
     Attributes
     ----------
     fileData : string
         The base64-encoded license file.
-
     """
 
     __slots__ = ["fileData"]
+
     def __init__(self, fileData):
-            self.fileData = fileData
-    
+        self.fileData = fileData
+
     def _validate(self):
-        return any(x for x in ['fileData'] if __dict__[x] is not None)
+        return any(x for x in ['fileData'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class LicenseFile():
         return NotImplemented
 
     def __hash__(self):
-        return hash((fileData))
+        return hash((self.fileData))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["fileData"]}
+
         return cls(**valid_data)

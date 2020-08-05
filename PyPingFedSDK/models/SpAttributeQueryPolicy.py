@@ -1,31 +1,27 @@
 class SpAttributeQueryPolicy():
-    """ The attribute query profile's security policy.
+    """The attribute query profile's security policy.
 
     Attributes
     ----------
     encryptAssertion : boolean
-        Encrypt the assertion.
-    requireEncryptedNameId : boolean
-        Require an encrypted name identifier.
-    requireSignedAttributeQuery : boolean
-        Require signed attribute query.
-    signAssertion : boolean
-        Sign the assertion.
-    signResponse : boolean
+        Encrypt the assertion.    requireEncryptedNameId : boolean
+        Require an encrypted name identifier.    requireSignedAttributeQuery : boolean
+        Require signed attribute query.    signAssertion : boolean
+        Sign the assertion.    signResponse : boolean
         Sign the response.
-
     """
 
     __slots__ = ["encryptAssertion", "requireEncryptedNameId", "requireSignedAttributeQuery", "signAssertion", "signResponse"]
+
     def __init__(self, encryptAssertion=None, requireEncryptedNameId=None, requireSignedAttributeQuery=None, signAssertion=None, signResponse=None):
-            self.encryptAssertion = encryptAssertion
-            self.requireEncryptedNameId = requireEncryptedNameId
-            self.requireSignedAttributeQuery = requireSignedAttributeQuery
-            self.signAssertion = signAssertion
-            self.signResponse = signResponse
-    
+        self.encryptAssertion = encryptAssertion
+        self.requireEncryptedNameId = requireEncryptedNameId
+        self.requireSignedAttributeQuery = requireSignedAttributeQuery
+        self.signAssertion = signAssertion
+        self.signResponse = signResponse
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -39,10 +35,10 @@ class SpAttributeQueryPolicy():
         return NotImplemented
 
     def __hash__(self):
-        return hash((encryptAssertion, requireEncryptedNameId, requireSignedAttributeQuery, signAssertion, signResponse))
+        return hash((self.encryptAssertion, self.requireEncryptedNameId, self.requireSignedAttributeQuery, self.signAssertion, self.signResponse))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["encryptAssertion", "requireEncryptedNameId", "requireSignedAttributeQuery", "signAssertion", "signResponse"]}
+
         return cls(**valid_data)

@@ -1,19 +1,19 @@
 class CibaServerPolicySettings():
-    """ Settings for the CIBA request policy configuration.
+    """Settings for the CIBA request policy configuration.
 
     Attributes
     ----------
     defaultRequestPolicyRef : str
         Reference to the default request policy, if one is defined.
-
     """
 
     __slots__ = ["defaultRequestPolicyRef"]
+
     def __init__(self, defaultRequestPolicyRef=None):
-            self.defaultRequestPolicyRef = defaultRequestPolicyRef
-    
+        self.defaultRequestPolicyRef = defaultRequestPolicyRef
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class CibaServerPolicySettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((defaultRequestPolicyRef))
+        return hash((self.defaultRequestPolicyRef))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["defaultRequestPolicyRef"]}
+
         return cls(**valid_data)

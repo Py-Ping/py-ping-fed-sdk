@@ -1,25 +1,23 @@
 class AlternativeLoginHintTokenIssuer():
-    """ JSON Web Key Set Settings.
+    """JSON Web Key Set Settings.
 
     Attributes
     ----------
     issuer : string
-        The issuer. Issuer is unique.
-    jwks : string
-        The JWKS.
-    jwksURL : string
+        The issuer. Issuer is unique.    jwks : string
+        The JWKS.    jwksURL : string
         The JWKS URL.
-
     """
 
     __slots__ = ["issuer", "jwks", "jwksURL"]
+
     def __init__(self, issuer, jwks=None, jwksURL=None):
-            self.issuer = issuer
-            self.jwks = jwks
-            self.jwksURL = jwksURL
-    
+        self.issuer = issuer
+        self.jwks = jwks
+        self.jwksURL = jwksURL
+
     def _validate(self):
-        return any(x for x in ['issuer'] if __dict__[x] is not None)
+        return any(x for x in ['issuer'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class AlternativeLoginHintTokenIssuer():
         return NotImplemented
 
     def __hash__(self):
-        return hash((issuer, jwks, jwksURL))
+        return hash((self.issuer, self.jwks, self.jwksURL))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["issuer", "jwks", "jwksURL"]}
+
         return cls(**valid_data)

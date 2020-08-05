@@ -1,28 +1,25 @@
 class PluginConfigDescriptor():
-    """ Defines the configuration fields available for a plugin.
+    """Defines the configuration fields available for a plugin.
 
     Attributes
     ----------
     actionDescriptors : array
-        The available actions for this plugin.
-    description : string
-        The description of this plugin.
-    fields : array
-        The configuration fields available for this plugin.
-    tables : array
+        The available actions for this plugin.    description : string
+        The description of this plugin.    fields : array
+        The configuration fields available for this plugin.    tables : array
         Configuration tables available for this plugin.
-
     """
 
     __slots__ = ["actionDescriptors", "description", "fields", "tables"]
+
     def __init__(self, actionDescriptors=None, description=None, fields=None, tables=None):
-            self.actionDescriptors = actionDescriptors
-            self.description = description
-            self.fields = fields
-            self.tables = tables
-    
+        self.actionDescriptors = actionDescriptors
+        self.description = description
+        self.fields = fields
+        self.tables = tables
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -36,10 +33,10 @@ class PluginConfigDescriptor():
         return NotImplemented
 
     def __hash__(self):
-        return hash((actionDescriptors, description, fields, tables))
+        return hash((self.actionDescriptors, self.description, self.fields, self.tables))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["actionDescriptors", "description", "fields", "tables"]}
+
         return cls(**valid_data)
