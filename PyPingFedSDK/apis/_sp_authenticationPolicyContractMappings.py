@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _sp_authenticationPolicyContractMappings():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _sp_authenticationPolicyContractMappings():
     def getApcToSpAdapterMappings(self):
         """ Get the list of APC-to-SP Adapter Mappings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/authenticationPolicyContractMappings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,13 @@ class _sp_authenticationPolicyContractMappings():
     def createApcToSpAdapterMapping(self, body, X-BypassExternalValidation):
         """ Create a new APC-to-SP Adapter Mapping.
         """
-        
+
         payload = {
-            "body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -50,7 +55,7 @@ class _sp_authenticationPolicyContractMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Authentication policy contract-to-SP adapter mapping created.')
@@ -66,17 +71,17 @@ class _sp_authenticationPolicyContractMappings():
     def getApcToSpAdapterMappingById(self, id):
         """ Get an APC-to-SP Adapter Mapping.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/authenticationPolicyContractMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -90,11 +95,14 @@ class _sp_authenticationPolicyContractMappings():
     def updateApcToSpAdapterMappingById(self, id, body, X-BypassExternalValidation):
         """ Update an APC-to-SP Adapter Mapping.
         """
-        
+
         payload = {
-            "id": id"body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "id": id,
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -104,7 +112,7 @@ class _sp_authenticationPolicyContractMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Authentication policy contract-to-SP adapter mapping updated.')
@@ -122,17 +130,17 @@ class _sp_authenticationPolicyContractMappings():
     def deleteApcToSpAdapterMappingById(self, id):
         """ Delete an APC-to-SP Adapter Mapping.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/sp/authenticationPolicyContractMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Authentication policy contract-to-SP adapter mapping deleted.')

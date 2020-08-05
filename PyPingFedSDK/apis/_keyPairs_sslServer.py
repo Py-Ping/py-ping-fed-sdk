@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _keyPairs_sslServer():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _keyPairs_sslServer():
     def getKeyPairs(self):
         """ Get list of key pairs.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/keyPairs/sslServer"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,11 +37,12 @@ class _keyPairs_sslServer():
     def importKeyPair(self, body):
         """ Import a new key pair.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -48,7 +52,7 @@ class _keyPairs_sslServer():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Key Pair imported.')
@@ -64,11 +68,12 @@ class _keyPairs_sslServer():
     def createKeyPair(self, body):
         """ Generate a new key pair.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -78,7 +83,7 @@ class _keyPairs_sslServer():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Key Pair created.')
@@ -92,17 +97,17 @@ class _keyPairs_sslServer():
     def getKeyPair(self, id):
         """ Retrieve details of a key pair.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/keyPairs/sslServer/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -114,17 +119,17 @@ class _keyPairs_sslServer():
     def deleteKeyPair(self, id):
         """ Delete a key pair.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/keyPairs/sslServer/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Key Pair deleted.')
@@ -138,17 +143,17 @@ class _keyPairs_sslServer():
     def exportCsr(self, id):
         """ Generate a new certificate signing request (CSR) for this key pair.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/keyPairs/sslServer/{id}/csr"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -158,11 +163,13 @@ class _keyPairs_sslServer():
     def importCsrResponse(self, id, body):
         """ Import a CSR response for this key pair.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -172,7 +179,7 @@ class _keyPairs_sslServer():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('CSR Response imported.')
@@ -188,11 +195,13 @@ class _keyPairs_sslServer():
     def exportPKCS12File(self, id, body):
         """ Download the key pair in PKCS12 format.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -202,7 +211,7 @@ class _keyPairs_sslServer():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Key Pair downloaded.')
@@ -218,17 +227,17 @@ class _keyPairs_sslServer():
     def exportCertificateFile(self, id):
         """ Download the certificate from a given key pair.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/keyPairs/sslServer/{id}/certificate"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -240,17 +249,17 @@ class _keyPairs_sslServer():
     def getSettings(self):
         """ Get the SSL Server Certificate Settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/keyPairs/sslServer/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -260,11 +269,12 @@ class _keyPairs_sslServer():
     def updateSettings(self, body):
         """ Update the SSL Server Certificate Settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -274,7 +284,7 @@ class _keyPairs_sslServer():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('SSL Certificate Settings updated.')

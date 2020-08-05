@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _idp_spConnections():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _idp_spConnections():
     def getConnections(self, entityId, page, numberPerPage, filter):
         """ Get list of SP connections.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/spConnections"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -38,11 +41,13 @@ class _idp_spConnections():
     def createConnection(self, body, X-BypassExternalValidation):
         """ Create a new SP connection.
         """
-        
+
         payload = {
-            "body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -52,7 +57,7 @@ class _idp_spConnections():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Connection created.')
@@ -68,17 +73,17 @@ class _idp_spConnections():
     def getConnection(self, id):
         """ Find SP connection by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/spConnections/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -92,11 +97,14 @@ class _idp_spConnections():
     def updateConnection(self, id, body, X-BypassExternalValidation):
         """ Update an SP connection.
         """
-        
+
         payload = {
-            "id": id"body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "id": id,
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -106,7 +114,7 @@ class _idp_spConnections():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Connection updated.')
@@ -124,17 +132,17 @@ class _idp_spConnections():
     def deleteConnection(self, id):
         """ Delete an SP connection.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/idp/spConnections/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Connection deleted.')
@@ -150,17 +158,17 @@ class _idp_spConnections():
     def getSigningSettings(self, id):
         """ Get the SP connection's signature settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/spConnections/{id}/credentials/signingSettings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -174,11 +182,13 @@ class _idp_spConnections():
     def updateSigningSettings(self, id, body):
         """ Update the SP connection's signature settings.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -188,7 +198,7 @@ class _idp_spConnections():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Connection updated.')
@@ -206,11 +216,13 @@ class _idp_spConnections():
     def addConnectionCert(self, id, body):
         """ Add a new SP connection certificate.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -220,7 +232,7 @@ class _idp_spConnections():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Connection Certificate added.')
@@ -238,17 +250,17 @@ class _idp_spConnections():
     def getConnectionCerts(self, id):
         """ Get the SP connection's certificates.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/spConnections/{id}/credentials/certs"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -262,11 +274,13 @@ class _idp_spConnections():
     def updateConnectionCerts(self, id, body):
         """ Update the SP connection's certificates.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -276,7 +290,7 @@ class _idp_spConnections():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Connection updated.')
@@ -294,17 +308,17 @@ class _idp_spConnections():
     def getDecryptionKeys(self, id):
         """ Get the decryption keys of an SP connection.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/spConnections/{id}/credentials/decryptionKeys"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -318,11 +332,13 @@ class _idp_spConnections():
     def updateDecryptionKeys(self, id, body):
         """ Updating the SP connection's decryption keys.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -332,7 +348,7 @@ class _idp_spConnections():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Connection updated.')

@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _keyPairs_oauthOpenIdConnect():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _keyPairs_oauthOpenIdConnect():
     def getOauthOidcKeysSettings(self):
         """ Retrieve OAuth/Open ID Connect key settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/keyPairs/oauthOpenIdConnect"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,11 +37,12 @@ class _keyPairs_oauthOpenIdConnect():
     def updateOAuthOidcKeysSettings(self, body):
         """ Update OAuth/Open ID Connect key settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -48,7 +52,7 @@ class _keyPairs_oauthOpenIdConnect():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('OAuth/Open ID Connect key settings updated.')

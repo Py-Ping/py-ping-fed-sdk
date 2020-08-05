@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_resourceOwnerCredentialsMappings():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_resourceOwnerCredentialsMappings():
     def getResourceOwnerCredentialsMappings(self):
         """ Get the list of Resource Owner Credentials mappings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/resourceOwnerCredentialsMappings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,13 @@ class _oauth_resourceOwnerCredentialsMappings():
     def createResourceOwnerCredentialsMapping(self, body, X-BypassExternalValidation):
         """ Create a new Resource Owner Credentials mapping.
         """
-        
+
         payload = {
-            "body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -50,7 +55,7 @@ class _oauth_resourceOwnerCredentialsMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Resource owner credentials mapping created.')
@@ -66,17 +71,17 @@ class _oauth_resourceOwnerCredentialsMappings():
     def getResourceOwnerCredentialsMapping(self, id):
         """ Find the Resource Owner Credentials mapping by the ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/resourceOwnerCredentialsMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -90,11 +95,14 @@ class _oauth_resourceOwnerCredentialsMappings():
     def updateResourceOwnerCredentialsMapping(self, id, body, X-BypassExternalValidation):
         """ Update a Resource Owner Credentials mapping.
         """
-        
+
         payload = {
-            "id": id"body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "id": id,
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -104,7 +112,7 @@ class _oauth_resourceOwnerCredentialsMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Resource owner credentials mapping updated.')
@@ -122,17 +130,17 @@ class _oauth_resourceOwnerCredentialsMappings():
     def deleteResourceOwnerCredentialsMapping(self, id):
         """ Delete a Resource Owner Credentials mapping.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/resourceOwnerCredentialsMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Resource owner credentials mapping deleted.')

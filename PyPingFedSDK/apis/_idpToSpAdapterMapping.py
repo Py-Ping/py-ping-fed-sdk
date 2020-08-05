@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _idpToSpAdapterMapping():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _idpToSpAdapterMapping():
     def getIdpToSpAdapterMappings(self):
         """ Get list of IdP-to-SP Adapter Mappings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idpToSpAdapterMapping"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,13 @@ class _idpToSpAdapterMapping():
     def createIdpToSpAdapterMapping(self, body, X-BypassExternalValidation):
         """ Create a new IdP-to-SP Adapter mapping.
         """
-        
+
         payload = {
-            "body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -50,7 +55,7 @@ class _idpToSpAdapterMapping():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('IdP-to-SP adapter mapping created.')
@@ -64,17 +69,17 @@ class _idpToSpAdapterMapping():
     def getIdpToSpAdapterMappingsById(self, id):
         """ Get an IdP-to-SP Adapter Mapping.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idpToSpAdapterMapping/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -86,11 +91,14 @@ class _idpToSpAdapterMapping():
     def updateIdpToSpAdapterMapping(self, id, body, X-BypassExternalValidation):
         """ Update the specified IdP-to-SP Adapter mapping.
         """
-        
+
         payload = {
-            "id": id"body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "id": id,
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -100,7 +108,7 @@ class _idpToSpAdapterMapping():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('IdP-to-SP adapter mapping updated.')
@@ -116,17 +124,17 @@ class _idpToSpAdapterMapping():
     def deleteIdpToSpAdapterMappingsById(self, id):
         """ Delete an Adapter to Adapter Mapping.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/idpToSpAdapterMapping/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('IdP-to-SP adapter mapping deleted.')

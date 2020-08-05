@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _kerberos_realms():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _kerberos_realms():
     def getKerberosRealmSettings(self):
         """ Gets the Kerberos Realms Settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/kerberos/realms/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,11 +37,12 @@ class _kerberos_realms():
     def updateSettings(self, body):
         """ Set/Update the Kerberos Realms Settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -48,7 +52,7 @@ class _kerberos_realms():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Settings updated.')
@@ -62,17 +66,17 @@ class _kerberos_realms():
     def getKerberosRealms(self):
         """ Gets the Kerberos Realms.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/kerberos/realms"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -82,11 +86,12 @@ class _kerberos_realms():
     def createKerberosRealm(self, body):
         """ Create a new Kerberos Realm.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -96,7 +101,7 @@ class _kerberos_realms():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Kerberos realm created.')
@@ -110,17 +115,17 @@ class _kerberos_realms():
     def getKerberosRealm(self, id):
         """ Find a Kerberos Realm by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/kerberos/realms/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -132,11 +137,13 @@ class _kerberos_realms():
     def updateKerberosRealm(self, id, body):
         """ Update a Kerberos Realm by ID.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -146,7 +153,7 @@ class _kerberos_realms():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Kerberos realm updated.')
@@ -162,17 +169,17 @@ class _kerberos_realms():
     def deleteKerberosRealm(self, id):
         """ Delete a Kerberos Realm.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/kerberos/realms/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Kerberos realm deleted.')

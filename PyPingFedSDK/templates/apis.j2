@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class {{ safe_name(class_name) }}():
     def __init__(self, endpoint):
@@ -16,17 +19,20 @@ class {{ safe_name(class_name) }}():
     def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{parameter.get('name')}}{% endfor %}):
         """ {{ operation.get('summary') }}
         """
-        {% if operation.get('method') in ['POST', 'PUT'] %}
+{% if operation.get('method') in ['POST', 'PUT'] %}
 
         payload = {
-            {% for parameter in operation.get('parameters',[]) %}"{{parameter.get('name')}}": {{parameter.get('name')}}{% endfor %}
+{% for parameter in operation.get('parameters',[]) %}
+            "{{parameter.get('name')}}": {{parameter.get('name')}}{% if not loop.last %},{% endif %}
+
+{% endfor %}
 
         }
-        {% endif %}
+{% endif %}
 
         try:
             response = {{ requests_verb(operation.get('method')) }}(
-                {% if operation.get('method') in ['POST', 'PUT'] %}data=payload,{% endif %}
+{% if operation.get('method') in ['POST', 'PUT'] %}                data=payload,{% endif %}
 
                 url=self._build_uri("{{api.get('path')}}"),
                 headers={'Accept': '{{ operation.get('produces', "application/json") }}'}
@@ -34,7 +40,7 @@ class {{ safe_name(class_name) }}():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
 {% for response_message in operation.get('responseMessages') %}
             if response.status_code == {{response_message.get('code')}}:
@@ -43,5 +49,4 @@ class {{ safe_name(class_name) }}():
         finally:
             return response
 
-{% endfor %}
-{% endfor %}
+{% endfor %}{% endfor %}

@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _authenticationSelectors():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _authenticationSelectors():
     def getAuthenticationSelectorDescriptors(self):
         """ Get the list of available Authentication Selector descriptors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationSelectors/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,17 +39,17 @@ class _authenticationSelectors():
     def getAuthenticationSelectorDescriptorsById(self, id):
         """ Get the description of an Authentication Selector plugin by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationSelectors/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -60,17 +63,17 @@ class _authenticationSelectors():
     def getAuthenticationSelectors(self, page, numberPerPage, filter):
         """ Get the list of configured Authentication Selector instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationSelectors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -84,11 +87,12 @@ class _authenticationSelectors():
     def createAuthenticationSelector(self, body):
         """ Create a new authentication selector instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -98,7 +102,7 @@ class _authenticationSelectors():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Authentication selector created.')
@@ -114,17 +118,17 @@ class _authenticationSelectors():
     def getAuthenticationSelector(self, id):
         """ Get an Authentication Selector instance by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationSelectors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -138,11 +142,13 @@ class _authenticationSelectors():
     def updateAuthenticationSelector(self, id, body):
         """ Update an authentication selector instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -152,7 +158,7 @@ class _authenticationSelectors():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Authentication selector updated.')
@@ -170,17 +176,17 @@ class _authenticationSelectors():
     def deleteAuthenticationSelector(self, id):
         """ Delete an Authentication Selector instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/authenticationSelectors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Authentication selector deleted.')

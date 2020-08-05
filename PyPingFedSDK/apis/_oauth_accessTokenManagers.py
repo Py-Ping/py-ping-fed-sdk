@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_accessTokenManagers():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_accessTokenManagers():
     def getSettings(self):
         """ Get general access token management settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/accessTokenManagers/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,12 @@ class _oauth_accessTokenManagers():
     def updateSettings(self, body):
         """ Update general access token management settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -50,7 +54,7 @@ class _oauth_accessTokenManagers():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Settings updated.')
@@ -66,17 +70,17 @@ class _oauth_accessTokenManagers():
     def getTokenManagerDescriptors(self):
         """ Get the list of available token management plugin descriptors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/accessTokenManagers/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -88,17 +92,17 @@ class _oauth_accessTokenManagers():
     def getTokenManagerDescriptor(self, id):
         """ Get the description of a token management plugin descriptor.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/accessTokenManagers/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -112,17 +116,17 @@ class _oauth_accessTokenManagers():
     def getTokenManagers(self):
         """ Get a list of all token management plugin instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/accessTokenManagers"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -134,11 +138,12 @@ class _oauth_accessTokenManagers():
     def createTokenManager(self, body):
         """ Create a token management plugin instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -148,7 +153,7 @@ class _oauth_accessTokenManagers():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Access Token Management instance created.')
@@ -164,17 +169,17 @@ class _oauth_accessTokenManagers():
     def getTokenManager(self, id):
         """ Get a specific token management plugin instance.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/accessTokenManagers/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -188,11 +193,13 @@ class _oauth_accessTokenManagers():
     def updateTokenManager(self, id, body):
         """ Update a token management plugin instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -202,7 +209,7 @@ class _oauth_accessTokenManagers():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Access Token Management instance updated.')
@@ -220,17 +227,17 @@ class _oauth_accessTokenManagers():
     def deleteTokenManager(self, id):
         """ Delete a token management plugin instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/accessTokenManagers/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Access token management instance deleted.')

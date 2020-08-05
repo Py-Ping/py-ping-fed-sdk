@@ -2,5 +2,6 @@
 .env
 ./source/*.json
 ./source/*/*.json
-./src/apis/*
-./src/models/*
+./PyPingFedSDK/apis/*
+./PyPingFedSDK/models/*
+./PyPingFedSDK/source/*

@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _connectionMetadata():
     def __init__(self, endpoint):
@@ -14,11 +17,12 @@ class _connectionMetadata():
     def export(self, body):
         """ Export a connection's SAML metadata that can be given to a partner.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -28,7 +32,7 @@ class _connectionMetadata():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Connection SAML metadata exported.')
@@ -44,11 +48,12 @@ class _connectionMetadata():
     def convert(self, body):
         """ Convert a partner's SAML metadata into a JSON representation.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -58,7 +63,7 @@ class _connectionMetadata():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Partner's SAML metadata converted.')

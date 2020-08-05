@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_authenticationPolicyContractMappings():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_authenticationPolicyContractMappings():
     def getApcMappings(self):
         """ Get the list of authentication policy contract to persistent grant mappings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/authenticationPolicyContractMappings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,13 @@ class _oauth_authenticationPolicyContractMappings():
     def createApcMapping(self, body, X-BypassExternalValidation):
         """ Create a new authentication policy contract to persistent grant mapping.
         """
-        
+
         payload = {
-            "body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -50,7 +55,7 @@ class _oauth_authenticationPolicyContractMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Authentication policy contract to persistent grant mapping created.')
@@ -66,17 +71,17 @@ class _oauth_authenticationPolicyContractMappings():
     def getApcMapping(self, id):
         """ Find the authentication policy contract to persistent grant mapping by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/authenticationPolicyContractMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -90,11 +95,14 @@ class _oauth_authenticationPolicyContractMappings():
     def updateApcMapping(self, id, body, X-BypassExternalValidation):
         """ Update an authentication policy contract to persistent grant mapping.
         """
-        
+
         payload = {
-            "id": id"body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "id": id,
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -104,7 +112,7 @@ class _oauth_authenticationPolicyContractMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Authentication policy contract to persistent grant mapping updated.')
@@ -122,17 +130,17 @@ class _oauth_authenticationPolicyContractMappings():
     def deleteApcMapping(self, id):
         """ Delete an authentication policy contract to persistent grant mapping.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/authenticationPolicyContractMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Authentication policy contract to persistent grant mapping deleted.')

@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _administrativeAccounts():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _administrativeAccounts():
     def getAccounts(self):
         """ Get all the PingFederate native Administrative Accounts.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/administrativeAccounts"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,12 @@ class _administrativeAccounts():
     def addAccount(self, body):
         """ Add a new PingFederate native Administrative Account.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -50,7 +54,7 @@ class _administrativeAccounts():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('New Administrative Account created.')
@@ -64,17 +68,17 @@ class _administrativeAccounts():
     def getAccount(self, username):
         """ Get a PingFederate native Administrative Account.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/administrativeAccounts/{username}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -86,11 +90,13 @@ class _administrativeAccounts():
     def updateAccount(self, username, body):
         """ Update the information for a native Administrative Account.
         """
-        
+
         payload = {
-            "username": username"body": body
+            "username": username,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -100,7 +106,7 @@ class _administrativeAccounts():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Administrator Account updated.')
@@ -114,17 +120,17 @@ class _administrativeAccounts():
     def deleteAccount(self, username):
         """ Delete a PingFederate native Administrative Account information.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/administrativeAccounts/{username}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Administrator Account Deleted.')
@@ -138,11 +144,13 @@ class _administrativeAccounts():
     def resetPassword(self, username, body):
         """ Reset the Password of an existing PingFederate native Administrative Account.
         """
-        
+
         payload = {
-            "username": username"body": body
+            "username": username,
+            "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -152,7 +160,7 @@ class _administrativeAccounts():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Administrator password reset.')
@@ -166,11 +174,12 @@ class _administrativeAccounts():
     def changePassword(self, body):
         """ Change the Password of current PingFederate native Account.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -180,7 +189,7 @@ class _administrativeAccounts():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Administrator password changed.')

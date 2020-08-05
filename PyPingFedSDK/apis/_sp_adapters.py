@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _sp_adapters():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _sp_adapters():
     def getSpAdapterDescriptors(self):
         """ Get the list of available SP adapter descriptors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/adapters/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,17 +39,17 @@ class _sp_adapters():
     def getSpAdapterDescriptorsById(self, id):
         """ Get the description of an SP adapter plugin by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/adapters/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -60,17 +63,17 @@ class _sp_adapters():
     def getSpAdapters(self, page, numberPerPage, filter):
         """ Get the list of configured SP adapter instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/adapters"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -84,11 +87,12 @@ class _sp_adapters():
     def createSpAdapter(self, body):
         """ Create a new SP adapter instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -98,7 +102,7 @@ class _sp_adapters():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Adapter created.')
@@ -114,17 +118,17 @@ class _sp_adapters():
     def getSpAdapter(self, id):
         """ Find an SP adapter instance by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/adapters/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -138,11 +142,13 @@ class _sp_adapters():
     def updateSpAdapter(self, id, body):
         """ Update an SP adapter instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -152,7 +158,7 @@ class _sp_adapters():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Adapter updated.')
@@ -170,17 +176,17 @@ class _sp_adapters():
     def deleteSpAdapter(self, id):
         """ Delete an SP adapter instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/sp/adapters/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Adapter deleted.')
@@ -196,17 +202,17 @@ class _sp_adapters():
     def getActions(self, id):
         """ List the actions for an SP adapter instance.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/adapters/{id}/actions"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -220,17 +226,17 @@ class _sp_adapters():
     def getAction(self, id, actionId):
         """ Find an SP adapter instance's action by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/adapters/{id}/actions/{actionId}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -244,11 +250,13 @@ class _sp_adapters():
     def invokeAction(self, id, actionId):
         """ Invokes an action for an SP adapter instance.
         """
-        
+
         payload = {
-            "id": id"actionId": actionId
+            "id": id,
+            "actionId": actionId
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -258,7 +266,7 @@ class _sp_adapters():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Action invoked on adapter.')
@@ -272,17 +280,17 @@ class _sp_adapters():
     def getUrlMappings(self):
         """ (Deprecated) List the mappings between URLs and adapter instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/adapters/urlMappings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -294,11 +302,12 @@ class _sp_adapters():
     def updateUrlMappings(self, body):
         """ (Deprecated) Update the mappings between URLs and adapters instances.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -308,7 +317,7 @@ class _sp_adapters():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Mapping updated.')

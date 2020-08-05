@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_clientRegistrationPolicies():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_clientRegistrationPolicies():
     def getDynamicClientRegistrationDescriptors(self):
         """ Get the list of available client registration policy plugin descriptors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/clientRegistrationPolicies/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,17 +39,17 @@ class _oauth_clientRegistrationPolicies():
     def getDynamicClientRegistrationDescriptor(self, id):
         """ Get the description of a client registration policy plugin descriptor.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/clientRegistrationPolicies/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -60,17 +63,17 @@ class _oauth_clientRegistrationPolicies():
     def getDynamicClientRegistrationPolicies(self):
         """ Get a list of client registration policy plugin instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/clientRegistrationPolicies"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -82,11 +85,12 @@ class _oauth_clientRegistrationPolicies():
     def createDynamicClientRegistrationPolicy(self, body):
         """ Create a client registration policy plugin instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -96,7 +100,7 @@ class _oauth_clientRegistrationPolicies():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Client Registration Policy plugin created.')
@@ -112,17 +116,17 @@ class _oauth_clientRegistrationPolicies():
     def getDynamicClientRegistrationPolicy(self, id):
         """ Get a specific client registration policy plugin instance.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/clientRegistrationPolicies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -136,11 +140,13 @@ class _oauth_clientRegistrationPolicies():
     def updateDynamicClientRegistrationPolicy(self, id, body):
         """ Update a client registration policy plugin instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -150,7 +156,7 @@ class _oauth_clientRegistrationPolicies():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Client Registration Policy plugin updated.')
@@ -168,17 +174,17 @@ class _oauth_clientRegistrationPolicies():
     def deleteDynamicClientRegistrationPolicy(self, id):
         """ Delete a client registration policy plugin instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/clientRegistrationPolicies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Client Registration Policy plugin deleted.')

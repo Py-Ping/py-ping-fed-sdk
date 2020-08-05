@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _notificationPublishers():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _notificationPublishers():
     def getSettings(self):
         """ Get general notification publisher settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/notificationPublishers/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,11 +37,12 @@ class _notificationPublishers():
     def updateSettings(self, body):
         """ Update general notification publisher settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -48,7 +52,7 @@ class _notificationPublishers():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Notification publisher settings updated.')
@@ -62,17 +66,17 @@ class _notificationPublishers():
     def getNotificationPublisherPluginDescriptors(self):
         """ Get the list of available Notification Publisher Plugin descriptors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/notificationPublishers/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -82,17 +86,17 @@ class _notificationPublishers():
     def getNotificationPublisherPluginDescriptor(self, id):
         """ Get the description of a notification publisher plugin descriptor.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/notificationPublishers/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -104,17 +108,17 @@ class _notificationPublishers():
     def getNotificationPublishers(self):
         """ Get a list of notification publisher plugin instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/notificationPublishers"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -124,11 +128,12 @@ class _notificationPublishers():
     def createNotificationPublisher(self, body):
         """ Create a notification publisher plugin instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -138,7 +143,7 @@ class _notificationPublishers():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Notification Publisher plugin created.')
@@ -152,17 +157,17 @@ class _notificationPublishers():
     def getNotificationPublisher(self, id):
         """ Get a specific notification publisher plugin instance.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/notificationPublishers/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -174,11 +179,13 @@ class _notificationPublishers():
     def updateNotificationPublisher(self, id, body):
         """ Update a notification publisher plugin instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -188,7 +195,7 @@ class _notificationPublishers():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Notification Publisher plugin updated.')
@@ -204,17 +211,17 @@ class _notificationPublishers():
     def deleteNotificationPublisher(self, id):
         """ Delete a notification publisher plugin instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/notificationPublishers/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Notification Publisher plugin deleted.')
@@ -228,17 +235,17 @@ class _notificationPublishers():
     def getActions(self, id):
         """ List the actions for a notification publisher plugin instance.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/notificationPublishers/{id}/actions"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -250,17 +257,17 @@ class _notificationPublishers():
     def getAction(self, id, actionId):
         """ Find an notification publisher plugin instance's action by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/notificationPublishers/{id}/actions/{actionId}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -272,11 +279,13 @@ class _notificationPublishers():
     def invokeAction(self, id, actionId):
         """ Invokes an action for notification publisher plugin instance.
         """
-        
+
         payload = {
-            "id": id"actionId": actionId
+            "id": id,
+            "actionId": actionId
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -286,7 +295,7 @@ class _notificationPublishers():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Notification Publisher plugin action invoked.')

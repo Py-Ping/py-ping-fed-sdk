@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _license():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _license():
     def getLicenseAgreement(self):
         """ Get license agreement link.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/license/agreement"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,12 @@ class _license():
     def updateLicenseAgreement(self, body):
         """ Accept license agreement.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -50,7 +54,7 @@ class _license():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('License agreement accepted.')
@@ -62,17 +66,17 @@ class _license():
     def getLicense(self):
         """ Get a license summary.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/license"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -86,11 +90,12 @@ class _license():
     def updateLicense(self, body):
         """ Import a license.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -100,7 +105,7 @@ class _license():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('License imported.')

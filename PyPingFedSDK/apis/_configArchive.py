@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _configArchive():
     def __init__(self, endpoint):
@@ -14,11 +17,13 @@ class _configArchive():
     def importConfigArchive(self, file, forceImport):
         """ Import a configuration archive.
         """
-        
+
         payload = {
-            "file": file"forceImport": forceImport
+            "file": file,
+            "forceImport": forceImport
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -28,7 +33,7 @@ class _configArchive():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Configuration Archive imported.')
@@ -40,17 +45,17 @@ class _configArchive():
     def exportConfigArchive(self):
         """ Export a configuration archive.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/configArchive/export"),
                 headers={'Accept': '['application/json', 'application/zip']'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
