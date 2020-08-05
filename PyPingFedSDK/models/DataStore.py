@@ -1,25 +1,23 @@
 class DataStore():
-    """ The set of attributes used to configure a data store.
+    """The set of attributes used to configure a data store.
 
     Attributes
     ----------
     id : string
-        The persistent, unique ID for the data store. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
-    maskAttributeValues : boolean
-        Whether attribute values should be masked in the log.
-    type : str
+        The persistent, unique ID for the data store. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.    maskAttributeValues : boolean
+        Whether attribute values should be masked in the log.    type : str
         The data store type.
-
     """
 
     __slots__ = ["id", "maskAttributeValues", "type"]
+
     def __init__(self, type, id=None, maskAttributeValues=None):
-            self.id = id
-            self.maskAttributeValues = maskAttributeValues
-            self.type = type
-    
+        self.id = id
+        self.maskAttributeValues = maskAttributeValues
+        self.type = type
+
     def _validate(self):
-        return any(x for x in ['type'] if __dict__[x] is not None)
+        return any(x for x in ['type'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class DataStore():
         return NotImplemented
 
     def __hash__(self):
-        return hash((id, maskAttributeValues, type))
+        return hash((self.id, self.maskAttributeValues, self.type))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["id", "maskAttributeValues", "type"]}
+
         return cls(**valid_data)

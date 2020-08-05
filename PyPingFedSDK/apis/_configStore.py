@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _configStore():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _configStore():
     def getSetting(self, bundle, id):
         """ Get a single setting from a bundle.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/configStore/{bundle}/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -38,11 +41,14 @@ class _configStore():
     def updateSetting(self, bundle, id, body):
         """ Update a setting.
         """
-        
+
         payload = {
-            "bundle": bundle"id": id"body": body
+            "bundle": bundle,
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -52,7 +58,7 @@ class _configStore():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Configuration setting updated.')
@@ -68,17 +74,17 @@ class _configStore():
     def deleteSetting(self, bundle, id):
         """ Delete a setting.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/configStore/{bundle}/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Configuration setting deleted.')
@@ -92,17 +98,17 @@ class _configStore():
     def getSettings(self, bundle):
         """ Get all settings from a bundle.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/configStore/{bundle}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')

@@ -1,25 +1,23 @@
 class ExtendedProperty():
-    """ Extended Property definition that allows to store additional information about IdP/SP Connections and OAuth Clients.
+    """Extended Property definition that allows to store additional information about IdP/SP Connections and OAuth Clients.
 
     Attributes
     ----------
     description : string
-        The property description.
-    multiValued : boolean
-        Indicates whether the property should allow multiple values.
-    name : string
+        The property description.    multiValued : boolean
+        Indicates whether the property should allow multiple values.    name : string
         The property name.
-
     """
 
     __slots__ = ["description", "multiValued", "name"]
+
     def __init__(self, description=None, multiValued=None, name=None):
-            self.description = description
-            self.multiValued = multiValued
-            self.name = name
-    
+        self.description = description
+        self.multiValued = multiValued
+        self.name = name
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class ExtendedProperty():
         return NotImplemented
 
     def __hash__(self):
-        return hash((description, multiValued, name))
+        return hash((self.description, self.multiValued, self.name))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["description", "multiValued", "name"]}
+
         return cls(**valid_data)

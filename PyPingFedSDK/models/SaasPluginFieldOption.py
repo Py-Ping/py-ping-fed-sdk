@@ -1,22 +1,21 @@
 class SaasPluginFieldOption():
-    """ A plugin configuration field value.
+    """A plugin configuration field value.
 
     Attributes
     ----------
     code : string
-        The code that represents the field.
-    label : string
+        The code that represents the field.    label : string
         The label for the field.
-
     """
 
     __slots__ = ["code", "label"]
+
     def __init__(self, code, label):
-            self.code = code
-            self.label = label
-    
+        self.code = code
+        self.label = label
+
     def _validate(self):
-        return any(x for x in ['code', 'label'] if __dict__[x] is not None)
+        return any(x for x in ['code', 'label'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class SaasPluginFieldOption():
         return NotImplemented
 
     def __hash__(self):
-        return hash((code, label))
+        return hash((self.code, self.label))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["code", "label"]}
+
         return cls(**valid_data)

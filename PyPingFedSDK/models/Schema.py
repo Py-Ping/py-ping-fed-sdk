@@ -1,22 +1,21 @@
 class Schema():
-    """ Custom SCIM Attributes configuration.
+    """Custom SCIM Attributes configuration.
 
     Attributes
     ----------
     attributes : array
-        
     namespace : string
-        
 
     """
 
     __slots__ = ["attributes", "namespace"]
+
     def __init__(self, attributes=None, namespace=None):
-            self.attributes = attributes
-            self.namespace = namespace
-    
+        self.attributes = attributes
+        self.namespace = namespace
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class Schema():
         return NotImplemented
 
     def __hash__(self):
-        return hash((attributes, namespace))
+        return hash((self.attributes, self.namespace))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["attributes", "namespace"]}
+
         return cls(**valid_data)

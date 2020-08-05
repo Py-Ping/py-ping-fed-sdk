@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _certificates_revocation():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _certificates_revocation():
     def getRevocationSettings(self):
         """ Get certificate revocation settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/certificates/revocation/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,11 +37,12 @@ class _certificates_revocation():
     def updateRevocationSettings(self, body):
         """ Update certificate revocation settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -48,7 +52,7 @@ class _certificates_revocation():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Certificate revocation settings updated.')
@@ -62,17 +66,17 @@ class _certificates_revocation():
     def getOcspCertificates(self):
         """ Get the list of available OCSP responder signature verification certificates.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/certificates/revocation/ocspCertificates"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -82,11 +86,12 @@ class _certificates_revocation():
     def importOcspCertificate(self, body):
         """ Import an OCSP responder signature verification certificate.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -96,7 +101,7 @@ class _certificates_revocation():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('OCSP responder signature verification certificate imported.')
@@ -110,17 +115,17 @@ class _certificates_revocation():
     def getOcspCertificateById(self, id):
         """ Get an OCSP responder signature verification certificate by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/certificates/revocation/ocspCertificates/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -132,17 +137,17 @@ class _certificates_revocation():
     def deleteOcspCertificateById(self, id):
         """ Delete an OCSP responder signature verification certificate by ID.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/certificates/revocation/ocspCertificates/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('OCSP responder signature verification certificate deleted.')

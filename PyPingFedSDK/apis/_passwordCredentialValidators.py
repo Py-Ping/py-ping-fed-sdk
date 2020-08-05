@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _passwordCredentialValidators():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _passwordCredentialValidators():
     def getPasswordCredentialValidatorDescriptors(self):
         """ Get a list of available password credential validator descriptors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/passwordCredentialValidators/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,17 +37,17 @@ class _passwordCredentialValidators():
     def getPasswordCredentialValidatorDescriptor(self, id):
         """ Get the description of a password credential validator by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/passwordCredentialValidators/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -56,17 +59,17 @@ class _passwordCredentialValidators():
     def getPasswordCredentialValidators(self):
         """ Get the list of available password credential validators
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/passwordCredentialValidators"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -76,11 +79,12 @@ class _passwordCredentialValidators():
     def createPasswordCredentialValidator(self, body):
         """ Create a new password credential validator instance
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -90,7 +94,7 @@ class _passwordCredentialValidators():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Password credential validator created.')
@@ -104,17 +108,17 @@ class _passwordCredentialValidators():
     def getPasswordCredentialValidator(self, id):
         """ Find a password credential validator by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/passwordCredentialValidators/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -126,11 +130,13 @@ class _passwordCredentialValidators():
     def updatePasswordCredentialValidator(self, id, body):
         """ Update a password credential validator instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -140,7 +146,7 @@ class _passwordCredentialValidators():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Password credential validator updated.')
@@ -156,17 +162,17 @@ class _passwordCredentialValidators():
     def deletePasswordCredentialValidator(self, id):
         """ Delete a password credential validator instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/passwordCredentialValidators/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Password credential validator deleted.')

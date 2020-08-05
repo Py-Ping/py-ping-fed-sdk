@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _authenticationApi():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _authenticationApi():
     def getAuthenticationApiSettings(self):
         """ Get the Authentication API settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationApi/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -38,11 +41,12 @@ class _authenticationApi():
     def updateAuthenticationApiSettings(self, body):
         """ Set the Authentication API settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -52,7 +56,7 @@ class _authenticationApi():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Settings updated.')
@@ -68,17 +72,17 @@ class _authenticationApi():
     def getAuthenticationApiApplications(self):
         """ Get the collection of Authentication API Applications.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationApi/applications"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -92,11 +96,12 @@ class _authenticationApi():
     def createApplication(self, body):
         """ Create a new Authentication API Application.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -106,7 +111,7 @@ class _authenticationApi():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Authentication API Application created.')
@@ -122,17 +127,17 @@ class _authenticationApi():
     def getApplication(self, id):
         """ Find Authentication API Application by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationApi/applications/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -146,11 +151,13 @@ class _authenticationApi():
     def updateApplication(self, id, body):
         """ Update an Authentication API Application.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -160,7 +167,7 @@ class _authenticationApi():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Authentication API Application updated.')
@@ -178,17 +185,17 @@ class _authenticationApi():
     def deleteApplication(self, id):
         """ Delete an Authentication API Application.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/authenticationApi/applications/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Authentication API Application deleted.')

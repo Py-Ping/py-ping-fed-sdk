@@ -1,25 +1,23 @@
 class DataSourceTag():
-    """ 
+    """
 
     Attributes
     ----------
     defaultSource : boolean
-        
     tags : string
-        
     tagsHashSet : str
-        
 
     """
 
     __slots__ = ["defaultSource", "tags", "tagsHashSet"]
+
     def __init__(self, defaultSource=None, tags=None, tagsHashSet=None):
-            self.defaultSource = defaultSource
-            self.tags = tags
-            self.tagsHashSet = tagsHashSet
-    
+        self.defaultSource = defaultSource
+        self.tags = tags
+        self.tagsHashSet = tagsHashSet
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class DataSourceTag():
         return NotImplemented
 
     def __hash__(self):
-        return hash((defaultSource, tags, tagsHashSet))
+        return hash((self.defaultSource, self.tags, self.tagsHashSet))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["defaultSource", "tags", "tagsHashSet"]}
+
         return cls(**valid_data)

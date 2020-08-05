@@ -1,22 +1,21 @@
 class OpenIdConnectSettings():
-    """ Settings for the OpenID Connect configuration.
+    """Settings for the OpenID Connect configuration.
 
     Attributes
     ----------
     defaultPolicyRef : str
-        Reference to the default policy.
-    sessionSettings : str
+        Reference to the default policy.    sessionSettings : str
         Settings relating to OpenID Connect session management.
-
     """
 
     __slots__ = ["defaultPolicyRef", "sessionSettings"]
+
     def __init__(self, defaultPolicyRef=None, sessionSettings=None):
-            self.defaultPolicyRef = defaultPolicyRef
-            self.sessionSettings = sessionSettings
-    
+        self.defaultPolicyRef = defaultPolicyRef
+        self.sessionSettings = sessionSettings
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class OpenIdConnectSettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((defaultPolicyRef, sessionSettings))
+        return hash((self.defaultPolicyRef, self.sessionSettings))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["defaultPolicyRef", "sessionSettings"]}
+
         return cls(**valid_data)

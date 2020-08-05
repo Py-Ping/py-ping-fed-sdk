@@ -1,19 +1,19 @@
 class SpAdapterAttribute():
-    """ An attribute for the SP adapter attribute contract.
+    """An attribute for the SP adapter attribute contract.
 
     Attributes
     ----------
     name : string
         The name of this attribute.
-
     """
 
     __slots__ = ["name"]
+
     def __init__(self, name):
-            self.name = name
-    
+        self.name = name
+
     def _validate(self):
-        return any(x for x in ['name'] if __dict__[x] is not None)
+        return any(x for x in ['name'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class SpAdapterAttribute():
         return NotImplemented
 
     def __hash__(self):
-        return hash((name))
+        return hash((self.name))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["name"]}
+
         return cls(**valid_data)

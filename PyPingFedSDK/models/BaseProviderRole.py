@@ -1,31 +1,27 @@
 class BaseProviderRole():
-    """ Base Provider Role.
+    """Base Provider Role.
 
     Attributes
     ----------
     enable : boolean
-        
     enableSaml10 : boolean
-        Enable SAML 1.0.
-    enableSaml11 : boolean
-        Enable SAML 1.1.
-    enableWsFed : boolean
-        Enable WS Federation.
-    enableWsTrust : boolean
+        Enable SAML 1.0.    enableSaml11 : boolean
+        Enable SAML 1.1.    enableWsFed : boolean
+        Enable WS Federation.    enableWsTrust : boolean
         Enable WS Trust.
-
     """
 
     __slots__ = ["enable", "enableSaml10", "enableSaml11", "enableWsFed", "enableWsTrust"]
+
     def __init__(self, enable=None, enableSaml10=None, enableSaml11=None, enableWsFed=None, enableWsTrust=None):
-            self.enable = enable
-            self.enableSaml10 = enableSaml10
-            self.enableSaml11 = enableSaml11
-            self.enableWsFed = enableWsFed
-            self.enableWsTrust = enableWsTrust
-    
+        self.enable = enable
+        self.enableSaml10 = enableSaml10
+        self.enableSaml11 = enableSaml11
+        self.enableWsFed = enableWsFed
+        self.enableWsTrust = enableWsTrust
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -39,10 +35,10 @@ class BaseProviderRole():
         return NotImplemented
 
     def __hash__(self):
-        return hash((enable, enableSaml10, enableSaml11, enableWsFed, enableWsTrust))
+        return hash((self.enable, self.enableSaml10, self.enableSaml11, self.enableWsFed, self.enableWsTrust))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["enable", "enableSaml10", "enableSaml11", "enableWsFed", "enableWsTrust"]}
+
         return cls(**valid_data)

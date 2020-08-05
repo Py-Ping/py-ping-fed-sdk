@@ -1,22 +1,21 @@
 class ProxySettings():
-    """ Proxy settings.
+    """Proxy settings.
 
     Attributes
     ----------
     host : string
-        Host name.
-    port : integer
+        Host name.    port : integer
         Port number.
-
     """
 
     __slots__ = ["host", "port"]
+
     def __init__(self, host=None, port=None):
-            self.host = host
-            self.port = port
-    
+        self.host = host
+        self.port = port
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class ProxySettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((host, port))
+        return hash((self.host, self.port))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["host", "port"]}
+
         return cls(**valid_data)

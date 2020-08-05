@@ -1,22 +1,21 @@
 class AccessTokenMappingContext():
-    """ The Access Token Attribute Mapping.
+    """The Access Token Attribute Mapping.
 
     Attributes
     ----------
     contextRef : str
-        Reference to the associated Access Token Mapping Context instance.
-    type : str
+        Reference to the associated Access Token Mapping Context instance.    type : str
         The Access Token Mapping Context type.
-
     """
 
     __slots__ = ["contextRef", "type"]
+
     def __init__(self, type, contextRef):
-            self.contextRef = contextRef
-            self.type = type
-    
+        self.contextRef = contextRef
+        self.type = type
+
     def _validate(self):
-        return any(x for x in ['type', 'contextRef'] if __dict__[x] is not None)
+        return any(x for x in ['type', 'contextRef'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class AccessTokenMappingContext():
         return NotImplemented
 
     def __hash__(self):
-        return hash((contextRef, type))
+        return hash((self.contextRef, self.type))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["contextRef", "type"]}
+
         return cls(**valid_data)

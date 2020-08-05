@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_clientSettings():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_clientSettings():
     def getClientSettings(self):
         """ Configure the client settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/clientSettings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,12 @@ class _oauth_clientSettings():
     def updateClientSettings(self, body):
         """ Update the client settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -50,7 +54,7 @@ class _oauth_clientSettings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Client Settings updated.')

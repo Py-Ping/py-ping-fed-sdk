@@ -1,22 +1,21 @@
 class SpAdapterUrlMapping():
-    """ SP Adapter URL Mapping
+    """SP Adapter URL Mapping
 
     Attributes
     ----------
     adapterRef : str
-        The adapter instance mapped for this URL.
-    url : string
+        The adapter instance mapped for this URL.    url : string
         The URL that will be compared against the target URL. Use a wildcard (*) to match multiple URLs to the same adapter instance.
-
     """
 
     __slots__ = ["adapterRef", "url"]
+
     def __init__(self, adapterRef=None, url=None):
-            self.adapterRef = adapterRef
-            self.url = url
-    
+        self.adapterRef = adapterRef
+        self.url = url
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class SpAdapterUrlMapping():
         return NotImplemented
 
     def __hash__(self):
-        return hash((adapterRef, url))
+        return hash((self.adapterRef, self.url))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["adapterRef", "url"]}
+
         return cls(**valid_data)

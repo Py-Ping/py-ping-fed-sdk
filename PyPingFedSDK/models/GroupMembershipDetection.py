@@ -1,22 +1,21 @@
 class GroupMembershipDetection():
-    """ Settings to detect group memberships.
+    """Settings to detect group memberships.
 
     Attributes
     ----------
     groupMemberAttributeName : string
-        The name of the attribute that represents group members in a group, also known as group member attribute.
-    memberOfGroupAttributeName : string
+        The name of the attribute that represents group members in a group, also known as group member attribute.    memberOfGroupAttributeName : string
         The name of the attribute that indicates the entity is a member of a group, also known as member of attribute.
-
     """
 
     __slots__ = ["groupMemberAttributeName", "memberOfGroupAttributeName"]
+
     def __init__(self, groupMemberAttributeName, memberOfGroupAttributeName=None):
-            self.groupMemberAttributeName = groupMemberAttributeName
-            self.memberOfGroupAttributeName = memberOfGroupAttributeName
-    
+        self.groupMemberAttributeName = groupMemberAttributeName
+        self.memberOfGroupAttributeName = memberOfGroupAttributeName
+
     def _validate(self):
-        return any(x for x in ['groupMemberAttributeName'] if __dict__[x] is not None)
+        return any(x for x in ['groupMemberAttributeName'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class GroupMembershipDetection():
         return NotImplemented
 
     def __hash__(self):
-        return hash((groupMemberAttributeName, memberOfGroupAttributeName))
+        return hash((self.groupMemberAttributeName, self.memberOfGroupAttributeName))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["groupMemberAttributeName", "memberOfGroupAttributeName"]}
+
         return cls(**valid_data)

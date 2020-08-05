@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _sp_tokenGenerators():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _sp_tokenGenerators():
     def getTokenGeneratorDescriptors(self):
         """ Get the list of available token generators.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/tokenGenerators/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,17 +39,17 @@ class _sp_tokenGenerators():
     def getTokenGeneratorDescriptorsById(self, id):
         """ Get the description of a token generator plugin by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/tokenGenerators/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -60,17 +63,17 @@ class _sp_tokenGenerators():
     def getTokenGenerators(self):
         """ Get the list of token generator instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/tokenGenerators"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -82,11 +85,12 @@ class _sp_tokenGenerators():
     def createTokenGenerator(self, body):
         """ Create a new token generator instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -96,7 +100,7 @@ class _sp_tokenGenerators():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Token generator created.')
@@ -112,17 +116,17 @@ class _sp_tokenGenerators():
     def getTokenGenerator(self, id):
         """ Find a token generator instance by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/sp/tokenGenerators/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -136,11 +140,13 @@ class _sp_tokenGenerators():
     def updateTokenGenerator(self, id, body):
         """ Update a token generator instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -150,7 +156,7 @@ class _sp_tokenGenerators():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Token generator updated.')
@@ -168,17 +174,17 @@ class _sp_tokenGenerators():
     def deleteTokenGenerator(self, id):
         """ Delete a token generator instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/sp/tokenGenerators/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Token generator deleted.')

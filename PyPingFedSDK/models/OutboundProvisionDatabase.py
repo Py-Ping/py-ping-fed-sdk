@@ -1,22 +1,21 @@
 class OutboundProvisionDatabase():
-    """ The settings for database used internally to facilitate outbound provisioning. The database stores state of synchronization between the source data store and the target data store.
+    """The settings for database used internally to facilitate outbound provisioning. The database stores state of synchronization between the source data store and the target data store.
 
     Attributes
     ----------
     dataStoreRef : str
-        Reference to the associated data store.
-    synchronizationFrequency : integer
+        Reference to the associated data store.    synchronizationFrequency : integer
         The synchronization frequency in seconds. The default value is 60.
-
     """
 
     __slots__ = ["dataStoreRef", "synchronizationFrequency"]
+
     def __init__(self, dataStoreRef, synchronizationFrequency=None):
-            self.dataStoreRef = dataStoreRef
-            self.synchronizationFrequency = synchronizationFrequency
-    
+        self.dataStoreRef = dataStoreRef
+        self.synchronizationFrequency = synchronizationFrequency
+
     def _validate(self):
-        return any(x for x in ['dataStoreRef'] if __dict__[x] is not None)
+        return any(x for x in ['dataStoreRef'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class OutboundProvisionDatabase():
         return NotImplemented
 
     def __hash__(self):
-        return hash((dataStoreRef, synchronizationFrequency))
+        return hash((self.dataStoreRef, self.synchronizationFrequency))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["dataStoreRef", "synchronizationFrequency"]}
+
         return cls(**valid_data)

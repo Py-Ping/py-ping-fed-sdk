@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _idp_defaultUrls():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _idp_defaultUrls():
     def getDefaultUrl(self):
         """ Gets the IDP Default URL settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/defaultUrls"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,12 @@ class _idp_defaultUrls():
     def updateDefaultUrlSettings(self, body):
         """ Update the IDP Default URL settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -50,7 +54,7 @@ class _idp_defaultUrls():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Default URL updated.')

@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_tokenExchange_processor():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_tokenExchange_processor():
     def getSettings(self):
         """ Get general OAuth 2.0 Token Exchange Processor settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/tokenExchange/processor/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,13 @@ class _oauth_tokenExchange_processor():
     def updateSettings(self, body, bypassExternalValidation):
         """ Update general OAuth 2.0 Token Exchange Processor settings.
         """
-        
+
         payload = {
-            "body": body"bypassExternalValidation": bypassExternalValidation
+            "body": body,
+            "bypassExternalValidation": bypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -50,7 +55,7 @@ class _oauth_tokenExchange_processor():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Settings updated.')
@@ -66,17 +71,17 @@ class _oauth_tokenExchange_processor():
     def getPolicies(self):
         """ Get list of OAuth 2.0 Token Exchange Processor policies.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/tokenExchange/processor/policies"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -88,11 +93,13 @@ class _oauth_tokenExchange_processor():
     def createPolicy(self, body, bypassExternalValidation):
         """ Create a new OAuth 2.0 Token Exchange Processor policy.
         """
-        
+
         payload = {
-            "body": body"bypassExternalValidation": bypassExternalValidation
+            "body": body,
+            "bypassExternalValidation": bypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -102,7 +109,7 @@ class _oauth_tokenExchange_processor():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Token Exchange Processor Policy created.')
@@ -118,17 +125,17 @@ class _oauth_tokenExchange_processor():
     def getPolicy(self, id):
         """ Find an OAuth 2.0 Token Exchange Processor policy by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/tokenExchange/processor/policies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -142,11 +149,14 @@ class _oauth_tokenExchange_processor():
     def updatePolicy(self, id, body, bypassExternalValidation):
         """ Update an OAuth 2.0 Token Exchange Processor policy.
         """
-        
+
         payload = {
-            "id": id"body": body"bypassExternalValidation": bypassExternalValidation
+            "id": id,
+            "body": body,
+            "bypassExternalValidation": bypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -156,7 +166,7 @@ class _oauth_tokenExchange_processor():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Token Exchange Processor Policy updated.')
@@ -174,17 +184,17 @@ class _oauth_tokenExchange_processor():
     def deletePolicy(self, id):
         """ Delete an OAuth 2.0 Token Exchange Processor policy.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/tokenExchange/processor/policies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Token Exchange Processor Policy deleted.')

@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _version():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _version():
     def getVersion(self):
         """ Gets the server version.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/version"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')

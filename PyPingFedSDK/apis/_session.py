@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _session():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _session():
     def getSessionSettings(self):
         """ Get general session management settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/session/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,12 @@ class _session():
     def updateSessionSettings(self, body):
         """ Update general session management settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -50,7 +54,7 @@ class _session():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('General session management settings updated.')
@@ -66,17 +70,17 @@ class _session():
     def getGlobalPolicy(self):
         """ Get the global authentication session policy.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/session/authenticationSessionPolicies/global"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -88,11 +92,12 @@ class _session():
     def updateGlobalPolicy(self, body):
         """ Update the global authentication session policy.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -102,7 +107,7 @@ class _session():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Global authentication session policy updated.')
@@ -118,17 +123,17 @@ class _session():
     def getApplicationPolicy(self):
         """ Get the application session policy.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/session/applicationSessionPolicy"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -140,11 +145,12 @@ class _session():
     def updateApplicationPolicy(self, body):
         """ Update the application session policy.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -154,7 +160,7 @@ class _session():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Application session policy updated.')
@@ -170,17 +176,17 @@ class _session():
     def getSourcePolicies(self):
         """ Get list of session policies.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/session/authenticationSessionPolicies"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -192,11 +198,12 @@ class _session():
     def createSourcePolicy(self, body):
         """ Create a new session policy.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -206,7 +213,7 @@ class _session():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Authentication session policy created.')
@@ -222,17 +229,17 @@ class _session():
     def getSourcePolicy(self, id):
         """ Find session policy by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/session/authenticationSessionPolicies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -246,11 +253,13 @@ class _session():
     def updateSourcePolicy(self, id, body):
         """ Update a session policy.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -260,7 +269,7 @@ class _session():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Authentication session policy updated.')
@@ -278,17 +287,17 @@ class _session():
     def deleteSourcePolicy(self, id):
         """ Delete a session policy.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/session/authenticationSessionPolicies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Authentication session policy deleted.')

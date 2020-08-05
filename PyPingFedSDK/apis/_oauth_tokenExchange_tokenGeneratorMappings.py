@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_tokenExchange_tokenGeneratorMappings():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
     def getTokenGeneratorMappings(self):
         """ Get the list of Token Exchange Processor policy to Token Generator Mappings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/tokenExchange/tokenGeneratorMappings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,13 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
     def createTokenGeneratorMapping(self, body, X-BypassExternalValidation):
         """ Create a new Token Exchange Processor policy to Token Generator Mapping.
         """
-        
+
         payload = {
-            "body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -50,7 +55,7 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Token Exchange Processor policy to Token Generator mapping created.')
@@ -66,17 +71,17 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
     def getTokenGeneratorMappingById(self, id):
         """ Get a Token Exchange Processor policy to Token Generator Mapping.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/tokenExchange/tokenGeneratorMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -90,11 +95,14 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
     def updateTokenGeneratorMappingById(self, id, body, X-BypassExternalValidation):
         """ Update a Token Exchange Processor policy to Token Generator Mapping.
         """
-        
+
         payload = {
-            "id": id"body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "id": id,
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -104,7 +112,7 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Token Exchange Processor policy to Token Generator mapping updated.')
@@ -122,17 +130,17 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
     def deleteTokenGeneratorMappingById(self, id):
         """ Delete a Token Exchange Processor policy to Token Generator Mapping.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/tokenExchange/tokenGeneratorMappings/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Token Exchange Processor policy to Token Generator mapping deleted.')

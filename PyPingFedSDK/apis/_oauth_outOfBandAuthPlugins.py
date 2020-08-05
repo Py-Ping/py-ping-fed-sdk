@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_outOfBandAuthPlugins():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_outOfBandAuthPlugins():
     def getOOBAuthPluginDescriptors(self):
         """ Get the list of available Out of Band authenticator plugin descriptors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/outOfBandAuthPlugins/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,17 +37,17 @@ class _oauth_outOfBandAuthPlugins():
     def getOOBAuthPluginDescriptor(self, id):
         """ Get the descriptor of an Out of Band authenticator plugin.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/outOfBandAuthPlugins/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -56,17 +59,17 @@ class _oauth_outOfBandAuthPlugins():
     def getOOBAuthenticators(self):
         """ Get a list of Out of Band authenticator plugin instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/outOfBandAuthPlugins"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -76,11 +79,12 @@ class _oauth_outOfBandAuthPlugins():
     def createOOBAuthenticator(self, body):
         """ Create an Out of Band authenticator plugin instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -90,7 +94,7 @@ class _oauth_outOfBandAuthPlugins():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Out of Band Authenticator created.')
@@ -104,17 +108,17 @@ class _oauth_outOfBandAuthPlugins():
     def getOOBAuthenticator(self, id):
         """ Get a specific Out of Band authenticator plugin instance.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/outOfBandAuthPlugins/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -126,11 +130,13 @@ class _oauth_outOfBandAuthPlugins():
     def updateOOBAuthenticator(self, id, body):
         """ Update an Out of Band authenticator plugin instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -140,7 +146,7 @@ class _oauth_outOfBandAuthPlugins():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Out of Band Authenticator updated.')
@@ -156,17 +162,17 @@ class _oauth_outOfBandAuthPlugins():
     def deleteOOBAuthenticator(self, id):
         """ Delete an Out of Band authenticator plugin instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/outOfBandAuthPlugins/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Out of Band Authenticator deleted.')
@@ -180,17 +186,17 @@ class _oauth_outOfBandAuthPlugins():
     def getActions(self, id):
         """ List of actions for an Out of Band authenticator plugin instance.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/outOfBandAuthPlugins/{id}/actions"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -202,17 +208,17 @@ class _oauth_outOfBandAuthPlugins():
     def getAction(self, id, actionId):
         """ Find an Out of Band authenticator plugin instance's action by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/outOfBandAuthPlugins/{id}/actions/{actionId}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -224,11 +230,13 @@ class _oauth_outOfBandAuthPlugins():
     def invokeAction(self, id, actionId):
         """ Invokes an action for Out of Band authenticator plugin instance.
         """
-        
+
         payload = {
-            "id": id"actionId": actionId
+            "id": id,
+            "actionId": actionId
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -238,7 +246,7 @@ class _oauth_outOfBandAuthPlugins():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Action invoked on Out of Band authenticator.')

@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _oauth_openIdConnect():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _oauth_openIdConnect():
     def getSettings(self):
         """ Get the OpenID Connect Settings.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/openIdConnect/settings"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,11 +39,12 @@ class _oauth_openIdConnect():
     def updateSettings(self, body):
         """ Set the OpenID Connect Settings.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -50,7 +54,7 @@ class _oauth_openIdConnect():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Settings updated.')
@@ -66,17 +70,17 @@ class _oauth_openIdConnect():
     def getPolicies(self):
         """ Get list of OpenID Connect Policies.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/openIdConnect/policies"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -88,11 +92,13 @@ class _oauth_openIdConnect():
     def createPolicy(self, body, X-BypassExternalValidation):
         """ Create a new OpenID Connect Policy.
         """
-        
+
         payload = {
-            "body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -102,7 +108,7 @@ class _oauth_openIdConnect():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Policy created.')
@@ -118,17 +124,17 @@ class _oauth_openIdConnect():
     def getPolicy(self, id):
         """ Find OpenID Connect Policy by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/oauth/openIdConnect/policies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -142,11 +148,14 @@ class _oauth_openIdConnect():
     def updatePolicy(self, id, body, X-BypassExternalValidation):
         """ Update an OpenID Connect Policy.
         """
-        
+
         payload = {
-            "id": id"body": body"X-BypassExternalValidation": X-BypassExternalValidation
+            "id": id,
+            "body": body,
+            "X-BypassExternalValidation": X-BypassExternalValidation
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -156,7 +165,7 @@ class _oauth_openIdConnect():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Policy updated.')
@@ -174,17 +183,17 @@ class _oauth_openIdConnect():
     def deletePolicy(self, id):
         """ Delete an OpenID Connect Policy.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/oauth/openIdConnect/policies/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Policy deleted.')

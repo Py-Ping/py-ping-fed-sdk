@@ -1,25 +1,23 @@
 class LdapTagConfig():
-    """ An LDAP data store's hostnames and tags configuration. This is required if no default hostname is specified.
+    """An LDAP data store's hostnames and tags configuration. This is required if no default hostname is specified.
 
     Attributes
     ----------
     defaultSource : boolean
-        Whether this is the default connection. Defaults to false if not specified.
-    hostnames : array
-        The LDAP host names.
-    tags : string
+        Whether this is the default connection. Defaults to false if not specified.    hostnames : array
+        The LDAP host names.    tags : string
         Tags associated with this data source.
-
     """
 
     __slots__ = ["defaultSource", "hostnames", "tags"]
+
     def __init__(self, hostnames, defaultSource=None, tags=None):
-            self.defaultSource = defaultSource
-            self.hostnames = hostnames
-            self.tags = tags
-    
+        self.defaultSource = defaultSource
+        self.hostnames = hostnames
+        self.tags = tags
+
     def _validate(self):
-        return any(x for x in ['hostnames'] if __dict__[x] is not None)
+        return any(x for x in ['hostnames'] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class LdapTagConfig():
         return NotImplemented
 
     def __hash__(self):
-        return hash((defaultSource, hostnames, tags))
+        return hash((self.defaultSource, self.hostnames, self.tags))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["defaultSource", "hostnames", "tags"]}
+
         return cls(**valid_data)

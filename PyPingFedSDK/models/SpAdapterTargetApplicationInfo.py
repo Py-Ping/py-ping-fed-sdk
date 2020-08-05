@@ -1,25 +1,23 @@
 class SpAdapterTargetApplicationInfo():
-    """ Target Application Information exposed by an SP adapter.
+    """Target Application Information exposed by an SP adapter.
 
     Attributes
     ----------
     applicationIconUrl : string
-        The application icon URL.
-    applicationName : string
-        The application name.
-    inherited : boolean
+        The application icon URL.    applicationName : string
+        The application name.    inherited : boolean
         Specifies Whether target application information is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
-
     """
 
     __slots__ = ["applicationIconUrl", "applicationName", "inherited"]
+
     def __init__(self, applicationIconUrl=None, applicationName=None, inherited=None):
-            self.applicationIconUrl = applicationIconUrl
-            self.applicationName = applicationName
-            self.inherited = inherited
-    
+        self.applicationIconUrl = applicationIconUrl
+        self.applicationName = applicationName
+        self.inherited = inherited
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -33,10 +31,10 @@ class SpAdapterTargetApplicationInfo():
         return NotImplemented
 
     def __hash__(self):
-        return hash((applicationIconUrl, applicationName, inherited))
+        return hash((self.applicationIconUrl, self.applicationName, self.inherited))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["applicationIconUrl", "applicationName", "inherited"]}
+
         return cls(**valid_data)

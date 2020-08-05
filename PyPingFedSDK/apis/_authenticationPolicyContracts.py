@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _authenticationPolicyContracts():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _authenticationPolicyContracts():
     def getAuthenticationPolicyContracts(self, page, numberPerPage, filter):
         """ Gets the Authentication Policy Contracts.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationPolicyContracts"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -38,11 +41,12 @@ class _authenticationPolicyContracts():
     def createAuthenticationPolicyContract(self, body):
         """ Create a new Authentication Policy Contract.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -52,7 +56,7 @@ class _authenticationPolicyContracts():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Authentication policy contract created.')
@@ -68,17 +72,17 @@ class _authenticationPolicyContracts():
     def getAuthenticationPolicyContract(self, id):
         """ Gets the Authentication Policy Contract by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/authenticationPolicyContracts/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -92,11 +96,13 @@ class _authenticationPolicyContracts():
     def updateAuthenticationPolicyContract(self, id, body):
         """ Update an Authentication Policy Contract by ID.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -106,7 +112,7 @@ class _authenticationPolicyContracts():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Authentication policy contract updated.')
@@ -124,17 +130,17 @@ class _authenticationPolicyContracts():
     def deleteAuthenticationPolicyContract(self, id):
         """ Delete an Authentication Policy Contract.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/authenticationPolicyContracts/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Authentication policy contract deleted.')

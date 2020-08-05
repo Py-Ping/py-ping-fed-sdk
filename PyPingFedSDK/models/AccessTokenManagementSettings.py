@@ -1,19 +1,19 @@
 class AccessTokenManagementSettings():
-    """ General access token management settings.
+    """General access token management settings.
 
     Attributes
     ----------
     defaultAccessTokenManagerRef : str
         Reference to the default access token manager, if one is defined.
-
     """
 
     __slots__ = ["defaultAccessTokenManagerRef"]
+
     def __init__(self, defaultAccessTokenManagerRef=None):
-            self.defaultAccessTokenManagerRef = defaultAccessTokenManagerRef
-    
+        self.defaultAccessTokenManagerRef = defaultAccessTokenManagerRef
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class AccessTokenManagementSettings():
         return NotImplemented
 
     def __hash__(self):
-        return hash((defaultAccessTokenManagerRef))
+        return hash((self.defaultAccessTokenManagerRef))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["defaultAccessTokenManagerRef"]}
+
         return cls(**valid_data)

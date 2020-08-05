@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _idp_tokenProcessors():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _idp_tokenProcessors():
     def getTokenProcessorDescriptors(self):
         """ Get the list of available token processors.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/tokenProcessors/descriptors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -36,17 +39,17 @@ class _idp_tokenProcessors():
     def getTokenProcessorDescriptorsById(self, id):
         """ Get the description of a token processor plugin by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/tokenProcessors/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -60,17 +63,17 @@ class _idp_tokenProcessors():
     def getTokenProcessors(self):
         """ Get the list of token processor instances.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/tokenProcessors"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -82,11 +85,12 @@ class _idp_tokenProcessors():
     def createTokenProcessor(self, body):
         """ Create a new token processor instance.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -96,7 +100,7 @@ class _idp_tokenProcessors():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Token processor created.')
@@ -112,17 +116,17 @@ class _idp_tokenProcessors():
     def getTokenProcessor(self, id):
         """ Find a token processor instance by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/idp/tokenProcessors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -136,11 +140,13 @@ class _idp_tokenProcessors():
     def updateTokenProcessor(self, id, body):
         """ Update a token processor instance.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -150,7 +156,7 @@ class _idp_tokenProcessors():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Token Processor updated.')
@@ -168,17 +174,17 @@ class _idp_tokenProcessors():
     def deleteTokenProcessor(self, id):
         """ Delete a token processor instance.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/idp/tokenProcessors/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Token processor deleted.')

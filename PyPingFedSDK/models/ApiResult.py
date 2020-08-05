@@ -1,28 +1,25 @@
 class ApiResult():
-    """ Details on the result of the operation.
+    """Details on the result of the operation.
 
     Attributes
     ----------
     developerMessage : string
-        Developer-oriented error message, if available.
-    message : string
-        Success or error message.
-    resultId : string
-        Result identifier.
-    validationErrors : array
+        Developer-oriented error message, if available.    message : string
+        Success or error message.    resultId : string
+        Result identifier.    validationErrors : array
         List of validation errors, if any.
-
     """
 
     __slots__ = ["developerMessage", "message", "resultId", "validationErrors"]
+
     def __init__(self, developerMessage=None, message=None, resultId=None, validationErrors=None):
-            self.developerMessage = developerMessage
-            self.message = message
-            self.resultId = resultId
-            self.validationErrors = validationErrors
-    
+        self.developerMessage = developerMessage
+        self.message = message
+        self.resultId = resultId
+        self.validationErrors = validationErrors
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -36,10 +33,10 @@ class ApiResult():
         return NotImplemented
 
     def __hash__(self):
-        return hash((developerMessage, message, resultId, validationErrors))
+        return hash((self.developerMessage, self.message, self.resultId, self.validationErrors))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["developerMessage", "message", "resultId", "validationErrors"]}
+
         return cls(**valid_data)

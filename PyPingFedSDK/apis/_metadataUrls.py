@@ -1,5 +1,8 @@
 import logging
 import requests
+import os
+from requests.exceptions import HTTPError
+
 
 class _metadataUrls():
     def __init__(self, endpoint):
@@ -14,17 +17,17 @@ class _metadataUrls():
     def getMetadataUrls(self):
         """ Get a list of Metadata URLs
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/metadataUrls"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -34,11 +37,12 @@ class _metadataUrls():
     def addMetadataUrl(self, body):
         """ Add a new Metadata URL.
         """
-        
+
         payload = {
             "body": body
+
         }
-        
+
         try:
             response = requests.post(
                 data=payload,
@@ -48,7 +52,7 @@ class _metadataUrls():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
                 self.logger.info('Metadata URL added.')
@@ -62,17 +66,17 @@ class _metadataUrls():
     def getMetadataUrl(self, id):
         """ Get a Metadata URL by ID.
         """
-        
+
         try:
             response = requests.get(
-                
+
                 url=self._build_uri("/metadataUrls/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Success.')
@@ -84,11 +88,13 @@ class _metadataUrls():
     def updateMetadataUrl(self, id, body):
         """ Update a Metadata URL by ID.
         """
-        
+
         payload = {
-            "id": id"body": body
+            "id": id,
+            "body": body
+
         }
-        
+
         try:
             response = requests.put(
                 data=payload,
@@ -98,7 +104,7 @@ class _metadataUrls():
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
                 self.logger.info('Metadata URL updated.')
@@ -114,17 +120,17 @@ class _metadataUrls():
     def deleteMetadataUrl(self, id):
         """ Delete a Metadata URL by ID.
         """
-        
+
         try:
             response = requests.delete(
-                
+
                 url=self._build_uri("/metadataUrls/{id}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
-            self.logger.error(f'Error occurred: {err}') 
+            self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
                 self.logger.info('Metadata URL deleted.')

@@ -1,19 +1,19 @@
 class ActionResult():
-    """ The result for non-download plugin actions.
+    """The result for non-download plugin actions.
 
     Attributes
     ----------
     message : string
         The message from the completed action.
-
     """
 
     __slots__ = ["message"]
+
     def __init__(self, message=None):
-            self.message = message
-    
+        self.message = message
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -27,10 +27,10 @@ class ActionResult():
         return NotImplemented
 
     def __hash__(self):
-        return hash((message))
+        return hash((self.message))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["message"]}
+
         return cls(**valid_data)

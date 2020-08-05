@@ -1,22 +1,21 @@
 class Pattern():
-    """ 
+    """
 
     Attributes
     ----------
     flags : integer
-        
     pattern : string
-        
 
     """
 
     __slots__ = ["flags", "pattern"]
+
     def __init__(self, flags=None, pattern=None):
-            self.flags = flags
-            self.pattern = pattern
-    
+        self.flags = flags
+        self.pattern = pattern
+
     def _validate(self):
-        return any(x for x in [] if __dict__[x] is not None)
+        return any(x for x in [] if self.__dict__[x] is not None)
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -30,10 +29,10 @@ class Pattern():
         return NotImplemented
 
     def __hash__(self):
-        return hash((flags, pattern))
+        return hash((self.flags, self.pattern))
 
     @classmethod
     def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
-        
+        valid_data = {k: v for k, v in python_dict.items() if k in ["flags", "pattern"]}
+
         return cls(**valid_data)
