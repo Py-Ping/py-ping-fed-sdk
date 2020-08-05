@@ -4,7 +4,7 @@ import sys
 import requests
 import logging
 
-ping_swagger_url = "https://sso.anycompany.org:9999/pf-admin-api/v1/api-docs"
+ping_swagger_url = "https://localhost:9999/pf-admin-api/v1/api-docs"
 
 class Fetch():
     def __init__(self, api_schema_key='apis'):
