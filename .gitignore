@@ -1,0 +1,6 @@
+*__pycache__*
+.env
+./source/*.json
+./source/*/*.json
+./src/apis/*
+./src/models/*

@@ -1,0 +1,247 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getLicenseAgreement",
+                    "notes": "The license agreement has to be accepted before performing any other API calls.",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred."
+                        }
+                    ],
+                    "summary": "Get license agreement link.",
+                    "type": "LicenseAgreementInfo"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updateLicenseAgreement",
+                    "notes": "The license agreement has to be accepted before performing any other API calls.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "License Agreement reference.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "LicenseAgreementInfo"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "License agreement accepted."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred."
+                        }
+                    ],
+                    "summary": "Accept license agreement.",
+                    "type": "LicenseAgreementInfo"
+                }
+            ],
+            "path": "/license/agreement"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getLicense",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get a license summary.",
+                    "type": "LicenseView"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updateLicense",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Base64 encoded value of a license.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "LicenseFile"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "License imported."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred."
+                        }
+                    ],
+                    "summary": "Import a license.",
+                    "type": "LicenseView"
+                }
+            ],
+            "path": "/license"
+        }
+    ],
+    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "models": {
+        "ConnectionGroupLicenseView": {
+            "description": "Connection group license information.",
+            "id": "ConnectionGroupLicenseView",
+            "properties": {
+                "connectionCount": {
+                    "description": "Maximum number of connections permitted under the group.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "endDate": {
+                    "description": "End date for the group.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Group name from the license file.",
+                    "type": "string"
+                },
+                "startDate": {
+                    "description": "Start date for the group.",
+                    "format": "date-time",
+                    "type": "string"
+                }
+            }
+        },
+        "LicenseAgreementInfo": {
+            "description": "PingFederate License Agreement information.",
+            "id": "LicenseAgreementInfo",
+            "properties": {
+                "accepted": {
+                    "description": "Indicates whether license agreement has been accepted. The default value is false.",
+                    "type": "boolean"
+                },
+                "licenseAgreementUrl": {
+                    "description": "URL to license agreement.",
+                    "type": "string"
+                }
+            }
+        },
+        "LicenseFile": {
+            "description": "License to import.",
+            "id": "LicenseFile",
+            "properties": {
+                "fileData": {
+                    "description": "The base64-encoded license file.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "fileData"
+            ]
+        },
+        "LicenseView": {
+            "description": "PingFederate License details.",
+            "id": "LicenseView",
+            "properties": {
+                "enforcementType": {
+                    "description": "The enforcement type is a 3-bit binary value, expressed as a decimal digit. The bits from left to right are: <br>1: Shutdown on expire <br>2: Notify on expire <br>4: Enforce minor version <br>if all three enforcements are active, the enforcement type will be 7 (1 + 2 + 4); if only the first two are active, you have an enforcement type of 3 (1 + 2).",
+                    "type": "string"
+                },
+                "expirationDate": {
+                    "description": "The expiration date value from the license file (if applicable).",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "gracePeriod": {
+                    "description": "Number of days provided as grace period, past the expiration date (if applicable).",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "id": {
+                    "description": "Unique identifier of a license.",
+                    "type": "string"
+                },
+                "issueDate": {
+                    "description": "The issue date value from the license file.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "licenseGroups": {
+                    "description": "License connection groups, if applicable.",
+                    "items": {
+                        "$ref": "ConnectionGroupLicenseView"
+                    },
+                    "type": "array"
+                },
+                "maxConnections": {
+                    "description": "Maximum number of connections that can be created under this license (if applicable).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "Name of the person the license was issued to.",
+                    "type": "string"
+                },
+                "nodeLimit": {
+                    "description": "Maximum number of clustered nodes allowed under this license (if applicable).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "oauthEnabled": {
+                    "description": "Indicates whether OAuth role is enabled for this license.",
+                    "type": "boolean"
+                },
+                "organization": {
+                    "description": "The organization value from the license file.",
+                    "type": "string"
+                },
+                "product": {
+                    "description": "The Ping Identity product value from the license file.",
+                    "type": "string"
+                },
+                "provisioningEnabled": {
+                    "description": "Indicates whether Provisioning role is enabled for this license.",
+                    "type": "boolean"
+                },
+                "tier": {
+                    "description": "The tier value from the license file. The possible values are FREE, PERPETUAL or SUBSCRIPTION.",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "The Ping Identity product version from the license file.",
+                    "type": "string"
+                },
+                "wsTrustEnabled": {
+                    "description": "Indicates whether WS-Trust role is enabled for this license.",
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/license",
+    "swaggerVersion": "1.2"
+}

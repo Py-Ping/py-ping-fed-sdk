@@ -1,0 +1,45 @@
+class SessionValidationSettings():
+    """ Session validation settings for an access token management plugin instance.
+
+    Attributes
+    ----------
+    checkSessionRevocationStatus : boolean
+        Check the session revocation status when validating the access token.
+    checkValidAuthnSession : boolean
+        Check for a valid authentication session when validating the access token.
+    inherited : boolean
+        If this token manager has a parent, this flag determines whether session validation settings, such as checkValidAuthnSession, are inherited from the parent. When set to true, the other fields in this model become read-only. The default value is false.
+    updateAuthnSessionActivity : boolean
+        Update authentication session activity when validating the access token.
+
+    """
+
+    __slots__ = ["checkSessionRevocationStatus", "checkValidAuthnSession", "inherited", "updateAuthnSessionActivity"]
+    def __init__(self, checkSessionRevocationStatus=None, checkValidAuthnSession=None, inherited=None, updateAuthnSessionActivity=None):
+            self.checkSessionRevocationStatus = checkSessionRevocationStatus
+            self.checkValidAuthnSession = checkValidAuthnSession
+            self.inherited = inherited
+            self.updateAuthnSessionActivity = updateAuthnSessionActivity
+    
+    def _validate(self):
+        return any(x for x in [] if __dict__[x] is not None)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.__dict__})"
+
+    def __str__(self):
+        return f"{self.__dict__}"
+
+    def __eq__(self, other):
+        if isinstance(other, SessionValidationSettings):
+            return self.__dict__ == other.__dict__
+        return NotImplemented
+
+    def __hash__(self):
+        return hash((checkSessionRevocationStatus, checkValidAuthnSession, inherited, updateAuthnSessionActivity))
+
+    @classmethod
+    def from_dict(cls, python_dict):
+        valid_data = {k: v for k, v in python_dict.items() if k in __slots__}
+        
+        return cls(**valid_data)

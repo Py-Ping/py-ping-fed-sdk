@@ -1,0 +1,842 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getClients",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Page number to retrieve.",
+                            "format": "int32",
+                            "name": "page",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Number of OAuth clients per page. (uncapped if unspecified)",
+                            "format": "int32",
+                            "name": "numberPerPage",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Filter criteria limits the OAuth clients that are returned to only those that match it. The filter criteria is compared to the OAuth client name and ID fields. The comparison is a case-insensitive partial match. No additional pattern based matching is supported.",
+                            "name": "filter",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Get the list of OAuth clients.",
+                    "type": "Clients"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "createClient",
+                    "notes": "Create a new OAuth client. If an OAuth client can't be created, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for new client.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "Client"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Client created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.<br>PingFederate does not have its OpenID connect protocol enabled. Operation not available."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new OAuth client.",
+                    "type": "Client"
+                }
+            ],
+            "path": "/oauth/clients"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getClient",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the client.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Find the OAuth client by ID.",
+                    "type": "Client"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateClient",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the client to be updated.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for the client.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "Client"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Client updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.<br>PingFederate does not have its OpenID connect protocol enabled. Operation not available."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Updates the OAuth client.",
+                    "type": "Client"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteClient",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the client.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Client deleted."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Delete an OAuth client.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/oauth/clients/{id}"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "GET",
+                    "nickname": "getClientSecret",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the client.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Get the client secret of an existing OAuth client.",
+                    "type": "ClientSecret"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateClientSecret",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the client to be updated.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Client Secret.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ClientSecret"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Client updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update the client secret of an existing OAuth client.",
+                    "type": "ClientSecret"
+                }
+            ],
+            "path": "/oauth/clients/{id}/clientAuth/clientSecret"
+        }
+    ],
+    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "Client": {
+            "description": "OAuth client.",
+            "id": "Client",
+            "properties": {
+                "bypassActivationCodeConfirmationOverride": {
+                    "description": "Indicates if the Activation Code Confirmation page should be bypassed if 'verification_url_complete' is used by the end user to authorize a device. This overrides the 'bypassUseCodeConfirmation' value present in Authorization Server Settings.",
+                    "type": "boolean"
+                },
+                "bypassApprovalPage": {
+                    "description": "Use this setting, for example, when you want to deploy a trusted application and authenticate end users via an IdP adapter or IdP connection.",
+                    "type": "boolean"
+                },
+                "cibaDeliveryMode": {
+                    "$ref": "CibaDeliveryMode",
+                    "description": "The token delivery mode for the client.  The default value is 'POLL'.",
+                    "enum": [
+                        "POLL",
+                        "PING"
+                    ]
+                },
+                "cibaNotificationEndpoint": {
+                    "description": "The endpoint the OP will call after a successful or failed end-user authentication.",
+                    "type": "string"
+                },
+                "cibaPollingInterval": {
+                    "description": "The minimum amount of time in seconds that the Client must wait between polling requests to the token endpoint. The default is 3 seconds.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "cibaRequestObjectSigningAlgorithm": {
+                    "$ref": "CibaRequestObjectSigningAlgorithm",
+                    "description": "The JSON Web Signature [JWS] algorithm that must be used to sign the CIBA Request Object. All signing algorithms are allowed if value is not present <br>RS256 - RSA using SHA-256<br>RS384 - RSA using SHA-384<br>RS512 - RSA using SHA-512<br>ES256 - ECDSA using P256 Curve and SHA-256<br>ES384 - ECDSA using P384 Curve and SHA-384<br>ES512 - ECDSA using P521 Curve and SHA-512<br>PS256 - RSASSA-PSS using SHA-256 and MGF1 padding with SHA-256<br>PS384 - RSASSA-PSS using SHA-384 and MGF1 padding with SHA-384<br>PS512 - RSASSA-PSS using SHA-512 and MGF1 padding with SHA-512<br>RSASSA-PSS is only supported with SafeNet Luna, Thales nCipher or Java 11.",
+                    "enum": [
+                        "RS256",
+                        "RS384",
+                        "RS512",
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512"
+                    ]
+                },
+                "cibaRequireSignedRequests": {
+                    "description": "Determines whether CIBA signed requests are required for this client.",
+                    "type": "boolean"
+                },
+                "cibaUserCodeSupported": {
+                    "description": "Determines whether CIBA user code is supported for this client.",
+                    "type": "boolean"
+                },
+                "clientAuth": {
+                    "$ref": "ClientAuth",
+                    "description": "Client authentication settings.  If this model is null, it indicates that no client authentication will be used."
+                },
+                "clientId": {
+                    "description": "A unique identifier the client provides to the Resource Server to identify itself. This identifier is included with every request the client makes. For PUT requests, this field is optional and it will be overridden by the 'id' parameter of the PUT request.",
+                    "type": "string"
+                },
+                "defaultAccessTokenManagerRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The default access token manager for this client."
+                },
+                "description": {
+                    "description": "A description of what the client application does. This description appears when the user is prompted for authorization.",
+                    "type": "string"
+                },
+                "deviceFlowSettingType": {
+                    "$ref": "DeviceFlowSettingType",
+                    "description": "Allows an administrator to override the Device Authorization Settings set globally for the OAuth AS. Defaults to SERVER_DEFAULT.",
+                    "enum": [
+                        "SERVER_DEFAULT",
+                        "OVERRIDE_SERVER_DEFAULT"
+                    ]
+                },
+                "devicePollingIntervalOverride": {
+                    "description": "The amount of time client should wait between polling requests, in seconds. This overrides the 'devicePollingInterval' value present in Authorization Server Settings.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "enabled": {
+                    "description": "Specifies whether the client is enabled. The default value is true.",
+                    "type": "boolean"
+                },
+                "exclusiveScopes": {
+                    "$ref": "Set",
+                    "description": "The exclusive scopes available for this client.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "extendedParameters": {
+                    "$ref": "Map[string,ParameterValues]",
+                    "description": "OAuth Client Metadata can be extended to use custom Client Metadata Parameters. The names of these custom parameters should be defined in /extendedProperties."
+                },
+                "grantTypes": {
+                    "$ref": "Set",
+                    "description": "The grant types allowed for this client. The EXTENSION grant type applies to SAML/JWT assertion grants.",
+                    "items": {
+                        "$ref": "GrantType",
+                        "enum": [
+                            "IMPLICIT",
+                            "AUTHORIZATION_CODE",
+                            "RESOURCE_OWNER_CREDENTIALS",
+                            "CLIENT_CREDENTIALS",
+                            "REFRESH_TOKEN",
+                            "EXTENSION",
+                            "DEVICE_CODE",
+                            "ACCESS_TOKEN_VALIDATION",
+                            "CIBA",
+                            "TOKEN_EXCHANGE"
+                        ]
+                    }
+                },
+                "jwksSettings": {
+                    "$ref": "JwksSettings",
+                    "description": "JSON Web Key Set Settings of the OAuth client. Required if private key JWT client authentication or signed requests is enabled."
+                },
+                "logoUrl": {
+                    "description": "The location of the logo used on user-facing OAuth grant authorization and revocation pages.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A descriptive name for the client instance. This name appears when the user is prompted for authorization.",
+                    "type": "string"
+                },
+                "oidcPolicy": {
+                    "$ref": "ClientOIDCPolicy",
+                    "description": "Open ID Connect Policy settings.  This is included in the message only when OIDC is enabled."
+                },
+                "pendingAuthorizationTimeoutOverride": {
+                    "description": "The 'device_code' and 'user_code' timeout, in seconds. This overrides the 'pendingAuthorizationTimeout' value present in Authorization Server Settings.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "persistentGrantExpirationTime": {
+                    "description": "The persistent grant expiration time. -1 indicates an indefinite amount of time.",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "persistentGrantExpirationTimeUnit": {
+                    "$ref": "PersistentGrantLifetimeUnit",
+                    "description": "The persistent grant expiration time unit.",
+                    "enum": [
+                        "MINUTES",
+                        "DAYS",
+                        "HOURS"
+                    ]
+                },
+                "persistentGrantExpirationType": {
+                    "$ref": "PersistentGrantLifetimeType",
+                    "description": "Allows an administrator to override the Persistent Grant Lifetime set globally for the OAuth AS. Defaults to SERVER_DEFAULT.",
+                    "enum": [
+                        "INDEFINITE_EXPIRY",
+                        "SERVER_DEFAULT",
+                        "OVERRIDE_SERVER_DEFAULT"
+                    ]
+                },
+                "persistentGrantIdleTimeout": {
+                    "description": "The persistent grant idle timeout.",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "persistentGrantIdleTimeoutTimeUnit": {
+                    "$ref": "PersistentGrantLifetimeUnit",
+                    "description": "The persistent grant idle timeout time unit.",
+                    "enum": [
+                        "MINUTES",
+                        "DAYS",
+                        "HOURS"
+                    ]
+                },
+                "persistentGrantIdleTimeoutType": {
+                    "$ref": "PersistentGrantLifetimeType",
+                    "description": "Allows an administrator to override the Persistent Grant Idle Timeout set globally for the OAuth AS. Defaults to SERVER_DEFAULT.",
+                    "enum": [
+                        "INDEFINITE_EXPIRY",
+                        "SERVER_DEFAULT",
+                        "OVERRIDE_SERVER_DEFAULT"
+                    ]
+                },
+                "redirectUris": {
+                    "description": "URIs to which the OAuth AS may redirect the resource owner's user agent after authorization is obtained. A redirection URI is used with the Authorization Code and Implicit grant types. Wildcards are allowed. However, for security reasons, make the URL as restrictive as possible.For example: https://*.company.com/* Important: If more than one URI is added or if a single URI uses wildcards, then Authorization Code grant and token requests must contain a specific matching redirect uri parameter.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "refreshRolling": {
+                    "$ref": "RefreshRollingType",
+                    "description": "Use ROLL or DONT_ROLL to override the Roll Refresh Token Values setting on the Authorization Server Settings. SERVER_DEFAULT will default to the Roll Refresh Token Values setting on the Authorization Server Setting screen. Defaults to SERVER_DEFAULT.",
+                    "enum": [
+                        "SERVER_DEFAULT",
+                        "DONT_ROLL",
+                        "ROLL"
+                    ]
+                },
+                "requestObjectSigningAlgorithm": {
+                    "$ref": "RequestObjectSigningAlgorithm",
+                    "description": "The JSON Web Signature [JWS] algorithm that must be used to sign the Request Object. All signing algorithms are allowed if value is not present <br>RS256 - RSA using SHA-256<br>RS384 - RSA using SHA-384<br>RS512 - RSA using SHA-512<br>ES256 - ECDSA using P256 Curve and SHA-256<br>ES384 - ECDSA using P384 Curve and SHA-384<br>ES512 - ECDSA using P521 Curve and SHA-512<br>PS256 - RSASSA-PSS using SHA-256 and MGF1 padding with SHA-256<br>PS384 - RSASSA-PSS using SHA-384 and MGF1 padding with SHA-384<br>PS512 - RSASSA-PSS using SHA-512 and MGF1 padding with SHA-512<br>RSASSA-PSS is only supported with SafeNet Luna, Thales nCipher or Java 11.",
+                    "enum": [
+                        "RS256",
+                        "RS384",
+                        "RS512",
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512"
+                    ]
+                },
+                "requestPolicyRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The CIBA request policy."
+                },
+                "requireProofKeyForCodeExchange": {
+                    "description": "Determines whether Proof Key for Code Exchange (PKCE) is required for this client.",
+                    "type": "boolean"
+                },
+                "requireSignedRequests": {
+                    "description": "Determines whether signed requests are required for this client",
+                    "type": "boolean"
+                },
+                "restrictScopes": {
+                    "description": "Restricts this client's access to specific scopes.",
+                    "type": "boolean"
+                },
+                "restrictedResponseTypes": {
+                    "$ref": "Set",
+                    "description": "The response types allowed for this client. If omitted all response types are available to the client.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "restrictedScopes": {
+                    "$ref": "Set",
+                    "description": "The scopes available for this client.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "tokenExchangeProcessorPolicyRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The Token Exchange Processor policy."
+                },
+                "userAuthorizationUrlOverride": {
+                    "description": "The URL used as 'verification_url' and 'verification_url_complete' values in a Device Authorization request. This property overrides the 'userAuthorizationUrl' value present in Authorization Server Settings.",
+                    "type": "string"
+                },
+                "validateUsingAllEligibleAtms": {
+                    "description": "Validates token using all eligible access token managers for the client.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "clientId",
+                "grantTypes",
+                "name"
+            ]
+        },
+        "ClientAuth": {
+            "description": "Client Authentication.",
+            "id": "ClientAuth",
+            "properties": {
+                "clientCertIssuerDn": {
+                    "description": "Client TLS Certificate Issuer DN.",
+                    "type": "string"
+                },
+                "clientCertSubjectDn": {
+                    "description": "Client TLS Certificate Subject DN.",
+                    "type": "string"
+                },
+                "encryptedSecret": {
+                    "description": "For GET requests, this field contains the encrypted client secret, if one exists.  For POST and PUT requests, if you wish to reuse the existing secret, this field should be passed back unchanged.",
+                    "type": "string"
+                },
+                "enforceReplayPrevention": {
+                    "description": "Enforce replay prevention on JSON Web Tokens. This field is applicable only for Private Key JWT Client Authentication.",
+                    "type": "boolean"
+                },
+                "secret": {
+                    "description": "Client secret for Basic Authentication.  To update the client secret, specify the plaintext value in this field.  This field will not be populated for GET requests.",
+                    "type": "string"
+                },
+                "tokenEndpointAuthSigningAlgorithm": {
+                    "$ref": "TokenEndpointAuthSigningAlgorithm",
+                    "description": "The JSON Web Signature [JWS] algorithm that must be used to sign the JSON Web Tokens. This field is applicable only for Private Key JWT Client Authentication. All signing algorithms are allowed if value is not present <br>RS256 - RSA using SHA-256<br>RS384 - RSA using SHA-384<br>RS512 - RSA using SHA-512<br>ES256 - ECDSA using P256 Curve and SHA-256<br>ES384 - ECDSA using P384 Curve and SHA-384<br>ES512 - ECDSA using P521 Curve and SHA-512<br>PS256 - RSASSA-PSS using SHA-256 and MGF1 padding with SHA-256<br>PS384 - RSASSA-PSS using SHA-384 and MGF1 padding with SHA-384<br>PS512 - RSASSA-PSS using SHA-512 and MGF1 padding with SHA-512<br>RSASSA-PSS is only supported with SafeNet Luna, Thales nCipher or Java 11.",
+                    "enum": [
+                        "RS256",
+                        "RS384",
+                        "RS512",
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512"
+                    ]
+                },
+                "type": {
+                    "$ref": "ClientAuthType",
+                    "description": "Client authentication type.<br>The required field for type SECRET is secret.<br>The required fields for type CERTIFICATE are clientCertIssuerDn and clientCertSubjectDn.<br>The required field for type PRIVATE_KEY_JWT is: either jwks or jwksUrl.",
+                    "enum": [
+                        "NONE",
+                        "SECRET",
+                        "CERTIFICATE",
+                        "PRIVATE_KEY_JWT"
+                    ]
+                }
+            }
+        },
+        "ClientOIDCPolicy": {
+            "description": "OAuth Client Open ID Connect Policy.",
+            "id": "ClientOIDCPolicy",
+            "properties": {
+                "grantAccessSessionRevocationApi": {
+                    "description": "Determines whether this client is allowed to access the Session Revocation API.",
+                    "type": "boolean"
+                },
+                "idTokenContentEncryptionAlgorithm": {
+                    "$ref": "ContentEncryptionAlgorithm",
+                    "description": "The JSON Web Encryption [JWE] content encryption algorithm for the ID Token.<br>AES_128_CBC_HMAC_SHA_256 - Composite AES-CBC-128 HMAC-SHA-256<br>AES_192_CBC_HMAC_SHA_384 - Composite AES-CBC-192 HMAC-SHA-384<br>AES_256_CBC_HMAC_SHA_512 - Composite AES-CBC-256 HMAC-SHA-512<br>AES-GCM-128 - AES_128_GCM<br>AES_192_GCM - AES-GCM-192<br>AES_256_GCM - AES-GCM-256",
+                    "enum": [
+                        "AES_128_CBC_HMAC_SHA_256",
+                        "AES_192_CBC_HMAC_SHA_384",
+                        "AES_256_CBC_HMAC_SHA_512",
+                        "AES_128_GCM",
+                        "AES_192_GCM",
+                        "AES_256_GCM"
+                    ]
+                },
+                "idTokenEncryptionAlgorithm": {
+                    "$ref": "EncryptionAlgorithm",
+                    "description": "The JSON Web Encryption [JWE] encryption algorithm used to encrypt the content encryption key for the ID Token.<br>DIR - Direct Encryption with symmetric key<br>A128KW - AES-128 Key Wrap<br>A192KW - AES-192 Key Wrap<br>A256KW - AES-256 Key Wrap<br>A128GCMKW - AES-GCM-128 key encryption<br>A192GCMKW - AES-GCM-192 key encryption<br>A256GCMKW - AES-GCM-256 key encryption<br>ECDH_ES - ECDH-ES<br>ECDH_ES_A128KW - ECDH-ES with AES-128 Key Wrap<br>ECDH_ES_A192KW - ECDH-ES with AES-192 Key Wrap<br>ECDH_ES_A256KW - ECDH-ES with AES-256 Key Wrap<br>RSA_OAEP - RSAES OAEP<br>",
+                    "enum": [
+                        "DIR",
+                        "A128KW",
+                        "A192KW",
+                        "A256KW",
+                        "A128GCMKW",
+                        "A192GCMKW",
+                        "A256GCMKW",
+                        "ECDH_ES",
+                        "ECDH_ES_A128KW",
+                        "ECDH_ES_A192KW",
+                        "ECDH_ES_A256KW",
+                        "RSA_OAEP"
+                    ]
+                },
+                "idTokenSigningAlgorithm": {
+                    "$ref": "SigningAlgorithm",
+                    "description": "The JSON Web Signature [JWS] algorithm required for the ID Token.<br>NONE - No signing algorithm<br>HS256 - HMAC using SHA-256<br>HS384 - HMAC using SHA-384<br>HS512 - HMAC using SHA-512<br>RS256 - RSA using SHA-256<br>RS384 - RSA using SHA-384<br>RS512 - RSA using SHA-512<br>ES256 - ECDSA using P256 Curve and SHA-256<br>ES384 - ECDSA using P384 Curve and SHA-384<br>ES512 - ECDSA using P521 Curve and SHA-512<br>PS256 - RSASSA-PSS using SHA-256 and MGF1 padding with SHA-256<br>PS384 - RSASSA-PSS using SHA-384 and MGF1 padding with SHA-384<br>PS512 - RSASSA-PSS using SHA-512 and MGF1 padding with SHA-512<br>A null value will represent the default algorithm which is RS256.<br>RSASSA-PSS is only supported with SafeNet Luna, Thales nCipher or Java 11",
+                    "enum": [
+                        "NONE",
+                        "HS256",
+                        "HS384",
+                        "HS512",
+                        "RS256",
+                        "RS384",
+                        "RS512",
+                        "ES256",
+                        "ES384",
+                        "ES512",
+                        "PS256",
+                        "PS384",
+                        "PS512"
+                    ]
+                },
+                "logoutUris": {
+                    "description": "A list of client logout URI's which will be invoked when a user logs out through one of PingFederate's SLO endpoints.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "pairwiseIdentifierUserType": {
+                    "description": "Determines whether the subject identifier type is pairwise.",
+                    "type": "boolean"
+                },
+                "pingAccessLogoutCapable": {
+                    "description": "Set this value to true if you wish to enable client application logout, and the client is PingAccess, or its logout endpoints follow the PingAccess path convention.",
+                    "type": "boolean"
+                },
+                "policyGroup": {
+                    "$ref": "ResourceLink",
+                    "description": "The Open ID Connect policy. A null value will represent the default policy group."
+                },
+                "sectorIdentifierUri": {
+                    "description": "The URI references a file with a single JSON array of Redirect URI and JWKS URL values.",
+                    "type": "string"
+                }
+            }
+        },
+        "ClientSecret": {
+            "description": "Client Secret.",
+            "id": "ClientSecret",
+            "properties": {
+                "encryptedSecret": {
+                    "description": "For GET requests, this field contains the encrypted client secret, if one exists.  For POST and PUT requests, if you wish to reuse the existing secret, this field should be passed back unchanged.",
+                    "type": "string"
+                },
+                "secret": {
+                    "description": "Client secret for Basic Authentication.  To update the client secret, specify the plaintext value in this field.  This field will not be populated for GET requests.",
+                    "type": "string"
+                }
+            }
+        },
+        "Clients": {
+            "description": "A collection of OAuth client items.",
+            "id": "Clients",
+            "properties": {
+                "items": {
+                    "description": "The actual list of OAuth clients.",
+                    "items": {
+                        "$ref": "Client"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "JwksSettings": {
+            "description": "JSON Web Key Set Settings.",
+            "id": "JwksSettings",
+            "properties": {
+                "jwks": {
+                    "description": "JSON Web Key Set (JWKS) document of the OAuth client. Either 'jwks' or 'jwksUrl' must be provided if private key JWT client authentication or signed requests is enabled.  If the client signs its JWTs using an RSASSA-PSS signing algorithm, PingFederate must either use Java 11 or be integrated with a hardware security module (HSM) to process the digital signatures.",
+                    "type": "string"
+                },
+                "jwksUrl": {
+                    "description": "JSON Web Key Set (JWKS) URL of the OAuth client. Either 'jwks' or 'jwksUrl' must be provided if private key JWT client authentication or signed requests is enabled.  If the client signs its JWTs using an RSASSA-PSS signing algorithm, PingFederate must either use Java 11 or be integrated with a hardware security module (HSM) to process the digital signatures.",
+                    "type": "string"
+                }
+            }
+        },
+        "ParameterValues": {
+            "description": "Parameter Values.",
+            "id": "ParameterValues",
+            "properties": {
+                "values": {
+                    "description": "A List of values",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ResourceLink": {
+            "description": "A reference to a resource.",
+            "id": "ResourceLink",
+            "properties": {
+                "id": {
+                    "description": "The ID of the resource.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/oauth/clients",
+    "swaggerVersion": "1.2"
+}

@@ -1,0 +1,776 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getIdpConnectorDescriptors",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its IdP role enabled. Operation not available."
+                        }
+                    ],
+                    "summary": "Get the list of available IdP connector descriptors.",
+                    "type": "SaasPluginDescriptors"
+                }
+            ],
+            "path": "/idp/connectors/descriptors"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getIdpConnectorDescriptorById",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "the type of connector descriptor to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have its IdP role enabled. Operation not available."
+                        }
+                    ],
+                    "summary": "Get the list of available connector descriptors.",
+                    "type": "SaasPluginDescriptor"
+                }
+            ],
+            "path": "/idp/connectors/descriptors/{id}"
+        }
+    ],
+    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "consumes": [
+        "application/json"
+    ],
+    "models": {
+        "ActionDescriptor": {
+            "description": "Describes an arbitrary action that is available for a plugin.",
+            "id": "ActionDescriptor",
+            "properties": {
+                "description": {
+                    "description": "The description of this action",
+                    "type": "string"
+                },
+                "download": {
+                    "description": "Whether this action will trigger a download or invoke an internal action that will return a string result.",
+                    "type": "boolean"
+                },
+                "downloadContentType": {
+                    "description": "If this is a download, this is the Content-Type of the downloaded file. Otherwise, this is null.",
+                    "type": "string"
+                },
+                "downloadFileName": {
+                    "description": "If this is a download, this is the suggested file name of the downloaded file. Otherwise, this is null.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of this action",
+                    "type": "string"
+                }
+            }
+        },
+        "BaseSelectionFieldDescriptor": {
+            "description": "Holds fields that are shared by all selection-type field descriptors.",
+            "extends": "FieldDescriptor",
+            "id": "BaseSelectionFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            },
+            "subTypes": [
+                "RadioGroupFieldDescriptor",
+                "SelectFieldDescriptor"
+            ]
+        },
+        "CheckBoxFieldDescriptor": {
+            "description": "A boolean field typically rendered as a checkbox in a configuration UI.",
+            "extends": "FieldDescriptor",
+            "id": "CheckBoxFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "FieldDescriptor": {
+            "description": "Describes a plugin configuration field.",
+            "discriminator": "type",
+            "id": "FieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            },
+            "subTypes": [
+                "RadioGroupFieldDescriptor",
+                "SelectFieldDescriptor",
+                "CheckBoxFieldDescriptor",
+                "UploadFileFieldDescriptor",
+                "TextAreaFieldDescriptor",
+                "TextFieldDescriptor",
+                "HashedTextFieldDescriptor"
+            ]
+        },
+        "HashedTextFieldDescriptor": {
+            "description": "A text field that will contain a secure salted hash.",
+            "extends": "FieldDescriptor",
+            "id": "HashedTextFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "size": {
+                    "description": "The size of the text field.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "OptionValue": {
+            "description": "An option name and value associated with a selection field.",
+            "id": "OptionValue",
+            "properties": {
+                "name": {
+                    "description": "The name of the option.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The value associated with this option.",
+                    "type": "string"
+                }
+            }
+        },
+        "Pattern": {
+            "id": "Pattern",
+            "properties": {
+                "flags": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "pattern": {
+                    "type": "string"
+                }
+            }
+        },
+        "PluginConfigDescriptor": {
+            "description": "Defines the configuration fields available for a plugin.",
+            "id": "PluginConfigDescriptor",
+            "properties": {
+                "actionDescriptors": {
+                    "description": "The available actions for this plugin.",
+                    "items": {
+                        "$ref": "ActionDescriptor"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "The description of this plugin.",
+                    "type": "string"
+                },
+                "fields": {
+                    "description": "The configuration fields available for this plugin.",
+                    "items": {
+                        "$ref": "FieldDescriptor"
+                    },
+                    "type": "array"
+                },
+                "tables": {
+                    "description": "Configuration tables available for this plugin.",
+                    "items": {
+                        "$ref": "TableDescriptor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "RadioGroupFieldDescriptor": {
+            "description": "A selection-type field intended to be rendered as a group of radio buttons in a UI.",
+            "extends": "BaseSelectionFieldDescriptor",
+            "id": "RadioGroupFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "SaasPluginDescriptor": {
+            "description": "A SaaS Plugin.",
+            "id": "SaasPluginDescriptor",
+            "properties": {
+                "configDescriptor": {
+                    "$ref": "PluginConfigDescriptor",
+                    "description": "The plugin configuration that includes information to access the target service provider."
+                },
+                "description": {
+                    "description": "The SaaS plugin description.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "The SaaS plugin type.",
+                    "type": "string"
+                },
+                "saasPluginFieldInfoDescriptors": {
+                    "description": "The SaaS plugin attribute list for mapping from the local data store into Fields specified by the service provide.",
+                    "items": {
+                        "$ref": "SaasPluginFieldInfoDescriptor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "SaasPluginDescriptors": {
+            "description": "A collection of SaaS plugins.",
+            "id": "SaasPluginDescriptors",
+            "properties": {
+                "items": {
+                    "description": "The actual list of SaaS plugins.",
+                    "items": {
+                        "$ref": "SaasPluginDescriptor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "SaasPluginFieldInfoDescriptor": {
+            "description": "A Saas Plugin Field configuration.",
+            "id": "SaasPluginFieldInfoDescriptor",
+            "properties": {
+                "attributeGroup": {
+                    "description": "Indicates whether this field belongs to group of attribute such as multivalued or sub-type custom attributes.",
+                    "type": "boolean"
+                },
+                "code": {
+                    "description": "The name or code that represents a field.",
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "description": "Default value for the field.",
+                    "type": "string"
+                },
+                "dsLdapMap": {
+                    "description": "Indicates whether the field can be mapped raw to an LDAP attribute.",
+                    "type": "boolean"
+                },
+                "label": {
+                    "description": "The label for a field.",
+                    "type": "string"
+                },
+                "maxLength": {
+                    "description": "Maximum character length for a value.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "minLength": {
+                    "description": "Minimum character length for a value.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "multiValue": {
+                    "description": "Whether the field can have multiple values.",
+                    "type": "boolean"
+                },
+                "notes": {
+                    "description": "Description or notes for the field.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "options": {
+                    "description": "List of Option values available for this field.",
+                    "items": {
+                        "$ref": "SaasPluginFieldOption"
+                    },
+                    "type": "array"
+                },
+                "pattern": {
+                    "$ref": "Pattern",
+                    "description": "Pattern used to validate values of this field."
+                },
+                "persistForMembership": {
+                    "description": "The code that represents the field.",
+                    "type": "boolean"
+                },
+                "required": {
+                    "description": "Indicates whether a value is required for this field.",
+                    "type": "boolean"
+                },
+                "unique": {
+                    "description": "indicates whether the value of this field is unique.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "code",
+                "label"
+            ]
+        },
+        "SaasPluginFieldOption": {
+            "description": "A plugin configuration field value.",
+            "id": "SaasPluginFieldOption",
+            "properties": {
+                "code": {
+                    "description": "The code that represents the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "The label for the field.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "code",
+                "label"
+            ]
+        },
+        "SelectFieldDescriptor": {
+            "description": "A selection field that is intended to be rendered as a dropdown list of options.",
+            "extends": "BaseSelectionFieldDescriptor",
+            "id": "SelectFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "TableDescriptor": {
+            "description": "Defines a plugin configuration table.",
+            "id": "TableDescriptor",
+            "properties": {
+                "columns": {
+                    "description": "Get the columns in the table.",
+                    "items": {
+                        "$ref": "FieldDescriptor"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "Description for the table.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label for the table to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the table.",
+                    "type": "string"
+                },
+                "requireDefaultRow": {
+                    "description": "Configure whether this table requires default row to be set.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "TextAreaFieldDescriptor": {
+            "description": "A field intended to be rendered as a text box in a UI.",
+            "extends": "FieldDescriptor",
+            "id": "TextAreaFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "columns": {
+                    "description": "The number of columns for the text box.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "rows": {
+                    "description": "The number of rows for the text box.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "TextFieldDescriptor": {
+            "description": "A text field.",
+            "extends": "FieldDescriptor",
+            "id": "TextFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "encrypted": {
+                    "description": "Determines whether the field value should be masked in the UI and encrypted on disk.",
+                    "type": "boolean"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "size": {
+                    "description": "The size of the text field.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "UploadFileFieldDescriptor": {
+            "description": "A field which allows the user to upload a file.",
+            "extends": "FieldDescriptor",
+            "id": "UploadFileFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/idp/connectors",
+    "swaggerVersion": "1.2"
+}

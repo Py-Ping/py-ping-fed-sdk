@@ -1,0 +1,47 @@
+import logging
+import requests
+
+class {{ safe_name(class_name) }}():
+    def __init__(self, endpoint):
+        logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+        self.logger = logging.getLogger('PingDSL.{{ safe_name(class_name) }}')
+        self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
+        self.endpoint = endpoint
+
+    def _build_uri(self, path):
+        return f"{self.endpoint}{path}"
+
+{% for api in details %}
+{% for operation in api.get('operations',[]) %}
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{parameter.get('name')}}{% endfor %}):
+        """ {{ operation.get('summary') }}
+        """
+        {% if operation.get('method') in ['POST', 'PUT'] %}
+
+        payload = {
+            {% for parameter in operation.get('parameters',[]) %}"{{parameter.get('name')}}": {{parameter.get('name')}}{% endfor %}
+
+        }
+        {% endif %}
+
+        try:
+            response = {{ requests_verb(operation.get('method')) }}(
+                {% if operation.get('method') in ['POST', 'PUT'] %}data=payload,{% endif %}
+
+                url=self._build_uri("{{api.get('path')}}"),
+                headers={'Accept': '{{ operation.get('produces', "application/json") }}'}
+            )
+        except HTTPError as http_err:
+            self.logger.error(f'HTTP error occurred: {http_err}')
+        except Exception as err:
+            self.logger.error(f'Error occurred: {err}') 
+        else:
+{% for response_message in operation.get('responseMessages') %}
+            if response.status_code == {{response_message.get('code')}}:
+                self.logger.info('{{response_message.get('message')}}')
+{% endfor %}
+        finally:
+            return response
+
+{% endfor %}
+{% endfor %}
