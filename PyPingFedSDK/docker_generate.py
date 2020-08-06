@@ -17,10 +17,11 @@ class ContainedGenerator:
         TODO: make generic to run any other Ping solution
     """
 
-    def __init__(self, home_path, user, pass_key):
+    def __init__(self, swagger_url, home_path, user, pass_key):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
         )
+        self.swagger_url = swagger_url
         self.logger = logging.getLogger("PingDSL.Docker")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
 
@@ -106,7 +107,7 @@ class ContainedGenerator:
         self.logger.info("Container ready, generating SDK objects...")
 
         try:
-            Generate().generate()
+            Generate(self.swagger_url).generate()
         except Exception:
             self.logger.error(traceback.format_exc())
 
@@ -118,7 +119,7 @@ if __name__ == "__main__":
     home = os.environ["HOME"]
     ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
     ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"]
-
+    swagger_url = "https://localhost:9999/pf-admin-api/v1/api-docs"
     ContainedGenerator(
-        home, ping_user, ping_key
+        swagger_url, home, ping_user, ping_key
     ).generate()

@@ -7,13 +7,14 @@ from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
 from helpers import safe_name, requests_verb
 
+
 class Generate():
-    def __init__(self, api_schema_key='apis'):
+    def __init__(self, swagger_url, api_schema_key='apis'):
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL.Generate')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.api_schema_key = api_schema_key
-        self.fetch_data = Fetch().fetch()
+        self.fetch_data = Fetch(swagger_url).fetch()
 
     def generate(self):
         for model, details in self.fetch_data.get('models').items():
@@ -35,7 +36,6 @@ class Generate():
                 file_type='py',
                 folder='apis'
             )
-
 
     def template(self, template, name, details, template_directory='templates'):
         currentdirectory = os.path.dirname(__file__)
@@ -65,6 +65,5 @@ class Generate():
         with open(os.path.join(filedirectory, path), "w") as fh:
             fh.write(content)
 
-
 if __name__ == '__main__':
-    Generate().generate()
+    Generate("https://localhost:9999/pf-admin-api/v1/api-docs").generate()
