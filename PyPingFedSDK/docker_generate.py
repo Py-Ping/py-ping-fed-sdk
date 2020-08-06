@@ -2,6 +2,7 @@
 import docker
 import traceback
 import os
+import logging
 
 from generate import Generate
 from time import sleep
@@ -9,13 +10,20 @@ from time import sleep
 
 class ContainedGenerator:
     """
-    Manager class for the SDK generator, encapsulates the process in a docker container
-    such that there is no external dependency on a live pingfederate instance
+        Manager class for the SDK generator, encapsulates the process in a docke
+        container such that there is no external dependency on a live pingfederate
+        instance
 
-    TODO: make generic to run any other Ping solution
+        TODO: make generic to run any other Ping solution
     """
 
     def __init__(self, home_path, user, pass_key):
+        logging.basicConfig(
+            format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
+        )
+        self.logger = logging.getLogger("PingDSL.Docker")
+        self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
+
         self.client = docker.from_env()
         self.image_name = "pingidentity/pingfederate:edge"
         self.home = home_path
@@ -42,7 +50,7 @@ class ContainedGenerator:
             detach=True
         )
 
-    def shut_down(self):
+    def terminate(self):
         """
             Perform post generation cleanup
         """
@@ -52,20 +60,25 @@ class ContainedGenerator:
 
     def get_by_image_name(self, image_name):
         """
-        Given an image name, return the first available container object
+            Given an image name, return the first available container object.
         """
         for container in self.client.containers.list():
             if container.image.tags[0] == image_name:
                 return container
 
-    def block_until_ready(self):
-        while self.container.status != "running":
+    def wait(self):
+        """
+            Block execution until the container is paused, exited or running.
+        """
+        while self.container.status != "running" and \
+              self.container.status != "exited" and \
+              self.container.status != "paused":
             self.container = self.client.containers.get(self.container.id)
             sleep(5)
 
     def running(self, image_name):
         """
-        Given an image name, return if currently running
+            Given an image name, return if currently running
         """
         for container in self.client.containers.list():
             if container.image.tags[0] == image_name:
@@ -74,31 +87,37 @@ class ContainedGenerator:
 
     def generate(self):
         """
-        Check to see if the ping fed container is running, if not run it and halt
-        until the container is available
+            Check to see if the ping fed container is running, if not run it and
+            block until the container is available. Once available, generate the
+            SDK from the swagger coming from the Ping Federate service. Once
+            done, terminate the running container.
 
-        TODO: wait on availability of running service
+            TODO: wait on availability of running service
         """
         if not self.running(self.image_name):
+            self.logger.info("Initialising Ping Federate container...")
             self.run()
-            self.block_until_ready()
+            self.wait()
         else:
             self.container = self.get_by_image_name(self.image_name)
 
         # replace with something that polls on service availability
         sleep(45)
+        self.logger.info("Container ready, generating SDK objects...")
 
         try:
             Generate().generate()
-        except Exception as exception:
-            print(traceback.format_exc())
-        self.shut_down()
+        except Exception:
+            self.logger.error(traceback.format_exc())
+
+        self.logger.info("Terminating container...")
+        self.terminate()
 
 
-if __name__ == '__main__':
-    home = os.environ['HOME']
-    ping_user = os.environ['PING_IDENTITY_DEVOPS_USER']
-    ping_key = os.environ['PING_IDENTITY_DEVOPS_KEY']
+if __name__ == "__main__":
+    home = os.environ["HOME"]
+    ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
+    ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"]
 
     ContainedGenerator(
         home, ping_user, ping_key
