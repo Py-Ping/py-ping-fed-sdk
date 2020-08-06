@@ -4,10 +4,10 @@ from setuptools import setup, find_packages
 requires = ["requests", "Jinja2", "PyYAML"]
 
 setup(
-    name="pypingsdk",
+    name="py-ping-fed-sdk",
     version="0.1",
-    description="Python Ping SDK",
-    url="https://github.com/Versent/python-ping-federation-sdk",
+    description="Python Ping Federation SDK",
+    url="https://github.com/Versent/py-ping-fed-sdk",
     author="ProServ",
     author_email="support@versent.com.au",
     license="proprietary",
