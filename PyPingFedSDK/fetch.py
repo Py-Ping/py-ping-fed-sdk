@@ -3,6 +3,7 @@ import os
 import sys
 import requests
 import logging
+from urllib3.exceptions import ConnectionError
 
 ping_swagger_url = "https://localhost:9999/pf-admin-api/v1/api-docs"
 
@@ -24,7 +25,7 @@ class Fetch():
             response = requests.get(ping_swagger_url, verify=verify)
         except Exception as err:
             self.logger.error(f'Failed to download swagger from: {ping_swagger_url} with error {err}')
-            raise URLError(f'Failed to download swagger from: {ping_swagger_url} with error {err}')
+            raise ConnectionError(f'Failed to download swagger from: {ping_swagger_url} with error {err}')
         else:
             self.logger.info(f'Successfully downloaded Ping Swagger document: {ping_swagger_url}')
             self.ping_data = response.json()
