@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_resourceOwnerCredentialsMappings():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_resourceOwnerCredentialsMappings')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getResourceOwnerCredentialsMappings(self):
@@ -68,7 +68,7 @@ class _oauth_resourceOwnerCredentialsMappings():
         finally:
             return response
 
-    def getResourceOwnerCredentialsMapping(self, id):
+    def getResourceOwnerCredentialsMapping(self, var_id):
         """ Find the Resource Owner Credentials mapping by the ID.
         """
 
@@ -92,12 +92,12 @@ class _oauth_resourceOwnerCredentialsMappings():
         finally:
             return response
 
-    def updateResourceOwnerCredentialsMapping(self, id, body, X-BypassExternalValidation):
+    def updateResourceOwnerCredentialsMapping(self, var_id, body, X-BypassExternalValidation):
         """ Update a Resource Owner Credentials mapping.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -127,7 +127,7 @@ class _oauth_resourceOwnerCredentialsMappings():
         finally:
             return response
 
-    def deleteResourceOwnerCredentialsMapping(self, id):
+    def deleteResourceOwnerCredentialsMapping(self, var_id):
         """ Delete a Resource Owner Credentials mapping.
         """
 

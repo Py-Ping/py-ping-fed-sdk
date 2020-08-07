@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _idpToSpAdapterMapping():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._idpToSpAdapterMapping')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getIdpToSpAdapterMappings(self):
@@ -66,7 +66,7 @@ class _idpToSpAdapterMapping():
         finally:
             return response
 
-    def getIdpToSpAdapterMappingsById(self, id):
+    def getIdpToSpAdapterMappingsById(self, var_id):
         """ Get an IdP-to-SP Adapter Mapping.
         """
 
@@ -88,12 +88,12 @@ class _idpToSpAdapterMapping():
         finally:
             return response
 
-    def updateIdpToSpAdapterMapping(self, id, body, X-BypassExternalValidation):
+    def updateIdpToSpAdapterMapping(self, var_id, body, X-BypassExternalValidation):
         """ Update the specified IdP-to-SP Adapter mapping.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -121,7 +121,7 @@ class _idpToSpAdapterMapping():
         finally:
             return response
 
-    def deleteIdpToSpAdapterMappingsById(self, id):
+    def deleteIdpToSpAdapterMappingsById(self, var_id):
         """ Delete an Adapter to Adapter Mapping.
         """
 

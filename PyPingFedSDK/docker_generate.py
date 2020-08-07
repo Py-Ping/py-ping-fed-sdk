@@ -10,7 +10,7 @@ from time import sleep
 
 class ContainedGenerator:
     """
-        Manager class for the SDK generator, encapsulates the process in a docke
+        Manager class for the SDK generator, encapsulates the process in a docker
         container such that there is no external dependency on a live pingfederate
         instance
 

@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_clientRegistrationPolicies():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_clientRegistrationPolicies')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getDynamicClientRegistrationDescriptors(self):
@@ -36,7 +36,7 @@ class _oauth_clientRegistrationPolicies():
         finally:
             return response
 
-    def getDynamicClientRegistrationDescriptor(self, id):
+    def getDynamicClientRegistrationDescriptor(self, var_id):
         """ Get the description of a client registration policy plugin descriptor.
         """
 
@@ -113,7 +113,7 @@ class _oauth_clientRegistrationPolicies():
         finally:
             return response
 
-    def getDynamicClientRegistrationPolicy(self, id):
+    def getDynamicClientRegistrationPolicy(self, var_id):
         """ Get a specific client registration policy plugin instance.
         """
 
@@ -137,12 +137,12 @@ class _oauth_clientRegistrationPolicies():
         finally:
             return response
 
-    def updateDynamicClientRegistrationPolicy(self, id, body):
+    def updateDynamicClientRegistrationPolicy(self, var_id, body):
         """ Update a client registration policy plugin instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -171,7 +171,7 @@ class _oauth_clientRegistrationPolicies():
         finally:
             return response
 
-    def deleteDynamicClientRegistrationPolicy(self, id):
+    def deleteDynamicClientRegistrationPolicy(self, var_id):
         """ Delete a client registration policy plugin instance.
         """
 

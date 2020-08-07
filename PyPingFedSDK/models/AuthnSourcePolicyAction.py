@@ -4,41 +4,44 @@ class AuthnSourcePolicyAction():
     Attributes
     ----------
     attributeRules : str
-        The authentication policy rules.    authenticationSource : str
-        The associated authentication source.    context : string
-        The result context.    inputUserIdMapping : str
-        The input user id mapping.    type : str
-        The authentication selection type.
+ The authentication policy rules.
+    authenticationSource : str
+ The associated authentication source.
+    context : string
+ The result context.
+    inputUserIdMapping : str
+ The input user id mapping.
+    type : str
+ The authentication selection type.
+
     """
 
-    __slots__ = ["attributeRules", "authenticationSource", "context", "inputUserIdMapping", "type"]
-
-    def __init__(self, type, authenticationSource, attributeRules=None, context=None, inputUserIdMapping=None):
+    def __init__(self, var_type, authenticationSource, attributeRules=None, context=None, inputUserIdMapping=None) -> None:
         self.attributeRules = attributeRules
         self.authenticationSource = authenticationSource
         self.context = context
         self.inputUserIdMapping = inputUserIdMapping
-        self.type = type
+        self.var_type = var_type
 
-    def _validate(self):
-        return any(x for x in ['type', 'authenticationSource'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["var_type", "authenticationSource"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, AuthnSourcePolicyAction):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
-        return hash((self.attributeRules, self.authenticationSource, self.context, self.inputUserIdMapping, self.type))
+    def __hash__(self) -> int:
+        return hash((self.attributeRules, self.authenticationSource, self.context, self.inputUserIdMapping, self.var_type))
 
     @classmethod
-    def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["attributeRules", "authenticationSource", "context", "inputUserIdMapping", "type"]}
+    def from_dict(cls, python_dict: dict):
+        valid_data = {k: v for k, v in python_dict.items() if k in ["attributeRules", "authenticationSource", "context", "inputUserIdMapping", "var_type"]}
 
         return cls(**valid_data)

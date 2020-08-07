@@ -5,16 +5,16 @@ from requests.exceptions import HTTPError
 
 
 class _configStore():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._configStore')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def getSetting(self, bundle, id):
+    def getSetting(self, bundle, var_id):
         """ Get a single setting from a bundle.
         """
 
@@ -38,13 +38,13 @@ class _configStore():
         finally:
             return response
 
-    def updateSetting(self, bundle, id, body):
+    def updateSetting(self, bundle, var_id, body):
         """ Update a setting.
         """
 
         payload = {
             "bundle": bundle,
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -71,7 +71,7 @@ class _configStore():
         finally:
             return response
 
-    def deleteSetting(self, bundle, id):
+    def deleteSetting(self, bundle, var_id):
         """ Delete a setting.
         """
 

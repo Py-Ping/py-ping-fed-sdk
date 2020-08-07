@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _authenticationSelectors():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._authenticationSelectors')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getAuthenticationSelectorDescriptors(self):
@@ -36,7 +36,7 @@ class _authenticationSelectors():
         finally:
             return response
 
-    def getAuthenticationSelectorDescriptorsById(self, id):
+    def getAuthenticationSelectorDescriptorsById(self, var_id):
         """ Get the description of an Authentication Selector plugin by ID.
         """
 
@@ -115,7 +115,7 @@ class _authenticationSelectors():
         finally:
             return response
 
-    def getAuthenticationSelector(self, id):
+    def getAuthenticationSelector(self, var_id):
         """ Get an Authentication Selector instance by ID.
         """
 
@@ -139,12 +139,12 @@ class _authenticationSelectors():
         finally:
             return response
 
-    def updateAuthenticationSelector(self, id, body):
+    def updateAuthenticationSelector(self, var_id, body):
         """ Update an authentication selector instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -173,7 +173,7 @@ class _authenticationSelectors():
         finally:
             return response
 
-    def deleteAuthenticationSelector(self, id):
+    def deleteAuthenticationSelector(self, var_id):
         """ Delete an Authentication Selector instance.
         """
 

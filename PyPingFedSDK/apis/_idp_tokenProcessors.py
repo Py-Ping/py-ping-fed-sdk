@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _idp_tokenProcessors():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._idp_tokenProcessors')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getTokenProcessorDescriptors(self):
@@ -36,7 +36,7 @@ class _idp_tokenProcessors():
         finally:
             return response
 
-    def getTokenProcessorDescriptorsById(self, id):
+    def getTokenProcessorDescriptorsById(self, var_id):
         """ Get the description of a token processor plugin by ID.
         """
 
@@ -113,7 +113,7 @@ class _idp_tokenProcessors():
         finally:
             return response
 
-    def getTokenProcessor(self, id):
+    def getTokenProcessor(self, var_id):
         """ Find a token processor instance by ID.
         """
 
@@ -137,12 +137,12 @@ class _idp_tokenProcessors():
         finally:
             return response
 
-    def updateTokenProcessor(self, id, body):
+    def updateTokenProcessor(self, var_id, body):
         """ Update a token processor instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -171,7 +171,7 @@ class _idp_tokenProcessors():
         finally:
             return response
 
-    def deleteTokenProcessor(self, id):
+    def deleteTokenProcessor(self, var_id):
         """ Delete a token processor instance.
         """
 

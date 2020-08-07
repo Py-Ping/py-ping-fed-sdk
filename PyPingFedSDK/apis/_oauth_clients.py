@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_clients():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_clients')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getClients(self, page, numberPerPage, filter):
@@ -69,7 +69,7 @@ class _oauth_clients():
         finally:
             return response
 
-    def getClient(self, id):
+    def getClient(self, var_id):
         """ Find the OAuth client by ID.
         """
 
@@ -93,12 +93,12 @@ class _oauth_clients():
         finally:
             return response
 
-    def updateClient(self, id, body):
+    def updateClient(self, var_id, body):
         """ Updates the OAuth client.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -127,7 +127,7 @@ class _oauth_clients():
         finally:
             return response
 
-    def deleteClient(self, id):
+    def deleteClient(self, var_id):
         """ Delete an OAuth client.
         """
 
@@ -151,7 +151,7 @@ class _oauth_clients():
         finally:
             return response
 
-    def getClientSecret(self, id):
+    def getClientSecret(self, var_id):
         """ Get the client secret of an existing OAuth client.
         """
 
@@ -179,12 +179,12 @@ class _oauth_clients():
         finally:
             return response
 
-    def updateClientSecret(self, id, body):
+    def updateClientSecret(self, var_id, body):
         """ Update the client secret of an existing OAuth client.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }

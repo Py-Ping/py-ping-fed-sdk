@@ -4,41 +4,44 @@ class ConditionalIssuanceCriteriaEntry():
     Attributes
     ----------
     attributeName : string
-        The name of the attribute to use in this issuance criterion.    condition : str
-        The condition that will be applied to the source attribute's value and the expected value.    errorResult : string
-        The error result to return if this issuance criterion fails. This error result will show up in the PingFederate server logs.    source : str
-        The source of the attribute.    value : string
-        The expected value of this issuance criterion.
+ The name of the attribute to use in this issuance criterion.
+    condition : str
+ The condition that will be applied to the source attribute's value and the expected value.
+    errorResult : string
+ The error result to return if this issuance criterion fails. This error result will show up in the PingFederate server logs.
+    source : str
+ The source of the attribute.
+    value : string
+ The expected value of this issuance criterion.
+
     """
 
-    __slots__ = ["attributeName", "condition", "errorResult", "source", "value"]
-
-    def __init__(self, source, attributeName, condition, value, errorResult=None):
+    def __init__(self, source, attributeName, condition, value, errorResult=None) -> None:
         self.attributeName = attributeName
         self.condition = condition
         self.errorResult = errorResult
         self.source = source
         self.value = value
 
-    def _validate(self):
-        return any(x for x in ['source', 'attributeName', 'condition', 'value'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["source", "attributeName", "condition", "value"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, ConditionalIssuanceCriteriaEntry):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash((self.attributeName, self.condition, self.errorResult, self.source, self.value))
 
     @classmethod
-    def from_dict(cls, python_dict):
+    def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeName", "condition", "errorResult", "source", "value"]}
 
         return cls(**valid_data)

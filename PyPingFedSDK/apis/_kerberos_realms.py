@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _kerberos_realms():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._kerberos_realms')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getKerberosRealmSettings(self):
@@ -112,7 +112,7 @@ class _kerberos_realms():
         finally:
             return response
 
-    def getKerberosRealm(self, id):
+    def getKerberosRealm(self, var_id):
         """ Find a Kerberos Realm by ID.
         """
 
@@ -134,12 +134,12 @@ class _kerberos_realms():
         finally:
             return response
 
-    def updateKerberosRealm(self, id, body):
+    def updateKerberosRealm(self, var_id, body):
         """ Update a Kerberos Realm by ID.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -166,7 +166,7 @@ class _kerberos_realms():
         finally:
             return response
 
-    def deleteKerberosRealm(self, id):
+    def deleteKerberosRealm(self, var_id):
         """ Delete a Kerberos Realm.
         """
 

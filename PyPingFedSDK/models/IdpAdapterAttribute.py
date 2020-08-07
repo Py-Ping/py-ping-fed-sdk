@@ -4,37 +4,38 @@ class IdpAdapterAttribute():
     Attributes
     ----------
     masked : boolean
-        Specifies whether this attribute is masked in PingFederate logs. Defaults to false.    name : string
-        The name of this attribute.    pseudonym : boolean
-        Specifies whether this attribute is used to construct a pseudonym for the SP. Defaults to false.
+ Specifies whether this attribute is masked in PingFederate logs. Defaults to false.
+    name : string
+ The name of this attribute.
+    pseudonym : boolean
+ Specifies whether this attribute is used to construct a pseudonym for the SP. Defaults to false.
+
     """
 
-    __slots__ = ["masked", "name", "pseudonym"]
-
-    def __init__(self, name, masked=None, pseudonym=None):
+    def __init__(self, name, masked=None, pseudonym=None) -> None:
         self.masked = masked
         self.name = name
         self.pseudonym = pseudonym
 
-    def _validate(self):
-        return any(x for x in ['name'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["name"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, IdpAdapterAttribute):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash((self.masked, self.name, self.pseudonym))
 
     @classmethod
-    def from_dict(cls, python_dict):
+    def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["masked", "name", "pseudonym"]}
 
         return cls(**valid_data)

@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _sp_authenticationPolicyContractMappings():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._sp_authenticationPolicyContractMappings')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getApcToSpAdapterMappings(self):
@@ -68,7 +68,7 @@ class _sp_authenticationPolicyContractMappings():
         finally:
             return response
 
-    def getApcToSpAdapterMappingById(self, id):
+    def getApcToSpAdapterMappingById(self, var_id):
         """ Get an APC-to-SP Adapter Mapping.
         """
 
@@ -92,12 +92,12 @@ class _sp_authenticationPolicyContractMappings():
         finally:
             return response
 
-    def updateApcToSpAdapterMappingById(self, id, body, X-BypassExternalValidation):
+    def updateApcToSpAdapterMappingById(self, var_id, body, X-BypassExternalValidation):
         """ Update an APC-to-SP Adapter Mapping.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -127,7 +127,7 @@ class _sp_authenticationPolicyContractMappings():
         finally:
             return response
 
-    def deleteApcToSpAdapterMappingById(self, id):
+    def deleteApcToSpAdapterMappingById(self, var_id):
         """ Delete an APC-to-SP Adapter Mapping.
         """
 

@@ -5,25 +5,25 @@ from requests.exceptions import HTTPError
 
 
 class {{ safe_name(class_name) }}():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL.{{ safe_name(class_name) }}')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
 {% for api in details %}
 {% for operation in api.get('operations',[]) %}
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{parameter.get('name')}}{% endfor %}):
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(parameter.get('name')) }}{% endfor %}):
         """ {{ operation.get('summary') }}
         """
 {% if operation.get('method') in ['POST', 'PUT'] %}
 
         payload = {
 {% for parameter in operation.get('parameters',[]) %}
-            "{{parameter.get('name')}}": {{parameter.get('name')}}{% if not loop.last %},{% endif %}
+            "{{ safe_variable(parameter.get('name')) }}": {{ safe_variable(parameter.get('name')) }}{% if not loop.last %},{% endif %}
 
 {% endfor %}
 

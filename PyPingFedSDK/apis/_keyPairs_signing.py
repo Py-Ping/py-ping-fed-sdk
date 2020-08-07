@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _keyPairs_signing():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._keyPairs_signing')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getKeyPairs(self):
@@ -94,7 +94,7 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def getKeyPair(self, id):
+    def getKeyPair(self, var_id):
         """ Retrieve details of a key pair.
         """
 
@@ -116,7 +116,7 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def deleteKeyPair(self, id):
+    def deleteKeyPair(self, var_id):
         """ Delete a key pair.
         """
 
@@ -140,7 +140,7 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def exportCsr(self, id):
+    def exportCsr(self, var_id):
         """ Generate a new certificate signing request (CSR) for this key pair.
         """
 
@@ -160,12 +160,12 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def importCsrResponse(self, id, body):
+    def importCsrResponse(self, var_id, body):
         """ Import a CSR response for this key pair.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -192,12 +192,12 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def exportPKCS12File(self, id, body):
+    def exportPKCS12File(self, var_id, body):
         """ Download the key pair in PKCS12 format.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -224,7 +224,7 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def exportCertificateFile(self, id):
+    def exportCertificateFile(self, var_id):
         """ Download the certificate from a given key pair.
         """
 
@@ -246,7 +246,7 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def getRotationSettings(self, id):
+    def getRotationSettings(self, var_id):
         """ Retrieve details of rotation settings for a key pair.
         """
 
@@ -268,12 +268,12 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def updateRotationSettings(self, id, body):
+    def updateRotationSettings(self, var_id, body):
         """ Add rotation settings to a key pair
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -300,7 +300,7 @@ class _keyPairs_signing():
         finally:
             return response
 
-    def deleteKeyPairRotationSettings(self, id):
+    def deleteKeyPairRotationSettings(self, var_id):
         """ Delete rotation settings for a signing key pair.
         """
 

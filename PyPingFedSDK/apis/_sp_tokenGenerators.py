@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _sp_tokenGenerators():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._sp_tokenGenerators')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getTokenGeneratorDescriptors(self):
@@ -36,7 +36,7 @@ class _sp_tokenGenerators():
         finally:
             return response
 
-    def getTokenGeneratorDescriptorsById(self, id):
+    def getTokenGeneratorDescriptorsById(self, var_id):
         """ Get the description of a token generator plugin by ID.
         """
 
@@ -113,7 +113,7 @@ class _sp_tokenGenerators():
         finally:
             return response
 
-    def getTokenGenerator(self, id):
+    def getTokenGenerator(self, var_id):
         """ Find a token generator instance by ID.
         """
 
@@ -137,12 +137,12 @@ class _sp_tokenGenerators():
         finally:
             return response
 
-    def updateTokenGenerator(self, id, body):
+    def updateTokenGenerator(self, var_id, body):
         """ Update a token generator instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -171,7 +171,7 @@ class _sp_tokenGenerators():
         finally:
             return response
 
-    def deleteTokenGenerator(self, id):
+    def deleteTokenGenerator(self, var_id):
         """ Delete a token generator instance.
         """
 

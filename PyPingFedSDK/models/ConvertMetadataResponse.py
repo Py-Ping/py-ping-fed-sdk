@@ -4,17 +4,21 @@ class ConvertMetadataResponse():
     Attributes
     ----------
     certExpiration : string
-        The metadata certificate's expiry date.    certSerialNumber : string
-        The metadata certificate's serial number.    certSubjectDn : string
-        The metadata certificate's subject DN.    certTrustStatus : str
-        The metadata certificate's trust status, i.e. If the partner's certificate can be trusted or not.    connection : str
-        The converted API connection.    signatureStatus : str
-        The metadata's digital signature status.
+ The metadata certificate's expiry date.
+    certSerialNumber : string
+ The metadata certificate's serial number.
+    certSubjectDn : string
+ The metadata certificate's subject DN.
+    certTrustStatus : str
+ The metadata certificate's trust status, i.e. If the partner's certificate can be trusted or not.
+    connection : str
+ The converted API connection.
+    signatureStatus : str
+ The metadata's digital signature status.
+
     """
 
-    __slots__ = ["certExpiration", "certSerialNumber", "certSubjectDn", "certTrustStatus", "connection", "signatureStatus"]
-
-    def __init__(self, certExpiration=None, certSerialNumber=None, certSubjectDn=None, certTrustStatus=None, connection=None, signatureStatus=None):
+    def __init__(self, certExpiration=None, certSerialNumber=None, certSubjectDn=None, certTrustStatus=None, connection=None, signatureStatus=None) -> None:
         self.certExpiration = certExpiration
         self.certSerialNumber = certSerialNumber
         self.certSubjectDn = certSubjectDn
@@ -22,25 +26,25 @@ class ConvertMetadataResponse():
         self.connection = connection
         self.signatureStatus = signatureStatus
 
-    def _validate(self):
+    def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, ConvertMetadataResponse):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash((self.certExpiration, self.certSerialNumber, self.certSubjectDn, self.certTrustStatus, self.connection, self.signatureStatus))
 
     @classmethod
-    def from_dict(cls, python_dict):
+    def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["certExpiration", "certSerialNumber", "certSubjectDn", "certTrustStatus", "connection", "signatureStatus"]}
 
         return cls(**valid_data)

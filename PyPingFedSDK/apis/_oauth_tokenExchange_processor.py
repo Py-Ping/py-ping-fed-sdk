@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_tokenExchange_processor():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_tokenExchange_processor')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getSettings(self):
@@ -122,7 +122,7 @@ class _oauth_tokenExchange_processor():
         finally:
             return response
 
-    def getPolicy(self, id):
+    def getPolicy(self, var_id):
         """ Find an OAuth 2.0 Token Exchange Processor policy by ID.
         """
 
@@ -146,12 +146,12 @@ class _oauth_tokenExchange_processor():
         finally:
             return response
 
-    def updatePolicy(self, id, body, bypassExternalValidation):
+    def updatePolicy(self, var_id, body, bypassExternalValidation):
         """ Update an OAuth 2.0 Token Exchange Processor policy.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "bypassExternalValidation": bypassExternalValidation
 
@@ -181,7 +181,7 @@ class _oauth_tokenExchange_processor():
         finally:
             return response
 
-    def deletePolicy(self, id):
+    def deletePolicy(self, var_id):
         """ Delete an OAuth 2.0 Token Exchange Processor policy.
         """
 

@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_idpAdapterMappings():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_idpAdapterMappings')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getIdpAdapterMappings(self):
@@ -68,7 +68,7 @@ class _oauth_idpAdapterMappings():
         finally:
             return response
 
-    def getIdpAdapterMapping(self, id):
+    def getIdpAdapterMapping(self, var_id):
         """ Find the IdP adapter mapping by the ID.
         """
 
@@ -92,12 +92,12 @@ class _oauth_idpAdapterMappings():
         finally:
             return response
 
-    def updateIdpAdapterMapping(self, id, body, X-BypassExternalValidation):
+    def updateIdpAdapterMapping(self, var_id, body, X-BypassExternalValidation):
         """ Update an IdP adapter mapping.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -127,7 +127,7 @@ class _oauth_idpAdapterMappings():
         finally:
             return response
 
-    def deleteIdpAdapterMapping(self, id):
+    def deleteIdpAdapterMapping(self, var_id):
         """ Delete an IdP adapter mapping.
         """
 

@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _idp_adapters():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._idp_adapters')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getIdpAdapterDescriptors(self):
@@ -36,7 +36,7 @@ class _idp_adapters():
         finally:
             return response
 
-    def getIdpAdapterDescriptorsById(self, id):
+    def getIdpAdapterDescriptorsById(self, var_id):
         """ Get the description of an IdP adapter plugin by ID.
         """
 
@@ -116,7 +116,7 @@ class _idp_adapters():
         finally:
             return response
 
-    def getIdpAdapter(self, id):
+    def getIdpAdapter(self, var_id):
         """ Find an IdP adapter instance by ID.
         """
 
@@ -140,12 +140,12 @@ class _idp_adapters():
         finally:
             return response
 
-    def updateIdpAdapter(self, id, body, X-BypassExternalValidation):
+    def updateIdpAdapter(self, var_id, body, X-BypassExternalValidation):
         """ Update an IdP adapter instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -175,7 +175,7 @@ class _idp_adapters():
         finally:
             return response
 
-    def deleteIdpAdapter(self, id):
+    def deleteIdpAdapter(self, var_id):
         """ Delete an IdP adapter instance.
         """
 
@@ -201,7 +201,7 @@ class _idp_adapters():
         finally:
             return response
 
-    def getActions(self, id):
+    def getActions(self, var_id):
         """ List the actions for an IdP adapter instance.
         """
 
@@ -225,7 +225,7 @@ class _idp_adapters():
         finally:
             return response
 
-    def getAction(self, id, actionId):
+    def getAction(self, var_id, actionId):
         """ Find an IdP adapter instance's action by ID.
         """
 
@@ -249,12 +249,12 @@ class _idp_adapters():
         finally:
             return response
 
-    def invokeAction(self, id, actionId):
+    def invokeAction(self, var_id, actionId):
         """ Invokes an action for an IdP adapter instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "actionId": actionId
 
         }

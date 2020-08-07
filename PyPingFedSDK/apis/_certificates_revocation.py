@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _certificates_revocation():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._certificates_revocation')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getRevocationSettings(self):
@@ -112,7 +112,7 @@ class _certificates_revocation():
         finally:
             return response
 
-    def getOcspCertificateById(self, id):
+    def getOcspCertificateById(self, var_id):
         """ Get an OCSP responder signature verification certificate by ID.
         """
 
@@ -134,7 +134,7 @@ class _certificates_revocation():
         finally:
             return response
 
-    def deleteOcspCertificateById(self, id):
+    def deleteOcspCertificateById(self, var_id):
         """ Delete an OCSP responder signature verification certificate by ID.
         """
 

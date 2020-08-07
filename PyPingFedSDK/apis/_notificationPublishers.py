@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _notificationPublishers():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._notificationPublishers')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getSettings(self):
@@ -83,7 +83,7 @@ class _notificationPublishers():
         finally:
             return response
 
-    def getNotificationPublisherPluginDescriptor(self, id):
+    def getNotificationPublisherPluginDescriptor(self, var_id):
         """ Get the description of a notification publisher plugin descriptor.
         """
 
@@ -154,7 +154,7 @@ class _notificationPublishers():
         finally:
             return response
 
-    def getNotificationPublisher(self, id):
+    def getNotificationPublisher(self, var_id):
         """ Get a specific notification publisher plugin instance.
         """
 
@@ -176,12 +176,12 @@ class _notificationPublishers():
         finally:
             return response
 
-    def updateNotificationPublisher(self, id, body):
+    def updateNotificationPublisher(self, var_id, body):
         """ Update a notification publisher plugin instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -208,7 +208,7 @@ class _notificationPublishers():
         finally:
             return response
 
-    def deleteNotificationPublisher(self, id):
+    def deleteNotificationPublisher(self, var_id):
         """ Delete a notification publisher plugin instance.
         """
 
@@ -232,7 +232,7 @@ class _notificationPublishers():
         finally:
             return response
 
-    def getActions(self, id):
+    def getActions(self, var_id):
         """ List the actions for a notification publisher plugin instance.
         """
 
@@ -254,7 +254,7 @@ class _notificationPublishers():
         finally:
             return response
 
-    def getAction(self, id, actionId):
+    def getAction(self, var_id, actionId):
         """ Find an notification publisher plugin instance's action by ID.
         """
 
@@ -276,12 +276,12 @@ class _notificationPublishers():
         finally:
             return response
 
-    def invokeAction(self, id, actionId):
+    def invokeAction(self, var_id, actionId):
         """ Invokes an action for notification publisher plugin instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "actionId": actionId
 
         }

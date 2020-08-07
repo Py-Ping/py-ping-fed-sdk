@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _authenticationPolicyContracts():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._authenticationPolicyContracts')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getAuthenticationPolicyContracts(self, page, numberPerPage, filter):
@@ -69,7 +69,7 @@ class _authenticationPolicyContracts():
         finally:
             return response
 
-    def getAuthenticationPolicyContract(self, id):
+    def getAuthenticationPolicyContract(self, var_id):
         """ Gets the Authentication Policy Contract by ID.
         """
 
@@ -93,12 +93,12 @@ class _authenticationPolicyContracts():
         finally:
             return response
 
-    def updateAuthenticationPolicyContract(self, id, body):
+    def updateAuthenticationPolicyContract(self, var_id, body):
         """ Update an Authentication Policy Contract by ID.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -127,7 +127,7 @@ class _authenticationPolicyContracts():
         finally:
             return response
 
-    def deleteAuthenticationPolicyContract(self, id):
+    def deleteAuthenticationPolicyContract(self, var_id):
         """ Delete an Authentication Policy Contract.
         """
 

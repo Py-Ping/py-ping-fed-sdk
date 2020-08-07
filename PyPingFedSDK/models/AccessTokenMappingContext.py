@@ -4,35 +4,35 @@ class AccessTokenMappingContext():
     Attributes
     ----------
     contextRef : str
-        Reference to the associated Access Token Mapping Context instance.    type : str
-        The Access Token Mapping Context type.
+ Reference to the associated Access Token Mapping Context instance.
+    type : str
+ The Access Token Mapping Context type.
+
     """
 
-    __slots__ = ["contextRef", "type"]
-
-    def __init__(self, type, contextRef):
+    def __init__(self, var_type, contextRef) -> None:
         self.contextRef = contextRef
-        self.type = type
+        self.var_type = var_type
 
-    def _validate(self):
-        return any(x for x in ['type', 'contextRef'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["var_type", "contextRef"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, AccessTokenMappingContext):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
-        return hash((self.contextRef, self.type))
+    def __hash__(self) -> int:
+        return hash((self.contextRef, self.var_type))
 
     @classmethod
-    def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["contextRef", "type"]}
+    def from_dict(cls, python_dict: dict):
+        valid_data = {k: v for k, v in python_dict.items() if k in ["contextRef", "var_type"]}
 
         return cls(**valid_data)

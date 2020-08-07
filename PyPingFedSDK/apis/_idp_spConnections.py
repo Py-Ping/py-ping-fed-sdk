@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _idp_spConnections():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._idp_spConnections')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getConnections(self, entityId, page, numberPerPage, filter):
@@ -70,7 +70,7 @@ class _idp_spConnections():
         finally:
             return response
 
-    def getConnection(self, id):
+    def getConnection(self, var_id):
         """ Find SP connection by ID.
         """
 
@@ -94,12 +94,12 @@ class _idp_spConnections():
         finally:
             return response
 
-    def updateConnection(self, id, body, X-BypassExternalValidation):
+    def updateConnection(self, var_id, body, X-BypassExternalValidation):
         """ Update an SP connection.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -129,7 +129,7 @@ class _idp_spConnections():
         finally:
             return response
 
-    def deleteConnection(self, id):
+    def deleteConnection(self, var_id):
         """ Delete an SP connection.
         """
 
@@ -155,7 +155,7 @@ class _idp_spConnections():
         finally:
             return response
 
-    def getSigningSettings(self, id):
+    def getSigningSettings(self, var_id):
         """ Get the SP connection's signature settings.
         """
 
@@ -179,12 +179,12 @@ class _idp_spConnections():
         finally:
             return response
 
-    def updateSigningSettings(self, id, body):
+    def updateSigningSettings(self, var_id, body):
         """ Update the SP connection's signature settings.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -213,12 +213,12 @@ class _idp_spConnections():
         finally:
             return response
 
-    def addConnectionCert(self, id, body):
+    def addConnectionCert(self, var_id, body):
         """ Add a new SP connection certificate.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -247,7 +247,7 @@ class _idp_spConnections():
         finally:
             return response
 
-    def getConnectionCerts(self, id):
+    def getConnectionCerts(self, var_id):
         """ Get the SP connection's certificates.
         """
 
@@ -271,12 +271,12 @@ class _idp_spConnections():
         finally:
             return response
 
-    def updateConnectionCerts(self, id, body):
+    def updateConnectionCerts(self, var_id, body):
         """ Update the SP connection's certificates.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -305,7 +305,7 @@ class _idp_spConnections():
         finally:
             return response
 
-    def getDecryptionKeys(self, id):
+    def getDecryptionKeys(self, var_id):
         """ Get the decryption keys of an SP connection.
         """
 
@@ -329,12 +329,12 @@ class _idp_spConnections():
         finally:
             return response
 
-    def updateDecryptionKeys(self, id, body):
+    def updateDecryptionKeys(self, var_id, body):
         """ Updating the SP connection's decryption keys.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }

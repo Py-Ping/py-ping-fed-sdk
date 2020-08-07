@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_authenticationPolicyContractMappings():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_authenticationPolicyContractMappings')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getApcMappings(self):
@@ -68,7 +68,7 @@ class _oauth_authenticationPolicyContractMappings():
         finally:
             return response
 
-    def getApcMapping(self, id):
+    def getApcMapping(self, var_id):
         """ Find the authentication policy contract to persistent grant mapping by ID.
         """
 
@@ -92,12 +92,12 @@ class _oauth_authenticationPolicyContractMappings():
         finally:
             return response
 
-    def updateApcMapping(self, id, body, X-BypassExternalValidation):
+    def updateApcMapping(self, var_id, body, X-BypassExternalValidation):
         """ Update an authentication policy contract to persistent grant mapping.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -127,7 +127,7 @@ class _oauth_authenticationPolicyContractMappings():
         finally:
             return response
 
-    def deleteApcMapping(self, id):
+    def deleteApcMapping(self, var_id):
         """ Delete an authentication policy contract to persistent grant mapping.
         """
 

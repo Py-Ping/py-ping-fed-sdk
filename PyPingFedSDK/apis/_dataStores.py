@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _dataStores():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._dataStores')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getCustomDataStoreDescriptors(self):
@@ -34,7 +34,7 @@ class _dataStores():
         finally:
             return response
 
-    def getCustomDataStoreDescriptor(self, id):
+    def getCustomDataStoreDescriptor(self, var_id):
         """ Get the description of a custom data store plugin by ID.
         """
 
@@ -106,7 +106,7 @@ class _dataStores():
         finally:
             return response
 
-    def getDataStore(self, id):
+    def getDataStore(self, var_id):
         """ Find data store by ID.
         """
 
@@ -128,12 +128,12 @@ class _dataStores():
         finally:
             return response
 
-    def updateDataStore(self, id, body, X-BypassExternalValidation):
+    def updateDataStore(self, var_id, body, X-BypassExternalValidation):
         """ Update a data store.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -161,7 +161,7 @@ class _dataStores():
         finally:
             return response
 
-    def deleteDataStore(self, id):
+    def deleteDataStore(self, var_id):
         """ Delete a data store.
         """
 
@@ -185,7 +185,7 @@ class _dataStores():
         finally:
             return response
 
-    def getActions(self, id):
+    def getActions(self, var_id):
         """ List the actions for a data store instance.
         """
 
@@ -207,7 +207,7 @@ class _dataStores():
         finally:
             return response
 
-    def getAction(self, id, actionId):
+    def getAction(self, var_id, actionId):
         """ Find a data store instance's action by ID.
         """
 
@@ -229,12 +229,12 @@ class _dataStores():
         finally:
             return response
 
-    def invokeAction(self, id, actionId):
+    def invokeAction(self, var_id, actionId):
         """ Invokes an action for a data source instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "actionId": actionId
 
         }

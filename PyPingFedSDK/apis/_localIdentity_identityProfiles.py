@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _localIdentity_identityProfiles():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._localIdentity_identityProfiles')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getIdentityProfiles(self, page, numberPerPage, filter):
@@ -70,7 +70,7 @@ class _localIdentity_identityProfiles():
         finally:
             return response
 
-    def getIdentityProfile(self, id):
+    def getIdentityProfile(self, var_id):
         """ Get the local identity profile by ID.
         """
 
@@ -94,12 +94,12 @@ class _localIdentity_identityProfiles():
         finally:
             return response
 
-    def updateIdentityProfile(self, id, body, X-BypassExternalValidation):
+    def updateIdentityProfile(self, var_id, body, X-BypassExternalValidation):
         """ Update the local identity profile by ID.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -129,7 +129,7 @@ class _localIdentity_identityProfiles():
         finally:
             return response
 
-    def deleteIdentityProfile(self, id):
+    def deleteIdentityProfile(self, var_id):
         """ Delete the local identity profile by ID.
         """
 

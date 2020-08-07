@@ -4,39 +4,41 @@ class SigningSettings():
     Attributes
     ----------
     algorithm : string
-        The algorithm used to sign messages sent to this partner. The default is SHA1withDSA for DSA certs, SHA256withRSA for RSA certs, and SHA256withECDSA for EC certs. For RSA certs, SHA1withRSA, SHA384withRSA, and SHA512withRSA are also supported. For EC certs, SHA384withECDSA and SHA512withECDSA are also supported. If the connection is WS-Federation with JWT token type, then the possible values are RSA SHA256, RSA SHA384, RSA SHA512, ECDSA SHA256, ECDSA SHA384, ECDSA SHA512    includeCertInSignature : boolean
-        Determines whether the signing certificate is included in the signature <KeyInfo> element.    includeRawKeyInSignature : boolean
-        Determines whether the <KeyValue> element with the raw public key is included in the signature <KeyInfo> element.    signingKeyPairRef : str
-        The ID of the key pair used to sign messages sent to this partner. The ID of the key pair is also known as the alias and can be found by viewing the corresponding certificate under 'Signing & Decryption Keys & Certificates' in the PingFederate admin console.
+ The algorithm used to sign messages sent to this partner. The default is SHA1withDSA for DSA certs, SHA256withRSA for RSA certs, and SHA256withECDSA for EC certs. For RSA certs, SHA1withRSA, SHA384withRSA, and SHA512withRSA are also supported. For EC certs, SHA384withECDSA and SHA512withECDSA are also supported. If the connection is WS-Federation with JWT token type, then the possible values are RSA SHA256, RSA SHA384, RSA SHA512, ECDSA SHA256, ECDSA SHA384, ECDSA SHA512
+    includeCertInSignature : boolean
+ Determines whether the signing certificate is included in the signature <KeyInfo> element.
+    includeRawKeyInSignature : boolean
+ Determines whether the <KeyValue> element with the raw public key is included in the signature <KeyInfo> element.
+    signingKeyPairRef : str
+ The ID of the key pair used to sign messages sent to this partner. The ID of the key pair is also known as the alias and can be found by viewing the corresponding certificate under 'Signing & Decryption Keys & Certificates' in the PingFederate admin console.
+
     """
 
-    __slots__ = ["algorithm", "includeCertInSignature", "includeRawKeyInSignature", "signingKeyPairRef"]
-
-    def __init__(self, signingKeyPairRef, algorithm=None, includeCertInSignature=None, includeRawKeyInSignature=None):
+    def __init__(self, signingKeyPairRef, algorithm=None, includeCertInSignature=None, includeRawKeyInSignature=None) -> None:
         self.algorithm = algorithm
         self.includeCertInSignature = includeCertInSignature
         self.includeRawKeyInSignature = includeRawKeyInSignature
         self.signingKeyPairRef = signingKeyPairRef
 
-    def _validate(self):
-        return any(x for x in ['signingKeyPairRef'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["signingKeyPairRef"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, SigningSettings):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash((self.algorithm, self.includeCertInSignature, self.includeRawKeyInSignature, self.signingKeyPairRef))
 
     @classmethod
-    def from_dict(cls, python_dict):
+    def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["algorithm", "includeCertInSignature", "includeRawKeyInSignature", "signingKeyPairRef"]}
 
         return cls(**valid_data)

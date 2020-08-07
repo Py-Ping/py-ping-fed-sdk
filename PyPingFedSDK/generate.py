@@ -5,7 +5,7 @@ import requests
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_name, requests_verb
+from helpers import safe_name, safe_variable, requests_verb
 
 
 class Generate():
@@ -44,7 +44,9 @@ class Generate():
             loader=FileSystemLoader(templatedirectory),
             trim_blocks=True
         )
-        jinjaenvironment.globals.update(safe_name=safe_name, requests_verb=requests_verb)
+        jinjaenvironment.globals.update(
+            safe_name=safe_name, safe_variable=safe_variable, requests_verb=requests_verb
+        )
         jinjatemplate = jinjaenvironment.get_template(f'./{template}.j2')
 
         rendered_template = jinjatemplate.render(class_name=name, details=details)

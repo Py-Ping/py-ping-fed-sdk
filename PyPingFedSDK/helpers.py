@@ -4,6 +4,21 @@ def safe_name(unsafe_string, unsafe_char='/', sub_char='_'):
 
     return str(''.join(safe_string_list))
 
+
+def safe_variable(unsafe_variable):
+    """
+    Some APIs define variables that are unsafe to Python code
+    e.g. id and type are both reserved words in Python.
+    This helper adds 'var_' to the beginning to avoid shadowing
+    these builtins.
+    """
+    if unsafe_variable == 'id':
+        return 'var_id'
+    elif unsafe_variable == 'type':
+        return 'var_type'
+    return unsafe_variable
+
+
 def requests_verb(verb):
     if verb == 'POST':
         return 'requests.post'
@@ -13,5 +28,4 @@ def requests_verb(verb):
         return 'requests.delete'
     elif verb == 'HEAD':
         return 'requests.head'
-    else:
-        return 'requests.get'
+    return 'requests.get'

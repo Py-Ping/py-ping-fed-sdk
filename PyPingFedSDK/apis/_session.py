@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _session():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._session')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getSessionSettings(self):
@@ -226,7 +226,7 @@ class _session():
         finally:
             return response
 
-    def getSourcePolicy(self, id):
+    def getSourcePolicy(self, var_id):
         """ Find session policy by ID.
         """
 
@@ -250,12 +250,12 @@ class _session():
         finally:
             return response
 
-    def updateSourcePolicy(self, id, body):
+    def updateSourcePolicy(self, var_id, body):
         """ Update a session policy.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -284,7 +284,7 @@ class _session():
         finally:
             return response
 
-    def deleteSourcePolicy(self, id):
+    def deleteSourcePolicy(self, var_id):
         """ Delete a session policy.
         """
 

@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _authenticationApi():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._authenticationApi')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getAuthenticationApiSettings(self):
@@ -124,7 +124,7 @@ class _authenticationApi():
         finally:
             return response
 
-    def getApplication(self, id):
+    def getApplication(self, var_id):
         """ Find Authentication API Application by ID.
         """
 
@@ -148,12 +148,12 @@ class _authenticationApi():
         finally:
             return response
 
-    def updateApplication(self, id, body):
+    def updateApplication(self, var_id, body):
         """ Update an Authentication API Application.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -182,7 +182,7 @@ class _authenticationApi():
         finally:
             return response
 
-    def deleteApplication(self, id):
+    def deleteApplication(self, var_id):
         """ Delete an Authentication API Application.
         """
 

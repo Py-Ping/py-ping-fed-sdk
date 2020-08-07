@@ -4,37 +4,38 @@ class BackChannelAuth():
     Attributes
     ----------
     digitalSignature : boolean
-        If incoming or outgoing messages must be signed.    httpBasicCredentials : str
-        The credentials to use when you authenticate with the SOAP endpoint.    type : str
-        The back channel authentication type.
+ If incoming or outgoing messages must be signed.
+    httpBasicCredentials : str
+ The credentials to use when you authenticate with the SOAP endpoint.
+    type : str
+ The back channel authentication type.
+
     """
 
-    __slots__ = ["digitalSignature", "httpBasicCredentials", "type"]
-
-    def __init__(self, type, digitalSignature=None, httpBasicCredentials=None):
+    def __init__(self, var_type, digitalSignature=None, httpBasicCredentials=None) -> None:
         self.digitalSignature = digitalSignature
         self.httpBasicCredentials = httpBasicCredentials
-        self.type = type
+        self.var_type = var_type
 
-    def _validate(self):
-        return any(x for x in ['type'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["var_type"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, BackChannelAuth):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
-        return hash((self.digitalSignature, self.httpBasicCredentials, self.type))
+    def __hash__(self) -> int:
+        return hash((self.digitalSignature, self.httpBasicCredentials, self.var_type))
 
     @classmethod
-    def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["digitalSignature", "httpBasicCredentials", "type"]}
+    def from_dict(cls, python_dict: dict):
+        valid_data = {k: v for k, v in python_dict.items() if k in ["digitalSignature", "httpBasicCredentials", "var_type"]}
 
         return cls(**valid_data)

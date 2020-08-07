@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _sp_adapters():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._sp_adapters')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getSpAdapterDescriptors(self):
@@ -36,7 +36,7 @@ class _sp_adapters():
         finally:
             return response
 
-    def getSpAdapterDescriptorsById(self, id):
+    def getSpAdapterDescriptorsById(self, var_id):
         """ Get the description of an SP adapter plugin by ID.
         """
 
@@ -115,7 +115,7 @@ class _sp_adapters():
         finally:
             return response
 
-    def getSpAdapter(self, id):
+    def getSpAdapter(self, var_id):
         """ Find an SP adapter instance by ID.
         """
 
@@ -139,12 +139,12 @@ class _sp_adapters():
         finally:
             return response
 
-    def updateSpAdapter(self, id, body):
+    def updateSpAdapter(self, var_id, body):
         """ Update an SP adapter instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -173,7 +173,7 @@ class _sp_adapters():
         finally:
             return response
 
-    def deleteSpAdapter(self, id):
+    def deleteSpAdapter(self, var_id):
         """ Delete an SP adapter instance.
         """
 
@@ -199,7 +199,7 @@ class _sp_adapters():
         finally:
             return response
 
-    def getActions(self, id):
+    def getActions(self, var_id):
         """ List the actions for an SP adapter instance.
         """
 
@@ -223,7 +223,7 @@ class _sp_adapters():
         finally:
             return response
 
-    def getAction(self, id, actionId):
+    def getAction(self, var_id, actionId):
         """ Find an SP adapter instance's action by ID.
         """
 
@@ -247,12 +247,12 @@ class _sp_adapters():
         finally:
             return response
 
-    def invokeAction(self, id, actionId):
+    def invokeAction(self, var_id, actionId):
         """ Invokes an action for an SP adapter instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "actionId": actionId
 
         }

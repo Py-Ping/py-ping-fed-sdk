@@ -4,37 +4,38 @@ class ServiceModel():
     Attributes
     ----------
     encryptedSharedSecret : string
-        Encrypted shared secret for the service.    id : string
-        Id of the service.    sharedSecret : string
-        Shared secret for the service.
+ Encrypted shared secret for the service.
+    id : string
+ Id of the service.
+    sharedSecret : string
+ Shared secret for the service.
+
     """
 
-    __slots__ = ["encryptedSharedSecret", "id", "sharedSecret"]
-
-    def __init__(self, encryptedSharedSecret=None, id=None, sharedSecret=None):
+    def __init__(self, encryptedSharedSecret=None, var_id=None, sharedSecret=None) -> None:
         self.encryptedSharedSecret = encryptedSharedSecret
-        self.id = id
+        self.var_id = var_id
         self.sharedSecret = sharedSecret
 
-    def _validate(self):
+    def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, ServiceModel):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
-        return hash((self.encryptedSharedSecret, self.id, self.sharedSecret))
+    def __hash__(self) -> int:
+        return hash((self.encryptedSharedSecret, self.var_id, self.sharedSecret))
 
     @classmethod
-    def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedSharedSecret", "id", "sharedSecret"]}
+    def from_dict(cls, python_dict: dict):
+        valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedSharedSecret", "var_id", "sharedSecret"]}
 
         return cls(**valid_data)

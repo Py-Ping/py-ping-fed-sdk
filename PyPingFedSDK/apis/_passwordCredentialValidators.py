@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _passwordCredentialValidators():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._passwordCredentialValidators')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getPasswordCredentialValidatorDescriptors(self):
@@ -34,7 +34,7 @@ class _passwordCredentialValidators():
         finally:
             return response
 
-    def getPasswordCredentialValidatorDescriptor(self, id):
+    def getPasswordCredentialValidatorDescriptor(self, var_id):
         """ Get the description of a password credential validator by ID.
         """
 
@@ -105,7 +105,7 @@ class _passwordCredentialValidators():
         finally:
             return response
 
-    def getPasswordCredentialValidator(self, id):
+    def getPasswordCredentialValidator(self, var_id):
         """ Find a password credential validator by ID.
         """
 
@@ -127,12 +127,12 @@ class _passwordCredentialValidators():
         finally:
             return response
 
-    def updatePasswordCredentialValidator(self, id, body):
+    def updatePasswordCredentialValidator(self, var_id, body):
         """ Update a password credential validator instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -159,7 +159,7 @@ class _passwordCredentialValidators():
         finally:
             return response
 
-    def deletePasswordCredentialValidator(self, id):
+    def deletePasswordCredentialValidator(self, var_id):
         """ Delete a password credential validator instance.
         """
 

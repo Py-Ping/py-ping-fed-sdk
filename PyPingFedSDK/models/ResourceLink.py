@@ -4,35 +4,35 @@ class ResourceLink():
     Attributes
     ----------
     id : string
-        The ID of the resource.    location : string
-        A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.
+ The ID of the resource.
+    location : string
+ A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.
+
     """
 
-    __slots__ = ["id", "location"]
-
-    def __init__(self, id, location=None):
-        self.id = id
+    def __init__(self, var_id, location=None) -> None:
+        self.var_id = var_id
         self.location = location
 
-    def _validate(self):
-        return any(x for x in ['id'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["var_id"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, ResourceLink):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
-        return hash((self.id, self.location))
+    def __hash__(self) -> int:
+        return hash((self.var_id, self.location))
 
     @classmethod
-    def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["id", "location"]}
+    def from_dict(cls, python_dict: dict):
+        valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "location"]}
 
         return cls(**valid_data)

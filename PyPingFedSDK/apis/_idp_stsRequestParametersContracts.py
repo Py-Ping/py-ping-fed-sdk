@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _idp_stsRequestParametersContracts():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._idp_stsRequestParametersContracts')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getStsRequestParamContracts(self):
@@ -67,7 +67,7 @@ class _idp_stsRequestParametersContracts():
         finally:
             return response
 
-    def getStsRequestParamContractById(self, id):
+    def getStsRequestParamContractById(self, var_id):
         """ Get a STS Request Parameters Contract.
         """
 
@@ -91,12 +91,12 @@ class _idp_stsRequestParametersContracts():
         finally:
             return response
 
-    def updateStsRequestParamContractById(self, id, body):
+    def updateStsRequestParamContractById(self, var_id, body):
         """ Update a STS Request Parameters Contract.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -125,7 +125,7 @@ class _idp_stsRequestParametersContracts():
         finally:
             return response
 
-    def deleteStsRequestParamContractById(self, id):
+    def deleteStsRequestParamContractById(self, var_id):
         """ Delete a STS Request Parameters Contract.
         """
 

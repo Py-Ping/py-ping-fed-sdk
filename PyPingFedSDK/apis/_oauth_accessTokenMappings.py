@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_accessTokenMappings():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_accessTokenMappings')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getMappings(self):
@@ -68,7 +68,7 @@ class _oauth_accessTokenMappings():
         finally:
             return response
 
-    def getMapping(self, id):
+    def getMapping(self, var_id):
         """ Find the Access Token Mapping by its ID.
         """
 
@@ -92,12 +92,12 @@ class _oauth_accessTokenMappings():
         finally:
             return response
 
-    def updateMapping(self, id, body, X-BypassExternalValidation):
+    def updateMapping(self, var_id, body, X-BypassExternalValidation):
         """ Update an Access Token Mapping.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -127,7 +127,7 @@ class _oauth_accessTokenMappings():
         finally:
             return response
 
-    def deleteMapping(self, id):
+    def deleteMapping(self, var_id):
         """ Delete an Access Token Mapping.
         """
 

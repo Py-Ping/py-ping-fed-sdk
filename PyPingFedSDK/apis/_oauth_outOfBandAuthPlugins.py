@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_outOfBandAuthPlugins():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_outOfBandAuthPlugins')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getOOBAuthPluginDescriptors(self):
@@ -34,7 +34,7 @@ class _oauth_outOfBandAuthPlugins():
         finally:
             return response
 
-    def getOOBAuthPluginDescriptor(self, id):
+    def getOOBAuthPluginDescriptor(self, var_id):
         """ Get the descriptor of an Out of Band authenticator plugin.
         """
 
@@ -105,7 +105,7 @@ class _oauth_outOfBandAuthPlugins():
         finally:
             return response
 
-    def getOOBAuthenticator(self, id):
+    def getOOBAuthenticator(self, var_id):
         """ Get a specific Out of Band authenticator plugin instance.
         """
 
@@ -127,12 +127,12 @@ class _oauth_outOfBandAuthPlugins():
         finally:
             return response
 
-    def updateOOBAuthenticator(self, id, body):
+    def updateOOBAuthenticator(self, var_id, body):
         """ Update an Out of Band authenticator plugin instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -159,7 +159,7 @@ class _oauth_outOfBandAuthPlugins():
         finally:
             return response
 
-    def deleteOOBAuthenticator(self, id):
+    def deleteOOBAuthenticator(self, var_id):
         """ Delete an Out of Band authenticator plugin instance.
         """
 
@@ -183,7 +183,7 @@ class _oauth_outOfBandAuthPlugins():
         finally:
             return response
 
-    def getActions(self, id):
+    def getActions(self, var_id):
         """ List of actions for an Out of Band authenticator plugin instance.
         """
 
@@ -205,7 +205,7 @@ class _oauth_outOfBandAuthPlugins():
         finally:
             return response
 
-    def getAction(self, id, actionId):
+    def getAction(self, var_id, actionId):
         """ Find an Out of Band authenticator plugin instance's action by ID.
         """
 
@@ -227,12 +227,12 @@ class _oauth_outOfBandAuthPlugins():
         finally:
             return response
 
-    def invokeAction(self, id, actionId):
+    def invokeAction(self, var_id, actionId):
         """ Invokes an action for Out of Band authenticator plugin instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "actionId": actionId
 
         }

@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_tokenExchange_tokenGeneratorMappings():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_tokenExchange_tokenGeneratorMappings')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getTokenGeneratorMappings(self):
@@ -68,7 +68,7 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
         finally:
             return response
 
-    def getTokenGeneratorMappingById(self, id):
+    def getTokenGeneratorMappingById(self, var_id):
         """ Get a Token Exchange Processor policy to Token Generator Mapping.
         """
 
@@ -92,12 +92,12 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
         finally:
             return response
 
-    def updateTokenGeneratorMappingById(self, id, body, X-BypassExternalValidation):
+    def updateTokenGeneratorMappingById(self, var_id, body, X-BypassExternalValidation):
         """ Update a Token Exchange Processor policy to Token Generator Mapping.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body,
             "X-BypassExternalValidation": X-BypassExternalValidation
 
@@ -127,7 +127,7 @@ class _oauth_tokenExchange_tokenGeneratorMappings():
         finally:
             return response
 
-    def deleteTokenGeneratorMappingById(self, id):
+    def deleteTokenGeneratorMappingById(self, var_id):
         """ Delete a Token Exchange Processor policy to Token Generator Mapping.
         """
 

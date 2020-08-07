@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _metadataUrls():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._metadataUrls')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getMetadataUrls(self):
@@ -63,7 +63,7 @@ class _metadataUrls():
         finally:
             return response
 
-    def getMetadataUrl(self, id):
+    def getMetadataUrl(self, var_id):
         """ Get a Metadata URL by ID.
         """
 
@@ -85,12 +85,12 @@ class _metadataUrls():
         finally:
             return response
 
-    def updateMetadataUrl(self, id, body):
+    def updateMetadataUrl(self, var_id, body):
         """ Update a Metadata URL by ID.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -117,7 +117,7 @@ class _metadataUrls():
         finally:
             return response
 
-    def deleteMetadataUrl(self, id):
+    def deleteMetadataUrl(self, var_id):
         """ Delete a Metadata URL by ID.
         """
 

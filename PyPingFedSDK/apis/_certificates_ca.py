@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _certificates_ca():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._certificates_ca')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getTrustedCAs(self):
@@ -34,7 +34,7 @@ class _certificates_ca():
         finally:
             return response
 
-    def getTrustedCert(self, id):
+    def getTrustedCert(self, var_id):
         """ Retrieve details of a trusted certificate authority.
         """
 
@@ -56,7 +56,7 @@ class _certificates_ca():
         finally:
             return response
 
-    def deleteTrustedCA(self, id):
+    def deleteTrustedCA(self, var_id):
         """ Delete a trusted certificate authority.
         """
 
@@ -107,7 +107,7 @@ class _certificates_ca():
         finally:
             return response
 
-    def exportCertificateFile(self, id):
+    def exportCertificateFile(self, var_id):
         """ Download the certificate from a given trusted certificate authority.
         """
 

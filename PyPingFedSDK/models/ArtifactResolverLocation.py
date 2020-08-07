@@ -4,35 +4,35 @@ class ArtifactResolverLocation():
     Attributes
     ----------
     index : integer
-        The priority of the endpoint.    url : string
-        Remote party URLs that you will use to resolve/translate the artifact and get the actual protocol message
+ The priority of the endpoint.
+    url : string
+ Remote party URLs that you will use to resolve/translate the artifact and get the actual protocol message
+
     """
 
-    __slots__ = ["index", "url"]
-
-    def __init__(self, index, url):
+    def __init__(self, index, url) -> None:
         self.index = index
         self.url = url
 
-    def _validate(self):
-        return any(x for x in ['index', 'url'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["index", "url"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, ArtifactResolverLocation):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash((self.index, self.url))
 
     @classmethod
-    def from_dict(cls, python_dict):
+    def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["index", "url"]}
 
         return cls(**valid_data)

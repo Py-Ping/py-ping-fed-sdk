@@ -5,13 +5,13 @@ from requests.exceptions import HTTPError
 
 
 class _oauth_accessTokenManagers():
-    def __init__(self, endpoint):
+    def __init__(self, endpoint: str) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_accessTokenManagers')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
 
-    def _build_uri(self, path):
+    def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
     def getSettings(self):
@@ -89,7 +89,7 @@ class _oauth_accessTokenManagers():
         finally:
             return response
 
-    def getTokenManagerDescriptor(self, id):
+    def getTokenManagerDescriptor(self, var_id):
         """ Get the description of a token management plugin descriptor.
         """
 
@@ -166,7 +166,7 @@ class _oauth_accessTokenManagers():
         finally:
             return response
 
-    def getTokenManager(self, id):
+    def getTokenManager(self, var_id):
         """ Get a specific token management plugin instance.
         """
 
@@ -190,12 +190,12 @@ class _oauth_accessTokenManagers():
         finally:
             return response
 
-    def updateTokenManager(self, id, body):
+    def updateTokenManager(self, var_id, body):
         """ Update a token management plugin instance.
         """
 
         payload = {
-            "id": id,
+            "var_id": var_id,
             "body": body
 
         }
@@ -224,7 +224,7 @@ class _oauth_accessTokenManagers():
         finally:
             return response
 
-    def deleteTokenManager(self, id):
+    def deleteTokenManager(self, var_id):
         """ Delete a token management plugin instance.
         """
 

@@ -4,35 +4,35 @@ class AuthenticationSource():
     Attributes
     ----------
     sourceRef : str
-        A reference to the authentication source.    type : str
-        The type of this authentication source.
+ A reference to the authentication source.
+    type : str
+ The type of this authentication source.
+
     """
 
-    __slots__ = ["sourceRef", "type"]
-
-    def __init__(self, type, sourceRef):
+    def __init__(self, var_type, sourceRef) -> None:
         self.sourceRef = sourceRef
-        self.type = type
+        self.var_type = var_type
 
-    def _validate(self):
-        return any(x for x in ['type', 'sourceRef'] if self.__dict__[x] is not None)
+    def _validate(self) -> bool:
+        return any(x for x in ["var_type", "sourceRef"] if self.__dict__[x] is not None)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__dict__}"
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, AuthenticationSource):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
-    def __hash__(self):
-        return hash((self.sourceRef, self.type))
+    def __hash__(self) -> int:
+        return hash((self.sourceRef, self.var_type))
 
     @classmethod
-    def from_dict(cls, python_dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["sourceRef", "type"]}
+    def from_dict(cls, python_dict: dict):
+        valid_data = {k: v for k, v in python_dict.items() if k in ["sourceRef", "var_type"]}
 
         return cls(**valid_data)
