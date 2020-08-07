@@ -14,11 +14,19 @@ class RolesAndProtocols():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, enableIdpDiscovery=None, idpRole=None, oauthRole=None, spRole=None) -> None:
         self.enableIdpDiscovery = enableIdpDiscovery
         self.idpRole = idpRole
         self.oauthRole = oauthRole
         self.spRole = spRole
+=======
+    def __init__(self, enableIdpDiscovery=None, idpRole=None, oauthRole=None, spRole=None):
+        self.enableIdpDiscovery: bool = enableIdpDiscovery
+        self.idpRole: str = idpRole
+        self.oauthRole: str = oauthRole
+        self.spRole: str = spRole
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class RolesAndProtocols():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableIdpDiscovery", "idpRole", "oauthRole", "spRole"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

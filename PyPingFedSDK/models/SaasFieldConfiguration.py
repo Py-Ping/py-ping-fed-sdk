@@ -22,6 +22,7 @@ class SaasFieldConfiguration():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributeNames=None, characterCase=None, createOnly=None, defaultValue=None, expression=None, masked=None, parser=None, trim=None) -> None:
         self.attributeNames = attributeNames
         self.characterCase = characterCase
@@ -31,6 +32,17 @@ class SaasFieldConfiguration():
         self.masked = masked
         self.parser = parser
         self.trim = trim
+=======
+    def __init__(self, attributeNames=None, characterCase=None, createOnly=None, defaultValue=None, expression=None, masked=None, parser=None, trim=None):
+        self.attributeNames: str = attributeNames
+        self.characterCase: str = characterCase
+        self.createOnly: bool = createOnly
+        self.defaultValue: str = defaultValue
+        self.expression: str = expression
+        self.masked: bool = masked
+        self.parser: str = parser
+        self.trim: bool = trim
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class SaasFieldConfiguration():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeNames", "characterCase", "createOnly", "defaultValue", "expression", "masked", "parser", "trim"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

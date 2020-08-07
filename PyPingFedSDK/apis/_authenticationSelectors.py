@@ -30,11 +30,11 @@ class _authenticationSelectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getAuthenticationSelectorDescriptorsById(self, var_id):
         """ Get the description of an Authentication Selector plugin by ID.
@@ -52,13 +52,13 @@ class _authenticationSelectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getAuthenticationSelectors(self, page, numberPerPage, filter):
         """ Get the list of configured Authentication Selector instances.
@@ -76,13 +76,13 @@ class _authenticationSelectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def createAuthenticationSelector(self, body):
         """ Create a new authentication selector instance.
@@ -105,15 +105,15 @@ class _authenticationSelectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Authentication selector created.')
+                self.logger.info("Authentication selector created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getAuthenticationSelector(self, var_id):
         """ Get an Authentication Selector instance by ID.
@@ -131,13 +131,13 @@ class _authenticationSelectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateAuthenticationSelector(self, var_id, body):
         """ Update an authentication selector instance.
@@ -161,17 +161,17 @@ class _authenticationSelectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Authentication selector updated.')
+                self.logger.info("Authentication selector updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteAuthenticationSelector(self, var_id):
         """ Delete an Authentication Selector instance.
@@ -189,13 +189,13 @@ class _authenticationSelectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Authentication selector deleted.')
+                self.logger.info("Authentication selector deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 

@@ -30,9 +30,9 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateServerSettings(self, body):
         """ Update the server settings.
@@ -55,15 +55,15 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Server Settings updated.')
+                self.logger.info("Server Settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getNotificationSettings(self):
         """ Gets the notification settings
@@ -81,9 +81,9 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateNotificationSettings(self, body):
         """ Update the notification settings.
@@ -106,13 +106,13 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Notifications updated.')
+                self.logger.info("Notifications updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getEmailServerSettings(self):
         """ (Deprecated) Gets the email server settings
@@ -130,11 +130,11 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateEmailServerSettings(self, body, validationEmail, validateOnly):
         """ (Deprecated) Update the email server settings
@@ -159,15 +159,15 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Email Server updated.')
+                self.logger.info("Email Server updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getCaptchaSettings(self):
         """ Gets the CAPTCHA settings.
@@ -185,9 +185,9 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateCaptchaSettings(self, body):
         """ Update the CAPTCHA settings.
@@ -210,13 +210,13 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Captcha settings updated.')
+                self.logger.info("Captcha settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getSystemKeys(self):
         """ Get the system keys.
@@ -234,9 +234,9 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateSystemKeys(self, body):
         """ Update the system keys.
@@ -259,13 +259,13 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('System keys updated.')
+                self.logger.info("System keys updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def rotateSystemKeys(self):
         """ Rotate the system keys.
@@ -287,13 +287,13 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('System Keys rotated.')
+                self.logger.info("System Keys rotated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getOutBoundProvisioningSettings(self):
         """ Get database used for outbound provisioning
@@ -311,9 +311,9 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateOutBoundProvisioningSettings(self, body):
         """ Update database used for outbound provisioning
@@ -336,9 +336,9 @@ class _serverSettings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Database updated for outbound provisioning.')
+                self.logger.info("Database updated for outbound provisioning.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

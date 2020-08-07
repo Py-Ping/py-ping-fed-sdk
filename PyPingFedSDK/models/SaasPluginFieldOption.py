@@ -10,9 +10,15 @@ class SaasPluginFieldOption():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, code, label) -> None:
         self.code = code
         self.label = label
+=======
+    def __init__(self, code, label):
+        self.code: str = code
+        self.label: str = label
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["code", "label"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class SaasPluginFieldOption():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["code", "label"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

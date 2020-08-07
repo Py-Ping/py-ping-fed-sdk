@@ -10,9 +10,15 @@ class OAuthRole():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, enableOauth=None, enableOpenIdConnect=None) -> None:
         self.enableOauth = enableOauth
         self.enableOpenIdConnect = enableOpenIdConnect
+=======
+    def __init__(self, enableOauth=None, enableOpenIdConnect=None):
+        self.enableOauth: bool = enableOauth
+        self.enableOpenIdConnect: bool = enableOpenIdConnect
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class OAuthRole():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableOauth", "enableOpenIdConnect"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

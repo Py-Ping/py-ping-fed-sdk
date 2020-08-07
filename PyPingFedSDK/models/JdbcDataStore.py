@@ -38,6 +38,7 @@ class JdbcDataStore():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, driverClass, userName, allowMultiValueAttributes=None, blockingTimeout=None, connectionUrl=None, connectionUrlTags=None, encryptedPassword=None, var_id=None, idleTimeout=None, maskAttributeValues=None, maxPoolSize=None, minPoolSize=None, name=None, password=None, validateConnectionSql=None) -> None:
         self.allowMultiValueAttributes = allowMultiValueAttributes
         self.blockingTimeout = blockingTimeout
@@ -55,6 +56,25 @@ class JdbcDataStore():
         self.var_type = var_type
         self.userName = userName
         self.validateConnectionSql = validateConnectionSql
+=======
+    def __init__(self, type, driverClass, userName, allowMultiValueAttributes=None, blockingTimeout=None, connectionUrl=None, connectionUrlTags=None, encryptedPassword=None, id=None, idleTimeout=None, maskAttributeValues=None, maxPoolSize=None, minPoolSize=None, name=None, password=None, validateConnectionSql=None):
+        self.allowMultiValueAttributes: bool = allowMultiValueAttributes
+        self.blockingTimeout: str = blockingTimeout
+        self.connectionUrl: str = connectionUrl
+        self.connectionUrlTags: list = connectionUrlTags
+        self.driverClass: str = driverClass
+        self.encryptedPassword: str = encryptedPassword
+        self.id: str = id
+        self.idleTimeout: str = idleTimeout
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.maxPoolSize: str = maxPoolSize
+        self.minPoolSize: str = minPoolSize
+        self.name: str = name
+        self.password: str = password
+        self.type: str = type
+        self.userName: str = userName
+        self.validateConnectionSql: str = validateConnectionSql
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "driverClass", "userName"] if self.__dict__[x] is not None)
@@ -77,4 +97,11 @@ class JdbcDataStore():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowMultiValueAttributes", "blockingTimeout", "connectionUrl", "connectionUrlTags", "driverClass", "encryptedPassword", "var_id", "idleTimeout", "maskAttributeValues", "maxPoolSize", "minPoolSize", "name", "password", "var_type", "userName", "validateConnectionSql"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

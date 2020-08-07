@@ -24,6 +24,7 @@ class AccessTokenManager():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, name, pluginDescriptorRef, configuration, accessControlSettings=None, attributeContract=None, parentRef=None, selectionSettings=None, sessionValidationSettings=None) -> None:
         self.accessControlSettings = accessControlSettings
         self.attributeContract = attributeContract
@@ -34,6 +35,18 @@ class AccessTokenManager():
         self.pluginDescriptorRef = pluginDescriptorRef
         self.selectionSettings = selectionSettings
         self.sessionValidationSettings = sessionValidationSettings
+=======
+    def __init__(self, id, name, pluginDescriptorRef, configuration, accessControlSettings=None, attributeContract=None, parentRef=None, selectionSettings=None, sessionValidationSettings=None):
+        self.accessControlSettings: str = accessControlSettings
+        self.attributeContract: str = attributeContract
+        self.configuration: str = configuration
+        self.id: str = id
+        self.name: str = name
+        self.parentRef: str = parentRef
+        self.pluginDescriptorRef: str = pluginDescriptorRef
+        self.selectionSettings: str = selectionSettings
+        self.sessionValidationSettings: str = sessionValidationSettings
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "pluginDescriptorRef", "configuration"] if self.__dict__[x] is not None)
@@ -56,4 +69,11 @@ class AccessTokenManager():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessControlSettings", "attributeContract", "configuration", "var_id", "name", "parentRef", "pluginDescriptorRef", "selectionSettings", "sessionValidationSettings"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

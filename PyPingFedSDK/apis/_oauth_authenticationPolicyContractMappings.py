@@ -30,13 +30,13 @@ class _oauth_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the IdP and OAuth roles enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the IdP and OAuth roles enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def createApcMapping(self, body, X-BypassExternalValidation):
+    def createApcMapping(self, body, XBypassExternalValidation):
         """ Create a new authentication policy contract to persistent grant mapping.
         """
 
@@ -58,15 +58,15 @@ class _oauth_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Authentication policy contract to persistent grant mapping created.')
+                self.logger.info("Authentication policy contract to persistent grant mapping created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the IdP and OAuth roles enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the IdP and OAuth roles enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getApcMapping(self, var_id):
         """ Find the authentication policy contract to persistent grant mapping by ID.
@@ -84,15 +84,19 @@ class _oauth_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the IdP and OAuth roles enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the IdP and OAuth roles enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
+<<<<<<< HEAD
     def updateApcMapping(self, var_id, body, X-BypassExternalValidation):
+=======
+    def updateApcMapping(self, id, body, XBypassExternalValidation):
+>>>>>>> Baseline Sphinx generation
         """ Update an authentication policy contract to persistent grant mapping.
         """
 
@@ -115,17 +119,17 @@ class _oauth_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Authentication policy contract to persistent grant mapping updated.')
+                self.logger.info("Authentication policy contract to persistent grant mapping updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the IdP and OAuth roles enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the IdP and OAuth roles enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteApcMapping(self, var_id):
         """ Delete an authentication policy contract to persistent grant mapping.
@@ -143,11 +147,11 @@ class _oauth_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Authentication policy contract to persistent grant mapping deleted.')
+                self.logger.info("Authentication policy contract to persistent grant mapping deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the IdP and OAuth roles enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the IdP and OAuth roles enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

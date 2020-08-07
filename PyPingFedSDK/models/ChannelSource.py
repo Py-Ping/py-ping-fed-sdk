@@ -24,6 +24,7 @@ class ChannelSource():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, dataSource, guidAttributeName, guidBinary, changeDetectionSettings, groupMembershipDetection, accountManagementSettings, baseDn, userSourceLocation, groupSourceLocation=None) -> None:
         self.accountManagementSettings = accountManagementSettings
         self.baseDn = baseDn
@@ -34,6 +35,18 @@ class ChannelSource():
         self.guidAttributeName = guidAttributeName
         self.guidBinary = guidBinary
         self.userSourceLocation = userSourceLocation
+=======
+    def __init__(self, dataSource, guidAttributeName, guidBinary, changeDetectionSettings, groupMembershipDetection, accountManagementSettings, baseDn, userSourceLocation, groupSourceLocation=None):
+        self.accountManagementSettings: str = accountManagementSettings
+        self.baseDn: str = baseDn
+        self.changeDetectionSettings: str = changeDetectionSettings
+        self.dataSource: str = dataSource
+        self.groupMembershipDetection: str = groupMembershipDetection
+        self.groupSourceLocation: str = groupSourceLocation
+        self.guidAttributeName: str = guidAttributeName
+        self.guidBinary: bool = guidBinary
+        self.userSourceLocation: str = userSourceLocation
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["dataSource", "guidAttributeName", "guidBinary", "changeDetectionSettings", "groupMembershipDetection", "accountManagementSettings", "baseDn", "userSourceLocation"] if self.__dict__[x] is not None)
@@ -56,4 +69,11 @@ class ChannelSource():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accountManagementSettings", "baseDn", "changeDetectionSettings", "dataSource", "groupMembershipDetection", "groupSourceLocation", "guidAttributeName", "guidBinary", "userSourceLocation"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

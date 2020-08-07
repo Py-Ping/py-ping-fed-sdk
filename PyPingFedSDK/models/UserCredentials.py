@@ -10,9 +10,15 @@ class UserCredentials():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, newPassword, currentPassword=None) -> None:
         self.currentPassword = currentPassword
         self.newPassword = newPassword
+=======
+    def __init__(self, newPassword, currentPassword=None):
+        self.currentPassword: str = currentPassword
+        self.newPassword: str = newPassword
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["newPassword"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class UserCredentials():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["currentPassword", "newPassword"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

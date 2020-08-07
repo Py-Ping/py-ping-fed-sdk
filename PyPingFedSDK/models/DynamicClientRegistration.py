@@ -62,6 +62,7 @@ class DynamicClientRegistration():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, allowedExclusiveScopes=None, bypassActivationCodeConfirmationOverride=None, cibaPollingInterval=None, cibaRequireSignedRequests=None, clientCertIssuerRef=None, clientCertIssuerType=None, defaultAccessTokenManagerRef=None, deviceFlowSettingType=None, devicePollingIntervalOverride=None, enforceReplayPrevention=None, initialAccessTokenScope=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride=None, persistentGrantExpirationTime=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, policyRefs=None, refreshRolling=None, requestPolicyRef=None, requireProofKeyForCodeExchange=None, requireSignedRequests=None, restrictCommonScopes=None, restrictedCommonScopes=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride=None) -> None:
         self.allowedExclusiveScopes = allowedExclusiveScopes
         self.bypassActivationCodeConfirmationOverride = bypassActivationCodeConfirmationOverride
@@ -91,6 +92,37 @@ class DynamicClientRegistration():
         self.restrictedCommonScopes = restrictedCommonScopes
         self.tokenExchangeProcessorPolicyRef = tokenExchangeProcessorPolicyRef
         self.userAuthorizationUrlOverride = userAuthorizationUrlOverride
+=======
+    def __init__(self, allowedExclusiveScopes=None, bypassActivationCodeConfirmationOverride=None, cibaPollingInterval=None, cibaRequireSignedRequests=None, clientCertIssuerRef=None, clientCertIssuerType=None, defaultAccessTokenManagerRef=None, deviceFlowSettingType=None, devicePollingIntervalOverride=None, enforceReplayPrevention=None, initialAccessTokenScope=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride=None, persistentGrantExpirationTime=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, policyRefs=None, refreshRolling=None, requestPolicyRef=None, requireProofKeyForCodeExchange=None, requireSignedRequests=None, restrictCommonScopes=None, restrictedCommonScopes=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride=None):
+        self.allowedExclusiveScopes: list = allowedExclusiveScopes
+        self.bypassActivationCodeConfirmationOverride: bool = bypassActivationCodeConfirmationOverride
+        self.cibaPollingInterval: str = cibaPollingInterval
+        self.cibaRequireSignedRequests: bool = cibaRequireSignedRequests
+        self.clientCertIssuerRef: str = clientCertIssuerRef
+        self.clientCertIssuerType: str = clientCertIssuerType
+        self.defaultAccessTokenManagerRef: str = defaultAccessTokenManagerRef
+        self.deviceFlowSettingType: str = deviceFlowSettingType
+        self.devicePollingIntervalOverride: str = devicePollingIntervalOverride
+        self.enforceReplayPrevention: bool = enforceReplayPrevention
+        self.initialAccessTokenScope: str = initialAccessTokenScope
+        self.oidcPolicy: str = oidcPolicy
+        self.pendingAuthorizationTimeoutOverride: str = pendingAuthorizationTimeoutOverride
+        self.persistentGrantExpirationTime: str = persistentGrantExpirationTime
+        self.persistentGrantExpirationTimeUnit: str = persistentGrantExpirationTimeUnit
+        self.persistentGrantExpirationType: str = persistentGrantExpirationType
+        self.persistentGrantIdleTimeout: str = persistentGrantIdleTimeout
+        self.persistentGrantIdleTimeoutTimeUnit: str = persistentGrantIdleTimeoutTimeUnit
+        self.persistentGrantIdleTimeoutType: str = persistentGrantIdleTimeoutType
+        self.policyRefs: list = policyRefs
+        self.refreshRolling: str = refreshRolling
+        self.requestPolicyRef: str = requestPolicyRef
+        self.requireProofKeyForCodeExchange: bool = requireProofKeyForCodeExchange
+        self.requireSignedRequests: bool = requireSignedRequests
+        self.restrictCommonScopes: bool = restrictCommonScopes
+        self.restrictedCommonScopes: list = restrictedCommonScopes
+        self.tokenExchangeProcessorPolicyRef: str = tokenExchangeProcessorPolicyRef
+        self.userAuthorizationUrlOverride: str = userAuthorizationUrlOverride
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -113,4 +145,11 @@ class DynamicClientRegistration():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowedExclusiveScopes", "bypassActivationCodeConfirmationOverride", "cibaPollingInterval", "cibaRequireSignedRequests", "clientCertIssuerRef", "clientCertIssuerType", "defaultAccessTokenManagerRef", "deviceFlowSettingType", "devicePollingIntervalOverride", "enforceReplayPrevention", "initialAccessTokenScope", "oidcPolicy", "pendingAuthorizationTimeoutOverride", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantExpirationType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantIdleTimeoutType", "policyRefs", "refreshRolling", "requestPolicyRef", "requireProofKeyForCodeExchange", "requireSignedRequests", "restrictCommonScopes", "restrictedCommonScopes", "tokenExchangeProcessorPolicyRef", "userAuthorizationUrlOverride"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

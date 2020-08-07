@@ -14,11 +14,19 @@ class CertificateExpirationNotificationSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, emailAddress, finalWarningPeriod, initialWarningPeriod=None, notificationPublisherRef=None) -> None:
         self.emailAddress = emailAddress
         self.finalWarningPeriod = finalWarningPeriod
         self.initialWarningPeriod = initialWarningPeriod
         self.notificationPublisherRef = notificationPublisherRef
+=======
+    def __init__(self, emailAddress, finalWarningPeriod, initialWarningPeriod=None, notificationPublisherRef=None):
+        self.emailAddress: str = emailAddress
+        self.finalWarningPeriod: str = finalWarningPeriod
+        self.initialWarningPeriod: str = initialWarningPeriod
+        self.notificationPublisherRef: str = notificationPublisherRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["emailAddress", "finalWarningPeriod"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class CertificateExpirationNotificationSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["emailAddress", "finalWarningPeriod", "initialWarningPeriod", "notificationPublisherRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

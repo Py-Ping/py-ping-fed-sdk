@@ -48,6 +48,7 @@ class SpBrowserSso():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, protocol, ssoServiceEndpoints, encryptionPolicy, attributeContract, adapterMappings, assertionLifetime, artifact=None, authenticationPolicyContractAssertionMappings=None, defaultTargetUrl=None, enabledProfiles=None, incomingBindings=None, messageCustomizations=None, requireSignedAuthnRequests=None, signAssertions=None, signResponseAsRequired=None, sloServiceEndpoints=None, spSamlIdentityMapping=None, spWsFedIdentityMapping=None, urlWhitelistEntries=None, wsFedTokenType=None, wsTrustVersion=None) -> None:
         self.adapterMappings = adapterMappings
         self.artifact = artifact
@@ -70,6 +71,30 @@ class SpBrowserSso():
         self.urlWhitelistEntries = urlWhitelistEntries
         self.wsFedTokenType = wsFedTokenType
         self.wsTrustVersion = wsTrustVersion
+=======
+    def __init__(self, protocol, ssoServiceEndpoints, encryptionPolicy, attributeContract, adapterMappings, assertionLifetime, artifact=None, authenticationPolicyContractAssertionMappings=None, defaultTargetUrl=None, enabledProfiles=None, incomingBindings=None, messageCustomizations=None, requireSignedAuthnRequests=None, signAssertions=None, signResponseAsRequired=None, sloServiceEndpoints=None, spSamlIdentityMapping=None, spWsFedIdentityMapping=None, urlWhitelistEntries=None, wsFedTokenType=None, wsTrustVersion=None):
+        self.adapterMappings: list = adapterMappings
+        self.artifact: str = artifact
+        self.assertionLifetime: str = assertionLifetime
+        self.attributeContract: str = attributeContract
+        self.authenticationPolicyContractAssertionMappings: list = authenticationPolicyContractAssertionMappings
+        self.defaultTargetUrl: str = defaultTargetUrl
+        self.enabledProfiles: str = enabledProfiles
+        self.encryptionPolicy: str = encryptionPolicy
+        self.incomingBindings: str = incomingBindings
+        self.messageCustomizations: list = messageCustomizations
+        self.protocol: str = protocol
+        self.requireSignedAuthnRequests: bool = requireSignedAuthnRequests
+        self.signAssertions: bool = signAssertions
+        self.signResponseAsRequired: bool = signResponseAsRequired
+        self.sloServiceEndpoints: list = sloServiceEndpoints
+        self.spSamlIdentityMapping: str = spSamlIdentityMapping
+        self.spWsFedIdentityMapping: str = spWsFedIdentityMapping
+        self.ssoServiceEndpoints: list = ssoServiceEndpoints
+        self.urlWhitelistEntries: list = urlWhitelistEntries
+        self.wsFedTokenType: str = wsFedTokenType
+        self.wsTrustVersion: str = wsTrustVersion
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["protocol", "ssoServiceEndpoints", "encryptionPolicy", "attributeContract", "adapterMappings", "assertionLifetime"] if self.__dict__[x] is not None)
@@ -92,4 +117,11 @@ class SpBrowserSso():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["adapterMappings", "artifact", "assertionLifetime", "attributeContract", "authenticationPolicyContractAssertionMappings", "defaultTargetUrl", "enabledProfiles", "encryptionPolicy", "incomingBindings", "messageCustomizations", "protocol", "requireSignedAuthnRequests", "signAssertions", "signResponseAsRequired", "sloServiceEndpoints", "spSamlIdentityMapping", "spWsFedIdentityMapping", "ssoServiceEndpoints", "urlWhitelistEntries", "wsFedTokenType", "wsTrustVersion"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

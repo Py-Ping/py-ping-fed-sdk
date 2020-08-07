@@ -12,10 +12,17 @@ class SystemKeys():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, current, pending, previous=None) -> None:
         self.current = current
         self.pending = pending
         self.previous = previous
+=======
+    def __init__(self, current, pending, previous=None):
+        self.current: str = current
+        self.pending: str = pending
+        self.previous: str = previous
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["current", "pending"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class SystemKeys():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["current", "pending", "previous"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

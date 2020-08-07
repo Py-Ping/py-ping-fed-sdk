@@ -18,6 +18,7 @@ class ServerSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, captchaSettings=None, contactInfo=None, emailServer=None, federationInfo=None, notifications=None, rolesAndProtocols=None) -> None:
         self.captchaSettings = captchaSettings
         self.contactInfo = contactInfo
@@ -25,6 +26,15 @@ class ServerSettings():
         self.federationInfo = federationInfo
         self.notifications = notifications
         self.rolesAndProtocols = rolesAndProtocols
+=======
+    def __init__(self, captchaSettings=None, contactInfo=None, emailServer=None, federationInfo=None, notifications=None, rolesAndProtocols=None):
+        self.captchaSettings: str = captchaSettings
+        self.contactInfo: str = contactInfo
+        self.emailServer: str = emailServer
+        self.federationInfo: str = federationInfo
+        self.notifications: str = notifications
+        self.rolesAndProtocols: str = rolesAndProtocols
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class ServerSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["captchaSettings", "contactInfo", "emailServer", "federationInfo", "notifications", "rolesAndProtocols"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

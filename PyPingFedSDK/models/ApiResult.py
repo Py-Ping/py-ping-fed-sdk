@@ -14,11 +14,19 @@ class ApiResult():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, developerMessage=None, message=None, resultId=None, validationErrors=None) -> None:
         self.developerMessage = developerMessage
         self.message = message
         self.resultId = resultId
         self.validationErrors = validationErrors
+=======
+    def __init__(self, developerMessage=None, message=None, resultId=None, validationErrors=None):
+        self.developerMessage: str = developerMessage
+        self.message: str = message
+        self.resultId: str = resultId
+        self.validationErrors: list = validationErrors
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class ApiResult():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["developerMessage", "message", "resultId", "validationErrors"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

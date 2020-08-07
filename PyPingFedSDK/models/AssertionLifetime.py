@@ -10,9 +10,15 @@ class AssertionLifetime():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, minutesBefore, minutesAfter) -> None:
         self.minutesAfter = minutesAfter
         self.minutesBefore = minutesBefore
+=======
+    def __init__(self, minutesBefore, minutesAfter):
+        self.minutesAfter: str = minutesAfter
+        self.minutesBefore: str = minutesBefore
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["minutesBefore", "minutesAfter"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class AssertionLifetime():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["minutesAfter", "minutesBefore"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -30,11 +30,11 @@ class _idp_connectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getIdpConnectorDescriptorById(self, var_id):
         """ Get the list of available connector descriptors.
@@ -52,9 +52,9 @@ class _idp_connectors():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 

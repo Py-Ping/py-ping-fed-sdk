@@ -14,11 +14,19 @@ class PluginConfigDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, actionDescriptors=None, description=None, fields=None, tables=None) -> None:
         self.actionDescriptors = actionDescriptors
         self.description = description
         self.fields = fields
         self.tables = tables
+=======
+    def __init__(self, actionDescriptors=None, description=None, fields=None, tables=None):
+        self.actionDescriptors: list = actionDescriptors
+        self.description: str = description
+        self.fields: list = fields
+        self.tables: list = tables
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class PluginConfigDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["actionDescriptors", "description", "fields", "tables"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

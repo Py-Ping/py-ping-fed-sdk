@@ -16,12 +16,21 @@ class RedirectValidationLocalSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, enableInErrorResourceValidation=None, enableTargetResourceValidationForIdpDiscovery=None, enableTargetResourceValidationForSLO=None, enableTargetResourceValidationForSSO=None, whiteList=None) -> None:
         self.enableInErrorResourceValidation = enableInErrorResourceValidation
         self.enableTargetResourceValidationForIdpDiscovery = enableTargetResourceValidationForIdpDiscovery
         self.enableTargetResourceValidationForSLO = enableTargetResourceValidationForSLO
         self.enableTargetResourceValidationForSSO = enableTargetResourceValidationForSSO
         self.whiteList = whiteList
+=======
+    def __init__(self, enableInErrorResourceValidation=None, enableTargetResourceValidationForIdpDiscovery=None, enableTargetResourceValidationForSLO=None, enableTargetResourceValidationForSSO=None, whiteList=None):
+        self.enableInErrorResourceValidation: bool = enableInErrorResourceValidation
+        self.enableTargetResourceValidationForIdpDiscovery: bool = enableTargetResourceValidationForIdpDiscovery
+        self.enableTargetResourceValidationForSLO: bool = enableTargetResourceValidationForSLO
+        self.enableTargetResourceValidationForSSO: bool = enableTargetResourceValidationForSSO
+        self.whiteList: list = whiteList
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class RedirectValidationLocalSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableInErrorResourceValidation", "enableTargetResourceValidationForIdpDiscovery", "enableTargetResourceValidationForSLO", "enableTargetResourceValidationForSSO", "whiteList"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

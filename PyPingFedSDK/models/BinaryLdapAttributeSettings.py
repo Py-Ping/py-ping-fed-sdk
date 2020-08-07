@@ -8,8 +8,13 @@ class BinaryLdapAttributeSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, binaryEncoding=None) -> None:
         self.binaryEncoding = binaryEncoding
+=======
+    def __init__(self, binaryEncoding=None):
+        self.binaryEncoding: str = binaryEncoding
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -32,4 +37,11 @@ class BinaryLdapAttributeSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["binaryEncoding"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

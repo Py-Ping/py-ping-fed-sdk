@@ -10,9 +10,15 @@ class SaasAttributeMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, fieldName, saasFieldInfo) -> None:
         self.fieldName = fieldName
         self.saasFieldInfo = saasFieldInfo
+=======
+    def __init__(self, fieldName, saasFieldInfo):
+        self.fieldName: str = fieldName
+        self.saasFieldInfo: str = saasFieldInfo
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["fieldName", "saasFieldInfo"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class SaasAttributeMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["fieldName", "saasFieldInfo"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

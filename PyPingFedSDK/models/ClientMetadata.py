@@ -12,10 +12,17 @@ class ClientMetadata():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, description=None, multiValued=None, parameter=None) -> None:
         self.description = description
         self.multiValued = multiValued
         self.parameter = parameter
+=======
+    def __init__(self, description=None, multiValued=None, parameter=None):
+        self.description: str = description
+        self.multiValued: bool = multiValued
+        self.parameter: str = parameter
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class ClientMetadata():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "multiValued", "parameter"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

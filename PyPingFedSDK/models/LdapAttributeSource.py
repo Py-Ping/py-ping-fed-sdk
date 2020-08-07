@@ -26,6 +26,7 @@ class LdapAttributeSource():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, dataStoreRef, searchScope, searchFilter, attributeContractFulfillment=None, baseDn=None, binaryAttributeSettings=None, description=None, var_id=None, memberOfNestedGroup=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.baseDn = baseDn
@@ -37,6 +38,19 @@ class LdapAttributeSource():
         self.searchFilter = searchFilter
         self.searchScope = searchScope
         self.var_type = var_type
+=======
+    def __init__(self, type, dataStoreRef, searchScope, searchFilter, attributeContractFulfillment=None, baseDn=None, binaryAttributeSettings=None, description=None, id=None, memberOfNestedGroup=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.baseDn: str = baseDn
+        self.binaryAttributeSettings: str = binaryAttributeSettings
+        self.dataStoreRef: str = dataStoreRef
+        self.description: str = description
+        self.id: str = id
+        self.memberOfNestedGroup: bool = memberOfNestedGroup
+        self.searchFilter: str = searchFilter
+        self.searchScope: str = searchScope
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "dataStoreRef", "searchScope", "searchFilter"] if self.__dict__[x] is not None)
@@ -59,4 +73,11 @@ class LdapAttributeSource():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "baseDn", "binaryAttributeSettings", "dataStoreRef", "description", "var_id", "memberOfNestedGroup", "searchFilter", "searchScope", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

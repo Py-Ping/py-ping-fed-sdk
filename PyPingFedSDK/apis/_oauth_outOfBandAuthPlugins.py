@@ -30,9 +30,9 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def getOOBAuthPluginDescriptor(self, var_id):
         """ Get the descriptor of an Out of Band authenticator plugin.
@@ -50,11 +50,11 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getOOBAuthenticators(self):
         """ Get a list of Out of Band authenticator plugin instances.
@@ -72,9 +72,9 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def createOOBAuthenticator(self, body):
         """ Create an Out of Band authenticator plugin instance.
@@ -97,13 +97,13 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Out of Band Authenticator created.')
+                self.logger.info("Out of Band Authenticator created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getOOBAuthenticator(self, var_id):
         """ Get a specific Out of Band authenticator plugin instance.
@@ -121,11 +121,11 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateOOBAuthenticator(self, var_id, body):
         """ Update an Out of Band authenticator plugin instance.
@@ -149,15 +149,15 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Out of Band Authenticator updated.')
+                self.logger.info("Out of Band Authenticator updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteOOBAuthenticator(self, var_id):
         """ Delete an Out of Band authenticator plugin instance.
@@ -175,13 +175,13 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Out of Band Authenticator deleted.')
+                self.logger.info("Out of Band Authenticator deleted.")
             if response.status_code == 403:
-                self.logger.info('The operation is not permitted, based on the current configuration of the server.')
+                self.logger.info("The operation is not permitted, based on the current configuration of the server.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getActions(self, var_id):
         """ List of actions for an Out of Band authenticator plugin instance.
@@ -199,11 +199,11 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getAction(self, var_id, actionId):
         """ Find an Out of Band authenticator plugin instance's action by ID.
@@ -221,11 +221,11 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def invokeAction(self, var_id, actionId):
         """ Invokes an action for Out of Band authenticator plugin instance.
@@ -249,9 +249,9 @@ class _oauth_outOfBandAuthPlugins():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Action invoked on Out of Band authenticator.')
+                self.logger.info("Action invoked on Out of Band authenticator.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

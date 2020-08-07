@@ -18,6 +18,7 @@ class CustomAttributeSource():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, dataStoreRef, attributeContractFulfillment=None, description=None, filterFields=None, var_id=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.dataStoreRef = dataStoreRef
@@ -25,6 +26,15 @@ class CustomAttributeSource():
         self.filterFields = filterFields
         self.var_id = var_id
         self.var_type = var_type
+=======
+    def __init__(self, type, dataStoreRef, attributeContractFulfillment=None, description=None, filterFields=None, id=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.dataStoreRef: str = dataStoreRef
+        self.description: str = description
+        self.filterFields: list = filterFields
+        self.id: str = id
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "dataStoreRef"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class CustomAttributeSource():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "dataStoreRef", "description", "filterFields", "var_id", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

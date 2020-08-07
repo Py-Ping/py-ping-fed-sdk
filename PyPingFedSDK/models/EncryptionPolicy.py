@@ -14,11 +14,19 @@ class EncryptionPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, encryptAssertion=None, encryptSloSubjectNameId=None, encryptedAttributes=None, sloSubjectNameIDEncrypted=None) -> None:
         self.encryptAssertion = encryptAssertion
         self.encryptSloSubjectNameId = encryptSloSubjectNameId
         self.encryptedAttributes = encryptedAttributes
         self.sloSubjectNameIDEncrypted = sloSubjectNameIDEncrypted
+=======
+    def __init__(self, encryptAssertion=None, encryptSloSubjectNameId=None, encryptedAttributes=None, sloSubjectNameIDEncrypted=None):
+        self.encryptAssertion: bool = encryptAssertion
+        self.encryptSloSubjectNameId: bool = encryptSloSubjectNameId
+        self.encryptedAttributes: list = encryptedAttributes
+        self.sloSubjectNameIDEncrypted: bool = sloSubjectNameIDEncrypted
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class EncryptionPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptAssertion", "encryptSloSubjectNameId", "encryptedAttributes", "sloSubjectNameIDEncrypted"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

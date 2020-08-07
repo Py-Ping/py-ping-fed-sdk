@@ -30,13 +30,13 @@ class _authenticationPolicyContracts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def createAuthenticationPolicyContract(self, body):
         """ Create a new Authentication Policy Contract.
@@ -59,15 +59,15 @@ class _authenticationPolicyContracts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Authentication policy contract created.')
+                self.logger.info("Authentication policy contract created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getAuthenticationPolicyContract(self, var_id):
         """ Gets the Authentication Policy Contract by ID.
@@ -85,13 +85,13 @@ class _authenticationPolicyContracts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateAuthenticationPolicyContract(self, var_id, body):
         """ Update an Authentication Policy Contract by ID.
@@ -115,17 +115,17 @@ class _authenticationPolicyContracts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Authentication policy contract updated.')
+                self.logger.info("Authentication policy contract updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteAuthenticationPolicyContract(self, var_id):
         """ Delete an Authentication Policy Contract.
@@ -143,13 +143,13 @@ class _authenticationPolicyContracts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Authentication policy contract deleted.')
+                self.logger.info("Authentication policy contract deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 

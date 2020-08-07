@@ -12,10 +12,17 @@ class ArtifactSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, lifetime, resolverLocations, sourceId=None) -> None:
         self.lifetime = lifetime
         self.resolverLocations = resolverLocations
         self.sourceId = sourceId
+=======
+    def __init__(self, lifetime, resolverLocations, sourceId=None):
+        self.lifetime: str = lifetime
+        self.resolverLocations: list = resolverLocations
+        self.sourceId: str = sourceId
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["lifetime", "resolverLocations"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class ArtifactSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["lifetime", "resolverLocations", "sourceId"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

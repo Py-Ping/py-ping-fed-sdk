@@ -48,6 +48,7 @@ class SpConnection():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, applicationIconUrl=None, applicationName=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, var_id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, outboundProvision=None, spBrowserSso=None, virtualEntityIds=None, wsTrust=None) -> None:
         self.active = active
         self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
@@ -70,6 +71,30 @@ class SpConnection():
         self.var_type = var_type
         self.virtualEntityIds = virtualEntityIds
         self.wsTrust = wsTrust
+=======
+    def __init__(self, type, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, applicationIconUrl=None, applicationName=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, outboundProvision=None, spBrowserSso=None, virtualEntityIds=None, wsTrust=None):
+        self.active: bool = active
+        self.additionalAllowedEntitiesConfiguration: str = additionalAllowedEntitiesConfiguration
+        self.applicationIconUrl: str = applicationIconUrl
+        self.applicationName: str = applicationName
+        self.attributeQuery: str = attributeQuery
+        self.baseUrl: str = baseUrl
+        self.contactInfo: str = contactInfo
+        self.credentials: str = credentials
+        self.defaultVirtualEntityId: str = defaultVirtualEntityId
+        self.entityId: str = entityId
+        self.extendedProperties: str = extendedProperties
+        self.id: str = id
+        self.licenseConnectionGroup: str = licenseConnectionGroup
+        self.loggingMode: str = loggingMode
+        self.metadataReloadSettings: str = metadataReloadSettings
+        self.name: str = name
+        self.outboundProvision: str = outboundProvision
+        self.spBrowserSso: str = spBrowserSso
+        self.type: str = type
+        self.virtualEntityIds: list = virtualEntityIds
+        self.wsTrust: str = wsTrust
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "entityId", "name"] if self.__dict__[x] is not None)
@@ -92,4 +117,11 @@ class SpConnection():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "additionalAllowedEntitiesConfiguration", "applicationIconUrl", "applicationName", "attributeQuery", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "extendedProperties", "var_id", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "outboundProvision", "spBrowserSso", "var_type", "virtualEntityIds", "wsTrust"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

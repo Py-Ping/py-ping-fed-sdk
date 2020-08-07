@@ -14,11 +14,19 @@ class SpSsoServiceEndpoint():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, binding, url, index, isDefault=None) -> None:
         self.binding = binding
         self.index = index
         self.isDefault = isDefault
         self.url = url
+=======
+    def __init__(self, binding, url, index, isDefault=None):
+        self.binding: str = binding
+        self.index: str = index
+        self.isDefault: bool = isDefault
+        self.url: str = url
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["binding", "url", "index"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class SpSsoServiceEndpoint():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["binding", "index", "isDefault", "url"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -18,6 +18,7 @@ class AccessTokenMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, context, accessTokenManagerRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None) -> None:
         self.accessTokenManagerRef = accessTokenManagerRef
         self.attributeContractFulfillment = attributeContractFulfillment
@@ -25,6 +26,15 @@ class AccessTokenMapping():
         self.context = context
         self.var_id = var_id
         self.issuanceCriteria = issuanceCriteria
+=======
+    def __init__(self, id, context, accessTokenManagerRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None):
+        self.accessTokenManagerRef: str = accessTokenManagerRef
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.context: str = context
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "context", "accessTokenManagerRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class AccessTokenMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerRef", "attributeContractFulfillment", "attributeSources", "context", "var_id", "issuanceCriteria"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

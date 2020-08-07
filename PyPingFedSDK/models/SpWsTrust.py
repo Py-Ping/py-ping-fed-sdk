@@ -30,6 +30,7 @@ class SpWsTrust():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, partnerServiceIds, attributeContract, tokenProcessorMappings, abortIfNotFulfilledFromRequest=None, defaultTokenType=None, encryptSaml2Assertion=None, generateKey=None, messageCustomizations=None, minutesAfter=None, minutesBefore=None, oAuthAssertionProfiles=None, requestContractRef=None) -> None:
         self.abortIfNotFulfilledFromRequest = abortIfNotFulfilledFromRequest
         self.attributeContract = attributeContract
@@ -43,6 +44,21 @@ class SpWsTrust():
         self.partnerServiceIds = partnerServiceIds
         self.requestContractRef = requestContractRef
         self.tokenProcessorMappings = tokenProcessorMappings
+=======
+    def __init__(self, partnerServiceIds, attributeContract, tokenProcessorMappings, abortIfNotFulfilledFromRequest=None, defaultTokenType=None, encryptSaml2Assertion=None, generateKey=None, messageCustomizations=None, minutesAfter=None, minutesBefore=None, oAuthAssertionProfiles=None, requestContractRef=None):
+        self.abortIfNotFulfilledFromRequest: bool = abortIfNotFulfilledFromRequest
+        self.attributeContract: str = attributeContract
+        self.defaultTokenType: str = defaultTokenType
+        self.encryptSaml2Assertion: bool = encryptSaml2Assertion
+        self.generateKey: bool = generateKey
+        self.messageCustomizations: list = messageCustomizations
+        self.minutesAfter: str = minutesAfter
+        self.minutesBefore: str = minutesBefore
+        self.oAuthAssertionProfiles: bool = oAuthAssertionProfiles
+        self.partnerServiceIds: list = partnerServiceIds
+        self.requestContractRef: str = requestContractRef
+        self.tokenProcessorMappings: list = tokenProcessorMappings
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["partnerServiceIds", "attributeContract", "tokenProcessorMappings"] if self.__dict__[x] is not None)
@@ -65,4 +81,11 @@ class SpWsTrust():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["abortIfNotFulfilledFromRequest", "attributeContract", "defaultTokenType", "encryptSaml2Assertion", "generateKey", "messageCustomizations", "minutesAfter", "minutesBefore", "oAuthAssertionProfiles", "partnerServiceIds", "requestContractRef", "tokenProcessorMappings"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

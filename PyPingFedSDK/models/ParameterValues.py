@@ -8,8 +8,13 @@ class ParameterValues():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, values=None) -> None:
         self.values = values
+=======
+    def __init__(self, values=None):
+        self.values: list = values
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -32,4 +37,11 @@ class ParameterValues():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["values"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

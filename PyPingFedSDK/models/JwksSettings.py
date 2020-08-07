@@ -10,9 +10,15 @@ class JwksSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, jwks=None, jwksUrl=None) -> None:
         self.jwks = jwks
         self.jwksUrl = jwksUrl
+=======
+    def __init__(self, jwks=None, jwksUrl=None):
+        self.jwks: str = jwks
+        self.jwksUrl: str = jwksUrl
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class JwksSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["jwks", "jwksUrl"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

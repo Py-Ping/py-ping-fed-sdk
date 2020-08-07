@@ -10,9 +10,15 @@ class SpWsTrustAttribute():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, namespace, name) -> None:
         self.name = name
         self.namespace = namespace
+=======
+    def __init__(self, namespace, name):
+        self.name: str = name
+        self.namespace: str = namespace
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["namespace", "name"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class SpWsTrustAttribute():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["name", "namespace"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

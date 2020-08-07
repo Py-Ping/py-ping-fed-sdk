@@ -16,12 +16,21 @@ class SpAttributeQuery():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributes, attributeSources, attributeContractFulfillment, issuanceCriteria=None, policy=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.attributes = attributes
         self.issuanceCriteria = issuanceCriteria
         self.policy = policy
+=======
+    def __init__(self, attributes, attributeSources, attributeContractFulfillment, issuanceCriteria=None, policy=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.attributes: str = attributes
+        self.issuanceCriteria: str = issuanceCriteria
+        self.policy: str = policy
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributes", "attributeSources", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class SpAttributeQuery():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "attributes", "issuanceCriteria", "policy"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

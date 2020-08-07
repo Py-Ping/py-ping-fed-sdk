@@ -30,11 +30,11 @@ class _sp_tokenGenerators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getTokenGeneratorDescriptorsById(self, var_id):
         """ Get the description of a token generator plugin by ID.
@@ -52,13 +52,13 @@ class _sp_tokenGenerators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getTokenGenerators(self):
         """ Get the list of token generator instances.
@@ -76,11 +76,11 @@ class _sp_tokenGenerators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def createTokenGenerator(self, body):
         """ Create a new token generator instance.
@@ -103,15 +103,15 @@ class _sp_tokenGenerators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Token generator created.')
+                self.logger.info("Token generator created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getTokenGenerator(self, var_id):
         """ Find a token generator instance by ID.
@@ -129,13 +129,13 @@ class _sp_tokenGenerators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateTokenGenerator(self, var_id, body):
         """ Update a token generator instance.
@@ -159,17 +159,17 @@ class _sp_tokenGenerators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Token generator updated.')
+                self.logger.info("Token generator updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteTokenGenerator(self, var_id):
         """ Delete a token generator instance.
@@ -187,13 +187,13 @@ class _sp_tokenGenerators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Token generator deleted.')
+                self.logger.info("Token generator deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 

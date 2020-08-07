@@ -14,11 +14,19 @@ class ClientRegistrationOIDCPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, policyGroup=None) -> None:
         self.idTokenContentEncryptionAlgorithm = idTokenContentEncryptionAlgorithm
         self.idTokenEncryptionAlgorithm = idTokenEncryptionAlgorithm
         self.idTokenSigningAlgorithm = idTokenSigningAlgorithm
         self.policyGroup = policyGroup
+=======
+    def __init__(self, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, policyGroup=None):
+        self.idTokenContentEncryptionAlgorithm: str = idTokenContentEncryptionAlgorithm
+        self.idTokenEncryptionAlgorithm: str = idTokenEncryptionAlgorithm
+        self.idTokenSigningAlgorithm: str = idTokenSigningAlgorithm
+        self.policyGroup: str = policyGroup
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class ClientRegistrationOIDCPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["idTokenContentEncryptionAlgorithm", "idTokenEncryptionAlgorithm", "idTokenSigningAlgorithm", "policyGroup"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

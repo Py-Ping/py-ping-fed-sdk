@@ -26,6 +26,7 @@ class ConnectionCredentials():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, blockEncryptionAlgorithm=None, certs=None, decryptionKeyPairRef=None, inboundBackChannelAuth=None, keyTransportAlgorithm=None, outboundBackChannelAuth=None, secondaryDecryptionKeyPairRef=None, signingSettings=None, verificationIssuerDN=None, verificationSubjectDN=None) -> None:
         self.blockEncryptionAlgorithm = blockEncryptionAlgorithm
         self.certs = certs
@@ -37,6 +38,19 @@ class ConnectionCredentials():
         self.signingSettings = signingSettings
         self.verificationIssuerDN = verificationIssuerDN
         self.verificationSubjectDN = verificationSubjectDN
+=======
+    def __init__(self, blockEncryptionAlgorithm=None, certs=None, decryptionKeyPairRef=None, inboundBackChannelAuth=None, keyTransportAlgorithm=None, outboundBackChannelAuth=None, secondaryDecryptionKeyPairRef=None, signingSettings=None, verificationIssuerDN=None, verificationSubjectDN=None):
+        self.blockEncryptionAlgorithm: str = blockEncryptionAlgorithm
+        self.certs: list = certs
+        self.decryptionKeyPairRef: str = decryptionKeyPairRef
+        self.inboundBackChannelAuth: str = inboundBackChannelAuth
+        self.keyTransportAlgorithm: str = keyTransportAlgorithm
+        self.outboundBackChannelAuth: str = outboundBackChannelAuth
+        self.secondaryDecryptionKeyPairRef: str = secondaryDecryptionKeyPairRef
+        self.signingSettings: str = signingSettings
+        self.verificationIssuerDN: str = verificationIssuerDN
+        self.verificationSubjectDN: str = verificationSubjectDN
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -59,4 +73,11 @@ class ConnectionCredentials():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["blockEncryptionAlgorithm", "certs", "decryptionKeyPairRef", "inboundBackChannelAuth", "keyTransportAlgorithm", "outboundBackChannelAuth", "secondaryDecryptionKeyPairRef", "signingSettings", "verificationIssuerDN", "verificationSubjectDN"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

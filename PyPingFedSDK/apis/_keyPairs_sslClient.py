@@ -30,9 +30,9 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def importKeyPair(self, body):
         """ Import a new key pair.
@@ -55,15 +55,15 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Key Pair imported.')
+                self.logger.info("Key Pair imported.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('The operation is not permitted, based on the current configuration of the server.')
+                self.logger.info("The operation is not permitted, based on the current configuration of the server.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def createKeyPair(self, body):
         """ Generate a new key pair.
@@ -86,13 +86,13 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Key Pair created.')
+                self.logger.info("Key Pair created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getKeyPair(self, var_id):
         """ Retrieve details of a key pair.
@@ -110,11 +110,11 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def deleteKeyPair(self, var_id):
         """ Delete a key pair.
@@ -132,13 +132,13 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Key Pair deleted.')
+                self.logger.info("Key Pair deleted.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 
     def exportCsr(self, var_id):
         """ Generate a new certificate signing request (CSR) for this key pair.
@@ -156,9 +156,9 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def importCsrResponse(self, var_id, body):
         """ Import a CSR response for this key pair.
@@ -182,15 +182,15 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('CSR Response imported.')
+                self.logger.info("CSR Response imported.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def exportPKCS12File(self, var_id, body):
         """ Download the key pair in PKCS12 format.
@@ -214,15 +214,15 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Key Pair downloaded.')
+                self.logger.info("Key Pair downloaded.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def exportCertificateFile(self, var_id):
         """ Download the certificate from a given key pair.
@@ -240,9 +240,9 @@ class _keyPairs_sslClient():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

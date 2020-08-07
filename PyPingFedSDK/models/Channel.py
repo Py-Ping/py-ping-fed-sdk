@@ -18,6 +18,7 @@ class Channel():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, active, channelSource, attributeMapping, name, maxThreads, timeout) -> None:
         self.active = active
         self.attributeMapping = attributeMapping
@@ -25,6 +26,15 @@ class Channel():
         self.maxThreads = maxThreads
         self.name = name
         self.timeout = timeout
+=======
+    def __init__(self, active, channelSource, attributeMapping, name, maxThreads, timeout):
+        self.active: bool = active
+        self.attributeMapping: list = attributeMapping
+        self.channelSource: str = channelSource
+        self.maxThreads: str = maxThreads
+        self.name: str = name
+        self.timeout: str = timeout
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["active", "channelSource", "attributeMapping", "name", "maxThreads", "timeout"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class Channel():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "attributeMapping", "channelSource", "maxThreads", "name", "timeout"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

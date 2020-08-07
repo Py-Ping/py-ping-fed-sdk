@@ -10,9 +10,15 @@ class ProtocolMessageCustomization():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, contextName=None, messageExpression=None) -> None:
         self.contextName = contextName
         self.messageExpression = messageExpression
+=======
+    def __init__(self, contextName=None, messageExpression=None):
+        self.contextName: str = contextName
+        self.messageExpression: str = messageExpression
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class ProtocolMessageCustomization():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["contextName", "messageExpression"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

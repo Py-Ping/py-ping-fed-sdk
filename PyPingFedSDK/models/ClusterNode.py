@@ -18,6 +18,7 @@ class ClusterNode():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, address=None, index=None, mode=None, nodeGroup=None, nodeTags=None, version=None) -> None:
         self.address = address
         self.index = index
@@ -25,6 +26,15 @@ class ClusterNode():
         self.nodeGroup = nodeGroup
         self.nodeTags = nodeTags
         self.version = version
+=======
+    def __init__(self, address=None, index=None, mode=None, nodeGroup=None, nodeTags=None, version=None):
+        self.address: str = address
+        self.index: str = index
+        self.mode: str = mode
+        self.nodeGroup: str = nodeGroup
+        self.nodeTags: str = nodeTags
+        self.version: str = version
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class ClusterNode():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["address", "index", "mode", "nodeGroup", "nodeTags", "version"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

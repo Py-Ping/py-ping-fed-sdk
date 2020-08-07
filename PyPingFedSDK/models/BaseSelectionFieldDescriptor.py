@@ -22,6 +22,7 @@ class BaseSelectionFieldDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, optionValues=None, required=None, var_type=None) -> None:
         self.advanced = advanced
         self.defaultValue = defaultValue
@@ -31,6 +32,17 @@ class BaseSelectionFieldDescriptor():
         self.optionValues = optionValues
         self.required = required
         self.var_type = var_type
+=======
+    def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, optionValues=None, required=None, type=None):
+        self.advanced: bool = advanced
+        self.defaultValue: str = defaultValue
+        self.description: str = description
+        self.label: str = label
+        self.name: str = name
+        self.optionValues: list = optionValues
+        self.required: bool = required
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class BaseSelectionFieldDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["advanced", "defaultValue", "description", "label", "name", "optionValues", "required", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

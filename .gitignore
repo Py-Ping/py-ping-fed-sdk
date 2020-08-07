@@ -6,5 +6,6 @@
 ./PyPingFedSDK/models/*
 ./PyPingFedSDK/source/*
 ./PyPingFedSDK/.coverage
+./docs/build/*
 .coverage
 requirements.txt

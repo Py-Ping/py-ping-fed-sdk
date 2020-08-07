@@ -10,9 +10,15 @@ class OutboundProvisionDatabase():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, dataStoreRef, synchronizationFrequency=None) -> None:
         self.dataStoreRef = dataStoreRef
         self.synchronizationFrequency = synchronizationFrequency
+=======
+    def __init__(self, dataStoreRef, synchronizationFrequency=None):
+        self.dataStoreRef: str = dataStoreRef
+        self.synchronizationFrequency: str = synchronizationFrequency
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["dataStoreRef"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class OutboundProvisionDatabase():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["dataStoreRef", "synchronizationFrequency"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

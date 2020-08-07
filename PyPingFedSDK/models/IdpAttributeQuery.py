@@ -12,10 +12,17 @@ class IdpAttributeQuery():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, url, nameMappings=None, policy=None) -> None:
         self.nameMappings = nameMappings
         self.policy = policy
         self.url = url
+=======
+    def __init__(self, url, nameMappings=None, policy=None):
+        self.nameMappings: list = nameMappings
+        self.policy: str = policy
+        self.url: str = url
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["url"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class IdpAttributeQuery():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["nameMappings", "policy", "url"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

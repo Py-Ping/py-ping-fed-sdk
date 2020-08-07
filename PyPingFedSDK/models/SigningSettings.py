@@ -14,11 +14,19 @@ class SigningSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, signingKeyPairRef, algorithm=None, includeCertInSignature=None, includeRawKeyInSignature=None) -> None:
         self.algorithm = algorithm
         self.includeCertInSignature = includeCertInSignature
         self.includeRawKeyInSignature = includeRawKeyInSignature
         self.signingKeyPairRef = signingKeyPairRef
+=======
+    def __init__(self, signingKeyPairRef, algorithm=None, includeCertInSignature=None, includeRawKeyInSignature=None):
+        self.algorithm: str = algorithm
+        self.includeCertInSignature: bool = includeCertInSignature
+        self.includeRawKeyInSignature: bool = includeRawKeyInSignature
+        self.signingKeyPairRef: str = signingKeyPairRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["signingKeyPairRef"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class SigningSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["algorithm", "includeCertInSignature", "includeRawKeyInSignature", "signingKeyPairRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

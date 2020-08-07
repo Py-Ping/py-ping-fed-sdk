@@ -10,9 +10,15 @@ class ExpressionIssuanceCriteriaEntry():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, expression, errorResult=None) -> None:
         self.errorResult = errorResult
         self.expression = expression
+=======
+    def __init__(self, expression, errorResult=None):
+        self.errorResult: str = errorResult
+        self.expression: str = expression
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["expression"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class ExpressionIssuanceCriteriaEntry():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["errorResult", "expression"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

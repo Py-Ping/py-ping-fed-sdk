@@ -30,9 +30,9 @@ class _keyPairs_oauthOpenIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateOAuthOidcKeysSettings(self, body):
         """ Update OAuth/Open ID Connect key settings.
@@ -55,11 +55,11 @@ class _keyPairs_oauthOpenIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('OAuth/Open ID Connect key settings updated.')
+                self.logger.info("OAuth/Open ID Connect key settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

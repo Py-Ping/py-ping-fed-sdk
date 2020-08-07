@@ -10,9 +10,15 @@ class ArtifactResolverLocation():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, index, url) -> None:
         self.index = index
         self.url = url
+=======
+    def __init__(self, index, url):
+        self.index: str = index
+        self.url: str = url
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["index", "url"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class ArtifactResolverLocation():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["index", "url"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

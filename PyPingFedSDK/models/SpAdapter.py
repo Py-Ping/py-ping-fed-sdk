@@ -20,6 +20,7 @@ class SpAdapter():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, name, pluginDescriptorRef, configuration, attributeContract=None, parentRef=None, targetApplicationInfo=None) -> None:
         self.attributeContract = attributeContract
         self.configuration = configuration
@@ -28,6 +29,16 @@ class SpAdapter():
         self.parentRef = parentRef
         self.pluginDescriptorRef = pluginDescriptorRef
         self.targetApplicationInfo = targetApplicationInfo
+=======
+    def __init__(self, id, name, pluginDescriptorRef, configuration, attributeContract=None, parentRef=None, targetApplicationInfo=None):
+        self.attributeContract: str = attributeContract
+        self.configuration: str = configuration
+        self.id: str = id
+        self.name: str = name
+        self.parentRef: str = parentRef
+        self.pluginDescriptorRef: str = pluginDescriptorRef
+        self.targetApplicationInfo: str = targetApplicationInfo
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "pluginDescriptorRef", "configuration"] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class SpAdapter():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContract", "configuration", "var_id", "name", "parentRef", "pluginDescriptorRef", "targetApplicationInfo"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

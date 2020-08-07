@@ -22,6 +22,7 @@ class IdpAdapterAssertionMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, idpAdapterRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
         self.abortSsoTransactionAsFailSafe = abortSsoTransactionAsFailSafe
         self.adapterOverrideSettings = adapterOverrideSettings
@@ -31,6 +32,17 @@ class IdpAdapterAssertionMapping():
         self.issuanceCriteria = issuanceCriteria
         self.restrictVirtualEntityIds = restrictVirtualEntityIds
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
+=======
+    def __init__(self, idpAdapterRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
+        self.abortSsoTransactionAsFailSafe: bool = abortSsoTransactionAsFailSafe
+        self.adapterOverrideSettings: str = adapterOverrideSettings
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.idpAdapterRef: str = idpAdapterRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["idpAdapterRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class IdpAdapterAssertionMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["abortSsoTransactionAsFailSafe", "adapterOverrideSettings", "attributeContractFulfillment", "attributeSources", "idpAdapterRef", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

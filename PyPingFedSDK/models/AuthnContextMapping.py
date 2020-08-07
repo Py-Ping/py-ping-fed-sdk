@@ -10,9 +10,15 @@ class AuthnContextMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, local=None, remote=None) -> None:
         self.local = local
         self.remote = remote
+=======
+    def __init__(self, local=None, remote=None):
+        self.local: str = local
+        self.remote: str = remote
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class AuthnContextMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["local", "remote"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

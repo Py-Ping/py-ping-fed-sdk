@@ -22,6 +22,7 @@ class AuthenticationSessionPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, authenticationSource, enableSessions, authnContextSensitive=None, var_id=None, idleTimeoutMins=None, maxTimeoutMins=None, persistent=None, timeoutDisplayUnit=None) -> None:
         self.authenticationSource = authenticationSource
         self.authnContextSensitive = authnContextSensitive
@@ -31,6 +32,17 @@ class AuthenticationSessionPolicy():
         self.maxTimeoutMins = maxTimeoutMins
         self.persistent = persistent
         self.timeoutDisplayUnit = timeoutDisplayUnit
+=======
+    def __init__(self, authenticationSource, enableSessions, authnContextSensitive=None, id=None, idleTimeoutMins=None, maxTimeoutMins=None, persistent=None, timeoutDisplayUnit=None):
+        self.authenticationSource: str = authenticationSource
+        self.authnContextSensitive: bool = authnContextSensitive
+        self.enableSessions: bool = enableSessions
+        self.id: str = id
+        self.idleTimeoutMins: str = idleTimeoutMins
+        self.maxTimeoutMins: str = maxTimeoutMins
+        self.persistent: bool = persistent
+        self.timeoutDisplayUnit: str = timeoutDisplayUnit
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["authenticationSource", "enableSessions"] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class AuthenticationSessionPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["authenticationSource", "authnContextSensitive", "enableSessions", "var_id", "idleTimeoutMins", "maxTimeoutMins", "persistent", "timeoutDisplayUnit"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

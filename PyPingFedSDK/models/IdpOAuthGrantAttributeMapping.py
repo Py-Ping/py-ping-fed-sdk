@@ -10,9 +10,15 @@ class IdpOAuthGrantAttributeMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, accessTokenManagerMappings=None, idpOAuthAttributeContract=None) -> None:
         self.accessTokenManagerMappings = accessTokenManagerMappings
         self.idpOAuthAttributeContract = idpOAuthAttributeContract
+=======
+    def __init__(self, accessTokenManagerMappings=None, idpOAuthAttributeContract=None):
+        self.accessTokenManagerMappings: list = accessTokenManagerMappings
+        self.idpOAuthAttributeContract: str = idpOAuthAttributeContract
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class IdpOAuthGrantAttributeMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerMappings", "idpOAuthAttributeContract"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

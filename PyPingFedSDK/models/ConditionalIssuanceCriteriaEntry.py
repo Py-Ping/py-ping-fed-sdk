@@ -16,12 +16,21 @@ class ConditionalIssuanceCriteriaEntry():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, source, attributeName, condition, value, errorResult=None) -> None:
         self.attributeName = attributeName
         self.condition = condition
         self.errorResult = errorResult
         self.source = source
         self.value = value
+=======
+    def __init__(self, source, attributeName, condition, value, errorResult=None):
+        self.attributeName: str = attributeName
+        self.condition: str = condition
+        self.errorResult: str = errorResult
+        self.source: str = source
+        self.value: str = value
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["source", "attributeName", "condition", "value"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class ConditionalIssuanceCriteriaEntry():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeName", "condition", "errorResult", "source", "value"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

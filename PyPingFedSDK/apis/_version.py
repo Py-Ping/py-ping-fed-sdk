@@ -30,7 +30,7 @@ class _version():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 

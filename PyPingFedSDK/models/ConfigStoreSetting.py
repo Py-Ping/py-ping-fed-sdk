@@ -16,12 +16,21 @@ class ConfigStoreSetting():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, var_type, listValue=None, mapValue=None, stringValue=None) -> None:
         self.var_id = var_id
         self.listValue = listValue
         self.mapValue = mapValue
         self.stringValue = stringValue
         self.var_type = var_type
+=======
+    def __init__(self, id, type, listValue=None, mapValue=None, stringValue=None):
+        self.id: str = id
+        self.listValue: list = listValue
+        self.mapValue: str = mapValue
+        self.stringValue: str = stringValue
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "var_type"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class ConfigStoreSetting():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "listValue", "mapValue", "stringValue", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

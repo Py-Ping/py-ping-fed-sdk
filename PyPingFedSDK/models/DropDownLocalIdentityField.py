@@ -22,6 +22,7 @@ class DropDownLocalIdentityField():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, var_id, label, options, attributes=None, defaultValue=None, profilePageField=None, registrationPageField=None) -> None:
         self.attributes = attributes
         self.defaultValue = defaultValue
@@ -31,6 +32,17 @@ class DropDownLocalIdentityField():
         self.profilePageField = profilePageField
         self.registrationPageField = registrationPageField
         self.var_type = var_type
+=======
+    def __init__(self, type, id, label, options, attributes=None, defaultValue=None, profilePageField=None, registrationPageField=None):
+        self.attributes: str = attributes
+        self.defaultValue: str = defaultValue
+        self.id: str = id
+        self.label: str = label
+        self.options: list = options
+        self.profilePageField: bool = profilePageField
+        self.registrationPageField: bool = registrationPageField
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "var_id", "label", "options"] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class DropDownLocalIdentityField():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributes", "defaultValue", "var_id", "label", "options", "profilePageField", "registrationPageField", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

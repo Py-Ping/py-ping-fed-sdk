@@ -10,9 +10,15 @@ class SpAdapterUrlMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, adapterRef=None, url=None) -> None:
         self.adapterRef = adapterRef
         self.url = url
+=======
+    def __init__(self, adapterRef=None, url=None):
+        self.adapterRef: str = adapterRef
+        self.url: str = url
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class SpAdapterUrlMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["adapterRef", "url"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

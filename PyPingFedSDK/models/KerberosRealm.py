@@ -20,6 +20,7 @@ class KerberosRealm():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, kerberosRealmName, kerberosUsername, var_id=None, kerberosEncryptedPassword=None, kerberosPassword=None, keyDistributionCenters=None, suppressDomainNameConcatenation=None) -> None:
         self.var_id = var_id
         self.kerberosEncryptedPassword = kerberosEncryptedPassword
@@ -28,6 +29,16 @@ class KerberosRealm():
         self.kerberosUsername = kerberosUsername
         self.keyDistributionCenters = keyDistributionCenters
         self.suppressDomainNameConcatenation = suppressDomainNameConcatenation
+=======
+    def __init__(self, kerberosRealmName, kerberosUsername, id=None, kerberosEncryptedPassword=None, kerberosPassword=None, keyDistributionCenters=None, suppressDomainNameConcatenation=None):
+        self.id: str = id
+        self.kerberosEncryptedPassword: str = kerberosEncryptedPassword
+        self.kerberosPassword: str = kerberosPassword
+        self.kerberosRealmName: str = kerberosRealmName
+        self.kerberosUsername: str = kerberosUsername
+        self.keyDistributionCenters: list = keyDistributionCenters
+        self.suppressDomainNameConcatenation: bool = suppressDomainNameConcatenation
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["kerberosRealmName", "kerberosUsername"] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class KerberosRealm():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "kerberosEncryptedPassword", "kerberosPassword", "kerberosRealmName", "kerberosUsername", "keyDistributionCenters", "suppressDomainNameConcatenation"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

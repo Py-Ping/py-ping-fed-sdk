@@ -8,8 +8,13 @@ class PKCS12ExportSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, password) -> None:
         self.password = password
+=======
+    def __init__(self, password):
+        self.password: str = password
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["password"] if self.__dict__[x] is not None)
@@ -32,4 +37,11 @@ class PKCS12ExportSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["password"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

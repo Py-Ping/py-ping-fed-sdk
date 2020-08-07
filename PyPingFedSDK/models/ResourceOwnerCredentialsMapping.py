@@ -16,12 +16,21 @@ class ResourceOwnerCredentialsMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, passwordValidatorRef=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.var_id = var_id
         self.issuanceCriteria = issuanceCriteria
         self.passwordValidatorRef = passwordValidatorRef
+=======
+    def __init__(self, id, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, passwordValidatorRef=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
+        self.passwordValidatorRef: str = passwordValidatorRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class ResourceOwnerCredentialsMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "var_id", "issuanceCriteria", "passwordValidatorRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

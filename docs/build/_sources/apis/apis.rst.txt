@@ -1,0 +1,570 @@
+PyPingFedSDK APIs
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+  :maxdepth: 2
+  :glob:
+
+Submodules
+----------
+
+_idp_tokenProcessors
+--------------------
+
+.. automodule:: PyPingFedSDK.apis._idp_tokenProcessors
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_protocolMetadata
+-----------------
+
+.. automodule:: PyPingFedSDK.apis._protocolMetadata
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_idp_adapters
+-------------
+
+.. automodule:: PyPingFedSDK.apis._idp_adapters
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_incomingProxySettings
+----------------------
+
+.. automodule:: PyPingFedSDK.apis._incomingProxySettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_serviceAuthentication
+----------------------
+
+.. automodule:: PyPingFedSDK.apis._serviceAuthentication
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_license
+--------
+
+.. automodule:: PyPingFedSDK.apis._license
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_administrativeAccounts
+-----------------------
+
+.. automodule:: PyPingFedSDK.apis._administrativeAccounts
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_sp_tokenGenerators
+-------------------
+
+.. automodule:: PyPingFedSDK.apis._sp_tokenGenerators
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_configStore
+------------
+
+.. automodule:: PyPingFedSDK.apis._configStore
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_certificates_revocation
+------------------------
+
+.. automodule:: PyPingFedSDK.apis._certificates_revocation
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_idp_connectors
+---------------
+
+.. automodule:: PyPingFedSDK.apis._idp_connectors
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_idpToSpAdapterMapping
+----------------------
+
+.. automodule:: PyPingFedSDK.apis._idpToSpAdapterMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_sp_adapters
+------------
+
+.. automodule:: PyPingFedSDK.apis._sp_adapters
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_sp_targetUrlMappings
+---------------------
+
+.. automodule:: PyPingFedSDK.apis._sp_targetUrlMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_idp_defaultUrls
+----------------
+
+.. automodule:: PyPingFedSDK.apis._idp_defaultUrls
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_idp_stsRequestParametersContracts
+----------------------------------
+
+.. automodule:: PyPingFedSDK.apis._idp_stsRequestParametersContracts
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_idp_spConnections
+------------------
+
+.. automodule:: PyPingFedSDK.apis._idp_spConnections
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_sp_defaultUrls
+---------------
+
+.. automodule:: PyPingFedSDK.apis._sp_defaultUrls
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_sp_idpConnections
+------------------
+
+.. automodule:: PyPingFedSDK.apis._sp_idpConnections
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_sp_authenticationPolicyContractMappings
+----------------------------------------
+
+.. automodule:: PyPingFedSDK.apis._sp_authenticationPolicyContractMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_extendedProperties
+-------------------
+
+.. automodule:: PyPingFedSDK.apis._extendedProperties
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_bulk
+-----
+
+.. automodule:: PyPingFedSDK.apis._bulk
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_authenticationPolicies
+-----------------------
+
+.. automodule:: PyPingFedSDK.apis._authenticationPolicies
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_tokenExchange_generator
+------------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_tokenExchange_generator
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_tokenExchange_processor
+------------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_tokenExchange_processor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_authenticationSelectors
+------------------------
+
+.. automodule:: PyPingFedSDK.apis._authenticationSelectors
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_dataStores
+-----------
+
+.. automodule:: PyPingFedSDK.apis._dataStores
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_localIdentity_identityProfiles
+-------------------------------
+
+.. automodule:: PyPingFedSDK.apis._localIdentity_identityProfiles
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_cibaServerPolicy
+-----------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_cibaServerPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_passwordCredentialValidators
+-----------------------------
+
+.. automodule:: PyPingFedSDK.apis._passwordCredentialValidators
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_kerberos_realms
+----------------
+
+.. automodule:: PyPingFedSDK.apis._kerberos_realms
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_authenticationApi
+------------------
+
+.. automodule:: PyPingFedSDK.apis._authenticationApi
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_authenticationPolicyContracts
+------------------------------
+
+.. automodule:: PyPingFedSDK.apis._authenticationPolicyContracts
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_session
+--------
+
+.. automodule:: PyPingFedSDK.apis._session
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_keyPairs
+---------
+
+.. automodule:: PyPingFedSDK.apis._keyPairs
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_outOfBandAuthPlugins
+---------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_outOfBandAuthPlugins
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_keyPairs_signing
+-----------------
+
+.. automodule:: PyPingFedSDK.apis._keyPairs_signing
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_keyPairs_sslServer
+-------------------
+
+.. automodule:: PyPingFedSDK.apis._keyPairs_sslServer
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_keyPairs_sslClient
+-------------------
+
+.. automodule:: PyPingFedSDK.apis._keyPairs_sslClient
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_certificates_ca
+----------------
+
+.. automodule:: PyPingFedSDK.apis._certificates_ca
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_authServerSettings
+-------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_authServerSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_keyPairs_oauthOpenIdConnect
+----------------------------
+
+.. automodule:: PyPingFedSDK.apis._keyPairs_oauthOpenIdConnect
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_accessTokenManagers
+--------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_accessTokenManagers
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_openIdConnect
+--------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_openIdConnect
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_clients
+--------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_clients
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_clientSettings
+---------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_clientSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_clientRegistrationPolicies
+---------------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_clientRegistrationPolicies
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_resourceOwnerCredentialsMappings
+---------------------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_resourceOwnerCredentialsMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_authenticationPolicyContractMappings
+-------------------------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_authenticationPolicyContractMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_idpAdapterMappings
+-------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_idpAdapterMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_accessTokenMappings
+--------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_accessTokenMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_notificationPublishers
+-----------------------
+
+.. automodule:: PyPingFedSDK.apis._notificationPublishers
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_tokenProcessorToTokenGeneratorMappings
+---------------------------------------
+
+.. automodule:: PyPingFedSDK.apis._tokenProcessorToTokenGeneratorMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_oauth_tokenExchange_tokenGeneratorMappings
+-------------------------------------------
+
+.. automodule:: PyPingFedSDK.apis._oauth_tokenExchange_tokenGeneratorMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_serverSettings
+---------------
+
+.. automodule:: PyPingFedSDK.apis._serverSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_redirectValidation
+-------------------
+
+.. automodule:: PyPingFedSDK.apis._redirectValidation
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_cluster
+--------
+
+.. automodule:: PyPingFedSDK.apis._cluster
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_virtualHostNames
+-----------------
+
+.. automodule:: PyPingFedSDK.apis._virtualHostNames
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_configArchive
+--------------
+
+.. automodule:: PyPingFedSDK.apis._configArchive
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_connectionMetadata
+-------------------
+
+.. automodule:: PyPingFedSDK.apis._connectionMetadata
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_metadataUrls
+-------------
+
+.. automodule:: PyPingFedSDK.apis._metadataUrls
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+_version
+--------
+
+.. automodule:: PyPingFedSDK.apis._version
+    :members:
+    :undoc-members:
+    :inherited-members:
+

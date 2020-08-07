@@ -18,6 +18,7 @@ class CustomDataStoreDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributeContract=None, className=None, configDescriptor=None, var_id=None, name=None, supportsExtendedContract=None) -> None:
         self.attributeContract = attributeContract
         self.className = className
@@ -25,6 +26,15 @@ class CustomDataStoreDescriptor():
         self.var_id = var_id
         self.name = name
         self.supportsExtendedContract = supportsExtendedContract
+=======
+    def __init__(self, attributeContract=None, className=None, configDescriptor=None, id=None, name=None, supportsExtendedContract=None):
+        self.attributeContract: list = attributeContract
+        self.className: str = className
+        self.configDescriptor: str = configDescriptor
+        self.id: str = id
+        self.name: str = name
+        self.supportsExtendedContract: bool = supportsExtendedContract
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class CustomDataStoreDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContract", "className", "configDescriptor", "var_id", "name", "supportsExtendedContract"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

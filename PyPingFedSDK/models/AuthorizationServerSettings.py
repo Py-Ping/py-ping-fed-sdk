@@ -72,6 +72,7 @@ class AuthorizationServerSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, defaultScopeDescription, authorizationCodeTimeout, authorizationCodeEntropy, refreshTokenLength, refreshRollingInterval, registeredAuthorizationPath, pendingAuthorizationTimeout, devicePollingInterval, bypassActivationCodeConfirmation, adminWebServicePcvRef=None, allowUnidentifiedClientExtensionGrants=None, allowUnidentifiedClientROCreds=None, allowedOrigins=None, approvedScopesAttribute=None, atmIdForOAuthGrantManagement=None, bypassAuthorizationForApprovedGrants=None, exclusiveScopeGroups=None, exclusiveScopes=None, persistentGrantContract=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantLifetime=None, persistentGrantLifetimeUnit=None, persistentGrantReuseGrantTypes=None, rollRefreshTokenValues=None, scopeForOAuthGrantManagement=None, scopeGroups=None, scopes=None, tokenEndpointBaseUrl=None, trackUserSessionsForLogout=None, userAuthorizationConsentAdapter=None, userAuthorizationConsentPageSetting=None, userAuthorizationUrl=None) -> None:
         self.adminWebServicePcvRef = adminWebServicePcvRef
         self.allowUnidentifiedClientExtensionGrants = allowUnidentifiedClientExtensionGrants
@@ -106,6 +107,42 @@ class AuthorizationServerSettings():
         self.userAuthorizationConsentAdapter = userAuthorizationConsentAdapter
         self.userAuthorizationConsentPageSetting = userAuthorizationConsentPageSetting
         self.userAuthorizationUrl = userAuthorizationUrl
+=======
+    def __init__(self, defaultScopeDescription, authorizationCodeTimeout, authorizationCodeEntropy, refreshTokenLength, refreshRollingInterval, registeredAuthorizationPath, pendingAuthorizationTimeout, devicePollingInterval, bypassActivationCodeConfirmation, adminWebServicePcvRef=None, allowUnidentifiedClientExtensionGrants=None, allowUnidentifiedClientROCreds=None, allowedOrigins=None, approvedScopesAttribute=None, atmIdForOAuthGrantManagement=None, bypassAuthorizationForApprovedGrants=None, exclusiveScopeGroups=None, exclusiveScopes=None, persistentGrantContract=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantLifetime=None, persistentGrantLifetimeUnit=None, persistentGrantReuseGrantTypes=None, rollRefreshTokenValues=None, scopeForOAuthGrantManagement=None, scopeGroups=None, scopes=None, tokenEndpointBaseUrl=None, trackUserSessionsForLogout=None, userAuthorizationConsentAdapter=None, userAuthorizationConsentPageSetting=None, userAuthorizationUrl=None):
+        self.adminWebServicePcvRef: str = adminWebServicePcvRef
+        self.allowUnidentifiedClientExtensionGrants: bool = allowUnidentifiedClientExtensionGrants
+        self.allowUnidentifiedClientROCreds: bool = allowUnidentifiedClientROCreds
+        self.allowedOrigins: list = allowedOrigins
+        self.approvedScopesAttribute: str = approvedScopesAttribute
+        self.atmIdForOAuthGrantManagement: str = atmIdForOAuthGrantManagement
+        self.authorizationCodeEntropy: str = authorizationCodeEntropy
+        self.authorizationCodeTimeout: str = authorizationCodeTimeout
+        self.bypassActivationCodeConfirmation: bool = bypassActivationCodeConfirmation
+        self.bypassAuthorizationForApprovedGrants: bool = bypassAuthorizationForApprovedGrants
+        self.defaultScopeDescription: str = defaultScopeDescription
+        self.devicePollingInterval: str = devicePollingInterval
+        self.exclusiveScopeGroups: list = exclusiveScopeGroups
+        self.exclusiveScopes: list = exclusiveScopes
+        self.pendingAuthorizationTimeout: str = pendingAuthorizationTimeout
+        self.persistentGrantContract: str = persistentGrantContract
+        self.persistentGrantIdleTimeout: str = persistentGrantIdleTimeout
+        self.persistentGrantIdleTimeoutTimeUnit: str = persistentGrantIdleTimeoutTimeUnit
+        self.persistentGrantLifetime: str = persistentGrantLifetime
+        self.persistentGrantLifetimeUnit: str = persistentGrantLifetimeUnit
+        self.persistentGrantReuseGrantTypes: list = persistentGrantReuseGrantTypes
+        self.refreshRollingInterval: str = refreshRollingInterval
+        self.refreshTokenLength: str = refreshTokenLength
+        self.registeredAuthorizationPath: str = registeredAuthorizationPath
+        self.rollRefreshTokenValues: bool = rollRefreshTokenValues
+        self.scopeForOAuthGrantManagement: str = scopeForOAuthGrantManagement
+        self.scopeGroups: list = scopeGroups
+        self.scopes: list = scopes
+        self.tokenEndpointBaseUrl: str = tokenEndpointBaseUrl
+        self.trackUserSessionsForLogout: bool = trackUserSessionsForLogout
+        self.userAuthorizationConsentAdapter: str = userAuthorizationConsentAdapter
+        self.userAuthorizationConsentPageSetting: str = userAuthorizationConsentPageSetting
+        self.userAuthorizationUrl: str = userAuthorizationUrl
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["defaultScopeDescription", "authorizationCodeTimeout", "authorizationCodeEntropy", "refreshTokenLength", "refreshRollingInterval", "registeredAuthorizationPath", "pendingAuthorizationTimeout", "devicePollingInterval", "bypassActivationCodeConfirmation"] if self.__dict__[x] is not None)
@@ -128,4 +165,11 @@ class AuthorizationServerSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["adminWebServicePcvRef", "allowUnidentifiedClientExtensionGrants", "allowUnidentifiedClientROCreds", "allowedOrigins", "approvedScopesAttribute", "atmIdForOAuthGrantManagement", "authorizationCodeEntropy", "authorizationCodeTimeout", "bypassActivationCodeConfirmation", "bypassAuthorizationForApprovedGrants", "defaultScopeDescription", "devicePollingInterval", "exclusiveScopeGroups", "exclusiveScopes", "pendingAuthorizationTimeout", "persistentGrantContract", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantLifetime", "persistentGrantLifetimeUnit", "persistentGrantReuseGrantTypes", "refreshRollingInterval", "refreshTokenLength", "registeredAuthorizationPath", "rollRefreshTokenValues", "scopeForOAuthGrantManagement", "scopeGroups", "scopes", "tokenEndpointBaseUrl", "trackUserSessionsForLogout", "userAuthorizationConsentAdapter", "userAuthorizationConsentPageSetting", "userAuthorizationUrl"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

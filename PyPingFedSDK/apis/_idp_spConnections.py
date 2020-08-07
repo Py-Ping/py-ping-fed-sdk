@@ -30,15 +30,15 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
-    def createConnection(self, body, X-BypassExternalValidation):
+    def createConnection(self, body, XBypassExternalValidation):
         """ Create a new SP connection.
         """
 
@@ -60,15 +60,15 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Connection created.')
+                self.logger.info("Connection created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getConnection(self, var_id):
         """ Find SP connection by ID.
@@ -86,15 +86,19 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
+<<<<<<< HEAD
     def updateConnection(self, var_id, body, X-BypassExternalValidation):
+=======
+    def updateConnection(self, id, body, XBypassExternalValidation):
+>>>>>>> Baseline Sphinx generation
         """ Update an SP connection.
         """
 
@@ -117,17 +121,17 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Connection updated.')
+                self.logger.info("Connection updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteConnection(self, var_id):
         """ Delete an SP connection.
@@ -145,15 +149,15 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Connection deleted.')
+                self.logger.info("Connection deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 
     def getSigningSettings(self, var_id):
         """ Get the SP connection's signature settings.
@@ -171,13 +175,13 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateSigningSettings(self, var_id, body):
         """ Update the SP connection's signature settings.
@@ -201,17 +205,17 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Connection updated.')
+                self.logger.info("Connection updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def addConnectionCert(self, var_id, body):
         """ Add a new SP connection certificate.
@@ -235,17 +239,17 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Connection Certificate added.')
+                self.logger.info("Connection Certificate added.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getConnectionCerts(self, var_id):
         """ Get the SP connection's certificates.
@@ -263,13 +267,13 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateConnectionCerts(self, var_id, body):
         """ Update the SP connection's certificates.
@@ -293,17 +297,17 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Connection updated.')
+                self.logger.info("Connection updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getDecryptionKeys(self, var_id):
         """ Get the decryption keys of an SP connection.
@@ -321,13 +325,13 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateDecryptionKeys(self, var_id, body):
         """ Updating the SP connection's decryption keys.
@@ -351,15 +355,15 @@ class _idp_spConnections():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Connection updated.')
+                self.logger.info("Connection updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

@@ -12,10 +12,17 @@ class SloServiceEndpoint():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, binding, url, responseUrl=None) -> None:
         self.binding = binding
         self.responseUrl = responseUrl
         self.url = url
+=======
+    def __init__(self, binding, url, responseUrl=None):
+        self.binding: str = binding
+        self.responseUrl: str = responseUrl
+        self.url: str = url
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["binding", "url"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class SloServiceEndpoint():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["binding", "responseUrl", "url"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

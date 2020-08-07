@@ -14,11 +14,19 @@ class ConnectionGroupLicenseView():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, connectionCount=None, endDate=None, name=None, startDate=None) -> None:
         self.connectionCount = connectionCount
         self.endDate = endDate
         self.name = name
         self.startDate = startDate
+=======
+    def __init__(self, connectionCount=None, endDate=None, name=None, startDate=None):
+        self.connectionCount: str = connectionCount
+        self.endDate: str = endDate
+        self.name: str = name
+        self.startDate: str = startDate
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class ConnectionGroupLicenseView():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionCount", "endDate", "name", "startDate"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

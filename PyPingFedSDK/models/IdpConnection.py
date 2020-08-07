@@ -48,6 +48,7 @@ class IdpConnection():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, errorPageMsgId=None, extendedProperties=None, var_id=None, idpBrowserSso=None, idpOAuthGrantAttributeMapping=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, oidcClientCredentials=None, var_type=None, virtualEntityIds=None, wsTrust=None) -> None:
         self.active = active
         self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
@@ -70,6 +71,30 @@ class IdpConnection():
         self.var_type = var_type
         self.virtualEntityIds = virtualEntityIds
         self.wsTrust = wsTrust
+=======
+    def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, errorPageMsgId=None, extendedProperties=None, id=None, idpBrowserSso=None, idpOAuthGrantAttributeMapping=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, oidcClientCredentials=None, type=None, virtualEntityIds=None, wsTrust=None):
+        self.active: bool = active
+        self.additionalAllowedEntitiesConfiguration: str = additionalAllowedEntitiesConfiguration
+        self.attributeQuery: str = attributeQuery
+        self.baseUrl: str = baseUrl
+        self.contactInfo: str = contactInfo
+        self.credentials: str = credentials
+        self.defaultVirtualEntityId: str = defaultVirtualEntityId
+        self.entityId: str = entityId
+        self.errorPageMsgId: str = errorPageMsgId
+        self.extendedProperties: str = extendedProperties
+        self.id: str = id
+        self.idpBrowserSso: str = idpBrowserSso
+        self.idpOAuthGrantAttributeMapping: str = idpOAuthGrantAttributeMapping
+        self.licenseConnectionGroup: str = licenseConnectionGroup
+        self.loggingMode: str = loggingMode
+        self.metadataReloadSettings: str = metadataReloadSettings
+        self.name: str = name
+        self.oidcClientCredentials: str = oidcClientCredentials
+        self.type: str = type
+        self.virtualEntityIds: list = virtualEntityIds
+        self.wsTrust: str = wsTrust
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["entityId", "name"] if self.__dict__[x] is not None)
@@ -92,4 +117,11 @@ class IdpConnection():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "additionalAllowedEntitiesConfiguration", "attributeQuery", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "errorPageMsgId", "extendedProperties", "var_id", "idpBrowserSso", "idpOAuthGrantAttributeMapping", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "oidcClientCredentials", "var_type", "virtualEntityIds", "wsTrust"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

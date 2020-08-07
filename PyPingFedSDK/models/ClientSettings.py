@@ -10,9 +10,15 @@ class ClientSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, clientMetadata=None, dynamicClientRegistration=None) -> None:
         self.clientMetadata = clientMetadata
         self.dynamicClientRegistration = dynamicClientRegistration
+=======
+    def __init__(self, clientMetadata=None, dynamicClientRegistration=None):
+        self.clientMetadata: list = clientMetadata
+        self.dynamicClientRegistration: str = dynamicClientRegistration
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class ClientSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["clientMetadata", "dynamicClientRegistration"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

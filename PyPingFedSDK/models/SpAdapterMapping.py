@@ -20,6 +20,7 @@ class SpAdapterMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
         self.adapterOverrideSettings = adapterOverrideSettings
         self.attributeContractFulfillment = attributeContractFulfillment
@@ -28,6 +29,16 @@ class SpAdapterMapping():
         self.restrictVirtualEntityIds = restrictVirtualEntityIds
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
         self.spAdapterRef = spAdapterRef
+=======
+    def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
+        self.adapterOverrideSettings: str = adapterOverrideSettings
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
+        self.spAdapterRef: str = spAdapterRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["spAdapterRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class SpAdapterMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["adapterOverrideSettings", "attributeContractFulfillment", "attributeSources", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds", "spAdapterRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

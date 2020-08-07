@@ -20,6 +20,7 @@ class ClientAuth():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, clientCertIssuerDn=None, clientCertSubjectDn=None, encryptedSecret=None, enforceReplayPrevention=None, secret=None, tokenEndpointAuthSigningAlgorithm=None, var_type=None) -> None:
         self.clientCertIssuerDn = clientCertIssuerDn
         self.clientCertSubjectDn = clientCertSubjectDn
@@ -28,6 +29,16 @@ class ClientAuth():
         self.secret = secret
         self.tokenEndpointAuthSigningAlgorithm = tokenEndpointAuthSigningAlgorithm
         self.var_type = var_type
+=======
+    def __init__(self, clientCertIssuerDn=None, clientCertSubjectDn=None, encryptedSecret=None, enforceReplayPrevention=None, secret=None, tokenEndpointAuthSigningAlgorithm=None, type=None):
+        self.clientCertIssuerDn: str = clientCertIssuerDn
+        self.clientCertSubjectDn: str = clientCertSubjectDn
+        self.encryptedSecret: str = encryptedSecret
+        self.enforceReplayPrevention: bool = enforceReplayPrevention
+        self.secret: str = secret
+        self.tokenEndpointAuthSigningAlgorithm: str = tokenEndpointAuthSigningAlgorithm
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class ClientAuth():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["clientCertIssuerDn", "clientCertSubjectDn", "encryptedSecret", "enforceReplayPrevention", "secret", "tokenEndpointAuthSigningAlgorithm", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -16,12 +16,21 @@ class PKCS12File():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, fileData, password, encryptedPassword, cryptoProvider=None, var_id=None) -> None:
         self.cryptoProvider = cryptoProvider
         self.encryptedPassword = encryptedPassword
         self.fileData = fileData
         self.var_id = var_id
         self.password = password
+=======
+    def __init__(self, fileData, password, encryptedPassword, cryptoProvider=None, id=None):
+        self.cryptoProvider: str = cryptoProvider
+        self.encryptedPassword: str = encryptedPassword
+        self.fileData: str = fileData
+        self.id: str = id
+        self.password: str = password
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["fileData", "password", "encryptedPassword"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class PKCS12File():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["cryptoProvider", "encryptedPassword", "fileData", "var_id", "password"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

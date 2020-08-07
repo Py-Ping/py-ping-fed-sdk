@@ -30,11 +30,11 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getIdpAdapterDescriptorsById(self, var_id):
         """ Get the description of an IdP adapter plugin by ID.
@@ -52,13 +52,13 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getIdpAdapters(self, page, numberPerPage, filter):
         """ Get the list of configured IdP adapter instances.
@@ -76,15 +76,15 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
-    def createIdpAdapter(self, body, X-BypassExternalValidation):
+    def createIdpAdapter(self, body, XBypassExternalValidation):
         """ Create a new IdP adapter instance.
         """
 
@@ -106,15 +106,15 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Adapter created.')
+                self.logger.info("Adapter created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getIdpAdapter(self, var_id):
         """ Find an IdP adapter instance by ID.
@@ -132,15 +132,19 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
+<<<<<<< HEAD
     def updateIdpAdapter(self, var_id, body, X-BypassExternalValidation):
+=======
+    def updateIdpAdapter(self, id, body, XBypassExternalValidation):
+>>>>>>> Baseline Sphinx generation
         """ Update an IdP adapter instance.
         """
 
@@ -163,17 +167,17 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Adapter updated.')
+                self.logger.info("Adapter updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteIdpAdapter(self, var_id):
         """ Delete an IdP adapter instance.
@@ -191,15 +195,15 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Adapter deleted.')
+                self.logger.info("Adapter deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 
     def getActions(self, var_id):
         """ List the actions for an IdP adapter instance.
@@ -217,13 +221,13 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getAction(self, var_id, actionId):
         """ Find an IdP adapter instance's action by ID.
@@ -241,13 +245,13 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def invokeAction(self, var_id, actionId):
         """ Invokes an action for an IdP adapter instance.
@@ -271,11 +275,11 @@ class _idp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Action invoked on adapter.')
+                self.logger.info("Action invoked on adapter.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its IdP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its IdP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

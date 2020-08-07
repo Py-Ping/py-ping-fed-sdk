@@ -1,0 +1,19 @@
+PyPingFedSDK models
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+
+
+Submodules
+----------
+
+pypingfedsdk.models.AccessTokenAttribute module
+---------------------------
+
+.. automodule:: pypingfedsdk.models.AccessTokenAttribute
+    :members:
+    :undoc-members:
+    :show-inheritance:

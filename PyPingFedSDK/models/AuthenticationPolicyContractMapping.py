@@ -18,6 +18,7 @@ class AuthenticationPolicyContractMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictVirtualServerIds=None, restrictedVirtualServerIds=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
@@ -25,6 +26,15 @@ class AuthenticationPolicyContractMapping():
         self.issuanceCriteria = issuanceCriteria
         self.restrictVirtualServerIds = restrictVirtualServerIds
         self.restrictedVirtualServerIds = restrictedVirtualServerIds
+=======
+    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictVirtualServerIds=None, restrictedVirtualServerIds=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualServerIds: bool = restrictVirtualServerIds
+        self.restrictedVirtualServerIds: list = restrictedVirtualServerIds
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["authenticationPolicyContractRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class AuthenticationPolicyContractMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "issuanceCriteria", "restrictVirtualServerIds", "restrictedVirtualServerIds"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

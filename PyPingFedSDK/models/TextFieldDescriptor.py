@@ -24,6 +24,7 @@ class TextFieldDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, advanced=None, defaultValue=None, description=None, encrypted=None, label=None, name=None, required=None, size=None, var_type=None) -> None:
         self.advanced = advanced
         self.defaultValue = defaultValue
@@ -34,6 +35,18 @@ class TextFieldDescriptor():
         self.required = required
         self.size = size
         self.var_type = var_type
+=======
+    def __init__(self, advanced=None, defaultValue=None, description=None, encrypted=None, label=None, name=None, required=None, size=None, type=None):
+        self.advanced: bool = advanced
+        self.defaultValue: str = defaultValue
+        self.description: str = description
+        self.encrypted: bool = encrypted
+        self.label: str = label
+        self.name: str = name
+        self.required: bool = required
+        self.size: str = size
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -56,4 +69,11 @@ class TextFieldDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["advanced", "defaultValue", "description", "encrypted", "label", "name", "required", "size", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

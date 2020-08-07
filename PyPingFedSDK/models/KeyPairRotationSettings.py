@@ -19,6 +19,7 @@ class KeyPairRotationSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, creationBufferDays, activationBufferDays, var_id=None, keyAlgorithm=None, keySize=None, signatureAlgorithm=None, validDays=None) -> None:
         self.activationBufferDays = activationBufferDays
         self.creationBufferDays = creationBufferDays
@@ -27,6 +28,16 @@ class KeyPairRotationSettings():
         self.keySize = keySize
         self.signatureAlgorithm = signatureAlgorithm
         self.validDays = validDays
+=======
+    def __init__(self, creationBufferDays, activationBufferDays, id=None, keyAlgorithm=None, keySize=None, signatureAlgorithm=None, validDays=None):
+        self.activationBufferDays: str = activationBufferDays
+        self.creationBufferDays: str = creationBufferDays
+        self.id: str = id
+        self.keyAlgorithm: str = keyAlgorithm
+        self.keySize: str = keySize
+        self.signatureAlgorithm: str = signatureAlgorithm
+        self.validDays: str = validDays
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["creationBufferDays", "activationBufferDays"] if self.__dict__[x] is not None)
@@ -49,4 +60,11 @@ class KeyPairRotationSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["activationBufferDays", "creationBufferDays", "var_id", "keyAlgorithm", "keySize", "signatureAlgorithm", "validDays"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -12,10 +12,17 @@ class JdbcTagConfig():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, connectionUrl, defaultSource=None, tags=None) -> None:
         self.connectionUrl = connectionUrl
         self.defaultSource = defaultSource
         self.tags = tags
+=======
+    def __init__(self, connectionUrl, defaultSource=None, tags=None):
+        self.connectionUrl: str = connectionUrl
+        self.defaultSource: bool = defaultSource
+        self.tags: str = tags
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["connectionUrl"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class JdbcTagConfig():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionUrl", "defaultSource", "tags"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

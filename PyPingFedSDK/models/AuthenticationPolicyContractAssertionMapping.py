@@ -20,6 +20,7 @@ class AuthenticationPolicyContractAssertionMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
         self.abortSsoTransactionAsFailSafe = abortSsoTransactionAsFailSafe
         self.attributeContractFulfillment = attributeContractFulfillment
@@ -28,6 +29,16 @@ class AuthenticationPolicyContractAssertionMapping():
         self.issuanceCriteria = issuanceCriteria
         self.restrictVirtualEntityIds = restrictVirtualEntityIds
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
+=======
+    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
+        self.abortSsoTransactionAsFailSafe: bool = abortSsoTransactionAsFailSafe
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["authenticationPolicyContractRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class AuthenticationPolicyContractAssertionMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["abortSsoTransactionAsFailSafe", "attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

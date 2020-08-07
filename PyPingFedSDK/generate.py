@@ -27,6 +27,15 @@ class Generate():
                 folder='models'
             )
 
+        template = self.template('models_doc', name='models_doc', details=self.fetch_data.get('models'))
+
+        self.write_template(
+            content=template,
+            file_name='models',
+            file_type='rst',
+            folder='../docs/source/models'
+        )
+
         for api, details in self.fetch_data.get('apis').items():
             template = self.get_template('apis', name=api, details=details)
 
@@ -37,7 +46,18 @@ class Generate():
                 folder='apis'
             )
 
-    def get_template(self, template, name, details, template_directory='templates'):
+        template = self.template('apis_doc', name='apis_doc', details=self.fetch_data.get('apis'))
+
+        self.write_template(
+            content=template,
+            file_name='apis',
+            file_type='rst',
+            folder='../docs/source/apis'
+        )
+
+
+
+    def template(self, template, name, details, template_directory='templates'):
         currentdirectory = os.path.dirname(__file__)
         templatedirectory = os.path.join(currentdirectory, template_directory)
         jinjaenvironment = Environment(

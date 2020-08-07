@@ -24,6 +24,7 @@ class ClientOIDCPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, grantAccessSessionRevocationApi=None, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, logoutUris=None, pairwiseIdentifierUserType=None, pingAccessLogoutCapable=None, policyGroup=None, sectorIdentifierUri=None) -> None:
         self.grantAccessSessionRevocationApi = grantAccessSessionRevocationApi
         self.idTokenContentEncryptionAlgorithm = idTokenContentEncryptionAlgorithm
@@ -34,6 +35,18 @@ class ClientOIDCPolicy():
         self.pingAccessLogoutCapable = pingAccessLogoutCapable
         self.policyGroup = policyGroup
         self.sectorIdentifierUri = sectorIdentifierUri
+=======
+    def __init__(self, grantAccessSessionRevocationApi=None, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, logoutUris=None, pairwiseIdentifierUserType=None, pingAccessLogoutCapable=None, policyGroup=None, sectorIdentifierUri=None):
+        self.grantAccessSessionRevocationApi: bool = grantAccessSessionRevocationApi
+        self.idTokenContentEncryptionAlgorithm: str = idTokenContentEncryptionAlgorithm
+        self.idTokenEncryptionAlgorithm: str = idTokenEncryptionAlgorithm
+        self.idTokenSigningAlgorithm: str = idTokenSigningAlgorithm
+        self.logoutUris: list = logoutUris
+        self.pairwiseIdentifierUserType: bool = pairwiseIdentifierUserType
+        self.pingAccessLogoutCapable: bool = pingAccessLogoutCapable
+        self.policyGroup: str = policyGroup
+        self.sectorIdentifierUri: str = sectorIdentifierUri
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -56,4 +69,11 @@ class ClientOIDCPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["grantAccessSessionRevocationApi", "idTokenContentEncryptionAlgorithm", "idTokenEncryptionAlgorithm", "idTokenSigningAlgorithm", "logoutUris", "pairwiseIdentifierUserType", "pingAccessLogoutCapable", "policyGroup", "sectorIdentifierUri"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

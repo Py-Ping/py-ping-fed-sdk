@@ -16,12 +16,21 @@ class ActionDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, description=None, download=None, downloadContentType=None, downloadFileName=None, name=None) -> None:
         self.description = description
         self.download = download
         self.downloadContentType = downloadContentType
         self.downloadFileName = downloadFileName
         self.name = name
+=======
+    def __init__(self, description=None, download=None, downloadContentType=None, downloadFileName=None, name=None):
+        self.description: str = description
+        self.download: bool = download
+        self.downloadContentType: str = downloadContentType
+        self.downloadFileName: str = downloadFileName
+        self.name: str = name
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class ActionDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "download", "downloadContentType", "downloadFileName", "name"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

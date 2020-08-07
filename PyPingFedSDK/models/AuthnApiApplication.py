@@ -16,12 +16,21 @@ class AuthnApiApplication():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, name, url, additionalAllowedOrigins=None, description=None) -> None:
         self.additionalAllowedOrigins = additionalAllowedOrigins
         self.description = description
         self.var_id = var_id
         self.name = name
         self.url = url
+=======
+    def __init__(self, id, name, url, additionalAllowedOrigins=None, description=None):
+        self.additionalAllowedOrigins: list = additionalAllowedOrigins
+        self.description: str = description
+        self.id: str = id
+        self.name: str = name
+        self.url: str = url
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "url"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class AuthnApiApplication():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["additionalAllowedOrigins", "description", "var_id", "name", "url"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

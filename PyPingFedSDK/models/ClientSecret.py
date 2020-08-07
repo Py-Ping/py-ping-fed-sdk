@@ -10,9 +10,15 @@ class ClientSecret():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, encryptedSecret=None, secret=None) -> None:
         self.encryptedSecret = encryptedSecret
         self.secret = secret
+=======
+    def __init__(self, encryptedSecret=None, secret=None):
+        self.encryptedSecret: str = encryptedSecret
+        self.secret: str = secret
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class ClientSecret():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedSecret", "secret"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

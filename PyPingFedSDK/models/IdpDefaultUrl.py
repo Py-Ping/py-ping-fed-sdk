@@ -12,10 +12,17 @@ class IdpDefaultUrl():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, idpErrorMsg, confirmIdpSlo=None, idpSloSuccessUrl=None) -> None:
         self.confirmIdpSlo = confirmIdpSlo
         self.idpErrorMsg = idpErrorMsg
         self.idpSloSuccessUrl = idpSloSuccessUrl
+=======
+    def __init__(self, idpErrorMsg, confirmIdpSlo=None, idpSloSuccessUrl=None):
+        self.confirmIdpSlo: bool = confirmIdpSlo
+        self.idpErrorMsg: str = idpErrorMsg
+        self.idpSloSuccessUrl: str = idpSloSuccessUrl
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["idpErrorMsg"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class IdpDefaultUrl():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["confirmIdpSlo", "idpErrorMsg", "idpSloSuccessUrl"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

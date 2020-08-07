@@ -10,9 +10,15 @@ class AttributeQueryNameMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, localName, remoteName) -> None:
         self.localName = localName
         self.remoteName = remoteName
+=======
+    def __init__(self, localName, remoteName):
+        self.localName: str = localName
+        self.remoteName: str = remoteName
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["localName", "remoteName"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class AttributeQueryNameMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["localName", "remoteName"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

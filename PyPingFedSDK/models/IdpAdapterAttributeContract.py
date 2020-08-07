@@ -14,11 +14,19 @@ class IdpAdapterAttributeContract():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, coreAttributes, extendedAttributes=None, inherited=None, maskOgnlValues=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
         self.inherited = inherited
         self.maskOgnlValues = maskOgnlValues
+=======
+    def __init__(self, coreAttributes, extendedAttributes=None, inherited=None, maskOgnlValues=None):
+        self.coreAttributes: list = coreAttributes
+        self.extendedAttributes: list = extendedAttributes
+        self.inherited: bool = inherited
+        self.maskOgnlValues: bool = maskOgnlValues
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["coreAttributes"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class IdpAdapterAttributeContract():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes", "inherited", "maskOgnlValues"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -36,11 +36,11 @@ class _configArchive():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Configuration Archive imported.')
+                self.logger.info("Configuration Archive imported.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def exportConfigArchive(self):
         """ Export a configuration archive.
@@ -50,7 +50,7 @@ class _configArchive():
             response = requests.get(
 
                 url=self._build_uri("/configArchive/export"),
-                headers={'Accept': '['application/json', 'application/zip']'}
+                headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
@@ -58,7 +58,7 @@ class _configArchive():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 

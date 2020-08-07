@@ -14,11 +14,19 @@ class IdpAdapterContractMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributeContractFulfillment, attributeSources=None, inherited=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.inherited = inherited
         self.issuanceCriteria = issuanceCriteria
+=======
+    def __init__(self, attributeContractFulfillment, attributeSources=None, inherited=None, issuanceCriteria=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.inherited: bool = inherited
+        self.issuanceCriteria: str = issuanceCriteria
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class IdpAdapterContractMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "inherited", "issuanceCriteria"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

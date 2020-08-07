@@ -30,13 +30,13 @@ class _oauth_clients():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def createClient(self, body):
         """ Create a new OAuth client.
@@ -59,15 +59,15 @@ class _oauth_clients():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Client created.')
+                self.logger.info("Client created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.<br>PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.<br>PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getClient(self, var_id):
         """ Find the OAuth client by ID.
@@ -85,13 +85,13 @@ class _oauth_clients():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateClient(self, var_id, body):
         """ Updates the OAuth client.
@@ -115,17 +115,17 @@ class _oauth_clients():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Client updated.')
+                self.logger.info("Client updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.<br>PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.<br>PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteClient(self, var_id):
         """ Delete an OAuth client.
@@ -143,13 +143,13 @@ class _oauth_clients():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Client deleted.')
+                self.logger.info("Client deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getClientSecret(self, var_id):
         """ Get the client secret of an existing OAuth client.
@@ -167,17 +167,17 @@ class _oauth_clients():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def updateClientSecret(self, var_id, body):
         """ Update the client secret of an existing OAuth client.
@@ -201,15 +201,15 @@ class _oauth_clients():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Client updated.')
+                self.logger.info("Client updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

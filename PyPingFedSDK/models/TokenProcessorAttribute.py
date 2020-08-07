@@ -10,9 +10,15 @@ class TokenProcessorAttribute():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, name, masked=None) -> None:
         self.masked = masked
         self.name = name
+=======
+    def __init__(self, name, masked=None):
+        self.masked: bool = masked
+        self.name: str = name
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class TokenProcessorAttribute():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["masked", "name"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

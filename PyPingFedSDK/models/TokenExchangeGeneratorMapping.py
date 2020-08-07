@@ -12,10 +12,17 @@ class TokenExchangeGeneratorMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, requestedTokenType, tokenGenerator, defaultMapping=None) -> None:
         self.defaultMapping = defaultMapping
         self.requestedTokenType = requestedTokenType
         self.tokenGenerator = tokenGenerator
+=======
+    def __init__(self, requestedTokenType, tokenGenerator, defaultMapping=None):
+        self.defaultMapping: bool = defaultMapping
+        self.requestedTokenType: str = requestedTokenType
+        self.tokenGenerator: str = tokenGenerator
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["requestedTokenType", "tokenGenerator"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class TokenExchangeGeneratorMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultMapping", "requestedTokenType", "tokenGenerator"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

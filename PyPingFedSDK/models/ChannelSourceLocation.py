@@ -12,10 +12,17 @@ class ChannelSourceLocation():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, filter=None, groupDN=None, nestedSearch=None) -> None:
         self.filter = filter
         self.groupDN = groupDN
         self.nestedSearch = nestedSearch
+=======
+    def __init__(self, filter=None, groupDN=None, nestedSearch=None):
+        self.filter: str = filter
+        self.groupDN: str = groupDN
+        self.nestedSearch: bool = nestedSearch
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class ChannelSourceLocation():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["filter", "groupDN", "nestedSearch"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

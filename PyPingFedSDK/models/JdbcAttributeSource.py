@@ -22,6 +22,7 @@ class JdbcAttributeSource():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, dataStoreRef, table, filter, attributeContractFulfillment=None, description=None, var_id=None, schema=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.dataStoreRef = dataStoreRef
@@ -31,6 +32,17 @@ class JdbcAttributeSource():
         self.schema = schema
         self.table = table
         self.var_type = var_type
+=======
+    def __init__(self, type, dataStoreRef, table, filter, attributeContractFulfillment=None, description=None, id=None, schema=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.dataStoreRef: str = dataStoreRef
+        self.description: str = description
+        self.filter: str = filter
+        self.id: str = id
+        self.schema: str = schema
+        self.table: str = table
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "dataStoreRef", "table", "filter"] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class JdbcAttributeSource():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "dataStoreRef", "description", "filter", "var_id", "schema", "table", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

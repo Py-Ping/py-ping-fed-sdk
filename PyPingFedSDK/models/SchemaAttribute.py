@@ -14,11 +14,19 @@ class SchemaAttribute():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, multiValued=None, name=None, subAttributes=None, types=None) -> None:
         self.multiValued = multiValued
         self.name = name
         self.subAttributes = subAttributes
         self.types = types
+=======
+    def __init__(self, multiValued=None, name=None, subAttributes=None, types=None):
+        self.multiValued: bool = multiValued
+        self.name: str = name
+        self.subAttributes: list = subAttributes
+        self.types: list = types
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class SchemaAttribute():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["multiValued", "name", "subAttributes", "types"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -30,9 +30,9 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def getCustomDataStoreDescriptor(self, var_id):
         """ Get the description of a custom data store plugin by ID.
@@ -50,11 +50,11 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getDataStores(self):
         """ Get list of data stores.
@@ -72,11 +72,11 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
-    def createDataStore(self, body, X-BypassExternalValidation):
+    def createDataStore(self, body, XBypassExternalValidation):
         """ Create a new data store.
         """
 
@@ -98,13 +98,13 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Data store created.')
+                self.logger.info("Data store created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getDataStore(self, var_id):
         """ Find data store by ID.
@@ -122,13 +122,17 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
+<<<<<<< HEAD
     def updateDataStore(self, var_id, body, X-BypassExternalValidation):
+=======
+    def updateDataStore(self, id, body, XBypassExternalValidation):
+>>>>>>> Baseline Sphinx generation
         """ Update a data store.
         """
 
@@ -151,15 +155,15 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Data store updated.')
+                self.logger.info("Data store updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteDataStore(self, var_id):
         """ Delete a data store.
@@ -177,13 +181,13 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Data store deleted.')
+                self.logger.info("Data store deleted.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 
     def getActions(self, var_id):
         """ List the actions for a data store instance.
@@ -201,11 +205,11 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getAction(self, var_id, actionId):
         """ Find a data store instance's action by ID.
@@ -223,11 +227,11 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def invokeAction(self, var_id, actionId):
         """ Invokes an action for a data source instance.
@@ -251,9 +255,9 @@ class _dataStores():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Action invoked on Data store.')
+                self.logger.info("Action invoked on Data store.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

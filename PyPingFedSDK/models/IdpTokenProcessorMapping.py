@@ -16,12 +16,21 @@ class IdpTokenProcessorMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, idpTokenProcessorRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictedVirtualEntityIds=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.idpTokenProcessorRef = idpTokenProcessorRef
         self.issuanceCriteria = issuanceCriteria
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
+=======
+    def __init__(self, idpTokenProcessorRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictedVirtualEntityIds=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.idpTokenProcessorRef: str = idpTokenProcessorRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["idpTokenProcessorRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class IdpTokenProcessorMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "idpTokenProcessorRef", "issuanceCriteria", "restrictedVirtualEntityIds"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -10,9 +10,15 @@ class ProfileConfig():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, templateName, deleteIdentityEnabled=None) -> None:
         self.deleteIdentityEnabled = deleteIdentityEnabled
         self.templateName = templateName
+=======
+    def __init__(self, templateName, deleteIdentityEnabled=None):
+        self.deleteIdentityEnabled: bool = deleteIdentityEnabled
+        self.templateName: str = templateName
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["templateName"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class ProfileConfig():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["deleteIdentityEnabled", "templateName"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

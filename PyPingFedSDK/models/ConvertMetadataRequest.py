@@ -18,6 +18,7 @@ class ConvertMetadataRequest():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, connectionType, expectedProtocol, samlMetadata, expectedEntityId=None, templateConnection=None, verificationCertificate=None) -> None:
         self.connectionType = connectionType
         self.expectedEntityId = expectedEntityId
@@ -25,6 +26,15 @@ class ConvertMetadataRequest():
         self.samlMetadata = samlMetadata
         self.templateConnection = templateConnection
         self.verificationCertificate = verificationCertificate
+=======
+    def __init__(self, connectionType, expectedProtocol, samlMetadata, expectedEntityId=None, templateConnection=None, verificationCertificate=None):
+        self.connectionType: str = connectionType
+        self.expectedEntityId: str = expectedEntityId
+        self.expectedProtocol: str = expectedProtocol
+        self.samlMetadata: str = samlMetadata
+        self.templateConnection: str = templateConnection
+        self.verificationCertificate: str = verificationCertificate
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["connectionType", "expectedProtocol", "samlMetadata"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class ConvertMetadataRequest():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionType", "expectedEntityId", "expectedProtocol", "samlMetadata", "templateConnection", "verificationCertificate"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

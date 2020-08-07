@@ -30,11 +30,11 @@ class _authenticationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def updateSettings(self, body):
         """ Set the authentication policies settings.
@@ -57,13 +57,13 @@ class _authenticationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Settings updated.')
+                self.logger.info("Settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getDefaultAuthenticationPolicy(self):
         """ Get the default configured authentication policy.
@@ -81,13 +81,13 @@ class _authenticationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def updateDefaultAuthenticationPolicy(self, body, X-BypassExternalValidation):
+    def updateDefaultAuthenticationPolicy(self, body, XBypassExternalValidation):
         """ Set the default authentication policy.
         """
 
@@ -109,13 +109,13 @@ class _authenticationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Default authentication policy updated.')
+                self.logger.info("Default authentication policy updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

@@ -12,10 +12,17 @@ class ScopeEntry():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, name, description, dynamic=None) -> None:
         self.description = description
         self.dynamic = dynamic
         self.name = name
+=======
+    def __init__(self, name, description, dynamic=None):
+        self.description: str = description
+        self.dynamic: bool = dynamic
+        self.name: str = name
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name", "description"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class ScopeEntry():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "dynamic", "name"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

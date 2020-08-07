@@ -14,11 +14,19 @@ class AttributeRule():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributeName, condition, expectedValue, result) -> None:
         self.attributeName = attributeName
         self.condition = condition
         self.expectedValue = expectedValue
         self.result = result
+=======
+    def __init__(self, attributeName, condition, expectedValue, result):
+        self.attributeName: str = attributeName
+        self.condition: str = condition
+        self.expectedValue: str = expectedValue
+        self.result: str = result
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributeName", "condition", "expectedValue", "result"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class AttributeRule():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeName", "condition", "expectedValue", "result"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -22,6 +22,7 @@ class TokenToTokenMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributeContractFulfillment, sourceId, targetId, attributeSources=None, defaultTargetResource=None, var_id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
@@ -31,6 +32,17 @@ class TokenToTokenMapping():
         self.licenseConnectionGroupAssignment = licenseConnectionGroupAssignment
         self.sourceId = sourceId
         self.targetId = targetId
+=======
+    def __init__(self, attributeContractFulfillment, sourceId, targetId, attributeSources=None, defaultTargetResource=None, id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.defaultTargetResource: str = defaultTargetResource
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
+        self.licenseConnectionGroupAssignment: str = licenseConnectionGroupAssignment
+        self.sourceId: str = sourceId
+        self.targetId: str = targetId
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributeContractFulfillment", "sourceId", "targetId"] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class TokenToTokenMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "defaultTargetResource", "var_id", "issuanceCriteria", "licenseConnectionGroupAssignment", "sourceId", "targetId"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

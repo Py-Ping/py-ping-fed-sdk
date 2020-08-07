@@ -12,10 +12,17 @@ class SpUrlMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, ref=None, var_type=None, url=None) -> None:
         self.ref = ref
         self.var_type = var_type
         self.url = url
+=======
+    def __init__(self, ref=None, type=None, url=None):
+        self.ref: str = ref
+        self.type: str = type
+        self.url: str = url
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class SpUrlMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["ref", "var_type", "url"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

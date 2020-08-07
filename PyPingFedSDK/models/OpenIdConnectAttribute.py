@@ -12,10 +12,17 @@ class OpenIdConnectAttribute():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, name, includeInIdToken=None, includeInUserInfo=None) -> None:
         self.includeInIdToken = includeInIdToken
         self.includeInUserInfo = includeInUserInfo
         self.name = name
+=======
+    def __init__(self, name, includeInIdToken=None, includeInUserInfo=None):
+        self.includeInIdToken: bool = includeInIdToken
+        self.includeInUserInfo: bool = includeInUserInfo
+        self.name: str = name
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class OpenIdConnectAttribute():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["includeInIdToken", "includeInUserInfo", "name"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -1,0 +1,201 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="../../../_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="../../../_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>PyPingFedSDK.models.SpConnection &#8212; PyPingFedSDK 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="../../../search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Docs</a></li>
+              
+                <li><a href="../../index.html">Module code</a></li>
+              
+              <li>PyPingFedSDK.models.SpConnection</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <h1>Source code for PyPingFedSDK.models.SpConnection</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="SpConnection"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection">[docs]</a><span></span><span class="k">class</span> <span class="nc">SpConnection</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;The set of attributes used to configure an SP connection.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    active : boolean</span>
+<span class="sd">        Specifies whether the connection is active and ready to process incoming requests. The default value is false.    additionalAllowedEntitiesConfiguration : str</span>
+<span class="sd">        Additional allowed entities or issuers configuration. Currently only used in OIDC IdP (RP) connection.    applicationIconUrl : string</span>
+<span class="sd">        The application icon url.    applicationName : string</span>
+<span class="sd">        The application name.    attributeQuery : str</span>
+<span class="sd">        The attribute query settings for supporting SPs in requesting user attributes.    baseUrl : string</span>
+<span class="sd">        The fully-qualified hostname and port on which your partner&#39;s federation deployment runs.    contactInfo : str</span>
+<span class="sd">        The contact information for this partner.    credentials : str</span>
+<span class="sd">        The certificates and settings for encryption, signing, and signature verification. It is required for  SAMLx.x and WS-Fed Connections.    defaultVirtualEntityId : string</span>
+<span class="sd">        The default alternate entity ID that identifies the local server to this partner. It is required when virtualEntityIds is not empty and must be included in that list.    entityId : string</span>
+<span class="sd">        The partner&#39;s entity ID (connection ID) or issuer value (for OIDC Connections).    extendedProperties : str</span>
+<span class="sd">        Extended Properties allows to store additional information for IdP/SP Connections. The names of these extended properties should be defined in /extendedProperties.    id : string</span>
+<span class="sd">        The persistent, unique ID for the connection. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.    licenseConnectionGroup : string</span>
+<span class="sd">        The license connection group. If your PingFederate license is based on connection groups, each connection must be assigned to a group before it can be used.    loggingMode : str</span>
+<span class="sd">        The level of transaction logging applicable for this connection. Default is STANDARD.    metadataReloadSettings : str</span>
+<span class="sd">        Connection metadata automatic reload settings.    name : string</span>
+<span class="sd">        The connection name.    outboundProvision : str</span>
+<span class="sd">        The Outbound Provision settings.    spBrowserSso : str</span>
+<span class="sd">        The browser-based SSO settings used to communicate with your SP.    type : str</span>
+<span class="sd">        The type of this connection. This must be set to &#39;SP&#39;.    virtualEntityIds : array</span>
+<span class="sd">        List of alternate entity IDs that identifies the local server to this partner.    wsTrust : str</span>
+<span class="sd">        The Ws-Trust settings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="s2">&quot;additionalAllowedEntitiesConfiguration&quot;</span><span class="p">,</span> <span class="s2">&quot;applicationIconUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;applicationName&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeQuery&quot;</span><span class="p">,</span> <span class="s2">&quot;baseUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;contactInfo&quot;</span><span class="p">,</span> <span class="s2">&quot;credentials&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultVirtualEntityId&quot;</span><span class="p">,</span> <span class="s2">&quot;entityId&quot;</span><span class="p">,</span> <span class="s2">&quot;extendedProperties&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;licenseConnectionGroup&quot;</span><span class="p">,</span> <span class="s2">&quot;loggingMode&quot;</span><span class="p">,</span> <span class="s2">&quot;metadataReloadSettings&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;outboundProvision&quot;</span><span class="p">,</span> <span class="s2">&quot;spBrowserSso&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;virtualEntityIds&quot;</span><span class="p">,</span> <span class="s2">&quot;wsTrust&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="SpConnection.__init__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">entityId</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">additionalAllowedEntitiesConfiguration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">applicationIconUrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">applicationName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attributeQuery</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">baseUrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">credentials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">defaultVirtualEntityId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extendedProperties</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">licenseConnectionGroup</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loggingMode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadataReloadSettings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outboundProvision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">spBrowserSso</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">virtualEntityIds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wsTrust</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">active</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">additionalAllowedEntitiesConfiguration</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">additionalAllowedEntitiesConfiguration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">applicationIconUrl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">applicationIconUrl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">applicationName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">applicationName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributeQuery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attributeQuery</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseUrl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">baseUrl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contactInfo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">contactInfo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">credentials</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">credentials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultVirtualEntityId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">defaultVirtualEntityId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entityId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">entityId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extendedProperties</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">extendedProperties</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">licenseConnectionGroup</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">licenseConnectionGroup</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loggingMode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">loggingMode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadataReloadSettings</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">metadataReloadSettings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outboundProvision</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">outboundProvision</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spBrowserSso</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">spBrowserSso</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">virtualEntityIds</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">virtualEntityIds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wsTrust</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">wsTrust</span></div>
+
+<div class="viewcode-block" id="SpConnection._validate"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection._validate">[docs]</a>    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;entityId&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpConnection.__repr__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span></div>
+
+<div class="viewcode-block" id="SpConnection.__str__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span></div>
+
+<div class="viewcode-block" id="SpConnection.__eq__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SpConnection</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+<div class="viewcode-block" id="SpConnection.__hash__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection.__hash__">[docs]</a>    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">additionalAllowedEntitiesConfiguration</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">applicationIconUrl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">applicationName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributeQuery</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseUrl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contactInfo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">credentials</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultVirtualEntityId</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entityId</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">extendedProperties</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">licenseConnectionGroup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggingMode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadataReloadSettings</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">outboundProvision</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spBrowserSso</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtualEntityIds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wsTrust</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SpConnection.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+        <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="s2">&quot;additionalAllowedEntitiesConfiguration&quot;</span><span class="p">,</span> <span class="s2">&quot;applicationIconUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;applicationName&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeQuery&quot;</span><span class="p">,</span> <span class="s2">&quot;baseUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;contactInfo&quot;</span><span class="p">,</span> <span class="s2">&quot;credentials&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultVirtualEntityId&quot;</span><span class="p">,</span> <span class="s2">&quot;entityId&quot;</span><span class="p">,</span> <span class="s2">&quot;extendedProperties&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;licenseConnectionGroup&quot;</span><span class="p">,</span> <span class="s2">&quot;loggingMode&quot;</span><span class="p">,</span> <span class="s2">&quot;metadataReloadSettings&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;outboundProvision&quot;</span><span class="p">,</span> <span class="s2">&quot;spBrowserSso&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;virtualEntityIds&quot;</span><span class="p">,</span> <span class="s2">&quot;wsTrust&quot;</span><span class="p">]}</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpConnection.to_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpConnection.SpConnection.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span></div></div>
+</pre></div>
+
+          </div>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="../../../_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2020, Michael Kelly, Liam Dixon. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

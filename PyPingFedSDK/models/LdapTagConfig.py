@@ -12,10 +12,17 @@ class LdapTagConfig():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, hostnames, defaultSource=None, tags=None) -> None:
         self.defaultSource = defaultSource
         self.hostnames = hostnames
         self.tags = tags
+=======
+    def __init__(self, hostnames, defaultSource=None, tags=None):
+        self.defaultSource: bool = defaultSource
+        self.hostnames: list = hostnames
+        self.tags: str = tags
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["hostnames"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class LdapTagConfig():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultSource", "hostnames", "tags"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

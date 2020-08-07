@@ -26,6 +26,7 @@ class OIDCProviderSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, scopes, authorizationEndpoint, loginType, jwksURL, authenticationScheme=None, authenticationSigningAlgorithm=None, requestParameters=None, requestSigningAlgorithm=None, tokenEndpoint=None, userInfoEndpoint=None) -> None:
         self.authenticationScheme = authenticationScheme
         self.authenticationSigningAlgorithm = authenticationSigningAlgorithm
@@ -37,6 +38,19 @@ class OIDCProviderSettings():
         self.scopes = scopes
         self.tokenEndpoint = tokenEndpoint
         self.userInfoEndpoint = userInfoEndpoint
+=======
+    def __init__(self, scopes, authorizationEndpoint, loginType, jwksURL, authenticationScheme=None, authenticationSigningAlgorithm=None, requestParameters=None, requestSigningAlgorithm=None, tokenEndpoint=None, userInfoEndpoint=None):
+        self.authenticationScheme: str = authenticationScheme
+        self.authenticationSigningAlgorithm: str = authenticationSigningAlgorithm
+        self.authorizationEndpoint: str = authorizationEndpoint
+        self.jwksURL: str = jwksURL
+        self.loginType: str = loginType
+        self.requestParameters: list = requestParameters
+        self.requestSigningAlgorithm: str = requestSigningAlgorithm
+        self.scopes: str = scopes
+        self.tokenEndpoint: str = tokenEndpoint
+        self.userInfoEndpoint: str = userInfoEndpoint
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["scopes", "authorizationEndpoint", "loginType", "jwksURL"] if self.__dict__[x] is not None)
@@ -59,4 +73,11 @@ class OIDCProviderSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["authenticationScheme", "authenticationSigningAlgorithm", "authorizationEndpoint", "jwksURL", "loginType", "requestParameters", "requestSigningAlgorithm", "scopes", "tokenEndpoint", "userInfoEndpoint"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

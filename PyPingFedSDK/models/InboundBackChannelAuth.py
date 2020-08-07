@@ -19,6 +19,7 @@ class InboundBackChannelAuth():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, certs=None, digitalSignature=None, httpBasicCredentials=None, requireSsl=None, var_type=None, verificationIssuerDN=None, verificationSubjectDN=None) -> None:
         self.certs = certs
         self.digitalSignature = digitalSignature
@@ -27,6 +28,16 @@ class InboundBackChannelAuth():
         self.var_type = var_type
         self.verificationIssuerDN = verificationIssuerDN
         self.verificationSubjectDN = verificationSubjectDN
+=======
+    def __init__(self, certs=None, digitalSignature=None, httpBasicCredentials=None, requireSsl=None, type=None, verificationIssuerDN=None, verificationSubjectDN=None):
+        self.certs: list = certs
+        self.digitalSignature: bool = digitalSignature
+        self.httpBasicCredentials: str = httpBasicCredentials
+        self.requireSsl: bool = requireSsl
+        self.type: str = type
+        self.verificationIssuerDN: str = verificationIssuerDN
+        self.verificationSubjectDN: str = verificationSubjectDN
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -49,4 +60,11 @@ class InboundBackChannelAuth():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["certs", "digitalSignature", "httpBasicCredentials", "requireSsl", "var_type", "verificationIssuerDN", "verificationSubjectDN"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

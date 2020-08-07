@@ -62,6 +62,7 @@ class LdapDataStore():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, ldapType, binaryAttributes=None, bindAnonymously=None, connectionTimeout=None, createIfNecessary=None, dnsTtl=None, encryptedPassword=None, followLDAPReferrals=None, hostnames=None, hostnamesTags=None, var_id=None, ldapDnsSrvPrefix=None, ldapsDnsSrvPrefix=None, maskAttributeValues=None, maxConnections=None, maxWait=None, minConnections=None, name=None, password=None, readTimeout=None, testOnBorrow=None, testOnReturn=None, timeBetweenEvictions=None, useDnsSrvRecords=None, useSsl=None, userDN=None, verifyHost=None) -> None:
         self.binaryAttributes = binaryAttributes
         self.bindAnonymously = bindAnonymously
@@ -91,6 +92,37 @@ class LdapDataStore():
         self.useSsl = useSsl
         self.userDN = userDN
         self.verifyHost = verifyHost
+=======
+    def __init__(self, type, ldapType, binaryAttributes=None, bindAnonymously=None, connectionTimeout=None, createIfNecessary=None, dnsTtl=None, encryptedPassword=None, followLDAPReferrals=None, hostnames=None, hostnamesTags=None, id=None, ldapDnsSrvPrefix=None, ldapsDnsSrvPrefix=None, maskAttributeValues=None, maxConnections=None, maxWait=None, minConnections=None, name=None, password=None, readTimeout=None, testOnBorrow=None, testOnReturn=None, timeBetweenEvictions=None, useDnsSrvRecords=None, useSsl=None, userDN=None, verifyHost=None):
+        self.binaryAttributes: list = binaryAttributes
+        self.bindAnonymously: bool = bindAnonymously
+        self.connectionTimeout: str = connectionTimeout
+        self.createIfNecessary: bool = createIfNecessary
+        self.dnsTtl: str = dnsTtl
+        self.encryptedPassword: str = encryptedPassword
+        self.followLDAPReferrals: bool = followLDAPReferrals
+        self.hostnames: list = hostnames
+        self.hostnamesTags: list = hostnamesTags
+        self.id: str = id
+        self.ldapDnsSrvPrefix: str = ldapDnsSrvPrefix
+        self.ldapType: str = ldapType
+        self.ldapsDnsSrvPrefix: str = ldapsDnsSrvPrefix
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.maxConnections: str = maxConnections
+        self.maxWait: str = maxWait
+        self.minConnections: str = minConnections
+        self.name: str = name
+        self.password: str = password
+        self.readTimeout: str = readTimeout
+        self.testOnBorrow: bool = testOnBorrow
+        self.testOnReturn: bool = testOnReturn
+        self.timeBetweenEvictions: str = timeBetweenEvictions
+        self.type: str = type
+        self.useDnsSrvRecords: bool = useDnsSrvRecords
+        self.useSsl: bool = useSsl
+        self.userDN: str = userDN
+        self.verifyHost: bool = verifyHost
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "ldapType"] if self.__dict__[x] is not None)
@@ -113,4 +145,11 @@ class LdapDataStore():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["binaryAttributes", "bindAnonymously", "connectionTimeout", "createIfNecessary", "dnsTtl", "encryptedPassword", "followLDAPReferrals", "hostnames", "hostnamesTags", "var_id", "ldapDnsSrvPrefix", "ldapType", "ldapsDnsSrvPrefix", "maskAttributeValues", "maxConnections", "maxWait", "minConnections", "name", "password", "readTimeout", "testOnBorrow", "testOnReturn", "timeBetweenEvictions", "var_type", "useDnsSrvRecords", "useSsl", "userDN", "verifyHost"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

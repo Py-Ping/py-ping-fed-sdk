@@ -16,12 +16,21 @@ class ChangeDetectionSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, userObjectClass, groupObjectClass, changedUsersAlgorithm, timeStampAttributeName, usnAttributeName=None) -> None:
         self.changedUsersAlgorithm = changedUsersAlgorithm
         self.groupObjectClass = groupObjectClass
         self.timeStampAttributeName = timeStampAttributeName
         self.userObjectClass = userObjectClass
         self.usnAttributeName = usnAttributeName
+=======
+    def __init__(self, userObjectClass, groupObjectClass, changedUsersAlgorithm, timeStampAttributeName, usnAttributeName=None):
+        self.changedUsersAlgorithm: str = changedUsersAlgorithm
+        self.groupObjectClass: str = groupObjectClass
+        self.timeStampAttributeName: str = timeStampAttributeName
+        self.userObjectClass: str = userObjectClass
+        self.usnAttributeName: str = usnAttributeName
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["userObjectClass", "groupObjectClass", "changedUsersAlgorithm", "timeStampAttributeName"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class ChangeDetectionSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["changedUsersAlgorithm", "groupObjectClass", "timeStampAttributeName", "userObjectClass", "usnAttributeName"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -18,6 +18,7 @@ class ExportMetadataRequest():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, connectionType, connectionId, signingSettings=None, useSecondaryPortForSoap=None, virtualHostName=None, virtualServerId=None) -> None:
         self.connectionId = connectionId
         self.connectionType = connectionType
@@ -25,6 +26,15 @@ class ExportMetadataRequest():
         self.useSecondaryPortForSoap = useSecondaryPortForSoap
         self.virtualHostName = virtualHostName
         self.virtualServerId = virtualServerId
+=======
+    def __init__(self, connectionType, connectionId, signingSettings=None, useSecondaryPortForSoap=None, virtualHostName=None, virtualServerId=None):
+        self.connectionId: str = connectionId
+        self.connectionType: str = connectionType
+        self.signingSettings: str = signingSettings
+        self.useSecondaryPortForSoap: bool = useSecondaryPortForSoap
+        self.virtualHostName: str = virtualHostName
+        self.virtualServerId: str = virtualServerId
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["connectionType", "connectionId"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class ExportMetadataRequest():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionId", "connectionType", "signingSettings", "useSecondaryPortForSoap", "virtualHostName", "virtualServerId"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -14,11 +14,19 @@ class AccessTokenManagerMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributeContractFulfillment, accessTokenManagerRef=None, attributeSources=None, issuanceCriteria=None) -> None:
         self.accessTokenManagerRef = accessTokenManagerRef
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.issuanceCriteria = issuanceCriteria
+=======
+    def __init__(self, attributeContractFulfillment, accessTokenManagerRef=None, attributeSources=None, issuanceCriteria=None):
+        self.accessTokenManagerRef: str = accessTokenManagerRef
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.issuanceCriteria: str = issuanceCriteria
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class AccessTokenManagerMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerRef", "attributeContractFulfillment", "attributeSources", "issuanceCriteria"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

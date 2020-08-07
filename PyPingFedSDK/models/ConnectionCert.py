@@ -18,6 +18,7 @@ class ConnectionCert():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, x509File, activeVerificationCert=None, certView=None, encryptionCert=None, primaryVerificationCert=None, secondaryVerificationCert=None) -> None:
         self.activeVerificationCert = activeVerificationCert
         self.certView = certView
@@ -25,6 +26,15 @@ class ConnectionCert():
         self.primaryVerificationCert = primaryVerificationCert
         self.secondaryVerificationCert = secondaryVerificationCert
         self.x509File = x509File
+=======
+    def __init__(self, x509File, activeVerificationCert=None, certView=None, encryptionCert=None, primaryVerificationCert=None, secondaryVerificationCert=None):
+        self.activeVerificationCert: bool = activeVerificationCert
+        self.certView: str = certView
+        self.encryptionCert: bool = encryptionCert
+        self.primaryVerificationCert: bool = primaryVerificationCert
+        self.secondaryVerificationCert: bool = secondaryVerificationCert
+        self.x509File: str = x509File
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["x509File"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class ConnectionCert():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["activeVerificationCert", "certView", "encryptionCert", "primaryVerificationCert", "secondaryVerificationCert", "x509File"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

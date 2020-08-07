@@ -10,9 +10,15 @@ class LocalIdentityAuthSource():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id=None, source=None) -> None:
         self.var_id = var_id
         self.source = source
+=======
+    def __init__(self, id=None, source=None):
+        self.id: str = id
+        self.source: str = source
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class LocalIdentityAuthSource():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "source"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

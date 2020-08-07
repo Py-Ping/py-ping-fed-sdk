@@ -14,11 +14,19 @@ class UrlWhitelistEntry():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, allowQueryAndFragment=None, requireHttps=None, validDomain=None, validPath=None) -> None:
         self.allowQueryAndFragment = allowQueryAndFragment
         self.requireHttps = requireHttps
         self.validDomain = validDomain
         self.validPath = validPath
+=======
+    def __init__(self, allowQueryAndFragment=None, requireHttps=None, validDomain=None, validPath=None):
+        self.allowQueryAndFragment: bool = allowQueryAndFragment
+        self.requireHttps: bool = requireHttps
+        self.validDomain: str = validDomain
+        self.validPath: str = validPath
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class UrlWhitelistEntry():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowQueryAndFragment", "requireHttps", "validDomain", "validPath"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -8,8 +8,13 @@ class FieldConfig():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, fields=None) -> None:
         self.fields = fields
+=======
+    def __init__(self, fields=None):
+        self.fields: list = fields
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -32,4 +37,11 @@ class FieldConfig():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["fields"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -14,11 +14,19 @@ class TokenExchangeGeneratorGroup():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, name, generatorMappings, resourceUris=None) -> None:
         self.generatorMappings = generatorMappings
         self.var_id = var_id
         self.name = name
         self.resourceUris = resourceUris
+=======
+    def __init__(self, id, name, generatorMappings, resourceUris=None):
+        self.generatorMappings: list = generatorMappings
+        self.id: str = id
+        self.name: str = name
+        self.resourceUris: list = resourceUris
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "generatorMappings"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class TokenExchangeGeneratorGroup():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["generatorMappings", "var_id", "name", "resourceUris"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

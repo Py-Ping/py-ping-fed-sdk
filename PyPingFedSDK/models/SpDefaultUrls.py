@@ -12,10 +12,17 @@ class SpDefaultUrls():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, confirmSlo=None, sloSuccessUrl=None, ssoSuccessUrl=None) -> None:
         self.confirmSlo = confirmSlo
         self.sloSuccessUrl = sloSuccessUrl
         self.ssoSuccessUrl = ssoSuccessUrl
+=======
+    def __init__(self, confirmSlo=None, sloSuccessUrl=None, ssoSuccessUrl=None):
+        self.confirmSlo: bool = confirmSlo
+        self.sloSuccessUrl: str = sloSuccessUrl
+        self.ssoSuccessUrl: str = ssoSuccessUrl
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class SpDefaultUrls():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["confirmSlo", "sloSuccessUrl", "ssoSuccessUrl"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

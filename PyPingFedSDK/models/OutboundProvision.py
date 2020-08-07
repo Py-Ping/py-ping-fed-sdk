@@ -14,11 +14,19 @@ class OutboundProvision():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, targetSettings, channels, customSchema=None) -> None:
         self.channels = channels
         self.customSchema = customSchema
         self.targetSettings = targetSettings
         self.var_type = var_type
+=======
+    def __init__(self, type, targetSettings, channels, customSchema=None):
+        self.channels: list = channels
+        self.customSchema: str = customSchema
+        self.targetSettings: list = targetSettings
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "targetSettings", "channels"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class OutboundProvision():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["channels", "customSchema", "targetSettings", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

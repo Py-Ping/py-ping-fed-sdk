@@ -30,13 +30,13 @@ class _configStore():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('The specified configuration bundle is unavailable.')
+                self.logger.info("The specified configuration bundle is unavailable.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateSetting(self, bundle, var_id, body):
         """ Update a setting.
@@ -53,7 +53,7 @@ class _configStore():
             response = requests.put(
                 data=payload,
                 url=self._build_uri("/configStore/{bundle}/{id}"),
-                headers={'Accept': '['application/json']'}
+                headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
@@ -61,15 +61,15 @@ class _configStore():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Configuration setting updated.')
+                self.logger.info("Configuration setting updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('The specified configuration bundle is unavailable.')
+                self.logger.info("The specified configuration bundle is unavailable.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteSetting(self, bundle, var_id):
         """ Delete a setting.
@@ -87,13 +87,13 @@ class _configStore():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Configuration setting deleted.')
+                self.logger.info("Configuration setting deleted.")
             if response.status_code == 403:
-                self.logger.info('The specified configuration bundle is unavailable.')
+                self.logger.info("The specified configuration bundle is unavailable.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getSettings(self, bundle):
         """ Get all settings from a bundle.
@@ -111,11 +111,11 @@ class _configStore():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('The specified configuration bundle is unavailable.')
+                self.logger.info("The specified configuration bundle is unavailable.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

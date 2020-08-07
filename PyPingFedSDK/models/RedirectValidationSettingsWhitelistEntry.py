@@ -22,6 +22,7 @@ class RedirectValidationSettingsWhitelistEntry():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, validDomain, allowQueryAndFragment=None, idpDiscovery=None, inErrorResource=None, requireHttps=None, targetResourceSLO=None, targetResourceSSO=None, validPath=None) -> None:
         self.allowQueryAndFragment = allowQueryAndFragment
         self.idpDiscovery = idpDiscovery
@@ -31,6 +32,17 @@ class RedirectValidationSettingsWhitelistEntry():
         self.targetResourceSSO = targetResourceSSO
         self.validDomain = validDomain
         self.validPath = validPath
+=======
+    def __init__(self, validDomain, allowQueryAndFragment=None, idpDiscovery=None, inErrorResource=None, requireHttps=None, targetResourceSLO=None, targetResourceSSO=None, validPath=None):
+        self.allowQueryAndFragment: bool = allowQueryAndFragment
+        self.idpDiscovery: bool = idpDiscovery
+        self.inErrorResource: bool = inErrorResource
+        self.requireHttps: bool = requireHttps
+        self.targetResourceSLO: bool = targetResourceSLO
+        self.targetResourceSSO: bool = targetResourceSSO
+        self.validDomain: str = validDomain
+        self.validPath: str = validPath
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["validDomain"] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class RedirectValidationSettingsWhitelistEntry():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowQueryAndFragment", "idpDiscovery", "inErrorResource", "requireHttps", "targetResourceSLO", "targetResourceSSO", "validDomain", "validPath"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

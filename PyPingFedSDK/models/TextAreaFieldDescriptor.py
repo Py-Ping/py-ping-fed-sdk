@@ -24,6 +24,7 @@ class TextAreaFieldDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, advanced=None, columns=None, defaultValue=None, description=None, label=None, name=None, required=None, rows=None, var_type=None) -> None:
         self.advanced = advanced
         self.columns = columns
@@ -34,6 +35,18 @@ class TextAreaFieldDescriptor():
         self.required = required
         self.rows = rows
         self.var_type = var_type
+=======
+    def __init__(self, advanced=None, columns=None, defaultValue=None, description=None, label=None, name=None, required=None, rows=None, type=None):
+        self.advanced: bool = advanced
+        self.columns: str = columns
+        self.defaultValue: str = defaultValue
+        self.description: str = description
+        self.label: str = label
+        self.name: str = name
+        self.required: bool = required
+        self.rows: str = rows
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -56,4 +69,11 @@ class TextAreaFieldDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["advanced", "columns", "defaultValue", "description", "label", "name", "required", "rows", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

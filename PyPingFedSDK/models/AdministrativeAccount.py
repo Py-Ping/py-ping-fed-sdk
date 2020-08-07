@@ -26,6 +26,7 @@ class AdministrativeAccount():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, username, active=None, auditor=None, department=None, description=None, emailAddress=None, encryptedPassword=None, password=None, phoneNumber=None, roles=None) -> None:
         self.active = active
         self.auditor = auditor
@@ -37,6 +38,19 @@ class AdministrativeAccount():
         self.phoneNumber = phoneNumber
         self.roles = roles
         self.username = username
+=======
+    def __init__(self, username, active=None, auditor=None, department=None, description=None, emailAddress=None, encryptedPassword=None, password=None, phoneNumber=None, roles=None):
+        self.active: bool = active
+        self.auditor: bool = auditor
+        self.department: str = department
+        self.description: str = description
+        self.emailAddress: str = emailAddress
+        self.encryptedPassword: str = encryptedPassword
+        self.password: str = password
+        self.phoneNumber: str = phoneNumber
+        self.roles: str = roles
+        self.username: str = username
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["username"] if self.__dict__[x] is not None)
@@ -59,4 +73,11 @@ class AdministrativeAccount():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "auditor", "department", "description", "emailAddress", "encryptedPassword", "password", "phoneNumber", "roles", "username"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

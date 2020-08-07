@@ -14,11 +14,19 @@ class KerberosRealmsSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, kdcRetries, kdcTimeout, debugLogOutput=None, forceTcp=None) -> None:
         self.debugLogOutput = debugLogOutput
         self.forceTcp = forceTcp
         self.kdcRetries = kdcRetries
         self.kdcTimeout = kdcTimeout
+=======
+    def __init__(self, kdcRetries, kdcTimeout, debugLogOutput=None, forceTcp=None):
+        self.debugLogOutput: bool = debugLogOutput
+        self.forceTcp: bool = forceTcp
+        self.kdcRetries: str = kdcRetries
+        self.kdcTimeout: str = kdcTimeout
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["kdcRetries", "kdcTimeout"] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class KerberosRealmsSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["debugLogOutput", "forceTcp", "kdcRetries", "kdcTimeout"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

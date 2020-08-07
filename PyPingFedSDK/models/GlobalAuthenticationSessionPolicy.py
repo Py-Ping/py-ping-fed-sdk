@@ -18,6 +18,7 @@ class GlobalAuthenticationSessionPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, enableSessions, idleTimeoutDisplayUnit=None, idleTimeoutMins=None, maxTimeoutDisplayUnit=None, maxTimeoutMins=None, persistentSessions=None) -> None:
         self.enableSessions = enableSessions
         self.idleTimeoutDisplayUnit = idleTimeoutDisplayUnit
@@ -25,6 +26,15 @@ class GlobalAuthenticationSessionPolicy():
         self.maxTimeoutDisplayUnit = maxTimeoutDisplayUnit
         self.maxTimeoutMins = maxTimeoutMins
         self.persistentSessions = persistentSessions
+=======
+    def __init__(self, enableSessions, idleTimeoutDisplayUnit=None, idleTimeoutMins=None, maxTimeoutDisplayUnit=None, maxTimeoutMins=None, persistentSessions=None):
+        self.enableSessions: bool = enableSessions
+        self.idleTimeoutDisplayUnit: str = idleTimeoutDisplayUnit
+        self.idleTimeoutMins: str = idleTimeoutMins
+        self.maxTimeoutDisplayUnit: str = maxTimeoutDisplayUnit
+        self.maxTimeoutMins: str = maxTimeoutMins
+        self.persistentSessions: bool = persistentSessions
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["enableSessions"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class GlobalAuthenticationSessionPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableSessions", "idleTimeoutDisplayUnit", "idleTimeoutMins", "maxTimeoutDisplayUnit", "maxTimeoutMins", "persistentSessions"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

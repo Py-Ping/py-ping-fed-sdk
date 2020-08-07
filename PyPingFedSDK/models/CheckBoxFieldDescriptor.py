@@ -20,6 +20,7 @@ class CheckBoxFieldDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, required=None, var_type=None) -> None:
         self.advanced = advanced
         self.defaultValue = defaultValue
@@ -28,6 +29,16 @@ class CheckBoxFieldDescriptor():
         self.name = name
         self.required = required
         self.var_type = var_type
+=======
+    def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, required=None, type=None):
+        self.advanced: bool = advanced
+        self.defaultValue: str = defaultValue
+        self.description: str = description
+        self.label: str = label
+        self.name: str = name
+        self.required: bool = required
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class CheckBoxFieldDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["advanced", "defaultValue", "description", "label", "name", "required", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

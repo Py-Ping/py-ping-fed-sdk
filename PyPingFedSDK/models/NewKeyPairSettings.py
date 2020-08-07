@@ -32,6 +32,7 @@ class NewKeyPairSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, commonName, organization, country, validDays, keyAlgorithm, city=None, cryptoProvider=None, var_id=None, keySize=None, organizationUnit=None, signatureAlgorithm=None, state=None, subjectAlternativeNames=None) -> None:
         self.city = city
         self.commonName = commonName
@@ -46,6 +47,22 @@ class NewKeyPairSettings():
         self.state = state
         self.subjectAlternativeNames = subjectAlternativeNames
         self.validDays = validDays
+=======
+    def __init__(self, commonName, organization, country, validDays, keyAlgorithm, city=None, cryptoProvider=None, id=None, keySize=None, organizationUnit=None, signatureAlgorithm=None, state=None, subjectAlternativeNames=None):
+        self.city: str = city
+        self.commonName: str = commonName
+        self.country: str = country
+        self.cryptoProvider: str = cryptoProvider
+        self.id: str = id
+        self.keyAlgorithm: str = keyAlgorithm
+        self.keySize: str = keySize
+        self.organization: str = organization
+        self.organizationUnit: str = organizationUnit
+        self.signatureAlgorithm: str = signatureAlgorithm
+        self.state: str = state
+        self.subjectAlternativeNames: list = subjectAlternativeNames
+        self.validDays: str = validDays
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["commonName", "organization", "country", "validDays", "keyAlgorithm"] if self.__dict__[x] is not None)
@@ -68,4 +85,11 @@ class NewKeyPairSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["city", "commonName", "country", "cryptoProvider", "var_id", "keyAlgorithm", "keySize", "organization", "organizationUnit", "signatureAlgorithm", "state", "subjectAlternativeNames", "validDays"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

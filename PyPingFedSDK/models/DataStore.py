@@ -12,10 +12,17 @@ class DataStore():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, var_id=None, maskAttributeValues=None) -> None:
         self.var_id = var_id
         self.maskAttributeValues = maskAttributeValues
         self.var_type = var_type
+=======
+    def __init__(self, type, id=None, maskAttributeValues=None):
+        self.id: str = id
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class DataStore():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "maskAttributeValues", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

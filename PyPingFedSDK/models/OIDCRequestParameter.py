@@ -12,10 +12,17 @@ class OIDCRequestParameter():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, name, value, applicationEndpointOverride) -> None:
         self.applicationEndpointOverride = applicationEndpointOverride
         self.name = name
         self.value = value
+=======
+    def __init__(self, name, value, applicationEndpointOverride):
+        self.applicationEndpointOverride: bool = applicationEndpointOverride
+        self.name: str = name
+        self.value: str = value
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name", "value", "applicationEndpointOverride"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class OIDCRequestParameter():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["applicationEndpointOverride", "name", "value"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

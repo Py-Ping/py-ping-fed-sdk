@@ -28,6 +28,7 @@ class RequestPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, name, authenticatorRef, identityHintContract, allowUnsignedLoginHintToken=None, alternativeLoginHintTokenIssuers=None, identityHintContractFulfillment=None, identityHintMapping=None, requireTokenForIdentityHint=None, transactionLifetime=None, userCodePcvRef=None) -> None:
         self.allowUnsignedLoginHintToken = allowUnsignedLoginHintToken
         self.alternativeLoginHintTokenIssuers = alternativeLoginHintTokenIssuers
@@ -40,6 +41,20 @@ class RequestPolicy():
         self.requireTokenForIdentityHint = requireTokenForIdentityHint
         self.transactionLifetime = transactionLifetime
         self.userCodePcvRef = userCodePcvRef
+=======
+    def __init__(self, id, name, authenticatorRef, identityHintContract, allowUnsignedLoginHintToken=None, alternativeLoginHintTokenIssuers=None, identityHintContractFulfillment=None, identityHintMapping=None, requireTokenForIdentityHint=None, transactionLifetime=None, userCodePcvRef=None):
+        self.allowUnsignedLoginHintToken: bool = allowUnsignedLoginHintToken
+        self.alternativeLoginHintTokenIssuers: list = alternativeLoginHintTokenIssuers
+        self.authenticatorRef: str = authenticatorRef
+        self.id: str = id
+        self.identityHintContract: str = identityHintContract
+        self.identityHintContractFulfillment: str = identityHintContractFulfillment
+        self.identityHintMapping: str = identityHintMapping
+        self.name: str = name
+        self.requireTokenForIdentityHint: bool = requireTokenForIdentityHint
+        self.transactionLifetime: str = transactionLifetime
+        self.userCodePcvRef: str = userCodePcvRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "authenticatorRef", "identityHintContract"] if self.__dict__[x] is not None)
@@ -62,4 +77,11 @@ class RequestPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowUnsignedLoginHintToken", "alternativeLoginHintTokenIssuers", "authenticatorRef", "var_id", "identityHintContract", "identityHintContractFulfillment", "identityHintMapping", "name", "requireTokenForIdentityHint", "transactionLifetime", "userCodePcvRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

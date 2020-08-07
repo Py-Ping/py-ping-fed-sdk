@@ -18,6 +18,7 @@ class SpTokenGeneratorMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, spTokenGeneratorRef, attributeContractFulfillment, attributeSources=None, defaultMapping=None, issuanceCriteria=None, restrictedVirtualEntityIds=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
@@ -25,6 +26,15 @@ class SpTokenGeneratorMapping():
         self.issuanceCriteria = issuanceCriteria
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
         self.spTokenGeneratorRef = spTokenGeneratorRef
+=======
+    def __init__(self, spTokenGeneratorRef, attributeContractFulfillment, attributeSources=None, defaultMapping=None, issuanceCriteria=None, restrictedVirtualEntityIds=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.defaultMapping: bool = defaultMapping
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
+        self.spTokenGeneratorRef: str = spTokenGeneratorRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["spTokenGeneratorRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class SpTokenGeneratorMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "defaultMapping", "issuanceCriteria", "restrictedVirtualEntityIds", "spTokenGeneratorRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

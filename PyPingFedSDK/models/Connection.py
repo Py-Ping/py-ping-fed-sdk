@@ -36,6 +36,7 @@ class Connection():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, var_id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, var_type=None, virtualEntityIds=None) -> None:
         self.active = active
         self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
@@ -52,6 +53,24 @@ class Connection():
         self.name = name
         self.var_type = var_type
         self.virtualEntityIds = virtualEntityIds
+=======
+    def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, type=None, virtualEntityIds=None):
+        self.active: bool = active
+        self.additionalAllowedEntitiesConfiguration: str = additionalAllowedEntitiesConfiguration
+        self.baseUrl: str = baseUrl
+        self.contactInfo: str = contactInfo
+        self.credentials: str = credentials
+        self.defaultVirtualEntityId: str = defaultVirtualEntityId
+        self.entityId: str = entityId
+        self.extendedProperties: str = extendedProperties
+        self.id: str = id
+        self.licenseConnectionGroup: str = licenseConnectionGroup
+        self.loggingMode: str = loggingMode
+        self.metadataReloadSettings: str = metadataReloadSettings
+        self.name: str = name
+        self.type: str = type
+        self.virtualEntityIds: list = virtualEntityIds
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["entityId", "name"] if self.__dict__[x] is not None)
@@ -74,4 +93,11 @@ class Connection():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "additionalAllowedEntitiesConfiguration", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "extendedProperties", "var_id", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "var_type", "virtualEntityIds"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

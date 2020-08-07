@@ -16,12 +16,21 @@ class SpAttributeQueryPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, encryptAssertion=None, requireEncryptedNameId=None, requireSignedAttributeQuery=None, signAssertion=None, signResponse=None) -> None:
         self.encryptAssertion = encryptAssertion
         self.requireEncryptedNameId = requireEncryptedNameId
         self.requireSignedAttributeQuery = requireSignedAttributeQuery
         self.signAssertion = signAssertion
         self.signResponse = signResponse
+=======
+    def __init__(self, encryptAssertion=None, requireEncryptedNameId=None, requireSignedAttributeQuery=None, signAssertion=None, signResponse=None):
+        self.encryptAssertion: bool = encryptAssertion
+        self.requireEncryptedNameId: bool = requireEncryptedNameId
+        self.requireSignedAttributeQuery: bool = requireSignedAttributeQuery
+        self.signAssertion: bool = signAssertion
+        self.signResponse: bool = signResponse
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class SpAttributeQueryPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptAssertion", "requireEncryptedNameId", "requireSignedAttributeQuery", "signAssertion", "signResponse"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

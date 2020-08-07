@@ -8,8 +8,13 @@ class ApcToPersistentGrantMappings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, items=None) -> None:
         self.items = items
+=======
+    def __init__(self, items=None):
+        self.items: list = items
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -32,4 +37,11 @@ class ApcToPersistentGrantMappings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["items"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

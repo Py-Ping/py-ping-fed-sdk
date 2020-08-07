@@ -30,6 +30,7 @@ class LocalIdentityProfile():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, name, apcId, authSourceUpdatePolicy=None, authSources=None, dataStoreConfig=None, emailVerificationConfig=None, fieldConfig=None, var_id=None, profileConfig=None, profileEnabled=None, registrationConfig=None, registrationEnabled=None) -> None:
         self.apcId = apcId
         self.authSourceUpdatePolicy = authSourceUpdatePolicy
@@ -43,6 +44,21 @@ class LocalIdentityProfile():
         self.profileEnabled = profileEnabled
         self.registrationConfig = registrationConfig
         self.registrationEnabled = registrationEnabled
+=======
+    def __init__(self, name, apcId, authSourceUpdatePolicy=None, authSources=None, dataStoreConfig=None, emailVerificationConfig=None, fieldConfig=None, id=None, profileConfig=None, profileEnabled=None, registrationConfig=None, registrationEnabled=None):
+        self.apcId: str = apcId
+        self.authSourceUpdatePolicy: str = authSourceUpdatePolicy
+        self.authSources: list = authSources
+        self.dataStoreConfig: str = dataStoreConfig
+        self.emailVerificationConfig: str = emailVerificationConfig
+        self.fieldConfig: str = fieldConfig
+        self.id: str = id
+        self.name: str = name
+        self.profileConfig: str = profileConfig
+        self.profileEnabled: bool = profileEnabled
+        self.registrationConfig: str = registrationConfig
+        self.registrationEnabled: bool = registrationEnabled
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name", "apcId"] if self.__dict__[x] is not None)
@@ -65,4 +81,11 @@ class LocalIdentityProfile():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["apcId", "authSourceUpdatePolicy", "authSources", "dataStoreConfig", "emailVerificationConfig", "fieldConfig", "var_id", "name", "profileConfig", "profileEnabled", "registrationConfig", "registrationEnabled"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

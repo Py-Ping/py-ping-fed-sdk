@@ -12,10 +12,17 @@ class AlternativeLoginHintTokenIssuer():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, issuer, jwks=None, jwksURL=None) -> None:
         self.issuer = issuer
         self.jwks = jwks
         self.jwksURL = jwksURL
+=======
+    def __init__(self, issuer, jwks=None, jwksURL=None):
+        self.issuer: str = issuer
+        self.jwks: str = jwks
+        self.jwksURL: str = jwksURL
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["issuer"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class AlternativeLoginHintTokenIssuer():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["issuer", "jwks", "jwksURL"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

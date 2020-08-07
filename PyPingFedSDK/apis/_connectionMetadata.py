@@ -35,15 +35,15 @@ class _connectionMetadata():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Connection SAML metadata exported.')
+                self.logger.info("Connection SAML metadata exported.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def convert(self, body):
         """ Convert a partner's SAML metadata into a JSON representation.
@@ -66,13 +66,13 @@ class _connectionMetadata():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Partner's SAML metadata converted.')
+                self.logger.info("Partner's SAML metadata converted.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

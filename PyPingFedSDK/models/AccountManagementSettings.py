@@ -16,12 +16,21 @@ class AccountManagementSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, accountStatusAttributeName, accountStatusAlgorithm, defaultStatus=None, flagComparisonStatus=None, flagComparisonValue=None) -> None:
         self.accountStatusAlgorithm = accountStatusAlgorithm
         self.accountStatusAttributeName = accountStatusAttributeName
         self.defaultStatus = defaultStatus
         self.flagComparisonStatus = flagComparisonStatus
         self.flagComparisonValue = flagComparisonValue
+=======
+    def __init__(self, accountStatusAttributeName, accountStatusAlgorithm, defaultStatus=None, flagComparisonStatus=None, flagComparisonValue=None):
+        self.accountStatusAlgorithm: str = accountStatusAlgorithm
+        self.accountStatusAttributeName: str = accountStatusAttributeName
+        self.defaultStatus: bool = defaultStatus
+        self.flagComparisonStatus: bool = flagComparisonStatus
+        self.flagComparisonValue: str = flagComparisonValue
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["accountStatusAttributeName", "accountStatusAlgorithm"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class AccountManagementSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accountStatusAlgorithm", "accountStatusAttributeName", "defaultStatus", "flagComparisonStatus", "flagComparisonValue"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

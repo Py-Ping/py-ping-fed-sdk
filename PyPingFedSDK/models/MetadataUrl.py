@@ -18,6 +18,7 @@ class MetadataUrl():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, name, url, certView=None, var_id=None, validateSignature=None, x509File=None) -> None:
         self.certView = certView
         self.var_id = var_id
@@ -25,6 +26,15 @@ class MetadataUrl():
         self.url = url
         self.validateSignature = validateSignature
         self.x509File = x509File
+=======
+    def __init__(self, name, url, certView=None, id=None, validateSignature=None, x509File=None):
+        self.certView: str = certView
+        self.id: str = id
+        self.name: str = name
+        self.url: str = url
+        self.validateSignature: bool = validateSignature
+        self.x509File: str = x509File
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name", "url"] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class MetadataUrl():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["certView", "var_id", "name", "url", "validateSignature", "x509File"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

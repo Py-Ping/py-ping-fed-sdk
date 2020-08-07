@@ -20,6 +20,7 @@ class CustomDataStore():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, name, pluginDescriptorRef, configuration, var_id=None, maskAttributeValues=None, parentRef=None) -> None:
         self.configuration = configuration
         self.var_id = var_id
@@ -28,6 +29,16 @@ class CustomDataStore():
         self.parentRef = parentRef
         self.pluginDescriptorRef = pluginDescriptorRef
         self.var_type = var_type
+=======
+    def __init__(self, type, name, pluginDescriptorRef, configuration, id=None, maskAttributeValues=None, parentRef=None):
+        self.configuration: str = configuration
+        self.id: str = id
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.name: str = name
+        self.parentRef: str = parentRef
+        self.pluginDescriptorRef: str = pluginDescriptorRef
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "name", "pluginDescriptorRef", "configuration"] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class CustomDataStore():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["configuration", "var_id", "maskAttributeValues", "name", "parentRef", "pluginDescriptorRef", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

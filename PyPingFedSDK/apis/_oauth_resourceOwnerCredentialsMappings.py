@@ -30,13 +30,13 @@ class _oauth_resourceOwnerCredentialsMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def createResourceOwnerCredentialsMapping(self, body, X-BypassExternalValidation):
+    def createResourceOwnerCredentialsMapping(self, body, XBypassExternalValidation):
         """ Create a new Resource Owner Credentials mapping.
         """
 
@@ -58,15 +58,15 @@ class _oauth_resourceOwnerCredentialsMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Resource owner credentials mapping created.')
+                self.logger.info("Resource owner credentials mapping created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getResourceOwnerCredentialsMapping(self, var_id):
         """ Find the Resource Owner Credentials mapping by the ID.
@@ -84,15 +84,19 @@ class _oauth_resourceOwnerCredentialsMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
+<<<<<<< HEAD
     def updateResourceOwnerCredentialsMapping(self, var_id, body, X-BypassExternalValidation):
+=======
+    def updateResourceOwnerCredentialsMapping(self, id, body, XBypassExternalValidation):
+>>>>>>> Baseline Sphinx generation
         """ Update a Resource Owner Credentials mapping.
         """
 
@@ -115,17 +119,17 @@ class _oauth_resourceOwnerCredentialsMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Resource owner credentials mapping updated.')
+                self.logger.info("Resource owner credentials mapping updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteResourceOwnerCredentialsMapping(self, var_id):
         """ Delete a Resource Owner Credentials mapping.
@@ -143,11 +147,11 @@ class _oauth_resourceOwnerCredentialsMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Resource owner credentials mapping deleted.')
+                self.logger.info("Resource owner credentials mapping deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

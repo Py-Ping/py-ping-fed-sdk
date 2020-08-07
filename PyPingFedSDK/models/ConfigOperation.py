@@ -16,12 +16,21 @@ class ConfigOperation():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, resourceType, operationType, itemIds=None, items=None, subResource=None) -> None:
         self.itemIds = itemIds
         self.items = items
         self.operationType = operationType
         self.resourceType = resourceType
         self.subResource = subResource
+=======
+    def __init__(self, resourceType, operationType, itemIds=None, items=None, subResource=None):
+        self.itemIds: list = itemIds
+        self.items: list = items
+        self.operationType: str = operationType
+        self.resourceType: str = resourceType
+        self.subResource: str = subResource
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["resourceType", "operationType"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class ConfigOperation():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["itemIds", "items", "operationType", "resourceType", "subResource"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

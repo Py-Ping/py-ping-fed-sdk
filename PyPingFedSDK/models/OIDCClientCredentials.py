@@ -12,10 +12,17 @@ class OIDCClientCredentials():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, clientId, clientSecret=None, encryptedSecret=None) -> None:
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.encryptedSecret = encryptedSecret
+=======
+    def __init__(self, clientId, clientSecret=None, encryptedSecret=None):
+        self.clientId: str = clientId
+        self.clientSecret: str = clientSecret
+        self.encryptedSecret: str = encryptedSecret
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["clientId"] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class OIDCClientCredentials():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["clientId", "clientSecret", "encryptedSecret"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

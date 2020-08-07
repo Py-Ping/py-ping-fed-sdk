@@ -30,9 +30,9 @@ class _extendedProperties():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateExtendedProperties(self, body):
         """ Update the Extended Properties.
@@ -55,9 +55,9 @@ class _extendedProperties():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Extended properties updated.')
+                self.logger.info("Extended properties updated.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

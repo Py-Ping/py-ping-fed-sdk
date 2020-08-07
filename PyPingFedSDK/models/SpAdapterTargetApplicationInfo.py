@@ -12,10 +12,17 @@ class SpAdapterTargetApplicationInfo():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, applicationIconUrl=None, applicationName=None, inherited=None) -> None:
         self.applicationIconUrl = applicationIconUrl
         self.applicationName = applicationName
         self.inherited = inherited
+=======
+    def __init__(self, applicationIconUrl=None, applicationName=None, inherited=None):
+        self.applicationIconUrl: str = applicationIconUrl
+        self.applicationName: str = applicationName
+        self.inherited: bool = inherited
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,4 +45,11 @@ class SpAdapterTargetApplicationInfo():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["applicationIconUrl", "applicationName", "inherited"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

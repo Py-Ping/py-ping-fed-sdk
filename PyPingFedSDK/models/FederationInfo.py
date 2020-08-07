@@ -18,6 +18,7 @@ class FederationInfo():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, autoConnectEntityId=None, baseUrl=None, saml1xIssuerId=None, saml1xSourceId=None, saml2EntityId=None, wsfedRealm=None) -> None:
         self.autoConnectEntityId = autoConnectEntityId
         self.baseUrl = baseUrl
@@ -25,6 +26,15 @@ class FederationInfo():
         self.saml1xSourceId = saml1xSourceId
         self.saml2EntityId = saml2EntityId
         self.wsfedRealm = wsfedRealm
+=======
+    def __init__(self, autoConnectEntityId=None, baseUrl=None, saml1xIssuerId=None, saml1xSourceId=None, saml2EntityId=None, wsfedRealm=None):
+        self.autoConnectEntityId: str = autoConnectEntityId
+        self.baseUrl: str = baseUrl
+        self.saml1xIssuerId: str = saml1xIssuerId
+        self.saml1xSourceId: str = saml1xSourceId
+        self.saml2EntityId: str = saml2EntityId
+        self.wsfedRealm: str = wsfedRealm
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,4 +57,11 @@ class FederationInfo():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["autoConnectEntityId", "baseUrl", "saml1xIssuerId", "saml1xSourceId", "saml2EntityId", "wsfedRealm"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

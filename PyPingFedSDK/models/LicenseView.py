@@ -38,6 +38,7 @@ class LicenseView():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, enforcementType=None, expirationDate=None, gracePeriod=None, var_id=None, issueDate=None, licenseGroups=None, maxConnections=None, name=None, nodeLimit=None, oauthEnabled=None, organization=None, product=None, provisioningEnabled=None, tier=None, version=None, wsTrustEnabled=None) -> None:
         self.enforcementType = enforcementType
         self.expirationDate = expirationDate
@@ -55,6 +56,25 @@ class LicenseView():
         self.tier = tier
         self.version = version
         self.wsTrustEnabled = wsTrustEnabled
+=======
+    def __init__(self, enforcementType=None, expirationDate=None, gracePeriod=None, id=None, issueDate=None, licenseGroups=None, maxConnections=None, name=None, nodeLimit=None, oauthEnabled=None, organization=None, product=None, provisioningEnabled=None, tier=None, version=None, wsTrustEnabled=None):
+        self.enforcementType: str = enforcementType
+        self.expirationDate: str = expirationDate
+        self.gracePeriod: str = gracePeriod
+        self.id: str = id
+        self.issueDate: str = issueDate
+        self.licenseGroups: list = licenseGroups
+        self.maxConnections: str = maxConnections
+        self.name: str = name
+        self.nodeLimit: str = nodeLimit
+        self.oauthEnabled: bool = oauthEnabled
+        self.organization: str = organization
+        self.product: str = product
+        self.provisioningEnabled: bool = provisioningEnabled
+        self.tier: str = tier
+        self.version: str = version
+        self.wsTrustEnabled: bool = wsTrustEnabled
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -77,4 +97,11 @@ class LicenseView():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enforcementType", "expirationDate", "gracePeriod", "var_id", "issueDate", "licenseGroups", "maxConnections", "name", "nodeLimit", "oauthEnabled", "organization", "product", "provisioningEnabled", "tier", "version", "wsTrustEnabled"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

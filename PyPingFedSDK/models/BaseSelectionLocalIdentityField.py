@@ -20,6 +20,7 @@ class BaseSelectionLocalIdentityField():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_type, var_id, label, attributes=None, options=None, profilePageField=None, registrationPageField=None) -> None:
         self.attributes = attributes
         self.var_id = var_id
@@ -28,6 +29,16 @@ class BaseSelectionLocalIdentityField():
         self.profilePageField = profilePageField
         self.registrationPageField = registrationPageField
         self.var_type = var_type
+=======
+    def __init__(self, type, id, label, attributes=None, options=None, profilePageField=None, registrationPageField=None):
+        self.attributes: str = attributes
+        self.id: str = id
+        self.label: str = label
+        self.options: list = options
+        self.profilePageField: bool = profilePageField
+        self.registrationPageField: bool = registrationPageField
+        self.type: str = type
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "var_id", "label"] if self.__dict__[x] is not None)
@@ -50,4 +61,11 @@ class BaseSelectionLocalIdentityField():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributes", "var_id", "label", "options", "profilePageField", "registrationPageField", "var_type"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

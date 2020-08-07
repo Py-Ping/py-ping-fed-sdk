@@ -10,9 +10,15 @@ class IssuanceCriteria():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, conditionalCriteria=None, expressionCriteria=None) -> None:
         self.conditionalCriteria = conditionalCriteria
         self.expressionCriteria = expressionCriteria
+=======
+    def __init__(self, conditionalCriteria=None, expressionCriteria=None):
+        self.conditionalCriteria: list = conditionalCriteria
+        self.expressionCriteria: list = expressionCriteria
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class IssuanceCriteria():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["conditionalCriteria", "expressionCriteria"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

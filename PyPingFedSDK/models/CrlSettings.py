@@ -14,11 +14,19 @@ class CrlSettings():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, nextRetryMinsWhenNextUpdateInPast=None, nextRetryMinsWhenResolveFailed=None, treatNonRetrievableCrlAsRevoked=None, verifyCrlSignature=None) -> None:
         self.nextRetryMinsWhenNextUpdateInPast = nextRetryMinsWhenNextUpdateInPast
         self.nextRetryMinsWhenResolveFailed = nextRetryMinsWhenResolveFailed
         self.treatNonRetrievableCrlAsRevoked = treatNonRetrievableCrlAsRevoked
         self.verifyCrlSignature = verifyCrlSignature
+=======
+    def __init__(self, nextRetryMinsWhenNextUpdateInPast=None, nextRetryMinsWhenResolveFailed=None, treatNonRetrievableCrlAsRevoked=None, verifyCrlSignature=None):
+        self.nextRetryMinsWhenNextUpdateInPast: str = nextRetryMinsWhenNextUpdateInPast
+        self.nextRetryMinsWhenResolveFailed: str = nextRetryMinsWhenResolveFailed
+        self.treatNonRetrievableCrlAsRevoked: bool = treatNonRetrievableCrlAsRevoked
+        self.verifyCrlSignature: bool = verifyCrlSignature
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -41,4 +49,11 @@ class CrlSettings():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["nextRetryMinsWhenNextUpdateInPast", "nextRetryMinsWhenResolveFailed", "treatNonRetrievableCrlAsRevoked", "verifyCrlSignature"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

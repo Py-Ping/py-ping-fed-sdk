@@ -10,9 +10,15 @@ class DecryptionKeys():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, primaryKeyRef=None, secondaryKeyPairRef=None) -> None:
         self.primaryKeyRef = primaryKeyRef
         self.secondaryKeyPairRef = secondaryKeyPairRef
+=======
+    def __init__(self, primaryKeyRef=None, secondaryKeyPairRef=None):
+        self.primaryKeyRef: str = primaryKeyRef
+        self.secondaryKeyPairRef: str = secondaryKeyPairRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class DecryptionKeys():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["primaryKeyRef", "secondaryKeyPairRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

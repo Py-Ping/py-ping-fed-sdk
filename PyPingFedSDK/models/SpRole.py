@@ -22,6 +22,7 @@ class SpRole():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, enable=None, enableInboundProvisioning=None, enableOpenIDConnect=None, enableSaml10=None, enableSaml11=None, enableWsFed=None, enableWsTrust=None, saml20Profile=None) -> None:
         self.enable = enable
         self.enableInboundProvisioning = enableInboundProvisioning
@@ -31,6 +32,17 @@ class SpRole():
         self.enableWsFed = enableWsFed
         self.enableWsTrust = enableWsTrust
         self.saml20Profile = saml20Profile
+=======
+    def __init__(self, enable=None, enableInboundProvisioning=None, enableOpenIDConnect=None, enableSaml10=None, enableSaml11=None, enableWsFed=None, enableWsTrust=None, saml20Profile=None):
+        self.enable: bool = enable
+        self.enableInboundProvisioning: bool = enableInboundProvisioning
+        self.enableOpenIDConnect: bool = enableOpenIDConnect
+        self.enableSaml10: bool = enableSaml10
+        self.enableSaml11: bool = enableSaml11
+        self.enableWsFed: bool = enableWsFed
+        self.enableWsTrust: bool = enableWsTrust
+        self.saml20Profile: str = saml20Profile
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -53,4 +65,11 @@ class SpRole():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enable", "enableInboundProvisioning", "enableOpenIDConnect", "enableSaml10", "enableSaml11", "enableWsFed", "enableWsTrust", "saml20Profile"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

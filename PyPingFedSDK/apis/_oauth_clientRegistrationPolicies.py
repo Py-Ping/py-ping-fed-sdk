@@ -30,11 +30,11 @@ class _oauth_clientRegistrationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getDynamicClientRegistrationDescriptor(self, var_id):
         """ Get the description of a client registration policy plugin descriptor.
@@ -52,13 +52,13 @@ class _oauth_clientRegistrationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getDynamicClientRegistrationPolicies(self):
         """ Get a list of client registration policy plugin instances.
@@ -76,11 +76,11 @@ class _oauth_clientRegistrationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def createDynamicClientRegistrationPolicy(self, body):
         """ Create a client registration policy plugin instance.
@@ -103,15 +103,15 @@ class _oauth_clientRegistrationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Client Registration Policy plugin created.')
+                self.logger.info("Client Registration Policy plugin created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getDynamicClientRegistrationPolicy(self, var_id):
         """ Get a specific client registration policy plugin instance.
@@ -129,13 +129,13 @@ class _oauth_clientRegistrationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateDynamicClientRegistrationPolicy(self, var_id, body):
         """ Update a client registration policy plugin instance.
@@ -159,17 +159,17 @@ class _oauth_clientRegistrationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Client Registration Policy plugin updated.')
+                self.logger.info("Client Registration Policy plugin updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteDynamicClientRegistrationPolicy(self, var_id):
         """ Delete a client registration policy plugin instance.
@@ -187,11 +187,11 @@ class _oauth_clientRegistrationPolicies():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Client Registration Policy plugin deleted.')
+                self.logger.info("Client Registration Policy plugin deleted.")
             if response.status_code == 403:
-                self.logger.info('The operation is not permitted, based on the current configuration of the server.')
+                self.logger.info("The operation is not permitted, based on the current configuration of the server.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

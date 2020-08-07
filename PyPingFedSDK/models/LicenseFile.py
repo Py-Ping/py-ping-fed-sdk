@@ -8,8 +8,13 @@ class LicenseFile():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, fileData) -> None:
         self.fileData = fileData
+=======
+    def __init__(self, fileData):
+        self.fileData: str = fileData
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["fileData"] if self.__dict__[x] is not None)
@@ -32,4 +37,11 @@ class LicenseFile():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["fileData"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

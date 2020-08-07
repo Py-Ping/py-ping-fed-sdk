@@ -30,13 +30,13 @@ class _idpToSpAdapterMapping():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def createIdpToSpAdapterMapping(self, body, X-BypassExternalValidation):
+    def createIdpToSpAdapterMapping(self, body, XBypassExternalValidation):
         """ Create a new IdP-to-SP Adapter mapping.
         """
 
@@ -58,13 +58,13 @@ class _idpToSpAdapterMapping():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('IdP-to-SP adapter mapping created.')
+                self.logger.info("IdP-to-SP adapter mapping created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getIdpToSpAdapterMappingsById(self, var_id):
         """ Get an IdP-to-SP Adapter Mapping.
@@ -82,13 +82,17 @@ class _idpToSpAdapterMapping():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
+<<<<<<< HEAD
     def updateIdpToSpAdapterMapping(self, var_id, body, X-BypassExternalValidation):
+=======
+    def updateIdpToSpAdapterMapping(self, id, body, XBypassExternalValidation):
+>>>>>>> Baseline Sphinx generation
         """ Update the specified IdP-to-SP Adapter mapping.
         """
 
@@ -111,15 +115,15 @@ class _idpToSpAdapterMapping():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('IdP-to-SP adapter mapping updated.')
+                self.logger.info("IdP-to-SP adapter mapping updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteIdpToSpAdapterMappingsById(self, var_id):
         """ Delete an Adapter to Adapter Mapping.
@@ -137,9 +141,9 @@ class _idpToSpAdapterMapping():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('IdP-to-SP adapter mapping deleted.')
+                self.logger.info("IdP-to-SP adapter mapping deleted.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

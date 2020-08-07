@@ -88,6 +88,7 @@ class Client():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, clientId, grantTypes, name, bypassActivationCodeConfirmationOverride=None, bypassApprovalPage=None, cibaDeliveryMode=None, cibaNotificationEndpoint=None, cibaPollingInterval=None, cibaRequestObjectSigningAlgorithm=None, cibaRequireSignedRequests=None, cibaUserCodeSupported=None, clientAuth=None, defaultAccessTokenManagerRef=None, description=None, deviceFlowSettingType=None, devicePollingIntervalOverride=None, enabled=None, exclusiveScopes=None, extendedParameters=None, jwksSettings=None, logoUrl=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride=None, persistentGrantExpirationTime=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, redirectUris=None, refreshRolling=None, requestObjectSigningAlgorithm=None, requestPolicyRef=None, requireProofKeyForCodeExchange=None, requireSignedRequests=None, restrictScopes=None, restrictedResponseTypes=None, restrictedScopes=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride=None, validateUsingAllEligibleAtms=None) -> None:
         self.bypassActivationCodeConfirmationOverride = bypassActivationCodeConfirmationOverride
         self.bypassApprovalPage = bypassApprovalPage
@@ -130,6 +131,50 @@ class Client():
         self.tokenExchangeProcessorPolicyRef = tokenExchangeProcessorPolicyRef
         self.userAuthorizationUrlOverride = userAuthorizationUrlOverride
         self.validateUsingAllEligibleAtms = validateUsingAllEligibleAtms
+=======
+    def __init__(self, clientId, grantTypes, name, bypassActivationCodeConfirmationOverride=None, bypassApprovalPage=None, cibaDeliveryMode=None, cibaNotificationEndpoint=None, cibaPollingInterval=None, cibaRequestObjectSigningAlgorithm=None, cibaRequireSignedRequests=None, cibaUserCodeSupported=None, clientAuth=None, defaultAccessTokenManagerRef=None, description=None, deviceFlowSettingType=None, devicePollingIntervalOverride=None, enabled=None, exclusiveScopes=None, extendedParameters=None, jwksSettings=None, logoUrl=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride=None, persistentGrantExpirationTime=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, redirectUris=None, refreshRolling=None, requestObjectSigningAlgorithm=None, requestPolicyRef=None, requireProofKeyForCodeExchange=None, requireSignedRequests=None, restrictScopes=None, restrictedResponseTypes=None, restrictedScopes=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride=None, validateUsingAllEligibleAtms=None):
+        self.bypassActivationCodeConfirmationOverride: bool = bypassActivationCodeConfirmationOverride
+        self.bypassApprovalPage: bool = bypassApprovalPage
+        self.cibaDeliveryMode: str = cibaDeliveryMode
+        self.cibaNotificationEndpoint: str = cibaNotificationEndpoint
+        self.cibaPollingInterval: str = cibaPollingInterval
+        self.cibaRequestObjectSigningAlgorithm: str = cibaRequestObjectSigningAlgorithm
+        self.cibaRequireSignedRequests: bool = cibaRequireSignedRequests
+        self.cibaUserCodeSupported: bool = cibaUserCodeSupported
+        self.clientAuth: str = clientAuth
+        self.clientId: str = clientId
+        self.defaultAccessTokenManagerRef: str = defaultAccessTokenManagerRef
+        self.description: str = description
+        self.deviceFlowSettingType: str = deviceFlowSettingType
+        self.devicePollingIntervalOverride: str = devicePollingIntervalOverride
+        self.enabled: bool = enabled
+        self.exclusiveScopes: str = exclusiveScopes
+        self.extendedParameters: str = extendedParameters
+        self.grantTypes: str = grantTypes
+        self.jwksSettings: str = jwksSettings
+        self.logoUrl: str = logoUrl
+        self.name: str = name
+        self.oidcPolicy: str = oidcPolicy
+        self.pendingAuthorizationTimeoutOverride: str = pendingAuthorizationTimeoutOverride
+        self.persistentGrantExpirationTime: str = persistentGrantExpirationTime
+        self.persistentGrantExpirationTimeUnit: str = persistentGrantExpirationTimeUnit
+        self.persistentGrantExpirationType: str = persistentGrantExpirationType
+        self.persistentGrantIdleTimeout: str = persistentGrantIdleTimeout
+        self.persistentGrantIdleTimeoutTimeUnit: str = persistentGrantIdleTimeoutTimeUnit
+        self.persistentGrantIdleTimeoutType: str = persistentGrantIdleTimeoutType
+        self.redirectUris: list = redirectUris
+        self.refreshRolling: str = refreshRolling
+        self.requestObjectSigningAlgorithm: str = requestObjectSigningAlgorithm
+        self.requestPolicyRef: str = requestPolicyRef
+        self.requireProofKeyForCodeExchange: bool = requireProofKeyForCodeExchange
+        self.requireSignedRequests: bool = requireSignedRequests
+        self.restrictScopes: bool = restrictScopes
+        self.restrictedResponseTypes: str = restrictedResponseTypes
+        self.restrictedScopes: str = restrictedScopes
+        self.tokenExchangeProcessorPolicyRef: str = tokenExchangeProcessorPolicyRef
+        self.userAuthorizationUrlOverride: str = userAuthorizationUrlOverride
+        self.validateUsingAllEligibleAtms: bool = validateUsingAllEligibleAtms
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["clientId", "grantTypes", "name"] if self.__dict__[x] is not None)
@@ -152,4 +197,11 @@ class Client():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["bypassActivationCodeConfirmationOverride", "bypassApprovalPage", "cibaDeliveryMode", "cibaNotificationEndpoint", "cibaPollingInterval", "cibaRequestObjectSigningAlgorithm", "cibaRequireSignedRequests", "cibaUserCodeSupported", "clientAuth", "clientId", "defaultAccessTokenManagerRef", "description", "deviceFlowSettingType", "devicePollingIntervalOverride", "enabled", "exclusiveScopes", "extendedParameters", "grantTypes", "jwksSettings", "logoUrl", "name", "oidcPolicy", "pendingAuthorizationTimeoutOverride", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantExpirationType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantIdleTimeoutType", "redirectUris", "refreshRolling", "requestObjectSigningAlgorithm", "requestPolicyRef", "requireProofKeyForCodeExchange", "requireSignedRequests", "restrictScopes", "restrictedResponseTypes", "restrictedScopes", "tokenExchangeProcessorPolicyRef", "userAuthorizationUrlOverride", "validateUsingAllEligibleAtms"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

@@ -8,9 +8,17 @@ class Pattern():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, flags=None, pattern=None) -> None:
         self.flags = flags
         self.pattern = pattern
+=======
+    __slots__ = ["flags", "pattern"]
+
+    def __init__(self, flags=None, pattern=None):
+        self.flags: str = flags
+        self.pattern: str = pattern
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -33,4 +41,11 @@ class Pattern():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["flags", "pattern"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

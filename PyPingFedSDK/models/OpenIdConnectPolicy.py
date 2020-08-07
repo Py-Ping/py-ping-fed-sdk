@@ -28,6 +28,7 @@ class OpenIdConnectPolicy():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, name, accessTokenManagerRef, attributeContract, attributeMapping, idTokenLifetime=None, includeSHashInIdToken=None, includeSriInIdToken=None, includeUserInfoInIdToken=None, returnIdTokenOnRefreshGrant=None, scopeAttributeMappings=None) -> None:
         self.accessTokenManagerRef = accessTokenManagerRef
         self.attributeContract = attributeContract
@@ -40,6 +41,20 @@ class OpenIdConnectPolicy():
         self.name = name
         self.returnIdTokenOnRefreshGrant = returnIdTokenOnRefreshGrant
         self.scopeAttributeMappings = scopeAttributeMappings
+=======
+    def __init__(self, id, name, accessTokenManagerRef, attributeContract, attributeMapping, idTokenLifetime=None, includeSHashInIdToken=None, includeSriInIdToken=None, includeUserInfoInIdToken=None, returnIdTokenOnRefreshGrant=None, scopeAttributeMappings=None):
+        self.accessTokenManagerRef: str = accessTokenManagerRef
+        self.attributeContract: str = attributeContract
+        self.attributeMapping: str = attributeMapping
+        self.id: str = id
+        self.idTokenLifetime: str = idTokenLifetime
+        self.includeSHashInIdToken: bool = includeSHashInIdToken
+        self.includeSriInIdToken: bool = includeSriInIdToken
+        self.includeUserInfoInIdToken: bool = includeUserInfoInIdToken
+        self.name: str = name
+        self.returnIdTokenOnRefreshGrant: bool = returnIdTokenOnRefreshGrant
+        self.scopeAttributeMappings: str = scopeAttributeMappings
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "accessTokenManagerRef", "attributeContract", "attributeMapping"] if self.__dict__[x] is not None)
@@ -62,4 +77,11 @@ class OpenIdConnectPolicy():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerRef", "attributeContract", "attributeMapping", "var_id", "idTokenLifetime", "includeSHashInIdToken", "includeSriInIdToken", "includeUserInfoInIdToken", "name", "returnIdTokenOnRefreshGrant", "scopeAttributeMappings"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

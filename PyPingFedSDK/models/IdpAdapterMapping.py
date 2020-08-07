@@ -16,12 +16,21 @@ class IdpAdapterMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, var_id, attributeContractFulfillment, attributeSources=None, idpAdapterRef=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.var_id = var_id
         self.idpAdapterRef = idpAdapterRef
         self.issuanceCriteria = issuanceCriteria
+=======
+    def __init__(self, id, attributeContractFulfillment, attributeSources=None, idpAdapterRef=None, issuanceCriteria=None):
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.id: str = id
+        self.idpAdapterRef: str = idpAdapterRef
+        self.issuanceCriteria: str = issuanceCriteria
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class IdpAdapterMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "var_id", "idpAdapterRef", "issuanceCriteria"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

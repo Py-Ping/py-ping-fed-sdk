@@ -26,6 +26,7 @@ class IdpToSpAdapterMapping():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, attributeContractFulfillment, sourceId, targetId, applicationIconUrl=None, applicationName=None, attributeSources=None, defaultTargetResource=None, var_id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None) -> None:
         self.applicationIconUrl = applicationIconUrl
         self.applicationName = applicationName
@@ -37,6 +38,19 @@ class IdpToSpAdapterMapping():
         self.licenseConnectionGroupAssignment = licenseConnectionGroupAssignment
         self.sourceId = sourceId
         self.targetId = targetId
+=======
+    def __init__(self, attributeContractFulfillment, sourceId, targetId, applicationIconUrl=None, applicationName=None, attributeSources=None, defaultTargetResource=None, id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None):
+        self.applicationIconUrl: str = applicationIconUrl
+        self.applicationName: str = applicationName
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.defaultTargetResource: str = defaultTargetResource
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
+        self.licenseConnectionGroupAssignment: str = licenseConnectionGroupAssignment
+        self.sourceId: str = sourceId
+        self.targetId: str = targetId
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributeContractFulfillment", "sourceId", "targetId"] if self.__dict__[x] is not None)
@@ -59,4 +73,11 @@ class IdpToSpAdapterMapping():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["applicationIconUrl", "applicationName", "attributeContractFulfillment", "attributeSources", "defaultTargetResource", "var_id", "issuanceCriteria", "licenseConnectionGroupAssignment", "sourceId", "targetId"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

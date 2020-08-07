@@ -16,12 +16,21 @@ class TableDescriptor():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, columns=None, description=None, label=None, name=None, requireDefaultRow=None) -> None:
         self.columns = columns
         self.description = description
         self.label = label
         self.name = name
         self.requireDefaultRow = requireDefaultRow
+=======
+    def __init__(self, columns=None, description=None, label=None, name=None, requireDefaultRow=None):
+        self.columns: list = columns
+        self.description: str = description
+        self.label: str = label
+        self.name: str = name
+        self.requireDefaultRow: bool = requireDefaultRow
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -44,4 +53,11 @@ class TableDescriptor():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["columns", "description", "label", "name", "requireDefaultRow"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

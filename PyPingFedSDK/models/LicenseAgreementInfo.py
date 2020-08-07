@@ -10,9 +10,15 @@ class LicenseAgreementInfo():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, accepted=None, licenseAgreementUrl=None) -> None:
         self.accepted = accepted
         self.licenseAgreementUrl = licenseAgreementUrl
+=======
+    def __init__(self, accepted=None, licenseAgreementUrl=None):
+        self.accepted: bool = accepted
+        self.licenseAgreementUrl: str = licenseAgreementUrl
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class LicenseAgreementInfo():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accepted", "licenseAgreementUrl"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation

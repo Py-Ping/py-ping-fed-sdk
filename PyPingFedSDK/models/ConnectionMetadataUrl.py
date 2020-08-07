@@ -10,9 +10,15 @@ class ConnectionMetadataUrl():
 
     """
 
+<<<<<<< HEAD
     def __init__(self, metadataUrlRef, enableAutoMetadataUpdate=None) -> None:
         self.enableAutoMetadataUpdate = enableAutoMetadataUpdate
         self.metadataUrlRef = metadataUrlRef
+=======
+    def __init__(self, metadataUrlRef, enableAutoMetadataUpdate=None):
+        self.enableAutoMetadataUpdate: bool = enableAutoMetadataUpdate
+        self.metadataUrlRef: str = metadataUrlRef
+>>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["metadataUrlRef"] if self.__dict__[x] is not None)
@@ -35,4 +41,11 @@ class ConnectionMetadataUrl():
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableAutoMetadataUpdate", "metadataUrlRef"]}
 
+<<<<<<< HEAD
         return cls(**valid_data)
+=======
+        return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
+>>>>>>> Baseline Sphinx generation
