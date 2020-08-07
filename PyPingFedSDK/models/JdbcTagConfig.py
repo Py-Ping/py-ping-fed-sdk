@@ -12,9 +12,9 @@ class JdbcTagConfig():
     __slots__ = ["connectionUrl", "defaultSource", "tags"]
 
     def __init__(self, connectionUrl, defaultSource=None, tags=None):
-        self.connectionUrl = connectionUrl
-        self.defaultSource = defaultSource
-        self.tags = tags
+        self.connectionUrl: str = connectionUrl
+        self.defaultSource: bool = defaultSource
+        self.tags: str = tags
 
     def _validate(self):
         return any(x for x in ['connectionUrl'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class JdbcTagConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionUrl", "defaultSource", "tags"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

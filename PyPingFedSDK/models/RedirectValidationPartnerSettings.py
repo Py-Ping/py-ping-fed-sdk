@@ -10,7 +10,7 @@ class RedirectValidationPartnerSettings():
     __slots__ = ["enableWreplyValidationSLO"]
 
     def __init__(self, enableWreplyValidationSLO=None):
-        self.enableWreplyValidationSLO = enableWreplyValidationSLO
+        self.enableWreplyValidationSLO: bool = enableWreplyValidationSLO
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class RedirectValidationPartnerSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableWreplyValidationSLO"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

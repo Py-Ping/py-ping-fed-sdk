@@ -11,8 +11,8 @@ class AuthenticationPoliciesSettings():
     __slots__ = ["enableIdpAuthnSelection", "enableSpAuthnSelection"]
 
     def __init__(self, enableIdpAuthnSelection=None, enableSpAuthnSelection=None):
-        self.enableIdpAuthnSelection = enableIdpAuthnSelection
-        self.enableSpAuthnSelection = enableSpAuthnSelection
+        self.enableIdpAuthnSelection: bool = enableIdpAuthnSelection
+        self.enableSpAuthnSelection: bool = enableSpAuthnSelection
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AuthenticationPoliciesSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableIdpAuthnSelection", "enableSpAuthnSelection"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

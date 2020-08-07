@@ -12,9 +12,9 @@ class DataStore():
     __slots__ = ["id", "maskAttributeValues", "type"]
 
     def __init__(self, type, id=None, maskAttributeValues=None):
-        self.id = id
-        self.maskAttributeValues = maskAttributeValues
-        self.type = type
+        self.id: str = id
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class DataStore():
         valid_data = {k: v for k, v in python_dict.items() if k in ["id", "maskAttributeValues", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

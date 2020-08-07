@@ -13,10 +13,10 @@ class ConfigField():
     __slots__ = ["encryptedValue", "inherited", "name", "value"]
 
     def __init__(self, name, encryptedValue=None, inherited=None, value=None):
-        self.encryptedValue = encryptedValue
-        self.inherited = inherited
-        self.name = name
-        self.value = value
+        self.encryptedValue: str = encryptedValue
+        self.inherited: bool = inherited
+        self.name: str = name
+        self.value: str = value
 
     def _validate(self):
         return any(x for x in ['name'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class ConfigField():
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedValue", "inherited", "name", "value"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

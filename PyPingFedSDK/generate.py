@@ -5,7 +5,7 @@ import requests
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_name, requests_verb
+from helpers import safe_name, requests_verb, type_lookup
 
 class Generate():
     def __init__(self, api_schema_key='apis'):
@@ -26,6 +26,15 @@ class Generate():
                 folder='models'
             )
 
+        template = self.template('models_doc', name='models_doc', details=self.fetch_data.get('models'))
+
+        self.write_template(
+            content=template,
+            file_name='models',
+            file_type='rst',
+            folder='../docs/source/models'
+        )
+
         for api, details in self.fetch_data.get('apis').items():
             template = self.template('apis', name=api, details=details)
 
@@ -36,6 +45,16 @@ class Generate():
                 folder='apis'
             )
 
+        template = self.template('apis_doc', name='apis_doc', details=self.fetch_data.get('apis'))
+
+        self.write_template(
+            content=template,
+            file_name='apis',
+            file_type='rst',
+            folder='../docs/source/apis'
+        )
+
+
 
     def template(self, template, name, details, template_directory='templates'):
         currentdirectory = os.path.dirname(__file__)
@@ -44,7 +63,7 @@ class Generate():
             loader=FileSystemLoader(templatedirectory),
             trim_blocks=True
         )
-        jinjaenvironment.globals.update(safe_name=safe_name, requests_verb=requests_verb)
+        jinjaenvironment.globals.update(safe_name=safe_name, requests_verb=requests_verb, type_lookup=type_lookup)
         jinjatemplate = jinjaenvironment.get_template(f'./{template}.j2')
 
         rendered_template = jinjatemplate.render(class_name=name, details=details)

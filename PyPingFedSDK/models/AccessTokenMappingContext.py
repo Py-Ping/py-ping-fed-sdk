@@ -11,8 +11,8 @@ class AccessTokenMappingContext():
     __slots__ = ["contextRef", "type"]
 
     def __init__(self, type, contextRef):
-        self.contextRef = contextRef
-        self.type = type
+        self.contextRef: str = contextRef
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'contextRef'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AccessTokenMappingContext():
         valid_data = {k: v for k, v in python_dict.items() if k in ["contextRef", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

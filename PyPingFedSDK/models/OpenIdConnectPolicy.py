@@ -20,17 +20,17 @@ class OpenIdConnectPolicy():
     __slots__ = ["accessTokenManagerRef", "attributeContract", "attributeMapping", "id", "idTokenLifetime", "includeSHashInIdToken", "includeSriInIdToken", "includeUserInfoInIdToken", "name", "returnIdTokenOnRefreshGrant", "scopeAttributeMappings"]
 
     def __init__(self, id, name, accessTokenManagerRef, attributeContract, attributeMapping, idTokenLifetime=None, includeSHashInIdToken=None, includeSriInIdToken=None, includeUserInfoInIdToken=None, returnIdTokenOnRefreshGrant=None, scopeAttributeMappings=None):
-        self.accessTokenManagerRef = accessTokenManagerRef
-        self.attributeContract = attributeContract
-        self.attributeMapping = attributeMapping
-        self.id = id
-        self.idTokenLifetime = idTokenLifetime
-        self.includeSHashInIdToken = includeSHashInIdToken
-        self.includeSriInIdToken = includeSriInIdToken
-        self.includeUserInfoInIdToken = includeUserInfoInIdToken
-        self.name = name
-        self.returnIdTokenOnRefreshGrant = returnIdTokenOnRefreshGrant
-        self.scopeAttributeMappings = scopeAttributeMappings
+        self.accessTokenManagerRef: str = accessTokenManagerRef
+        self.attributeContract: str = attributeContract
+        self.attributeMapping: str = attributeMapping
+        self.id: str = id
+        self.idTokenLifetime: str = idTokenLifetime
+        self.includeSHashInIdToken: bool = includeSHashInIdToken
+        self.includeSriInIdToken: bool = includeSriInIdToken
+        self.includeUserInfoInIdToken: bool = includeUserInfoInIdToken
+        self.name: str = name
+        self.returnIdTokenOnRefreshGrant: bool = returnIdTokenOnRefreshGrant
+        self.scopeAttributeMappings: str = scopeAttributeMappings
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'accessTokenManagerRef', 'attributeContract', 'attributeMapping'] if self.__dict__[x] is not None)
@@ -54,3 +54,6 @@ class OpenIdConnectPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerRef", "attributeContract", "attributeMapping", "id", "idTokenLifetime", "includeSHashInIdToken", "includeSriInIdToken", "includeUserInfoInIdToken", "name", "returnIdTokenOnRefreshGrant", "scopeAttributeMappings"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

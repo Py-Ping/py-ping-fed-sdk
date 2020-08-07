@@ -13,10 +13,10 @@ class KerberosRealmsSettings():
     __slots__ = ["debugLogOutput", "forceTcp", "kdcRetries", "kdcTimeout"]
 
     def __init__(self, kdcRetries, kdcTimeout, debugLogOutput=None, forceTcp=None):
-        self.debugLogOutput = debugLogOutput
-        self.forceTcp = forceTcp
-        self.kdcRetries = kdcRetries
-        self.kdcTimeout = kdcTimeout
+        self.debugLogOutput: bool = debugLogOutput
+        self.forceTcp: bool = forceTcp
+        self.kdcRetries: str = kdcRetries
+        self.kdcTimeout: str = kdcTimeout
 
     def _validate(self):
         return any(x for x in ['kdcRetries', 'kdcTimeout'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class KerberosRealmsSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["debugLogOutput", "forceTcp", "kdcRetries", "kdcTimeout"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

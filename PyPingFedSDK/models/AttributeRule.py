@@ -13,10 +13,10 @@ class AttributeRule():
     __slots__ = ["attributeName", "condition", "expectedValue", "result"]
 
     def __init__(self, attributeName, condition, expectedValue, result):
-        self.attributeName = attributeName
-        self.condition = condition
-        self.expectedValue = expectedValue
-        self.result = result
+        self.attributeName: str = attributeName
+        self.condition: str = condition
+        self.expectedValue: str = expectedValue
+        self.result: str = result
 
     def _validate(self):
         return any(x for x in ['attributeName', 'condition', 'expectedValue', 'result'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class AttributeRule():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeName", "condition", "expectedValue", "result"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

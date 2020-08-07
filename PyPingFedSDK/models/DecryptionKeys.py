@@ -11,8 +11,8 @@ class DecryptionKeys():
     __slots__ = ["primaryKeyRef", "secondaryKeyPairRef"]
 
     def __init__(self, primaryKeyRef=None, secondaryKeyPairRef=None):
-        self.primaryKeyRef = primaryKeyRef
-        self.secondaryKeyPairRef = secondaryKeyPairRef
+        self.primaryKeyRef: str = primaryKeyRef
+        self.secondaryKeyPairRef: str = secondaryKeyPairRef
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class DecryptionKeys():
         valid_data = {k: v for k, v in python_dict.items() if k in ["primaryKeyRef", "secondaryKeyPairRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

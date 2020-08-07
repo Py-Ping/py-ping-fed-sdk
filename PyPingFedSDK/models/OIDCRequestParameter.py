@@ -12,9 +12,9 @@ class OIDCRequestParameter():
     __slots__ = ["applicationEndpointOverride", "name", "value"]
 
     def __init__(self, name, value, applicationEndpointOverride):
-        self.applicationEndpointOverride = applicationEndpointOverride
-        self.name = name
-        self.value = value
+        self.applicationEndpointOverride: bool = applicationEndpointOverride
+        self.name: str = name
+        self.value: str = value
 
     def _validate(self):
         return any(x for x in ['name', 'value', 'applicationEndpointOverride'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class OIDCRequestParameter():
         valid_data = {k: v for k, v in python_dict.items() if k in ["applicationEndpointOverride", "name", "value"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

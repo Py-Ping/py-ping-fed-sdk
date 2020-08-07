@@ -30,13 +30,13 @@ class _tokenProcessorToTokenGeneratorMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def createTokenToTokenMapping(self, body, X-BypassExternalValidation):
+    def createTokenToTokenMapping(self, body, XBypassExternalValidation):
         """ Create a new Token Processor to Token Generator Mapping.
         """
 
@@ -58,15 +58,15 @@ class _tokenProcessorToTokenGeneratorMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Token Processor to Token Generator mapping created.')
+                self.logger.info("Token Processor to Token Generator mapping created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getTokenToTokenMappingById(self, id):
         """ Get a Token Processor to Token Generator Mapping.
@@ -84,15 +84,15 @@ class _tokenProcessorToTokenGeneratorMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
-    def updateTokenToTokenMappingById(self, id, body, X-BypassExternalValidation):
+    def updateTokenToTokenMappingById(self, id, body, XBypassExternalValidation):
         """ Update a Token Processor to Token Generator Mapping.
         """
 
@@ -115,17 +115,17 @@ class _tokenProcessorToTokenGeneratorMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Token Processor to Token Generator mapping updated.')
+                self.logger.info("Token Processor to Token Generator mapping updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteTokenToTokenMappingById(self, id):
         """ Delete a Token Processor to Token Generator Mapping.
@@ -143,11 +143,11 @@ class _tokenProcessorToTokenGeneratorMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Token Processor to Token Generator mapping deleted.')
+                self.logger.info("Token Processor to Token Generator mapping deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

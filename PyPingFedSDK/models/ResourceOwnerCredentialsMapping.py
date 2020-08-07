@@ -14,11 +14,11 @@ class ResourceOwnerCredentialsMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "id", "issuanceCriteria", "passwordValidatorRef"]
 
     def __init__(self, id, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, passwordValidatorRef=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.id = id
-        self.issuanceCriteria = issuanceCriteria
-        self.passwordValidatorRef = passwordValidatorRef
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
+        self.passwordValidatorRef: str = passwordValidatorRef
 
     def _validate(self):
         return any(x for x in ['id', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class ResourceOwnerCredentialsMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "id", "issuanceCriteria", "passwordValidatorRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

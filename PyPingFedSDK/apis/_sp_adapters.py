@@ -30,11 +30,11 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getSpAdapterDescriptorsById(self, id):
         """ Get the description of an SP adapter plugin by ID.
@@ -52,13 +52,13 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getSpAdapters(self, page, numberPerPage, filter):
         """ Get the list of configured SP adapter instances.
@@ -76,13 +76,13 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def createSpAdapter(self, body):
         """ Create a new SP adapter instance.
@@ -105,15 +105,15 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Adapter created.')
+                self.logger.info("Adapter created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getSpAdapter(self, id):
         """ Find an SP adapter instance by ID.
@@ -131,13 +131,13 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateSpAdapter(self, id, body):
         """ Update an SP adapter instance.
@@ -161,17 +161,17 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Adapter updated.')
+                self.logger.info("Adapter updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteSpAdapter(self, id):
         """ Delete an SP adapter instance.
@@ -189,15 +189,15 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Adapter deleted.')
+                self.logger.info("Adapter deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 
     def getActions(self, id):
         """ List the actions for an SP adapter instance.
@@ -215,13 +215,13 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getAction(self, id, actionId):
         """ Find an SP adapter instance's action by ID.
@@ -239,13 +239,13 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def invokeAction(self, id, actionId):
         """ Invokes an action for an SP adapter instance.
@@ -269,13 +269,13 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Action invoked on adapter.')
+                self.logger.info("Action invoked on adapter.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getUrlMappings(self):
         """ (Deprecated) List the mappings between URLs and adapter instances.
@@ -293,11 +293,11 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def updateUrlMappings(self, body):
         """ (Deprecated) Update the mappings between URLs and adapters instances.
@@ -320,11 +320,11 @@ class _sp_adapters():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Mapping updated.')
+                self.logger.info("Mapping updated.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

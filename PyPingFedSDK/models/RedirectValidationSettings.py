@@ -11,8 +11,8 @@ class RedirectValidationSettings():
     __slots__ = ["redirectValidationLocalSettings", "redirectValidationPartnerSettings"]
 
     def __init__(self, redirectValidationLocalSettings=None, redirectValidationPartnerSettings=None):
-        self.redirectValidationLocalSettings = redirectValidationLocalSettings
-        self.redirectValidationPartnerSettings = redirectValidationPartnerSettings
+        self.redirectValidationLocalSettings: str = redirectValidationLocalSettings
+        self.redirectValidationPartnerSettings: str = redirectValidationPartnerSettings
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class RedirectValidationSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["redirectValidationLocalSettings", "redirectValidationPartnerSettings"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

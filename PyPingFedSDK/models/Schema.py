@@ -11,8 +11,8 @@ class Schema():
     __slots__ = ["attributes", "namespace"]
 
     def __init__(self, attributes=None, namespace=None):
-        self.attributes = attributes
-        self.namespace = namespace
+        self.attributes: list = attributes
+        self.namespace: str = namespace
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class Schema():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributes", "namespace"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

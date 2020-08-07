@@ -12,9 +12,9 @@ class CaptchaSettings():
     __slots__ = ["encryptedSecretKey", "secretKey", "siteKey"]
 
     def __init__(self, encryptedSecretKey=None, secretKey=None, siteKey=None):
-        self.encryptedSecretKey = encryptedSecretKey
-        self.secretKey = secretKey
-        self.siteKey = siteKey
+        self.encryptedSecretKey: str = encryptedSecretKey
+        self.secretKey: str = secretKey
+        self.siteKey: str = siteKey
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class CaptchaSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedSecretKey", "secretKey", "siteKey"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

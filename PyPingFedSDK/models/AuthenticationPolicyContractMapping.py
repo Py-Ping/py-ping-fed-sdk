@@ -15,12 +15,12 @@ class AuthenticationPolicyContractMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "issuanceCriteria", "restrictVirtualServerIds", "restrictedVirtualServerIds"]
 
     def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictVirtualServerIds=None, restrictedVirtualServerIds=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.authenticationPolicyContractRef = authenticationPolicyContractRef
-        self.issuanceCriteria = issuanceCriteria
-        self.restrictVirtualServerIds = restrictVirtualServerIds
-        self.restrictedVirtualServerIds = restrictedVirtualServerIds
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualServerIds: bool = restrictVirtualServerIds
+        self.restrictedVirtualServerIds: list = restrictedVirtualServerIds
 
     def _validate(self):
         return any(x for x in ['authenticationPolicyContractRef', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class AuthenticationPolicyContractMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "issuanceCriteria", "restrictVirtualServerIds", "restrictedVirtualServerIds"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

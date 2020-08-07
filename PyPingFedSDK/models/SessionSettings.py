@@ -12,9 +12,9 @@ class SessionSettings():
     __slots__ = ["revokeUserSessionOnLogout", "sessionRevocationLifetime", "trackAdapterSessionsForLogout"]
 
     def __init__(self, revokeUserSessionOnLogout=None, sessionRevocationLifetime=None, trackAdapterSessionsForLogout=None):
-        self.revokeUserSessionOnLogout = revokeUserSessionOnLogout
-        self.sessionRevocationLifetime = sessionRevocationLifetime
-        self.trackAdapterSessionsForLogout = trackAdapterSessionsForLogout
+        self.revokeUserSessionOnLogout: bool = revokeUserSessionOnLogout
+        self.sessionRevocationLifetime: str = sessionRevocationLifetime
+        self.trackAdapterSessionsForLogout: bool = trackAdapterSessionsForLogout
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SessionSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["revokeUserSessionOnLogout", "sessionRevocationLifetime", "trackAdapterSessionsForLogout"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class ConfigRow():
     __slots__ = ["defaultRow", "fields"]
 
     def __init__(self, fields, defaultRow=None):
-        self.defaultRow = defaultRow
-        self.fields = fields
+        self.defaultRow: bool = defaultRow
+        self.fields: list = fields
 
     def _validate(self):
         return any(x for x in ['fields'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ConfigRow():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultRow", "fields"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

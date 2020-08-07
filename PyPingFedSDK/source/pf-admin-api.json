@@ -5,7 +5,16 @@
             "path": "/idp/tokenProcessors"
         },
         {
+            "path": "/protocolMetadata"
+        },
+        {
             "path": "/idp/adapters"
+        },
+        {
+            "path": "/incomingProxySettings"
+        },
+        {
+            "path": "/serviceAuthentication"
         },
         {
             "path": "/license"

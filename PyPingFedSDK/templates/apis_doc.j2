@@ -1,0 +1,23 @@
+PyPingFedSDK APIs
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+  :maxdepth: 2
+  :glob:
+
+Submodules
+----------
+{% for api, detail in details.items() %}
+
+{{ api }}
+{{'-'*api|length}}
+
+.. automodule:: PyPingFedSDK.apis.{{ api }}
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+{% endfor %}

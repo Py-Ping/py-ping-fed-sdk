@@ -14,11 +14,11 @@ class TableDescriptor():
     __slots__ = ["columns", "description", "label", "name", "requireDefaultRow"]
 
     def __init__(self, columns=None, description=None, label=None, name=None, requireDefaultRow=None):
-        self.columns = columns
-        self.description = description
-        self.label = label
-        self.name = name
-        self.requireDefaultRow = requireDefaultRow
+        self.columns: list = columns
+        self.description: str = description
+        self.label: str = label
+        self.name: str = name
+        self.requireDefaultRow: bool = requireDefaultRow
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class TableDescriptor():
         valid_data = {k: v for k, v in python_dict.items() if k in ["columns", "description", "label", "name", "requireDefaultRow"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

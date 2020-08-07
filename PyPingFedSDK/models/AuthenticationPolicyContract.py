@@ -13,10 +13,10 @@ class AuthenticationPolicyContract():
     __slots__ = ["coreAttributes", "extendedAttributes", "id", "name"]
 
     def __init__(self, coreAttributes=None, extendedAttributes=None, id=None, name=None):
-        self.coreAttributes = coreAttributes
-        self.extendedAttributes = extendedAttributes
-        self.id = id
-        self.name = name
+        self.coreAttributes: list = coreAttributes
+        self.extendedAttributes: list = extendedAttributes
+        self.id: str = id
+        self.name: str = name
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class AuthenticationPolicyContract():
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes", "id", "name"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

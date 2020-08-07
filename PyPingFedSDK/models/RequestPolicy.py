@@ -20,17 +20,17 @@ class RequestPolicy():
     __slots__ = ["allowUnsignedLoginHintToken", "alternativeLoginHintTokenIssuers", "authenticatorRef", "id", "identityHintContract", "identityHintContractFulfillment", "identityHintMapping", "name", "requireTokenForIdentityHint", "transactionLifetime", "userCodePcvRef"]
 
     def __init__(self, id, name, authenticatorRef, identityHintContract, allowUnsignedLoginHintToken=None, alternativeLoginHintTokenIssuers=None, identityHintContractFulfillment=None, identityHintMapping=None, requireTokenForIdentityHint=None, transactionLifetime=None, userCodePcvRef=None):
-        self.allowUnsignedLoginHintToken = allowUnsignedLoginHintToken
-        self.alternativeLoginHintTokenIssuers = alternativeLoginHintTokenIssuers
-        self.authenticatorRef = authenticatorRef
-        self.id = id
-        self.identityHintContract = identityHintContract
-        self.identityHintContractFulfillment = identityHintContractFulfillment
-        self.identityHintMapping = identityHintMapping
-        self.name = name
-        self.requireTokenForIdentityHint = requireTokenForIdentityHint
-        self.transactionLifetime = transactionLifetime
-        self.userCodePcvRef = userCodePcvRef
+        self.allowUnsignedLoginHintToken: bool = allowUnsignedLoginHintToken
+        self.alternativeLoginHintTokenIssuers: list = alternativeLoginHintTokenIssuers
+        self.authenticatorRef: str = authenticatorRef
+        self.id: str = id
+        self.identityHintContract: str = identityHintContract
+        self.identityHintContractFulfillment: str = identityHintContractFulfillment
+        self.identityHintMapping: str = identityHintMapping
+        self.name: str = name
+        self.requireTokenForIdentityHint: bool = requireTokenForIdentityHint
+        self.transactionLifetime: str = transactionLifetime
+        self.userCodePcvRef: str = userCodePcvRef
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'authenticatorRef', 'identityHintContract'] if self.__dict__[x] is not None)
@@ -54,3 +54,6 @@ class RequestPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowUnsignedLoginHintToken", "alternativeLoginHintTokenIssuers", "authenticatorRef", "id", "identityHintContract", "identityHintContractFulfillment", "identityHintMapping", "name", "requireTokenForIdentityHint", "transactionLifetime", "userCodePcvRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

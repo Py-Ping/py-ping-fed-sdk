@@ -30,9 +30,9 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateSettings(self, body):
         """ Update general notification publisher settings.
@@ -55,13 +55,13 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Notification publisher settings updated.')
+                self.logger.info("Notification publisher settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getNotificationPublisherPluginDescriptors(self):
         """ Get the list of available Notification Publisher Plugin descriptors.
@@ -79,9 +79,9 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def getNotificationPublisherPluginDescriptor(self, id):
         """ Get the description of a notification publisher plugin descriptor.
@@ -99,11 +99,11 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getNotificationPublishers(self):
         """ Get a list of notification publisher plugin instances.
@@ -121,9 +121,9 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def createNotificationPublisher(self, body):
         """ Create a notification publisher plugin instance.
@@ -146,13 +146,13 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Notification Publisher plugin created.')
+                self.logger.info("Notification Publisher plugin created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getNotificationPublisher(self, id):
         """ Get a specific notification publisher plugin instance.
@@ -170,11 +170,11 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateNotificationPublisher(self, id, body):
         """ Update a notification publisher plugin instance.
@@ -198,15 +198,15 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Notification Publisher plugin updated.')
+                self.logger.info("Notification Publisher plugin updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteNotificationPublisher(self, id):
         """ Delete a notification publisher plugin instance.
@@ -224,13 +224,13 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Notification Publisher plugin deleted.')
+                self.logger.info("Notification Publisher plugin deleted.")
             if response.status_code == 403:
-                self.logger.info('The operation is not permitted, based on the current configuration of the server.')
+                self.logger.info("The operation is not permitted, based on the current configuration of the server.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getActions(self, id):
         """ List the actions for a notification publisher plugin instance.
@@ -248,11 +248,11 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getAction(self, id, actionId):
         """ Find an notification publisher plugin instance's action by ID.
@@ -270,11 +270,11 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def invokeAction(self, id, actionId):
         """ Invokes an action for notification publisher plugin instance.
@@ -298,9 +298,9 @@ class _notificationPublishers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Notification Publisher plugin action invoked.')
+                self.logger.info("Notification Publisher plugin action invoked.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

@@ -11,8 +11,8 @@ class AttributeRules():
     __slots__ = ["fallbackToSuccess", "items"]
 
     def __init__(self, fallbackToSuccess=None, items=None):
-        self.fallbackToSuccess = fallbackToSuccess
-        self.items = items
+        self.fallbackToSuccess: bool = fallbackToSuccess
+        self.items: list = items
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AttributeRules():
         valid_data = {k: v for k, v in python_dict.items() if k in ["fallbackToSuccess", "items"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class UserCredentials():
     __slots__ = ["currentPassword", "newPassword"]
 
     def __init__(self, newPassword, currentPassword=None):
-        self.currentPassword = currentPassword
-        self.newPassword = newPassword
+        self.currentPassword: str = currentPassword
+        self.newPassword: str = newPassword
 
     def _validate(self):
         return any(x for x in ['newPassword'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class UserCredentials():
         valid_data = {k: v for k, v in python_dict.items() if k in ["currentPassword", "newPassword"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

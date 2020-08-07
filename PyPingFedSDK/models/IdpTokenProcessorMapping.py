@@ -14,11 +14,11 @@ class IdpTokenProcessorMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "idpTokenProcessorRef", "issuanceCriteria", "restrictedVirtualEntityIds"]
 
     def __init__(self, idpTokenProcessorRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictedVirtualEntityIds=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.idpTokenProcessorRef = idpTokenProcessorRef
-        self.issuanceCriteria = issuanceCriteria
-        self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.idpTokenProcessorRef: str = idpTokenProcessorRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
 
     def _validate(self):
         return any(x for x in ['idpTokenProcessorRef', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class IdpTokenProcessorMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "idpTokenProcessorRef", "issuanceCriteria", "restrictedVirtualEntityIds"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

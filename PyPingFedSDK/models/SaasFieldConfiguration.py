@@ -17,14 +17,14 @@ class SaasFieldConfiguration():
     __slots__ = ["attributeNames", "characterCase", "createOnly", "defaultValue", "expression", "masked", "parser", "trim"]
 
     def __init__(self, attributeNames=None, characterCase=None, createOnly=None, defaultValue=None, expression=None, masked=None, parser=None, trim=None):
-        self.attributeNames = attributeNames
-        self.characterCase = characterCase
-        self.createOnly = createOnly
-        self.defaultValue = defaultValue
-        self.expression = expression
-        self.masked = masked
-        self.parser = parser
-        self.trim = trim
+        self.attributeNames: str = attributeNames
+        self.characterCase: str = characterCase
+        self.createOnly: bool = createOnly
+        self.defaultValue: str = defaultValue
+        self.expression: str = expression
+        self.masked: bool = masked
+        self.parser: str = parser
+        self.trim: bool = trim
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -48,3 +48,6 @@ class SaasFieldConfiguration():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeNames", "characterCase", "createOnly", "defaultValue", "expression", "masked", "parser", "trim"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

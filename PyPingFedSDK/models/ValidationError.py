@@ -13,10 +13,10 @@ class ValidationError():
     __slots__ = ["developerMessage", "errorId", "fieldPath", "message"]
 
     def __init__(self, developerMessage=None, errorId=None, fieldPath=None, message=None):
-        self.developerMessage = developerMessage
-        self.errorId = errorId
-        self.fieldPath = fieldPath
-        self.message = message
+        self.developerMessage: str = developerMessage
+        self.errorId: str = errorId
+        self.fieldPath: str = fieldPath
+        self.message: str = message
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class ValidationError():
         valid_data = {k: v for k, v in python_dict.items() if k in ["developerMessage", "errorId", "fieldPath", "message"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

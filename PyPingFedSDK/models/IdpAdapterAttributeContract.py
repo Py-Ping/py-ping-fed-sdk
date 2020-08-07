@@ -13,10 +13,10 @@ class IdpAdapterAttributeContract():
     __slots__ = ["coreAttributes", "extendedAttributes", "inherited", "maskOgnlValues"]
 
     def __init__(self, coreAttributes, extendedAttributes=None, inherited=None, maskOgnlValues=None):
-        self.coreAttributes = coreAttributes
-        self.extendedAttributes = extendedAttributes
-        self.inherited = inherited
-        self.maskOgnlValues = maskOgnlValues
+        self.coreAttributes: list = coreAttributes
+        self.extendedAttributes: list = extendedAttributes
+        self.inherited: bool = inherited
+        self.maskOgnlValues: bool = maskOgnlValues
 
     def _validate(self):
         return any(x for x in ['coreAttributes'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class IdpAdapterAttributeContract():
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes", "inherited", "maskOgnlValues"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

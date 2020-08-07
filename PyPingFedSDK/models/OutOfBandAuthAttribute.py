@@ -10,7 +10,7 @@ class OutOfBandAuthAttribute():
     __slots__ = ["name"]
 
     def __init__(self, name):
-        self.name = name
+        self.name: str = name
 
     def _validate(self):
         return any(x for x in ['name'] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class OutOfBandAuthAttribute():
         valid_data = {k: v for k, v in python_dict.items() if k in ["name"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

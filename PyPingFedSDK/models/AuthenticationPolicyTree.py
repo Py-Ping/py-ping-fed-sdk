@@ -14,11 +14,11 @@ class AuthenticationPolicyTree():
     __slots__ = ["authenticationApiApplicationRef", "description", "enabled", "name", "rootNode"]
 
     def __init__(self, authenticationApiApplicationRef=None, description=None, enabled=None, name=None, rootNode=None):
-        self.authenticationApiApplicationRef = authenticationApiApplicationRef
-        self.description = description
-        self.enabled = enabled
-        self.name = name
-        self.rootNode = rootNode
+        self.authenticationApiApplicationRef: str = authenticationApiApplicationRef
+        self.description: str = description
+        self.enabled: bool = enabled
+        self.name: str = name
+        self.rootNode: str = rootNode
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class AuthenticationPolicyTree():
         valid_data = {k: v for k, v in python_dict.items() if k in ["authenticationApiApplicationRef", "description", "enabled", "name", "rootNode"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

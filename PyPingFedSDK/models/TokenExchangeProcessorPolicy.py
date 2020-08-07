@@ -14,11 +14,11 @@ class TokenExchangeProcessorPolicy():
     __slots__ = ["actorTokenRequired", "attributeContract", "id", "name", "processorMappings"]
 
     def __init__(self, id, name, processorMappings, attributeContract, actorTokenRequired=None):
-        self.actorTokenRequired = actorTokenRequired
-        self.attributeContract = attributeContract
-        self.id = id
-        self.name = name
-        self.processorMappings = processorMappings
+        self.actorTokenRequired: bool = actorTokenRequired
+        self.attributeContract: str = attributeContract
+        self.id: str = id
+        self.name: str = name
+        self.processorMappings: list = processorMappings
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'processorMappings', 'attributeContract'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class TokenExchangeProcessorPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["actorTokenRequired", "attributeContract", "id", "name", "processorMappings"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

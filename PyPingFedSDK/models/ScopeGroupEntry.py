@@ -12,9 +12,9 @@ class ScopeGroupEntry():
     __slots__ = ["description", "name", "scopes"]
 
     def __init__(self, name, description, scopes):
-        self.description = description
-        self.name = name
-        self.scopes = scopes
+        self.description: str = description
+        self.name: str = name
+        self.scopes: str = scopes
 
     def _validate(self):
         return any(x for x in ['name', 'description', 'scopes'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class ScopeGroupEntry():
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "name", "scopes"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

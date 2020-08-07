@@ -11,8 +11,8 @@ class ClientSecret():
     __slots__ = ["encryptedSecret", "secret"]
 
     def __init__(self, encryptedSecret=None, secret=None):
-        self.encryptedSecret = encryptedSecret
-        self.secret = secret
+        self.encryptedSecret: str = encryptedSecret
+        self.secret: str = secret
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ClientSecret():
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedSecret", "secret"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

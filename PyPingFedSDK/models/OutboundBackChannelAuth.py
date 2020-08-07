@@ -14,11 +14,11 @@ class OutboundBackChannelAuth():
     __slots__ = ["digitalSignature", "httpBasicCredentials", "sslAuthKeyPairRef", "type", "validatePartnerCert"]
 
     def __init__(self, digitalSignature=None, httpBasicCredentials=None, sslAuthKeyPairRef=None, type=None, validatePartnerCert=None):
-        self.digitalSignature = digitalSignature
-        self.httpBasicCredentials = httpBasicCredentials
-        self.sslAuthKeyPairRef = sslAuthKeyPairRef
-        self.type = type
-        self.validatePartnerCert = validatePartnerCert
+        self.digitalSignature: bool = digitalSignature
+        self.httpBasicCredentials: str = httpBasicCredentials
+        self.sslAuthKeyPairRef: str = sslAuthKeyPairRef
+        self.type: str = type
+        self.validatePartnerCert: bool = validatePartnerCert
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class OutboundBackChannelAuth():
         valid_data = {k: v for k, v in python_dict.items() if k in ["digitalSignature", "httpBasicCredentials", "sslAuthKeyPairRef", "type", "validatePartnerCert"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

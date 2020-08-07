@@ -13,10 +13,10 @@ class AuthenticationPolicy():
     __slots__ = ["authnSelectionTrees", "defaultAuthenticationSources", "failIfNoSelection", "trackedHttpParameters"]
 
     def __init__(self, authnSelectionTrees=None, defaultAuthenticationSources=None, failIfNoSelection=None, trackedHttpParameters=None):
-        self.authnSelectionTrees = authnSelectionTrees
-        self.defaultAuthenticationSources = defaultAuthenticationSources
-        self.failIfNoSelection = failIfNoSelection
-        self.trackedHttpParameters = trackedHttpParameters
+        self.authnSelectionTrees: list = authnSelectionTrees
+        self.defaultAuthenticationSources: list = defaultAuthenticationSources
+        self.failIfNoSelection: bool = failIfNoSelection
+        self.trackedHttpParameters: list = trackedHttpParameters
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class AuthenticationPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["authnSelectionTrees", "defaultAuthenticationSources", "failIfNoSelection", "trackedHttpParameters"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

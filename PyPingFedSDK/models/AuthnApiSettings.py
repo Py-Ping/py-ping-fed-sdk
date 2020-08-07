@@ -12,9 +12,9 @@ class AuthnApiSettings():
     __slots__ = ["apiEnabled", "defaultApplicationRef", "enableApiDescriptions"]
 
     def __init__(self, apiEnabled=None, defaultApplicationRef=None, enableApiDescriptions=None):
-        self.apiEnabled = apiEnabled
-        self.defaultApplicationRef = defaultApplicationRef
-        self.enableApiDescriptions = enableApiDescriptions
+        self.apiEnabled: bool = apiEnabled
+        self.defaultApplicationRef: str = defaultApplicationRef
+        self.enableApiDescriptions: bool = enableApiDescriptions
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class AuthnApiSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["apiEnabled", "defaultApplicationRef", "enableApiDescriptions"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

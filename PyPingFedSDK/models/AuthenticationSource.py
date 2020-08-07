@@ -11,8 +11,8 @@ class AuthenticationSource():
     __slots__ = ["sourceRef", "type"]
 
     def __init__(self, type, sourceRef):
-        self.sourceRef = sourceRef
-        self.type = type
+        self.sourceRef: str = sourceRef
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'sourceRef'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AuthenticationSource():
         valid_data = {k: v for k, v in python_dict.items() if k in ["sourceRef", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

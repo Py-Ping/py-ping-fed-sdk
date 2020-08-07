@@ -11,8 +11,8 @@ class IdpSsoServiceEndpoint():
     __slots__ = ["binding", "url"]
 
     def __init__(self, binding, url):
-        self.binding = binding
-        self.url = url
+        self.binding: str = binding
+        self.url: str = url
 
     def _validate(self):
         return any(x for x in ['binding', 'url'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class IdpSsoServiceEndpoint():
         valid_data = {k: v for k, v in python_dict.items() if k in ["binding", "url"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

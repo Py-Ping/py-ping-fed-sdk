@@ -18,15 +18,15 @@ class TextAreaFieldDescriptor():
     __slots__ = ["advanced", "columns", "defaultValue", "description", "label", "name", "required", "rows", "type"]
 
     def __init__(self, advanced=None, columns=None, defaultValue=None, description=None, label=None, name=None, required=None, rows=None, type=None):
-        self.advanced = advanced
-        self.columns = columns
-        self.defaultValue = defaultValue
-        self.description = description
-        self.label = label
-        self.name = name
-        self.required = required
-        self.rows = rows
-        self.type = type
+        self.advanced: bool = advanced
+        self.columns: str = columns
+        self.defaultValue: str = defaultValue
+        self.description: str = description
+        self.label: str = label
+        self.name: str = name
+        self.required: bool = required
+        self.rows: str = rows
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -50,3 +50,6 @@ class TextAreaFieldDescriptor():
         valid_data = {k: v for k, v in python_dict.items() if k in ["advanced", "columns", "defaultValue", "description", "label", "name", "required", "rows", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

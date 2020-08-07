@@ -13,10 +13,10 @@ class SaasPluginDescriptor():
     __slots__ = ["configDescriptor", "description", "id", "saasPluginFieldInfoDescriptors"]
 
     def __init__(self, configDescriptor=None, description=None, id=None, saasPluginFieldInfoDescriptors=None):
-        self.configDescriptor = configDescriptor
-        self.description = description
-        self.id = id
-        self.saasPluginFieldInfoDescriptors = saasPluginFieldInfoDescriptors
+        self.configDescriptor: str = configDescriptor
+        self.description: str = description
+        self.id: str = id
+        self.saasPluginFieldInfoDescriptors: list = saasPluginFieldInfoDescriptors
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class SaasPluginDescriptor():
         valid_data = {k: v for k, v in python_dict.items() if k in ["configDescriptor", "description", "id", "saasPluginFieldInfoDescriptors"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

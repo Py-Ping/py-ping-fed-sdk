@@ -11,8 +11,8 @@ class JwksSettings():
     __slots__ = ["jwks", "jwksUrl"]
 
     def __init__(self, jwks=None, jwksUrl=None):
-        self.jwks = jwks
-        self.jwksUrl = jwksUrl
+        self.jwks: str = jwks
+        self.jwksUrl: str = jwksUrl
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class JwksSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["jwks", "jwksUrl"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

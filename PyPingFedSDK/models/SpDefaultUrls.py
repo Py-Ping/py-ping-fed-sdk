@@ -12,9 +12,9 @@ class SpDefaultUrls():
     __slots__ = ["confirmSlo", "sloSuccessUrl", "ssoSuccessUrl"]
 
     def __init__(self, confirmSlo=None, sloSuccessUrl=None, ssoSuccessUrl=None):
-        self.confirmSlo = confirmSlo
-        self.sloSuccessUrl = sloSuccessUrl
-        self.ssoSuccessUrl = ssoSuccessUrl
+        self.confirmSlo: bool = confirmSlo
+        self.sloSuccessUrl: str = sloSuccessUrl
+        self.ssoSuccessUrl: str = ssoSuccessUrl
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SpDefaultUrls():
         valid_data = {k: v for k, v in python_dict.items() if k in ["confirmSlo", "sloSuccessUrl", "ssoSuccessUrl"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

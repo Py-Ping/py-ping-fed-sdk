@@ -12,9 +12,9 @@ class CertificateRevocationSettings():
     __slots__ = ["crlSettings", "ocspSettings", "proxySettings"]
 
     def __init__(self, crlSettings=None, ocspSettings=None, proxySettings=None):
-        self.crlSettings = crlSettings
-        self.ocspSettings = ocspSettings
-        self.proxySettings = proxySettings
+        self.crlSettings: str = crlSettings
+        self.ocspSettings: str = ocspSettings
+        self.proxySettings: str = proxySettings
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class CertificateRevocationSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["crlSettings", "ocspSettings", "proxySettings"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -15,12 +15,12 @@ class LdapDataStoreConfig():
     __slots__ = ["baseDn", "createPattern", "dataStoreMapping", "dataStoreRef", "objectClass", "type"]
 
     def __init__(self, type, dataStoreRef, baseDn, createPattern, objectClass, dataStoreMapping):
-        self.baseDn = baseDn
-        self.createPattern = createPattern
-        self.dataStoreMapping = dataStoreMapping
-        self.dataStoreRef = dataStoreRef
-        self.objectClass = objectClass
-        self.type = type
+        self.baseDn: str = baseDn
+        self.createPattern: str = createPattern
+        self.dataStoreMapping: str = dataStoreMapping
+        self.dataStoreRef: str = dataStoreRef
+        self.objectClass: str = objectClass
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'dataStoreRef', 'baseDn', 'createPattern', 'objectClass', 'dataStoreMapping'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class LdapDataStoreConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["baseDn", "createPattern", "dataStoreMapping", "dataStoreRef", "objectClass", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

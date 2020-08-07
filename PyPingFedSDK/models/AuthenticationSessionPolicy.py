@@ -17,14 +17,14 @@ class AuthenticationSessionPolicy():
     __slots__ = ["authenticationSource", "authnContextSensitive", "enableSessions", "id", "idleTimeoutMins", "maxTimeoutMins", "persistent", "timeoutDisplayUnit"]
 
     def __init__(self, authenticationSource, enableSessions, authnContextSensitive=None, id=None, idleTimeoutMins=None, maxTimeoutMins=None, persistent=None, timeoutDisplayUnit=None):
-        self.authenticationSource = authenticationSource
-        self.authnContextSensitive = authnContextSensitive
-        self.enableSessions = enableSessions
-        self.id = id
-        self.idleTimeoutMins = idleTimeoutMins
-        self.maxTimeoutMins = maxTimeoutMins
-        self.persistent = persistent
-        self.timeoutDisplayUnit = timeoutDisplayUnit
+        self.authenticationSource: str = authenticationSource
+        self.authnContextSensitive: bool = authnContextSensitive
+        self.enableSessions: bool = enableSessions
+        self.id: str = id
+        self.idleTimeoutMins: str = idleTimeoutMins
+        self.maxTimeoutMins: str = maxTimeoutMins
+        self.persistent: bool = persistent
+        self.timeoutDisplayUnit: str = timeoutDisplayUnit
 
     def _validate(self):
         return any(x for x in ['authenticationSource', 'enableSessions'] if self.__dict__[x] is not None)
@@ -48,3 +48,6 @@ class AuthenticationSessionPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["authenticationSource", "authnContextSensitive", "enableSessions", "id", "idleTimeoutMins", "maxTimeoutMins", "persistent", "timeoutDisplayUnit"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

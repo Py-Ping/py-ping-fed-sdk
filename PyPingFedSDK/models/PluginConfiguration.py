@@ -11,8 +11,8 @@ class PluginConfiguration():
     __slots__ = ["fields", "tables"]
 
     def __init__(self, fields=None, tables=None):
-        self.fields = fields
-        self.tables = tables
+        self.fields: list = fields
+        self.tables: list = tables
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class PluginConfiguration():
         valid_data = {k: v for k, v in python_dict.items() if k in ["fields", "tables"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

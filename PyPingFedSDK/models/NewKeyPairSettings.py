@@ -22,19 +22,19 @@ class NewKeyPairSettings():
     __slots__ = ["city", "commonName", "country", "cryptoProvider", "id", "keyAlgorithm", "keySize", "organization", "organizationUnit", "signatureAlgorithm", "state", "subjectAlternativeNames", "validDays"]
 
     def __init__(self, commonName, organization, country, validDays, keyAlgorithm, city=None, cryptoProvider=None, id=None, keySize=None, organizationUnit=None, signatureAlgorithm=None, state=None, subjectAlternativeNames=None):
-        self.city = city
-        self.commonName = commonName
-        self.country = country
-        self.cryptoProvider = cryptoProvider
-        self.id = id
-        self.keyAlgorithm = keyAlgorithm
-        self.keySize = keySize
-        self.organization = organization
-        self.organizationUnit = organizationUnit
-        self.signatureAlgorithm = signatureAlgorithm
-        self.state = state
-        self.subjectAlternativeNames = subjectAlternativeNames
-        self.validDays = validDays
+        self.city: str = city
+        self.commonName: str = commonName
+        self.country: str = country
+        self.cryptoProvider: str = cryptoProvider
+        self.id: str = id
+        self.keyAlgorithm: str = keyAlgorithm
+        self.keySize: str = keySize
+        self.organization: str = organization
+        self.organizationUnit: str = organizationUnit
+        self.signatureAlgorithm: str = signatureAlgorithm
+        self.state: str = state
+        self.subjectAlternativeNames: list = subjectAlternativeNames
+        self.validDays: str = validDays
 
     def _validate(self):
         return any(x for x in ['commonName', 'organization', 'country', 'validDays', 'keyAlgorithm'] if self.__dict__[x] is not None)
@@ -58,3 +58,6 @@ class NewKeyPairSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["city", "commonName", "country", "cryptoProvider", "id", "keyAlgorithm", "keySize", "organization", "organizationUnit", "signatureAlgorithm", "state", "subjectAlternativeNames", "validDays"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

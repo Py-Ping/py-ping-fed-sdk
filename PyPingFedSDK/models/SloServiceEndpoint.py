@@ -12,9 +12,9 @@ class SloServiceEndpoint():
     __slots__ = ["binding", "responseUrl", "url"]
 
     def __init__(self, binding, url, responseUrl=None):
-        self.binding = binding
-        self.responseUrl = responseUrl
-        self.url = url
+        self.binding: str = binding
+        self.responseUrl: str = responseUrl
+        self.url: str = url
 
     def _validate(self):
         return any(x for x in ['binding', 'url'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SloServiceEndpoint():
         valid_data = {k: v for k, v in python_dict.items() if k in ["binding", "responseUrl", "url"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

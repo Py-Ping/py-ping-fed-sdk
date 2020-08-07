@@ -11,8 +11,8 @@ class LicenseAgreementInfo():
     __slots__ = ["accepted", "licenseAgreementUrl"]
 
     def __init__(self, accepted=None, licenseAgreementUrl=None):
-        self.accepted = accepted
-        self.licenseAgreementUrl = licenseAgreementUrl
+        self.accepted: bool = accepted
+        self.licenseAgreementUrl: str = licenseAgreementUrl
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class LicenseAgreementInfo():
         valid_data = {k: v for k, v in python_dict.items() if k in ["accepted", "licenseAgreementUrl"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

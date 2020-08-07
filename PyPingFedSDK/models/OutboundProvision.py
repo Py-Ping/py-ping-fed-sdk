@@ -13,10 +13,10 @@ class OutboundProvision():
     __slots__ = ["channels", "customSchema", "targetSettings", "type"]
 
     def __init__(self, type, targetSettings, channels, customSchema=None):
-        self.channels = channels
-        self.customSchema = customSchema
-        self.targetSettings = targetSettings
-        self.type = type
+        self.channels: list = channels
+        self.customSchema: str = customSchema
+        self.targetSettings: list = targetSettings
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'targetSettings', 'channels'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class OutboundProvision():
         valid_data = {k: v for k, v in python_dict.items() if k in ["channels", "customSchema", "targetSettings", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

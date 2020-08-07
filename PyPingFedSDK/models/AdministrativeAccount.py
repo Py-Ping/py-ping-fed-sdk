@@ -19,16 +19,16 @@ class AdministrativeAccount():
     __slots__ = ["active", "auditor", "department", "description", "emailAddress", "encryptedPassword", "password", "phoneNumber", "roles", "username"]
 
     def __init__(self, username, active=None, auditor=None, department=None, description=None, emailAddress=None, encryptedPassword=None, password=None, phoneNumber=None, roles=None):
-        self.active = active
-        self.auditor = auditor
-        self.department = department
-        self.description = description
-        self.emailAddress = emailAddress
-        self.encryptedPassword = encryptedPassword
-        self.password = password
-        self.phoneNumber = phoneNumber
-        self.roles = roles
-        self.username = username
+        self.active: bool = active
+        self.auditor: bool = auditor
+        self.department: str = department
+        self.description: str = description
+        self.emailAddress: str = emailAddress
+        self.encryptedPassword: str = encryptedPassword
+        self.password: str = password
+        self.phoneNumber: str = phoneNumber
+        self.roles: str = roles
+        self.username: str = username
 
     def _validate(self):
         return any(x for x in ['username'] if self.__dict__[x] is not None)
@@ -52,3 +52,6 @@ class AdministrativeAccount():
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "auditor", "department", "description", "emailAddress", "encryptedPassword", "password", "phoneNumber", "roles", "username"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

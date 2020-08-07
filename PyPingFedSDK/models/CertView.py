@@ -24,21 +24,21 @@ class CertView():
     __slots__ = ["cryptoProvider", "expires", "id", "issuerDN", "keyAlgorithm", "keySize", "serialNumber", "sha1Fingerprint", "sha256Fingerprint", "signatureAlgorithm", "status", "subjectAlternativeNames", "subjectDN", "validFrom", "version"]
 
     def __init__(self, cryptoProvider=None, expires=None, id=None, issuerDN=None, keyAlgorithm=None, keySize=None, serialNumber=None, sha1Fingerprint=None, sha256Fingerprint=None, signatureAlgorithm=None, status=None, subjectAlternativeNames=None, subjectDN=None, validFrom=None, version=None):
-        self.cryptoProvider = cryptoProvider
-        self.expires = expires
-        self.id = id
-        self.issuerDN = issuerDN
-        self.keyAlgorithm = keyAlgorithm
-        self.keySize = keySize
-        self.serialNumber = serialNumber
-        self.sha1Fingerprint = sha1Fingerprint
-        self.sha256Fingerprint = sha256Fingerprint
-        self.signatureAlgorithm = signatureAlgorithm
-        self.status = status
-        self.subjectAlternativeNames = subjectAlternativeNames
-        self.subjectDN = subjectDN
-        self.validFrom = validFrom
-        self.version = version
+        self.cryptoProvider: str = cryptoProvider
+        self.expires: str = expires
+        self.id: str = id
+        self.issuerDN: str = issuerDN
+        self.keyAlgorithm: str = keyAlgorithm
+        self.keySize: str = keySize
+        self.serialNumber: str = serialNumber
+        self.sha1Fingerprint: str = sha1Fingerprint
+        self.sha256Fingerprint: str = sha256Fingerprint
+        self.signatureAlgorithm: str = signatureAlgorithm
+        self.status: str = status
+        self.subjectAlternativeNames: list = subjectAlternativeNames
+        self.subjectDN: str = subjectDN
+        self.validFrom: str = validFrom
+        self.version: str = version
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -62,3 +62,6 @@ class CertView():
         valid_data = {k: v for k, v in python_dict.items() if k in ["cryptoProvider", "expires", "id", "issuerDN", "keyAlgorithm", "keySize", "serialNumber", "sha1Fingerprint", "sha256Fingerprint", "signatureAlgorithm", "status", "subjectAlternativeNames", "subjectDN", "validFrom", "version"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

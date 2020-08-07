@@ -14,11 +14,11 @@ class RedirectValidationLocalSettings():
     __slots__ = ["enableInErrorResourceValidation", "enableTargetResourceValidationForIdpDiscovery", "enableTargetResourceValidationForSLO", "enableTargetResourceValidationForSSO", "whiteList"]
 
     def __init__(self, enableInErrorResourceValidation=None, enableTargetResourceValidationForIdpDiscovery=None, enableTargetResourceValidationForSLO=None, enableTargetResourceValidationForSSO=None, whiteList=None):
-        self.enableInErrorResourceValidation = enableInErrorResourceValidation
-        self.enableTargetResourceValidationForIdpDiscovery = enableTargetResourceValidationForIdpDiscovery
-        self.enableTargetResourceValidationForSLO = enableTargetResourceValidationForSLO
-        self.enableTargetResourceValidationForSSO = enableTargetResourceValidationForSSO
-        self.whiteList = whiteList
+        self.enableInErrorResourceValidation: bool = enableInErrorResourceValidation
+        self.enableTargetResourceValidationForIdpDiscovery: bool = enableTargetResourceValidationForIdpDiscovery
+        self.enableTargetResourceValidationForSLO: bool = enableTargetResourceValidationForSLO
+        self.enableTargetResourceValidationForSSO: bool = enableTargetResourceValidationForSSO
+        self.whiteList: list = whiteList
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class RedirectValidationLocalSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableInErrorResourceValidation", "enableTargetResourceValidationForIdpDiscovery", "enableTargetResourceValidationForSLO", "enableTargetResourceValidationForSSO", "whiteList"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

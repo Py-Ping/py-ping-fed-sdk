@@ -14,11 +14,11 @@ class AccountManagementSettings():
     __slots__ = ["accountStatusAlgorithm", "accountStatusAttributeName", "defaultStatus", "flagComparisonStatus", "flagComparisonValue"]
 
     def __init__(self, accountStatusAttributeName, accountStatusAlgorithm, defaultStatus=None, flagComparisonStatus=None, flagComparisonValue=None):
-        self.accountStatusAlgorithm = accountStatusAlgorithm
-        self.accountStatusAttributeName = accountStatusAttributeName
-        self.defaultStatus = defaultStatus
-        self.flagComparisonStatus = flagComparisonStatus
-        self.flagComparisonValue = flagComparisonValue
+        self.accountStatusAlgorithm: str = accountStatusAlgorithm
+        self.accountStatusAttributeName: str = accountStatusAttributeName
+        self.defaultStatus: bool = defaultStatus
+        self.flagComparisonStatus: bool = flagComparisonStatus
+        self.flagComparisonValue: str = flagComparisonValue
 
     def _validate(self):
         return any(x for x in ['accountStatusAttributeName', 'accountStatusAlgorithm'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class AccountManagementSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["accountStatusAlgorithm", "accountStatusAttributeName", "defaultStatus", "flagComparisonStatus", "flagComparisonValue"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

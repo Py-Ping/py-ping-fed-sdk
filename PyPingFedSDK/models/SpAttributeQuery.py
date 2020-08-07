@@ -14,11 +14,11 @@ class SpAttributeQuery():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "attributes", "issuanceCriteria", "policy"]
 
     def __init__(self, attributes, attributeSources, attributeContractFulfillment, issuanceCriteria=None, policy=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.attributes = attributes
-        self.issuanceCriteria = issuanceCriteria
-        self.policy = policy
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.attributes: str = attributes
+        self.issuanceCriteria: str = issuanceCriteria
+        self.policy: str = policy
 
     def _validate(self):
         return any(x for x in ['attributes', 'attributeSources', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class SpAttributeQuery():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "attributes", "issuanceCriteria", "policy"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class AssertionLifetime():
     __slots__ = ["minutesAfter", "minutesBefore"]
 
     def __init__(self, minutesBefore, minutesAfter):
-        self.minutesAfter = minutesAfter
-        self.minutesBefore = minutesBefore
+        self.minutesAfter: str = minutesAfter
+        self.minutesBefore: str = minutesBefore
 
     def _validate(self):
         return any(x for x in ['minutesBefore', 'minutesAfter'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AssertionLifetime():
         valid_data = {k: v for k, v in python_dict.items() if k in ["minutesAfter", "minutesBefore"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

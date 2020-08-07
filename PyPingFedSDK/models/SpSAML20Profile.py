@@ -12,9 +12,9 @@ class SpSAML20Profile():
     __slots__ = ["enable", "enableAutoConnect", "enableXASP"]
 
     def __init__(self, enable=None, enableAutoConnect=None, enableXASP=None):
-        self.enable = enable
-        self.enableAutoConnect = enableAutoConnect
-        self.enableXASP = enableXASP
+        self.enable: bool = enable
+        self.enableAutoConnect: bool = enableAutoConnect
+        self.enableXASP: bool = enableXASP
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SpSAML20Profile():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enable", "enableAutoConnect", "enableXASP"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

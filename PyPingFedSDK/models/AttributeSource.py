@@ -14,11 +14,11 @@ class AttributeSource():
     __slots__ = ["attributeContractFulfillment", "dataStoreRef", "description", "id", "type"]
 
     def __init__(self, type, dataStoreRef, attributeContractFulfillment=None, description=None, id=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.dataStoreRef = dataStoreRef
-        self.description = description
-        self.id = id
-        self.type = type
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.dataStoreRef: str = dataStoreRef
+        self.description: str = description
+        self.id: str = id
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'dataStoreRef'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class AttributeSource():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "dataStoreRef", "description", "id", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

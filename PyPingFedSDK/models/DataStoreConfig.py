@@ -12,9 +12,9 @@ class DataStoreConfig():
     __slots__ = ["dataStoreMapping", "dataStoreRef", "type"]
 
     def __init__(self, type, dataStoreRef, dataStoreMapping=None):
-        self.dataStoreMapping = dataStoreMapping
-        self.dataStoreRef = dataStoreRef
-        self.type = type
+        self.dataStoreMapping: str = dataStoreMapping
+        self.dataStoreRef: str = dataStoreRef
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'dataStoreRef'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class DataStoreConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["dataStoreMapping", "dataStoreRef", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

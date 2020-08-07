@@ -13,10 +13,10 @@ class ApcMappingPolicyAction():
     __slots__ = ["attributeMapping", "authenticationPolicyContractRef", "context", "type"]
 
     def __init__(self, type, authenticationPolicyContractRef, attributeMapping, context=None):
-        self.attributeMapping = attributeMapping
-        self.authenticationPolicyContractRef = authenticationPolicyContractRef
-        self.context = context
-        self.type = type
+        self.attributeMapping: str = attributeMapping
+        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
+        self.context: str = context
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'authenticationPolicyContractRef', 'attributeMapping'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class ApcMappingPolicyAction():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeMapping", "authenticationPolicyContractRef", "context", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

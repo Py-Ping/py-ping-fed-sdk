@@ -16,13 +16,13 @@ class CustomDataStore():
     __slots__ = ["configuration", "id", "maskAttributeValues", "name", "parentRef", "pluginDescriptorRef", "type"]
 
     def __init__(self, type, name, pluginDescriptorRef, configuration, id=None, maskAttributeValues=None, parentRef=None):
-        self.configuration = configuration
-        self.id = id
-        self.maskAttributeValues = maskAttributeValues
-        self.name = name
-        self.parentRef = parentRef
-        self.pluginDescriptorRef = pluginDescriptorRef
-        self.type = type
+        self.configuration: str = configuration
+        self.id: str = id
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.name: str = name
+        self.parentRef: str = parentRef
+        self.pluginDescriptorRef: str = pluginDescriptorRef
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'name', 'pluginDescriptorRef', 'configuration'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class CustomDataStore():
         valid_data = {k: v for k, v in python_dict.items() if k in ["configuration", "id", "maskAttributeValues", "name", "parentRef", "pluginDescriptorRef", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

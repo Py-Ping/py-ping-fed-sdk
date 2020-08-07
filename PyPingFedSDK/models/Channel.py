@@ -15,12 +15,12 @@ class Channel():
     __slots__ = ["active", "attributeMapping", "channelSource", "maxThreads", "name", "timeout"]
 
     def __init__(self, active, channelSource, attributeMapping, name, maxThreads, timeout):
-        self.active = active
-        self.attributeMapping = attributeMapping
-        self.channelSource = channelSource
-        self.maxThreads = maxThreads
-        self.name = name
-        self.timeout = timeout
+        self.active: bool = active
+        self.attributeMapping: list = attributeMapping
+        self.channelSource: str = channelSource
+        self.maxThreads: str = maxThreads
+        self.name: str = name
+        self.timeout: str = timeout
 
     def _validate(self):
         return any(x for x in ['active', 'channelSource', 'attributeMapping', 'name', 'maxThreads', 'timeout'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class Channel():
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "attributeMapping", "channelSource", "maxThreads", "name", "timeout"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

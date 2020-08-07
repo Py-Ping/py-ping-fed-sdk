@@ -11,8 +11,8 @@ class ConnectionMetadataUrl():
     __slots__ = ["enableAutoMetadataUpdate", "metadataUrlRef"]
 
     def __init__(self, metadataUrlRef, enableAutoMetadataUpdate=None):
-        self.enableAutoMetadataUpdate = enableAutoMetadataUpdate
-        self.metadataUrlRef = metadataUrlRef
+        self.enableAutoMetadataUpdate: bool = enableAutoMetadataUpdate
+        self.metadataUrlRef: str = metadataUrlRef
 
     def _validate(self):
         return any(x for x in ['metadataUrlRef'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ConnectionMetadataUrl():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableAutoMetadataUpdate", "metadataUrlRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

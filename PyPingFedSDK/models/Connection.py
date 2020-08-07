@@ -24,21 +24,21 @@ class Connection():
     __slots__ = ["active", "additionalAllowedEntitiesConfiguration", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "extendedProperties", "id", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "type", "virtualEntityIds"]
 
     def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, type=None, virtualEntityIds=None):
-        self.active = active
-        self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
-        self.baseUrl = baseUrl
-        self.contactInfo = contactInfo
-        self.credentials = credentials
-        self.defaultVirtualEntityId = defaultVirtualEntityId
-        self.entityId = entityId
-        self.extendedProperties = extendedProperties
-        self.id = id
-        self.licenseConnectionGroup = licenseConnectionGroup
-        self.loggingMode = loggingMode
-        self.metadataReloadSettings = metadataReloadSettings
-        self.name = name
-        self.type = type
-        self.virtualEntityIds = virtualEntityIds
+        self.active: bool = active
+        self.additionalAllowedEntitiesConfiguration: str = additionalAllowedEntitiesConfiguration
+        self.baseUrl: str = baseUrl
+        self.contactInfo: str = contactInfo
+        self.credentials: str = credentials
+        self.defaultVirtualEntityId: str = defaultVirtualEntityId
+        self.entityId: str = entityId
+        self.extendedProperties: str = extendedProperties
+        self.id: str = id
+        self.licenseConnectionGroup: str = licenseConnectionGroup
+        self.loggingMode: str = loggingMode
+        self.metadataReloadSettings: str = metadataReloadSettings
+        self.name: str = name
+        self.type: str = type
+        self.virtualEntityIds: list = virtualEntityIds
 
     def _validate(self):
         return any(x for x in ['entityId', 'name'] if self.__dict__[x] is not None)
@@ -62,3 +62,6 @@ class Connection():
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "additionalAllowedEntitiesConfiguration", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "extendedProperties", "id", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "type", "virtualEntityIds"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -19,16 +19,16 @@ class ConnectionCredentials():
     __slots__ = ["blockEncryptionAlgorithm", "certs", "decryptionKeyPairRef", "inboundBackChannelAuth", "keyTransportAlgorithm", "outboundBackChannelAuth", "secondaryDecryptionKeyPairRef", "signingSettings", "verificationIssuerDN", "verificationSubjectDN"]
 
     def __init__(self, blockEncryptionAlgorithm=None, certs=None, decryptionKeyPairRef=None, inboundBackChannelAuth=None, keyTransportAlgorithm=None, outboundBackChannelAuth=None, secondaryDecryptionKeyPairRef=None, signingSettings=None, verificationIssuerDN=None, verificationSubjectDN=None):
-        self.blockEncryptionAlgorithm = blockEncryptionAlgorithm
-        self.certs = certs
-        self.decryptionKeyPairRef = decryptionKeyPairRef
-        self.inboundBackChannelAuth = inboundBackChannelAuth
-        self.keyTransportAlgorithm = keyTransportAlgorithm
-        self.outboundBackChannelAuth = outboundBackChannelAuth
-        self.secondaryDecryptionKeyPairRef = secondaryDecryptionKeyPairRef
-        self.signingSettings = signingSettings
-        self.verificationIssuerDN = verificationIssuerDN
-        self.verificationSubjectDN = verificationSubjectDN
+        self.blockEncryptionAlgorithm: str = blockEncryptionAlgorithm
+        self.certs: list = certs
+        self.decryptionKeyPairRef: str = decryptionKeyPairRef
+        self.inboundBackChannelAuth: str = inboundBackChannelAuth
+        self.keyTransportAlgorithm: str = keyTransportAlgorithm
+        self.outboundBackChannelAuth: str = outboundBackChannelAuth
+        self.secondaryDecryptionKeyPairRef: str = secondaryDecryptionKeyPairRef
+        self.signingSettings: str = signingSettings
+        self.verificationIssuerDN: str = verificationIssuerDN
+        self.verificationSubjectDN: str = verificationSubjectDN
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -52,3 +52,6 @@ class ConnectionCredentials():
         valid_data = {k: v for k, v in python_dict.items() if k in ["blockEncryptionAlgorithm", "certs", "decryptionKeyPairRef", "inboundBackChannelAuth", "keyTransportAlgorithm", "outboundBackChannelAuth", "secondaryDecryptionKeyPairRef", "signingSettings", "verificationIssuerDN", "verificationSubjectDN"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

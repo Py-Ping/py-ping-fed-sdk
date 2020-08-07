@@ -11,8 +11,8 @@ class LocalIdentityAuthSource():
     __slots__ = ["id", "source"]
 
     def __init__(self, id=None, source=None):
-        self.id = id
-        self.source = source
+        self.id: str = id
+        self.source: str = source
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class LocalIdentityAuthSource():
         valid_data = {k: v for k, v in python_dict.items() if k in ["id", "source"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -13,10 +13,10 @@ class AccessTokenManagerMapping():
     __slots__ = ["accessTokenManagerRef", "attributeContractFulfillment", "attributeSources", "issuanceCriteria"]
 
     def __init__(self, attributeContractFulfillment, accessTokenManagerRef=None, attributeSources=None, issuanceCriteria=None):
-        self.accessTokenManagerRef = accessTokenManagerRef
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.issuanceCriteria = issuanceCriteria
+        self.accessTokenManagerRef: str = accessTokenManagerRef
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.issuanceCriteria: str = issuanceCriteria
 
     def _validate(self):
         return any(x for x in ['attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class AccessTokenManagerMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerRef", "attributeContractFulfillment", "attributeSources", "issuanceCriteria"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

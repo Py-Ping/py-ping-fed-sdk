@@ -23,20 +23,20 @@ class SaasPluginFieldInfoDescriptor():
     __slots__ = ["attributeGroup", "code", "defaultValue", "dsLdapMap", "label", "maxLength", "minLength", "multiValue", "notes", "options", "pattern", "persistForMembership", "required", "unique"]
 
     def __init__(self, code, label, attributeGroup=None, defaultValue=None, dsLdapMap=None, maxLength=None, minLength=None, multiValue=None, notes=None, options=None, pattern=None, persistForMembership=None, required=None, unique=None):
-        self.attributeGroup = attributeGroup
-        self.code = code
-        self.defaultValue = defaultValue
-        self.dsLdapMap = dsLdapMap
-        self.label = label
-        self.maxLength = maxLength
-        self.minLength = minLength
-        self.multiValue = multiValue
-        self.notes = notes
-        self.options = options
-        self.pattern = pattern
-        self.persistForMembership = persistForMembership
-        self.required = required
-        self.unique = unique
+        self.attributeGroup: bool = attributeGroup
+        self.code: str = code
+        self.defaultValue: str = defaultValue
+        self.dsLdapMap: bool = dsLdapMap
+        self.label: str = label
+        self.maxLength: str = maxLength
+        self.minLength: str = minLength
+        self.multiValue: bool = multiValue
+        self.notes: list = notes
+        self.options: list = options
+        self.pattern: str = pattern
+        self.persistForMembership: bool = persistForMembership
+        self.required: bool = required
+        self.unique: bool = unique
 
     def _validate(self):
         return any(x for x in ['code', 'label'] if self.__dict__[x] is not None)
@@ -60,3 +60,6 @@ class SaasPluginFieldInfoDescriptor():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeGroup", "code", "defaultValue", "dsLdapMap", "label", "maxLength", "minLength", "multiValue", "notes", "options", "pattern", "persistForMembership", "required", "unique"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class OpenIdConnectSettings():
     __slots__ = ["defaultPolicyRef", "sessionSettings"]
 
     def __init__(self, defaultPolicyRef=None, sessionSettings=None):
-        self.defaultPolicyRef = defaultPolicyRef
-        self.sessionSettings = sessionSettings
+        self.defaultPolicyRef: str = defaultPolicyRef
+        self.sessionSettings: str = sessionSettings
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class OpenIdConnectSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultPolicyRef", "sessionSettings"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

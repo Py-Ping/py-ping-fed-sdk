@@ -11,8 +11,8 @@ class RestartPolicyAction():
     __slots__ = ["context", "type"]
 
     def __init__(self, type, context=None):
-        self.context = context
-        self.type = type
+        self.context: str = context
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class RestartPolicyAction():
         valid_data = {k: v for k, v in python_dict.items() if k in ["context", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

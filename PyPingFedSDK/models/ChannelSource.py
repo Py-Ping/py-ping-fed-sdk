@@ -18,15 +18,15 @@ class ChannelSource():
     __slots__ = ["accountManagementSettings", "baseDn", "changeDetectionSettings", "dataSource", "groupMembershipDetection", "groupSourceLocation", "guidAttributeName", "guidBinary", "userSourceLocation"]
 
     def __init__(self, dataSource, guidAttributeName, guidBinary, changeDetectionSettings, groupMembershipDetection, accountManagementSettings, baseDn, userSourceLocation, groupSourceLocation=None):
-        self.accountManagementSettings = accountManagementSettings
-        self.baseDn = baseDn
-        self.changeDetectionSettings = changeDetectionSettings
-        self.dataSource = dataSource
-        self.groupMembershipDetection = groupMembershipDetection
-        self.groupSourceLocation = groupSourceLocation
-        self.guidAttributeName = guidAttributeName
-        self.guidBinary = guidBinary
-        self.userSourceLocation = userSourceLocation
+        self.accountManagementSettings: str = accountManagementSettings
+        self.baseDn: str = baseDn
+        self.changeDetectionSettings: str = changeDetectionSettings
+        self.dataSource: str = dataSource
+        self.groupMembershipDetection: str = groupMembershipDetection
+        self.groupSourceLocation: str = groupSourceLocation
+        self.guidAttributeName: str = guidAttributeName
+        self.guidBinary: bool = guidBinary
+        self.userSourceLocation: str = userSourceLocation
 
     def _validate(self):
         return any(x for x in ['dataSource', 'guidAttributeName', 'guidBinary', 'changeDetectionSettings', 'groupMembershipDetection', 'accountManagementSettings', 'baseDn', 'userSourceLocation'] if self.__dict__[x] is not None)
@@ -50,3 +50,6 @@ class ChannelSource():
         valid_data = {k: v for k, v in python_dict.items() if k in ["accountManagementSettings", "baseDn", "changeDetectionSettings", "dataSource", "groupMembershipDetection", "groupSourceLocation", "guidAttributeName", "guidBinary", "userSourceLocation"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

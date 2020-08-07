@@ -37,34 +37,34 @@ class LdapDataStore():
     __slots__ = ["binaryAttributes", "bindAnonymously", "connectionTimeout", "createIfNecessary", "dnsTtl", "encryptedPassword", "followLDAPReferrals", "hostnames", "hostnamesTags", "id", "ldapDnsSrvPrefix", "ldapType", "ldapsDnsSrvPrefix", "maskAttributeValues", "maxConnections", "maxWait", "minConnections", "name", "password", "readTimeout", "testOnBorrow", "testOnReturn", "timeBetweenEvictions", "type", "useDnsSrvRecords", "useSsl", "userDN", "verifyHost"]
 
     def __init__(self, type, ldapType, binaryAttributes=None, bindAnonymously=None, connectionTimeout=None, createIfNecessary=None, dnsTtl=None, encryptedPassword=None, followLDAPReferrals=None, hostnames=None, hostnamesTags=None, id=None, ldapDnsSrvPrefix=None, ldapsDnsSrvPrefix=None, maskAttributeValues=None, maxConnections=None, maxWait=None, minConnections=None, name=None, password=None, readTimeout=None, testOnBorrow=None, testOnReturn=None, timeBetweenEvictions=None, useDnsSrvRecords=None, useSsl=None, userDN=None, verifyHost=None):
-        self.binaryAttributes = binaryAttributes
-        self.bindAnonymously = bindAnonymously
-        self.connectionTimeout = connectionTimeout
-        self.createIfNecessary = createIfNecessary
-        self.dnsTtl = dnsTtl
-        self.encryptedPassword = encryptedPassword
-        self.followLDAPReferrals = followLDAPReferrals
-        self.hostnames = hostnames
-        self.hostnamesTags = hostnamesTags
-        self.id = id
-        self.ldapDnsSrvPrefix = ldapDnsSrvPrefix
-        self.ldapType = ldapType
-        self.ldapsDnsSrvPrefix = ldapsDnsSrvPrefix
-        self.maskAttributeValues = maskAttributeValues
-        self.maxConnections = maxConnections
-        self.maxWait = maxWait
-        self.minConnections = minConnections
-        self.name = name
-        self.password = password
-        self.readTimeout = readTimeout
-        self.testOnBorrow = testOnBorrow
-        self.testOnReturn = testOnReturn
-        self.timeBetweenEvictions = timeBetweenEvictions
-        self.type = type
-        self.useDnsSrvRecords = useDnsSrvRecords
-        self.useSsl = useSsl
-        self.userDN = userDN
-        self.verifyHost = verifyHost
+        self.binaryAttributes: list = binaryAttributes
+        self.bindAnonymously: bool = bindAnonymously
+        self.connectionTimeout: str = connectionTimeout
+        self.createIfNecessary: bool = createIfNecessary
+        self.dnsTtl: str = dnsTtl
+        self.encryptedPassword: str = encryptedPassword
+        self.followLDAPReferrals: bool = followLDAPReferrals
+        self.hostnames: list = hostnames
+        self.hostnamesTags: list = hostnamesTags
+        self.id: str = id
+        self.ldapDnsSrvPrefix: str = ldapDnsSrvPrefix
+        self.ldapType: str = ldapType
+        self.ldapsDnsSrvPrefix: str = ldapsDnsSrvPrefix
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.maxConnections: str = maxConnections
+        self.maxWait: str = maxWait
+        self.minConnections: str = minConnections
+        self.name: str = name
+        self.password: str = password
+        self.readTimeout: str = readTimeout
+        self.testOnBorrow: bool = testOnBorrow
+        self.testOnReturn: bool = testOnReturn
+        self.timeBetweenEvictions: str = timeBetweenEvictions
+        self.type: str = type
+        self.useDnsSrvRecords: bool = useDnsSrvRecords
+        self.useSsl: bool = useSsl
+        self.userDN: str = userDN
+        self.verifyHost: bool = verifyHost
 
     def _validate(self):
         return any(x for x in ['type', 'ldapType'] if self.__dict__[x] is not None)
@@ -88,3 +88,6 @@ class LdapDataStore():
         valid_data = {k: v for k, v in python_dict.items() if k in ["binaryAttributes", "bindAnonymously", "connectionTimeout", "createIfNecessary", "dnsTtl", "encryptedPassword", "followLDAPReferrals", "hostnames", "hostnamesTags", "id", "ldapDnsSrvPrefix", "ldapType", "ldapsDnsSrvPrefix", "maskAttributeValues", "maxConnections", "maxWait", "minConnections", "name", "password", "readTimeout", "testOnBorrow", "testOnReturn", "timeBetweenEvictions", "type", "useDnsSrvRecords", "useSsl", "userDN", "verifyHost"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

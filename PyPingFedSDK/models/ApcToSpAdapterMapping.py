@@ -17,14 +17,14 @@ class ApcToSpAdapterMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "defaultTargetResource", "id", "issuanceCriteria", "licenseConnectionGroupAssignment", "sourceId", "targetId"]
 
     def __init__(self, attributeContractFulfillment, sourceId, targetId, attributeSources=None, defaultTargetResource=None, id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.defaultTargetResource = defaultTargetResource
-        self.id = id
-        self.issuanceCriteria = issuanceCriteria
-        self.licenseConnectionGroupAssignment = licenseConnectionGroupAssignment
-        self.sourceId = sourceId
-        self.targetId = targetId
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.defaultTargetResource: str = defaultTargetResource
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
+        self.licenseConnectionGroupAssignment: str = licenseConnectionGroupAssignment
+        self.sourceId: str = sourceId
+        self.targetId: str = targetId
 
     def _validate(self):
         return any(x for x in ['attributeContractFulfillment', 'sourceId', 'targetId'] if self.__dict__[x] is not None)
@@ -48,3 +48,6 @@ class ApcToSpAdapterMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "defaultTargetResource", "id", "issuanceCriteria", "licenseConnectionGroupAssignment", "sourceId", "targetId"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -14,11 +14,11 @@ class AuthnApiApplication():
     __slots__ = ["additionalAllowedOrigins", "description", "id", "name", "url"]
 
     def __init__(self, id, name, url, additionalAllowedOrigins=None, description=None):
-        self.additionalAllowedOrigins = additionalAllowedOrigins
-        self.description = description
-        self.id = id
-        self.name = name
-        self.url = url
+        self.additionalAllowedOrigins: list = additionalAllowedOrigins
+        self.description: str = description
+        self.id: str = id
+        self.name: str = name
+        self.url: str = url
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'url'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class AuthnApiApplication():
         valid_data = {k: v for k, v in python_dict.items() if k in ["additionalAllowedOrigins", "description", "id", "name", "url"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

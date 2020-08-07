@@ -12,9 +12,9 @@ class ConfigTable():
     __slots__ = ["inherited", "name", "rows"]
 
     def __init__(self, name, inherited=None, rows=None):
-        self.inherited = inherited
-        self.name = name
-        self.rows = rows
+        self.inherited: bool = inherited
+        self.name: str = name
+        self.rows: list = rows
 
     def _validate(self):
         return any(x for x in ['name'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class ConfigTable():
         valid_data = {k: v for k, v in python_dict.items() if k in ["inherited", "name", "rows"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

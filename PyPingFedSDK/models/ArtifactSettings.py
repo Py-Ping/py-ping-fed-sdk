@@ -12,9 +12,9 @@ class ArtifactSettings():
     __slots__ = ["lifetime", "resolverLocations", "sourceId"]
 
     def __init__(self, lifetime, resolverLocations, sourceId=None):
-        self.lifetime = lifetime
-        self.resolverLocations = resolverLocations
-        self.sourceId = sourceId
+        self.lifetime: str = lifetime
+        self.resolverLocations: list = resolverLocations
+        self.sourceId: str = sourceId
 
     def _validate(self):
         return any(x for x in ['lifetime', 'resolverLocations'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class ArtifactSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["lifetime", "resolverLocations", "sourceId"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class BulkConfig():
     __slots__ = ["metadata", "operations"]
 
     def __init__(self, metadata, operations):
-        self.metadata = metadata
-        self.operations = operations
+        self.metadata: str = metadata
+        self.operations: list = operations
 
     def _validate(self):
         return any(x for x in ['metadata', 'operations'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class BulkConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["metadata", "operations"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

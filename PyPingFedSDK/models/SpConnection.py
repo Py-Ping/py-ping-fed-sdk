@@ -30,27 +30,27 @@ class SpConnection():
     __slots__ = ["active", "additionalAllowedEntitiesConfiguration", "applicationIconUrl", "applicationName", "attributeQuery", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "extendedProperties", "id", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "outboundProvision", "spBrowserSso", "type", "virtualEntityIds", "wsTrust"]
 
     def __init__(self, type, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, applicationIconUrl=None, applicationName=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, outboundProvision=None, spBrowserSso=None, virtualEntityIds=None, wsTrust=None):
-        self.active = active
-        self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
-        self.applicationIconUrl = applicationIconUrl
-        self.applicationName = applicationName
-        self.attributeQuery = attributeQuery
-        self.baseUrl = baseUrl
-        self.contactInfo = contactInfo
-        self.credentials = credentials
-        self.defaultVirtualEntityId = defaultVirtualEntityId
-        self.entityId = entityId
-        self.extendedProperties = extendedProperties
-        self.id = id
-        self.licenseConnectionGroup = licenseConnectionGroup
-        self.loggingMode = loggingMode
-        self.metadataReloadSettings = metadataReloadSettings
-        self.name = name
-        self.outboundProvision = outboundProvision
-        self.spBrowserSso = spBrowserSso
-        self.type = type
-        self.virtualEntityIds = virtualEntityIds
-        self.wsTrust = wsTrust
+        self.active: bool = active
+        self.additionalAllowedEntitiesConfiguration: str = additionalAllowedEntitiesConfiguration
+        self.applicationIconUrl: str = applicationIconUrl
+        self.applicationName: str = applicationName
+        self.attributeQuery: str = attributeQuery
+        self.baseUrl: str = baseUrl
+        self.contactInfo: str = contactInfo
+        self.credentials: str = credentials
+        self.defaultVirtualEntityId: str = defaultVirtualEntityId
+        self.entityId: str = entityId
+        self.extendedProperties: str = extendedProperties
+        self.id: str = id
+        self.licenseConnectionGroup: str = licenseConnectionGroup
+        self.loggingMode: str = loggingMode
+        self.metadataReloadSettings: str = metadataReloadSettings
+        self.name: str = name
+        self.outboundProvision: str = outboundProvision
+        self.spBrowserSso: str = spBrowserSso
+        self.type: str = type
+        self.virtualEntityIds: list = virtualEntityIds
+        self.wsTrust: str = wsTrust
 
     def _validate(self):
         return any(x for x in ['type', 'entityId', 'name'] if self.__dict__[x] is not None)
@@ -74,3 +74,6 @@ class SpConnection():
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "additionalAllowedEntitiesConfiguration", "applicationIconUrl", "applicationName", "attributeQuery", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "extendedProperties", "id", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "outboundProvision", "spBrowserSso", "type", "virtualEntityIds", "wsTrust"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

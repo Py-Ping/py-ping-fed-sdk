@@ -11,8 +11,8 @@ class SpBrowserSsoAttribute():
     __slots__ = ["name", "nameFormat"]
 
     def __init__(self, nameFormat, name):
-        self.name = name
-        self.nameFormat = nameFormat
+        self.name: str = name
+        self.nameFormat: str = nameFormat
 
     def _validate(self):
         return any(x for x in ['nameFormat', 'name'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class SpBrowserSsoAttribute():
         valid_data = {k: v for k, v in python_dict.items() if k in ["name", "nameFormat"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

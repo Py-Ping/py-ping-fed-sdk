@@ -19,16 +19,16 @@ class OcspSettings():
     __slots__ = ["actionOnResponderUnavailable", "actionOnStatusUnknown", "actionOnUnsuccessfulResponse", "currentUpdateGracePeriod", "nextUpdateGracePeriod", "requesterAddNonce", "responderCertReference", "responderTimeout", "responderUrl", "responseCachePeriod"]
 
     def __init__(self, responderUrl, actionOnResponderUnavailable=None, actionOnStatusUnknown=None, actionOnUnsuccessfulResponse=None, currentUpdateGracePeriod=None, nextUpdateGracePeriod=None, requesterAddNonce=None, responderCertReference=None, responderTimeout=None, responseCachePeriod=None):
-        self.actionOnResponderUnavailable = actionOnResponderUnavailable
-        self.actionOnStatusUnknown = actionOnStatusUnknown
-        self.actionOnUnsuccessfulResponse = actionOnUnsuccessfulResponse
-        self.currentUpdateGracePeriod = currentUpdateGracePeriod
-        self.nextUpdateGracePeriod = nextUpdateGracePeriod
-        self.requesterAddNonce = requesterAddNonce
-        self.responderCertReference = responderCertReference
-        self.responderTimeout = responderTimeout
-        self.responderUrl = responderUrl
-        self.responseCachePeriod = responseCachePeriod
+        self.actionOnResponderUnavailable: str = actionOnResponderUnavailable
+        self.actionOnStatusUnknown: str = actionOnStatusUnknown
+        self.actionOnUnsuccessfulResponse: str = actionOnUnsuccessfulResponse
+        self.currentUpdateGracePeriod: str = currentUpdateGracePeriod
+        self.nextUpdateGracePeriod: str = nextUpdateGracePeriod
+        self.requesterAddNonce: bool = requesterAddNonce
+        self.responderCertReference: str = responderCertReference
+        self.responderTimeout: str = responderTimeout
+        self.responderUrl: str = responderUrl
+        self.responseCachePeriod: str = responseCachePeriod
 
     def _validate(self):
         return any(x for x in ['responderUrl'] if self.__dict__[x] is not None)
@@ -52,3 +52,6 @@ class OcspSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["actionOnResponderUnavailable", "actionOnStatusUnknown", "actionOnUnsuccessfulResponse", "currentUpdateGracePeriod", "nextUpdateGracePeriod", "requesterAddNonce", "responderCertReference", "responderTimeout", "responderUrl", "responseCachePeriod"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

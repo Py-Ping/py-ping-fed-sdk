@@ -15,12 +15,12 @@ class ClusterNode():
     __slots__ = ["address", "index", "mode", "nodeGroup", "nodeTags", "version"]
 
     def __init__(self, address=None, index=None, mode=None, nodeGroup=None, nodeTags=None, version=None):
-        self.address = address
-        self.index = index
-        self.mode = mode
-        self.nodeGroup = nodeGroup
-        self.nodeTags = nodeTags
-        self.version = version
+        self.address: str = address
+        self.index: str = index
+        self.mode: str = mode
+        self.nodeGroup: str = nodeGroup
+        self.nodeTags: str = nodeTags
+        self.version: str = version
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class ClusterNode():
         valid_data = {k: v for k, v in python_dict.items() if k in ["address", "index", "mode", "nodeGroup", "nodeTags", "version"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

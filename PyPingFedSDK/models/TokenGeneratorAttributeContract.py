@@ -12,9 +12,9 @@ class TokenGeneratorAttributeContract():
     __slots__ = ["coreAttributes", "extendedAttributes", "inherited"]
 
     def __init__(self, coreAttributes, extendedAttributes=None, inherited=None):
-        self.coreAttributes = coreAttributes
-        self.extendedAttributes = extendedAttributes
-        self.inherited = inherited
+        self.coreAttributes: list = coreAttributes
+        self.extendedAttributes: list = extendedAttributes
+        self.inherited: bool = inherited
 
     def _validate(self):
         return any(x for x in ['coreAttributes'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class TokenGeneratorAttributeContract():
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes", "inherited"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

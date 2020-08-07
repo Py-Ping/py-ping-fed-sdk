@@ -11,8 +11,8 @@ class IssuanceCriteria():
     __slots__ = ["conditionalCriteria", "expressionCriteria"]
 
     def __init__(self, conditionalCriteria=None, expressionCriteria=None):
-        self.conditionalCriteria = conditionalCriteria
-        self.expressionCriteria = expressionCriteria
+        self.conditionalCriteria: list = conditionalCriteria
+        self.expressionCriteria: list = expressionCriteria
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class IssuanceCriteria():
         valid_data = {k: v for k, v in python_dict.items() if k in ["conditionalCriteria", "expressionCriteria"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

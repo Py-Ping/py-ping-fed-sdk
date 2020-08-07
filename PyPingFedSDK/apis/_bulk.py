@@ -22,7 +22,7 @@ class _bulk():
             response = requests.get(
 
                 url=self._build_uri("/bulk/export"),
-                headers={'Accept': '['application/json']'}
+                headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
@@ -30,13 +30,13 @@ class _bulk():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('The current configuration cannot be bulk exported.')
+                self.logger.info("The current configuration cannot be bulk exported.")
         finally:
-            return response
+            return response.json()
 
-    def importConfiguration(self, failFast, body, X-BypassExternalValidation):
+    def importConfiguration(self, failFast, body, XBypassExternalValidation):
         """ Import configuration for a PingFederate deployment from a JSON file.
         """
 
@@ -51,7 +51,7 @@ class _bulk():
             response = requests.post(
                 data=payload,
                 url=self._build_uri("/bulk/import"),
-                headers={'Accept': '['application/json']'}
+                headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
@@ -59,11 +59,11 @@ class _bulk():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

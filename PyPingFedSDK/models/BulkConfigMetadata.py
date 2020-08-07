@@ -10,7 +10,7 @@ class BulkConfigMetadata():
     __slots__ = ["pfVersion"]
 
     def __init__(self, pfVersion):
-        self.pfVersion = pfVersion
+        self.pfVersion: str = pfVersion
 
     def _validate(self):
         return any(x for x in ['pfVersion'] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class BulkConfigMetadata():
         valid_data = {k: v for k, v in python_dict.items() if k in ["pfVersion"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

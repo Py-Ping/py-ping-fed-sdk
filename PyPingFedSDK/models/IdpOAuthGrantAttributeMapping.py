@@ -11,8 +11,8 @@ class IdpOAuthGrantAttributeMapping():
     __slots__ = ["accessTokenManagerMappings", "idpOAuthAttributeContract"]
 
     def __init__(self, accessTokenManagerMappings=None, idpOAuthAttributeContract=None):
-        self.accessTokenManagerMappings = accessTokenManagerMappings
-        self.idpOAuthAttributeContract = idpOAuthAttributeContract
+        self.accessTokenManagerMappings: list = accessTokenManagerMappings
+        self.idpOAuthAttributeContract: str = idpOAuthAttributeContract
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class IdpOAuthGrantAttributeMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerMappings", "idpOAuthAttributeContract"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class SourceTypeIdKey():
     __slots__ = ["id", "type"]
 
     def __init__(self, type, id=None):
-        self.id = id
-        self.type = type
+        self.id: str = id
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class SourceTypeIdKey():
         valid_data = {k: v for k, v in python_dict.items() if k in ["id", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

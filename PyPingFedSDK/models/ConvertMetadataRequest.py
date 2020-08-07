@@ -15,12 +15,12 @@ class ConvertMetadataRequest():
     __slots__ = ["connectionType", "expectedEntityId", "expectedProtocol", "samlMetadata", "templateConnection", "verificationCertificate"]
 
     def __init__(self, connectionType, expectedProtocol, samlMetadata, expectedEntityId=None, templateConnection=None, verificationCertificate=None):
-        self.connectionType = connectionType
-        self.expectedEntityId = expectedEntityId
-        self.expectedProtocol = expectedProtocol
-        self.samlMetadata = samlMetadata
-        self.templateConnection = templateConnection
-        self.verificationCertificate = verificationCertificate
+        self.connectionType: str = connectionType
+        self.expectedEntityId: str = expectedEntityId
+        self.expectedProtocol: str = expectedProtocol
+        self.samlMetadata: str = samlMetadata
+        self.templateConnection: str = templateConnection
+        self.verificationCertificate: str = verificationCertificate
 
     def _validate(self):
         return any(x for x in ['connectionType', 'expectedProtocol', 'samlMetadata'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class ConvertMetadataRequest():
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionType", "expectedEntityId", "expectedProtocol", "samlMetadata", "templateConnection", "verificationCertificate"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

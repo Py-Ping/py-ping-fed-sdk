@@ -10,7 +10,7 @@ class TokenExchangeProcessorSettings():
     __slots__ = ["defaultProcessorPolicyRef"]
 
     def __init__(self, defaultProcessorPolicyRef=None):
-        self.defaultProcessorPolicyRef = defaultProcessorPolicyRef
+        self.defaultProcessorPolicyRef: str = defaultProcessorPolicyRef
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class TokenExchangeProcessorSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultProcessorPolicyRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

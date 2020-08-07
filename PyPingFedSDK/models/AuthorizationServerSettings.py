@@ -42,39 +42,39 @@ class AuthorizationServerSettings():
     __slots__ = ["adminWebServicePcvRef", "allowUnidentifiedClientExtensionGrants", "allowUnidentifiedClientROCreds", "allowedOrigins", "approvedScopesAttribute", "atmIdForOAuthGrantManagement", "authorizationCodeEntropy", "authorizationCodeTimeout", "bypassActivationCodeConfirmation", "bypassAuthorizationForApprovedGrants", "defaultScopeDescription", "devicePollingInterval", "exclusiveScopeGroups", "exclusiveScopes", "pendingAuthorizationTimeout", "persistentGrantContract", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantLifetime", "persistentGrantLifetimeUnit", "persistentGrantReuseGrantTypes", "refreshRollingInterval", "refreshTokenLength", "registeredAuthorizationPath", "rollRefreshTokenValues", "scopeForOAuthGrantManagement", "scopeGroups", "scopes", "tokenEndpointBaseUrl", "trackUserSessionsForLogout", "userAuthorizationConsentAdapter", "userAuthorizationConsentPageSetting", "userAuthorizationUrl"]
 
     def __init__(self, defaultScopeDescription, authorizationCodeTimeout, authorizationCodeEntropy, refreshTokenLength, refreshRollingInterval, registeredAuthorizationPath, pendingAuthorizationTimeout, devicePollingInterval, bypassActivationCodeConfirmation, adminWebServicePcvRef=None, allowUnidentifiedClientExtensionGrants=None, allowUnidentifiedClientROCreds=None, allowedOrigins=None, approvedScopesAttribute=None, atmIdForOAuthGrantManagement=None, bypassAuthorizationForApprovedGrants=None, exclusiveScopeGroups=None, exclusiveScopes=None, persistentGrantContract=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantLifetime=None, persistentGrantLifetimeUnit=None, persistentGrantReuseGrantTypes=None, rollRefreshTokenValues=None, scopeForOAuthGrantManagement=None, scopeGroups=None, scopes=None, tokenEndpointBaseUrl=None, trackUserSessionsForLogout=None, userAuthorizationConsentAdapter=None, userAuthorizationConsentPageSetting=None, userAuthorizationUrl=None):
-        self.adminWebServicePcvRef = adminWebServicePcvRef
-        self.allowUnidentifiedClientExtensionGrants = allowUnidentifiedClientExtensionGrants
-        self.allowUnidentifiedClientROCreds = allowUnidentifiedClientROCreds
-        self.allowedOrigins = allowedOrigins
-        self.approvedScopesAttribute = approvedScopesAttribute
-        self.atmIdForOAuthGrantManagement = atmIdForOAuthGrantManagement
-        self.authorizationCodeEntropy = authorizationCodeEntropy
-        self.authorizationCodeTimeout = authorizationCodeTimeout
-        self.bypassActivationCodeConfirmation = bypassActivationCodeConfirmation
-        self.bypassAuthorizationForApprovedGrants = bypassAuthorizationForApprovedGrants
-        self.defaultScopeDescription = defaultScopeDescription
-        self.devicePollingInterval = devicePollingInterval
-        self.exclusiveScopeGroups = exclusiveScopeGroups
-        self.exclusiveScopes = exclusiveScopes
-        self.pendingAuthorizationTimeout = pendingAuthorizationTimeout
-        self.persistentGrantContract = persistentGrantContract
-        self.persistentGrantIdleTimeout = persistentGrantIdleTimeout
-        self.persistentGrantIdleTimeoutTimeUnit = persistentGrantIdleTimeoutTimeUnit
-        self.persistentGrantLifetime = persistentGrantLifetime
-        self.persistentGrantLifetimeUnit = persistentGrantLifetimeUnit
-        self.persistentGrantReuseGrantTypes = persistentGrantReuseGrantTypes
-        self.refreshRollingInterval = refreshRollingInterval
-        self.refreshTokenLength = refreshTokenLength
-        self.registeredAuthorizationPath = registeredAuthorizationPath
-        self.rollRefreshTokenValues = rollRefreshTokenValues
-        self.scopeForOAuthGrantManagement = scopeForOAuthGrantManagement
-        self.scopeGroups = scopeGroups
-        self.scopes = scopes
-        self.tokenEndpointBaseUrl = tokenEndpointBaseUrl
-        self.trackUserSessionsForLogout = trackUserSessionsForLogout
-        self.userAuthorizationConsentAdapter = userAuthorizationConsentAdapter
-        self.userAuthorizationConsentPageSetting = userAuthorizationConsentPageSetting
-        self.userAuthorizationUrl = userAuthorizationUrl
+        self.adminWebServicePcvRef: str = adminWebServicePcvRef
+        self.allowUnidentifiedClientExtensionGrants: bool = allowUnidentifiedClientExtensionGrants
+        self.allowUnidentifiedClientROCreds: bool = allowUnidentifiedClientROCreds
+        self.allowedOrigins: list = allowedOrigins
+        self.approvedScopesAttribute: str = approvedScopesAttribute
+        self.atmIdForOAuthGrantManagement: str = atmIdForOAuthGrantManagement
+        self.authorizationCodeEntropy: str = authorizationCodeEntropy
+        self.authorizationCodeTimeout: str = authorizationCodeTimeout
+        self.bypassActivationCodeConfirmation: bool = bypassActivationCodeConfirmation
+        self.bypassAuthorizationForApprovedGrants: bool = bypassAuthorizationForApprovedGrants
+        self.defaultScopeDescription: str = defaultScopeDescription
+        self.devicePollingInterval: str = devicePollingInterval
+        self.exclusiveScopeGroups: list = exclusiveScopeGroups
+        self.exclusiveScopes: list = exclusiveScopes
+        self.pendingAuthorizationTimeout: str = pendingAuthorizationTimeout
+        self.persistentGrantContract: str = persistentGrantContract
+        self.persistentGrantIdleTimeout: str = persistentGrantIdleTimeout
+        self.persistentGrantIdleTimeoutTimeUnit: str = persistentGrantIdleTimeoutTimeUnit
+        self.persistentGrantLifetime: str = persistentGrantLifetime
+        self.persistentGrantLifetimeUnit: str = persistentGrantLifetimeUnit
+        self.persistentGrantReuseGrantTypes: list = persistentGrantReuseGrantTypes
+        self.refreshRollingInterval: str = refreshRollingInterval
+        self.refreshTokenLength: str = refreshTokenLength
+        self.registeredAuthorizationPath: str = registeredAuthorizationPath
+        self.rollRefreshTokenValues: bool = rollRefreshTokenValues
+        self.scopeForOAuthGrantManagement: str = scopeForOAuthGrantManagement
+        self.scopeGroups: list = scopeGroups
+        self.scopes: list = scopes
+        self.tokenEndpointBaseUrl: str = tokenEndpointBaseUrl
+        self.trackUserSessionsForLogout: bool = trackUserSessionsForLogout
+        self.userAuthorizationConsentAdapter: str = userAuthorizationConsentAdapter
+        self.userAuthorizationConsentPageSetting: str = userAuthorizationConsentPageSetting
+        self.userAuthorizationUrl: str = userAuthorizationUrl
 
     def _validate(self):
         return any(x for x in ['defaultScopeDescription', 'authorizationCodeTimeout', 'authorizationCodeEntropy', 'refreshTokenLength', 'refreshRollingInterval', 'registeredAuthorizationPath', 'pendingAuthorizationTimeout', 'devicePollingInterval', 'bypassActivationCodeConfirmation'] if self.__dict__[x] is not None)
@@ -98,3 +98,6 @@ class AuthorizationServerSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["adminWebServicePcvRef", "allowUnidentifiedClientExtensionGrants", "allowUnidentifiedClientROCreds", "allowedOrigins", "approvedScopesAttribute", "atmIdForOAuthGrantManagement", "authorizationCodeEntropy", "authorizationCodeTimeout", "bypassActivationCodeConfirmation", "bypassAuthorizationForApprovedGrants", "defaultScopeDescription", "devicePollingInterval", "exclusiveScopeGroups", "exclusiveScopes", "pendingAuthorizationTimeout", "persistentGrantContract", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantLifetime", "persistentGrantLifetimeUnit", "persistentGrantReuseGrantTypes", "refreshRollingInterval", "refreshTokenLength", "registeredAuthorizationPath", "rollRefreshTokenValues", "scopeForOAuthGrantManagement", "scopeGroups", "scopes", "tokenEndpointBaseUrl", "trackUserSessionsForLogout", "userAuthorizationConsentAdapter", "userAuthorizationConsentPageSetting", "userAuthorizationUrl"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class ProxySettings():
     __slots__ = ["host", "port"]
 
     def __init__(self, host=None, port=None):
-        self.host = host
-        self.port = port
+        self.host: str = host
+        self.port: str = port
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ProxySettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["host", "port"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

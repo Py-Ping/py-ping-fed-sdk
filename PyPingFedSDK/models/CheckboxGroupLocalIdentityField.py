@@ -16,13 +16,13 @@ class CheckboxGroupLocalIdentityField():
     __slots__ = ["attributes", "id", "label", "options", "profilePageField", "registrationPageField", "type"]
 
     def __init__(self, type, id, label, options, attributes=None, profilePageField=None, registrationPageField=None):
-        self.attributes = attributes
-        self.id = id
-        self.label = label
-        self.options = options
-        self.profilePageField = profilePageField
-        self.registrationPageField = registrationPageField
-        self.type = type
+        self.attributes: str = attributes
+        self.id: str = id
+        self.label: str = label
+        self.options: list = options
+        self.profilePageField: bool = profilePageField
+        self.registrationPageField: bool = registrationPageField
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'id', 'label', 'options'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class CheckboxGroupLocalIdentityField():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributes", "id", "label", "options", "profilePageField", "registrationPageField", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

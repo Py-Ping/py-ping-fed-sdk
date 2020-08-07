@@ -30,11 +30,11 @@ class _oauth_openIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def updateSettings(self, body):
         """ Set the OpenID Connect Settings.
@@ -57,15 +57,15 @@ class _oauth_openIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Settings updated.')
+                self.logger.info("Settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getPolicies(self):
         """ Get list of OpenID Connect Policies.
@@ -83,13 +83,13 @@ class _oauth_openIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def createPolicy(self, body, X-BypassExternalValidation):
+    def createPolicy(self, body, XBypassExternalValidation):
         """ Create a new OpenID Connect Policy.
         """
 
@@ -111,15 +111,15 @@ class _oauth_openIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Policy created.')
+                self.logger.info("Policy created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getPolicy(self, id):
         """ Find OpenID Connect Policy by ID.
@@ -137,15 +137,15 @@ class _oauth_openIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
-    def updatePolicy(self, id, body, X-BypassExternalValidation):
+    def updatePolicy(self, id, body, XBypassExternalValidation):
         """ Update an OpenID Connect Policy.
         """
 
@@ -168,17 +168,17 @@ class _oauth_openIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Policy updated.')
+                self.logger.info("Policy updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deletePolicy(self, id):
         """ Delete an OpenID Connect Policy.
@@ -196,13 +196,13 @@ class _oauth_openIdConnect():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Policy deleted.')
+                self.logger.info("Policy deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OpenID connect protocol enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OpenID connect protocol enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

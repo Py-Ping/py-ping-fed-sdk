@@ -23,20 +23,20 @@ class EmailServerSettings():
     __slots__ = ["emailServer", "encryptedPassword", "password", "port", "retryAttempts", "retryDelay", "sourceAddr", "sslPort", "timeout", "useDebugging", "useSSL", "useTLS", "username", "verifyHostname"]
 
     def __init__(self, sourceAddr, emailServer, port, encryptedPassword=None, password=None, retryAttempts=None, retryDelay=None, sslPort=None, timeout=None, useDebugging=None, useSSL=None, useTLS=None, username=None, verifyHostname=None):
-        self.emailServer = emailServer
-        self.encryptedPassword = encryptedPassword
-        self.password = password
-        self.port = port
-        self.retryAttempts = retryAttempts
-        self.retryDelay = retryDelay
-        self.sourceAddr = sourceAddr
-        self.sslPort = sslPort
-        self.timeout = timeout
-        self.useDebugging = useDebugging
-        self.useSSL = useSSL
-        self.useTLS = useTLS
-        self.username = username
-        self.verifyHostname = verifyHostname
+        self.emailServer: str = emailServer
+        self.encryptedPassword: str = encryptedPassword
+        self.password: str = password
+        self.port: str = port
+        self.retryAttempts: str = retryAttempts
+        self.retryDelay: str = retryDelay
+        self.sourceAddr: str = sourceAddr
+        self.sslPort: str = sslPort
+        self.timeout: str = timeout
+        self.useDebugging: bool = useDebugging
+        self.useSSL: bool = useSSL
+        self.useTLS: bool = useTLS
+        self.username: str = username
+        self.verifyHostname: bool = verifyHostname
 
     def _validate(self):
         return any(x for x in ['sourceAddr', 'emailServer', 'port'] if self.__dict__[x] is not None)
@@ -60,3 +60,6 @@ class EmailServerSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["emailServer", "encryptedPassword", "password", "port", "retryAttempts", "retryDelay", "sourceAddr", "sslPort", "timeout", "useDebugging", "useSSL", "useTLS", "username", "verifyHostname"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

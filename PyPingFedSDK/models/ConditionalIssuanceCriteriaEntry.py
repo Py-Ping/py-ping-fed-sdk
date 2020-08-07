@@ -14,11 +14,11 @@ class ConditionalIssuanceCriteriaEntry():
     __slots__ = ["attributeName", "condition", "errorResult", "source", "value"]
 
     def __init__(self, source, attributeName, condition, value, errorResult=None):
-        self.attributeName = attributeName
-        self.condition = condition
-        self.errorResult = errorResult
-        self.source = source
-        self.value = value
+        self.attributeName: str = attributeName
+        self.condition: str = condition
+        self.errorResult: str = errorResult
+        self.source: str = source
+        self.value: str = value
 
     def _validate(self):
         return any(x for x in ['source', 'attributeName', 'condition', 'value'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class ConditionalIssuanceCriteriaEntry():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeName", "condition", "errorResult", "source", "value"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

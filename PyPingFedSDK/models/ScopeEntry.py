@@ -12,9 +12,9 @@ class ScopeEntry():
     __slots__ = ["description", "dynamic", "name"]
 
     def __init__(self, name, description, dynamic=None):
-        self.description = description
-        self.dynamic = dynamic
-        self.name = name
+        self.description: str = description
+        self.dynamic: bool = dynamic
+        self.name: str = name
 
     def _validate(self):
         return any(x for x in ['name', 'description'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class ScopeEntry():
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "dynamic", "name"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

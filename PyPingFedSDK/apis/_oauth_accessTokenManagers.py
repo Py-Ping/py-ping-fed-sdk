@@ -30,11 +30,11 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def updateSettings(self, body):
         """ Update general access token management settings.
@@ -57,15 +57,15 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Settings updated.')
+                self.logger.info("Settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getTokenManagerDescriptors(self):
         """ Get the list of available token management plugin descriptors.
@@ -83,11 +83,11 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def getTokenManagerDescriptor(self, id):
         """ Get the description of a token management plugin descriptor.
@@ -105,13 +105,13 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getTokenManagers(self):
         """ Get a list of all token management plugin instances.
@@ -129,11 +129,11 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
     def createTokenManager(self, body):
         """ Create a token management plugin instance.
@@ -156,15 +156,15 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Access Token Management instance created.')
+                self.logger.info("Access Token Management instance created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getTokenManager(self, id):
         """ Get a specific token management plugin instance.
@@ -182,13 +182,13 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateTokenManager(self, id, body):
         """ Update a token management plugin instance.
@@ -212,17 +212,17 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Access Token Management instance updated.')
+                self.logger.info("Access Token Management instance updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteTokenManager(self, id):
         """ Delete a token management plugin instance.
@@ -240,11 +240,11 @@ class _oauth_accessTokenManagers():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Access token management instance deleted.')
+                self.logger.info("Access token management instance deleted.")
             if response.status_code == 403:
-                self.logger.info('The operation is not permitted, based on the current configuration of the server.')
+                self.logger.info("The operation is not permitted, based on the current configuration of the server.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

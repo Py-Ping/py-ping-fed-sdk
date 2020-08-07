@@ -11,8 +11,8 @@ class Entity():
     __slots__ = ["entityDescription", "entityId"]
 
     def __init__(self, entityDescription=None, entityId=None):
-        self.entityDescription = entityDescription
-        self.entityId = entityId
+        self.entityDescription: str = entityDescription
+        self.entityId: str = entityId
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class Entity():
         valid_data = {k: v for k, v in python_dict.items() if k in ["entityDescription", "entityId"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

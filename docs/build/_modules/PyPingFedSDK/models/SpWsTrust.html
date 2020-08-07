@@ -1,0 +1,183 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="../../../_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="../../../_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>PyPingFedSDK.models.SpWsTrust &#8212; PyPingFedSDK 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="../../../search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Docs</a></li>
+              
+                <li><a href="../../index.html">Module code</a></li>
+              
+              <li>PyPingFedSDK.models.SpWsTrust</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <h1>Source code for PyPingFedSDK.models.SpWsTrust</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="SpWsTrust"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust">[docs]</a><span></span><span class="k">class</span> <span class="nc">SpWsTrust</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Ws-Trust STS provides security-token validation and creation to extend SSO access to identity-enabled Web Services</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    abortIfNotFulfilledFromRequest : boolean</span>
+<span class="sd">        If the attribute contract cannot be fulfilled using data from the Request, abort the transaction.    attributeContract : str</span>
+<span class="sd">        A set of user attributes that the IdP sends in the token.    defaultTokenType : str</span>
+<span class="sd">        The default token type when a web service client (WSC) does not specify in the token request which token type the STS should issue. Defaults to SAML 2.0.    encryptSaml2Assertion : boolean</span>
+<span class="sd">        When selected, the STS encrypts the SAML 2.0 assertion. Applicable only to SAML 2.0 security token.  This option does not apply to OAuth assertion profiles.    generateKey : boolean</span>
+<span class="sd">        When selected, the STS generates a symmetric key to be used in conjunction with the &quot;Holder of Key&quot; (HoK) designation for the assertion&#39;s Subject Confirmation Method.  This option does not apply to OAuth assertion profiles.    messageCustomizations : array</span>
+<span class="sd">        The message customizations for WS-Trust. Depending on server settings, connection type, and protocol this may or may not be supported.    minutesAfter : integer</span>
+<span class="sd">        The amount of time after the SAML token was issued during which it is to be considered valid. The default value is 30.    minutesBefore : integer</span>
+<span class="sd">        The amount of time before the SAML token was issued during which it is to be considered valid. The default value is 5.    oAuthAssertionProfiles : boolean</span>
+<span class="sd">        When selected, four additional token-type requests become available.    partnerServiceIds : array</span>
+<span class="sd">        The partner service identifiers.    requestContractRef : str</span>
+<span class="sd">        Request Contract to be used to map attribute values into the security token.    tokenProcessorMappings : array</span>
+<span class="sd">        A list of token processors to validate incoming tokens.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;abortIfNotFulfilledFromRequest&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeContract&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultTokenType&quot;</span><span class="p">,</span> <span class="s2">&quot;encryptSaml2Assertion&quot;</span><span class="p">,</span> <span class="s2">&quot;generateKey&quot;</span><span class="p">,</span> <span class="s2">&quot;messageCustomizations&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesAfter&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesBefore&quot;</span><span class="p">,</span> <span class="s2">&quot;oAuthAssertionProfiles&quot;</span><span class="p">,</span> <span class="s2">&quot;partnerServiceIds&quot;</span><span class="p">,</span> <span class="s2">&quot;requestContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;tokenProcessorMappings&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="SpWsTrust.__init__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">partnerServiceIds</span><span class="p">,</span> <span class="n">attributeContract</span><span class="p">,</span> <span class="n">tokenProcessorMappings</span><span class="p">,</span> <span class="n">abortIfNotFulfilledFromRequest</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">defaultTokenType</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encryptSaml2Assertion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">generateKey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">messageCustomizations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minutesAfter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minutesBefore</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">oAuthAssertionProfiles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requestContractRef</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abortIfNotFulfilledFromRequest</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">abortIfNotFulfilledFromRequest</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributeContract</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attributeContract</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultTokenType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">defaultTokenType</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encryptSaml2Assertion</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">encryptSaml2Assertion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generateKey</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">generateKey</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">messageCustomizations</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">messageCustomizations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minutesAfter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">minutesAfter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minutesBefore</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">minutesBefore</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">oAuthAssertionProfiles</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">oAuthAssertionProfiles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">partnerServiceIds</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">partnerServiceIds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requestContractRef</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">requestContractRef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenProcessorMappings</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">tokenProcessorMappings</span></div>
+
+<div class="viewcode-block" id="SpWsTrust._validate"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust._validate">[docs]</a>    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;partnerServiceIds&#39;</span><span class="p">,</span> <span class="s1">&#39;attributeContract&#39;</span><span class="p">,</span> <span class="s1">&#39;tokenProcessorMappings&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpWsTrust.__repr__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span></div>
+
+<div class="viewcode-block" id="SpWsTrust.__str__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span></div>
+
+<div class="viewcode-block" id="SpWsTrust.__eq__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.__eq__">[docs]</a>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SpWsTrust</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+<div class="viewcode-block" id="SpWsTrust.__hash__"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.__hash__">[docs]</a>    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">abortIfNotFulfilledFromRequest</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributeContract</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultTokenType</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encryptSaml2Assertion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generateKey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">messageCustomizations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutesAfter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutesBefore</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">oAuthAssertionProfiles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">partnerServiceIds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestContractRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenProcessorMappings</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SpWsTrust.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+        <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;abortIfNotFulfilledFromRequest&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeContract&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultTokenType&quot;</span><span class="p">,</span> <span class="s2">&quot;encryptSaml2Assertion&quot;</span><span class="p">,</span> <span class="s2">&quot;generateKey&quot;</span><span class="p">,</span> <span class="s2">&quot;messageCustomizations&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesAfter&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesBefore&quot;</span><span class="p">,</span> <span class="s2">&quot;oAuthAssertionProfiles&quot;</span><span class="p">,</span> <span class="s2">&quot;partnerServiceIds&quot;</span><span class="p">,</span> <span class="s2">&quot;requestContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;tokenProcessorMappings&quot;</span><span class="p">]}</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SpWsTrust.to_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span></div></div>
+</pre></div>
+
+          </div>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="../../../_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2020, Michael Kelly, Liam Dixon. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

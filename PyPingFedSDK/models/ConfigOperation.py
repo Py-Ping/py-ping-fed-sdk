@@ -14,11 +14,11 @@ class ConfigOperation():
     __slots__ = ["itemIds", "items", "operationType", "resourceType", "subResource"]
 
     def __init__(self, resourceType, operationType, itemIds=None, items=None, subResource=None):
-        self.itemIds = itemIds
-        self.items = items
-        self.operationType = operationType
-        self.resourceType = resourceType
-        self.subResource = subResource
+        self.itemIds: list = itemIds
+        self.items: list = items
+        self.operationType: str = operationType
+        self.resourceType: str = resourceType
+        self.subResource: str = subResource
 
     def _validate(self):
         return any(x for x in ['resourceType', 'operationType'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class ConfigOperation():
         valid_data = {k: v for k, v in python_dict.items() if k in ["itemIds", "items", "operationType", "resourceType", "subResource"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

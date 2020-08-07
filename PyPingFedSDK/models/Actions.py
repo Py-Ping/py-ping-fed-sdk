@@ -10,7 +10,7 @@ class Actions():
     __slots__ = ["items"]
 
     def __init__(self, items=None):
-        self.items = items
+        self.items: list = items
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class Actions():
         valid_data = {k: v for k, v in python_dict.items() if k in ["items"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

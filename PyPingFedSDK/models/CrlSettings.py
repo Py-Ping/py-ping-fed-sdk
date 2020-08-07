@@ -13,10 +13,10 @@ class CrlSettings():
     __slots__ = ["nextRetryMinsWhenNextUpdateInPast", "nextRetryMinsWhenResolveFailed", "treatNonRetrievableCrlAsRevoked", "verifyCrlSignature"]
 
     def __init__(self, nextRetryMinsWhenNextUpdateInPast=None, nextRetryMinsWhenResolveFailed=None, treatNonRetrievableCrlAsRevoked=None, verifyCrlSignature=None):
-        self.nextRetryMinsWhenNextUpdateInPast = nextRetryMinsWhenNextUpdateInPast
-        self.nextRetryMinsWhenResolveFailed = nextRetryMinsWhenResolveFailed
-        self.treatNonRetrievableCrlAsRevoked = treatNonRetrievableCrlAsRevoked
-        self.verifyCrlSignature = verifyCrlSignature
+        self.nextRetryMinsWhenNextUpdateInPast: str = nextRetryMinsWhenNextUpdateInPast
+        self.nextRetryMinsWhenResolveFailed: str = nextRetryMinsWhenResolveFailed
+        self.treatNonRetrievableCrlAsRevoked: bool = treatNonRetrievableCrlAsRevoked
+        self.verifyCrlSignature: bool = verifyCrlSignature
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class CrlSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["nextRetryMinsWhenNextUpdateInPast", "nextRetryMinsWhenResolveFailed", "treatNonRetrievableCrlAsRevoked", "verifyCrlSignature"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

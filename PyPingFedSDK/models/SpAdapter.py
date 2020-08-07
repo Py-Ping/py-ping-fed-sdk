@@ -16,13 +16,13 @@ class SpAdapter():
     __slots__ = ["attributeContract", "configuration", "id", "name", "parentRef", "pluginDescriptorRef", "targetApplicationInfo"]
 
     def __init__(self, id, name, pluginDescriptorRef, configuration, attributeContract=None, parentRef=None, targetApplicationInfo=None):
-        self.attributeContract = attributeContract
-        self.configuration = configuration
-        self.id = id
-        self.name = name
-        self.parentRef = parentRef
-        self.pluginDescriptorRef = pluginDescriptorRef
-        self.targetApplicationInfo = targetApplicationInfo
+        self.attributeContract: str = attributeContract
+        self.configuration: str = configuration
+        self.id: str = id
+        self.name: str = name
+        self.parentRef: str = parentRef
+        self.pluginDescriptorRef: str = pluginDescriptorRef
+        self.targetApplicationInfo: str = targetApplicationInfo
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'pluginDescriptorRef', 'configuration'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class SpAdapter():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContract", "configuration", "id", "name", "parentRef", "pluginDescriptorRef", "targetApplicationInfo"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

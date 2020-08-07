@@ -12,9 +12,9 @@ class BackChannelAuth():
     __slots__ = ["digitalSignature", "httpBasicCredentials", "type"]
 
     def __init__(self, type, digitalSignature=None, httpBasicCredentials=None):
-        self.digitalSignature = digitalSignature
-        self.httpBasicCredentials = httpBasicCredentials
-        self.type = type
+        self.digitalSignature: bool = digitalSignature
+        self.httpBasicCredentials: str = httpBasicCredentials
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class BackChannelAuth():
         valid_data = {k: v for k, v in python_dict.items() if k in ["digitalSignature", "httpBasicCredentials", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

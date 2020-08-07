@@ -12,9 +12,9 @@ class IdpWsTrust():
     __slots__ = ["attributeContract", "generateLocalToken", "tokenGeneratorMappings"]
 
     def __init__(self, attributeContract, generateLocalToken, tokenGeneratorMappings=None):
-        self.attributeContract = attributeContract
-        self.generateLocalToken = generateLocalToken
-        self.tokenGeneratorMappings = tokenGeneratorMappings
+        self.attributeContract: str = attributeContract
+        self.generateLocalToken: bool = generateLocalToken
+        self.tokenGeneratorMappings: list = tokenGeneratorMappings
 
     def _validate(self):
         return any(x for x in ['attributeContract', 'generateLocalToken'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class IdpWsTrust():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContract", "generateLocalToken", "tokenGeneratorMappings"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

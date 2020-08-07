@@ -11,8 +11,8 @@ class OutboundProvisionDatabase():
     __slots__ = ["dataStoreRef", "synchronizationFrequency"]
 
     def __init__(self, dataStoreRef, synchronizationFrequency=None):
-        self.dataStoreRef = dataStoreRef
-        self.synchronizationFrequency = synchronizationFrequency
+        self.dataStoreRef: str = dataStoreRef
+        self.synchronizationFrequency: str = synchronizationFrequency
 
     def _validate(self):
         return any(x for x in ['dataStoreRef'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class OutboundProvisionDatabase():
         valid_data = {k: v for k, v in python_dict.items() if k in ["dataStoreRef", "synchronizationFrequency"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

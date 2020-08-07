@@ -11,8 +11,8 @@ class SpWsTrustAttribute():
     __slots__ = ["name", "namespace"]
 
     def __init__(self, namespace, name):
-        self.name = name
-        self.namespace = namespace
+        self.name: str = name
+        self.namespace: str = namespace
 
     def _validate(self):
         return any(x for x in ['namespace', 'name'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class SpWsTrustAttribute():
         valid_data = {k: v for k, v in python_dict.items() if k in ["name", "namespace"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

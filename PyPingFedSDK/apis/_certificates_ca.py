@@ -30,9 +30,9 @@ class _certificates_ca():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def getTrustedCert(self, id):
         """ Retrieve details of a trusted certificate authority.
@@ -50,11 +50,11 @@ class _certificates_ca():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def deleteTrustedCA(self, id):
         """ Delete a trusted certificate authority.
@@ -72,11 +72,11 @@ class _certificates_ca():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Certitifcate Authority deleted.')
+                self.logger.info("Certitifcate Authority deleted.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def importTrustedCA(self, body):
         """ Import a new trusted certificate authority.
@@ -99,13 +99,13 @@ class _certificates_ca():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Certificate Authority imported.')
+                self.logger.info("Certificate Authority imported.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def exportCertificateFile(self, id):
         """ Download the certificate from a given trusted certificate authority.
@@ -123,9 +123,9 @@ class _certificates_ca():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

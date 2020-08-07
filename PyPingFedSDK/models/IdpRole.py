@@ -16,13 +16,13 @@ class IdpRole():
     __slots__ = ["enable", "enableOutboundProvisioning", "enableSaml10", "enableSaml11", "enableWsFed", "enableWsTrust", "saml20Profile"]
 
     def __init__(self, enable=None, enableOutboundProvisioning=None, enableSaml10=None, enableSaml11=None, enableWsFed=None, enableWsTrust=None, saml20Profile=None):
-        self.enable = enable
-        self.enableOutboundProvisioning = enableOutboundProvisioning
-        self.enableSaml10 = enableSaml10
-        self.enableSaml11 = enableSaml11
-        self.enableWsFed = enableWsFed
-        self.enableWsTrust = enableWsTrust
-        self.saml20Profile = saml20Profile
+        self.enable: bool = enable
+        self.enableOutboundProvisioning: bool = enableOutboundProvisioning
+        self.enableSaml10: bool = enableSaml10
+        self.enableSaml11: bool = enableSaml11
+        self.enableWsFed: bool = enableWsFed
+        self.enableWsTrust: bool = enableWsTrust
+        self.saml20Profile: str = saml20Profile
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class IdpRole():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enable", "enableOutboundProvisioning", "enableSaml10", "enableSaml11", "enableWsFed", "enableWsTrust", "saml20Profile"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

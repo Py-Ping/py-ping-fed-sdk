@@ -16,13 +16,13 @@ class TextLocalIdentityField():
     __slots__ = ["attributes", "defaultValue", "id", "label", "profilePageField", "registrationPageField", "type"]
 
     def __init__(self, type, id, label, attributes=None, defaultValue=None, profilePageField=None, registrationPageField=None):
-        self.attributes = attributes
-        self.defaultValue = defaultValue
-        self.id = id
-        self.label = label
-        self.profilePageField = profilePageField
-        self.registrationPageField = registrationPageField
-        self.type = type
+        self.attributes: str = attributes
+        self.defaultValue: str = defaultValue
+        self.id: str = id
+        self.label: str = label
+        self.profilePageField: bool = profilePageField
+        self.registrationPageField: bool = registrationPageField
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'id', 'label'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class TextLocalIdentityField():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributes", "defaultValue", "id", "label", "profilePageField", "registrationPageField", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

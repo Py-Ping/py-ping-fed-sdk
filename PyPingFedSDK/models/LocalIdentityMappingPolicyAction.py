@@ -14,11 +14,11 @@ class LocalIdentityMappingPolicyAction():
     __slots__ = ["context", "inboundMapping", "localIdentityRef", "outboundAttributeMapping", "type"]
 
     def __init__(self, type, localIdentityRef, outboundAttributeMapping, context=None, inboundMapping=None):
-        self.context = context
-        self.inboundMapping = inboundMapping
-        self.localIdentityRef = localIdentityRef
-        self.outboundAttributeMapping = outboundAttributeMapping
-        self.type = type
+        self.context: str = context
+        self.inboundMapping: str = inboundMapping
+        self.localIdentityRef: str = localIdentityRef
+        self.outboundAttributeMapping: str = outboundAttributeMapping
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'localIdentityRef', 'outboundAttributeMapping'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class LocalIdentityMappingPolicyAction():
         valid_data = {k: v for k, v in python_dict.items() if k in ["context", "inboundMapping", "localIdentityRef", "outboundAttributeMapping", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

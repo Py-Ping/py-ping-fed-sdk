@@ -13,10 +13,10 @@ class AccessTokenAttributeContract():
     __slots__ = ["coreAttributes", "defaultSubjectAttribute", "extendedAttributes", "inherited"]
 
     def __init__(self, coreAttributes=None, defaultSubjectAttribute=None, extendedAttributes=None, inherited=None):
-        self.coreAttributes = coreAttributes
-        self.defaultSubjectAttribute = defaultSubjectAttribute
-        self.extendedAttributes = extendedAttributes
-        self.inherited = inherited
+        self.coreAttributes: list = coreAttributes
+        self.defaultSubjectAttribute: str = defaultSubjectAttribute
+        self.extendedAttributes: list = extendedAttributes
+        self.inherited: bool = inherited
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class AccessTokenAttributeContract():
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "defaultSubjectAttribute", "extendedAttributes", "inherited"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class AttributeFulfillmentValue():
     __slots__ = ["source", "value"]
 
     def __init__(self, source, value):
-        self.source = source
-        self.value = value
+        self.source: str = source
+        self.value: str = value
 
     def _validate(self):
         return any(x for x in ['source', 'value'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AttributeFulfillmentValue():
         valid_data = {k: v for k, v in python_dict.items() if k in ["source", "value"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

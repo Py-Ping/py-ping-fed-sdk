@@ -11,8 +11,8 @@ class ApplicationSessionPolicy():
     __slots__ = ["idleTimeoutMins", "maxTimeoutMins"]
 
     def __init__(self, idleTimeoutMins=None, maxTimeoutMins=None):
-        self.idleTimeoutMins = idleTimeoutMins
-        self.maxTimeoutMins = maxTimeoutMins
+        self.idleTimeoutMins: str = idleTimeoutMins
+        self.maxTimeoutMins: str = maxTimeoutMins
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ApplicationSessionPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["idleTimeoutMins", "maxTimeoutMins"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

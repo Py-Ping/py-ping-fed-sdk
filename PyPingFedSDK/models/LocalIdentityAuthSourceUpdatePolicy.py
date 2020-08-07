@@ -13,10 +13,10 @@ class LocalIdentityAuthSourceUpdatePolicy():
     __slots__ = ["retainAttributes", "storeAttributes", "updateAttributes", "updateInterval"]
 
     def __init__(self, retainAttributes=None, storeAttributes=None, updateAttributes=None, updateInterval=None):
-        self.retainAttributes = retainAttributes
-        self.storeAttributes = storeAttributes
-        self.updateAttributes = updateAttributes
-        self.updateInterval = updateInterval
+        self.retainAttributes: bool = retainAttributes
+        self.storeAttributes: bool = storeAttributes
+        self.updateAttributes: bool = updateAttributes
+        self.updateInterval: str = updateInterval
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class LocalIdentityAuthSourceUpdatePolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["retainAttributes", "storeAttributes", "updateAttributes", "updateInterval"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

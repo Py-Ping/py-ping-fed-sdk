@@ -29,26 +29,26 @@ class IdpBrowserSso():
     __slots__ = ["adapterMappings", "artifact", "assertionsSigned", "attributeContract", "authenticationPolicyContractMappings", "authnContextMappings", "decryptionPolicy", "defaultTargetUrl", "enabledProfiles", "idpIdentityMapping", "incomingBindings", "messageCustomizations", "oauthAuthenticationPolicyContractRef", "oidcProviderSettings", "protocol", "signAuthnRequests", "sloServiceEndpoints", "ssoOAuthMapping", "ssoServiceEndpoints", "urlWhitelistEntries"]
 
     def __init__(self, protocol, idpIdentityMapping, adapterMappings=None, artifact=None, assertionsSigned=None, attributeContract=None, authenticationPolicyContractMappings=None, authnContextMappings=None, decryptionPolicy=None, defaultTargetUrl=None, enabledProfiles=None, incomingBindings=None, messageCustomizations=None, oauthAuthenticationPolicyContractRef=None, oidcProviderSettings=None, signAuthnRequests=None, sloServiceEndpoints=None, ssoOAuthMapping=None, ssoServiceEndpoints=None, urlWhitelistEntries=None):
-        self.adapterMappings = adapterMappings
-        self.artifact = artifact
-        self.assertionsSigned = assertionsSigned
-        self.attributeContract = attributeContract
-        self.authenticationPolicyContractMappings = authenticationPolicyContractMappings
-        self.authnContextMappings = authnContextMappings
-        self.decryptionPolicy = decryptionPolicy
-        self.defaultTargetUrl = defaultTargetUrl
-        self.enabledProfiles = enabledProfiles
-        self.idpIdentityMapping = idpIdentityMapping
-        self.incomingBindings = incomingBindings
-        self.messageCustomizations = messageCustomizations
-        self.oauthAuthenticationPolicyContractRef = oauthAuthenticationPolicyContractRef
-        self.oidcProviderSettings = oidcProviderSettings
-        self.protocol = protocol
-        self.signAuthnRequests = signAuthnRequests
-        self.sloServiceEndpoints = sloServiceEndpoints
-        self.ssoOAuthMapping = ssoOAuthMapping
-        self.ssoServiceEndpoints = ssoServiceEndpoints
-        self.urlWhitelistEntries = urlWhitelistEntries
+        self.adapterMappings: list = adapterMappings
+        self.artifact: str = artifact
+        self.assertionsSigned: bool = assertionsSigned
+        self.attributeContract: str = attributeContract
+        self.authenticationPolicyContractMappings: list = authenticationPolicyContractMappings
+        self.authnContextMappings: list = authnContextMappings
+        self.decryptionPolicy: str = decryptionPolicy
+        self.defaultTargetUrl: str = defaultTargetUrl
+        self.enabledProfiles: str = enabledProfiles
+        self.idpIdentityMapping: str = idpIdentityMapping
+        self.incomingBindings: str = incomingBindings
+        self.messageCustomizations: list = messageCustomizations
+        self.oauthAuthenticationPolicyContractRef: str = oauthAuthenticationPolicyContractRef
+        self.oidcProviderSettings: str = oidcProviderSettings
+        self.protocol: str = protocol
+        self.signAuthnRequests: bool = signAuthnRequests
+        self.sloServiceEndpoints: list = sloServiceEndpoints
+        self.ssoOAuthMapping: str = ssoOAuthMapping
+        self.ssoServiceEndpoints: list = ssoServiceEndpoints
+        self.urlWhitelistEntries: list = urlWhitelistEntries
 
     def _validate(self):
         return any(x for x in ['protocol', 'idpIdentityMapping'] if self.__dict__[x] is not None)
@@ -72,3 +72,6 @@ class IdpBrowserSso():
         valid_data = {k: v for k, v in python_dict.items() if k in ["adapterMappings", "artifact", "assertionsSigned", "attributeContract", "authenticationPolicyContractMappings", "authnContextMappings", "decryptionPolicy", "defaultTargetUrl", "enabledProfiles", "idpIdentityMapping", "incomingBindings", "messageCustomizations", "oauthAuthenticationPolicyContractRef", "oidcProviderSettings", "protocol", "signAuthnRequests", "sloServiceEndpoints", "ssoOAuthMapping", "ssoServiceEndpoints", "urlWhitelistEntries"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

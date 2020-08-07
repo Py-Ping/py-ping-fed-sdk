@@ -14,11 +14,11 @@ class ApcToPersistentGrantMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "id", "issuanceCriteria"]
 
     def __init__(self, id, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.authenticationPolicyContractRef = authenticationPolicyContractRef
-        self.id = id
-        self.issuanceCriteria = issuanceCriteria
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
 
     def _validate(self):
         return any(x for x in ['id', 'authenticationPolicyContractRef', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class ApcToPersistentGrantMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "id", "issuanceCriteria"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

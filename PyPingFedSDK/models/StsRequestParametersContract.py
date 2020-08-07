@@ -12,9 +12,9 @@ class StsRequestParametersContract():
     __slots__ = ["id", "name", "parameters"]
 
     def __init__(self, id, name, parameters):
-        self.id = id
-        self.name = name
-        self.parameters = parameters
+        self.id: str = id
+        self.name: str = name
+        self.parameters: list = parameters
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'parameters'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class StsRequestParametersContract():
         valid_data = {k: v for k, v in python_dict.items() if k in ["id", "name", "parameters"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

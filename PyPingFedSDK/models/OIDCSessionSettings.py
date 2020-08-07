@@ -12,9 +12,9 @@ class OIDCSessionSettings():
     __slots__ = ["revokeUserSessionOnLogout", "sessionRevocationLifetime", "trackUserSessionsForLogout"]
 
     def __init__(self, revokeUserSessionOnLogout=None, sessionRevocationLifetime=None, trackUserSessionsForLogout=None):
-        self.revokeUserSessionOnLogout = revokeUserSessionOnLogout
-        self.sessionRevocationLifetime = sessionRevocationLifetime
-        self.trackUserSessionsForLogout = trackUserSessionsForLogout
+        self.revokeUserSessionOnLogout: bool = revokeUserSessionOnLogout
+        self.sessionRevocationLifetime: str = sessionRevocationLifetime
+        self.trackUserSessionsForLogout: bool = trackUserSessionsForLogout
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class OIDCSessionSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["revokeUserSessionOnLogout", "sessionRevocationLifetime", "trackUserSessionsForLogout"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

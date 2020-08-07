@@ -15,12 +15,12 @@ class ConvertMetadataResponse():
     __slots__ = ["certExpiration", "certSerialNumber", "certSubjectDn", "certTrustStatus", "connection", "signatureStatus"]
 
     def __init__(self, certExpiration=None, certSerialNumber=None, certSubjectDn=None, certTrustStatus=None, connection=None, signatureStatus=None):
-        self.certExpiration = certExpiration
-        self.certSerialNumber = certSerialNumber
-        self.certSubjectDn = certSubjectDn
-        self.certTrustStatus = certTrustStatus
-        self.connection = connection
-        self.signatureStatus = signatureStatus
+        self.certExpiration: str = certExpiration
+        self.certSerialNumber: str = certSerialNumber
+        self.certSubjectDn: str = certSubjectDn
+        self.certTrustStatus: str = certTrustStatus
+        self.connection: str = connection
+        self.signatureStatus: str = signatureStatus
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class ConvertMetadataResponse():
         valid_data = {k: v for k, v in python_dict.items() if k in ["certExpiration", "certSerialNumber", "certSubjectDn", "certTrustStatus", "connection", "signatureStatus"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

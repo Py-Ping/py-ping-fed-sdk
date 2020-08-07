@@ -11,8 +11,8 @@ class GroupMembershipDetection():
     __slots__ = ["groupMemberAttributeName", "memberOfGroupAttributeName"]
 
     def __init__(self, groupMemberAttributeName, memberOfGroupAttributeName=None):
-        self.groupMemberAttributeName = groupMemberAttributeName
-        self.memberOfGroupAttributeName = memberOfGroupAttributeName
+        self.groupMemberAttributeName: str = groupMemberAttributeName
+        self.memberOfGroupAttributeName: str = memberOfGroupAttributeName
 
     def _validate(self):
         return any(x for x in ['groupMemberAttributeName'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class GroupMembershipDetection():
         valid_data = {k: v for k, v in python_dict.items() if k in ["groupMemberAttributeName", "memberOfGroupAttributeName"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

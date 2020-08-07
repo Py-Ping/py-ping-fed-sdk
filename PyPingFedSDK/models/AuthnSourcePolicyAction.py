@@ -14,11 +14,11 @@ class AuthnSourcePolicyAction():
     __slots__ = ["attributeRules", "authenticationSource", "context", "inputUserIdMapping", "type"]
 
     def __init__(self, type, authenticationSource, attributeRules=None, context=None, inputUserIdMapping=None):
-        self.attributeRules = attributeRules
-        self.authenticationSource = authenticationSource
-        self.context = context
-        self.inputUserIdMapping = inputUserIdMapping
-        self.type = type
+        self.attributeRules: str = attributeRules
+        self.authenticationSource: str = authenticationSource
+        self.context: str = context
+        self.inputUserIdMapping: str = inputUserIdMapping
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'authenticationSource'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class AuthnSourcePolicyAction():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeRules", "authenticationSource", "context", "inputUserIdMapping", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

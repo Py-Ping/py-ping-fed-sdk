@@ -11,8 +11,8 @@ class ExpressionIssuanceCriteriaEntry():
     __slots__ = ["errorResult", "expression"]
 
     def __init__(self, expression, errorResult=None):
-        self.errorResult = errorResult
-        self.expression = expression
+        self.errorResult: str = errorResult
+        self.expression: str = expression
 
     def _validate(self):
         return any(x for x in ['expression'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ExpressionIssuanceCriteriaEntry():
         valid_data = {k: v for k, v in python_dict.items() if k in ["errorResult", "expression"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

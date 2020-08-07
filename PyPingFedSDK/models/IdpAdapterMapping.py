@@ -14,11 +14,11 @@ class IdpAdapterMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "id", "idpAdapterRef", "issuanceCriteria"]
 
     def __init__(self, id, attributeContractFulfillment, attributeSources=None, idpAdapterRef=None, issuanceCriteria=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.id = id
-        self.idpAdapterRef = idpAdapterRef
-        self.issuanceCriteria = issuanceCriteria
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.id: str = id
+        self.idpAdapterRef: str = idpAdapterRef
+        self.issuanceCriteria: str = issuanceCriteria
 
     def _validate(self):
         return any(x for x in ['id', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class IdpAdapterMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "id", "idpAdapterRef", "issuanceCriteria"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

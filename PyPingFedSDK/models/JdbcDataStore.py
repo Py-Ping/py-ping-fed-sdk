@@ -25,22 +25,22 @@ class JdbcDataStore():
     __slots__ = ["allowMultiValueAttributes", "blockingTimeout", "connectionUrl", "connectionUrlTags", "driverClass", "encryptedPassword", "id", "idleTimeout", "maskAttributeValues", "maxPoolSize", "minPoolSize", "name", "password", "type", "userName", "validateConnectionSql"]
 
     def __init__(self, type, driverClass, userName, allowMultiValueAttributes=None, blockingTimeout=None, connectionUrl=None, connectionUrlTags=None, encryptedPassword=None, id=None, idleTimeout=None, maskAttributeValues=None, maxPoolSize=None, minPoolSize=None, name=None, password=None, validateConnectionSql=None):
-        self.allowMultiValueAttributes = allowMultiValueAttributes
-        self.blockingTimeout = blockingTimeout
-        self.connectionUrl = connectionUrl
-        self.connectionUrlTags = connectionUrlTags
-        self.driverClass = driverClass
-        self.encryptedPassword = encryptedPassword
-        self.id = id
-        self.idleTimeout = idleTimeout
-        self.maskAttributeValues = maskAttributeValues
-        self.maxPoolSize = maxPoolSize
-        self.minPoolSize = minPoolSize
-        self.name = name
-        self.password = password
-        self.type = type
-        self.userName = userName
-        self.validateConnectionSql = validateConnectionSql
+        self.allowMultiValueAttributes: bool = allowMultiValueAttributes
+        self.blockingTimeout: str = blockingTimeout
+        self.connectionUrl: str = connectionUrl
+        self.connectionUrlTags: list = connectionUrlTags
+        self.driverClass: str = driverClass
+        self.encryptedPassword: str = encryptedPassword
+        self.id: str = id
+        self.idleTimeout: str = idleTimeout
+        self.maskAttributeValues: bool = maskAttributeValues
+        self.maxPoolSize: str = maxPoolSize
+        self.minPoolSize: str = minPoolSize
+        self.name: str = name
+        self.password: str = password
+        self.type: str = type
+        self.userName: str = userName
+        self.validateConnectionSql: str = validateConnectionSql
 
     def _validate(self):
         return any(x for x in ['type', 'driverClass', 'userName'] if self.__dict__[x] is not None)
@@ -64,3 +64,6 @@ class JdbcDataStore():
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowMultiValueAttributes", "blockingTimeout", "connectionUrl", "connectionUrlTags", "driverClass", "encryptedPassword", "id", "idleTimeout", "maskAttributeValues", "maxPoolSize", "minPoolSize", "name", "password", "type", "userName", "validateConnectionSql"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

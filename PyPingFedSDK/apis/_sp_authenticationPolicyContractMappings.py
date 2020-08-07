@@ -30,13 +30,13 @@ class _sp_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def createApcToSpAdapterMapping(self, body, X-BypassExternalValidation):
+    def createApcToSpAdapterMapping(self, body, XBypassExternalValidation):
         """ Create a new APC-to-SP Adapter Mapping.
         """
 
@@ -58,15 +58,15 @@ class _sp_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Authentication policy contract-to-SP adapter mapping created.')
+                self.logger.info("Authentication policy contract-to-SP adapter mapping created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getApcToSpAdapterMappingById(self, id):
         """ Get an APC-to-SP Adapter Mapping.
@@ -84,15 +84,15 @@ class _sp_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
-    def updateApcToSpAdapterMappingById(self, id, body, X-BypassExternalValidation):
+    def updateApcToSpAdapterMappingById(self, id, body, XBypassExternalValidation):
         """ Update an APC-to-SP Adapter Mapping.
         """
 
@@ -115,17 +115,17 @@ class _sp_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Authentication policy contract-to-SP adapter mapping updated.')
+                self.logger.info("Authentication policy contract-to-SP adapter mapping updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteApcToSpAdapterMappingById(self, id):
         """ Delete an APC-to-SP Adapter Mapping.
@@ -143,11 +143,11 @@ class _sp_authenticationPolicyContractMappings():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Authentication policy contract-to-SP adapter mapping deleted.')
+                self.logger.info("Authentication policy contract-to-SP adapter mapping deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its SP role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its SP role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 

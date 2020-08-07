@@ -15,12 +15,12 @@ class ConnectionCert():
     __slots__ = ["activeVerificationCert", "certView", "encryptionCert", "primaryVerificationCert", "secondaryVerificationCert", "x509File"]
 
     def __init__(self, x509File, activeVerificationCert=None, certView=None, encryptionCert=None, primaryVerificationCert=None, secondaryVerificationCert=None):
-        self.activeVerificationCert = activeVerificationCert
-        self.certView = certView
-        self.encryptionCert = encryptionCert
-        self.primaryVerificationCert = primaryVerificationCert
-        self.secondaryVerificationCert = secondaryVerificationCert
-        self.x509File = x509File
+        self.activeVerificationCert: bool = activeVerificationCert
+        self.certView: str = certView
+        self.encryptionCert: bool = encryptionCert
+        self.primaryVerificationCert: bool = primaryVerificationCert
+        self.secondaryVerificationCert: bool = secondaryVerificationCert
+        self.x509File: str = x509File
 
     def _validate(self):
         return any(x for x in ['x509File'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class ConnectionCert():
         valid_data = {k: v for k, v in python_dict.items() if k in ["activeVerificationCert", "certView", "encryptionCert", "primaryVerificationCert", "secondaryVerificationCert", "x509File"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

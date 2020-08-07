@@ -12,9 +12,9 @@ class AlternativeLoginHintTokenIssuer():
     __slots__ = ["issuer", "jwks", "jwksURL"]
 
     def __init__(self, issuer, jwks=None, jwksURL=None):
-        self.issuer = issuer
-        self.jwks = jwks
-        self.jwksURL = jwksURL
+        self.issuer: str = issuer
+        self.jwks: str = jwks
+        self.jwksURL: str = jwksURL
 
     def _validate(self):
         return any(x for x in ['issuer'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class AlternativeLoginHintTokenIssuer():
         valid_data = {k: v for k, v in python_dict.items() if k in ["issuer", "jwks", "jwksURL"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

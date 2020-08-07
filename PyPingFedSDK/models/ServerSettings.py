@@ -15,12 +15,12 @@ class ServerSettings():
     __slots__ = ["captchaSettings", "contactInfo", "emailServer", "federationInfo", "notifications", "rolesAndProtocols"]
 
     def __init__(self, captchaSettings=None, contactInfo=None, emailServer=None, federationInfo=None, notifications=None, rolesAndProtocols=None):
-        self.captchaSettings = captchaSettings
-        self.contactInfo = contactInfo
-        self.emailServer = emailServer
-        self.federationInfo = federationInfo
-        self.notifications = notifications
-        self.rolesAndProtocols = rolesAndProtocols
+        self.captchaSettings: str = captchaSettings
+        self.contactInfo: str = contactInfo
+        self.emailServer: str = emailServer
+        self.federationInfo: str = federationInfo
+        self.notifications: str = notifications
+        self.rolesAndProtocols: str = rolesAndProtocols
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class ServerSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["captchaSettings", "contactInfo", "emailServer", "federationInfo", "notifications", "rolesAndProtocols"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

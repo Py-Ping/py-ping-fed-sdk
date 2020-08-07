@@ -13,10 +13,10 @@ class ApiResult():
     __slots__ = ["developerMessage", "message", "resultId", "validationErrors"]
 
     def __init__(self, developerMessage=None, message=None, resultId=None, validationErrors=None):
-        self.developerMessage = developerMessage
-        self.message = message
-        self.resultId = resultId
-        self.validationErrors = validationErrors
+        self.developerMessage: str = developerMessage
+        self.message: str = message
+        self.resultId: str = resultId
+        self.validationErrors: list = validationErrors
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class ApiResult():
         valid_data = {k: v for k, v in python_dict.items() if k in ["developerMessage", "message", "resultId", "validationErrors"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class MetadataEventNotificationSettings():
     __slots__ = ["emailAddress", "notificationPublisherRef"]
 
     def __init__(self, emailAddress, notificationPublisherRef=None):
-        self.emailAddress = emailAddress
-        self.notificationPublisherRef = notificationPublisherRef
+        self.emailAddress: str = emailAddress
+        self.notificationPublisherRef: str = notificationPublisherRef
 
     def _validate(self):
         return any(x for x in ['emailAddress'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class MetadataEventNotificationSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["emailAddress", "notificationPublisherRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -12,9 +12,9 @@ class IdpAttributeQuery():
     __slots__ = ["nameMappings", "policy", "url"]
 
     def __init__(self, url, nameMappings=None, policy=None):
-        self.nameMappings = nameMappings
-        self.policy = policy
-        self.url = url
+        self.nameMappings: list = nameMappings
+        self.policy: str = policy
+        self.url: str = url
 
     def _validate(self):
         return any(x for x in ['url'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class IdpAttributeQuery():
         valid_data = {k: v for k, v in python_dict.items() if k in ["nameMappings", "policy", "url"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

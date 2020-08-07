@@ -12,9 +12,9 @@ class AtmAccessControlSettings():
     __slots__ = ["allowedClients", "inherited", "restrictClients"]
 
     def __init__(self, allowedClients=None, inherited=None, restrictClients=None):
-        self.allowedClients = allowedClients
-        self.inherited = inherited
-        self.restrictClients = restrictClients
+        self.allowedClients: list = allowedClients
+        self.inherited: bool = inherited
+        self.restrictClients: bool = restrictClients
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class AtmAccessControlSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowedClients", "inherited", "restrictClients"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

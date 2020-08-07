@@ -12,9 +12,9 @@ class AdditionalAllowedEntitiesConfiguration():
     __slots__ = ["additionalAllowedEntities", "allowAdditionalEntities", "allowAllEntities"]
 
     def __init__(self, additionalAllowedEntities=None, allowAdditionalEntities=None, allowAllEntities=None):
-        self.additionalAllowedEntities = additionalAllowedEntities
-        self.allowAdditionalEntities = allowAdditionalEntities
-        self.allowAllEntities = allowAllEntities
+        self.additionalAllowedEntities: list = additionalAllowedEntities
+        self.allowAdditionalEntities: bool = allowAdditionalEntities
+        self.allowAllEntities: bool = allowAllEntities
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class AdditionalAllowedEntitiesConfiguration():
         valid_data = {k: v for k, v in python_dict.items() if k in ["additionalAllowedEntities", "allowAdditionalEntities", "allowAllEntities"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

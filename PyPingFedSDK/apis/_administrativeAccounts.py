@@ -30,11 +30,11 @@ class _administrativeAccounts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def addAccount(self, body):
         """ Add a new PingFederate native Administrative Account.
@@ -57,13 +57,13 @@ class _administrativeAccounts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('New Administrative Account created.')
+                self.logger.info("New Administrative Account created.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getAccount(self, username):
         """ Get a PingFederate native Administrative Account.
@@ -81,11 +81,11 @@ class _administrativeAccounts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updateAccount(self, username, body):
         """ Update the information for a native Administrative Account.
@@ -109,13 +109,13 @@ class _administrativeAccounts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Administrator Account updated.')
+                self.logger.info("Administrator Account updated.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deleteAccount(self, username):
         """ Delete a PingFederate native Administrative Account information.
@@ -133,13 +133,13 @@ class _administrativeAccounts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Administrator Account Deleted.')
+                self.logger.info("Administrator Account Deleted.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def resetPassword(self, username, body):
         """ Reset the Password of an existing PingFederate native Administrative Account.
@@ -163,13 +163,13 @@ class _administrativeAccounts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Administrator password reset.')
+                self.logger.info("Administrator password reset.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def changePassword(self, body):
         """ Change the Password of current PingFederate native Account.
@@ -192,9 +192,9 @@ class _administrativeAccounts():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Administrator password changed.')
+                self.logger.info("Administrator password changed.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

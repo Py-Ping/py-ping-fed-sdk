@@ -12,9 +12,9 @@ class SpUrlMapping():
     __slots__ = ["ref", "type", "url"]
 
     def __init__(self, ref=None, type=None, url=None):
-        self.ref = ref
-        self.type = type
-        self.url = url
+        self.ref: str = ref
+        self.type: str = type
+        self.url: str = url
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SpUrlMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["ref", "type", "url"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

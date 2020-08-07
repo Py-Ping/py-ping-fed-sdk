@@ -12,9 +12,9 @@ class OpenIdConnectAttribute():
     __slots__ = ["includeInIdToken", "includeInUserInfo", "name"]
 
     def __init__(self, name, includeInIdToken=None, includeInUserInfo=None):
-        self.includeInIdToken = includeInIdToken
-        self.includeInUserInfo = includeInUserInfo
-        self.name = name
+        self.includeInIdToken: bool = includeInIdToken
+        self.includeInUserInfo: bool = includeInUserInfo
+        self.name: str = name
 
     def _validate(self):
         return any(x for x in ['name'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class OpenIdConnectAttribute():
         valid_data = {k: v for k, v in python_dict.items() if k in ["includeInIdToken", "includeInUserInfo", "name"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

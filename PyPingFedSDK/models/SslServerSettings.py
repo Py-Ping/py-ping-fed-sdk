@@ -13,10 +13,10 @@ class SslServerSettings():
     __slots__ = ["activeAdminConsoleCerts", "activeRuntimeServerCerts", "adminConsoleCertRef", "runtimeServerCertRef"]
 
     def __init__(self, runtimeServerCertRef, adminConsoleCertRef, activeAdminConsoleCerts=None, activeRuntimeServerCerts=None):
-        self.activeAdminConsoleCerts = activeAdminConsoleCerts
-        self.activeRuntimeServerCerts = activeRuntimeServerCerts
-        self.adminConsoleCertRef = adminConsoleCertRef
-        self.runtimeServerCertRef = runtimeServerCertRef
+        self.activeAdminConsoleCerts: list = activeAdminConsoleCerts
+        self.activeRuntimeServerCerts: list = activeRuntimeServerCerts
+        self.adminConsoleCertRef: str = adminConsoleCertRef
+        self.runtimeServerCertRef: str = runtimeServerCertRef
 
     def _validate(self):
         return any(x for x in ['runtimeServerCertRef', 'adminConsoleCertRef'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class SslServerSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["activeAdminConsoleCerts", "activeRuntimeServerCerts", "adminConsoleCertRef", "runtimeServerCertRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

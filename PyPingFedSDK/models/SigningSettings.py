@@ -13,10 +13,10 @@ class SigningSettings():
     __slots__ = ["algorithm", "includeCertInSignature", "includeRawKeyInSignature", "signingKeyPairRef"]
 
     def __init__(self, signingKeyPairRef, algorithm=None, includeCertInSignature=None, includeRawKeyInSignature=None):
-        self.algorithm = algorithm
-        self.includeCertInSignature = includeCertInSignature
-        self.includeRawKeyInSignature = includeRawKeyInSignature
-        self.signingKeyPairRef = signingKeyPairRef
+        self.algorithm: str = algorithm
+        self.includeCertInSignature: bool = includeCertInSignature
+        self.includeRawKeyInSignature: bool = includeRawKeyInSignature
+        self.signingKeyPairRef: str = signingKeyPairRef
 
     def _validate(self):
         return any(x for x in ['signingKeyPairRef'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class SigningSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["algorithm", "includeCertInSignature", "includeRawKeyInSignature", "signingKeyPairRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

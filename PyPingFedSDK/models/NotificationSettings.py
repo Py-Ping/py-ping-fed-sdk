@@ -14,11 +14,11 @@ class NotificationSettings():
     __slots__ = ["accountChangesNotificationPublisherRef", "certificateExpirations", "licenseEvents", "metadataNotificationSettings", "notifyAdminUserPasswordChanges"]
 
     def __init__(self, accountChangesNotificationPublisherRef=None, certificateExpirations=None, licenseEvents=None, metadataNotificationSettings=None, notifyAdminUserPasswordChanges=None):
-        self.accountChangesNotificationPublisherRef = accountChangesNotificationPublisherRef
-        self.certificateExpirations = certificateExpirations
-        self.licenseEvents = licenseEvents
-        self.metadataNotificationSettings = metadataNotificationSettings
-        self.notifyAdminUserPasswordChanges = notifyAdminUserPasswordChanges
+        self.accountChangesNotificationPublisherRef: str = accountChangesNotificationPublisherRef
+        self.certificateExpirations: str = certificateExpirations
+        self.licenseEvents: str = licenseEvents
+        self.metadataNotificationSettings: str = metadataNotificationSettings
+        self.notifyAdminUserPasswordChanges: bool = notifyAdminUserPasswordChanges
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class NotificationSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["accountChangesNotificationPublisherRef", "certificateExpirations", "licenseEvents", "metadataNotificationSettings", "notifyAdminUserPasswordChanges"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

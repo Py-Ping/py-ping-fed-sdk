@@ -11,8 +11,8 @@ class ProfileConfig():
     __slots__ = ["deleteIdentityEnabled", "templateName"]
 
     def __init__(self, templateName, deleteIdentityEnabled=None):
-        self.deleteIdentityEnabled = deleteIdentityEnabled
-        self.templateName = templateName
+        self.deleteIdentityEnabled: bool = deleteIdentityEnabled
+        self.templateName: str = templateName
 
     def _validate(self):
         return any(x for x in ['templateName'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ProfileConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["deleteIdentityEnabled", "templateName"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

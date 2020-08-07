@@ -14,11 +14,11 @@ class Action():
     __slots__ = ["description", "download", "id", "invocationRef", "name"]
 
     def __init__(self, description=None, download=None, id=None, invocationRef=None, name=None):
-        self.description = description
-        self.download = download
-        self.id = id
-        self.invocationRef = invocationRef
-        self.name = name
+        self.description: str = description
+        self.download: bool = download
+        self.id: str = id
+        self.invocationRef: str = invocationRef
+        self.name: str = name
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class Action():
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "download", "id", "invocationRef", "name"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

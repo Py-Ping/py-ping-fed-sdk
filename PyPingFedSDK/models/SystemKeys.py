@@ -12,9 +12,9 @@ class SystemKeys():
     __slots__ = ["current", "pending", "previous"]
 
     def __init__(self, current, pending, previous=None):
-        self.current = current
-        self.pending = pending
-        self.previous = previous
+        self.current: str = current
+        self.pending: str = pending
+        self.previous: str = previous
 
     def _validate(self):
         return any(x for x in ['current', 'pending'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SystemKeys():
         valid_data = {k: v for k, v in python_dict.items() if k in ["current", "pending", "previous"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

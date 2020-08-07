@@ -15,12 +15,12 @@ class GlobalAuthenticationSessionPolicy():
     __slots__ = ["enableSessions", "idleTimeoutDisplayUnit", "idleTimeoutMins", "maxTimeoutDisplayUnit", "maxTimeoutMins", "persistentSessions"]
 
     def __init__(self, enableSessions, idleTimeoutDisplayUnit=None, idleTimeoutMins=None, maxTimeoutDisplayUnit=None, maxTimeoutMins=None, persistentSessions=None):
-        self.enableSessions = enableSessions
-        self.idleTimeoutDisplayUnit = idleTimeoutDisplayUnit
-        self.idleTimeoutMins = idleTimeoutMins
-        self.maxTimeoutDisplayUnit = maxTimeoutDisplayUnit
-        self.maxTimeoutMins = maxTimeoutMins
-        self.persistentSessions = persistentSessions
+        self.enableSessions: bool = enableSessions
+        self.idleTimeoutDisplayUnit: str = idleTimeoutDisplayUnit
+        self.idleTimeoutMins: str = idleTimeoutMins
+        self.maxTimeoutDisplayUnit: str = maxTimeoutDisplayUnit
+        self.maxTimeoutMins: str = maxTimeoutMins
+        self.persistentSessions: bool = persistentSessions
 
     def _validate(self):
         return any(x for x in ['enableSessions'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class GlobalAuthenticationSessionPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableSessions", "idleTimeoutDisplayUnit", "idleTimeoutMins", "maxTimeoutDisplayUnit", "maxTimeoutMins", "persistentSessions"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

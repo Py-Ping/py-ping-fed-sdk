@@ -13,10 +13,10 @@ class TokenExchangeGeneratorGroup():
     __slots__ = ["generatorMappings", "id", "name", "resourceUris"]
 
     def __init__(self, id, name, generatorMappings, resourceUris=None):
-        self.generatorMappings = generatorMappings
-        self.id = id
-        self.name = name
-        self.resourceUris = resourceUris
+        self.generatorMappings: list = generatorMappings
+        self.id: str = id
+        self.name: str = name
+        self.resourceUris: list = resourceUris
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'generatorMappings'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class TokenExchangeGeneratorGroup():
         valid_data = {k: v for k, v in python_dict.items() if k in ["generatorMappings", "id", "name", "resourceUris"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

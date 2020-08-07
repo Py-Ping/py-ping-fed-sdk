@@ -16,13 +16,13 @@ class KeyPairRotationSettings():
     __slots__ = ["activationBufferDays", "creationBufferDays", "id", "keyAlgorithm", "keySize", "signatureAlgorithm", "validDays"]
 
     def __init__(self, creationBufferDays, activationBufferDays, id=None, keyAlgorithm=None, keySize=None, signatureAlgorithm=None, validDays=None):
-        self.activationBufferDays = activationBufferDays
-        self.creationBufferDays = creationBufferDays
-        self.id = id
-        self.keyAlgorithm = keyAlgorithm
-        self.keySize = keySize
-        self.signatureAlgorithm = signatureAlgorithm
-        self.validDays = validDays
+        self.activationBufferDays: str = activationBufferDays
+        self.creationBufferDays: str = creationBufferDays
+        self.id: str = id
+        self.keyAlgorithm: str = keyAlgorithm
+        self.keySize: str = keySize
+        self.signatureAlgorithm: str = signatureAlgorithm
+        self.validDays: str = validDays
 
     def _validate(self):
         return any(x for x in ['creationBufferDays', 'activationBufferDays'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class KeyPairRotationSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["activationBufferDays", "creationBufferDays", "id", "keyAlgorithm", "keySize", "signatureAlgorithm", "validDays"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

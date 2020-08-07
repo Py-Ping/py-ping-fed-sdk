@@ -10,7 +10,7 @@ class PKCS12ExportSettings():
     __slots__ = ["password"]
 
     def __init__(self, password):
-        self.password = password
+        self.password: str = password
 
     def _validate(self):
         return any(x for x in ['password'] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class PKCS12ExportSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["password"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

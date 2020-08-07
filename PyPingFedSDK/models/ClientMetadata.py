@@ -12,9 +12,9 @@ class ClientMetadata():
     __slots__ = ["description", "multiValued", "parameter"]
 
     def __init__(self, description=None, multiValued=None, parameter=None):
-        self.description = description
-        self.multiValued = multiValued
-        self.parameter = parameter
+        self.description: str = description
+        self.multiValued: bool = multiValued
+        self.parameter: str = parameter
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class ClientMetadata():
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "multiValued", "parameter"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

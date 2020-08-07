@@ -11,8 +11,8 @@ class SaasAttributeMapping():
     __slots__ = ["fieldName", "saasFieldInfo"]
 
     def __init__(self, fieldName, saasFieldInfo):
-        self.fieldName = fieldName
-        self.saasFieldInfo = saasFieldInfo
+        self.fieldName: str = fieldName
+        self.saasFieldInfo: str = saasFieldInfo
 
     def _validate(self):
         return any(x for x in ['fieldName', 'saasFieldInfo'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class SaasAttributeMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["fieldName", "saasFieldInfo"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

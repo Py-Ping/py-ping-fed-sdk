@@ -30,27 +30,27 @@ class IdpConnection():
     __slots__ = ["active", "additionalAllowedEntitiesConfiguration", "attributeQuery", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "errorPageMsgId", "extendedProperties", "id", "idpBrowserSso", "idpOAuthGrantAttributeMapping", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "oidcClientCredentials", "type", "virtualEntityIds", "wsTrust"]
 
     def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, errorPageMsgId=None, extendedProperties=None, id=None, idpBrowserSso=None, idpOAuthGrantAttributeMapping=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, oidcClientCredentials=None, type=None, virtualEntityIds=None, wsTrust=None):
-        self.active = active
-        self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
-        self.attributeQuery = attributeQuery
-        self.baseUrl = baseUrl
-        self.contactInfo = contactInfo
-        self.credentials = credentials
-        self.defaultVirtualEntityId = defaultVirtualEntityId
-        self.entityId = entityId
-        self.errorPageMsgId = errorPageMsgId
-        self.extendedProperties = extendedProperties
-        self.id = id
-        self.idpBrowserSso = idpBrowserSso
-        self.idpOAuthGrantAttributeMapping = idpOAuthGrantAttributeMapping
-        self.licenseConnectionGroup = licenseConnectionGroup
-        self.loggingMode = loggingMode
-        self.metadataReloadSettings = metadataReloadSettings
-        self.name = name
-        self.oidcClientCredentials = oidcClientCredentials
-        self.type = type
-        self.virtualEntityIds = virtualEntityIds
-        self.wsTrust = wsTrust
+        self.active: bool = active
+        self.additionalAllowedEntitiesConfiguration: str = additionalAllowedEntitiesConfiguration
+        self.attributeQuery: str = attributeQuery
+        self.baseUrl: str = baseUrl
+        self.contactInfo: str = contactInfo
+        self.credentials: str = credentials
+        self.defaultVirtualEntityId: str = defaultVirtualEntityId
+        self.entityId: str = entityId
+        self.errorPageMsgId: str = errorPageMsgId
+        self.extendedProperties: str = extendedProperties
+        self.id: str = id
+        self.idpBrowserSso: str = idpBrowserSso
+        self.idpOAuthGrantAttributeMapping: str = idpOAuthGrantAttributeMapping
+        self.licenseConnectionGroup: str = licenseConnectionGroup
+        self.loggingMode: str = loggingMode
+        self.metadataReloadSettings: str = metadataReloadSettings
+        self.name: str = name
+        self.oidcClientCredentials: str = oidcClientCredentials
+        self.type: str = type
+        self.virtualEntityIds: list = virtualEntityIds
+        self.wsTrust: str = wsTrust
 
     def _validate(self):
         return any(x for x in ['entityId', 'name'] if self.__dict__[x] is not None)
@@ -74,3 +74,6 @@ class IdpConnection():
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "additionalAllowedEntitiesConfiguration", "attributeQuery", "baseUrl", "contactInfo", "credentials", "defaultVirtualEntityId", "entityId", "errorPageMsgId", "extendedProperties", "id", "idpBrowserSso", "idpOAuthGrantAttributeMapping", "licenseConnectionGroup", "loggingMode", "metadataReloadSettings", "name", "oidcClientCredentials", "type", "virtualEntityIds", "wsTrust"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

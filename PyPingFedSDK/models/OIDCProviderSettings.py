@@ -19,16 +19,16 @@ class OIDCProviderSettings():
     __slots__ = ["authenticationScheme", "authenticationSigningAlgorithm", "authorizationEndpoint", "jwksURL", "loginType", "requestParameters", "requestSigningAlgorithm", "scopes", "tokenEndpoint", "userInfoEndpoint"]
 
     def __init__(self, scopes, authorizationEndpoint, loginType, jwksURL, authenticationScheme=None, authenticationSigningAlgorithm=None, requestParameters=None, requestSigningAlgorithm=None, tokenEndpoint=None, userInfoEndpoint=None):
-        self.authenticationScheme = authenticationScheme
-        self.authenticationSigningAlgorithm = authenticationSigningAlgorithm
-        self.authorizationEndpoint = authorizationEndpoint
-        self.jwksURL = jwksURL
-        self.loginType = loginType
-        self.requestParameters = requestParameters
-        self.requestSigningAlgorithm = requestSigningAlgorithm
-        self.scopes = scopes
-        self.tokenEndpoint = tokenEndpoint
-        self.userInfoEndpoint = userInfoEndpoint
+        self.authenticationScheme: str = authenticationScheme
+        self.authenticationSigningAlgorithm: str = authenticationSigningAlgorithm
+        self.authorizationEndpoint: str = authorizationEndpoint
+        self.jwksURL: str = jwksURL
+        self.loginType: str = loginType
+        self.requestParameters: list = requestParameters
+        self.requestSigningAlgorithm: str = requestSigningAlgorithm
+        self.scopes: str = scopes
+        self.tokenEndpoint: str = tokenEndpoint
+        self.userInfoEndpoint: str = userInfoEndpoint
 
     def _validate(self):
         return any(x for x in ['scopes', 'authorizationEndpoint', 'loginType', 'jwksURL'] if self.__dict__[x] is not None)
@@ -52,3 +52,6 @@ class OIDCProviderSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["authenticationScheme", "authenticationSigningAlgorithm", "authorizationEndpoint", "jwksURL", "loginType", "requestParameters", "requestSigningAlgorithm", "scopes", "tokenEndpoint", "userInfoEndpoint"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

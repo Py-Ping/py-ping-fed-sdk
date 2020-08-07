@@ -30,13 +30,13 @@ class _oauth_cibaServerPolicy():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def updateSettings(self, body, X-BypassExternalValidation):
+    def updateSettings(self, body, XBypassExternalValidation):
         """ Update general ciba server request policy settings.
         """
 
@@ -58,15 +58,15 @@ class _oauth_cibaServerPolicy():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Settings updated.')
+                self.logger.info("Settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getPolicies(self):
         """ Get list of request policies.
@@ -84,13 +84,13 @@ class _oauth_cibaServerPolicy():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
         finally:
-            return response
+            return response.json()
 
-    def createPolicy(self, body, X-BypassExternalValidation):
+    def createPolicy(self, body, XBypassExternalValidation):
         """ Create a new request policy.
         """
 
@@ -112,15 +112,15 @@ class _oauth_cibaServerPolicy():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Request Handling Policy created.')
+                self.logger.info("Request Handling Policy created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getPolicy(self, id):
         """ Find request policy by ID.
@@ -138,15 +138,15 @@ class _oauth_cibaServerPolicy():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
-    def updatePolicy(self, id, body, X-BypassExternalValidation):
+    def updatePolicy(self, id, body, XBypassExternalValidation):
         """ Update a request policy.
         """
 
@@ -169,17 +169,17 @@ class _oauth_cibaServerPolicy():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Request Handling Policy updated.')
+                self.logger.info("Request Handling Policy updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deletePolicy(self, id):
         """ Delete a request policy.
@@ -197,13 +197,13 @@ class _oauth_cibaServerPolicy():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Request Handling Policy deleted.')
+                self.logger.info("Request Handling Policy deleted.")
             if response.status_code == 403:
-                self.logger.info('PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.')
+                self.logger.info("PingFederate does not have its OAuth 2.0 authorization server role enabled. Operation not available.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

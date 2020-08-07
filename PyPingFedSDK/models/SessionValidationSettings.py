@@ -13,10 +13,10 @@ class SessionValidationSettings():
     __slots__ = ["checkSessionRevocationStatus", "checkValidAuthnSession", "inherited", "updateAuthnSessionActivity"]
 
     def __init__(self, checkSessionRevocationStatus=None, checkValidAuthnSession=None, inherited=None, updateAuthnSessionActivity=None):
-        self.checkSessionRevocationStatus = checkSessionRevocationStatus
-        self.checkValidAuthnSession = checkValidAuthnSession
-        self.inherited = inherited
-        self.updateAuthnSessionActivity = updateAuthnSessionActivity
+        self.checkSessionRevocationStatus: bool = checkSessionRevocationStatus
+        self.checkValidAuthnSession: bool = checkValidAuthnSession
+        self.inherited: bool = inherited
+        self.updateAuthnSessionActivity: bool = updateAuthnSessionActivity
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class SessionValidationSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["checkSessionRevocationStatus", "checkValidAuthnSession", "inherited", "updateAuthnSessionActivity"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

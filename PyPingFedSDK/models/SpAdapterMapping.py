@@ -16,13 +16,13 @@ class SpAdapterMapping():
     __slots__ = ["adapterOverrideSettings", "attributeContractFulfillment", "attributeSources", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds", "spAdapterRef"]
 
     def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
-        self.adapterOverrideSettings = adapterOverrideSettings
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.issuanceCriteria = issuanceCriteria
-        self.restrictVirtualEntityIds = restrictVirtualEntityIds
-        self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
-        self.spAdapterRef = spAdapterRef
+        self.adapterOverrideSettings: str = adapterOverrideSettings
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
+        self.spAdapterRef: str = spAdapterRef
 
     def _validate(self):
         return any(x for x in ['spAdapterRef', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class SpAdapterMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["adapterOverrideSettings", "attributeContractFulfillment", "attributeSources", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds", "spAdapterRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

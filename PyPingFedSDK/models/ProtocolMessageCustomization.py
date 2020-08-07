@@ -11,8 +11,8 @@ class ProtocolMessageCustomization():
     __slots__ = ["contextName", "messageExpression"]
 
     def __init__(self, contextName=None, messageExpression=None):
-        self.contextName = contextName
-        self.messageExpression = messageExpression
+        self.contextName: str = contextName
+        self.messageExpression: str = messageExpression
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ProtocolMessageCustomization():
         valid_data = {k: v for k, v in python_dict.items() if k in ["contextName", "messageExpression"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

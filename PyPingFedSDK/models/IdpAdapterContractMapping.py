@@ -13,10 +13,10 @@ class IdpAdapterContractMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "inherited", "issuanceCriteria"]
 
     def __init__(self, attributeContractFulfillment, attributeSources=None, inherited=None, issuanceCriteria=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.inherited = inherited
-        self.issuanceCriteria = issuanceCriteria
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.inherited: bool = inherited
+        self.issuanceCriteria: str = issuanceCriteria
 
     def _validate(self):
         return any(x for x in ['attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class IdpAdapterContractMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "inherited", "issuanceCriteria"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

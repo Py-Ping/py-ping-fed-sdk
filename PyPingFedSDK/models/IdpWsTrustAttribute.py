@@ -11,8 +11,8 @@ class IdpWsTrustAttribute():
     __slots__ = ["masked", "name"]
 
     def __init__(self, name, masked=None):
-        self.masked = masked
-        self.name = name
+        self.masked: bool = masked
+        self.name: str = name
 
     def _validate(self):
         return any(x for x in ['name'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class IdpWsTrustAttribute():
         valid_data = {k: v for k, v in python_dict.items() if k in ["masked", "name"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

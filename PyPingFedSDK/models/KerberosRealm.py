@@ -16,13 +16,13 @@ class KerberosRealm():
     __slots__ = ["id", "kerberosEncryptedPassword", "kerberosPassword", "kerberosRealmName", "kerberosUsername", "keyDistributionCenters", "suppressDomainNameConcatenation"]
 
     def __init__(self, kerberosRealmName, kerberosUsername, id=None, kerberosEncryptedPassword=None, kerberosPassword=None, keyDistributionCenters=None, suppressDomainNameConcatenation=None):
-        self.id = id
-        self.kerberosEncryptedPassword = kerberosEncryptedPassword
-        self.kerberosPassword = kerberosPassword
-        self.kerberosRealmName = kerberosRealmName
-        self.kerberosUsername = kerberosUsername
-        self.keyDistributionCenters = keyDistributionCenters
-        self.suppressDomainNameConcatenation = suppressDomainNameConcatenation
+        self.id: str = id
+        self.kerberosEncryptedPassword: str = kerberosEncryptedPassword
+        self.kerberosPassword: str = kerberosPassword
+        self.kerberosRealmName: str = kerberosRealmName
+        self.kerberosUsername: str = kerberosUsername
+        self.keyDistributionCenters: list = keyDistributionCenters
+        self.suppressDomainNameConcatenation: bool = suppressDomainNameConcatenation
 
     def _validate(self):
         return any(x for x in ['kerberosRealmName', 'kerberosUsername'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class KerberosRealm():
         valid_data = {k: v for k, v in python_dict.items() if k in ["id", "kerberosEncryptedPassword", "kerberosPassword", "kerberosRealmName", "kerberosUsername", "keyDistributionCenters", "suppressDomainNameConcatenation"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

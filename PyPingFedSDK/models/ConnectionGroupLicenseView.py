@@ -13,10 +13,10 @@ class ConnectionGroupLicenseView():
     __slots__ = ["connectionCount", "endDate", "name", "startDate"]
 
     def __init__(self, connectionCount=None, endDate=None, name=None, startDate=None):
-        self.connectionCount = connectionCount
-        self.endDate = endDate
-        self.name = name
-        self.startDate = startDate
+        self.connectionCount: str = connectionCount
+        self.endDate: str = endDate
+        self.name: str = name
+        self.startDate: str = startDate
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class ConnectionGroupLicenseView():
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionCount", "endDate", "name", "startDate"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

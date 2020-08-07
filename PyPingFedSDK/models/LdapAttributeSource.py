@@ -19,16 +19,16 @@ class LdapAttributeSource():
     __slots__ = ["attributeContractFulfillment", "baseDn", "binaryAttributeSettings", "dataStoreRef", "description", "id", "memberOfNestedGroup", "searchFilter", "searchScope", "type"]
 
     def __init__(self, type, dataStoreRef, searchScope, searchFilter, attributeContractFulfillment=None, baseDn=None, binaryAttributeSettings=None, description=None, id=None, memberOfNestedGroup=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.baseDn = baseDn
-        self.binaryAttributeSettings = binaryAttributeSettings
-        self.dataStoreRef = dataStoreRef
-        self.description = description
-        self.id = id
-        self.memberOfNestedGroup = memberOfNestedGroup
-        self.searchFilter = searchFilter
-        self.searchScope = searchScope
-        self.type = type
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.baseDn: str = baseDn
+        self.binaryAttributeSettings: str = binaryAttributeSettings
+        self.dataStoreRef: str = dataStoreRef
+        self.description: str = description
+        self.id: str = id
+        self.memberOfNestedGroup: bool = memberOfNestedGroup
+        self.searchFilter: str = searchFilter
+        self.searchScope: str = searchScope
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'dataStoreRef', 'searchScope', 'searchFilter'] if self.__dict__[x] is not None)
@@ -52,3 +52,6 @@ class LdapAttributeSource():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "baseDn", "binaryAttributeSettings", "dataStoreRef", "description", "id", "memberOfNestedGroup", "searchFilter", "searchScope", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

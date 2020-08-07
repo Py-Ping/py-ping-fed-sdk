@@ -17,14 +17,14 @@ class JdbcAttributeSource():
     __slots__ = ["attributeContractFulfillment", "dataStoreRef", "description", "filter", "id", "schema", "table", "type"]
 
     def __init__(self, type, dataStoreRef, table, filter, attributeContractFulfillment=None, description=None, id=None, schema=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.dataStoreRef = dataStoreRef
-        self.description = description
-        self.filter = filter
-        self.id = id
-        self.schema = schema
-        self.table = table
-        self.type = type
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.dataStoreRef: str = dataStoreRef
+        self.description: str = description
+        self.filter: str = filter
+        self.id: str = id
+        self.schema: str = schema
+        self.table: str = table
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'dataStoreRef', 'table', 'filter'] if self.__dict__[x] is not None)
@@ -48,3 +48,6 @@ class JdbcAttributeSource():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "dataStoreRef", "description", "filter", "id", "schema", "table", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

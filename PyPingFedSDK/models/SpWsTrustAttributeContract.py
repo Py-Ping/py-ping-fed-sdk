@@ -11,8 +11,8 @@ class SpWsTrustAttributeContract():
     __slots__ = ["coreAttributes", "extendedAttributes"]
 
     def __init__(self, coreAttributes=None, extendedAttributes=None):
-        self.coreAttributes = coreAttributes
-        self.extendedAttributes = extendedAttributes
+        self.coreAttributes: list = coreAttributes
+        self.extendedAttributes: list = extendedAttributes
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class SpWsTrustAttributeContract():
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -17,14 +17,14 @@ class IdpAdapterAssertionMapping():
     __slots__ = ["abortSsoTransactionAsFailSafe", "adapterOverrideSettings", "attributeContractFulfillment", "attributeSources", "idpAdapterRef", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds"]
 
     def __init__(self, idpAdapterRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
-        self.abortSsoTransactionAsFailSafe = abortSsoTransactionAsFailSafe
-        self.adapterOverrideSettings = adapterOverrideSettings
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.idpAdapterRef = idpAdapterRef
-        self.issuanceCriteria = issuanceCriteria
-        self.restrictVirtualEntityIds = restrictVirtualEntityIds
-        self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
+        self.abortSsoTransactionAsFailSafe: bool = abortSsoTransactionAsFailSafe
+        self.adapterOverrideSettings: str = adapterOverrideSettings
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.idpAdapterRef: str = idpAdapterRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
 
     def _validate(self):
         return any(x for x in ['idpAdapterRef', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -48,3 +48,6 @@ class IdpAdapterAssertionMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["abortSsoTransactionAsFailSafe", "adapterOverrideSettings", "attributeContractFulfillment", "attributeSources", "idpAdapterRef", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -11,8 +11,8 @@ class ResourceLink():
     __slots__ = ["id", "location"]
 
     def __init__(self, id, location=None):
-        self.id = id
-        self.location = location
+        self.id: str = id
+        self.location: str = location
 
     def _validate(self):
         return any(x for x in ['id'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class ResourceLink():
         valid_data = {k: v for k, v in python_dict.items() if k in ["id", "location"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

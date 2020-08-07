@@ -13,10 +13,10 @@ class SchemaAttribute():
     __slots__ = ["multiValued", "name", "subAttributes", "types"]
 
     def __init__(self, multiValued=None, name=None, subAttributes=None, types=None):
-        self.multiValued = multiValued
-        self.name = name
-        self.subAttributes = subAttributes
-        self.types = types
+        self.multiValued: bool = multiValued
+        self.name: str = name
+        self.subAttributes: list = subAttributes
+        self.types: list = types
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class SchemaAttribute():
         valid_data = {k: v for k, v in python_dict.items() if k in ["multiValued", "name", "subAttributes", "types"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

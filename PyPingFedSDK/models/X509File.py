@@ -12,9 +12,9 @@ class X509File():
     __slots__ = ["cryptoProvider", "fileData", "id"]
 
     def __init__(self, fileData, cryptoProvider=None, id=None):
-        self.cryptoProvider = cryptoProvider
-        self.fileData = fileData
-        self.id = id
+        self.cryptoProvider: str = cryptoProvider
+        self.fileData: str = fileData
+        self.id: str = id
 
     def _validate(self):
         return any(x for x in ['fileData'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class X509File():
         valid_data = {k: v for k, v in python_dict.items() if k in ["cryptoProvider", "fileData", "id"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

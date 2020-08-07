@@ -11,8 +11,8 @@ class AttributeQueryNameMapping():
     __slots__ = ["localName", "remoteName"]
 
     def __init__(self, localName, remoteName):
-        self.localName = localName
-        self.remoteName = remoteName
+        self.localName: str = localName
+        self.remoteName: str = remoteName
 
     def _validate(self):
         return any(x for x in ['localName', 'remoteName'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AttributeQueryNameMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["localName", "remoteName"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

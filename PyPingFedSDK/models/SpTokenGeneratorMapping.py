@@ -15,12 +15,12 @@ class SpTokenGeneratorMapping():
     __slots__ = ["attributeContractFulfillment", "attributeSources", "defaultMapping", "issuanceCriteria", "restrictedVirtualEntityIds", "spTokenGeneratorRef"]
 
     def __init__(self, spTokenGeneratorRef, attributeContractFulfillment, attributeSources=None, defaultMapping=None, issuanceCriteria=None, restrictedVirtualEntityIds=None):
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.defaultMapping = defaultMapping
-        self.issuanceCriteria = issuanceCriteria
-        self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
-        self.spTokenGeneratorRef = spTokenGeneratorRef
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.defaultMapping: bool = defaultMapping
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
+        self.spTokenGeneratorRef: str = spTokenGeneratorRef
 
     def _validate(self):
         return any(x for x in ['spTokenGeneratorRef', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class SpTokenGeneratorMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "defaultMapping", "issuanceCriteria", "restrictedVirtualEntityIds", "spTokenGeneratorRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

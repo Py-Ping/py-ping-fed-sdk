@@ -13,10 +13,10 @@ class UrlWhitelistEntry():
     __slots__ = ["allowQueryAndFragment", "requireHttps", "validDomain", "validPath"]
 
     def __init__(self, allowQueryAndFragment=None, requireHttps=None, validDomain=None, validPath=None):
-        self.allowQueryAndFragment = allowQueryAndFragment
-        self.requireHttps = requireHttps
-        self.validDomain = validDomain
-        self.validPath = validPath
+        self.allowQueryAndFragment: bool = allowQueryAndFragment
+        self.requireHttps: bool = requireHttps
+        self.validDomain: str = validDomain
+        self.validPath: str = validPath
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class UrlWhitelistEntry():
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowQueryAndFragment", "requireHttps", "validDomain", "validPath"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

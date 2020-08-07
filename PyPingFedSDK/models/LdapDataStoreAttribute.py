@@ -12,9 +12,9 @@ class LdapDataStoreAttribute():
     __slots__ = ["metadata", "name", "type"]
 
     def __init__(self, type, metadata=None, name=None):
-        self.metadata = metadata
-        self.name = name
-        self.type = type
+        self.metadata: str = metadata
+        self.name: str = name
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class LdapDataStoreAttribute():
         valid_data = {k: v for k, v in python_dict.items() if k in ["metadata", "name", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

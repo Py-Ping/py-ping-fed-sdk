@@ -16,13 +16,13 @@ class ClientAuth():
     __slots__ = ["clientCertIssuerDn", "clientCertSubjectDn", "encryptedSecret", "enforceReplayPrevention", "secret", "tokenEndpointAuthSigningAlgorithm", "type"]
 
     def __init__(self, clientCertIssuerDn=None, clientCertSubjectDn=None, encryptedSecret=None, enforceReplayPrevention=None, secret=None, tokenEndpointAuthSigningAlgorithm=None, type=None):
-        self.clientCertIssuerDn = clientCertIssuerDn
-        self.clientCertSubjectDn = clientCertSubjectDn
-        self.encryptedSecret = encryptedSecret
-        self.enforceReplayPrevention = enforceReplayPrevention
-        self.secret = secret
-        self.tokenEndpointAuthSigningAlgorithm = tokenEndpointAuthSigningAlgorithm
-        self.type = type
+        self.clientCertIssuerDn: str = clientCertIssuerDn
+        self.clientCertSubjectDn: str = clientCertSubjectDn
+        self.encryptedSecret: str = encryptedSecret
+        self.enforceReplayPrevention: bool = enforceReplayPrevention
+        self.secret: str = secret
+        self.tokenEndpointAuthSigningAlgorithm: str = tokenEndpointAuthSigningAlgorithm
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class ClientAuth():
         valid_data = {k: v for k, v in python_dict.items() if k in ["clientCertIssuerDn", "clientCertSubjectDn", "encryptedSecret", "enforceReplayPrevention", "secret", "tokenEndpointAuthSigningAlgorithm", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

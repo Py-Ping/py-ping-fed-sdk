@@ -13,10 +13,10 @@ class SpSsoServiceEndpoint():
     __slots__ = ["binding", "index", "isDefault", "url"]
 
     def __init__(self, binding, url, index, isDefault=None):
-        self.binding = binding
-        self.index = index
-        self.isDefault = isDefault
-        self.url = url
+        self.binding: str = binding
+        self.index: str = index
+        self.isDefault: bool = isDefault
+        self.url: str = url
 
     def _validate(self):
         return any(x for x in ['binding', 'url', 'index'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class SpSsoServiceEndpoint():
         valid_data = {k: v for k, v in python_dict.items() if k in ["binding", "index", "isDefault", "url"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

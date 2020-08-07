@@ -16,13 +16,13 @@ class TokenExchangeProcessorMapping():
     __slots__ = ["actorTokenProcessor", "actorTokenType", "attributeContractFulfillment", "attributeSources", "issuanceCriteria", "subjectTokenProcessor", "subjectTokenType"]
 
     def __init__(self, attributeContractFulfillment, subjectTokenType, subjectTokenProcessor, actorTokenProcessor=None, actorTokenType=None, attributeSources=None, issuanceCriteria=None):
-        self.actorTokenProcessor = actorTokenProcessor
-        self.actorTokenType = actorTokenType
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.issuanceCriteria = issuanceCriteria
-        self.subjectTokenProcessor = subjectTokenProcessor
-        self.subjectTokenType = subjectTokenType
+        self.actorTokenProcessor: str = actorTokenProcessor
+        self.actorTokenType: str = actorTokenType
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.issuanceCriteria: str = issuanceCriteria
+        self.subjectTokenProcessor: str = subjectTokenProcessor
+        self.subjectTokenType: str = subjectTokenType
 
     def _validate(self):
         return any(x for x in ['attributeContractFulfillment', 'subjectTokenType', 'subjectTokenProcessor'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class TokenExchangeProcessorMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["actorTokenProcessor", "actorTokenType", "attributeContractFulfillment", "attributeSources", "issuanceCriteria", "subjectTokenProcessor", "subjectTokenType"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

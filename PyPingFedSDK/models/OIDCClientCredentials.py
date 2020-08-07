@@ -12,9 +12,9 @@ class OIDCClientCredentials():
     __slots__ = ["clientId", "clientSecret", "encryptedSecret"]
 
     def __init__(self, clientId, clientSecret=None, encryptedSecret=None):
-        self.clientId = clientId
-        self.clientSecret = clientSecret
-        self.encryptedSecret = encryptedSecret
+        self.clientId: str = clientId
+        self.clientSecret: str = clientSecret
+        self.encryptedSecret: str = encryptedSecret
 
     def _validate(self):
         return any(x for x in ['clientId'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class OIDCClientCredentials():
         valid_data = {k: v for k, v in python_dict.items() if k in ["clientId", "clientSecret", "encryptedSecret"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

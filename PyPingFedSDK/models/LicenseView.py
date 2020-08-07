@@ -25,22 +25,22 @@ class LicenseView():
     __slots__ = ["enforcementType", "expirationDate", "gracePeriod", "id", "issueDate", "licenseGroups", "maxConnections", "name", "nodeLimit", "oauthEnabled", "organization", "product", "provisioningEnabled", "tier", "version", "wsTrustEnabled"]
 
     def __init__(self, enforcementType=None, expirationDate=None, gracePeriod=None, id=None, issueDate=None, licenseGroups=None, maxConnections=None, name=None, nodeLimit=None, oauthEnabled=None, organization=None, product=None, provisioningEnabled=None, tier=None, version=None, wsTrustEnabled=None):
-        self.enforcementType = enforcementType
-        self.expirationDate = expirationDate
-        self.gracePeriod = gracePeriod
-        self.id = id
-        self.issueDate = issueDate
-        self.licenseGroups = licenseGroups
-        self.maxConnections = maxConnections
-        self.name = name
-        self.nodeLimit = nodeLimit
-        self.oauthEnabled = oauthEnabled
-        self.organization = organization
-        self.product = product
-        self.provisioningEnabled = provisioningEnabled
-        self.tier = tier
-        self.version = version
-        self.wsTrustEnabled = wsTrustEnabled
+        self.enforcementType: str = enforcementType
+        self.expirationDate: str = expirationDate
+        self.gracePeriod: str = gracePeriod
+        self.id: str = id
+        self.issueDate: str = issueDate
+        self.licenseGroups: list = licenseGroups
+        self.maxConnections: str = maxConnections
+        self.name: str = name
+        self.nodeLimit: str = nodeLimit
+        self.oauthEnabled: bool = oauthEnabled
+        self.organization: str = organization
+        self.product: str = product
+        self.provisioningEnabled: bool = provisioningEnabled
+        self.tier: str = tier
+        self.version: str = version
+        self.wsTrustEnabled: bool = wsTrustEnabled
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -64,3 +64,6 @@ class LicenseView():
         valid_data = {k: v for k, v in python_dict.items() if k in ["enforcementType", "expirationDate", "gracePeriod", "id", "issueDate", "licenseGroups", "maxConnections", "name", "nodeLimit", "oauthEnabled", "organization", "product", "provisioningEnabled", "tier", "version", "wsTrustEnabled"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

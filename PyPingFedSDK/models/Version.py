@@ -10,7 +10,7 @@ class Version():
     __slots__ = ["version"]
 
     def __init__(self, version=None):
-        self.version = version
+        self.version: str = version
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class Version():
         valid_data = {k: v for k, v in python_dict.items() if k in ["version"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

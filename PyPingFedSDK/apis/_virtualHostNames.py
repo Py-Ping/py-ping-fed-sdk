@@ -30,9 +30,9 @@ class _virtualHostNames():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateVirtualHostNamesSettings(self, body):
         """ Update virtual host names settings.
@@ -55,9 +55,9 @@ class _virtualHostNames():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Virtual host names settings updated.')
+                self.logger.info("Virtual host names settings updated.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 

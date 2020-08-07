@@ -12,9 +12,9 @@ class SpAdapterTargetApplicationInfo():
     __slots__ = ["applicationIconUrl", "applicationName", "inherited"]
 
     def __init__(self, applicationIconUrl=None, applicationName=None, inherited=None):
-        self.applicationIconUrl = applicationIconUrl
-        self.applicationName = applicationName
-        self.inherited = inherited
+        self.applicationIconUrl: str = applicationIconUrl
+        self.applicationName: str = applicationName
+        self.inherited: bool = inherited
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SpAdapterTargetApplicationInfo():
         valid_data = {k: v for k, v in python_dict.items() if k in ["applicationIconUrl", "applicationName", "inherited"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

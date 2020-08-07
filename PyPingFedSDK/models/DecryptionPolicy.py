@@ -14,11 +14,11 @@ class DecryptionPolicy():
     __slots__ = ["assertionEncrypted", "attributesEncrypted", "sloEncryptSubjectNameID", "sloSubjectNameIDEncrypted", "subjectNameIdEncrypted"]
 
     def __init__(self, assertionEncrypted=None, attributesEncrypted=None, sloEncryptSubjectNameID=None, sloSubjectNameIDEncrypted=None, subjectNameIdEncrypted=None):
-        self.assertionEncrypted = assertionEncrypted
-        self.attributesEncrypted = attributesEncrypted
-        self.sloEncryptSubjectNameID = sloEncryptSubjectNameID
-        self.sloSubjectNameIDEncrypted = sloSubjectNameIDEncrypted
-        self.subjectNameIdEncrypted = subjectNameIdEncrypted
+        self.assertionEncrypted: bool = assertionEncrypted
+        self.attributesEncrypted: bool = attributesEncrypted
+        self.sloEncryptSubjectNameID: bool = sloEncryptSubjectNameID
+        self.sloSubjectNameIDEncrypted: bool = sloSubjectNameIDEncrypted
+        self.subjectNameIdEncrypted: bool = subjectNameIdEncrypted
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class DecryptionPolicy():
         valid_data = {k: v for k, v in python_dict.items() if k in ["assertionEncrypted", "attributesEncrypted", "sloEncryptSubjectNameID", "sloSubjectNameIDEncrypted", "subjectNameIdEncrypted"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

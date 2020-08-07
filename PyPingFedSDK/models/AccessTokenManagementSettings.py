@@ -10,7 +10,7 @@ class AccessTokenManagementSettings():
     __slots__ = ["defaultAccessTokenManagerRef"]
 
     def __init__(self, defaultAccessTokenManagerRef=None):
-        self.defaultAccessTokenManagerRef = defaultAccessTokenManagerRef
+        self.defaultAccessTokenManagerRef: str = defaultAccessTokenManagerRef
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class AccessTokenManagementSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultAccessTokenManagerRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

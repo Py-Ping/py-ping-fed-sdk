@@ -10,7 +10,7 @@ class LicenseFile():
     __slots__ = ["fileData"]
 
     def __init__(self, fileData):
-        self.fileData = fileData
+        self.fileData: str = fileData
 
     def _validate(self):
         return any(x for x in ['fileData'] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class LicenseFile():
         valid_data = {k: v for k, v in python_dict.items() if k in ["fileData"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -13,10 +13,10 @@ class CertificateExpirationNotificationSettings():
     __slots__ = ["emailAddress", "finalWarningPeriod", "initialWarningPeriod", "notificationPublisherRef"]
 
     def __init__(self, emailAddress, finalWarningPeriod, initialWarningPeriod=None, notificationPublisherRef=None):
-        self.emailAddress = emailAddress
-        self.finalWarningPeriod = finalWarningPeriod
-        self.initialWarningPeriod = initialWarningPeriod
-        self.notificationPublisherRef = notificationPublisherRef
+        self.emailAddress: str = emailAddress
+        self.finalWarningPeriod: str = finalWarningPeriod
+        self.initialWarningPeriod: str = initialWarningPeriod
+        self.notificationPublisherRef: str = notificationPublisherRef
 
     def _validate(self):
         return any(x for x in ['emailAddress', 'finalWarningPeriod'] if self.__dict__[x] is not None)
@@ -40,3 +40,6 @@ class CertificateExpirationNotificationSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["emailAddress", "finalWarningPeriod", "initialWarningPeriod", "notificationPublisherRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

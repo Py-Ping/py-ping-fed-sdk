@@ -1,0 +1,154 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getServiceAuthentication",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the service authentication settings.",
+                    "type": "ServiceAuthentication"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateServiceAuthentication",
+                    "notes": "Manage availability and credentials to services responsible for federation protocol handling, monitoring and administration.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Service authentication settings.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ServiceAuthentication"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Service authentication settings updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update the service authentication settings.",
+                    "type": "ServiceAuthentication"
+                }
+            ],
+            "path": "/serviceAuthentication"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ServiceAuthentication": {
+            "description": "Service Authentication Settings.",
+            "id": "ServiceAuthentication",
+            "properties": {
+                "attributeQuery": {
+                    "$ref": "ServiceModel",
+                    "description": "SAML2.0 attribute query service. Remove the JSON field to deactivate the attribute query service."
+                },
+                "connectionManagement": {
+                    "$ref": "ServiceModel",
+                    "description": "Connection management service. Remove the JSON field to deactivate the connection management service."
+                },
+                "jmx": {
+                    "$ref": "ServiceModel",
+                    "description": "JMX application management and monitoring service. Remove the JSON field to deactivate the JMX service."
+                },
+                "ssoDirectoryService": {
+                    "$ref": "ServiceModel",
+                    "description": "SSO directory service. Remove the JSON field to deactivate the SSO Directory service."
+                }
+            }
+        },
+        "ServiceModel": {
+            "description": "Service Model.",
+            "id": "ServiceModel",
+            "properties": {
+                "encryptedSharedSecret": {
+                    "description": "Encrypted shared secret for the service.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Id of the service.",
+                    "type": "string"
+                },
+                "sharedSecret": {
+                    "description": "Shared secret for the service.",
+                    "type": "string"
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/serviceAuthentication",
+    "swaggerVersion": "1.2"
+}

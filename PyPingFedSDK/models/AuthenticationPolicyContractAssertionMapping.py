@@ -16,13 +16,13 @@ class AuthenticationPolicyContractAssertionMapping():
     __slots__ = ["abortSsoTransactionAsFailSafe", "attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds"]
 
     def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
-        self.abortSsoTransactionAsFailSafe = abortSsoTransactionAsFailSafe
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.authenticationPolicyContractRef = authenticationPolicyContractRef
-        self.issuanceCriteria = issuanceCriteria
-        self.restrictVirtualEntityIds = restrictVirtualEntityIds
-        self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
+        self.abortSsoTransactionAsFailSafe: bool = abortSsoTransactionAsFailSafe
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
+        self.issuanceCriteria: str = issuanceCriteria
+        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
+        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
 
     def _validate(self):
         return any(x for x in ['authenticationPolicyContractRef', 'attributeContractFulfillment'] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class AuthenticationPolicyContractAssertionMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["abortSsoTransactionAsFailSafe", "attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

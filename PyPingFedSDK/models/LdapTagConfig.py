@@ -12,9 +12,9 @@ class LdapTagConfig():
     __slots__ = ["defaultSource", "hostnames", "tags"]
 
     def __init__(self, hostnames, defaultSource=None, tags=None):
-        self.defaultSource = defaultSource
-        self.hostnames = hostnames
-        self.tags = tags
+        self.defaultSource: bool = defaultSource
+        self.hostnames: list = hostnames
+        self.tags: str = tags
 
     def _validate(self):
         return any(x for x in ['hostnames'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class LdapTagConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultSource", "hostnames", "tags"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

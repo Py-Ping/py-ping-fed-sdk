@@ -18,15 +18,15 @@ class EmailVerificationConfig():
     __slots__ = ["emailVerificationEnabled", "emailVerificationErrorTemplateName", "emailVerificationSentTemplateName", "emailVerificationSuccessTemplateName", "fieldForEmailToVerify", "fieldStoringVerificationStatus", "notificationPublisherRef", "otlTimeToLive", "verifyEmailTemplateName"]
 
     def __init__(self, fieldForEmailToVerify, fieldStoringVerificationStatus, emailVerificationEnabled=None, emailVerificationErrorTemplateName=None, emailVerificationSentTemplateName=None, emailVerificationSuccessTemplateName=None, notificationPublisherRef=None, otlTimeToLive=None, verifyEmailTemplateName=None):
-        self.emailVerificationEnabled = emailVerificationEnabled
-        self.emailVerificationErrorTemplateName = emailVerificationErrorTemplateName
-        self.emailVerificationSentTemplateName = emailVerificationSentTemplateName
-        self.emailVerificationSuccessTemplateName = emailVerificationSuccessTemplateName
-        self.fieldForEmailToVerify = fieldForEmailToVerify
-        self.fieldStoringVerificationStatus = fieldStoringVerificationStatus
-        self.notificationPublisherRef = notificationPublisherRef
-        self.otlTimeToLive = otlTimeToLive
-        self.verifyEmailTemplateName = verifyEmailTemplateName
+        self.emailVerificationEnabled: bool = emailVerificationEnabled
+        self.emailVerificationErrorTemplateName: str = emailVerificationErrorTemplateName
+        self.emailVerificationSentTemplateName: str = emailVerificationSentTemplateName
+        self.emailVerificationSuccessTemplateName: str = emailVerificationSuccessTemplateName
+        self.fieldForEmailToVerify: str = fieldForEmailToVerify
+        self.fieldStoringVerificationStatus: str = fieldStoringVerificationStatus
+        self.notificationPublisherRef: str = notificationPublisherRef
+        self.otlTimeToLive: str = otlTimeToLive
+        self.verifyEmailTemplateName: str = verifyEmailTemplateName
 
     def _validate(self):
         return any(x for x in ['fieldForEmailToVerify', 'fieldStoringVerificationStatus'] if self.__dict__[x] is not None)
@@ -50,3 +50,6 @@ class EmailVerificationConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["emailVerificationEnabled", "emailVerificationErrorTemplateName", "emailVerificationSentTemplateName", "emailVerificationSuccessTemplateName", "fieldForEmailToVerify", "fieldStoringVerificationStatus", "notificationPublisherRef", "otlTimeToLive", "verifyEmailTemplateName"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

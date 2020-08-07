@@ -15,12 +15,12 @@ class ExportMetadataRequest():
     __slots__ = ["connectionId", "connectionType", "signingSettings", "useSecondaryPortForSoap", "virtualHostName", "virtualServerId"]
 
     def __init__(self, connectionType, connectionId, signingSettings=None, useSecondaryPortForSoap=None, virtualHostName=None, virtualServerId=None):
-        self.connectionId = connectionId
-        self.connectionType = connectionType
-        self.signingSettings = signingSettings
-        self.useSecondaryPortForSoap = useSecondaryPortForSoap
-        self.virtualHostName = virtualHostName
-        self.virtualServerId = virtualServerId
+        self.connectionId: str = connectionId
+        self.connectionType: str = connectionType
+        self.signingSettings: str = signingSettings
+        self.useSecondaryPortForSoap: bool = useSecondaryPortForSoap
+        self.virtualHostName: str = virtualHostName
+        self.virtualServerId: str = virtualServerId
 
     def _validate(self):
         return any(x for x in ['connectionType', 'connectionId'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class ExportMetadataRequest():
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionId", "connectionType", "signingSettings", "useSecondaryPortForSoap", "virtualHostName", "virtualServerId"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

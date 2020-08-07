@@ -12,9 +12,9 @@ class AuthnSelectorPolicyAction():
     __slots__ = ["authenticationSelectorRef", "context", "type"]
 
     def __init__(self, type, authenticationSelectorRef, context=None):
-        self.authenticationSelectorRef = authenticationSelectorRef
-        self.context = context
-        self.type = type
+        self.authenticationSelectorRef: str = authenticationSelectorRef
+        self.context: str = context
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in ['type', 'authenticationSelectorRef'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class AuthnSelectorPolicyAction():
         valid_data = {k: v for k, v in python_dict.items() if k in ["authenticationSelectorRef", "context", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

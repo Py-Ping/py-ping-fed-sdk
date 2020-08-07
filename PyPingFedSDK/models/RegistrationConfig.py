@@ -11,8 +11,8 @@ class RegistrationConfig():
     __slots__ = ["captchaEnabled", "templateName"]
 
     def __init__(self, templateName, captchaEnabled=None):
-        self.captchaEnabled = captchaEnabled
-        self.templateName = templateName
+        self.captchaEnabled: bool = captchaEnabled
+        self.templateName: str = templateName
 
     def _validate(self):
         return any(x for x in ['templateName'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class RegistrationConfig():
         valid_data = {k: v for k, v in python_dict.items() if k in ["captchaEnabled", "templateName"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

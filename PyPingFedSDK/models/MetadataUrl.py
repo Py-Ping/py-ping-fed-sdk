@@ -15,12 +15,12 @@ class MetadataUrl():
     __slots__ = ["certView", "id", "name", "url", "validateSignature", "x509File"]
 
     def __init__(self, name, url, certView=None, id=None, validateSignature=None, x509File=None):
-        self.certView = certView
-        self.id = id
-        self.name = name
-        self.url = url
-        self.validateSignature = validateSignature
-        self.x509File = x509File
+        self.certView: str = certView
+        self.id: str = id
+        self.name: str = name
+        self.url: str = url
+        self.validateSignature: bool = validateSignature
+        self.x509File: str = x509File
 
     def _validate(self):
         return any(x for x in ['name', 'url'] if self.__dict__[x] is not None)
@@ -44,3 +44,6 @@ class MetadataUrl():
         valid_data = {k: v for k, v in python_dict.items() if k in ["certView", "id", "name", "url", "validateSignature", "x509File"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

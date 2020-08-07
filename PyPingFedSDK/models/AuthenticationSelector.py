@@ -14,11 +14,11 @@ class AuthenticationSelector():
     __slots__ = ["attributeContract", "configuration", "id", "name", "pluginDescriptorRef"]
 
     def __init__(self, id, name, pluginDescriptorRef, configuration, attributeContract=None):
-        self.attributeContract = attributeContract
-        self.configuration = configuration
-        self.id = id
-        self.name = name
-        self.pluginDescriptorRef = pluginDescriptorRef
+        self.attributeContract: str = attributeContract
+        self.configuration: str = configuration
+        self.id: str = id
+        self.name: str = name
+        self.pluginDescriptorRef: str = pluginDescriptorRef
 
     def _validate(self):
         return any(x for x in ['id', 'name', 'pluginDescriptorRef', 'configuration'] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class AuthenticationSelector():
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContract", "configuration", "id", "name", "pluginDescriptorRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

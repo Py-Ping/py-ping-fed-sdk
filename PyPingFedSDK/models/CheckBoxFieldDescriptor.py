@@ -16,13 +16,13 @@ class CheckBoxFieldDescriptor():
     __slots__ = ["advanced", "defaultValue", "description", "label", "name", "required", "type"]
 
     def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, required=None, type=None):
-        self.advanced = advanced
-        self.defaultValue = defaultValue
-        self.description = description
-        self.label = label
-        self.name = name
-        self.required = required
-        self.type = type
+        self.advanced: bool = advanced
+        self.defaultValue: str = defaultValue
+        self.description: str = description
+        self.label: str = label
+        self.name: str = name
+        self.required: bool = required
+        self.type: str = type
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -46,3 +46,6 @@ class CheckBoxFieldDescriptor():
         valid_data = {k: v for k, v in python_dict.items() if k in ["advanced", "defaultValue", "description", "label", "name", "required", "type"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

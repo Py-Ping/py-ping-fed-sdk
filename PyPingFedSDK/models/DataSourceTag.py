@@ -12,9 +12,9 @@ class DataSourceTag():
     __slots__ = ["defaultSource", "tags", "tagsHashSet"]
 
     def __init__(self, defaultSource=None, tags=None, tagsHashSet=None):
-        self.defaultSource = defaultSource
-        self.tags = tags
-        self.tagsHashSet = tagsHashSet
+        self.defaultSource: bool = defaultSource
+        self.tags: str = tags
+        self.tagsHashSet: str = tagsHashSet
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class DataSourceTag():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultSource", "tags", "tagsHashSet"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

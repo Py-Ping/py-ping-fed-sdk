@@ -11,8 +11,8 @@ class AtmSelectionSettings():
     __slots__ = ["inherited", "resourceUris"]
 
     def __init__(self, inherited=None, resourceUris=None):
-        self.inherited = inherited
-        self.resourceUris = resourceUris
+        self.inherited: bool = inherited
+        self.resourceUris: list = resourceUris
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AtmSelectionSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["inherited", "resourceUris"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

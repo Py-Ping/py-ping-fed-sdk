@@ -30,9 +30,9 @@ class _passwordCredentialValidators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def getPasswordCredentialValidatorDescriptor(self, id):
         """ Get the description of a password credential validator by ID.
@@ -50,11 +50,11 @@ class _passwordCredentialValidators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def getPasswordCredentialValidators(self):
         """ Get the list of available password credential validators
@@ -72,9 +72,9 @@ class _passwordCredentialValidators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def createPasswordCredentialValidator(self, body):
         """ Create a new password credential validator instance
@@ -97,13 +97,13 @@ class _passwordCredentialValidators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('Password credential validator created.')
+                self.logger.info("Password credential validator created.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getPasswordCredentialValidator(self, id):
         """ Find a password credential validator by ID.
@@ -121,11 +121,11 @@ class _passwordCredentialValidators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def updatePasswordCredentialValidator(self, id, body):
         """ Update a password credential validator instance.
@@ -149,15 +149,15 @@ class _passwordCredentialValidators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Password credential validator updated.')
+                self.logger.info("Password credential validator updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def deletePasswordCredentialValidator(self, id):
         """ Delete a password credential validator instance.
@@ -175,11 +175,11 @@ class _passwordCredentialValidators():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('Password credential validator deleted.')
+                self.logger.info("Password credential validator deleted.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 

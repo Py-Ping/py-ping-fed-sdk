@@ -21,18 +21,18 @@ class LocalIdentityProfile():
     __slots__ = ["apcId", "authSourceUpdatePolicy", "authSources", "dataStoreConfig", "emailVerificationConfig", "fieldConfig", "id", "name", "profileConfig", "profileEnabled", "registrationConfig", "registrationEnabled"]
 
     def __init__(self, name, apcId, authSourceUpdatePolicy=None, authSources=None, dataStoreConfig=None, emailVerificationConfig=None, fieldConfig=None, id=None, profileConfig=None, profileEnabled=None, registrationConfig=None, registrationEnabled=None):
-        self.apcId = apcId
-        self.authSourceUpdatePolicy = authSourceUpdatePolicy
-        self.authSources = authSources
-        self.dataStoreConfig = dataStoreConfig
-        self.emailVerificationConfig = emailVerificationConfig
-        self.fieldConfig = fieldConfig
-        self.id = id
-        self.name = name
-        self.profileConfig = profileConfig
-        self.profileEnabled = profileEnabled
-        self.registrationConfig = registrationConfig
-        self.registrationEnabled = registrationEnabled
+        self.apcId: str = apcId
+        self.authSourceUpdatePolicy: str = authSourceUpdatePolicy
+        self.authSources: list = authSources
+        self.dataStoreConfig: str = dataStoreConfig
+        self.emailVerificationConfig: str = emailVerificationConfig
+        self.fieldConfig: str = fieldConfig
+        self.id: str = id
+        self.name: str = name
+        self.profileConfig: str = profileConfig
+        self.profileEnabled: bool = profileEnabled
+        self.registrationConfig: str = registrationConfig
+        self.registrationEnabled: bool = registrationEnabled
 
     def _validate(self):
         return any(x for x in ['name', 'apcId'] if self.__dict__[x] is not None)
@@ -56,3 +56,6 @@ class LocalIdentityProfile():
         valid_data = {k: v for k, v in python_dict.items() if k in ["apcId", "authSourceUpdatePolicy", "authSources", "dataStoreConfig", "emailVerificationConfig", "fieldConfig", "id", "name", "profileConfig", "profileEnabled", "registrationConfig", "registrationEnabled"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -12,9 +12,9 @@ class TokenExchangeGeneratorMapping():
     __slots__ = ["defaultMapping", "requestedTokenType", "tokenGenerator"]
 
     def __init__(self, requestedTokenType, tokenGenerator, defaultMapping=None):
-        self.defaultMapping = defaultMapping
-        self.requestedTokenType = requestedTokenType
-        self.tokenGenerator = tokenGenerator
+        self.defaultMapping: bool = defaultMapping
+        self.requestedTokenType: str = requestedTokenType
+        self.tokenGenerator: str = tokenGenerator
 
     def _validate(self):
         return any(x for x in ['requestedTokenType', 'tokenGenerator'] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class TokenExchangeGeneratorMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultMapping", "requestedTokenType", "tokenGenerator"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

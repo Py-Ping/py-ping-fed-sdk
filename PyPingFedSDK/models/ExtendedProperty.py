@@ -12,9 +12,9 @@ class ExtendedProperty():
     __slots__ = ["description", "multiValued", "name"]
 
     def __init__(self, description=None, multiValued=None, name=None):
-        self.description = description
-        self.multiValued = multiValued
-        self.name = name
+        self.description: str = description
+        self.multiValued: bool = multiValued
+        self.name: str = name
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class ExtendedProperty():
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "multiValued", "name"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

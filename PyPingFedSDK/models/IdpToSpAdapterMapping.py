@@ -19,16 +19,16 @@ class IdpToSpAdapterMapping():
     __slots__ = ["applicationIconUrl", "applicationName", "attributeContractFulfillment", "attributeSources", "defaultTargetResource", "id", "issuanceCriteria", "licenseConnectionGroupAssignment", "sourceId", "targetId"]
 
     def __init__(self, attributeContractFulfillment, sourceId, targetId, applicationIconUrl=None, applicationName=None, attributeSources=None, defaultTargetResource=None, id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None):
-        self.applicationIconUrl = applicationIconUrl
-        self.applicationName = applicationName
-        self.attributeContractFulfillment = attributeContractFulfillment
-        self.attributeSources = attributeSources
-        self.defaultTargetResource = defaultTargetResource
-        self.id = id
-        self.issuanceCriteria = issuanceCriteria
-        self.licenseConnectionGroupAssignment = licenseConnectionGroupAssignment
-        self.sourceId = sourceId
-        self.targetId = targetId
+        self.applicationIconUrl: str = applicationIconUrl
+        self.applicationName: str = applicationName
+        self.attributeContractFulfillment: str = attributeContractFulfillment
+        self.attributeSources: list = attributeSources
+        self.defaultTargetResource: str = defaultTargetResource
+        self.id: str = id
+        self.issuanceCriteria: str = issuanceCriteria
+        self.licenseConnectionGroupAssignment: str = licenseConnectionGroupAssignment
+        self.sourceId: str = sourceId
+        self.targetId: str = targetId
 
     def _validate(self):
         return any(x for x in ['attributeContractFulfillment', 'sourceId', 'targetId'] if self.__dict__[x] is not None)
@@ -52,3 +52,6 @@ class IdpToSpAdapterMapping():
         valid_data = {k: v for k, v in python_dict.items() if k in ["applicationIconUrl", "applicationName", "attributeContractFulfillment", "attributeSources", "defaultTargetResource", "id", "issuanceCriteria", "licenseConnectionGroupAssignment", "sourceId", "targetId"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -30,9 +30,9 @@ class _certificates_revocation():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def updateRevocationSettings(self, body):
         """ Update certificate revocation settings.
@@ -55,13 +55,13 @@ class _certificates_revocation():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Certificate revocation settings updated.')
+                self.logger.info("Certificate revocation settings updated.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getOcspCertificates(self):
         """ Get the list of available OCSP responder signature verification certificates.
@@ -79,9 +79,9 @@ class _certificates_revocation():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
         finally:
-            return response
+            return response.json()
 
     def importOcspCertificate(self, body):
         """ Import an OCSP responder signature verification certificate.
@@ -104,13 +104,13 @@ class _certificates_revocation():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 201:
-                self.logger.info('OCSP responder signature verification certificate imported.')
+                self.logger.info("OCSP responder signature verification certificate imported.")
             if response.status_code == 400:
-                self.logger.info('The request was improperly formatted or contained invalid fields.')
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 422:
-                self.logger.info('Validation error(s) occurred.')
+                self.logger.info("Validation error(s) occurred.")
         finally:
-            return response
+            return response.json()
 
     def getOcspCertificateById(self, id):
         """ Get an OCSP responder signature verification certificate by ID.
@@ -128,11 +128,11 @@ class _certificates_revocation():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
         finally:
-            return response
+            return response.json()
 
     def deleteOcspCertificateById(self, id):
         """ Delete an OCSP responder signature verification certificate by ID.
@@ -150,11 +150,11 @@ class _certificates_revocation():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 204:
-                self.logger.info('OCSP responder signature verification certificate deleted.')
+                self.logger.info("OCSP responder signature verification certificate deleted.")
             if response.status_code == 404:
-                self.logger.info('Resource not found.')
+                self.logger.info("Resource not found.")
             if response.status_code == 422:
-                self.logger.info('Resource is in use and cannot be deleted.')
+                self.logger.info("Resource is in use and cannot be deleted.")
         finally:
-            return response
+            return response.json()
 

@@ -12,9 +12,9 @@ class SystemKey():
     __slots__ = ["creationDate", "encryptedKeyData", "keyData"]
 
     def __init__(self, creationDate=None, encryptedKeyData=None, keyData=None):
-        self.creationDate = creationDate
-        self.encryptedKeyData = encryptedKeyData
-        self.keyData = keyData
+        self.creationDate: str = creationDate
+        self.encryptedKeyData: str = encryptedKeyData
+        self.keyData: str = keyData
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class SystemKey():
         valid_data = {k: v for k, v in python_dict.items() if k in ["creationDate", "encryptedKeyData", "keyData"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

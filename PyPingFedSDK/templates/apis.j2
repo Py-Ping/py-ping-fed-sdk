@@ -16,7 +16,7 @@ class {{ safe_name(class_name) }}():
 
 {% for api in details %}
 {% for operation in api.get('operations',[]) %}
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{parameter.get('name')}}{% endfor %}):
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_name(parameter.get('name')) }}{% endfor %}):
         """ {{ operation.get('summary') }}
         """
 {% if operation.get('method') in ['POST', 'PUT'] %}
@@ -35,7 +35,7 @@ class {{ safe_name(class_name) }}():
 {% if operation.get('method') in ['POST', 'PUT'] %}                data=payload,{% endif %}
 
                 url=self._build_uri("{{api.get('path')}}"),
-                headers={'Accept': '{{ operation.get('produces', "application/json") }}'}
+                headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
@@ -44,9 +44,9 @@ class {{ safe_name(class_name) }}():
         else:
 {% for response_message in operation.get('responseMessages') %}
             if response.status_code == {{response_message.get('code')}}:
-                self.logger.info('{{response_message.get('message')}}')
+                self.logger.info("{{response_message.get('message')}}")
 {% endfor %}
         finally:
-            return response
+            return response.json()
 
 {% endfor %}{% endfor %}

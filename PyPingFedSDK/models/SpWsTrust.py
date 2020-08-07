@@ -21,18 +21,18 @@ class SpWsTrust():
     __slots__ = ["abortIfNotFulfilledFromRequest", "attributeContract", "defaultTokenType", "encryptSaml2Assertion", "generateKey", "messageCustomizations", "minutesAfter", "minutesBefore", "oAuthAssertionProfiles", "partnerServiceIds", "requestContractRef", "tokenProcessorMappings"]
 
     def __init__(self, partnerServiceIds, attributeContract, tokenProcessorMappings, abortIfNotFulfilledFromRequest=None, defaultTokenType=None, encryptSaml2Assertion=None, generateKey=None, messageCustomizations=None, minutesAfter=None, minutesBefore=None, oAuthAssertionProfiles=None, requestContractRef=None):
-        self.abortIfNotFulfilledFromRequest = abortIfNotFulfilledFromRequest
-        self.attributeContract = attributeContract
-        self.defaultTokenType = defaultTokenType
-        self.encryptSaml2Assertion = encryptSaml2Assertion
-        self.generateKey = generateKey
-        self.messageCustomizations = messageCustomizations
-        self.minutesAfter = minutesAfter
-        self.minutesBefore = minutesBefore
-        self.oAuthAssertionProfiles = oAuthAssertionProfiles
-        self.partnerServiceIds = partnerServiceIds
-        self.requestContractRef = requestContractRef
-        self.tokenProcessorMappings = tokenProcessorMappings
+        self.abortIfNotFulfilledFromRequest: bool = abortIfNotFulfilledFromRequest
+        self.attributeContract: str = attributeContract
+        self.defaultTokenType: str = defaultTokenType
+        self.encryptSaml2Assertion: bool = encryptSaml2Assertion
+        self.generateKey: bool = generateKey
+        self.messageCustomizations: list = messageCustomizations
+        self.minutesAfter: str = minutesAfter
+        self.minutesBefore: str = minutesBefore
+        self.oAuthAssertionProfiles: bool = oAuthAssertionProfiles
+        self.partnerServiceIds: list = partnerServiceIds
+        self.requestContractRef: str = requestContractRef
+        self.tokenProcessorMappings: list = tokenProcessorMappings
 
     def _validate(self):
         return any(x for x in ['partnerServiceIds', 'attributeContract', 'tokenProcessorMappings'] if self.__dict__[x] is not None)
@@ -56,3 +56,6 @@ class SpWsTrust():
         valid_data = {k: v for k, v in python_dict.items() if k in ["abortIfNotFulfilledFromRequest", "attributeContract", "defaultTokenType", "encryptSaml2Assertion", "generateKey", "messageCustomizations", "minutesAfter", "minutesBefore", "oAuthAssertionProfiles", "partnerServiceIds", "requestContractRef", "tokenProcessorMappings"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

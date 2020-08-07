@@ -10,7 +10,7 @@ class TokenExchangeGeneratorSettings():
     __slots__ = ["defaultGeneratorGroupRef"]
 
     def __init__(self, defaultGeneratorGroupRef=None):
-        self.defaultGeneratorGroupRef = defaultGeneratorGroupRef
+        self.defaultGeneratorGroupRef: str = defaultGeneratorGroupRef
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -34,3 +34,6 @@ class TokenExchangeGeneratorSettings():
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultGeneratorGroupRef"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

@@ -12,9 +12,9 @@ class ChannelSourceLocation():
     __slots__ = ["filter", "groupDN", "nestedSearch"]
 
     def __init__(self, filter=None, groupDN=None, nestedSearch=None):
-        self.filter = filter
-        self.groupDN = groupDN
-        self.nestedSearch = nestedSearch
+        self.filter: str = filter
+        self.groupDN: str = groupDN
+        self.nestedSearch: bool = nestedSearch
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,3 +38,6 @@ class ChannelSourceLocation():
         valid_data = {k: v for k, v in python_dict.items() if k in ["filter", "groupDN", "nestedSearch"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

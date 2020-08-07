@@ -11,8 +11,8 @@ class AuthenticationPolicyTreeNode():
     __slots__ = ["action", "children"]
 
     def __init__(self, action, children=None):
-        self.action = action
-        self.children = children
+        self.action: str = action
+        self.children: list = children
 
     def _validate(self):
         return any(x for x in ['action'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class AuthenticationPolicyTreeNode():
         valid_data = {k: v for k, v in python_dict.items() if k in ["action", "children"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

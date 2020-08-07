@@ -30,11 +30,11 @@ class _cluster():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Success.')
+                self.logger.info("Success.")
             if response.status_code == 403:
-                self.logger.info('This PingFederate instance is not deployed in clustered mode.')
+                self.logger.info("This PingFederate instance is not deployed in clustered mode.")
         finally:
-            return response
+            return response.json()
 
     def startReplication(self):
         """ Replicate configuration updates to all nodes in the cluster.
@@ -56,9 +56,9 @@ class _cluster():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info('Replication completed successfully.')
+                self.logger.info("Replication completed successfully.")
             if response.status_code == 403:
-                self.logger.info('This PingFederate instance is not deployed in clustered mode.')
+                self.logger.info("This PingFederate instance is not deployed in clustered mode.")
         finally:
-            return response
+            return response.json()
 

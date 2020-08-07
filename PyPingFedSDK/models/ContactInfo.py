@@ -14,11 +14,11 @@ class ContactInfo():
     __slots__ = ["company", "email", "firstName", "lastName", "phone"]
 
     def __init__(self, company=None, email=None, firstName=None, lastName=None, phone=None):
-        self.company = company
-        self.email = email
-        self.firstName = firstName
-        self.lastName = lastName
-        self.phone = phone
+        self.company: str = company
+        self.email: str = email
+        self.firstName: str = firstName
+        self.lastName: str = lastName
+        self.phone: str = phone
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -42,3 +42,6 @@ class ContactInfo():
         valid_data = {k: v for k, v in python_dict.items() if k in ["company", "email", "firstName", "lastName", "phone"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

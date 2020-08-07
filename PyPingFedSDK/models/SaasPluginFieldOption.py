@@ -11,8 +11,8 @@ class SaasPluginFieldOption():
     __slots__ = ["code", "label"]
 
     def __init__(self, code, label):
-        self.code = code
-        self.label = label
+        self.code: str = code
+        self.label: str = label
 
     def _validate(self):
         return any(x for x in ['code', 'label'] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class SaasPluginFieldOption():
         valid_data = {k: v for k, v in python_dict.items() if k in ["code", "label"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

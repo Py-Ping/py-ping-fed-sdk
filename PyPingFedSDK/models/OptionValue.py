@@ -11,8 +11,8 @@ class OptionValue():
     __slots__ = ["name", "value"]
 
     def __init__(self, name=None, value=None):
-        self.name = name
-        self.value = value
+        self.name: str = name
+        self.value: str = value
 
     def _validate(self):
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -36,3 +36,6 @@ class OptionValue():
         valid_data = {k: v for k, v in python_dict.items() if k in ["name", "value"]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__
