@@ -12,12 +12,10 @@ REAL_PATH = os.path.realpath(__file__)
 class TestGenerate(TestCase):
     """ Tests for the Generate class """
 
-    @patch('apis._penguins.requests')
-    @patch('apis._penguins.logging')
-    @patch('generate.os.path.realpath')
-    @patch('generate.Fetch')
-    def test_generation(self, fetch_mock, realpath_mock, logging_mock, requests_mock):
-        fetch_mock.return_value.fetch.return_value = {
+    @patch("generate.os.path.realpath")
+    @patch("generate.Fetch")
+    def setUp(self, fetch_mock, realpath_mock):
+        self.fetch_response = {
             "apis": {
                 "_penguins": [{
                     "operations": [
@@ -105,15 +103,16 @@ class TestGenerate(TestCase):
                 }
             }
         }
-        penguin_dict = {
-            "firstName": "terrence",
-            "lastName": "mcflappy",
-            "height": "1.42",
-            "soundMade": "honk"
-        }
-        realpath_mock.return_value = REAL_PATH
-        generate = Generate("fake-url.com:9999").generate()
+        fetch_mock.return_value.fetch.return_value = self.fetch_response
 
+        realpath_mock.return_value = REAL_PATH
+        Generate("fake-url.com:9999").generate()
+
+    def test_model(self):
+        """
+            Dynamically import the created model module, instantiate the class
+            and make some assertions about the object state
+        """
         Penguin = __import__("models.Penguin", fromlist=[""])
         penguin_inst = Penguin.Penguin()
         self.assertEqual(
@@ -124,15 +123,29 @@ class TestGenerate(TestCase):
             str(penguin_inst),
             "{'firstName': None, 'lastName': None, 'height': None, 'soundMade': None}"
         )
+
+        penguin_dict = {
+            "firstName": "terrence",
+            "lastName": "mcflappy",
+            "height": "1.42",
+            "soundMade": "honk"
+        }
         self.assertEqual(Penguin.Penguin().from_dict(
             penguin_dict
         ), Penguin.Penguin(**penguin_dict))
 
+    @patch("apis._penguins.logging")
+    @patch("apis._penguins.requests")
+    def test_api(self, requests_mock, logging_mock):
+        """
+            Dynamically import the created api module, instantiate the class
+            and make some assertions about the object methods
+        """
         penguins = __import__("apis._penguins", fromlist=[""])
 
         penguin_api = penguins._penguins("test-endpoint")
         self.assertEqual(
-            penguin_api.addPenguin('philip'),
+            penguin_api.addPenguin("philip"),
             requests_mock.post.return_value
         )
 
