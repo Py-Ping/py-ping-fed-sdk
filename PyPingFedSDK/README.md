@@ -1,3 +1,0 @@
-# PyPingFedSDK
-
-In progress
