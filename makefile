@@ -1,7 +1,7 @@
 # Makefile for building publishing container
 PROJECT = PingOneDSL
 VERSION = $(shell whoami)
-AUTH = $(shell aws --profile build --region ap-southeast-2 secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN | jq -r '.SecretString | fromjson | .OAuthKey')
+#AUTH = $(shell aws --profile build --region ap-southeast-2 secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN | jq -r '.SecretString | fromjson | .OAuthKey')
 PWD = $(shell pwd)
 GITSHORTHASH = $(shell git rev-parse HEAD | cut -c 1-7)
 GITSHORTHASH_AWS = $(shell echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
@@ -47,3 +47,12 @@ ecrPush: ecrLogin
 buildRequirements:
 	pipenv lock -r > requirements.txt
 .PHONY: buildRequirements
+
+generate: ## run the SDK generator
+	$(info [+] Running SDK package generator...)
+	python3 PyPingFedSDK/docker_generate.py
+.PHONY: generate
+
+unittest:
+	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ python3 -m unittest discover -s PyPingFedSDK/tests/
+.PHONY: test
