@@ -17,8 +17,8 @@ class TestGenerate(TestCase):
     @patch("generate.Fetch")
     def setUp(self, fetch_mock, realpath_mock):
         test_directory = os.path.dirname(__file__)
-        shutil.rmtree(f'{test_directory}/apis')
-        shutil.rmtree(f'{test_directory}/models')
+        shutil.rmtree(f"{test_directory}/apis")
+        shutil.rmtree(f"{test_directory}/models")
 
         self.fetch_response = {
             "apis": {
