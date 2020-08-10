@@ -1,6 +1,7 @@
 """ Tests for generate.py """
 
 import os
+import shutil
 
 from unittest import TestCase
 from unittest.mock import patch, Mock
@@ -15,6 +16,10 @@ class TestGenerate(TestCase):
     @patch("generate.os.path.realpath")
     @patch("generate.Fetch")
     def setUp(self, fetch_mock, realpath_mock):
+        test_directory = os.path.dirname(__file__)
+        shutil.rmtree(f'{test_directory}/apis')
+        shutil.rmtree(f'{test_directory}/models')
+
         self.fetch_response = {
             "apis": {
                 "_penguins": [{

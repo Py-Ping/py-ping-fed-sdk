@@ -29,3 +29,17 @@ def requests_verb(verb):
     elif verb == 'HEAD':
         return 'requests.head'
     return 'requests.get'
+
+
+def json_type_convert(json_type):
+    if json_type == 'enum':
+        return 'str'
+    elif json_type == 'string':
+        return 'str'
+    elif json_type == 'boolean':
+        return 'bool'
+    elif json_type == 'array':
+        return 'list'
+    elif json_type == 'integer':
+        return 'int'
+    return ''

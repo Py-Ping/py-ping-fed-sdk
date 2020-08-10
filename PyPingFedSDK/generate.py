@@ -5,7 +5,7 @@ import requests
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_name, safe_variable, requests_verb
+from helpers import safe_name, safe_variable, requests_verb, json_type_convert
 
 
 class Generate():
@@ -45,7 +45,8 @@ class Generate():
             trim_blocks=True
         )
         jinjaenvironment.globals.update(
-            safe_name=safe_name, safe_variable=safe_variable, requests_verb=requests_verb
+            safe_name=safe_name, safe_variable=safe_variable,
+            requests_verb=requests_verb, json_type_convert=json_type_convert
         )
         jinjatemplate = jinjaenvironment.get_template(f'./{template}.j2')
 
