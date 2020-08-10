@@ -11,7 +11,7 @@ class {{ class_name }}():
 
     """
 
-    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(property) }}{% endfor %}{% for property in details.get('properties', []) if property not in details.get('required', []) %}, {{ safe_variable(property) }}=None{% endfor %}) -> None:
+    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(property) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}:{{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ safe_variable(property) }}{% if json_type_convert(attributes.get('type', '')) != '' %}:{{ json_type_convert(attributes.get('type', '')) }}{% endif %}=None{% endfor %}) -> None:
 {% for property in details.get('properties') %}
         self.{{ safe_variable(property) }} = {{ safe_variable(property) }}
 {% endfor %}
