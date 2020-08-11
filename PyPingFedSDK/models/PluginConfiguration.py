@@ -10,7 +10,7 @@ class PluginConfiguration():
 
     """
 
-    def __init__(self, fields=None, tables=None) -> None:
+    def __init__(self, fields:list=None, tables:list=None) -> None:
         self.fields = fields
         self.tables = tables
 

@@ -12,7 +12,7 @@ class AuthnApiSettings():
 
     """
 
-    def __init__(self, apiEnabled=None, defaultApplicationRef=None, enableApiDescriptions=None) -> None:
+    def __init__(self, apiEnabled:bool=None, defaultApplicationRef=None, enableApiDescriptions:bool=None) -> None:
         self.apiEnabled = apiEnabled
         self.defaultApplicationRef = defaultApplicationRef
         self.enableApiDescriptions = enableApiDescriptions

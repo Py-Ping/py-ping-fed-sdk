@@ -10,7 +10,7 @@ class FieldEntry():
 
     """
 
-    def __init__(self, name, value=None) -> None:
+    def __init__(self, name:str, value:str=None) -> None:
         self.name = name
         self.value = value
 

@@ -18,7 +18,7 @@ class GlobalAuthenticationSessionPolicy():
 
     """
 
-    def __init__(self, enableSessions, idleTimeoutDisplayUnit=None, idleTimeoutMins=None, maxTimeoutDisplayUnit=None, maxTimeoutMins=None, persistentSessions=None) -> None:
+    def __init__(self, enableSessions:bool, idleTimeoutDisplayUnit=None, idleTimeoutMins:int=None, maxTimeoutDisplayUnit=None, maxTimeoutMins:int=None, persistentSessions:bool=None) -> None:
         self.enableSessions = enableSessions
         self.idleTimeoutDisplayUnit = idleTimeoutDisplayUnit
         self.idleTimeoutMins = idleTimeoutMins

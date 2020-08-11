@@ -18,7 +18,7 @@ class SpTokenGeneratorMapping():
 
     """
 
-    def __init__(self, spTokenGeneratorRef, attributeContractFulfillment, attributeSources=None, defaultMapping=None, issuanceCriteria=None, restrictedVirtualEntityIds=None) -> None:
+    def __init__(self, spTokenGeneratorRef, attributeContractFulfillment, attributeSources:list=None, defaultMapping:bool=None, issuanceCriteria=None, restrictedVirtualEntityIds:list=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.defaultMapping = defaultMapping

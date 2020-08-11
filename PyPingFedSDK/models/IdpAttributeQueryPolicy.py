@@ -18,7 +18,7 @@ class IdpAttributeQueryPolicy():
 
     """
 
-    def __init__(self, encryptNameId=None, maskAttributeValues=None, requireEncryptedAssertion=None, requireSignedAssertion=None, requireSignedResponse=None, signAttributeQuery=None) -> None:
+    def __init__(self, encryptNameId:bool=None, maskAttributeValues:bool=None, requireEncryptedAssertion:bool=None, requireSignedAssertion:bool=None, requireSignedResponse:bool=None, signAttributeQuery:bool=None) -> None:
         self.encryptNameId = encryptNameId
         self.maskAttributeValues = maskAttributeValues
         self.requireEncryptedAssertion = requireEncryptedAssertion

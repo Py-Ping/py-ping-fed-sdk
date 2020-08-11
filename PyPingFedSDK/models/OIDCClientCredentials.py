@@ -12,7 +12,7 @@ class OIDCClientCredentials():
 
     """
 
-    def __init__(self, clientId, clientSecret=None, encryptedSecret=None) -> None:
+    def __init__(self, clientId:str, clientSecret:str=None, encryptedSecret:str=None) -> None:
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.encryptedSecret = encryptedSecret

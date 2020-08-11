@@ -14,7 +14,7 @@ class TokenExchangeGeneratorGroup():
 
     """
 
-    def __init__(self, var_id, name, generatorMappings, resourceUris=None) -> None:
+    def __init__(self, var_id:str, name:str, generatorMappings:list, resourceUris:list=None) -> None:
         self.generatorMappings = generatorMappings
         self.var_id = var_id
         self.name = name

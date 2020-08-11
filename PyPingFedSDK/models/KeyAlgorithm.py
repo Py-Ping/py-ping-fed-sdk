@@ -16,7 +16,7 @@ class KeyAlgorithm():
 
     """
 
-    def __init__(self, defaultKeySize=None, defaultSignatureAlgorithm=None, keySizes=None, name=None, signatureAlgorithms=None) -> None:
+    def __init__(self, defaultKeySize:int=None, defaultSignatureAlgorithm:str=None, keySizes:list=None, name:str=None, signatureAlgorithms:list=None) -> None:
         self.defaultKeySize = defaultKeySize
         self.defaultSignatureAlgorithm = defaultSignatureAlgorithm
         self.keySizes = keySizes

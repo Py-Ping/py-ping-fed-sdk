@@ -22,7 +22,7 @@ class JdbcAttributeSource():
 
     """
 
-    def __init__(self, var_type, dataStoreRef, table, filter, attributeContractFulfillment=None, description=None, var_id=None, schema=None) -> None:
+    def __init__(self, var_type, dataStoreRef, table:str, filter:str, attributeContractFulfillment=None, description:str=None, var_id:str=None, schema:str=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.dataStoreRef = dataStoreRef
         self.description = description

@@ -20,7 +20,7 @@ class KerberosRealm():
 
     """
 
-    def __init__(self, kerberosRealmName, kerberosUsername, var_id=None, kerberosEncryptedPassword=None, kerberosPassword=None, keyDistributionCenters=None, suppressDomainNameConcatenation=None) -> None:
+    def __init__(self, kerberosRealmName:str, kerberosUsername:str, var_id:str=None, kerberosEncryptedPassword:str=None, kerberosPassword:str=None, keyDistributionCenters:list=None, suppressDomainNameConcatenation:bool=None) -> None:
         self.var_id = var_id
         self.kerberosEncryptedPassword = kerberosEncryptedPassword
         self.kerberosPassword = kerberosPassword

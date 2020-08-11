@@ -15,7 +15,7 @@ class BaseProviderRole():
 
     """
 
-    def __init__(self, enable=None, enableSaml10=None, enableSaml11=None, enableWsFed=None, enableWsTrust=None) -> None:
+    def __init__(self, enable:bool=None, enableSaml10:bool=None, enableSaml11:bool=None, enableWsFed:bool=None, enableWsTrust:bool=None) -> None:
         self.enable = enable
         self.enableSaml10 = enableSaml10
         self.enableSaml11 = enableSaml11

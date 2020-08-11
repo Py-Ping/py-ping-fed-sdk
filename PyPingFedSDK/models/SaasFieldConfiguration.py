@@ -22,7 +22,7 @@ class SaasFieldConfiguration():
 
     """
 
-    def __init__(self, attributeNames=None, characterCase=None, createOnly=None, defaultValue=None, expression=None, masked=None, parser=None, trim=None) -> None:
+    def __init__(self, attributeNames=None, characterCase=None, createOnly:bool=None, defaultValue:str=None, expression:str=None, masked:bool=None, parser=None, trim:bool=None) -> None:
         self.attributeNames = attributeNames
         self.characterCase = characterCase
         self.createOnly = createOnly

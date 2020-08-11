@@ -8,7 +8,7 @@ class PKCS12ExportSettings():
 
     """
 
-    def __init__(self, password) -> None:
+    def __init__(self, password:str) -> None:
         self.password = password
 
     def _validate(self) -> bool:

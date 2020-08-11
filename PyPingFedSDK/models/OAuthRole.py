@@ -10,7 +10,7 @@ class OAuthRole():
 
     """
 
-    def __init__(self, enableOauth=None, enableOpenIdConnect=None) -> None:
+    def __init__(self, enableOauth:bool=None, enableOpenIdConnect:bool=None) -> None:
         self.enableOauth = enableOauth
         self.enableOpenIdConnect = enableOpenIdConnect
 

@@ -14,7 +14,7 @@ class AttributeRule():
 
     """
 
-    def __init__(self, attributeName, condition, expectedValue, result) -> None:
+    def __init__(self, attributeName:str, condition, expectedValue:str, result:str) -> None:
         self.attributeName = attributeName
         self.condition = condition
         self.expectedValue = expectedValue

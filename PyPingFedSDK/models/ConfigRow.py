@@ -10,7 +10,7 @@ class ConfigRow():
 
     """
 
-    def __init__(self, fields, defaultRow=None) -> None:
+    def __init__(self, fields:list, defaultRow:bool=None) -> None:
         self.defaultRow = defaultRow
         self.fields = fields
 

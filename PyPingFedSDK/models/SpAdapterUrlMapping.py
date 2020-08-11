@@ -10,7 +10,7 @@ class SpAdapterUrlMapping():
 
     """
 
-    def __init__(self, adapterRef=None, url=None) -> None:
+    def __init__(self, adapterRef=None, url:str=None) -> None:
         self.adapterRef = adapterRef
         self.url = url
 

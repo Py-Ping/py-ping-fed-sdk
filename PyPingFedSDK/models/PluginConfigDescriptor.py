@@ -14,7 +14,7 @@ class PluginConfigDescriptor():
 
     """
 
-    def __init__(self, actionDescriptors=None, description=None, fields=None, tables=None) -> None:
+    def __init__(self, actionDescriptors:list=None, description:str=None, fields:list=None, tables:list=None) -> None:
         self.actionDescriptors = actionDescriptors
         self.description = description
         self.fields = fields

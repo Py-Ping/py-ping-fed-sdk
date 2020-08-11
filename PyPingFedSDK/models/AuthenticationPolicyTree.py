@@ -16,7 +16,7 @@ class AuthenticationPolicyTree():
 
     """
 
-    def __init__(self, authenticationApiApplicationRef=None, description=None, enabled=None, name=None, rootNode=None) -> None:
+    def __init__(self, authenticationApiApplicationRef=None, description:str=None, enabled:bool=None, name:str=None, rootNode=None) -> None:
         self.authenticationApiApplicationRef = authenticationApiApplicationRef
         self.description = description
         self.enabled = enabled

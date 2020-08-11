@@ -18,7 +18,7 @@ class ExportMetadataRequest():
 
     """
 
-    def __init__(self, connectionType, connectionId, signingSettings=None, useSecondaryPortForSoap=None, virtualHostName=None, virtualServerId=None) -> None:
+    def __init__(self, connectionType, connectionId:str, signingSettings=None, useSecondaryPortForSoap:bool=None, virtualHostName:str=None, virtualServerId:str=None) -> None:
         self.connectionId = connectionId
         self.connectionType = connectionType
         self.signingSettings = signingSettings

@@ -14,7 +14,7 @@ class UrlWhitelistEntry():
 
     """
 
-    def __init__(self, allowQueryAndFragment=None, requireHttps=None, validDomain=None, validPath=None) -> None:
+    def __init__(self, allowQueryAndFragment:bool=None, requireHttps:bool=None, validDomain:str=None, validPath:str=None) -> None:
         self.allowQueryAndFragment = allowQueryAndFragment
         self.requireHttps = requireHttps
         self.validDomain = validDomain

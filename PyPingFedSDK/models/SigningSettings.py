@@ -14,7 +14,7 @@ class SigningSettings():
 
     """
 
-    def __init__(self, signingKeyPairRef, algorithm=None, includeCertInSignature=None, includeRawKeyInSignature=None) -> None:
+    def __init__(self, signingKeyPairRef, algorithm:str=None, includeCertInSignature:bool=None, includeRawKeyInSignature:bool=None) -> None:
         self.algorithm = algorithm
         self.includeCertInSignature = includeCertInSignature
         self.includeRawKeyInSignature = includeRawKeyInSignature

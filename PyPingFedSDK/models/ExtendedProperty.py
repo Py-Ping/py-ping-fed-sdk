@@ -12,7 +12,7 @@ class ExtendedProperty():
 
     """
 
-    def __init__(self, description=None, multiValued=None, name=None) -> None:
+    def __init__(self, description:str=None, multiValued:bool=None, name:str=None) -> None:
         self.description = description
         self.multiValued = multiValued
         self.name = name

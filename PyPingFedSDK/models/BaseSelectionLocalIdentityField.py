@@ -20,7 +20,7 @@ class BaseSelectionLocalIdentityField():
 
     """
 
-    def __init__(self, var_type, var_id, label, attributes=None, options=None, profilePageField=None, registrationPageField=None) -> None:
+    def __init__(self, var_type, var_id:str, label:str, attributes=None, options:list=None, profilePageField:bool=None, registrationPageField:bool=None) -> None:
         self.attributes = attributes
         self.var_id = var_id
         self.label = label

@@ -26,7 +26,7 @@ class OcspSettings():
 
     """
 
-    def __init__(self, responderUrl, actionOnResponderUnavailable=None, actionOnStatusUnknown=None, actionOnUnsuccessfulResponse=None, currentUpdateGracePeriod=None, nextUpdateGracePeriod=None, requesterAddNonce=None, responderCertReference=None, responderTimeout=None, responseCachePeriod=None) -> None:
+    def __init__(self, responderUrl:str, actionOnResponderUnavailable:str=None, actionOnStatusUnknown:str=None, actionOnUnsuccessfulResponse:str=None, currentUpdateGracePeriod:int=None, nextUpdateGracePeriod:int=None, requesterAddNonce:bool=None, responderCertReference=None, responderTimeout:int=None, responseCachePeriod:int=None) -> None:
         self.actionOnResponderUnavailable = actionOnResponderUnavailable
         self.actionOnStatusUnknown = actionOnStatusUnknown
         self.actionOnUnsuccessfulResponse = actionOnUnsuccessfulResponse

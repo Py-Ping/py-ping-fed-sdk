@@ -8,7 +8,7 @@ class ActionResult():
 
     """
 
-    def __init__(self, message=None) -> None:
+    def __init__(self, message:str=None) -> None:
         self.message = message
 
     def _validate(self) -> bool:

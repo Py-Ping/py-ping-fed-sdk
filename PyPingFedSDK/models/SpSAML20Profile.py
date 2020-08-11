@@ -12,7 +12,7 @@ class SpSAML20Profile():
 
     """
 
-    def __init__(self, enable=None, enableAutoConnect=None, enableXASP=None) -> None:
+    def __init__(self, enable:bool=None, enableAutoConnect:bool=None, enableXASP:bool=None) -> None:
         self.enable = enable
         self.enableAutoConnect = enableAutoConnect
         self.enableXASP = enableXASP

@@ -10,7 +10,7 @@ class AssertionLifetime():
 
     """
 
-    def __init__(self, minutesBefore, minutesAfter) -> None:
+    def __init__(self, minutesBefore:int, minutesAfter:int) -> None:
         self.minutesAfter = minutesAfter
         self.minutesBefore = minutesBefore
 

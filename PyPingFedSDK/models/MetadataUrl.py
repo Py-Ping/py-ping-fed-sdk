@@ -18,7 +18,7 @@ class MetadataUrl():
 
     """
 
-    def __init__(self, name, url, certView=None, var_id=None, validateSignature=None, x509File=None) -> None:
+    def __init__(self, name:str, url:str, certView=None, var_id:str=None, validateSignature:bool=None, x509File=None) -> None:
         self.certView = certView
         self.var_id = var_id
         self.name = name

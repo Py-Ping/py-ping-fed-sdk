@@ -12,7 +12,7 @@ class LdapTagConfig():
 
     """
 
-    def __init__(self, hostnames, defaultSource=None, tags=None) -> None:
+    def __init__(self, hostnames:list, defaultSource:bool=None, tags:str=None) -> None:
         self.defaultSource = defaultSource
         self.hostnames = hostnames
         self.tags = tags

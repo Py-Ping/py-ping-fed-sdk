@@ -36,7 +36,7 @@ class Connection():
 
     """
 
-    def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, var_id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, var_type=None, virtualEntityIds=None) -> None:
+    def __init__(self, entityId:str, name:str, active:bool=None, additionalAllowedEntitiesConfiguration=None, baseUrl:str=None, contactInfo=None, credentials=None, defaultVirtualEntityId:str=None, extendedProperties=None, var_id:str=None, licenseConnectionGroup:str=None, loggingMode=None, metadataReloadSettings=None, var_type=None, virtualEntityIds:list=None) -> None:
         self.active = active
         self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
         self.baseUrl = baseUrl

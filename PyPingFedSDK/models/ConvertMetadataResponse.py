@@ -18,7 +18,7 @@ class ConvertMetadataResponse():
 
     """
 
-    def __init__(self, certExpiration=None, certSerialNumber=None, certSubjectDn=None, certTrustStatus=None, connection=None, signatureStatus=None) -> None:
+    def __init__(self, certExpiration:str=None, certSerialNumber:str=None, certSubjectDn:str=None, certTrustStatus=None, connection=None, signatureStatus=None) -> None:
         self.certExpiration = certExpiration
         self.certSerialNumber = certSerialNumber
         self.certSubjectDn = certSubjectDn

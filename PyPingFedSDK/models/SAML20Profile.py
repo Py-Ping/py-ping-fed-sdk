@@ -10,7 +10,7 @@ class SAML20Profile():
 
     """
 
-    def __init__(self, enable=None, enableAutoConnect=None) -> None:
+    def __init__(self, enable:bool=None, enableAutoConnect:bool=None) -> None:
         self.enable = enable
         self.enableAutoConnect = enableAutoConnect
 

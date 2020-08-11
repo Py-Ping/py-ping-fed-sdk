@@ -16,7 +16,7 @@ class ActionDescriptor():
 
     """
 
-    def __init__(self, description=None, download=None, downloadContentType=None, downloadFileName=None, name=None) -> None:
+    def __init__(self, description:str=None, download:bool=None, downloadContentType:str=None, downloadFileName:str=None, name:str=None) -> None:
         self.description = description
         self.download = download
         self.downloadContentType = downloadContentType

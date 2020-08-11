@@ -8,7 +8,7 @@ class Version():
 
     """
 
-    def __init__(self, version=None) -> None:
+    def __init__(self, version:str=None) -> None:
         self.version = version
 
     def _validate(self) -> bool:

@@ -26,7 +26,7 @@ class AdministrativeAccount():
 
     """
 
-    def __init__(self, username, active=None, auditor=None, department=None, description=None, emailAddress=None, encryptedPassword=None, password=None, phoneNumber=None, roles=None) -> None:
+    def __init__(self, username:str, active:bool=None, auditor:bool=None, department:str=None, description:str=None, emailAddress:str=None, encryptedPassword:str=None, password:str=None, phoneNumber:str=None, roles=None) -> None:
         self.active = active
         self.auditor = auditor
         self.department = department

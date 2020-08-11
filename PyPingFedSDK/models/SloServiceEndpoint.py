@@ -12,7 +12,7 @@ class SloServiceEndpoint():
 
     """
 
-    def __init__(self, binding, url, responseUrl=None) -> None:
+    def __init__(self, binding, url:str, responseUrl:str=None) -> None:
         self.binding = binding
         self.responseUrl = responseUrl
         self.url = url

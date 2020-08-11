@@ -14,7 +14,7 @@ class IdpAdapterAttributeContract():
 
     """
 
-    def __init__(self, coreAttributes, extendedAttributes=None, inherited=None, maskOgnlValues=None) -> None:
+    def __init__(self, coreAttributes:list, extendedAttributes:list=None, inherited:bool=None, maskOgnlValues:bool=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
         self.inherited = inherited

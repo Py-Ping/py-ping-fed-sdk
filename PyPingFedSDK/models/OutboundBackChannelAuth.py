@@ -15,7 +15,7 @@ class OutboundBackChannelAuth():
 
     """
 
-    def __init__(self, digitalSignature=None, httpBasicCredentials=None, sslAuthKeyPairRef=None, var_type=None, validatePartnerCert=None) -> None:
+    def __init__(self, digitalSignature:bool=None, httpBasicCredentials=None, sslAuthKeyPairRef=None, var_type=None, validatePartnerCert:bool=None) -> None:
         self.digitalSignature = digitalSignature
         self.httpBasicCredentials = httpBasicCredentials
         self.sslAuthKeyPairRef = sslAuthKeyPairRef

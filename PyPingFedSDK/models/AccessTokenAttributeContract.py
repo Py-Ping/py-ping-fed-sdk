@@ -14,7 +14,7 @@ class AccessTokenAttributeContract():
 
     """
 
-    def __init__(self, coreAttributes=None, defaultSubjectAttribute=None, extendedAttributes=None, inherited=None) -> None:
+    def __init__(self, coreAttributes:list=None, defaultSubjectAttribute:str=None, extendedAttributes:list=None, inherited:bool=None) -> None:
         self.coreAttributes = coreAttributes
         self.defaultSubjectAttribute = defaultSubjectAttribute
         self.extendedAttributes = extendedAttributes

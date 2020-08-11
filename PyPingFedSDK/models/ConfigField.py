@@ -14,7 +14,7 @@ class ConfigField():
 
     """
 
-    def __init__(self, name, encryptedValue=None, inherited=None, value=None) -> None:
+    def __init__(self, name:str, encryptedValue:str=None, inherited:bool=None, value:str=None) -> None:
         self.encryptedValue = encryptedValue
         self.inherited = inherited
         self.name = name

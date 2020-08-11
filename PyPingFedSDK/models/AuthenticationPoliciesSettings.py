@@ -10,7 +10,7 @@ class AuthenticationPoliciesSettings():
 
     """
 
-    def __init__(self, enableIdpAuthnSelection=None, enableSpAuthnSelection=None) -> None:
+    def __init__(self, enableIdpAuthnSelection:bool=None, enableSpAuthnSelection:bool=None) -> None:
         self.enableIdpAuthnSelection = enableIdpAuthnSelection
         self.enableSpAuthnSelection = enableSpAuthnSelection
 

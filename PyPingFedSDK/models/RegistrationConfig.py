@@ -10,7 +10,7 @@ class RegistrationConfig():
 
     """
 
-    def __init__(self, templateName, captchaEnabled=None) -> None:
+    def __init__(self, templateName:str, captchaEnabled:bool=None) -> None:
         self.captchaEnabled = captchaEnabled
         self.templateName = templateName
 

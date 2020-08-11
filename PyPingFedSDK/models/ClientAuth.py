@@ -20,7 +20,7 @@ class ClientAuth():
 
     """
 
-    def __init__(self, clientCertIssuerDn=None, clientCertSubjectDn=None, encryptedSecret=None, enforceReplayPrevention=None, secret=None, tokenEndpointAuthSigningAlgorithm=None, var_type=None) -> None:
+    def __init__(self, clientCertIssuerDn:str=None, clientCertSubjectDn:str=None, encryptedSecret:str=None, enforceReplayPrevention:bool=None, secret:str=None, tokenEndpointAuthSigningAlgorithm=None, var_type=None) -> None:
         self.clientCertIssuerDn = clientCertIssuerDn
         self.clientCertSubjectDn = clientCertSubjectDn
         self.encryptedSecret = encryptedSecret

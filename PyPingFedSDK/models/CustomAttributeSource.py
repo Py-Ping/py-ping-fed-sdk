@@ -18,7 +18,7 @@ class CustomAttributeSource():
 
     """
 
-    def __init__(self, var_type, dataStoreRef, attributeContractFulfillment=None, description=None, filterFields=None, var_id=None) -> None:
+    def __init__(self, var_type, dataStoreRef, attributeContractFulfillment=None, description:str=None, filterFields:list=None, var_id:str=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.dataStoreRef = dataStoreRef
         self.description = description

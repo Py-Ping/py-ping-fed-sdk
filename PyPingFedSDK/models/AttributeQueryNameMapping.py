@@ -10,7 +10,7 @@ class AttributeQueryNameMapping():
 
     """
 
-    def __init__(self, localName, remoteName) -> None:
+    def __init__(self, localName:str, remoteName:str) -> None:
         self.localName = localName
         self.remoteName = remoteName
 

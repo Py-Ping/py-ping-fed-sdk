@@ -12,7 +12,7 @@ class AlternativeLoginHintTokenIssuer():
 
     """
 
-    def __init__(self, issuer, jwks=None, jwksURL=None) -> None:
+    def __init__(self, issuer:str, jwks:str=None, jwksURL:str=None) -> None:
         self.issuer = issuer
         self.jwks = jwks
         self.jwksURL = jwksURL

@@ -1,15 +1,16 @@
-import logging
-import requests
 import os
+import logging
+from requests import Session
 from requests.exceptions import HTTPError
 
 
 class _oauth_authServerSettings():
-    def __init__(self, endpoint: str) -> None:
+    def __init__(self, endpoint:str, session:Session) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._oauth_authServerSettings')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
+        self.session = session
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
@@ -19,7 +20,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/oauth/authServerSettings"),
                 headers={'Accept': 'application/json'}
@@ -46,7 +47,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings"),
                 headers={'Accept': 'application/json'}
@@ -77,7 +78,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopes"),
                 headers={'Accept': 'application/json'}
@@ -103,7 +104,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopes/{name}"),
                 headers={'Accept': 'application/json'}
@@ -133,7 +134,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopes/{name}"),
                 headers={'Accept': 'application/json'}
@@ -159,7 +160,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopes/{name}"),
                 headers={'Accept': 'application/json'}
@@ -190,7 +191,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopeGroups"),
                 headers={'Accept': 'application/json'}
@@ -216,7 +217,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopeGroups/{name}"),
                 headers={'Accept': 'application/json'}
@@ -246,7 +247,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopeGroups/{name}"),
                 headers={'Accept': 'application/json'}
@@ -274,7 +275,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/commonScopeGroups/{name}"),
                 headers={'Accept': 'application/json'}
@@ -305,7 +306,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopes"),
                 headers={'Accept': 'application/json'}
@@ -333,7 +334,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopes/{name}"),
                 headers={'Accept': 'application/json'}
@@ -363,7 +364,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopes/{name}"),
                 headers={'Accept': 'application/json'}
@@ -389,7 +390,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopes/{name}"),
                 headers={'Accept': 'application/json'}
@@ -418,7 +419,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopeGroups"),
                 headers={'Accept': 'application/json'}
@@ -444,7 +445,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopeGroups/{name}"),
                 headers={'Accept': 'application/json'}
@@ -474,7 +475,7 @@ class _oauth_authServerSettings():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopeGroups/{name}"),
                 headers={'Accept': 'application/json'}
@@ -500,7 +501,7 @@ class _oauth_authServerSettings():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/oauth/authServerSettings/scopes/exclusiveScopeGroups/{name}"),
                 headers={'Accept': 'application/json'}

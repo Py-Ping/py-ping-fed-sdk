@@ -14,7 +14,7 @@ class AuthenticationPolicy():
 
     """
 
-    def __init__(self, authnSelectionTrees=None, defaultAuthenticationSources=None, failIfNoSelection=None, trackedHttpParameters=None) -> None:
+    def __init__(self, authnSelectionTrees:list=None, defaultAuthenticationSources:list=None, failIfNoSelection:bool=None, trackedHttpParameters:list=None) -> None:
         self.authnSelectionTrees = authnSelectionTrees
         self.defaultAuthenticationSources = defaultAuthenticationSources
         self.failIfNoSelection = failIfNoSelection

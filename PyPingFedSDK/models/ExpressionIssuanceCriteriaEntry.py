@@ -10,7 +10,7 @@ class ExpressionIssuanceCriteriaEntry():
 
     """
 
-    def __init__(self, expression, errorResult=None) -> None:
+    def __init__(self, expression:str, errorResult:str=None) -> None:
         self.errorResult = errorResult
         self.expression = expression
 

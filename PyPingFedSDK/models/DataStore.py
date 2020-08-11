@@ -12,7 +12,7 @@ class DataStore():
 
     """
 
-    def __init__(self, var_type, var_id=None, maskAttributeValues=None) -> None:
+    def __init__(self, var_type, var_id:str=None, maskAttributeValues:bool=None) -> None:
         self.var_id = var_id
         self.maskAttributeValues = maskAttributeValues
         self.var_type = var_type

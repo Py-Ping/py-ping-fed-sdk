@@ -10,7 +10,7 @@ class ClientSettings():
 
     """
 
-    def __init__(self, clientMetadata=None, dynamicClientRegistration=None) -> None:
+    def __init__(self, clientMetadata:list=None, dynamicClientRegistration=None) -> None:
         self.clientMetadata = clientMetadata
         self.dynamicClientRegistration = dynamicClientRegistration
 

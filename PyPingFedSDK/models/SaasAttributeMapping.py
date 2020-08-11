@@ -10,7 +10,7 @@ class SaasAttributeMapping():
 
     """
 
-    def __init__(self, fieldName, saasFieldInfo) -> None:
+    def __init__(self, fieldName:str, saasFieldInfo) -> None:
         self.fieldName = fieldName
         self.saasFieldInfo = saasFieldInfo
 

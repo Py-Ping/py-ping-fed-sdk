@@ -22,7 +22,7 @@ class RedirectValidationSettingsWhitelistEntry():
 
     """
 
-    def __init__(self, validDomain, allowQueryAndFragment=None, idpDiscovery=None, inErrorResource=None, requireHttps=None, targetResourceSLO=None, targetResourceSSO=None, validPath=None) -> None:
+    def __init__(self, validDomain:str, allowQueryAndFragment:bool=None, idpDiscovery:bool=None, inErrorResource:bool=None, requireHttps:bool=None, targetResourceSLO:bool=None, targetResourceSSO:bool=None, validPath:str=None) -> None:
         self.allowQueryAndFragment = allowQueryAndFragment
         self.idpDiscovery = idpDiscovery
         self.inErrorResource = inErrorResource

@@ -10,7 +10,7 @@ class LocalIdentityAuthSource():
 
     """
 
-    def __init__(self, var_id=None, source=None) -> None:
+    def __init__(self, var_id:str=None, source:str=None) -> None:
         self.var_id = var_id
         self.source = source
 

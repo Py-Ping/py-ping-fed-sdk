@@ -10,7 +10,7 @@ class IdpBrowserSsoAttributeContract():
 
     """
 
-    def __init__(self, coreAttributes=None, extendedAttributes=None) -> None:
+    def __init__(self, coreAttributes:list=None, extendedAttributes:list=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
 

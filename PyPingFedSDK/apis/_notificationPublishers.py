@@ -1,15 +1,16 @@
-import logging
-import requests
 import os
+import logging
+from requests import Session
 from requests.exceptions import HTTPError
 
 
 class _notificationPublishers():
-    def __init__(self, endpoint: str) -> None:
+    def __init__(self, endpoint:str, session:Session) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._notificationPublishers')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
+        self.session = session
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
@@ -19,7 +20,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/notificationPublishers/settings"),
                 headers={'Accept': 'application/json'}
@@ -44,7 +45,7 @@ class _notificationPublishers():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/notificationPublishers/settings"),
                 headers={'Accept': 'application/json'}
@@ -68,7 +69,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/notificationPublishers/descriptors"),
                 headers={'Accept': 'application/json'}
@@ -88,7 +89,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/notificationPublishers/descriptors/{id}"),
                 headers={'Accept': 'application/json'}
@@ -110,7 +111,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/notificationPublishers"),
                 headers={'Accept': 'application/json'}
@@ -135,7 +136,7 @@ class _notificationPublishers():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/notificationPublishers"),
                 headers={'Accept': 'application/json'}
@@ -159,7 +160,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/notificationPublishers/{id}"),
                 headers={'Accept': 'application/json'}
@@ -187,7 +188,7 @@ class _notificationPublishers():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/notificationPublishers/{id}"),
                 headers={'Accept': 'application/json'}
@@ -213,7 +214,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/notificationPublishers/{id}"),
                 headers={'Accept': 'application/json'}
@@ -237,7 +238,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/notificationPublishers/{id}/actions"),
                 headers={'Accept': 'application/json'}
@@ -259,7 +260,7 @@ class _notificationPublishers():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/notificationPublishers/{id}/actions/{actionId}"),
                 headers={'Accept': 'application/json'}
@@ -287,7 +288,7 @@ class _notificationPublishers():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/notificationPublishers/{id}/actions/{actionId}/invokeAction"),
                 headers={'Accept': 'application/json'}

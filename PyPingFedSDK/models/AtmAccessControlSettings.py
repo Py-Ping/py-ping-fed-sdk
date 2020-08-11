@@ -12,7 +12,7 @@ class AtmAccessControlSettings():
 
     """
 
-    def __init__(self, allowedClients=None, inherited=None, restrictClients=None) -> None:
+    def __init__(self, allowedClients:list=None, inherited:bool=None, restrictClients:bool=None) -> None:
         self.allowedClients = allowedClients
         self.inherited = inherited
         self.restrictClients = restrictClients

@@ -1,15 +1,16 @@
-import logging
-import requests
 import os
+import logging
+from requests import Session
 from requests.exceptions import HTTPError
 
 
 class _certificates_revocation():
-    def __init__(self, endpoint: str) -> None:
+    def __init__(self, endpoint:str, session:Session) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._certificates_revocation')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
+        self.session = session
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
@@ -19,7 +20,7 @@ class _certificates_revocation():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/certificates/revocation/settings"),
                 headers={'Accept': 'application/json'}
@@ -44,7 +45,7 @@ class _certificates_revocation():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/certificates/revocation/settings"),
                 headers={'Accept': 'application/json'}
@@ -68,7 +69,7 @@ class _certificates_revocation():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/certificates/revocation/ocspCertificates"),
                 headers={'Accept': 'application/json'}
@@ -93,7 +94,7 @@ class _certificates_revocation():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/certificates/revocation/ocspCertificates"),
                 headers={'Accept': 'application/json'}
@@ -117,7 +118,7 @@ class _certificates_revocation():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/certificates/revocation/ocspCertificates/{id}"),
                 headers={'Accept': 'application/json'}
@@ -139,7 +140,7 @@ class _certificates_revocation():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/certificates/revocation/ocspCertificates/{id}"),
                 headers={'Accept': 'application/json'}

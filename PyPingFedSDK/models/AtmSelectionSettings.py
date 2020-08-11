@@ -10,7 +10,7 @@ class AtmSelectionSettings():
 
     """
 
-    def __init__(self, inherited=None, resourceUris=None) -> None:
+    def __init__(self, inherited:bool=None, resourceUris:list=None) -> None:
         self.inherited = inherited
         self.resourceUris = resourceUris
 

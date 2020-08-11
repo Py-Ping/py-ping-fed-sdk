@@ -22,7 +22,7 @@ class TokenToTokenMapping():
 
     """
 
-    def __init__(self, attributeContractFulfillment, sourceId, targetId, attributeSources=None, defaultTargetResource=None, var_id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None) -> None:
+    def __init__(self, attributeContractFulfillment, sourceId:str, targetId:str, attributeSources:list=None, defaultTargetResource:str=None, var_id:str=None, issuanceCriteria=None, licenseConnectionGroupAssignment:str=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.defaultTargetResource = defaultTargetResource

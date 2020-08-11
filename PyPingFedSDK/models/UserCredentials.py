@@ -10,7 +10,7 @@ class UserCredentials():
 
     """
 
-    def __init__(self, newPassword, currentPassword=None) -> None:
+    def __init__(self, newPassword:str, currentPassword:str=None) -> None:
         self.currentPassword = currentPassword
         self.newPassword = newPassword
 

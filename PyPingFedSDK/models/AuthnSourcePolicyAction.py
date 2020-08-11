@@ -16,7 +16,7 @@ class AuthnSourcePolicyAction():
 
     """
 
-    def __init__(self, var_type, authenticationSource, attributeRules=None, context=None, inputUserIdMapping=None) -> None:
+    def __init__(self, var_type, authenticationSource, attributeRules=None, context:str=None, inputUserIdMapping=None) -> None:
         self.attributeRules = attributeRules
         self.authenticationSource = authenticationSource
         self.context = context

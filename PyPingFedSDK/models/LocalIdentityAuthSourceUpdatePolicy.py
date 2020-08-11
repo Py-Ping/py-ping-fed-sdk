@@ -14,7 +14,7 @@ class LocalIdentityAuthSourceUpdatePolicy():
 
     """
 
-    def __init__(self, retainAttributes=None, storeAttributes=None, updateAttributes=None, updateInterval=None) -> None:
+    def __init__(self, retainAttributes:bool=None, storeAttributes:bool=None, updateAttributes:bool=None, updateInterval=None) -> None:
         self.retainAttributes = retainAttributes
         self.storeAttributes = storeAttributes
         self.updateAttributes = updateAttributes

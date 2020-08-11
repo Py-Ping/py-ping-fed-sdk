@@ -12,7 +12,7 @@ class SystemKey():
 
     """
 
-    def __init__(self, creationDate=None, encryptedKeyData=None, keyData=None) -> None:
+    def __init__(self, creationDate:str=None, encryptedKeyData:str=None, keyData:str=None) -> None:
         self.creationDate = creationDate
         self.encryptedKeyData = encryptedKeyData
         self.keyData = keyData

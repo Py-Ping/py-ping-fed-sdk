@@ -14,7 +14,7 @@ class CrlSettings():
 
     """
 
-    def __init__(self, nextRetryMinsWhenNextUpdateInPast=None, nextRetryMinsWhenResolveFailed=None, treatNonRetrievableCrlAsRevoked=None, verifyCrlSignature=None) -> None:
+    def __init__(self, nextRetryMinsWhenNextUpdateInPast:int=None, nextRetryMinsWhenResolveFailed:int=None, treatNonRetrievableCrlAsRevoked:bool=None, verifyCrlSignature:bool=None) -> None:
         self.nextRetryMinsWhenNextUpdateInPast = nextRetryMinsWhenNextUpdateInPast
         self.nextRetryMinsWhenResolveFailed = nextRetryMinsWhenResolveFailed
         self.treatNonRetrievableCrlAsRevoked = treatNonRetrievableCrlAsRevoked

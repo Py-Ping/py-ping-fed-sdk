@@ -24,7 +24,7 @@ class ClientOIDCPolicy():
 
     """
 
-    def __init__(self, grantAccessSessionRevocationApi=None, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, logoutUris=None, pairwiseIdentifierUserType=None, pingAccessLogoutCapable=None, policyGroup=None, sectorIdentifierUri=None) -> None:
+    def __init__(self, grantAccessSessionRevocationApi:bool=None, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, logoutUris:list=None, pairwiseIdentifierUserType:bool=None, pingAccessLogoutCapable:bool=None, policyGroup=None, sectorIdentifierUri:str=None) -> None:
         self.grantAccessSessionRevocationApi = grantAccessSessionRevocationApi
         self.idTokenContentEncryptionAlgorithm = idTokenContentEncryptionAlgorithm
         self.idTokenEncryptionAlgorithm = idTokenEncryptionAlgorithm

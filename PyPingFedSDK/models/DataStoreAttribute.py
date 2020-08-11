@@ -12,7 +12,7 @@ class DataStoreAttribute():
 
     """
 
-    def __init__(self, var_type, name, metadata=None) -> None:
+    def __init__(self, var_type, name:str, metadata=None) -> None:
         self.metadata = metadata
         self.name = name
         self.var_type = var_type

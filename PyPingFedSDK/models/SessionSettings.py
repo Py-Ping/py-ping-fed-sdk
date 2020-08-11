@@ -12,7 +12,7 @@ class SessionSettings():
 
     """
 
-    def __init__(self, revokeUserSessionOnLogout=None, sessionRevocationLifetime=None, trackAdapterSessionsForLogout=None) -> None:
+    def __init__(self, revokeUserSessionOnLogout:bool=None, sessionRevocationLifetime:int=None, trackAdapterSessionsForLogout:bool=None) -> None:
         self.revokeUserSessionOnLogout = revokeUserSessionOnLogout
         self.sessionRevocationLifetime = sessionRevocationLifetime
         self.trackAdapterSessionsForLogout = trackAdapterSessionsForLogout

@@ -38,7 +38,7 @@ class KeyPairView():
 
     """
 
-    def __init__(self, cryptoProvider=None, expires=None, var_id=None, issuerDN=None, keyAlgorithm=None, keySize=None, rotationSettings=None, serialNumber=None, sha1Fingerprint=None, sha256Fingerprint=None, signatureAlgorithm=None, status=None, subjectAlternativeNames=None, subjectDN=None, validFrom=None, version=None) -> None:
+    def __init__(self, cryptoProvider=None, expires:str=None, var_id:str=None, issuerDN:str=None, keyAlgorithm:str=None, keySize:int=None, rotationSettings=None, serialNumber:str=None, sha1Fingerprint:str=None, sha256Fingerprint:str=None, signatureAlgorithm:str=None, status=None, subjectAlternativeNames:list=None, subjectDN:str=None, validFrom:str=None, version:int=None) -> None:
         self.cryptoProvider = cryptoProvider
         self.expires = expires
         self.var_id = var_id

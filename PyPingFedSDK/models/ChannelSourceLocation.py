@@ -12,7 +12,7 @@ class ChannelSourceLocation():
 
     """
 
-    def __init__(self, filter=None, groupDN=None, nestedSearch=None) -> None:
+    def __init__(self, filter:str=None, groupDN:str=None, nestedSearch:bool=None) -> None:
         self.filter = filter
         self.groupDN = groupDN
         self.nestedSearch = nestedSearch

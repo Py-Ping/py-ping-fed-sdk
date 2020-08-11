@@ -38,7 +38,7 @@ class JdbcDataStore():
 
     """
 
-    def __init__(self, var_type, driverClass, userName, allowMultiValueAttributes=None, blockingTimeout=None, connectionUrl=None, connectionUrlTags=None, encryptedPassword=None, var_id=None, idleTimeout=None, maskAttributeValues=None, maxPoolSize=None, minPoolSize=None, name=None, password=None, validateConnectionSql=None) -> None:
+    def __init__(self, var_type, driverClass:str, userName:str, allowMultiValueAttributes:bool=None, blockingTimeout:int=None, connectionUrl:str=None, connectionUrlTags:list=None, encryptedPassword:str=None, var_id:str=None, idleTimeout:int=None, maskAttributeValues:bool=None, maxPoolSize:int=None, minPoolSize:int=None, name:str=None, password:str=None, validateConnectionSql:str=None) -> None:
         self.allowMultiValueAttributes = allowMultiValueAttributes
         self.blockingTimeout = blockingTimeout
         self.connectionUrl = connectionUrl

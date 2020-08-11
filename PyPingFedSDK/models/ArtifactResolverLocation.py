@@ -10,7 +10,7 @@ class ArtifactResolverLocation():
 
     """
 
-    def __init__(self, index, url) -> None:
+    def __init__(self, index:int, url:str) -> None:
         self.index = index
         self.url = url
 

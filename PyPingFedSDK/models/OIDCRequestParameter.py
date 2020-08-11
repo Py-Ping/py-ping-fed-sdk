@@ -12,7 +12,7 @@ class OIDCRequestParameter():
 
     """
 
-    def __init__(self, name, value, applicationEndpointOverride) -> None:
+    def __init__(self, name:str, value:str, applicationEndpointOverride:bool) -> None:
         self.applicationEndpointOverride = applicationEndpointOverride
         self.name = name
         self.value = value

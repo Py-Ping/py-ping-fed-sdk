@@ -12,7 +12,7 @@ class SpUrlMapping():
 
     """
 
-    def __init__(self, ref=None, var_type=None, url=None) -> None:
+    def __init__(self, ref=None, var_type=None, url:str=None) -> None:
         self.ref = ref
         self.var_type = var_type
         self.url = url

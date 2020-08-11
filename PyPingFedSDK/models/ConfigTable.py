@@ -12,7 +12,7 @@ class ConfigTable():
 
     """
 
-    def __init__(self, name, inherited=None, rows=None) -> None:
+    def __init__(self, name:str, inherited:bool=None, rows:list=None) -> None:
         self.inherited = inherited
         self.name = name
         self.rows = rows

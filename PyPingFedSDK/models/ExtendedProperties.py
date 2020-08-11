@@ -8,7 +8,7 @@ class ExtendedProperties():
 
     """
 
-    def __init__(self, items=None) -> None:
+    def __init__(self, items:list=None) -> None:
         self.items = items
 
     def _validate(self) -> bool:

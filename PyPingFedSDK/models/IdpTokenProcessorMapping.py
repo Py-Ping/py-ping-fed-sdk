@@ -16,7 +16,7 @@ class IdpTokenProcessorMapping():
 
     """
 
-    def __init__(self, idpTokenProcessorRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictedVirtualEntityIds=None) -> None:
+    def __init__(self, idpTokenProcessorRef, attributeContractFulfillment, attributeSources:list=None, issuanceCriteria=None, restrictedVirtualEntityIds:list=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.idpTokenProcessorRef = idpTokenProcessorRef

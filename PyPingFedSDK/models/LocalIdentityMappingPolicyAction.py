@@ -16,7 +16,7 @@ class LocalIdentityMappingPolicyAction():
 
     """
 
-    def __init__(self, var_type, localIdentityRef, outboundAttributeMapping, context=None, inboundMapping=None) -> None:
+    def __init__(self, var_type, localIdentityRef, outboundAttributeMapping, context:str=None, inboundMapping=None) -> None:
         self.context = context
         self.inboundMapping = inboundMapping
         self.localIdentityRef = localIdentityRef

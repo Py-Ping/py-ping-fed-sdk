@@ -28,7 +28,7 @@ class RequestPolicy():
 
     """
 
-    def __init__(self, var_id, name, authenticatorRef, identityHintContract, allowUnsignedLoginHintToken=None, alternativeLoginHintTokenIssuers=None, identityHintContractFulfillment=None, identityHintMapping=None, requireTokenForIdentityHint=None, transactionLifetime=None, userCodePcvRef=None) -> None:
+    def __init__(self, var_id:str, name:str, authenticatorRef, identityHintContract, allowUnsignedLoginHintToken:bool=None, alternativeLoginHintTokenIssuers:list=None, identityHintContractFulfillment=None, identityHintMapping=None, requireTokenForIdentityHint:bool=None, transactionLifetime:int=None, userCodePcvRef=None) -> None:
         self.allowUnsignedLoginHintToken = allowUnsignedLoginHintToken
         self.alternativeLoginHintTokenIssuers = alternativeLoginHintTokenIssuers
         self.authenticatorRef = authenticatorRef

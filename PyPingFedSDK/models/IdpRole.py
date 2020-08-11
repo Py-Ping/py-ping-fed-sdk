@@ -20,7 +20,7 @@ class IdpRole():
 
     """
 
-    def __init__(self, enable=None, enableOutboundProvisioning=None, enableSaml10=None, enableSaml11=None, enableWsFed=None, enableWsTrust=None, saml20Profile=None) -> None:
+    def __init__(self, enable:bool=None, enableOutboundProvisioning:bool=None, enableSaml10:bool=None, enableSaml11:bool=None, enableWsFed:bool=None, enableWsTrust:bool=None, saml20Profile=None) -> None:
         self.enable = enable
         self.enableOutboundProvisioning = enableOutboundProvisioning
         self.enableSaml10 = enableSaml10

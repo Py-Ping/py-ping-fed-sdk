@@ -10,7 +10,7 @@ class JwksSettings():
 
     """
 
-    def __init__(self, jwks=None, jwksUrl=None) -> None:
+    def __init__(self, jwks:str=None, jwksUrl:str=None) -> None:
         self.jwks = jwks
         self.jwksUrl = jwksUrl
 

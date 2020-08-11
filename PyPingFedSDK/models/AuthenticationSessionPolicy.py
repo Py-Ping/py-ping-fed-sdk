@@ -22,7 +22,7 @@ class AuthenticationSessionPolicy():
 
     """
 
-    def __init__(self, authenticationSource, enableSessions, authnContextSensitive=None, var_id=None, idleTimeoutMins=None, maxTimeoutMins=None, persistent=None, timeoutDisplayUnit=None) -> None:
+    def __init__(self, authenticationSource, enableSessions:bool, authnContextSensitive:bool=None, var_id:str=None, idleTimeoutMins:int=None, maxTimeoutMins:int=None, persistent:bool=None, timeoutDisplayUnit=None) -> None:
         self.authenticationSource = authenticationSource
         self.authnContextSensitive = authnContextSensitive
         self.enableSessions = enableSessions

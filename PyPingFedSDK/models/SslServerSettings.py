@@ -14,7 +14,7 @@ class SslServerSettings():
 
     """
 
-    def __init__(self, runtimeServerCertRef, adminConsoleCertRef, activeAdminConsoleCerts=None, activeRuntimeServerCerts=None) -> None:
+    def __init__(self, runtimeServerCertRef, adminConsoleCertRef, activeAdminConsoleCerts:list=None, activeRuntimeServerCerts:list=None) -> None:
         self.activeAdminConsoleCerts = activeAdminConsoleCerts
         self.activeRuntimeServerCerts = activeRuntimeServerCerts
         self.adminConsoleCertRef = adminConsoleCertRef

@@ -20,7 +20,7 @@ class BaseDefaultValueLocalIdentityField():
 
     """
 
-    def __init__(self, var_type, var_id, label, attributes=None, defaultValue=None, profilePageField=None, registrationPageField=None) -> None:
+    def __init__(self, var_type, var_id:str, label:str, attributes=None, defaultValue:str=None, profilePageField:bool=None, registrationPageField:bool=None) -> None:
         self.attributes = attributes
         self.defaultValue = defaultValue
         self.var_id = var_id

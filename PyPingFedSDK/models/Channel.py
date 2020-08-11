@@ -18,7 +18,7 @@ class Channel():
 
     """
 
-    def __init__(self, active, channelSource, attributeMapping, name, maxThreads, timeout) -> None:
+    def __init__(self, active:bool, channelSource, attributeMapping:list, name:str, maxThreads:int, timeout:int) -> None:
         self.active = active
         self.attributeMapping = attributeMapping
         self.channelSource = channelSource

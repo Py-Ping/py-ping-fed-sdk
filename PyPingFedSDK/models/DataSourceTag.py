@@ -9,7 +9,7 @@ class DataSourceTag():
 
     """
 
-    def __init__(self, defaultSource=None, tags=None, tagsHashSet=None) -> None:
+    def __init__(self, defaultSource:bool=None, tags:str=None, tagsHashSet=None) -> None:
         self.defaultSource = defaultSource
         self.tags = tags
         self.tagsHashSet = tagsHashSet

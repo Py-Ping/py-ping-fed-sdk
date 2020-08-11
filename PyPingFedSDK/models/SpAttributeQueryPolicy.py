@@ -16,7 +16,7 @@ class SpAttributeQueryPolicy():
 
     """
 
-    def __init__(self, encryptAssertion=None, requireEncryptedNameId=None, requireSignedAttributeQuery=None, signAssertion=None, signResponse=None) -> None:
+    def __init__(self, encryptAssertion:bool=None, requireEncryptedNameId:bool=None, requireSignedAttributeQuery:bool=None, signAssertion:bool=None, signResponse:bool=None) -> None:
         self.encryptAssertion = encryptAssertion
         self.requireEncryptedNameId = requireEncryptedNameId
         self.requireSignedAttributeQuery = requireSignedAttributeQuery

@@ -26,7 +26,7 @@ class ConnectionCredentials():
 
     """
 
-    def __init__(self, blockEncryptionAlgorithm=None, certs=None, decryptionKeyPairRef=None, inboundBackChannelAuth=None, keyTransportAlgorithm=None, outboundBackChannelAuth=None, secondaryDecryptionKeyPairRef=None, signingSettings=None, verificationIssuerDN=None, verificationSubjectDN=None) -> None:
+    def __init__(self, blockEncryptionAlgorithm:str=None, certs:list=None, decryptionKeyPairRef=None, inboundBackChannelAuth=None, keyTransportAlgorithm:str=None, outboundBackChannelAuth=None, secondaryDecryptionKeyPairRef=None, signingSettings=None, verificationIssuerDN:str=None, verificationSubjectDN:str=None) -> None:
         self.blockEncryptionAlgorithm = blockEncryptionAlgorithm
         self.certs = certs
         self.decryptionKeyPairRef = decryptionKeyPairRef

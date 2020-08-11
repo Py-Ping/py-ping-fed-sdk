@@ -18,7 +18,7 @@ class ClusterNode():
 
     """
 
-    def __init__(self, address=None, index=None, mode=None, nodeGroup=None, nodeTags=None, version=None) -> None:
+    def __init__(self, address:str=None, index:int=None, mode=None, nodeGroup:str=None, nodeTags:str=None, version:str=None) -> None:
         self.address = address
         self.index = index
         self.mode = mode

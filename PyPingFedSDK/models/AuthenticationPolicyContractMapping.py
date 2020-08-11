@@ -18,7 +18,7 @@ class AuthenticationPolicyContractMapping():
 
     """
 
-    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, restrictVirtualServerIds=None, restrictedVirtualServerIds=None) -> None:
+    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources:list=None, issuanceCriteria=None, restrictVirtualServerIds:bool=None, restrictedVirtualServerIds:list=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.authenticationPolicyContractRef = authenticationPolicyContractRef

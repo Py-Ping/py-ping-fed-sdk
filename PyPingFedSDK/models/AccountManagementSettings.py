@@ -16,7 +16,7 @@ class AccountManagementSettings():
 
     """
 
-    def __init__(self, accountStatusAttributeName, accountStatusAlgorithm, defaultStatus=None, flagComparisonStatus=None, flagComparisonValue=None) -> None:
+    def __init__(self, accountStatusAttributeName:str, accountStatusAlgorithm, defaultStatus:bool=None, flagComparisonStatus:bool=None, flagComparisonValue:str=None) -> None:
         self.accountStatusAlgorithm = accountStatusAlgorithm
         self.accountStatusAttributeName = accountStatusAttributeName
         self.defaultStatus = defaultStatus

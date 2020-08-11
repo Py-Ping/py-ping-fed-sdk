@@ -10,7 +10,7 @@ class LicenseAgreementInfo():
 
     """
 
-    def __init__(self, accepted=None, licenseAgreementUrl=None) -> None:
+    def __init__(self, accepted:bool=None, licenseAgreementUrl:str=None) -> None:
         self.accepted = accepted
         self.licenseAgreementUrl = licenseAgreementUrl
 

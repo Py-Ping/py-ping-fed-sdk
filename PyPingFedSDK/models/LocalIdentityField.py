@@ -18,7 +18,7 @@ class LocalIdentityField():
 
     """
 
-    def __init__(self, var_type, var_id, label, attributes=None, profilePageField=None, registrationPageField=None) -> None:
+    def __init__(self, var_type, var_id:str, label:str, attributes=None, profilePageField:bool=None, registrationPageField:bool=None) -> None:
         self.attributes = attributes
         self.var_id = var_id
         self.label = label

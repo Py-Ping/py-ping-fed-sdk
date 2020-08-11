@@ -62,7 +62,7 @@ class LdapDataStore():
 
     """
 
-    def __init__(self, var_type, ldapType, binaryAttributes=None, bindAnonymously=None, connectionTimeout=None, createIfNecessary=None, dnsTtl=None, encryptedPassword=None, followLDAPReferrals=None, hostnames=None, hostnamesTags=None, var_id=None, ldapDnsSrvPrefix=None, ldapsDnsSrvPrefix=None, maskAttributeValues=None, maxConnections=None, maxWait=None, minConnections=None, name=None, password=None, readTimeout=None, testOnBorrow=None, testOnReturn=None, timeBetweenEvictions=None, useDnsSrvRecords=None, useSsl=None, userDN=None, verifyHost=None) -> None:
+    def __init__(self, var_type, ldapType, binaryAttributes:list=None, bindAnonymously:bool=None, connectionTimeout:int=None, createIfNecessary:bool=None, dnsTtl:int=None, encryptedPassword:str=None, followLDAPReferrals:bool=None, hostnames:list=None, hostnamesTags:list=None, var_id:str=None, ldapDnsSrvPrefix:str=None, ldapsDnsSrvPrefix:str=None, maskAttributeValues:bool=None, maxConnections:int=None, maxWait:int=None, minConnections:int=None, name:str=None, password:str=None, readTimeout:int=None, testOnBorrow:bool=None, testOnReturn:bool=None, timeBetweenEvictions:int=None, useDnsSrvRecords:bool=None, useSsl:bool=None, userDN:str=None, verifyHost:bool=None) -> None:
         self.binaryAttributes = binaryAttributes
         self.bindAnonymously = bindAnonymously
         self.connectionTimeout = connectionTimeout

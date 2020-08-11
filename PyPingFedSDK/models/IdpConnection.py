@@ -48,7 +48,7 @@ class IdpConnection():
 
     """
 
-    def __init__(self, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, errorPageMsgId=None, extendedProperties=None, var_id=None, idpBrowserSso=None, idpOAuthGrantAttributeMapping=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, oidcClientCredentials=None, var_type=None, virtualEntityIds=None, wsTrust=None) -> None:
+    def __init__(self, entityId:str, name:str, active:bool=None, additionalAllowedEntitiesConfiguration=None, attributeQuery=None, baseUrl:str=None, contactInfo=None, credentials=None, defaultVirtualEntityId:str=None, errorPageMsgId:str=None, extendedProperties=None, var_id:str=None, idpBrowserSso=None, idpOAuthGrantAttributeMapping=None, licenseConnectionGroup:str=None, loggingMode=None, metadataReloadSettings=None, oidcClientCredentials=None, var_type=None, virtualEntityIds:list=None, wsTrust=None) -> None:
         self.active = active
         self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
         self.attributeQuery = attributeQuery

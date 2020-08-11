@@ -14,7 +14,7 @@ class ValidationError():
 
     """
 
-    def __init__(self, developerMessage=None, errorId=None, fieldPath=None, message=None) -> None:
+    def __init__(self, developerMessage:str=None, errorId:str=None, fieldPath:str=None, message:str=None) -> None:
         self.developerMessage = developerMessage
         self.errorId = errorId
         self.fieldPath = fieldPath

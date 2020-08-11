@@ -30,7 +30,7 @@ class SpWsTrust():
 
     """
 
-    def __init__(self, partnerServiceIds, attributeContract, tokenProcessorMappings, abortIfNotFulfilledFromRequest=None, defaultTokenType=None, encryptSaml2Assertion=None, generateKey=None, messageCustomizations=None, minutesAfter=None, minutesBefore=None, oAuthAssertionProfiles=None, requestContractRef=None) -> None:
+    def __init__(self, partnerServiceIds:list, attributeContract, tokenProcessorMappings:list, abortIfNotFulfilledFromRequest:bool=None, defaultTokenType=None, encryptSaml2Assertion:bool=None, generateKey:bool=None, messageCustomizations:list=None, minutesAfter:int=None, minutesBefore:int=None, oAuthAssertionProfiles:bool=None, requestContractRef=None) -> None:
         self.abortIfNotFulfilledFromRequest = abortIfNotFulfilledFromRequest
         self.attributeContract = attributeContract
         self.defaultTokenType = defaultTokenType

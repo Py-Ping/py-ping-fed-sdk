@@ -10,7 +10,7 @@ class MetadataLifetimeSettings():
 
     """
 
-    def __init__(self, cacheDuration=None, reloadDelay=None) -> None:
+    def __init__(self, cacheDuration:int=None, reloadDelay:int=None) -> None:
         self.cacheDuration = cacheDuration
         self.reloadDelay = reloadDelay
 

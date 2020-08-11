@@ -10,7 +10,7 @@ class ContinuePolicyAction():
 
     """
 
-    def __init__(self, var_type, context=None) -> None:
+    def __init__(self, var_type, context:str=None) -> None:
         self.context = context
         self.var_type = var_type
 

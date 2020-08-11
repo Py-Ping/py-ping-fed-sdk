@@ -24,7 +24,7 @@ class AccessTokenManager():
 
     """
 
-    def __init__(self, var_id, name, pluginDescriptorRef, configuration, accessControlSettings=None, attributeContract=None, parentRef=None, selectionSettings=None, sessionValidationSettings=None) -> None:
+    def __init__(self, var_id:str, name:str, pluginDescriptorRef, configuration, accessControlSettings=None, attributeContract=None, parentRef=None, selectionSettings=None, sessionValidationSettings=None) -> None:
         self.accessControlSettings = accessControlSettings
         self.attributeContract = attributeContract
         self.configuration = configuration

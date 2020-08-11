@@ -12,7 +12,7 @@ class IdpWsTrust():
 
     """
 
-    def __init__(self, attributeContract, generateLocalToken, tokenGeneratorMappings=None) -> None:
+    def __init__(self, attributeContract, generateLocalToken:bool, tokenGeneratorMappings:list=None) -> None:
         self.attributeContract = attributeContract
         self.generateLocalToken = generateLocalToken
         self.tokenGeneratorMappings = tokenGeneratorMappings

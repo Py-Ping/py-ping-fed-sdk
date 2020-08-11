@@ -10,7 +10,7 @@ class SourceTypeIdKey():
 
     """
 
-    def __init__(self, var_type, var_id=None) -> None:
+    def __init__(self, var_type, var_id:str=None) -> None:
         self.var_id = var_id
         self.var_type = var_type
 

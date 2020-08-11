@@ -10,7 +10,7 @@ class ConnectionMetadataUrl():
 
     """
 
-    def __init__(self, metadataUrlRef, enableAutoMetadataUpdate=None) -> None:
+    def __init__(self, metadataUrlRef, enableAutoMetadataUpdate:bool=None) -> None:
         self.enableAutoMetadataUpdate = enableAutoMetadataUpdate
         self.metadataUrlRef = metadataUrlRef
 

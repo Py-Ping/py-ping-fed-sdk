@@ -8,7 +8,7 @@ class BulkConfigMetadata():
 
     """
 
-    def __init__(self, pfVersion) -> None:
+    def __init__(self, pfVersion:str) -> None:
         self.pfVersion = pfVersion
 
     def _validate(self) -> bool:

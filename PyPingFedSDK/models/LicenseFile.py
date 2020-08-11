@@ -8,7 +8,7 @@ class LicenseFile():
 
     """
 
-    def __init__(self, fileData) -> None:
+    def __init__(self, fileData:str) -> None:
         self.fileData = fileData
 
     def _validate(self) -> bool:

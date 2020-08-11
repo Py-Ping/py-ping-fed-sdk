@@ -12,7 +12,7 @@ class IdpAttributeQuery():
 
     """
 
-    def __init__(self, url, nameMappings=None, policy=None) -> None:
+    def __init__(self, url:str, nameMappings:list=None, policy=None) -> None:
         self.nameMappings = nameMappings
         self.policy = policy
         self.url = url

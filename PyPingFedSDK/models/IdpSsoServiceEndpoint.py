@@ -10,7 +10,7 @@ class IdpSsoServiceEndpoint():
 
     """
 
-    def __init__(self, binding, url) -> None:
+    def __init__(self, binding, url:str) -> None:
         self.binding = binding
         self.url = url
 

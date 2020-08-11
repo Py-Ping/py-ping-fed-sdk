@@ -19,7 +19,7 @@ class InboundBackChannelAuth():
 
     """
 
-    def __init__(self, certs=None, digitalSignature=None, httpBasicCredentials=None, requireSsl=None, var_type=None, verificationIssuerDN=None, verificationSubjectDN=None) -> None:
+    def __init__(self, certs:list=None, digitalSignature:bool=None, httpBasicCredentials=None, requireSsl:bool=None, var_type=None, verificationIssuerDN:str=None, verificationSubjectDN:str=None) -> None:
         self.certs = certs
         self.digitalSignature = digitalSignature
         self.httpBasicCredentials = httpBasicCredentials

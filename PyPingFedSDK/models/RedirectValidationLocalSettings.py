@@ -16,7 +16,7 @@ class RedirectValidationLocalSettings():
 
     """
 
-    def __init__(self, enableInErrorResourceValidation=None, enableTargetResourceValidationForIdpDiscovery=None, enableTargetResourceValidationForSLO=None, enableTargetResourceValidationForSSO=None, whiteList=None) -> None:
+    def __init__(self, enableInErrorResourceValidation:bool=None, enableTargetResourceValidationForIdpDiscovery:bool=None, enableTargetResourceValidationForSLO:bool=None, enableTargetResourceValidationForSSO:bool=None, whiteList:list=None) -> None:
         self.enableInErrorResourceValidation = enableInErrorResourceValidation
         self.enableTargetResourceValidationForIdpDiscovery = enableTargetResourceValidationForIdpDiscovery
         self.enableTargetResourceValidationForSLO = enableTargetResourceValidationForSLO

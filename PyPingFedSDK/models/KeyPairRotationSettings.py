@@ -19,7 +19,7 @@ class KeyPairRotationSettings():
 
     """
 
-    def __init__(self, creationBufferDays, activationBufferDays, var_id=None, keyAlgorithm=None, keySize=None, signatureAlgorithm=None, validDays=None) -> None:
+    def __init__(self, creationBufferDays:int, activationBufferDays:int, var_id:str=None, keyAlgorithm:str=None, keySize:int=None, signatureAlgorithm:str=None, validDays:int=None) -> None:
         self.activationBufferDays = activationBufferDays
         self.creationBufferDays = creationBufferDays
         self.var_id = var_id

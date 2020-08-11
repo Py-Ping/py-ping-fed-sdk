@@ -22,7 +22,7 @@ class IdpAdapter():
 
     """
 
-    def __init__(self, var_id, name, pluginDescriptorRef, configuration, attributeContract=None, attributeMapping=None, authnCtxClassRef=None, parentRef=None) -> None:
+    def __init__(self, var_id:str, name:str, pluginDescriptorRef, configuration, attributeContract=None, attributeMapping=None, authnCtxClassRef:str=None, parentRef=None) -> None:
         self.attributeContract = attributeContract
         self.attributeMapping = attributeMapping
         self.authnCtxClassRef = authnCtxClassRef

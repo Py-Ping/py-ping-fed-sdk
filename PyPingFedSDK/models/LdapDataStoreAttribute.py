@@ -10,7 +10,7 @@ class LdapDataStoreAttribute():
 
     """
 
-    def __init__(self, var_type, metadata=None, name=None) -> None:
+    def __init__(self, var_type, metadata=None, name:str=None) -> None:
         self.metadata = metadata
         self.name = name
         self.var_type = var_type

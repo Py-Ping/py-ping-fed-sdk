@@ -26,7 +26,7 @@ class OIDCProviderSettings():
 
     """
 
-    def __init__(self, scopes, authorizationEndpoint, loginType, jwksURL, authenticationScheme=None, authenticationSigningAlgorithm=None, requestParameters=None, requestSigningAlgorithm=None, tokenEndpoint=None, userInfoEndpoint=None) -> None:
+    def __init__(self, scopes:str, authorizationEndpoint:str, loginType, jwksURL:str, authenticationScheme=None, authenticationSigningAlgorithm=None, requestParameters:list=None, requestSigningAlgorithm=None, tokenEndpoint:str=None, userInfoEndpoint:str=None) -> None:
         self.authenticationScheme = authenticationScheme
         self.authenticationSigningAlgorithm = authenticationSigningAlgorithm
         self.authorizationEndpoint = authorizationEndpoint

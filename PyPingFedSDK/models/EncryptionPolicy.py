@@ -14,7 +14,7 @@ class EncryptionPolicy():
 
     """
 
-    def __init__(self, encryptAssertion=None, encryptSloSubjectNameId=None, encryptedAttributes=None, sloSubjectNameIDEncrypted=None) -> None:
+    def __init__(self, encryptAssertion:bool=None, encryptSloSubjectNameId:bool=None, encryptedAttributes:list=None, sloSubjectNameIDEncrypted:bool=None) -> None:
         self.encryptAssertion = encryptAssertion
         self.encryptSloSubjectNameId = encryptSloSubjectNameId
         self.encryptedAttributes = encryptedAttributes

@@ -10,7 +10,7 @@ class ProfileConfig():
 
     """
 
-    def __init__(self, templateName, deleteIdentityEnabled=None) -> None:
+    def __init__(self, templateName:str, deleteIdentityEnabled:bool=None) -> None:
         self.deleteIdentityEnabled = deleteIdentityEnabled
         self.templateName = templateName
 

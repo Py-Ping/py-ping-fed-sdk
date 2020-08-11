@@ -34,7 +34,7 @@ class EmailServerSettings():
 
     """
 
-    def __init__(self, sourceAddr, emailServer, port, encryptedPassword=None, password=None, retryAttempts=None, retryDelay=None, sslPort=None, timeout=None, useDebugging=None, useSSL=None, useTLS=None, username=None, verifyHostname=None) -> None:
+    def __init__(self, sourceAddr:str, emailServer:str, port:int, encryptedPassword:str=None, password:str=None, retryAttempts:int=None, retryDelay:int=None, sslPort:int=None, timeout:int=None, useDebugging:bool=None, useSSL:bool=None, useTLS:bool=None, username:str=None, verifyHostname:bool=None) -> None:
         self.emailServer = emailServer
         self.encryptedPassword = encryptedPassword
         self.password = password

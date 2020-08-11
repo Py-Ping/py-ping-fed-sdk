@@ -12,7 +12,7 @@ class AdditionalAllowedEntitiesConfiguration():
 
     """
 
-    def __init__(self, additionalAllowedEntities=None, allowAdditionalEntities=None, allowAllEntities=None) -> None:
+    def __init__(self, additionalAllowedEntities:list=None, allowAdditionalEntities:bool=None, allowAllEntities:bool=None) -> None:
         self.additionalAllowedEntities = additionalAllowedEntities
         self.allowAdditionalEntities = allowAdditionalEntities
         self.allowAllEntities = allowAllEntities

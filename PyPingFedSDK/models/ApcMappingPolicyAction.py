@@ -14,7 +14,7 @@ class ApcMappingPolicyAction():
 
     """
 
-    def __init__(self, var_type, authenticationPolicyContractRef, attributeMapping, context=None) -> None:
+    def __init__(self, var_type, authenticationPolicyContractRef, attributeMapping, context:str=None) -> None:
         self.attributeMapping = attributeMapping
         self.authenticationPolicyContractRef = authenticationPolicyContractRef
         self.context = context

@@ -12,7 +12,7 @@ class StsRequestParametersContract():
 
     """
 
-    def __init__(self, var_id, name, parameters) -> None:
+    def __init__(self, var_id:str, name:str, parameters:list) -> None:
         self.var_id = var_id
         self.name = name
         self.parameters = parameters

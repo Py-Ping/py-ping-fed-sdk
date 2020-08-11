@@ -8,7 +8,7 @@ class FieldConfig():
 
     """
 
-    def __init__(self, fields=None) -> None:
+    def __init__(self, fields:list=None) -> None:
         self.fields = fields
 
     def _validate(self) -> bool:

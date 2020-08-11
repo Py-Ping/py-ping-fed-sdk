@@ -18,7 +18,7 @@ class IdpAdapterDescriptor():
 
     """
 
-    def __init__(self, attributeContract=None, className=None, configDescriptor=None, var_id=None, name=None, supportsExtendedContract=None) -> None:
+    def __init__(self, attributeContract:list=None, className:str=None, configDescriptor=None, var_id:str=None, name:str=None, supportsExtendedContract:bool=None) -> None:
         self.attributeContract = attributeContract
         self.className = className
         self.configDescriptor = configDescriptor

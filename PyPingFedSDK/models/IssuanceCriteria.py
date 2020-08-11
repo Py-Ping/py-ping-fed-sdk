@@ -10,7 +10,7 @@ class IssuanceCriteria():
 
     """
 
-    def __init__(self, conditionalCriteria=None, expressionCriteria=None) -> None:
+    def __init__(self, conditionalCriteria:list=None, expressionCriteria:list=None) -> None:
         self.conditionalCriteria = conditionalCriteria
         self.expressionCriteria = expressionCriteria
 

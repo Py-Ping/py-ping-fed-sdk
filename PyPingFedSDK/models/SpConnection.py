@@ -48,7 +48,7 @@ class SpConnection():
 
     """
 
-    def __init__(self, var_type, entityId, name, active=None, additionalAllowedEntitiesConfiguration=None, applicationIconUrl=None, applicationName=None, attributeQuery=None, baseUrl=None, contactInfo=None, credentials=None, defaultVirtualEntityId=None, extendedProperties=None, var_id=None, licenseConnectionGroup=None, loggingMode=None, metadataReloadSettings=None, outboundProvision=None, spBrowserSso=None, virtualEntityIds=None, wsTrust=None) -> None:
+    def __init__(self, var_type, entityId:str, name:str, active:bool=None, additionalAllowedEntitiesConfiguration=None, applicationIconUrl:str=None, applicationName:str=None, attributeQuery=None, baseUrl:str=None, contactInfo=None, credentials=None, defaultVirtualEntityId:str=None, extendedProperties=None, var_id:str=None, licenseConnectionGroup:str=None, loggingMode=None, metadataReloadSettings=None, outboundProvision=None, spBrowserSso=None, virtualEntityIds:list=None, wsTrust=None) -> None:
         self.active = active
         self.additionalAllowedEntitiesConfiguration = additionalAllowedEntitiesConfiguration
         self.applicationIconUrl = applicationIconUrl

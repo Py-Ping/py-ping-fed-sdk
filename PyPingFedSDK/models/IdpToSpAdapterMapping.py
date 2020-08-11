@@ -26,7 +26,7 @@ class IdpToSpAdapterMapping():
 
     """
 
-    def __init__(self, attributeContractFulfillment, sourceId, targetId, applicationIconUrl=None, applicationName=None, attributeSources=None, defaultTargetResource=None, var_id=None, issuanceCriteria=None, licenseConnectionGroupAssignment=None) -> None:
+    def __init__(self, attributeContractFulfillment, sourceId:str, targetId:str, applicationIconUrl:str=None, applicationName:str=None, attributeSources:list=None, defaultTargetResource:str=None, var_id:str=None, issuanceCriteria=None, licenseConnectionGroupAssignment:str=None) -> None:
         self.applicationIconUrl = applicationIconUrl
         self.applicationName = applicationName
         self.attributeContractFulfillment = attributeContractFulfillment

@@ -12,7 +12,7 @@ class ScopeEntry():
 
     """
 
-    def __init__(self, name, description, dynamic=None) -> None:
+    def __init__(self, name:str, description:str, dynamic:bool=None) -> None:
         self.description = description
         self.dynamic = dynamic
         self.name = name

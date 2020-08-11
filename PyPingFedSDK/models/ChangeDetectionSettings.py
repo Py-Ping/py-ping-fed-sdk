@@ -16,7 +16,7 @@ class ChangeDetectionSettings():
 
     """
 
-    def __init__(self, userObjectClass, groupObjectClass, changedUsersAlgorithm, timeStampAttributeName, usnAttributeName=None) -> None:
+    def __init__(self, userObjectClass:str, groupObjectClass:str, changedUsersAlgorithm, timeStampAttributeName:str, usnAttributeName:str=None) -> None:
         self.changedUsersAlgorithm = changedUsersAlgorithm
         self.groupObjectClass = groupObjectClass
         self.timeStampAttributeName = timeStampAttributeName

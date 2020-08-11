@@ -10,7 +10,7 @@ class MetadataEventNotificationSettings():
 
     """
 
-    def __init__(self, emailAddress, notificationPublisherRef=None) -> None:
+    def __init__(self, emailAddress:str, notificationPublisherRef=None) -> None:
         self.emailAddress = emailAddress
         self.notificationPublisherRef = notificationPublisherRef
 

@@ -8,7 +8,7 @@ class PasswordCredentialValidatorAttribute():
 
     """
 
-    def __init__(self, name) -> None:
+    def __init__(self, name:str) -> None:
         self.name = name
 
     def _validate(self) -> bool:

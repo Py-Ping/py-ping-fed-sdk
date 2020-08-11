@@ -18,7 +18,7 @@ class ConvertMetadataRequest():
 
     """
 
-    def __init__(self, connectionType, expectedProtocol, samlMetadata, expectedEntityId=None, templateConnection=None, verificationCertificate=None) -> None:
+    def __init__(self, connectionType, expectedProtocol, samlMetadata:str, expectedEntityId:str=None, templateConnection=None, verificationCertificate:str=None) -> None:
         self.connectionType = connectionType
         self.expectedEntityId = expectedEntityId
         self.expectedProtocol = expectedProtocol

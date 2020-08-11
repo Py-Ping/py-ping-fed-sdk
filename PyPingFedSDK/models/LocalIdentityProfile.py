@@ -30,7 +30,7 @@ class LocalIdentityProfile():
 
     """
 
-    def __init__(self, name, apcId, authSourceUpdatePolicy=None, authSources=None, dataStoreConfig=None, emailVerificationConfig=None, fieldConfig=None, var_id=None, profileConfig=None, profileEnabled=None, registrationConfig=None, registrationEnabled=None) -> None:
+    def __init__(self, name:str, apcId, authSourceUpdatePolicy=None, authSources:list=None, dataStoreConfig=None, emailVerificationConfig=None, fieldConfig=None, var_id:str=None, profileConfig=None, profileEnabled:bool=None, registrationConfig=None, registrationEnabled:bool=None) -> None:
         self.apcId = apcId
         self.authSourceUpdatePolicy = authSourceUpdatePolicy
         self.authSources = authSources

@@ -10,7 +10,7 @@ class ResourceLink():
 
     """
 
-    def __init__(self, var_id, location=None) -> None:
+    def __init__(self, var_id:str, location:str=None) -> None:
         self.var_id = var_id
         self.location = location
 

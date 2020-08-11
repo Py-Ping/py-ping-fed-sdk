@@ -12,7 +12,7 @@ class X509File():
 
     """
 
-    def __init__(self, fileData, cryptoProvider=None, var_id=None) -> None:
+    def __init__(self, fileData:str, cryptoProvider=None, var_id:str=None) -> None:
         self.cryptoProvider = cryptoProvider
         self.fileData = fileData
         self.var_id = var_id

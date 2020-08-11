@@ -14,7 +14,7 @@ class IdpAdapterContractMapping():
 
     """
 
-    def __init__(self, attributeContractFulfillment, attributeSources=None, inherited=None, issuanceCriteria=None) -> None:
+    def __init__(self, attributeContractFulfillment, attributeSources:list=None, inherited:bool=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.inherited = inherited

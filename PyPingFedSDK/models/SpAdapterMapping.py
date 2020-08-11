@@ -20,7 +20,7 @@ class SpAdapterMapping():
 
     """
 
-    def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
+    def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources:list=None, issuanceCriteria=None, restrictVirtualEntityIds:bool=None, restrictedVirtualEntityIds:list=None) -> None:
         self.adapterOverrideSettings = adapterOverrideSettings
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources

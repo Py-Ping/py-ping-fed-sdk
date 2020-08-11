@@ -10,7 +10,7 @@ class AttributeFulfillmentValue():
 
     """
 
-    def __init__(self, source, value) -> None:
+    def __init__(self, source, value:str) -> None:
         self.source = source
         self.value = value
 

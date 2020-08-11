@@ -12,7 +12,7 @@ class ClientMetadata():
 
     """
 
-    def __init__(self, description=None, multiValued=None, parameter=None) -> None:
+    def __init__(self, description:str=None, multiValued:bool=None, parameter:str=None) -> None:
         self.description = description
         self.multiValued = multiValued
         self.parameter = parameter

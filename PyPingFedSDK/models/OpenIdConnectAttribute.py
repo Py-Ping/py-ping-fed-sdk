@@ -12,7 +12,7 @@ class OpenIdConnectAttribute():
 
     """
 
-    def __init__(self, name, includeInIdToken=None, includeInUserInfo=None) -> None:
+    def __init__(self, name:str, includeInIdToken:bool=None, includeInUserInfo:bool=None) -> None:
         self.includeInIdToken = includeInIdToken
         self.includeInUserInfo = includeInUserInfo
         self.name = name

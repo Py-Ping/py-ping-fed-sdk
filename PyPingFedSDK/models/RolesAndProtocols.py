@@ -14,7 +14,7 @@ class RolesAndProtocols():
 
     """
 
-    def __init__(self, enableIdpDiscovery=None, idpRole=None, oauthRole=None, spRole=None) -> None:
+    def __init__(self, enableIdpDiscovery:bool=None, idpRole=None, oauthRole=None, spRole=None) -> None:
         self.enableIdpDiscovery = enableIdpDiscovery
         self.idpRole = idpRole
         self.oauthRole = oauthRole

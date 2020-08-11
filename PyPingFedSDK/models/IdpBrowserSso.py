@@ -46,7 +46,7 @@ class IdpBrowserSso():
 
     """
 
-    def __init__(self, protocol, idpIdentityMapping, adapterMappings=None, artifact=None, assertionsSigned=None, attributeContract=None, authenticationPolicyContractMappings=None, authnContextMappings=None, decryptionPolicy=None, defaultTargetUrl=None, enabledProfiles=None, incomingBindings=None, messageCustomizations=None, oauthAuthenticationPolicyContractRef=None, oidcProviderSettings=None, signAuthnRequests=None, sloServiceEndpoints=None, ssoOAuthMapping=None, ssoServiceEndpoints=None, urlWhitelistEntries=None) -> None:
+    def __init__(self, protocol, idpIdentityMapping, adapterMappings:list=None, artifact=None, assertionsSigned:bool=None, attributeContract=None, authenticationPolicyContractMappings:list=None, authnContextMappings:list=None, decryptionPolicy=None, defaultTargetUrl:str=None, enabledProfiles=None, incomingBindings=None, messageCustomizations:list=None, oauthAuthenticationPolicyContractRef=None, oidcProviderSettings=None, signAuthnRequests:bool=None, sloServiceEndpoints:list=None, ssoOAuthMapping=None, ssoServiceEndpoints:list=None, urlWhitelistEntries:list=None) -> None:
         self.adapterMappings = adapterMappings
         self.artifact = artifact
         self.assertionsSigned = assertionsSigned

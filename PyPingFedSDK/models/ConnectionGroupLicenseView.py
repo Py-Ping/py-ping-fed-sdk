@@ -14,7 +14,7 @@ class ConnectionGroupLicenseView():
 
     """
 
-    def __init__(self, connectionCount=None, endDate=None, name=None, startDate=None) -> None:
+    def __init__(self, connectionCount:int=None, endDate:str=None, name:str=None, startDate:str=None) -> None:
         self.connectionCount = connectionCount
         self.endDate = endDate
         self.name = name

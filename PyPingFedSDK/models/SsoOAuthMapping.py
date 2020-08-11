@@ -12,7 +12,7 @@ class SsoOAuthMapping():
 
     """
 
-    def __init__(self, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None) -> None:
+    def __init__(self, attributeContractFulfillment, attributeSources:list=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.issuanceCriteria = issuanceCriteria

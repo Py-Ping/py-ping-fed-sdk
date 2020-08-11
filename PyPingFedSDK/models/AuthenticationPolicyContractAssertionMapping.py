@@ -20,7 +20,7 @@ class AuthenticationPolicyContractAssertionMapping():
 
     """
 
-    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
+    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe:bool=None, attributeSources:list=None, issuanceCriteria=None, restrictVirtualEntityIds:bool=None, restrictedVirtualEntityIds:list=None) -> None:
         self.abortSsoTransactionAsFailSafe = abortSsoTransactionAsFailSafe
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources

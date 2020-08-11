@@ -10,7 +10,7 @@ class AttributeRules():
 
     """
 
-    def __init__(self, fallbackToSuccess=None, items=None) -> None:
+    def __init__(self, fallbackToSuccess:bool=None, items:list=None) -> None:
         self.fallbackToSuccess = fallbackToSuccess
         self.items = items
 

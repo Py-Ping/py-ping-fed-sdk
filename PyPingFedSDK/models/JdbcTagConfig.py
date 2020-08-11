@@ -12,7 +12,7 @@ class JdbcTagConfig():
 
     """
 
-    def __init__(self, connectionUrl, defaultSource=None, tags=None) -> None:
+    def __init__(self, connectionUrl:str, defaultSource:bool=None, tags:str=None) -> None:
         self.connectionUrl = connectionUrl
         self.defaultSource = defaultSource
         self.tags = tags

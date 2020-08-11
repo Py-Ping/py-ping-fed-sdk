@@ -12,7 +12,7 @@ class BackChannelAuth():
 
     """
 
-    def __init__(self, var_type, digitalSignature=None, httpBasicCredentials=None) -> None:
+    def __init__(self, var_type, digitalSignature:bool=None, httpBasicCredentials=None) -> None:
         self.digitalSignature = digitalSignature
         self.httpBasicCredentials = httpBasicCredentials
         self.var_type = var_type

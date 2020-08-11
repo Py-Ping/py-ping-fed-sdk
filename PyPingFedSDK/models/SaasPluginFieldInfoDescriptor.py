@@ -34,7 +34,7 @@ class SaasPluginFieldInfoDescriptor():
 
     """
 
-    def __init__(self, code, label, attributeGroup=None, defaultValue=None, dsLdapMap=None, maxLength=None, minLength=None, multiValue=None, notes=None, options=None, pattern=None, persistForMembership=None, required=None, unique=None) -> None:
+    def __init__(self, code:str, label:str, attributeGroup:bool=None, defaultValue:str=None, dsLdapMap:bool=None, maxLength:int=None, minLength:int=None, multiValue:bool=None, notes:list=None, options:list=None, pattern=None, persistForMembership:bool=None, required:bool=None, unique:bool=None) -> None:
         self.attributeGroup = attributeGroup
         self.code = code
         self.defaultValue = defaultValue

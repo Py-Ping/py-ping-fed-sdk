@@ -16,7 +16,7 @@ class NotificationPublisher():
 
     """
 
-    def __init__(self, var_id, name, pluginDescriptorRef, configuration, parentRef=None) -> None:
+    def __init__(self, var_id:str, name:str, pluginDescriptorRef, configuration, parentRef=None) -> None:
         self.configuration = configuration
         self.var_id = var_id
         self.name = name

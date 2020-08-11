@@ -16,7 +16,7 @@ class DecryptionPolicy():
 
     """
 
-    def __init__(self, assertionEncrypted=None, attributesEncrypted=None, sloEncryptSubjectNameID=None, sloSubjectNameIDEncrypted=None, subjectNameIdEncrypted=None) -> None:
+    def __init__(self, assertionEncrypted:bool=None, attributesEncrypted:bool=None, sloEncryptSubjectNameID:bool=None, sloSubjectNameIDEncrypted:bool=None, subjectNameIdEncrypted:bool=None) -> None:
         self.assertionEncrypted = assertionEncrypted
         self.attributesEncrypted = attributesEncrypted
         self.sloEncryptSubjectNameID = sloEncryptSubjectNameID

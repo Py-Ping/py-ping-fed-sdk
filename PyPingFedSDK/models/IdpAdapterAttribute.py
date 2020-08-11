@@ -12,7 +12,7 @@ class IdpAdapterAttribute():
 
     """
 
-    def __init__(self, name, masked=None, pseudonym=None) -> None:
+    def __init__(self, name:str, masked:bool=None, pseudonym:bool=None) -> None:
         self.masked = masked
         self.name = name
         self.pseudonym = pseudonym

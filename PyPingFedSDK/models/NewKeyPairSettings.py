@@ -32,7 +32,7 @@ class NewKeyPairSettings():
 
     """
 
-    def __init__(self, commonName, organization, country, validDays, keyAlgorithm, city=None, cryptoProvider=None, var_id=None, keySize=None, organizationUnit=None, signatureAlgorithm=None, state=None, subjectAlternativeNames=None) -> None:
+    def __init__(self, commonName:str, organization:str, country:str, validDays:int, keyAlgorithm:str, city:str=None, cryptoProvider=None, var_id:str=None, keySize:int=None, organizationUnit:str=None, signatureAlgorithm:str=None, state:str=None, subjectAlternativeNames:list=None) -> None:
         self.city = city
         self.commonName = commonName
         self.country = country

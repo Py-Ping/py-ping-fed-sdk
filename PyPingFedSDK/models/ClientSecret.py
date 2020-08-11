@@ -10,7 +10,7 @@ class ClientSecret():
 
     """
 
-    def __init__(self, encryptedSecret=None, secret=None) -> None:
+    def __init__(self, encryptedSecret:str=None, secret:str=None) -> None:
         self.encryptedSecret = encryptedSecret
         self.secret = secret
 

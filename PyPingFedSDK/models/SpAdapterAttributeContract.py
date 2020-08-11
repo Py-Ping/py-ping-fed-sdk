@@ -12,7 +12,7 @@ class SpAdapterAttributeContract():
 
     """
 
-    def __init__(self, coreAttributes=None, extendedAttributes=None, inherited=None) -> None:
+    def __init__(self, coreAttributes:list=None, extendedAttributes:list=None, inherited:bool=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
         self.inherited = inherited

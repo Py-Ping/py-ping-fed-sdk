@@ -22,7 +22,7 @@ class RadioGroupFieldDescriptor():
 
     """
 
-    def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, optionValues=None, required=None, var_type=None) -> None:
+    def __init__(self, advanced:bool=None, defaultValue:str=None, description:str=None, label:str=None, name:str=None, optionValues:list=None, required:bool=None, var_type=None) -> None:
         self.advanced = advanced
         self.defaultValue = defaultValue
         self.description = description

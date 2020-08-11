@@ -16,7 +16,7 @@ class ApcToPersistentGrantMapping():
 
     """
 
-    def __init__(self, var_id, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None) -> None:
+    def __init__(self, var_id:str, authenticationPolicyContractRef, attributeContractFulfillment, attributeSources:list=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.authenticationPolicyContractRef = authenticationPolicyContractRef

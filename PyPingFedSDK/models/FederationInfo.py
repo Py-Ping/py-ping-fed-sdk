@@ -18,7 +18,7 @@ class FederationInfo():
 
     """
 
-    def __init__(self, autoConnectEntityId=None, baseUrl=None, saml1xIssuerId=None, saml1xSourceId=None, saml2EntityId=None, wsfedRealm=None) -> None:
+    def __init__(self, autoConnectEntityId:str=None, baseUrl:str=None, saml1xIssuerId:str=None, saml1xSourceId:str=None, saml2EntityId:str=None, wsfedRealm:str=None) -> None:
         self.autoConnectEntityId = autoConnectEntityId
         self.baseUrl = baseUrl
         self.saml1xIssuerId = saml1xIssuerId

@@ -10,7 +10,7 @@ class MetadataSigningSettings():
 
     """
 
-    def __init__(self, signatureAlgorithm=None, signingKeyRef=None) -> None:
+    def __init__(self, signatureAlgorithm:str=None, signingKeyRef=None) -> None:
         self.signatureAlgorithm = signatureAlgorithm
         self.signingKeyRef = signingKeyRef
 

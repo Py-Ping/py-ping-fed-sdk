@@ -20,7 +20,7 @@ class TokenExchangeProcessorMapping():
 
     """
 
-    def __init__(self, attributeContractFulfillment, subjectTokenType, subjectTokenProcessor, actorTokenProcessor=None, actorTokenType=None, attributeSources=None, issuanceCriteria=None) -> None:
+    def __init__(self, attributeContractFulfillment, subjectTokenType:str, subjectTokenProcessor, actorTokenProcessor=None, actorTokenType:str=None, attributeSources:list=None, issuanceCriteria=None) -> None:
         self.actorTokenProcessor = actorTokenProcessor
         self.actorTokenType = actorTokenType
         self.attributeContractFulfillment = attributeContractFulfillment

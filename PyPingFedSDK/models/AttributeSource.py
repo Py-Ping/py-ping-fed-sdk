@@ -16,7 +16,7 @@ class AttributeSource():
 
     """
 
-    def __init__(self, var_type, dataStoreRef, attributeContractFulfillment=None, description=None, var_id=None) -> None:
+    def __init__(self, var_type, dataStoreRef, attributeContractFulfillment=None, description:str=None, var_id:str=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.dataStoreRef = dataStoreRef
         self.description = description

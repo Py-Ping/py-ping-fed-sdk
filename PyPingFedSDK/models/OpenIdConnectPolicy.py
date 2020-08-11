@@ -28,7 +28,7 @@ class OpenIdConnectPolicy():
 
     """
 
-    def __init__(self, var_id, name, accessTokenManagerRef, attributeContract, attributeMapping, idTokenLifetime=None, includeSHashInIdToken=None, includeSriInIdToken=None, includeUserInfoInIdToken=None, returnIdTokenOnRefreshGrant=None, scopeAttributeMappings=None) -> None:
+    def __init__(self, var_id:str, name:str, accessTokenManagerRef, attributeContract, attributeMapping, idTokenLifetime:int=None, includeSHashInIdToken:bool=None, includeSriInIdToken:bool=None, includeUserInfoInIdToken:bool=None, returnIdTokenOnRefreshGrant:bool=None, scopeAttributeMappings=None) -> None:
         self.accessTokenManagerRef = accessTokenManagerRef
         self.attributeContract = attributeContract
         self.attributeMapping = attributeMapping

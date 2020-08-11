@@ -1,15 +1,16 @@
-import logging
-import requests
 import os
+import logging
+from requests import Session
 from requests.exceptions import HTTPError
 
 
 class _keyPairs_signing():
-    def __init__(self, endpoint: str) -> None:
+    def __init__(self, endpoint:str, session:Session) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._keyPairs_signing')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
+        self.session = session
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
@@ -19,7 +20,7 @@ class _keyPairs_signing():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/keyPairs/signing"),
                 headers={'Accept': 'application/json'}
@@ -44,7 +45,7 @@ class _keyPairs_signing():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/keyPairs/signing/import"),
                 headers={'Accept': 'application/json'}
@@ -75,7 +76,7 @@ class _keyPairs_signing():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/keyPairs/signing/generate"),
                 headers={'Accept': 'application/json'}
@@ -99,7 +100,7 @@ class _keyPairs_signing():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/keyPairs/signing/{id}"),
                 headers={'Accept': 'application/json'}
@@ -121,7 +122,7 @@ class _keyPairs_signing():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/keyPairs/signing/{id}"),
                 headers={'Accept': 'application/json'}
@@ -145,7 +146,7 @@ class _keyPairs_signing():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/keyPairs/signing/{id}/csr"),
                 headers={'Accept': 'application/json'}
@@ -171,7 +172,7 @@ class _keyPairs_signing():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/keyPairs/signing/{id}/csr"),
                 headers={'Accept': 'application/json'}
@@ -203,7 +204,7 @@ class _keyPairs_signing():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/keyPairs/signing/{id}/pkcs12"),
                 headers={'Accept': 'application/json'}
@@ -229,7 +230,7 @@ class _keyPairs_signing():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/keyPairs/signing/{id}/certificate"),
                 headers={'Accept': 'application/json'}
@@ -251,7 +252,7 @@ class _keyPairs_signing():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/keyPairs/signing/{id}/rotationSettings"),
                 headers={'Accept': 'application/json'}
@@ -279,7 +280,7 @@ class _keyPairs_signing():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/keyPairs/signing/{id}/rotationSettings"),
                 headers={'Accept': 'application/json'}
@@ -305,7 +306,7 @@ class _keyPairs_signing():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/keyPairs/signing/{id}/rotationSettings"),
                 headers={'Accept': 'application/json'}

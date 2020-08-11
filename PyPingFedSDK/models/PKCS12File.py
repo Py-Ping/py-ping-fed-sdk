@@ -16,7 +16,7 @@ class PKCS12File():
 
     """
 
-    def __init__(self, fileData, password, encryptedPassword, cryptoProvider=None, var_id=None) -> None:
+    def __init__(self, fileData:str, password:str, encryptedPassword:str, cryptoProvider=None, var_id:str=None) -> None:
         self.cryptoProvider = cryptoProvider
         self.encryptedPassword = encryptedPassword
         self.fileData = fileData

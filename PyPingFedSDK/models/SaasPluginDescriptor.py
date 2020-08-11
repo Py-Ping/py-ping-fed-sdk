@@ -14,7 +14,7 @@ class SaasPluginDescriptor():
 
     """
 
-    def __init__(self, configDescriptor=None, description=None, var_id=None, saasPluginFieldInfoDescriptors=None) -> None:
+    def __init__(self, configDescriptor=None, description:str=None, var_id:str=None, saasPluginFieldInfoDescriptors:list=None) -> None:
         self.configDescriptor = configDescriptor
         self.description = description
         self.var_id = var_id

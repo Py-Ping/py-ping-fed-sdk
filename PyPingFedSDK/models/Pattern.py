@@ -8,7 +8,7 @@ class Pattern():
 
     """
 
-    def __init__(self, flags=None, pattern=None) -> None:
+    def __init__(self, flags:int=None, pattern:str=None) -> None:
         self.flags = flags
         self.pattern = pattern
 

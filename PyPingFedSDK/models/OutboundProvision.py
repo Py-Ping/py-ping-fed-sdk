@@ -14,7 +14,7 @@ class OutboundProvision():
 
     """
 
-    def __init__(self, var_type, targetSettings, channels, customSchema=None) -> None:
+    def __init__(self, var_type:str, targetSettings:list, channels:list, customSchema=None) -> None:
         self.channels = channels
         self.customSchema = customSchema
         self.targetSettings = targetSettings

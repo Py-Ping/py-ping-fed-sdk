@@ -12,7 +12,7 @@ class CaptchaSettings():
 
     """
 
-    def __init__(self, encryptedSecretKey=None, secretKey=None, siteKey=None) -> None:
+    def __init__(self, encryptedSecretKey:str=None, secretKey:str=None, siteKey:str=None) -> None:
         self.encryptedSecretKey = encryptedSecretKey
         self.secretKey = secretKey
         self.siteKey = siteKey

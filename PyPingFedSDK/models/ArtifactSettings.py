@@ -12,7 +12,7 @@ class ArtifactSettings():
 
     """
 
-    def __init__(self, lifetime, resolverLocations, sourceId=None) -> None:
+    def __init__(self, lifetime:int, resolverLocations:list, sourceId:str=None) -> None:
         self.lifetime = lifetime
         self.resolverLocations = resolverLocations
         self.sourceId = sourceId

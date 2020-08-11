@@ -12,7 +12,7 @@ class SpDefaultUrls():
 
     """
 
-    def __init__(self, confirmSlo=None, sloSuccessUrl=None, ssoSuccessUrl=None) -> None:
+    def __init__(self, confirmSlo:bool=None, sloSuccessUrl:str=None, ssoSuccessUrl:str=None) -> None:
         self.confirmSlo = confirmSlo
         self.sloSuccessUrl = sloSuccessUrl
         self.ssoSuccessUrl = ssoSuccessUrl

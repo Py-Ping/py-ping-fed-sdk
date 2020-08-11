@@ -16,7 +16,7 @@ class Action():
 
     """
 
-    def __init__(self, description=None, download=None, var_id=None, invocationRef=None, name=None) -> None:
+    def __init__(self, description:str=None, download:bool=None, var_id:str=None, invocationRef=None, name:str=None) -> None:
         self.description = description
         self.download = download
         self.var_id = var_id

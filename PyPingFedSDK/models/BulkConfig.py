@@ -10,7 +10,7 @@ class BulkConfig():
 
     """
 
-    def __init__(self, metadata, operations) -> None:
+    def __init__(self, metadata, operations:list) -> None:
         self.metadata = metadata
         self.operations = operations
 

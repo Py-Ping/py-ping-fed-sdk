@@ -12,7 +12,7 @@ class ScopeGroupEntry():
 
     """
 
-    def __init__(self, name, description, scopes) -> None:
+    def __init__(self, name:str, description:str, scopes) -> None:
         self.description = description
         self.name = name
         self.scopes = scopes

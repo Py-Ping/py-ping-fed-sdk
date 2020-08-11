@@ -12,7 +12,7 @@ class UsernamePasswordCredentials():
 
     """
 
-    def __init__(self, encryptedPassword=None, password=None, username=None) -> None:
+    def __init__(self, encryptedPassword:str=None, password:str=None, username:str=None) -> None:
         self.encryptedPassword = encryptedPassword
         self.password = password
         self.username = username

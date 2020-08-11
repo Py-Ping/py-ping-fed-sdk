@@ -8,7 +8,7 @@ class ParameterValues():
 
     """
 
-    def __init__(self, values=None) -> None:
+    def __init__(self, values:list=None) -> None:
         self.values = values
 
     def _validate(self) -> bool:

@@ -12,7 +12,7 @@ class SpAdapterTargetApplicationInfo():
 
     """
 
-    def __init__(self, applicationIconUrl=None, applicationName=None, inherited=None) -> None:
+    def __init__(self, applicationIconUrl:str=None, applicationName:str=None, inherited:bool=None) -> None:
         self.applicationIconUrl = applicationIconUrl
         self.applicationName = applicationName
         self.inherited = inherited

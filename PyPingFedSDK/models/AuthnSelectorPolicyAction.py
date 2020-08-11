@@ -12,7 +12,7 @@ class AuthnSelectorPolicyAction():
 
     """
 
-    def __init__(self, var_type, authenticationSelectorRef, context=None) -> None:
+    def __init__(self, var_type, authenticationSelectorRef, context:str=None) -> None:
         self.authenticationSelectorRef = authenticationSelectorRef
         self.context = context
         self.var_type = var_type

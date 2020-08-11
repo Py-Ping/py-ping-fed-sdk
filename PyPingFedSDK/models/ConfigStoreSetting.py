@@ -16,7 +16,7 @@ class ConfigStoreSetting():
 
     """
 
-    def __init__(self, var_id, var_type, listValue=None, mapValue=None, stringValue=None) -> None:
+    def __init__(self, var_id:str, var_type, listValue:list=None, mapValue=None, stringValue:str=None) -> None:
         self.var_id = var_id
         self.listValue = listValue
         self.mapValue = mapValue

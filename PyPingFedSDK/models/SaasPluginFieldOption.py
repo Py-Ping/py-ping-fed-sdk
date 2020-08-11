@@ -10,7 +10,7 @@ class SaasPluginFieldOption():
 
     """
 
-    def __init__(self, code, label) -> None:
+    def __init__(self, code:str, label:str) -> None:
         self.code = code
         self.label = label
 

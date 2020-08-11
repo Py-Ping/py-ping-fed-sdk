@@ -16,7 +16,7 @@ class NotificationSettings():
 
     """
 
-    def __init__(self, accountChangesNotificationPublisherRef=None, certificateExpirations=None, licenseEvents=None, metadataNotificationSettings=None, notifyAdminUserPasswordChanges=None) -> None:
+    def __init__(self, accountChangesNotificationPublisherRef=None, certificateExpirations=None, licenseEvents=None, metadataNotificationSettings=None, notifyAdminUserPasswordChanges:bool=None) -> None:
         self.accountChangesNotificationPublisherRef = accountChangesNotificationPublisherRef
         self.certificateExpirations = certificateExpirations
         self.licenseEvents = licenseEvents

@@ -14,7 +14,7 @@ class SessionValidationSettings():
 
     """
 
-    def __init__(self, checkSessionRevocationStatus=None, checkValidAuthnSession=None, inherited=None, updateAuthnSessionActivity=None) -> None:
+    def __init__(self, checkSessionRevocationStatus:bool=None, checkValidAuthnSession:bool=None, inherited:bool=None, updateAuthnSessionActivity:bool=None) -> None:
         self.checkSessionRevocationStatus = checkSessionRevocationStatus
         self.checkValidAuthnSession = checkValidAuthnSession
         self.inherited = inherited

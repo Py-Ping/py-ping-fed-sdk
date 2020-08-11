@@ -10,7 +10,7 @@ class ApplicationSessionPolicy():
 
     """
 
-    def __init__(self, idleTimeoutMins=None, maxTimeoutMins=None) -> None:
+    def __init__(self, idleTimeoutMins:int=None, maxTimeoutMins:int=None) -> None:
         self.idleTimeoutMins = idleTimeoutMins
         self.maxTimeoutMins = maxTimeoutMins
 

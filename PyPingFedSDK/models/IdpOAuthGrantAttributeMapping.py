@@ -10,7 +10,7 @@ class IdpOAuthGrantAttributeMapping():
 
     """
 
-    def __init__(self, accessTokenManagerMappings=None, idpOAuthAttributeContract=None) -> None:
+    def __init__(self, accessTokenManagerMappings:list=None, idpOAuthAttributeContract=None) -> None:
         self.accessTokenManagerMappings = accessTokenManagerMappings
         self.idpOAuthAttributeContract = idpOAuthAttributeContract
 

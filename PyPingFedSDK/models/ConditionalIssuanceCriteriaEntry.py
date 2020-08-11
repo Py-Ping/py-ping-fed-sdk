@@ -16,7 +16,7 @@ class ConditionalIssuanceCriteriaEntry():
 
     """
 
-    def __init__(self, source, attributeName, condition, value, errorResult=None) -> None:
+    def __init__(self, source, attributeName:str, condition, value:str, errorResult:str=None) -> None:
         self.attributeName = attributeName
         self.condition = condition
         self.errorResult = errorResult

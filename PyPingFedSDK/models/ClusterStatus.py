@@ -16,7 +16,7 @@ class ClusterStatus():
 
     """
 
-    def __init__(self, lastConfigUpdateTime=None, lastReplicationTime=None, mixedMode=None, nodes=None, replicationRequired=None) -> None:
+    def __init__(self, lastConfigUpdateTime:str=None, lastReplicationTime:str=None, mixedMode:bool=None, nodes:list=None, replicationRequired:bool=None) -> None:
         self.lastConfigUpdateTime = lastConfigUpdateTime
         self.lastReplicationTime = lastReplicationTime
         self.mixedMode = mixedMode

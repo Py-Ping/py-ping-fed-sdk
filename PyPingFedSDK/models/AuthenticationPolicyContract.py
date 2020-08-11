@@ -14,7 +14,7 @@ class AuthenticationPolicyContract():
 
     """
 
-    def __init__(self, coreAttributes=None, extendedAttributes=None, var_id=None, name=None) -> None:
+    def __init__(self, coreAttributes:list=None, extendedAttributes:list=None, var_id:str=None, name:str=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
         self.var_id = var_id

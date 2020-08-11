@@ -10,7 +10,7 @@ class OptionValue():
 
     """
 
-    def __init__(self, name=None, value=None) -> None:
+    def __init__(self, name:str=None, value:str=None) -> None:
         self.name = name
         self.value = value
 

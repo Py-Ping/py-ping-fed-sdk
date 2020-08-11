@@ -26,7 +26,7 @@ class LdapAttributeSource():
 
     """
 
-    def __init__(self, var_type, dataStoreRef, searchScope, searchFilter, attributeContractFulfillment=None, baseDn=None, binaryAttributeSettings=None, description=None, var_id=None, memberOfNestedGroup=None) -> None:
+    def __init__(self, var_type, dataStoreRef, searchScope, searchFilter:str, attributeContractFulfillment=None, baseDn:str=None, binaryAttributeSettings=None, description:str=None, var_id:str=None, memberOfNestedGroup:bool=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.baseDn = baseDn
         self.binaryAttributeSettings = binaryAttributeSettings

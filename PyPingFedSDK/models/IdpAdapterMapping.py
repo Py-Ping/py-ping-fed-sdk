@@ -16,7 +16,7 @@ class IdpAdapterMapping():
 
     """
 
-    def __init__(self, var_id, attributeContractFulfillment, attributeSources=None, idpAdapterRef=None, issuanceCriteria=None) -> None:
+    def __init__(self, var_id:str, attributeContractFulfillment, attributeSources:list=None, idpAdapterRef=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.var_id = var_id

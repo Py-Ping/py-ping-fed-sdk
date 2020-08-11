@@ -10,7 +10,7 @@ class IdpWsTrustAttribute():
 
     """
 
-    def __init__(self, name, masked=None) -> None:
+    def __init__(self, name:str, masked:bool=None) -> None:
         self.masked = masked
         self.name = name
 

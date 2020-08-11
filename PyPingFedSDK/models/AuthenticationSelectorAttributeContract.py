@@ -8,7 +8,7 @@ class AuthenticationSelectorAttributeContract():
 
     """
 
-    def __init__(self, extendedAttributes=None) -> None:
+    def __init__(self, extendedAttributes:list=None) -> None:
         self.extendedAttributes = extendedAttributes
 
     def _validate(self) -> bool:

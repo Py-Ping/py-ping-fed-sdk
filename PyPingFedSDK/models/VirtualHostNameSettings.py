@@ -8,7 +8,7 @@ class VirtualHostNameSettings():
 
     """
 
-    def __init__(self, virtualHostNames=None) -> None:
+    def __init__(self, virtualHostNames:list=None) -> None:
         self.virtualHostNames = virtualHostNames
 
     def _validate(self) -> bool:

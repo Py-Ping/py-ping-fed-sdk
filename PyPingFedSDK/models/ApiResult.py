@@ -14,7 +14,7 @@ class ApiResult():
 
     """
 
-    def __init__(self, developerMessage=None, message=None, resultId=None, validationErrors=None) -> None:
+    def __init__(self, developerMessage:str=None, message:str=None, resultId:str=None, validationErrors:list=None) -> None:
         self.developerMessage = developerMessage
         self.message = message
         self.resultId = resultId

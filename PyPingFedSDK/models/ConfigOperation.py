@@ -16,7 +16,7 @@ class ConfigOperation():
 
     """
 
-    def __init__(self, resourceType, operationType, itemIds=None, items=None, subResource=None) -> None:
+    def __init__(self, resourceType:str, operationType, itemIds:list=None, items:list=None, subResource:str=None) -> None:
         self.itemIds = itemIds
         self.items = items
         self.operationType = operationType

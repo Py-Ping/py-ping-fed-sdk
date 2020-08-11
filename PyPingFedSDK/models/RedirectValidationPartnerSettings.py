@@ -8,7 +8,7 @@ class RedirectValidationPartnerSettings():
 
     """
 
-    def __init__(self, enableWreplyValidationSLO=None) -> None:
+    def __init__(self, enableWreplyValidationSLO:bool=None) -> None:
         self.enableWreplyValidationSLO = enableWreplyValidationSLO
 
     def _validate(self) -> bool:

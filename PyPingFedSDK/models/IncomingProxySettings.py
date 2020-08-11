@@ -20,7 +20,7 @@ class IncomingProxySettings():
 
     """
 
-    def __init__(self, clientCertChainSSLHeaderName=None, clientCertSSLHeaderName=None, forwardedHostHeaderIndex=None, forwardedHostHeaderName=None, forwardedIpAddressHeaderIndex=None, forwardedIpAddressHeaderName=None, proxyTerminatesHttpsConns=None) -> None:
+    def __init__(self, clientCertChainSSLHeaderName:str=None, clientCertSSLHeaderName:str=None, forwardedHostHeaderIndex=None, forwardedHostHeaderName:str=None, forwardedIpAddressHeaderIndex=None, forwardedIpAddressHeaderName:str=None, proxyTerminatesHttpsConns:bool=None) -> None:
         self.clientCertChainSSLHeaderName = clientCertChainSSLHeaderName
         self.clientCertSSLHeaderName = clientCertSSLHeaderName
         self.forwardedHostHeaderIndex = forwardedHostHeaderIndex

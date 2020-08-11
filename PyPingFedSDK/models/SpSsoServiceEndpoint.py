@@ -14,7 +14,7 @@ class SpSsoServiceEndpoint():
 
     """
 
-    def __init__(self, binding, url, index, isDefault=None) -> None:
+    def __init__(self, binding, url:str, index:int, isDefault:bool=None) -> None:
         self.binding = binding
         self.index = index
         self.isDefault = isDefault

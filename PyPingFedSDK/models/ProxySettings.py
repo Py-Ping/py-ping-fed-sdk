@@ -10,7 +10,7 @@ class ProxySettings():
 
     """
 
-    def __init__(self, host=None, port=None) -> None:
+    def __init__(self, host:str=None, port:int=None) -> None:
         self.host = host
         self.port = port
 

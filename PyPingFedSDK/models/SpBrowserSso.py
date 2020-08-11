@@ -48,7 +48,7 @@ class SpBrowserSso():
 
     """
 
-    def __init__(self, protocol, ssoServiceEndpoints, encryptionPolicy, attributeContract, adapterMappings, assertionLifetime, artifact=None, authenticationPolicyContractAssertionMappings=None, defaultTargetUrl=None, enabledProfiles=None, incomingBindings=None, messageCustomizations=None, requireSignedAuthnRequests=None, signAssertions=None, signResponseAsRequired=None, sloServiceEndpoints=None, spSamlIdentityMapping=None, spWsFedIdentityMapping=None, urlWhitelistEntries=None, wsFedTokenType=None, wsTrustVersion=None) -> None:
+    def __init__(self, protocol, ssoServiceEndpoints:list, encryptionPolicy, attributeContract, adapterMappings:list, assertionLifetime, artifact=None, authenticationPolicyContractAssertionMappings:list=None, defaultTargetUrl:str=None, enabledProfiles=None, incomingBindings=None, messageCustomizations:list=None, requireSignedAuthnRequests:bool=None, signAssertions:bool=None, signResponseAsRequired:bool=None, sloServiceEndpoints:list=None, spSamlIdentityMapping=None, spWsFedIdentityMapping=None, urlWhitelistEntries:list=None, wsFedTokenType=None, wsTrustVersion=None) -> None:
         self.adapterMappings = adapterMappings
         self.artifact = artifact
         self.assertionLifetime = assertionLifetime

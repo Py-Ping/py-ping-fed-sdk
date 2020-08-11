@@ -12,7 +12,7 @@ class TokenExchangeGeneratorMapping():
 
     """
 
-    def __init__(self, requestedTokenType, tokenGenerator, defaultMapping=None) -> None:
+    def __init__(self, requestedTokenType:str, tokenGenerator, defaultMapping:bool=None) -> None:
         self.defaultMapping = defaultMapping
         self.requestedTokenType = requestedTokenType
         self.tokenGenerator = tokenGenerator

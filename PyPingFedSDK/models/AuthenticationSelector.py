@@ -16,7 +16,7 @@ class AuthenticationSelector():
 
     """
 
-    def __init__(self, var_id, name, pluginDescriptorRef, configuration, attributeContract=None) -> None:
+    def __init__(self, var_id:str, name:str, pluginDescriptorRef, configuration, attributeContract=None) -> None:
         self.attributeContract = attributeContract
         self.configuration = configuration
         self.var_id = var_id

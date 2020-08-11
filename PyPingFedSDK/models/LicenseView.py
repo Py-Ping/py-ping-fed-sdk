@@ -38,7 +38,7 @@ class LicenseView():
 
     """
 
-    def __init__(self, enforcementType=None, expirationDate=None, gracePeriod=None, var_id=None, issueDate=None, licenseGroups=None, maxConnections=None, name=None, nodeLimit=None, oauthEnabled=None, organization=None, product=None, provisioningEnabled=None, tier=None, version=None, wsTrustEnabled=None) -> None:
+    def __init__(self, enforcementType:str=None, expirationDate:str=None, gracePeriod:int=None, var_id:str=None, issueDate:str=None, licenseGroups:list=None, maxConnections:int=None, name:str=None, nodeLimit:int=None, oauthEnabled:bool=None, organization:str=None, product:str=None, provisioningEnabled:bool=None, tier:str=None, version:str=None, wsTrustEnabled:bool=None) -> None:
         self.enforcementType = enforcementType
         self.expirationDate = expirationDate
         self.gracePeriod = gracePeriod

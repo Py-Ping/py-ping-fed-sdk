@@ -14,7 +14,7 @@ class KerberosRealmsSettings():
 
     """
 
-    def __init__(self, kdcRetries, kdcTimeout, debugLogOutput=None, forceTcp=None) -> None:
+    def __init__(self, kdcRetries:str, kdcTimeout:str, debugLogOutput:bool=None, forceTcp:bool=None) -> None:
         self.debugLogOutput = debugLogOutput
         self.forceTcp = forceTcp
         self.kdcRetries = kdcRetries

@@ -16,7 +16,7 @@ class AuthnApiApplication():
 
     """
 
-    def __init__(self, var_id, name, url, additionalAllowedOrigins=None, description=None) -> None:
+    def __init__(self, var_id:str, name:str, url:str, additionalAllowedOrigins:list=None, description:str=None) -> None:
         self.additionalAllowedOrigins = additionalAllowedOrigins
         self.description = description
         self.var_id = var_id

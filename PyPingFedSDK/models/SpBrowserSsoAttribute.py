@@ -10,7 +10,7 @@ class SpBrowserSsoAttribute():
 
     """
 
-    def __init__(self, nameFormat, name) -> None:
+    def __init__(self, nameFormat:str, name:str) -> None:
         self.name = name
         self.nameFormat = nameFormat
 

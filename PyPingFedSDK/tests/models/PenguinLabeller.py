@@ -8,7 +8,7 @@ class PenguinLabeller():
 
     """
 
-    def __init__(self, PenguinNames=None) -> None:
+    def __init__(self, PenguinNames:list=None) -> None:
         self.PenguinNames = PenguinNames
 
     def _validate(self) -> bool:

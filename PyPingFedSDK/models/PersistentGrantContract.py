@@ -10,7 +10,7 @@ class PersistentGrantContract():
 
     """
 
-    def __init__(self, coreAttributes, extendedAttributes=None) -> None:
+    def __init__(self, coreAttributes:list, extendedAttributes:list=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
 

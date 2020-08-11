@@ -16,7 +16,7 @@ class TableDescriptor():
 
     """
 
-    def __init__(self, columns=None, description=None, label=None, name=None, requireDefaultRow=None) -> None:
+    def __init__(self, columns:list=None, description:str=None, label:str=None, name:str=None, requireDefaultRow:bool=None) -> None:
         self.columns = columns
         self.description = description
         self.label = label

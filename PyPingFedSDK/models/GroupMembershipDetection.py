@@ -10,7 +10,7 @@ class GroupMembershipDetection():
 
     """
 
-    def __init__(self, groupMemberAttributeName, memberOfGroupAttributeName=None) -> None:
+    def __init__(self, groupMemberAttributeName:str, memberOfGroupAttributeName:str=None) -> None:
         self.groupMemberAttributeName = groupMemberAttributeName
         self.memberOfGroupAttributeName = memberOfGroupAttributeName
 

@@ -22,7 +22,7 @@ class IdpAdapterAssertionMapping():
 
     """
 
-    def __init__(self, idpAdapterRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
+    def __init__(self, idpAdapterRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe:bool=None, adapterOverrideSettings=None, attributeSources:list=None, issuanceCriteria=None, restrictVirtualEntityIds:bool=None, restrictedVirtualEntityIds:list=None) -> None:
         self.abortSsoTransactionAsFailSafe = abortSsoTransactionAsFailSafe
         self.adapterOverrideSettings = adapterOverrideSettings
         self.attributeContractFulfillment = attributeContractFulfillment

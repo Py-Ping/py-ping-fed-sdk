@@ -10,7 +10,7 @@ class OutboundProvisionDatabase():
 
     """
 
-    def __init__(self, dataStoreRef, synchronizationFrequency=None) -> None:
+    def __init__(self, dataStoreRef, synchronizationFrequency:int=None) -> None:
         self.dataStoreRef = dataStoreRef
         self.synchronizationFrequency = synchronizationFrequency
 

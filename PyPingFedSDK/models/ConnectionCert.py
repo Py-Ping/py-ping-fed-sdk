@@ -18,7 +18,7 @@ class ConnectionCert():
 
     """
 
-    def __init__(self, x509File, activeVerificationCert=None, certView=None, encryptionCert=None, primaryVerificationCert=None, secondaryVerificationCert=None) -> None:
+    def __init__(self, x509File, activeVerificationCert:bool=None, certView=None, encryptionCert:bool=None, primaryVerificationCert:bool=None, secondaryVerificationCert:bool=None) -> None:
         self.activeVerificationCert = activeVerificationCert
         self.certView = certView
         self.encryptionCert = encryptionCert

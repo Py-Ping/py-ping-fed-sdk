@@ -10,7 +10,7 @@ class SpWsTrustAttribute():
 
     """
 
-    def __init__(self, namespace, name) -> None:
+    def __init__(self, namespace:str, name:str) -> None:
         self.name = name
         self.namespace = namespace
 

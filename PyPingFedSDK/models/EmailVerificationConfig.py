@@ -24,7 +24,7 @@ class EmailVerificationConfig():
 
     """
 
-    def __init__(self, fieldForEmailToVerify, fieldStoringVerificationStatus, emailVerificationEnabled=None, emailVerificationErrorTemplateName=None, emailVerificationSentTemplateName=None, emailVerificationSuccessTemplateName=None, notificationPublisherRef=None, otlTimeToLive=None, verifyEmailTemplateName=None) -> None:
+    def __init__(self, fieldForEmailToVerify:str, fieldStoringVerificationStatus:str, emailVerificationEnabled:bool=None, emailVerificationErrorTemplateName:str=None, emailVerificationSentTemplateName:str=None, emailVerificationSuccessTemplateName:str=None, notificationPublisherRef=None, otlTimeToLive:int=None, verifyEmailTemplateName:str=None) -> None:
         self.emailVerificationEnabled = emailVerificationEnabled
         self.emailVerificationErrorTemplateName = emailVerificationErrorTemplateName
         self.emailVerificationSentTemplateName = emailVerificationSentTemplateName

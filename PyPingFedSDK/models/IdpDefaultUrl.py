@@ -12,7 +12,7 @@ class IdpDefaultUrl():
 
     """
 
-    def __init__(self, idpErrorMsg, confirmIdpSlo=None, idpSloSuccessUrl=None) -> None:
+    def __init__(self, idpErrorMsg:str, confirmIdpSlo:bool=None, idpSloSuccessUrl:str=None) -> None:
         self.confirmIdpSlo = confirmIdpSlo
         self.idpErrorMsg = idpErrorMsg
         self.idpSloSuccessUrl = idpSloSuccessUrl

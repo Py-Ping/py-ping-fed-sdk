@@ -16,7 +16,7 @@ class SpAttributeQuery():
 
     """
 
-    def __init__(self, attributes, attributeSources, attributeContractFulfillment, issuanceCriteria=None, policy=None) -> None:
+    def __init__(self, attributes, attributeSources:list, attributeContractFulfillment, issuanceCriteria=None, policy=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.attributes = attributes

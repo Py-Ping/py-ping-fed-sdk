@@ -10,7 +10,7 @@ class AuthnContextMapping():
 
     """
 
-    def __init__(self, local=None, remote=None) -> None:
+    def __init__(self, local:str=None, remote:str=None) -> None:
         self.local = local
         self.remote = remote
 

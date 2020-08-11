@@ -10,7 +10,7 @@ class Entity():
 
     """
 
-    def __init__(self, entityDescription=None, entityId=None) -> None:
+    def __init__(self, entityDescription:str=None, entityId:str=None) -> None:
         self.entityDescription = entityDescription
         self.entityId = entityId
 

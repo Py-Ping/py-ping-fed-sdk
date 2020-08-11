@@ -12,7 +12,7 @@ class ServiceModel():
 
     """
 
-    def __init__(self, encryptedSharedSecret=None, var_id=None, sharedSecret=None) -> None:
+    def __init__(self, encryptedSharedSecret:str=None, var_id:str=None, sharedSecret:str=None) -> None:
         self.encryptedSharedSecret = encryptedSharedSecret
         self.var_id = var_id
         self.sharedSecret = sharedSecret

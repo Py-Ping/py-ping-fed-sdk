@@ -24,7 +24,7 @@ class ChannelSource():
 
     """
 
-    def __init__(self, dataSource, guidAttributeName, guidBinary, changeDetectionSettings, groupMembershipDetection, accountManagementSettings, baseDn, userSourceLocation, groupSourceLocation=None) -> None:
+    def __init__(self, dataSource, guidAttributeName:str, guidBinary:bool, changeDetectionSettings, groupMembershipDetection, accountManagementSettings, baseDn:str, userSourceLocation, groupSourceLocation=None) -> None:
         self.accountManagementSettings = accountManagementSettings
         self.baseDn = baseDn
         self.changeDetectionSettings = changeDetectionSettings

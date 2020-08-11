@@ -10,7 +10,7 @@ class AuthenticationPolicyTreeNode():
 
     """
 
-    def __init__(self, action, children=None) -> None:
+    def __init__(self, action, children:list=None) -> None:
         self.action = action
         self.children = children
 

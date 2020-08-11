@@ -12,7 +12,7 @@ class OIDCSessionSettings():
 
     """
 
-    def __init__(self, revokeUserSessionOnLogout=None, sessionRevocationLifetime=None, trackUserSessionsForLogout=None) -> None:
+    def __init__(self, revokeUserSessionOnLogout:bool=None, sessionRevocationLifetime:int=None, trackUserSessionsForLogout:bool=None) -> None:
         self.revokeUserSessionOnLogout = revokeUserSessionOnLogout
         self.sessionRevocationLifetime = sessionRevocationLifetime
         self.trackUserSessionsForLogout = trackUserSessionsForLogout

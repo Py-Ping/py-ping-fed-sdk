@@ -14,7 +14,7 @@ class SchemaAttribute():
 
     """
 
-    def __init__(self, multiValued=None, name=None, subAttributes=None, types=None) -> None:
+    def __init__(self, multiValued:bool=None, name:str=None, subAttributes:list=None, types:list=None) -> None:
         self.multiValued = multiValued
         self.name = name
         self.subAttributes = subAttributes

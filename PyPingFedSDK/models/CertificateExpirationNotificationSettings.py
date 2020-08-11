@@ -14,7 +14,7 @@ class CertificateExpirationNotificationSettings():
 
     """
 
-    def __init__(self, emailAddress, finalWarningPeriod, initialWarningPeriod=None, notificationPublisherRef=None) -> None:
+    def __init__(self, emailAddress:str, finalWarningPeriod:int, initialWarningPeriod:int=None, notificationPublisherRef=None) -> None:
         self.emailAddress = emailAddress
         self.finalWarningPeriod = finalWarningPeriod
         self.initialWarningPeriod = initialWarningPeriod

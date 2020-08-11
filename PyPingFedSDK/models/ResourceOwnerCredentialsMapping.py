@@ -16,7 +16,7 @@ class ResourceOwnerCredentialsMapping():
 
     """
 
-    def __init__(self, var_id, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, passwordValidatorRef=None) -> None:
+    def __init__(self, var_id:str, attributeContractFulfillment, attributeSources:list=None, issuanceCriteria=None, passwordValidatorRef=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.var_id = var_id

@@ -18,7 +18,7 @@ class LdapDataStoreConfig():
 
     """
 
-    def __init__(self, var_type, dataStoreRef, baseDn, createPattern, objectClass, dataStoreMapping) -> None:
+    def __init__(self, var_type, dataStoreRef, baseDn:str, createPattern:str, objectClass:str, dataStoreMapping) -> None:
         self.baseDn = baseDn
         self.createPattern = createPattern
         self.dataStoreMapping = dataStoreMapping

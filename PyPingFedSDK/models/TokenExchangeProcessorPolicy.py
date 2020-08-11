@@ -16,7 +16,7 @@ class TokenExchangeProcessorPolicy():
 
     """
 
-    def __init__(self, var_id, name, processorMappings, attributeContract, actorTokenRequired=None) -> None:
+    def __init__(self, var_id:str, name:str, processorMappings:list, attributeContract, actorTokenRequired:bool=None) -> None:
         self.actorTokenRequired = actorTokenRequired
         self.attributeContract = attributeContract
         self.var_id = var_id

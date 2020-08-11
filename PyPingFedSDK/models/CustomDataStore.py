@@ -20,7 +20,7 @@ class CustomDataStore():
 
     """
 
-    def __init__(self, var_type, name, pluginDescriptorRef, configuration, var_id=None, maskAttributeValues=None, parentRef=None) -> None:
+    def __init__(self, var_type, name:str, pluginDescriptorRef, configuration, var_id:str=None, maskAttributeValues:bool=None, parentRef=None) -> None:
         self.configuration = configuration
         self.var_id = var_id
         self.maskAttributeValues = maskAttributeValues

@@ -14,7 +14,7 @@ class AccessTokenManagerMapping():
 
     """
 
-    def __init__(self, attributeContractFulfillment, accessTokenManagerRef=None, attributeSources=None, issuanceCriteria=None) -> None:
+    def __init__(self, attributeContractFulfillment, accessTokenManagerRef=None, attributeSources:list=None, issuanceCriteria=None) -> None:
         self.accessTokenManagerRef = accessTokenManagerRef
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources

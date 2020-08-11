@@ -8,7 +8,7 @@ class Schema():
 
     """
 
-    def __init__(self, attributes=None, namespace=None) -> None:
+    def __init__(self, attributes:list=None, namespace:str=None) -> None:
         self.attributes = attributes
         self.namespace = namespace
 

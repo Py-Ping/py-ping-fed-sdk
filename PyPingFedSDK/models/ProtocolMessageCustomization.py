@@ -10,7 +10,7 @@ class ProtocolMessageCustomization():
 
     """
 
-    def __init__(self, contextName=None, messageExpression=None) -> None:
+    def __init__(self, contextName:str=None, messageExpression:str=None) -> None:
         self.contextName = contextName
         self.messageExpression = messageExpression
 

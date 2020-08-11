@@ -1,15 +1,16 @@
-import logging
-import requests
 import os
+import logging
+from requests import Session
 from requests.exceptions import HTTPError
 
 
 class _idp_spConnections():
-    def __init__(self, endpoint: str) -> None:
+    def __init__(self, endpoint:str, session:Session) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL._idp_spConnections')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
         self.endpoint = endpoint
+        self.session = session
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
@@ -19,7 +20,7 @@ class _idp_spConnections():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/idp/spConnections"),
                 headers={'Accept': 'application/json'}
@@ -49,7 +50,7 @@ class _idp_spConnections():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/idp/spConnections"),
                 headers={'Accept': 'application/json'}
@@ -75,7 +76,7 @@ class _idp_spConnections():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/idp/spConnections/{id}"),
                 headers={'Accept': 'application/json'}
@@ -106,7 +107,7 @@ class _idp_spConnections():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/idp/spConnections/{id}"),
                 headers={'Accept': 'application/json'}
@@ -134,7 +135,7 @@ class _idp_spConnections():
         """
 
         try:
-            response = requests.delete(
+            response = self.session.delete(
 
                 url=self._build_uri("/idp/spConnections/{id}"),
                 headers={'Accept': 'application/json'}
@@ -160,7 +161,7 @@ class _idp_spConnections():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/idp/spConnections/{id}/credentials/signingSettings"),
                 headers={'Accept': 'application/json'}
@@ -190,7 +191,7 @@ class _idp_spConnections():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/idp/spConnections/{id}/credentials/signingSettings"),
                 headers={'Accept': 'application/json'}
@@ -224,7 +225,7 @@ class _idp_spConnections():
         }
 
         try:
-            response = requests.post(
+            response = self.session.post(
                 data=payload,
                 url=self._build_uri("/idp/spConnections/{id}/credentials/certs"),
                 headers={'Accept': 'application/json'}
@@ -252,7 +253,7 @@ class _idp_spConnections():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/idp/spConnections/{id}/credentials/certs"),
                 headers={'Accept': 'application/json'}
@@ -282,7 +283,7 @@ class _idp_spConnections():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/idp/spConnections/{id}/credentials/certs"),
                 headers={'Accept': 'application/json'}
@@ -310,7 +311,7 @@ class _idp_spConnections():
         """
 
         try:
-            response = requests.get(
+            response = self.session.get(
 
                 url=self._build_uri("/idp/spConnections/{id}/credentials/decryptionKeys"),
                 headers={'Accept': 'application/json'}
@@ -340,7 +341,7 @@ class _idp_spConnections():
         }
 
         try:
-            response = requests.put(
+            response = self.session.put(
                 data=payload,
                 url=self._build_uri("/idp/spConnections/{id}/credentials/decryptionKeys"),
                 headers={'Accept': 'application/json'}
