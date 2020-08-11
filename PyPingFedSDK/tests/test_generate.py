@@ -140,7 +140,7 @@ class TestGenerate(TestCase):
         ), Penguin.Penguin(**penguin_dict))
 
     @patch("apis._penguins.logging")
-    @patch("apis._penguins.requests")
+    @patch("apis._penguins.Session")
     def test_api(self, requests_mock, logging_mock):
         """
             Dynamically import the created api module, instantiate the class
