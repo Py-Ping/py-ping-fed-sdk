@@ -16,6 +16,8 @@ python-decouple = "*"
 PyYAML = "*"
 Jinja2 = "*"
 requests = "*"
+sphinx = "*"
+guzzle-sphinx-theme = "*"
 
 [requires]
 python_version = "3.6"
