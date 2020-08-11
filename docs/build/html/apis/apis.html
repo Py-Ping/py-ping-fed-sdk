@@ -1,0 +1,482 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="../_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="../_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>APIs &#8212; PyPingFedSDK 0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models" href="../models/models.html" />
+    <link rel="prev" title="Welcome to PyPingFedSDK’s documentation!" href="../index.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../models/models.html" title="Models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to PyPingFedSDK’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar"><div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_tokenProcessors">_idp_tokenProcessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._protocolMetadata">_protocolMetadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_adapters">_idp_adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._incomingProxySettings">_incomingProxySettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._serviceAuthentication">_serviceAuthentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._license">_license</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._administrativeAccounts">_administrativeAccounts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_tokenGenerators">_sp_tokenGenerators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._configStore">_configStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._certificates_revocation">_certificates_revocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_connectors">_idp_connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._idpToSpAdapterMapping">_idpToSpAdapterMapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_adapters">_sp_adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_targetUrlMappings">_sp_targetUrlMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_defaultUrls">_idp_defaultUrls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_stsRequestParametersContracts">_idp_stsRequestParametersContracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_spConnections">_idp_spConnections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_defaultUrls">_sp_defaultUrls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_idpConnections">_sp_idpConnections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_authenticationPolicyContractMappings">_sp_authenticationPolicyContractMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._extendedProperties">_extendedProperties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._bulk">_bulk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationPolicies">_authenticationPolicies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_generator">_oauth_tokenExchange_generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_processor">_oauth_tokenExchange_processor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationSelectors">_authenticationSelectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._dataStores">_dataStores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._localIdentity_identityProfiles">_localIdentity_identityProfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_cibaServerPolicy">_oauth_cibaServerPolicy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._passwordCredentialValidators">_passwordCredentialValidators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._kerberos_realms">_kerberos_realms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationApi">_authenticationApi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationPolicyContracts">_authenticationPolicyContracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._session">_session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs">_keyPairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_outOfBandAuthPlugins">_oauth_outOfBandAuthPlugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_signing">_keyPairs_signing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_sslServer">_keyPairs_sslServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_sslClient">_keyPairs_sslClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._certificates_ca">_certificates_ca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_authServerSettings">_oauth_authServerSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_oauthOpenIdConnect">_keyPairs_oauthOpenIdConnect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_accessTokenManagers">_oauth_accessTokenManagers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_openIdConnect">_oauth_openIdConnect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_clients">_oauth_clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_clientSettings">_oauth_clientSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_clientRegistrationPolicies">_oauth_clientRegistrationPolicies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_resourceOwnerCredentialsMappings">_oauth_resourceOwnerCredentialsMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_authenticationPolicyContractMappings">_oauth_authenticationPolicyContractMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_idpAdapterMappings">_oauth_idpAdapterMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_accessTokenMappings">_oauth_accessTokenMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._notificationPublishers">_notificationPublishers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._tokenProcessorToTokenGeneratorMappings">_tokenProcessorToTokenGeneratorMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_tokenGeneratorMappings">_oauth_tokenExchange_tokenGeneratorMappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._serverSettings">_serverSettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._redirectValidation">_redirectValidation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._cluster">_cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._virtualHostNames">_virtualHostNames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._configArchive">_configArchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._connectionMetadata">_connectionMetadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._metadataUrls">_metadataUrls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PyPingFedSDK.apis._version">_version</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/models.html">Models</a></li>
+</ul>
+
+    
+  </div>
+</div>
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="../search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="../index.html">Docs</a></li>
+              
+              <li>APIs</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="apis">
+<h1><a class="toc-backref" href="#id1">APIs</a><a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#apis" id="id1">APIs</a><ul>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_tokenProcessors" id="id2">_idp_tokenProcessors</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._protocolMetadata" id="id3">_protocolMetadata</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_adapters" id="id4">_idp_adapters</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._incomingProxySettings" id="id5">_incomingProxySettings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._serviceAuthentication" id="id6">_serviceAuthentication</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._license" id="id7">_license</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._administrativeAccounts" id="id8">_administrativeAccounts</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_tokenGenerators" id="id9">_sp_tokenGenerators</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._configStore" id="id10">_configStore</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._certificates_revocation" id="id11">_certificates_revocation</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_connectors" id="id12">_idp_connectors</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._idpToSpAdapterMapping" id="id13">_idpToSpAdapterMapping</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_adapters" id="id14">_sp_adapters</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_targetUrlMappings" id="id15">_sp_targetUrlMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_defaultUrls" id="id16">_idp_defaultUrls</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_stsRequestParametersContracts" id="id17">_idp_stsRequestParametersContracts</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._idp_spConnections" id="id18">_idp_spConnections</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_defaultUrls" id="id19">_sp_defaultUrls</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_idpConnections" id="id20">_sp_idpConnections</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._sp_authenticationPolicyContractMappings" id="id21">_sp_authenticationPolicyContractMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._extendedProperties" id="id22">_extendedProperties</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._bulk" id="id23">_bulk</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationPolicies" id="id24">_authenticationPolicies</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_generator" id="id25">_oauth_tokenExchange_generator</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_processor" id="id26">_oauth_tokenExchange_processor</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationSelectors" id="id27">_authenticationSelectors</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._dataStores" id="id28">_dataStores</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._localIdentity_identityProfiles" id="id29">_localIdentity_identityProfiles</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_cibaServerPolicy" id="id30">_oauth_cibaServerPolicy</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._passwordCredentialValidators" id="id31">_passwordCredentialValidators</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._kerberos_realms" id="id32">_kerberos_realms</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationApi" id="id33">_authenticationApi</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._authenticationPolicyContracts" id="id34">_authenticationPolicyContracts</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._session" id="id35">_session</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs" id="id36">_keyPairs</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_outOfBandAuthPlugins" id="id37">_oauth_outOfBandAuthPlugins</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_signing" id="id38">_keyPairs_signing</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_sslServer" id="id39">_keyPairs_sslServer</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_sslClient" id="id40">_keyPairs_sslClient</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._certificates_ca" id="id41">_certificates_ca</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_authServerSettings" id="id42">_oauth_authServerSettings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._keyPairs_oauthOpenIdConnect" id="id43">_keyPairs_oauthOpenIdConnect</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_accessTokenManagers" id="id44">_oauth_accessTokenManagers</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_openIdConnect" id="id45">_oauth_openIdConnect</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_clients" id="id46">_oauth_clients</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_clientSettings" id="id47">_oauth_clientSettings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_clientRegistrationPolicies" id="id48">_oauth_clientRegistrationPolicies</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_resourceOwnerCredentialsMappings" id="id49">_oauth_resourceOwnerCredentialsMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_authenticationPolicyContractMappings" id="id50">_oauth_authenticationPolicyContractMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_idpAdapterMappings" id="id51">_oauth_idpAdapterMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_accessTokenMappings" id="id52">_oauth_accessTokenMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._notificationPublishers" id="id53">_notificationPublishers</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._tokenProcessorToTokenGeneratorMappings" id="id54">_tokenProcessorToTokenGeneratorMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_tokenGeneratorMappings" id="id55">_oauth_tokenExchange_tokenGeneratorMappings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._serverSettings" id="id56">_serverSettings</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._redirectValidation" id="id57">_redirectValidation</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._cluster" id="id58">_cluster</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._virtualHostNames" id="id59">_virtualHostNames</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._configArchive" id="id60">_configArchive</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._connectionMetadata" id="id61">_connectionMetadata</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._metadataUrls" id="id62">_metadataUrls</a></li>
+<li><a class="reference internal" href="#module-PyPingFedSDK.apis._version" id="id63">_version</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._idp_tokenProcessors">
+<span id="idp-tokenprocessors"></span><h2><a class="toc-backref" href="#id2">_idp_tokenProcessors</a><a class="headerlink" href="#module-PyPingFedSDK.apis._idp_tokenProcessors" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._protocolMetadata">
+<span id="protocolmetadata"></span><h2><a class="toc-backref" href="#id3">_protocolMetadata</a><a class="headerlink" href="#module-PyPingFedSDK.apis._protocolMetadata" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._idp_adapters">
+<span id="idp-adapters"></span><h2><a class="toc-backref" href="#id4">_idp_adapters</a><a class="headerlink" href="#module-PyPingFedSDK.apis._idp_adapters" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._incomingProxySettings">
+<span id="incomingproxysettings"></span><h2><a class="toc-backref" href="#id5">_incomingProxySettings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._incomingProxySettings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._serviceAuthentication">
+<span id="serviceauthentication"></span><h2><a class="toc-backref" href="#id6">_serviceAuthentication</a><a class="headerlink" href="#module-PyPingFedSDK.apis._serviceAuthentication" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._license">
+<span id="license"></span><h2><a class="toc-backref" href="#id7">_license</a><a class="headerlink" href="#module-PyPingFedSDK.apis._license" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._administrativeAccounts">
+<span id="administrativeaccounts"></span><h2><a class="toc-backref" href="#id8">_administrativeAccounts</a><a class="headerlink" href="#module-PyPingFedSDK.apis._administrativeAccounts" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._sp_tokenGenerators">
+<span id="sp-tokengenerators"></span><h2><a class="toc-backref" href="#id9">_sp_tokenGenerators</a><a class="headerlink" href="#module-PyPingFedSDK.apis._sp_tokenGenerators" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._configStore">
+<span id="configstore"></span><h2><a class="toc-backref" href="#id10">_configStore</a><a class="headerlink" href="#module-PyPingFedSDK.apis._configStore" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._certificates_revocation">
+<span id="certificates-revocation"></span><h2><a class="toc-backref" href="#id11">_certificates_revocation</a><a class="headerlink" href="#module-PyPingFedSDK.apis._certificates_revocation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._idp_connectors">
+<span id="idp-connectors"></span><h2><a class="toc-backref" href="#id12">_idp_connectors</a><a class="headerlink" href="#module-PyPingFedSDK.apis._idp_connectors" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._idpToSpAdapterMapping">
+<span id="idptospadaptermapping"></span><h2><a class="toc-backref" href="#id13">_idpToSpAdapterMapping</a><a class="headerlink" href="#module-PyPingFedSDK.apis._idpToSpAdapterMapping" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._sp_adapters">
+<span id="sp-adapters"></span><h2><a class="toc-backref" href="#id14">_sp_adapters</a><a class="headerlink" href="#module-PyPingFedSDK.apis._sp_adapters" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._sp_targetUrlMappings">
+<span id="sp-targeturlmappings"></span><h2><a class="toc-backref" href="#id15">_sp_targetUrlMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._sp_targetUrlMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._idp_defaultUrls">
+<span id="idp-defaulturls"></span><h2><a class="toc-backref" href="#id16">_idp_defaultUrls</a><a class="headerlink" href="#module-PyPingFedSDK.apis._idp_defaultUrls" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._idp_stsRequestParametersContracts">
+<span id="idp-stsrequestparameterscontracts"></span><h2><a class="toc-backref" href="#id17">_idp_stsRequestParametersContracts</a><a class="headerlink" href="#module-PyPingFedSDK.apis._idp_stsRequestParametersContracts" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._idp_spConnections">
+<span id="idp-spconnections"></span><h2><a class="toc-backref" href="#id18">_idp_spConnections</a><a class="headerlink" href="#module-PyPingFedSDK.apis._idp_spConnections" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._sp_defaultUrls">
+<span id="sp-defaulturls"></span><h2><a class="toc-backref" href="#id19">_sp_defaultUrls</a><a class="headerlink" href="#module-PyPingFedSDK.apis._sp_defaultUrls" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._sp_idpConnections">
+<span id="sp-idpconnections"></span><h2><a class="toc-backref" href="#id20">_sp_idpConnections</a><a class="headerlink" href="#module-PyPingFedSDK.apis._sp_idpConnections" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._sp_authenticationPolicyContractMappings">
+<span id="sp-authenticationpolicycontractmappings"></span><h2><a class="toc-backref" href="#id21">_sp_authenticationPolicyContractMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._sp_authenticationPolicyContractMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._extendedProperties">
+<span id="extendedproperties"></span><h2><a class="toc-backref" href="#id22">_extendedProperties</a><a class="headerlink" href="#module-PyPingFedSDK.apis._extendedProperties" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._bulk">
+<span id="bulk"></span><h2><a class="toc-backref" href="#id23">_bulk</a><a class="headerlink" href="#module-PyPingFedSDK.apis._bulk" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._authenticationPolicies">
+<span id="authenticationpolicies"></span><h2><a class="toc-backref" href="#id24">_authenticationPolicies</a><a class="headerlink" href="#module-PyPingFedSDK.apis._authenticationPolicies" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_tokenExchange_generator">
+<span id="oauth-tokenexchange-generator"></span><h2><a class="toc-backref" href="#id25">_oauth_tokenExchange_generator</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_generator" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_tokenExchange_processor">
+<span id="oauth-tokenexchange-processor"></span><h2><a class="toc-backref" href="#id26">_oauth_tokenExchange_processor</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_processor" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._authenticationSelectors">
+<span id="authenticationselectors"></span><h2><a class="toc-backref" href="#id27">_authenticationSelectors</a><a class="headerlink" href="#module-PyPingFedSDK.apis._authenticationSelectors" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._dataStores">
+<span id="datastores"></span><h2><a class="toc-backref" href="#id28">_dataStores</a><a class="headerlink" href="#module-PyPingFedSDK.apis._dataStores" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._localIdentity_identityProfiles">
+<span id="localidentity-identityprofiles"></span><h2><a class="toc-backref" href="#id29">_localIdentity_identityProfiles</a><a class="headerlink" href="#module-PyPingFedSDK.apis._localIdentity_identityProfiles" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_cibaServerPolicy">
+<span id="oauth-cibaserverpolicy"></span><h2><a class="toc-backref" href="#id30">_oauth_cibaServerPolicy</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_cibaServerPolicy" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._passwordCredentialValidators">
+<span id="passwordcredentialvalidators"></span><h2><a class="toc-backref" href="#id31">_passwordCredentialValidators</a><a class="headerlink" href="#module-PyPingFedSDK.apis._passwordCredentialValidators" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._kerberos_realms">
+<span id="kerberos-realms"></span><h2><a class="toc-backref" href="#id32">_kerberos_realms</a><a class="headerlink" href="#module-PyPingFedSDK.apis._kerberos_realms" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._authenticationApi">
+<span id="authenticationapi"></span><h2><a class="toc-backref" href="#id33">_authenticationApi</a><a class="headerlink" href="#module-PyPingFedSDK.apis._authenticationApi" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._authenticationPolicyContracts">
+<span id="authenticationpolicycontracts"></span><h2><a class="toc-backref" href="#id34">_authenticationPolicyContracts</a><a class="headerlink" href="#module-PyPingFedSDK.apis._authenticationPolicyContracts" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._session">
+<span id="session"></span><h2><a class="toc-backref" href="#id35">_session</a><a class="headerlink" href="#module-PyPingFedSDK.apis._session" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._keyPairs">
+<span id="keypairs"></span><h2><a class="toc-backref" href="#id36">_keyPairs</a><a class="headerlink" href="#module-PyPingFedSDK.apis._keyPairs" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_outOfBandAuthPlugins">
+<span id="oauth-outofbandauthplugins"></span><h2><a class="toc-backref" href="#id37">_oauth_outOfBandAuthPlugins</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_outOfBandAuthPlugins" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._keyPairs_signing">
+<span id="keypairs-signing"></span><h2><a class="toc-backref" href="#id38">_keyPairs_signing</a><a class="headerlink" href="#module-PyPingFedSDK.apis._keyPairs_signing" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._keyPairs_sslServer">
+<span id="keypairs-sslserver"></span><h2><a class="toc-backref" href="#id39">_keyPairs_sslServer</a><a class="headerlink" href="#module-PyPingFedSDK.apis._keyPairs_sslServer" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._keyPairs_sslClient">
+<span id="keypairs-sslclient"></span><h2><a class="toc-backref" href="#id40">_keyPairs_sslClient</a><a class="headerlink" href="#module-PyPingFedSDK.apis._keyPairs_sslClient" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._certificates_ca">
+<span id="certificates-ca"></span><h2><a class="toc-backref" href="#id41">_certificates_ca</a><a class="headerlink" href="#module-PyPingFedSDK.apis._certificates_ca" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_authServerSettings">
+<span id="oauth-authserversettings"></span><h2><a class="toc-backref" href="#id42">_oauth_authServerSettings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_authServerSettings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._keyPairs_oauthOpenIdConnect">
+<span id="keypairs-oauthopenidconnect"></span><h2><a class="toc-backref" href="#id43">_keyPairs_oauthOpenIdConnect</a><a class="headerlink" href="#module-PyPingFedSDK.apis._keyPairs_oauthOpenIdConnect" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_accessTokenManagers">
+<span id="oauth-accesstokenmanagers"></span><h2><a class="toc-backref" href="#id44">_oauth_accessTokenManagers</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_accessTokenManagers" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_openIdConnect">
+<span id="oauth-openidconnect"></span><h2><a class="toc-backref" href="#id45">_oauth_openIdConnect</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_openIdConnect" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_clients">
+<span id="oauth-clients"></span><h2><a class="toc-backref" href="#id46">_oauth_clients</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_clients" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_clientSettings">
+<span id="oauth-clientsettings"></span><h2><a class="toc-backref" href="#id47">_oauth_clientSettings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_clientSettings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_clientRegistrationPolicies">
+<span id="oauth-clientregistrationpolicies"></span><h2><a class="toc-backref" href="#id48">_oauth_clientRegistrationPolicies</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_clientRegistrationPolicies" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_resourceOwnerCredentialsMappings">
+<span id="oauth-resourceownercredentialsmappings"></span><h2><a class="toc-backref" href="#id49">_oauth_resourceOwnerCredentialsMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_resourceOwnerCredentialsMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_authenticationPolicyContractMappings">
+<span id="oauth-authenticationpolicycontractmappings"></span><h2><a class="toc-backref" href="#id50">_oauth_authenticationPolicyContractMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_authenticationPolicyContractMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_idpAdapterMappings">
+<span id="oauth-idpadaptermappings"></span><h2><a class="toc-backref" href="#id51">_oauth_idpAdapterMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_idpAdapterMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_accessTokenMappings">
+<span id="oauth-accesstokenmappings"></span><h2><a class="toc-backref" href="#id52">_oauth_accessTokenMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_accessTokenMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._notificationPublishers">
+<span id="notificationpublishers"></span><h2><a class="toc-backref" href="#id53">_notificationPublishers</a><a class="headerlink" href="#module-PyPingFedSDK.apis._notificationPublishers" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._tokenProcessorToTokenGeneratorMappings">
+<span id="tokenprocessortotokengeneratormappings"></span><h2><a class="toc-backref" href="#id54">_tokenProcessorToTokenGeneratorMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._tokenProcessorToTokenGeneratorMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._oauth_tokenExchange_tokenGeneratorMappings">
+<span id="oauth-tokenexchange-tokengeneratormappings"></span><h2><a class="toc-backref" href="#id55">_oauth_tokenExchange_tokenGeneratorMappings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._oauth_tokenExchange_tokenGeneratorMappings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._serverSettings">
+<span id="serversettings"></span><h2><a class="toc-backref" href="#id56">_serverSettings</a><a class="headerlink" href="#module-PyPingFedSDK.apis._serverSettings" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._redirectValidation">
+<span id="redirectvalidation"></span><h2><a class="toc-backref" href="#id57">_redirectValidation</a><a class="headerlink" href="#module-PyPingFedSDK.apis._redirectValidation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._cluster">
+<span id="cluster"></span><h2><a class="toc-backref" href="#id58">_cluster</a><a class="headerlink" href="#module-PyPingFedSDK.apis._cluster" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._virtualHostNames">
+<span id="virtualhostnames"></span><h2><a class="toc-backref" href="#id59">_virtualHostNames</a><a class="headerlink" href="#module-PyPingFedSDK.apis._virtualHostNames" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._configArchive">
+<span id="configarchive"></span><h2><a class="toc-backref" href="#id60">_configArchive</a><a class="headerlink" href="#module-PyPingFedSDK.apis._configArchive" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._connectionMetadata">
+<span id="connectionmetadata"></span><h2><a class="toc-backref" href="#id61">_connectionMetadata</a><a class="headerlink" href="#module-PyPingFedSDK.apis._connectionMetadata" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._metadataUrls">
+<span id="metadataurls"></span><h2><a class="toc-backref" href="#id62">_metadataUrls</a><a class="headerlink" href="#module-PyPingFedSDK.apis._metadataUrls" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PyPingFedSDK.apis._version">
+<span id="version"></span><h2><a class="toc-backref" href="#id63">_version</a><a class="headerlink" href="#module-PyPingFedSDK.apis._version" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="../index.html" title="previous chapter (use the left arrow)">Welcome to PyPingFedSDK’s documentation!</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="../models/models.html" title="next chapter (use the right arrow)">Models</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../models/models.html" title="Models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to PyPingFedSDK’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="../_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2020, Michael Kelly, Liam Dixon. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

@@ -120,9 +120,10 @@ html_static_path = ['./_static']
 #
 # This is required for the alabaster theme
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
+html_show_sourcelink = False
 html_sidebars = {
     '**': [
-        'relations.html',  # needs 'show_related': True theme option to display
+        'globaltoc.html',
         'searchbox.html',
     ]
 }
