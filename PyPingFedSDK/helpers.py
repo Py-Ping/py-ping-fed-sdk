@@ -1,3 +1,8 @@
+import os
+import requests
+from requests.auth import HTTPBasicAuth
+
+
 def safe_name(unsafe_string, unsafe_char="/", sub_char="_"):
     safe_string_list = [x if x not in unsafe_char else sub_char for x in unsafe_string]
     safe_string_list = [x if x not in "{}" else "" for x in safe_string_list]
@@ -20,15 +25,7 @@ def safe_variable(unsafe_variable):
 
 
 def requests_verb(verb):
-    if verb == "POST":
-        return "requests.post"
-    elif verb == "PUT":
-        return "requests.put"
-    elif verb == "DELETE":
-        return "requests.delete"
-    elif verb == "HEAD":
-        return "requests.head"
-    return "requests.get"
+    return verb.lower()
 
 
 def json_type_convert(json_type):
@@ -43,3 +40,14 @@ def json_type_convert(json_type):
     elif json_type == "integer":
         return "int"
     return ""
+
+
+def get_auth_session():
+    ping_user = os.environ["PING_IDENTITY_DEVOPS_ADMINISTRATOR"]
+    ping_pass = os.environ["PING_IDENTITY_DEVOPS_PASSWORD"]
+
+    session = requests.Session()
+    session.auth = HTTPBasicAuth(ping_user, ping_pass)
+    session.headers = {"Accept": "application/json", "X-Xsrf-Header": "PingFederate"}
+
+    return session

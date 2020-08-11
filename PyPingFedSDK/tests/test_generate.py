@@ -4,7 +4,7 @@ import os
 import shutil
 
 from unittest import TestCase
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, MagicMock
 from generate import Generate
 
 REAL_PATH = os.path.realpath(__file__)
@@ -147,14 +147,14 @@ class TestGenerate(TestCase):
             and make some assertions about the object methods
         """
         penguins = __import__("apis._penguins", fromlist=[""])
-
-        penguin_api = penguins._penguins("test-endpoint")
+        session_mock = MagicMock()
+        penguin_api = penguins._penguins("test-endpoint", session_mock)
         self.assertEqual(
             penguin_api.addPenguin("philip"),
-            requests_mock.post.return_value
+            session_mock.post.return_value
         )
 
         self.assertEqual(
             penguin_api.getPenguinDetails(),
-            requests_mock.get.return_value
+            session_mock.get.return_value
         )
