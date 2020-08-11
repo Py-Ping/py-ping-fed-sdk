@@ -4,29 +4,21 @@ class ValidationError():
     Attributes
     ----------
     developerMessage : string
- Developer-oriented error message, if available.
+        Developer-oriented error message, if available.
     errorId : string
- Error identifier.
+        Error identifier.
     fieldPath : string
- The path to the model field to which the error relates, if one exists.
+        The path to the model field to which the error relates, if one exists.
     message : string
- User-friendly error description.
+        User-friendly error description.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, developerMessage=None, errorId=None, fieldPath=None, message=None) -> None:
+    def __init__(self, developerMessage:str=None, errorId:str=None, fieldPath:str=None, message:str=None) -> None:
         self.developerMessage = developerMessage
         self.errorId = errorId
         self.fieldPath = fieldPath
         self.message = message
-=======
-    def __init__(self, developerMessage=None, errorId=None, fieldPath=None, message=None):
-        self.developerMessage: str = developerMessage
-        self.errorId: str = errorId
-        self.fieldPath: str = fieldPath
-        self.message: str = message
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class ValidationError():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.developerMessage, self.errorId, self.fieldPath, self.message))
+        return hash(frozenset(self.developerMessage, self.errorId, self.fieldPath, self.message))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["developerMessage", "errorId", "fieldPath", "message"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

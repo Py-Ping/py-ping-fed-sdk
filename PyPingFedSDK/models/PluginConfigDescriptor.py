@@ -4,29 +4,21 @@ class PluginConfigDescriptor():
     Attributes
     ----------
     actionDescriptors : array
- The available actions for this plugin.
+        The available actions for this plugin.
     description : string
- The description of this plugin.
+        The description of this plugin.
     fields : array
- The configuration fields available for this plugin.
+        The configuration fields available for this plugin.
     tables : array
- Configuration tables available for this plugin.
+        Configuration tables available for this plugin.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, actionDescriptors=None, description=None, fields=None, tables=None) -> None:
+    def __init__(self, actionDescriptors:list=None, description:str=None, fields:list=None, tables:list=None) -> None:
         self.actionDescriptors = actionDescriptors
         self.description = description
         self.fields = fields
         self.tables = tables
-=======
-    def __init__(self, actionDescriptors=None, description=None, fields=None, tables=None):
-        self.actionDescriptors: list = actionDescriptors
-        self.description: str = description
-        self.fields: list = fields
-        self.tables: list = tables
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class PluginConfigDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.actionDescriptors, self.description, self.fields, self.tables))
+        return hash(frozenset(self.actionDescriptors, self.description, self.fields, self.tables))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["actionDescriptors", "description", "fields", "tables"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

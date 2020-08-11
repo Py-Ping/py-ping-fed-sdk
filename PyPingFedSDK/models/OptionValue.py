@@ -4,21 +4,15 @@ class OptionValue():
     Attributes
     ----------
     name : string
- The name of the option.
+        The name of the option.
     value : string
- The value associated with this option.
+        The value associated with this option.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name=None, value=None) -> None:
+    def __init__(self, name:str=None, value:str=None) -> None:
         self.name = name
         self.value = value
-=======
-    def __init__(self, name=None, value=None):
-        self.name: str = name
-        self.value: str = value
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class OptionValue():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.name, self.value))
+        return hash(frozenset(self.name, self.value))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["name", "value"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -27,7 +27,7 @@ class Generate():
                 folder='models'
             )
 
-        template = self.template('models_doc', name='models_doc', details=self.fetch_data.get('models'))
+        template = self.get_template('models_doc', name='models_doc', details=self.fetch_data.get('models'))
 
         self.write_template(
             content=template,
@@ -46,7 +46,7 @@ class Generate():
                 folder='apis'
             )
 
-        template = self.template('apis_doc', name='apis_doc', details=self.fetch_data.get('apis'))
+        template = self.get_template('apis_doc', name='apis_doc', details=self.fetch_data.get('apis'))
 
         self.write_template(
             content=template,
@@ -57,7 +57,7 @@ class Generate():
 
 
 
-    def template(self, template, name, details, template_directory='templates'):
+    def get_template(self, template, name, details, template_directory='templates'):
         currentdirectory = os.path.dirname(__file__)
         templatedirectory = os.path.join(currentdirectory, template_directory)
         jinjaenvironment = Environment(

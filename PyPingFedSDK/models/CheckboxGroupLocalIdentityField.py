@@ -4,24 +4,23 @@ class CheckboxGroupLocalIdentityField():
     Attributes
     ----------
     attributes : str
- Attributes of the local identity field.
+        Attributes of the local identity field.
     id : string
- Id of the local identity field.
+        Id of the local identity field.
     label : string
- Label of the local identity field.
+        Label of the local identity field.
     options : array
- The list of options for this selection field.
+        The list of options for this selection field.
     profilePageField : boolean
- Whether this is a profile page field or not.
+        Whether this is a profile page field or not.
     registrationPageField : boolean
- Whether this is a registration page field or not.
+        Whether this is a registration page field or not.
     type : str
- The type of the local identity field.
+        The type of the local identity field.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, var_id, label, options, attributes=None, profilePageField=None, registrationPageField=None) -> None:
+    def __init__(self, var_type, var_id:str, label:str, options:list, attributes=None, profilePageField:bool=None, registrationPageField:bool=None) -> None:
         self.attributes = attributes
         self.var_id = var_id
         self.label = label
@@ -29,16 +28,6 @@ class CheckboxGroupLocalIdentityField():
         self.profilePageField = profilePageField
         self.registrationPageField = registrationPageField
         self.var_type = var_type
-=======
-    def __init__(self, type, id, label, options, attributes=None, profilePageField=None, registrationPageField=None):
-        self.attributes: str = attributes
-        self.id: str = id
-        self.label: str = label
-        self.options: list = options
-        self.profilePageField: bool = profilePageField
-        self.registrationPageField: bool = registrationPageField
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "var_id", "label", "options"] if self.__dict__[x] is not None)
@@ -55,17 +44,13 @@ class CheckboxGroupLocalIdentityField():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributes, self.var_id, self.label, self.options, self.profilePageField, self.registrationPageField, self.var_type))
+        return hash(frozenset(self.attributes, self.var_id, self.label, self.options, self.profilePageField, self.registrationPageField, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributes", "var_id", "label", "options", "profilePageField", "registrationPageField", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

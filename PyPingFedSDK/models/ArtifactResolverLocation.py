@@ -4,21 +4,15 @@ class ArtifactResolverLocation():
     Attributes
     ----------
     index : integer
- The priority of the endpoint.
+        The priority of the endpoint.
     url : string
- Remote party URLs that you will use to resolve/translate the artifact and get the actual protocol message
+        Remote party URLs that you will use to resolve/translate the artifact and get the actual protocol message
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, index, url) -> None:
+    def __init__(self, index:int, url:str) -> None:
         self.index = index
         self.url = url
-=======
-    def __init__(self, index, url):
-        self.index: str = index
-        self.url: str = url
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["index", "url"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ArtifactResolverLocation():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.index, self.url))
+        return hash(frozenset(self.index, self.url))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["index", "url"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,25 +4,18 @@ class OIDCClientCredentials():
     Attributes
     ----------
     clientId : string
- The OpenID Connect client identitification.
+        The OpenID Connect client identitification.
     clientSecret : string
- The OpenID Connect client secret. To update the client secret, specify the plaintext value in this field.  This field will not be populated for GET requests.
+        The OpenID Connect client secret. To update the client secret, specify the plaintext value in this field.  This field will not be populated for GET requests.
     encryptedSecret : string
- For GET requests, this field contains the encrypted client secret, if one exists.  For POST and PUT requests, if you wish to reuse the existing secret, this field should be passed back unchanged.
+        For GET requests, this field contains the encrypted client secret, if one exists.  For POST and PUT requests, if you wish to reuse the existing secret, this field should be passed back unchanged.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, clientId, clientSecret=None, encryptedSecret=None) -> None:
+    def __init__(self, clientId:str, clientSecret:str=None, encryptedSecret:str=None) -> None:
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.encryptedSecret = encryptedSecret
-=======
-    def __init__(self, clientId, clientSecret=None, encryptedSecret=None):
-        self.clientId: str = clientId
-        self.clientSecret: str = clientSecret
-        self.encryptedSecret: str = encryptedSecret
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["clientId"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class OIDCClientCredentials():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.clientId, self.clientSecret, self.encryptedSecret))
+        return hash(frozenset(self.clientId, self.clientSecret, self.encryptedSecret))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["clientId", "clientSecret", "encryptedSecret"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

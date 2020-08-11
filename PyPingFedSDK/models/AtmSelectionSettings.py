@@ -4,21 +4,15 @@ class AtmSelectionSettings():
     Attributes
     ----------
     inherited : boolean
- If this token manager has a parent, this flag determines whether selection settings, such as resource URI's, are inherited from the parent. When set to true, the other fields in this model become read-only. The default value is false.
+        If this token manager has a parent, this flag determines whether selection settings, such as resource URI's, are inherited from the parent. When set to true, the other fields in this model become read-only. The default value is false.
     resourceUris : array
- The list of base resource URI's which map to this token manager. A resource URI, specified via the 'aud' parameter, can be used to select a specific token manager for an OAuth request.
+        The list of base resource URI's which map to this token manager. A resource URI, specified via the 'aud' parameter, can be used to select a specific token manager for an OAuth request.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, inherited=None, resourceUris=None) -> None:
+    def __init__(self, inherited:bool=None, resourceUris:list=None) -> None:
         self.inherited = inherited
         self.resourceUris = resourceUris
-=======
-    def __init__(self, inherited=None, resourceUris=None):
-        self.inherited: bool = inherited
-        self.resourceUris: list = resourceUris
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class AtmSelectionSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.inherited, self.resourceUris))
+        return hash(frozenset(self.inherited, self.resourceUris))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["inherited", "resourceUris"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

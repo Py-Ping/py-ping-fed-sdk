@@ -65,10 +65,10 @@
     
     
       <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
 </ul>
 
     
@@ -111,42 +111,45 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    attributeContractFulfillment : str</span>
-<span class="sd">        A list of mappings from attribute names to their fulfillment values.    attributeSources : array</span>
-<span class="sd">        A list of configured data stores to look up attributes from.    authenticationPolicyContractRef : str</span>
-<span class="sd">        Reference to the associated authentication policy contract. The reference cannot be changed after the mapping has been created.    id : string</span>
-<span class="sd">        The ID of the authentication policy contract to persistent grant mapping.    issuanceCriteria : str</span>
+<span class="sd">        A list of mappings from attribute names to their fulfillment values.</span>
+<span class="sd">    attributeSources : array</span>
+<span class="sd">        A list of configured data stores to look up attributes from.</span>
+<span class="sd">    authenticationPolicyContractRef : str</span>
+<span class="sd">        Reference to the associated authentication policy contract. The reference cannot be changed after the mapping has been created.</span>
+<span class="sd">    id : string</span>
+<span class="sd">        The ID of the authentication policy contract to persistent grant mapping.</span>
+<span class="sd">    issuanceCriteria : str</span>
 <span class="sd">        The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;attributeContractFulfillment&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeSources&quot;</span><span class="p">,</span> <span class="s2">&quot;authenticationPolicyContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;issuanceCriteria&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">authenticationPolicyContractRef</span><span class="p">,</span> <span class="n">attributeContractFulfillment</span><span class="p">,</span> <span class="n">attributeSources</span><span class="p">:</span><span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">issuanceCriteria</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributeContractFulfillment</span> <span class="o">=</span> <span class="n">attributeContractFulfillment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributeSources</span> <span class="o">=</span> <span class="n">attributeSources</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authenticationPolicyContractRef</span> <span class="o">=</span> <span class="n">authenticationPolicyContractRef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_id</span> <span class="o">=</span> <span class="n">var_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">issuanceCriteria</span> <span class="o">=</span> <span class="n">issuanceCriteria</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">authenticationPolicyContractRef</span><span class="p">,</span> <span class="n">attributeContractFulfillment</span><span class="p">,</span> <span class="n">attributeSources</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">issuanceCriteria</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attributeContractFulfillment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attributeContractFulfillment</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attributeSources</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">attributeSources</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">authenticationPolicyContractRef</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">authenticationPolicyContractRef</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">issuanceCriteria</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">issuanceCriteria</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;var_id&quot;</span><span class="p">,</span> <span class="s2">&quot;authenticationPolicyContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeContractFulfillment&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;authenticationPolicyContractRef&#39;</span><span class="p">,</span> <span class="s1">&#39;attributeContractFulfillment&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ApcToPersistentGrantMapping</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">attributeContractFulfillment</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributeSources</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticationPolicyContractRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">issuanceCriteria</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">attributeContractFulfillment</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributeSources</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticationPolicyContractRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">issuanceCriteria</span><span class="p">))</span>
 
 <div class="viewcode-block" id="ApcToPersistentGrantMapping.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.ApcToPersistentGrantMapping.ApcToPersistentGrantMapping.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
-        <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;attributeContractFulfillment&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeSources&quot;</span><span class="p">,</span> <span class="s2">&quot;authenticationPolicyContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;issuanceCriteria&quot;</span><span class="p">]}</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;attributeContractFulfillment&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeSources&quot;</span><span class="p">,</span> <span class="s2">&quot;authenticationPolicyContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;var_id&quot;</span><span class="p">,</span> <span class="s2">&quot;issuanceCriteria&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>
 

@@ -4,25 +4,18 @@ class ScopeGroupEntry():
     Attributes
     ----------
     description : string
- The description of the scope group.
+        The description of the scope group.
     name : string
- The name of the scope group.
+        The name of the scope group.
     scopes : str
- The set of scopes for this scope group.
+        The set of scopes for this scope group.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name, description, scopes) -> None:
+    def __init__(self, name:str, description:str, scopes) -> None:
         self.description = description
         self.name = name
         self.scopes = scopes
-=======
-    def __init__(self, name, description, scopes):
-        self.description: str = description
-        self.name: str = name
-        self.scopes: str = scopes
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name", "description", "scopes"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class ScopeGroupEntry():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.description, self.name, self.scopes))
+        return hash(frozenset(self.description, self.name, self.scopes))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "name", "scopes"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -9,7 +9,6 @@ from generate import Generate
 
 REAL_PATH = os.path.realpath(__file__)
 
-
 class TestGenerate(TestCase):
     """ Tests for the Generate class """
 
@@ -121,7 +120,7 @@ class TestGenerate(TestCase):
         Penguin = __import__("models.Penguin", fromlist=[""])
         penguin_inst = Penguin.Penguin()
         self.assertEqual(
-            hash(penguin_inst), 6555679905594400944
+            hash(penguin_inst), hash(frozenset([None, None, None, None]))
         )
         self.assertTrue(penguin_inst == penguin_inst)
         self.assertEqual(
@@ -138,6 +137,10 @@ class TestGenerate(TestCase):
         self.assertEqual(Penguin.Penguin().from_dict(
             penguin_dict
         ), Penguin.Penguin(**penguin_dict))
+        self.assertEqual(
+            hash(Penguin.Penguin(**penguin_dict)), hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
+        )
+
 
     @patch("apis._penguins.logging")
     @patch("apis._penguins.requests")

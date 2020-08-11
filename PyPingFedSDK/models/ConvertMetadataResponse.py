@@ -4,37 +4,27 @@ class ConvertMetadataResponse():
     Attributes
     ----------
     certExpiration : string
- The metadata certificate's expiry date.
+        The metadata certificate's expiry date.
     certSerialNumber : string
- The metadata certificate's serial number.
+        The metadata certificate's serial number.
     certSubjectDn : string
- The metadata certificate's subject DN.
+        The metadata certificate's subject DN.
     certTrustStatus : str
- The metadata certificate's trust status, i.e. If the partner's certificate can be trusted or not.
+        The metadata certificate's trust status, i.e. If the partner's certificate can be trusted or not.
     connection : str
- The converted API connection.
+        The converted API connection.
     signatureStatus : str
- The metadata's digital signature status.
+        The metadata's digital signature status.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, certExpiration=None, certSerialNumber=None, certSubjectDn=None, certTrustStatus=None, connection=None, signatureStatus=None) -> None:
+    def __init__(self, certExpiration:str=None, certSerialNumber:str=None, certSubjectDn:str=None, certTrustStatus=None, connection=None, signatureStatus=None) -> None:
         self.certExpiration = certExpiration
         self.certSerialNumber = certSerialNumber
         self.certSubjectDn = certSubjectDn
         self.certTrustStatus = certTrustStatus
         self.connection = connection
         self.signatureStatus = signatureStatus
-=======
-    def __init__(self, certExpiration=None, certSerialNumber=None, certSubjectDn=None, certTrustStatus=None, connection=None, signatureStatus=None):
-        self.certExpiration: str = certExpiration
-        self.certSerialNumber: str = certSerialNumber
-        self.certSubjectDn: str = certSubjectDn
-        self.certTrustStatus: str = certTrustStatus
-        self.connection: str = connection
-        self.signatureStatus: str = signatureStatus
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class ConvertMetadataResponse():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.certExpiration, self.certSerialNumber, self.certSubjectDn, self.certTrustStatus, self.connection, self.signatureStatus))
+        return hash(frozenset(self.certExpiration, self.certSerialNumber, self.certSubjectDn, self.certTrustStatus, self.connection, self.signatureStatus))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["certExpiration", "certSerialNumber", "certSubjectDn", "certTrustStatus", "connection", "signatureStatus"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,40 +4,39 @@ class CertView():
     Attributes
     ----------
     cryptoProvider : str
- Cryptographic Provider. This is only applicable if Hybrid HSM mode is true.
+        Cryptographic Provider. This is only applicable if Hybrid HSM mode is true.
     expires : string
- The end date up until which the item is valid, in ISO 8601 format (UTC).
+        The end date up until which the item is valid, in ISO 8601 format (UTC).
     id : string
- The persistent, unique ID for the certificate.
+        The persistent, unique ID for the certificate.
     issuerDN : string
- The issuer's distinguished name.
+        The issuer's distinguished name.
     keyAlgorithm : string
- The public key algorithm.
+        The public key algorithm.
     keySize : integer
- The public key size.
+        The public key size.
     serialNumber : string
- The serial number assigned by the CA.
+        The serial number assigned by the CA.
     sha1Fingerprint : string
- SHA-1 fingerprint in Hex encoding.
+        SHA-1 fingerprint in Hex encoding.
     sha256Fingerprint : string
- SHA-256 fingerprint in Hex encoding.
+        SHA-256 fingerprint in Hex encoding.
     signatureAlgorithm : string
- The signature algorithm.
+        The signature algorithm.
     status : str
- Status of the item.
+        Status of the item.
     subjectAlternativeNames : array
- The subject alternative names (SAN).
+        The subject alternative names (SAN).
     subjectDN : string
- The subject's distinguished name.
+        The subject's distinguished name.
     validFrom : string
- The start date from which the item is valid, in ISO 8601 format (UTC).
+        The start date from which the item is valid, in ISO 8601 format (UTC).
     version : integer
- The X.509 version to which the item conforms.
+        The X.509 version to which the item conforms.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, cryptoProvider=None, expires=None, var_id=None, issuerDN=None, keyAlgorithm=None, keySize=None, serialNumber=None, sha1Fingerprint=None, sha256Fingerprint=None, signatureAlgorithm=None, status=None, subjectAlternativeNames=None, subjectDN=None, validFrom=None, version=None) -> None:
+    def __init__(self, cryptoProvider=None, expires:str=None, var_id:str=None, issuerDN:str=None, keyAlgorithm:str=None, keySize:int=None, serialNumber:str=None, sha1Fingerprint:str=None, sha256Fingerprint:str=None, signatureAlgorithm:str=None, status=None, subjectAlternativeNames:list=None, subjectDN:str=None, validFrom:str=None, version:int=None) -> None:
         self.cryptoProvider = cryptoProvider
         self.expires = expires
         self.var_id = var_id
@@ -53,24 +52,6 @@ class CertView():
         self.subjectDN = subjectDN
         self.validFrom = validFrom
         self.version = version
-=======
-    def __init__(self, cryptoProvider=None, expires=None, id=None, issuerDN=None, keyAlgorithm=None, keySize=None, serialNumber=None, sha1Fingerprint=None, sha256Fingerprint=None, signatureAlgorithm=None, status=None, subjectAlternativeNames=None, subjectDN=None, validFrom=None, version=None):
-        self.cryptoProvider: str = cryptoProvider
-        self.expires: str = expires
-        self.id: str = id
-        self.issuerDN: str = issuerDN
-        self.keyAlgorithm: str = keyAlgorithm
-        self.keySize: str = keySize
-        self.serialNumber: str = serialNumber
-        self.sha1Fingerprint: str = sha1Fingerprint
-        self.sha256Fingerprint: str = sha256Fingerprint
-        self.signatureAlgorithm: str = signatureAlgorithm
-        self.status: str = status
-        self.subjectAlternativeNames: list = subjectAlternativeNames
-        self.subjectDN: str = subjectDN
-        self.validFrom: str = validFrom
-        self.version: str = version
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -87,17 +68,13 @@ class CertView():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.cryptoProvider, self.expires, self.var_id, self.issuerDN, self.keyAlgorithm, self.keySize, self.serialNumber, self.sha1Fingerprint, self.sha256Fingerprint, self.signatureAlgorithm, self.status, self.subjectAlternativeNames, self.subjectDN, self.validFrom, self.version))
+        return hash(frozenset(self.cryptoProvider, self.expires, self.var_id, self.issuerDN, self.keyAlgorithm, self.keySize, self.serialNumber, self.sha1Fingerprint, self.sha256Fingerprint, self.signatureAlgorithm, self.status, self.subjectAlternativeNames, self.subjectDN, self.validFrom, self.version))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["cryptoProvider", "expires", "var_id", "issuerDN", "keyAlgorithm", "keySize", "serialNumber", "sha1Fingerprint", "sha256Fingerprint", "signatureAlgorithm", "status", "subjectAlternativeNames", "subjectDN", "validFrom", "version"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

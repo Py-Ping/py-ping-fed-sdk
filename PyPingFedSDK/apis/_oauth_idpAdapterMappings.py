@@ -42,7 +42,7 @@ class _oauth_idpAdapterMappings():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -92,18 +92,14 @@ class _oauth_idpAdapterMappings():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateIdpAdapterMapping(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateIdpAdapterMapping(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateIdpAdapterMapping(self, var_id, body, XBypassExternalValidation):
         """ Update an IdP adapter mapping.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

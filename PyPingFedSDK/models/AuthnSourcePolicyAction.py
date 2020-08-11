@@ -4,33 +4,24 @@ class AuthnSourcePolicyAction():
     Attributes
     ----------
     attributeRules : str
- The authentication policy rules.
+        The authentication policy rules.
     authenticationSource : str
- The associated authentication source.
+        The associated authentication source.
     context : string
- The result context.
+        The result context.
     inputUserIdMapping : str
- The input user id mapping.
+        The input user id mapping.
     type : str
- The authentication selection type.
+        The authentication selection type.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, authenticationSource, attributeRules=None, context=None, inputUserIdMapping=None) -> None:
+    def __init__(self, var_type, authenticationSource, attributeRules=None, context:str=None, inputUserIdMapping=None) -> None:
         self.attributeRules = attributeRules
         self.authenticationSource = authenticationSource
         self.context = context
         self.inputUserIdMapping = inputUserIdMapping
         self.var_type = var_type
-=======
-    def __init__(self, type, authenticationSource, attributeRules=None, context=None, inputUserIdMapping=None):
-        self.attributeRules: str = attributeRules
-        self.authenticationSource: str = authenticationSource
-        self.context: str = context
-        self.inputUserIdMapping: str = inputUserIdMapping
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "authenticationSource"] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class AuthnSourcePolicyAction():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeRules, self.authenticationSource, self.context, self.inputUserIdMapping, self.var_type))
+        return hash(frozenset(self.attributeRules, self.authenticationSource, self.context, self.inputUserIdMapping, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeRules", "authenticationSource", "context", "inputUserIdMapping", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

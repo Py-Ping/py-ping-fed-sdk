@@ -4,17 +4,12 @@ class TokenExchangeProcessorSettings():
     Attributes
     ----------
     defaultProcessorPolicyRef : str
- Reference to the default Token Exchange Processor policy, if one is defined.
+        Reference to the default Token Exchange Processor policy, if one is defined.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, defaultProcessorPolicyRef=None) -> None:
         self.defaultProcessorPolicyRef = defaultProcessorPolicyRef
-=======
-    def __init__(self, defaultProcessorPolicyRef=None):
-        self.defaultProcessorPolicyRef: str = defaultProcessorPolicyRef
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class TokenExchangeProcessorSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.defaultProcessorPolicyRef))
+        return hash(frozenset(self.defaultProcessorPolicyRef))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultProcessorPolicyRef"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

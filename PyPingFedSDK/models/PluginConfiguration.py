@@ -4,21 +4,15 @@ class PluginConfiguration():
     Attributes
     ----------
     fields : array
- List of configuration fields.
+        List of configuration fields.
     tables : array
- List of configuration tables.
+        List of configuration tables.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, fields=None, tables=None) -> None:
+    def __init__(self, fields:list=None, tables:list=None) -> None:
         self.fields = fields
         self.tables = tables
-=======
-    def __init__(self, fields=None, tables=None):
-        self.fields: list = fields
-        self.tables: list = tables
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class PluginConfiguration():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.fields, self.tables))
+        return hash(frozenset(self.fields, self.tables))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["fields", "tables"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

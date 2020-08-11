@@ -44,7 +44,7 @@ class _localIdentity_identityProfiles():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -94,18 +94,14 @@ class _localIdentity_identityProfiles():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateIdentityProfile(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateIdentityProfile(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateIdentityProfile(self, var_id, body, XBypassExternalValidation):
         """ Update the local identity profile by ID.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

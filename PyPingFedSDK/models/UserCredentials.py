@@ -4,21 +4,15 @@ class UserCredentials():
     Attributes
     ----------
     currentPassword : string
- Current password. Required only during Password Change and not applicable for Password Reset.
+        Current password. Required only during Password Change and not applicable for Password Reset.
     newPassword : string
- A new password.
+        A new password.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, newPassword, currentPassword=None) -> None:
+    def __init__(self, newPassword:str, currentPassword:str=None) -> None:
         self.currentPassword = currentPassword
         self.newPassword = newPassword
-=======
-    def __init__(self, newPassword, currentPassword=None):
-        self.currentPassword: str = currentPassword
-        self.newPassword: str = newPassword
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["newPassword"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class UserCredentials():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.currentPassword, self.newPassword))
+        return hash(frozenset(self.currentPassword, self.newPassword))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["currentPassword", "newPassword"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

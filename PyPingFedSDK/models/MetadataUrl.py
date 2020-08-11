@@ -4,37 +4,27 @@ class MetadataUrl():
     Attributes
     ----------
     certView : str
- The Signature Verification Certificate details. This property is read-only and is always ignored on a POST or PUT.
+        The Signature Verification Certificate details. This property is read-only and is always ignored on a POST or PUT.
     id : string
- The persistent, unique ID for the Metadata Url. It can be any combination of [a-z0-9._-]. This property is system-assigned if not specified.
+        The persistent, unique ID for the Metadata Url. It can be any combination of [a-z0-9._-]. This property is system-assigned if not specified.
     name : string
- The name for the Metadata URL.
+        The name for the Metadata URL.
     url : string
- The Metadata URL.
+        The Metadata URL.
     validateSignature : boolean
- Perform Metadata Signature Validation. The default value is TRUE.
+        Perform Metadata Signature Validation. The default value is TRUE.
     x509File : str
- Data of the Signature Verification Certificate for the Metadata URL.
+        Data of the Signature Verification Certificate for the Metadata URL.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name, url, certView=None, var_id=None, validateSignature=None, x509File=None) -> None:
+    def __init__(self, name:str, url:str, certView=None, var_id:str=None, validateSignature:bool=None, x509File=None) -> None:
         self.certView = certView
         self.var_id = var_id
         self.name = name
         self.url = url
         self.validateSignature = validateSignature
         self.x509File = x509File
-=======
-    def __init__(self, name, url, certView=None, id=None, validateSignature=None, x509File=None):
-        self.certView: str = certView
-        self.id: str = id
-        self.name: str = name
-        self.url: str = url
-        self.validateSignature: bool = validateSignature
-        self.x509File: str = x509File
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name", "url"] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class MetadataUrl():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.certView, self.var_id, self.name, self.url, self.validateSignature, self.x509File))
+        return hash(frozenset(self.certView, self.var_id, self.name, self.url, self.validateSignature, self.x509File))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["certView", "var_id", "name", "url", "validateSignature", "x509File"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

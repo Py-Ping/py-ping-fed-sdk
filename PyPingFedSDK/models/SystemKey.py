@@ -4,25 +4,18 @@ class SystemKey():
     Attributes
     ----------
     creationDate : string
- Creation time of the key.
+        Creation time of the key.
     encryptedKeyData : string
- The system key encrypted.
+        The system key encrypted.
     keyData : string
- The clear text system key base 64 encoded. The system key must be 32 bytes before base 64 encoding.
+        The clear text system key base 64 encoded. The system key must be 32 bytes before base 64 encoding.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, creationDate=None, encryptedKeyData=None, keyData=None) -> None:
+    def __init__(self, creationDate:str=None, encryptedKeyData:str=None, keyData:str=None) -> None:
         self.creationDate = creationDate
         self.encryptedKeyData = encryptedKeyData
         self.keyData = keyData
-=======
-    def __init__(self, creationDate=None, encryptedKeyData=None, keyData=None):
-        self.creationDate: str = creationDate
-        self.encryptedKeyData: str = encryptedKeyData
-        self.keyData: str = keyData
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class SystemKey():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.creationDate, self.encryptedKeyData, self.keyData))
+        return hash(frozenset(self.creationDate, self.encryptedKeyData, self.keyData))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["creationDate", "encryptedKeyData", "keyData"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

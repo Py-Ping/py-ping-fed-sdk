@@ -6,21 +6,14 @@ class LdapDataStoreAttribute():
     metadata : str
     name : string
     type : str
- The data store type.
+        The data store type.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, metadata=None, name=None) -> None:
+    def __init__(self, var_type, metadata=None, name:str=None) -> None:
         self.metadata = metadata
         self.name = name
         self.var_type = var_type
-=======
-    def __init__(self, type, metadata=None, name=None):
-        self.metadata: str = metadata
-        self.name: str = name
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type"] if self.__dict__[x] is not None)
@@ -37,17 +30,13 @@ class LdapDataStoreAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.metadata, self.name, self.var_type))
+        return hash(frozenset(self.metadata, self.name, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["metadata", "name", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

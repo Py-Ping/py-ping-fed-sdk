@@ -4,33 +4,24 @@ class ChangeDetectionSettings():
     Attributes
     ----------
     changedUsersAlgorithm : str
- The changed user algorithm. ACTIVE_DIRECTORY_USN - For Active Directory only, this algorithm queries for update sequence numbers on user records that are larger than the last time records were checked. TIMESTAMP - Queries for timestamps on user records that are not older than the last time records were checked. This check is more efficient from the point of view of the PingFederate provisioner but can be more time consuming on the LDAP side, particularly with the Oracle Directory Server. TIMESTAMP_NO_NEGATION - Queries for timestamps on user records that are newer than the last time records were checked. This algorithm is recommended for the Oracle Directory Server.
+        The changed user algorithm. ACTIVE_DIRECTORY_USN - For Active Directory only, this algorithm queries for update sequence numbers on user records that are larger than the last time records were checked. TIMESTAMP - Queries for timestamps on user records that are not older than the last time records were checked. This check is more efficient from the point of view of the PingFederate provisioner but can be more time consuming on the LDAP side, particularly with the Oracle Directory Server. TIMESTAMP_NO_NEGATION - Queries for timestamps on user records that are newer than the last time records were checked. This algorithm is recommended for the Oracle Directory Server.
     groupObjectClass : string
- The group object class.
+        The group object class.
     timeStampAttributeName : string
- The timestamp attribute name.
+        The timestamp attribute name.
     userObjectClass : string
- The user object class.
+        The user object class.
     usnAttributeName : string
- The USN attribute name.
+        The USN attribute name.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, userObjectClass, groupObjectClass, changedUsersAlgorithm, timeStampAttributeName, usnAttributeName=None) -> None:
+    def __init__(self, userObjectClass:str, groupObjectClass:str, changedUsersAlgorithm, timeStampAttributeName:str, usnAttributeName:str=None) -> None:
         self.changedUsersAlgorithm = changedUsersAlgorithm
         self.groupObjectClass = groupObjectClass
         self.timeStampAttributeName = timeStampAttributeName
         self.userObjectClass = userObjectClass
         self.usnAttributeName = usnAttributeName
-=======
-    def __init__(self, userObjectClass, groupObjectClass, changedUsersAlgorithm, timeStampAttributeName, usnAttributeName=None):
-        self.changedUsersAlgorithm: str = changedUsersAlgorithm
-        self.groupObjectClass: str = groupObjectClass
-        self.timeStampAttributeName: str = timeStampAttributeName
-        self.userObjectClass: str = userObjectClass
-        self.usnAttributeName: str = usnAttributeName
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["userObjectClass", "groupObjectClass", "changedUsersAlgorithm", "timeStampAttributeName"] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class ChangeDetectionSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.changedUsersAlgorithm, self.groupObjectClass, self.timeStampAttributeName, self.userObjectClass, self.usnAttributeName))
+        return hash(frozenset(self.changedUsersAlgorithm, self.groupObjectClass, self.timeStampAttributeName, self.userObjectClass, self.usnAttributeName))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["changedUsersAlgorithm", "groupObjectClass", "timeStampAttributeName", "userObjectClass", "usnAttributeName"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -1,10 +1,15 @@
-****
-APIs
-****
+PyPingFedSDK APIs
+===================
 
-.. contents:: Table of Contents
-   :depth: 2
+Subpackages
+-----------
 
+.. toctree::
+  :maxdepth: 2
+  :glob:
+
+Submodules
+----------
 
 _idp_tokenProcessors
 --------------------

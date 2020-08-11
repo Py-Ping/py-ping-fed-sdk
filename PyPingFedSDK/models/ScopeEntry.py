@@ -4,25 +4,18 @@ class ScopeEntry():
     Attributes
     ----------
     description : string
- The description of the scope that appears when the user is prompted for authorization.
+        The description of the scope that appears when the user is prompted for authorization.
     dynamic : boolean
- True if the scope is dynamic. (Defaults to false)
+        True if the scope is dynamic. (Defaults to false)
     name : string
- The name of the scope.
+        The name of the scope.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name, description, dynamic=None) -> None:
+    def __init__(self, name:str, description:str, dynamic:bool=None) -> None:
         self.description = description
         self.dynamic = dynamic
         self.name = name
-=======
-    def __init__(self, name, description, dynamic=None):
-        self.description: str = description
-        self.dynamic: bool = dynamic
-        self.name: str = name
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name", "description"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class ScopeEntry():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.description, self.dynamic, self.name))
+        return hash(frozenset(self.description, self.dynamic, self.name))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "dynamic", "name"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

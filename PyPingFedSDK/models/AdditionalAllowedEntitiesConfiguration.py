@@ -4,25 +4,18 @@ class AdditionalAllowedEntitiesConfiguration():
     Attributes
     ----------
     additionalAllowedEntities : array
- An array of additional allowed entities or issuers to be accepted during entity or issuer validation.
+        An array of additional allowed entities or issuers to be accepted during entity or issuer validation.
     allowAdditionalEntities : boolean
- Set to true to configure additional entities or issuers to be accepted during entity or issuer validation.
+        Set to true to configure additional entities or issuers to be accepted during entity or issuer validation.
     allowAllEntities : boolean
- Set to true to accept any entity or issuer during entity or issuer validation. (Not Recommended)
+        Set to true to accept any entity or issuer during entity or issuer validation. (Not Recommended)
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, additionalAllowedEntities=None, allowAdditionalEntities=None, allowAllEntities=None) -> None:
+    def __init__(self, additionalAllowedEntities:list=None, allowAdditionalEntities:bool=None, allowAllEntities:bool=None) -> None:
         self.additionalAllowedEntities = additionalAllowedEntities
         self.allowAdditionalEntities = allowAdditionalEntities
         self.allowAllEntities = allowAllEntities
-=======
-    def __init__(self, additionalAllowedEntities=None, allowAdditionalEntities=None, allowAllEntities=None):
-        self.additionalAllowedEntities: list = additionalAllowedEntities
-        self.allowAdditionalEntities: bool = allowAdditionalEntities
-        self.allowAllEntities: bool = allowAllEntities
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class AdditionalAllowedEntitiesConfiguration():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.additionalAllowedEntities, self.allowAdditionalEntities, self.allowAllEntities))
+        return hash(frozenset(self.additionalAllowedEntities, self.allowAdditionalEntities, self.allowAllEntities))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["additionalAllowedEntities", "allowAdditionalEntities", "allowAllEntities"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

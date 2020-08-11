@@ -4,17 +4,12 @@ class PersistentGrantAttribute():
     Attributes
     ----------
     name : string
- The name of this attribute.
+        The name of this attribute.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name) -> None:
+    def __init__(self, name:str) -> None:
         self.name = name
-=======
-    def __init__(self, name):
-        self.name: str = name
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name"] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class PersistentGrantAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.name))
+        return hash(frozenset(self.name))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["name"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

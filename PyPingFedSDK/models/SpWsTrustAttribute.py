@@ -4,21 +4,15 @@ class SpWsTrustAttribute():
     Attributes
     ----------
     name : string
- The name of this attribute.
+        The name of this attribute.
     namespace : string
- The attribute namespace.  This required when the Default Token Type is SAML1.1 or SAML1.1 for Office 365.
+        The attribute namespace.  This required when the Default Token Type is SAML1.1 or SAML1.1 for Office 365.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, namespace, name) -> None:
+    def __init__(self, namespace:str, name:str) -> None:
         self.name = name
         self.namespace = namespace
-=======
-    def __init__(self, namespace, name):
-        self.name: str = name
-        self.namespace: str = namespace
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["namespace", "name"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class SpWsTrustAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.name, self.namespace))
+        return hash(frozenset(self.name, self.namespace))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["name", "namespace"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,17 +4,12 @@ class RedirectValidationPartnerSettings():
     Attributes
     ----------
     enableWreplyValidationSLO : boolean
- Enable wreply validation for SLO.
+        Enable wreply validation for SLO.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, enableWreplyValidationSLO=None) -> None:
+    def __init__(self, enableWreplyValidationSLO:bool=None) -> None:
         self.enableWreplyValidationSLO = enableWreplyValidationSLO
-=======
-    def __init__(self, enableWreplyValidationSLO=None):
-        self.enableWreplyValidationSLO: bool = enableWreplyValidationSLO
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class RedirectValidationPartnerSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.enableWreplyValidationSLO))
+        return hash(frozenset(self.enableWreplyValidationSLO))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableWreplyValidationSLO"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

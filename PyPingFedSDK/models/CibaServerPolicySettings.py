@@ -4,17 +4,12 @@ class CibaServerPolicySettings():
     Attributes
     ----------
     defaultRequestPolicyRef : str
- Reference to the default request policy, if one is defined.
+        Reference to the default request policy, if one is defined.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, defaultRequestPolicyRef=None) -> None:
         self.defaultRequestPolicyRef = defaultRequestPolicyRef
-=======
-    def __init__(self, defaultRequestPolicyRef=None):
-        self.defaultRequestPolicyRef: str = defaultRequestPolicyRef
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class CibaServerPolicySettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.defaultRequestPolicyRef))
+        return hash(frozenset(self.defaultRequestPolicyRef))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultRequestPolicyRef"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

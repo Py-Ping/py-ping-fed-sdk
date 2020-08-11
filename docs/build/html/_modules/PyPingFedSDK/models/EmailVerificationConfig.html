@@ -65,10 +65,10 @@
     
     
       <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
 </ul>
 
     
@@ -111,49 +111,56 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    emailVerificationEnabled : boolean</span>
-<span class="sd">        Whether the email ownership verification is enabled.    emailVerificationErrorTemplateName : string</span>
-<span class="sd">        The template name for email verification error.  The default is local.identity.email.verification.error.html.    emailVerificationSentTemplateName : string</span>
-<span class="sd">        The template name for email verification sent. The default is local.identity.email.verification.sent.html.    emailVerificationSuccessTemplateName : string</span>
-<span class="sd">        The template name for email verification success. The default is local.identity.email.verification.success.html.    fieldForEmailToVerify : string</span>
-<span class="sd">        Field used for email ownership verification.&lt;br&gt;Note: Not required when emailVerificationEnabled is set to false.    fieldStoringVerificationStatus : string</span>
-<span class="sd">        Field used for storing email verification status.&lt;br&gt;Note: Not required when emailVerificationEnabled is set to false.    notificationPublisherRef : str</span>
-<span class="sd">        Reference to the associated notification publisher.    otlTimeToLive : integer</span>
-<span class="sd">        Field used OTL time to live.  The default is 1440.    verifyEmailTemplateName : string</span>
+<span class="sd">        Whether the email ownership verification is enabled.</span>
+<span class="sd">    emailVerificationErrorTemplateName : string</span>
+<span class="sd">        The template name for email verification error.  The default is local.identity.email.verification.error.html.</span>
+<span class="sd">    emailVerificationSentTemplateName : string</span>
+<span class="sd">        The template name for email verification sent. The default is local.identity.email.verification.sent.html.</span>
+<span class="sd">    emailVerificationSuccessTemplateName : string</span>
+<span class="sd">        The template name for email verification success. The default is local.identity.email.verification.success.html.</span>
+<span class="sd">    fieldForEmailToVerify : string</span>
+<span class="sd">        Field used for email ownership verification.&lt;br&gt;Note: Not required when emailVerificationEnabled is set to false.</span>
+<span class="sd">    fieldStoringVerificationStatus : string</span>
+<span class="sd">        Field used for storing email verification status.&lt;br&gt;Note: Not required when emailVerificationEnabled is set to false.</span>
+<span class="sd">    notificationPublisherRef : str</span>
+<span class="sd">        Reference to the associated notification publisher.</span>
+<span class="sd">    otlTimeToLive : integer</span>
+<span class="sd">        Field used OTL time to live.  The default is 1440.</span>
+<span class="sd">    verifyEmailTemplateName : string</span>
 <span class="sd">        The template name for verify email. The default is message-template-email-ownership-verification.html.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;emailVerificationEnabled&quot;</span><span class="p">,</span> <span class="s2">&quot;emailVerificationErrorTemplateName&quot;</span><span class="p">,</span> <span class="s2">&quot;emailVerificationSentTemplateName&quot;</span><span class="p">,</span> <span class="s2">&quot;emailVerificationSuccessTemplateName&quot;</span><span class="p">,</span> <span class="s2">&quot;fieldForEmailToVerify&quot;</span><span class="p">,</span> <span class="s2">&quot;fieldStoringVerificationStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;notificationPublisherRef&quot;</span><span class="p">,</span> <span class="s2">&quot;otlTimeToLive&quot;</span><span class="p">,</span> <span class="s2">&quot;verifyEmailTemplateName&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fieldForEmailToVerify</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">fieldStoringVerificationStatus</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">emailVerificationEnabled</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailVerificationErrorTemplateName</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailVerificationSentTemplateName</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailVerificationSuccessTemplateName</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">notificationPublisherRef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">otlTimeToLive</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verifyEmailTemplateName</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationEnabled</span> <span class="o">=</span> <span class="n">emailVerificationEnabled</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationErrorTemplateName</span> <span class="o">=</span> <span class="n">emailVerificationErrorTemplateName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationSentTemplateName</span> <span class="o">=</span> <span class="n">emailVerificationSentTemplateName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationSuccessTemplateName</span> <span class="o">=</span> <span class="n">emailVerificationSuccessTemplateName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fieldForEmailToVerify</span> <span class="o">=</span> <span class="n">fieldForEmailToVerify</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fieldStoringVerificationStatus</span> <span class="o">=</span> <span class="n">fieldStoringVerificationStatus</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notificationPublisherRef</span> <span class="o">=</span> <span class="n">notificationPublisherRef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">otlTimeToLive</span> <span class="o">=</span> <span class="n">otlTimeToLive</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verifyEmailTemplateName</span> <span class="o">=</span> <span class="n">verifyEmailTemplateName</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fieldForEmailToVerify</span><span class="p">,</span> <span class="n">fieldStoringVerificationStatus</span><span class="p">,</span> <span class="n">emailVerificationEnabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailVerificationErrorTemplateName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailVerificationSentTemplateName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailVerificationSuccessTemplateName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">notificationPublisherRef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">otlTimeToLive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verifyEmailTemplateName</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationEnabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">emailVerificationEnabled</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationErrorTemplateName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">emailVerificationErrorTemplateName</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationSentTemplateName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">emailVerificationSentTemplateName</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationSuccessTemplateName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">emailVerificationSuccessTemplateName</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fieldForEmailToVerify</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">fieldForEmailToVerify</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fieldStoringVerificationStatus</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">fieldStoringVerificationStatus</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notificationPublisherRef</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">notificationPublisherRef</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">otlTimeToLive</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">otlTimeToLive</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">verifyEmailTemplateName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">verifyEmailTemplateName</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;fieldForEmailToVerify&quot;</span><span class="p">,</span> <span class="s2">&quot;fieldStoringVerificationStatus&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;fieldForEmailToVerify&#39;</span><span class="p">,</span> <span class="s1">&#39;fieldStoringVerificationStatus&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">EmailVerificationConfig</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationEnabled</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationErrorTemplateName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationSentTemplateName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emailVerificationSuccessTemplateName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fieldForEmailToVerify</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fieldStoringVerificationStatus</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">notificationPublisherRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">otlTimeToLive</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verifyEmailTemplateName</span><span class="p">))</span>
 
 <div class="viewcode-block" id="EmailVerificationConfig.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.EmailVerificationConfig.EmailVerificationConfig.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;emailVerificationEnabled&quot;</span><span class="p">,</span> <span class="s2">&quot;emailVerificationErrorTemplateName&quot;</span><span class="p">,</span> <span class="s2">&quot;emailVerificationSentTemplateName&quot;</span><span class="p">,</span> <span class="s2">&quot;emailVerificationSuccessTemplateName&quot;</span><span class="p">,</span> <span class="s2">&quot;fieldForEmailToVerify&quot;</span><span class="p">,</span> <span class="s2">&quot;fieldStoringVerificationStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;notificationPublisherRef&quot;</span><span class="p">,</span> <span class="s2">&quot;otlTimeToLive&quot;</span><span class="p">,</span> <span class="s2">&quot;verifyEmailTemplateName&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

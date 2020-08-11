@@ -4,33 +4,24 @@ class SpAttributeQuery():
     Attributes
     ----------
     attributeContractFulfillment : str
- A list of mappings from attribute names to their fulfillment values.
+        A list of mappings from attribute names to their fulfillment values.
     attributeSources : array
- A list of configured data stores to look up attributes from.
+        A list of configured data stores to look up attributes from.
     attributes : str
- The list of attributes that may be returned to the SP in the response to an attribute request.
+        The list of attributes that may be returned to the SP in the response to an attribute request.
     issuanceCriteria : str
- The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
+        The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
     policy : str
- The attribute query profile's security policy.
+        The attribute query profile's security policy.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, attributes, attributeSources, attributeContractFulfillment, issuanceCriteria=None, policy=None) -> None:
+    def __init__(self, attributes, attributeSources:list, attributeContractFulfillment, issuanceCriteria=None, policy=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.attributes = attributes
         self.issuanceCriteria = issuanceCriteria
         self.policy = policy
-=======
-    def __init__(self, attributes, attributeSources, attributeContractFulfillment, issuanceCriteria=None, policy=None):
-        self.attributeContractFulfillment: str = attributeContractFulfillment
-        self.attributeSources: list = attributeSources
-        self.attributes: str = attributes
-        self.issuanceCriteria: str = issuanceCriteria
-        self.policy: str = policy
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributes", "attributeSources", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class SpAttributeQuery():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeContractFulfillment, self.attributeSources, self.attributes, self.issuanceCriteria, self.policy))
+        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.attributes, self.issuanceCriteria, self.policy))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "attributes", "issuanceCriteria", "policy"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

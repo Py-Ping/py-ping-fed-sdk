@@ -4,25 +4,18 @@ class AttributeMapping():
     Attributes
     ----------
     attributeContractFulfillment : str
- A list of mappings from attribute names to their fulfillment values.
+        A list of mappings from attribute names to their fulfillment values.
     attributeSources : array
- A list of configured data stores to look up attributes from.
+        A list of configured data stores to look up attributes from.
     issuanceCriteria : str
- The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
+        The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None) -> None:
+    def __init__(self, attributeContractFulfillment, attributeSources:list=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.issuanceCriteria = issuanceCriteria
-=======
-    def __init__(self, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None):
-        self.attributeContractFulfillment: str = attributeContractFulfillment
-        self.attributeSources: list = attributeSources
-        self.issuanceCriteria: str = issuanceCriteria
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class AttributeMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria))
+        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "issuanceCriteria"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,25 +4,18 @@ class ChannelSourceLocation():
     Attributes
     ----------
     filter : string
- An LDAP filter.
+        An LDAP filter.
     groupDN : string
- The group DN for users or groups.
+        The group DN for users or groups.
     nestedSearch : boolean
- Indicates whether the search is nested.
+        Indicates whether the search is nested.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, filter=None, groupDN=None, nestedSearch=None) -> None:
+    def __init__(self, filter:str=None, groupDN:str=None, nestedSearch:bool=None) -> None:
         self.filter = filter
         self.groupDN = groupDN
         self.nestedSearch = nestedSearch
-=======
-    def __init__(self, filter=None, groupDN=None, nestedSearch=None):
-        self.filter: str = filter
-        self.groupDN: str = groupDN
-        self.nestedSearch: bool = nestedSearch
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class ChannelSourceLocation():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.filter, self.groupDN, self.nestedSearch))
+        return hash(frozenset(self.filter, self.groupDN, self.nestedSearch))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["filter", "groupDN", "nestedSearch"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

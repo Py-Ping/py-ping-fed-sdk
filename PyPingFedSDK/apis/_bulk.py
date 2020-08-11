@@ -43,7 +43,7 @@ class _bulk():
         payload = {
             "failFast": failFast,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

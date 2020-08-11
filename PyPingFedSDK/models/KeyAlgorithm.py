@@ -4,33 +4,24 @@ class KeyAlgorithm():
     Attributes
     ----------
     defaultKeySize : integer
- Default key size for this algorithm.
+        Default key size for this algorithm.
     defaultSignatureAlgorithm : string
- Default signature algorithm for this key algorithm.
+        Default signature algorithm for this key algorithm.
     keySizes : array
- Possible key sizes for this algorithm, in bits.
+        Possible key sizes for this algorithm, in bits.
     name : string
- Name of the key algorithm.
+        Name of the key algorithm.
     signatureAlgorithms : array
- Possible signature algorithms for this key algorithm.
+        Possible signature algorithms for this key algorithm.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, defaultKeySize=None, defaultSignatureAlgorithm=None, keySizes=None, name=None, signatureAlgorithms=None) -> None:
+    def __init__(self, defaultKeySize:int=None, defaultSignatureAlgorithm:str=None, keySizes:list=None, name:str=None, signatureAlgorithms:list=None) -> None:
         self.defaultKeySize = defaultKeySize
         self.defaultSignatureAlgorithm = defaultSignatureAlgorithm
         self.keySizes = keySizes
         self.name = name
         self.signatureAlgorithms = signatureAlgorithms
-=======
-    def __init__(self, defaultKeySize=None, defaultSignatureAlgorithm=None, keySizes=None, name=None, signatureAlgorithms=None):
-        self.defaultKeySize: str = defaultKeySize
-        self.defaultSignatureAlgorithm: str = defaultSignatureAlgorithm
-        self.keySizes: list = keySizes
-        self.name: str = name
-        self.signatureAlgorithms: list = signatureAlgorithms
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class KeyAlgorithm():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.defaultKeySize, self.defaultSignatureAlgorithm, self.keySizes, self.name, self.signatureAlgorithms))
+        return hash(frozenset(self.defaultKeySize, self.defaultSignatureAlgorithm, self.keySizes, self.name, self.signatureAlgorithms))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultKeySize", "defaultSignatureAlgorithm", "keySizes", "name", "signatureAlgorithms"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

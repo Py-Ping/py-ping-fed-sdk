@@ -4,33 +4,24 @@ class SpAttributeQueryPolicy():
     Attributes
     ----------
     encryptAssertion : boolean
- Encrypt the assertion.
+        Encrypt the assertion.
     requireEncryptedNameId : boolean
- Require an encrypted name identifier.
+        Require an encrypted name identifier.
     requireSignedAttributeQuery : boolean
- Require signed attribute query.
+        Require signed attribute query.
     signAssertion : boolean
- Sign the assertion.
+        Sign the assertion.
     signResponse : boolean
- Sign the response.
+        Sign the response.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, encryptAssertion=None, requireEncryptedNameId=None, requireSignedAttributeQuery=None, signAssertion=None, signResponse=None) -> None:
+    def __init__(self, encryptAssertion:bool=None, requireEncryptedNameId:bool=None, requireSignedAttributeQuery:bool=None, signAssertion:bool=None, signResponse:bool=None) -> None:
         self.encryptAssertion = encryptAssertion
         self.requireEncryptedNameId = requireEncryptedNameId
         self.requireSignedAttributeQuery = requireSignedAttributeQuery
         self.signAssertion = signAssertion
         self.signResponse = signResponse
-=======
-    def __init__(self, encryptAssertion=None, requireEncryptedNameId=None, requireSignedAttributeQuery=None, signAssertion=None, signResponse=None):
-        self.encryptAssertion: bool = encryptAssertion
-        self.requireEncryptedNameId: bool = requireEncryptedNameId
-        self.requireSignedAttributeQuery: bool = requireSignedAttributeQuery
-        self.signAssertion: bool = signAssertion
-        self.signResponse: bool = signResponse
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class SpAttributeQueryPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.encryptAssertion, self.requireEncryptedNameId, self.requireSignedAttributeQuery, self.signAssertion, self.signResponse))
+        return hash(frozenset(self.encryptAssertion, self.requireEncryptedNameId, self.requireSignedAttributeQuery, self.signAssertion, self.signResponse))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptAssertion", "requireEncryptedNameId", "requireSignedAttributeQuery", "signAssertion", "signResponse"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

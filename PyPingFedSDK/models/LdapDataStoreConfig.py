@@ -4,37 +4,27 @@ class LdapDataStoreConfig():
     Attributes
     ----------
     baseDn : string
- The base DN to search from. If not specified, the search will start at the LDAP's root.
+        The base DN to search from. If not specified, the search will start at the LDAP's root.
     createPattern : string
- The Relative DN Pattern that will be used to create objects in the directory.
+        The Relative DN Pattern that will be used to create objects in the directory.
     dataStoreMapping : str
- The data store mapping.
+        The data store mapping.
     dataStoreRef : str
- Reference to the associated data store.
+        Reference to the associated data store.
     objectClass : string
- The Object Class used by the new objects stored in the LDAP data store.
+        The Object Class used by the new objects stored in the LDAP data store.
     type : str
- The data store config type.
+        The data store config type.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, dataStoreRef, baseDn, createPattern, objectClass, dataStoreMapping) -> None:
+    def __init__(self, var_type, dataStoreRef, baseDn:str, createPattern:str, objectClass:str, dataStoreMapping) -> None:
         self.baseDn = baseDn
         self.createPattern = createPattern
         self.dataStoreMapping = dataStoreMapping
         self.dataStoreRef = dataStoreRef
         self.objectClass = objectClass
         self.var_type = var_type
-=======
-    def __init__(self, type, dataStoreRef, baseDn, createPattern, objectClass, dataStoreMapping):
-        self.baseDn: str = baseDn
-        self.createPattern: str = createPattern
-        self.dataStoreMapping: str = dataStoreMapping
-        self.dataStoreRef: str = dataStoreRef
-        self.objectClass: str = objectClass
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "dataStoreRef", "baseDn", "createPattern", "objectClass", "dataStoreMapping"] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class LdapDataStoreConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.baseDn, self.createPattern, self.dataStoreMapping, self.dataStoreRef, self.objectClass, self.var_type))
+        return hash(frozenset(self.baseDn, self.createPattern, self.dataStoreMapping, self.dataStoreRef, self.objectClass, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["baseDn", "createPattern", "dataStoreMapping", "dataStoreRef", "objectClass", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

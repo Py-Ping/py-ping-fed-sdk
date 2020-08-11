@@ -4,29 +4,21 @@ class ConnectionGroupLicenseView():
     Attributes
     ----------
     connectionCount : integer
- Maximum number of connections permitted under the group.
+        Maximum number of connections permitted under the group.
     endDate : string
- End date for the group.
+        End date for the group.
     name : string
- Group name from the license file.
+        Group name from the license file.
     startDate : string
- Start date for the group.
+        Start date for the group.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, connectionCount=None, endDate=None, name=None, startDate=None) -> None:
+    def __init__(self, connectionCount:int=None, endDate:str=None, name:str=None, startDate:str=None) -> None:
         self.connectionCount = connectionCount
         self.endDate = endDate
         self.name = name
         self.startDate = startDate
-=======
-    def __init__(self, connectionCount=None, endDate=None, name=None, startDate=None):
-        self.connectionCount: str = connectionCount
-        self.endDate: str = endDate
-        self.name: str = name
-        self.startDate: str = startDate
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class ConnectionGroupLicenseView():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.connectionCount, self.endDate, self.name, self.startDate))
+        return hash(frozenset(self.connectionCount, self.endDate, self.name, self.startDate))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionCount", "endDate", "name", "startDate"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,25 +4,18 @@ class SessionSettings():
     Attributes
     ----------
     revokeUserSessionOnLogout : boolean
- Determines whether the user's session is revoked on logout. If this property is not provided on a PUT, the setting is left unchanged.
+        Determines whether the user's session is revoked on logout. If this property is not provided on a PUT, the setting is left unchanged.
     sessionRevocationLifetime : integer
- How long a session revocation is tracked and stored, in minutes. If this property is not provided on a PUT, the setting is left unchanged.
+        How long a session revocation is tracked and stored, in minutes. If this property is not provided on a PUT, the setting is left unchanged.
     trackAdapterSessionsForLogout : boolean
- Determines whether adapter sessions are tracked for cleanup during single logout. The default is false.
+        Determines whether adapter sessions are tracked for cleanup during single logout. The default is false.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, revokeUserSessionOnLogout=None, sessionRevocationLifetime=None, trackAdapterSessionsForLogout=None) -> None:
+    def __init__(self, revokeUserSessionOnLogout:bool=None, sessionRevocationLifetime:int=None, trackAdapterSessionsForLogout:bool=None) -> None:
         self.revokeUserSessionOnLogout = revokeUserSessionOnLogout
         self.sessionRevocationLifetime = sessionRevocationLifetime
         self.trackAdapterSessionsForLogout = trackAdapterSessionsForLogout
-=======
-    def __init__(self, revokeUserSessionOnLogout=None, sessionRevocationLifetime=None, trackAdapterSessionsForLogout=None):
-        self.revokeUserSessionOnLogout: bool = revokeUserSessionOnLogout
-        self.sessionRevocationLifetime: str = sessionRevocationLifetime
-        self.trackAdapterSessionsForLogout: bool = trackAdapterSessionsForLogout
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class SessionSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.revokeUserSessionOnLogout, self.sessionRevocationLifetime, self.trackAdapterSessionsForLogout))
+        return hash(frozenset(self.revokeUserSessionOnLogout, self.sessionRevocationLifetime, self.trackAdapterSessionsForLogout))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["revokeUserSessionOnLogout", "sessionRevocationLifetime", "trackAdapterSessionsForLogout"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

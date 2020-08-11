@@ -82,7 +82,7 @@ class _dataStores():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -128,18 +128,14 @@ class _dataStores():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateDataStore(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateDataStore(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateDataStore(self, var_id, body, XBypassExternalValidation):
         """ Update a data store.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

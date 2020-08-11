@@ -4,29 +4,21 @@ class ApcMappingPolicyAction():
     Attributes
     ----------
     attributeMapping : str
- Contract fulfillment with the authentication policy contract's default values, and additional attributes retrieved from local data stores.
+        Contract fulfillment with the authentication policy contract's default values, and additional attributes retrieved from local data stores.
     authenticationPolicyContractRef : str
- Reference to the associated authentication policy contract.
+        Reference to the associated authentication policy contract.
     context : string
- The result context.
+        The result context.
     type : str
- The authentication selection type.
+        The authentication selection type.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, authenticationPolicyContractRef, attributeMapping, context=None) -> None:
+    def __init__(self, var_type, authenticationPolicyContractRef, attributeMapping, context:str=None) -> None:
         self.attributeMapping = attributeMapping
         self.authenticationPolicyContractRef = authenticationPolicyContractRef
         self.context = context
         self.var_type = var_type
-=======
-    def __init__(self, type, authenticationPolicyContractRef, attributeMapping, context=None):
-        self.attributeMapping: str = attributeMapping
-        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
-        self.context: str = context
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "authenticationPolicyContractRef", "attributeMapping"] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class ApcMappingPolicyAction():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeMapping, self.authenticationPolicyContractRef, self.context, self.var_type))
+        return hash(frozenset(self.attributeMapping, self.authenticationPolicyContractRef, self.context, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeMapping", "authenticationPolicyContractRef", "context", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

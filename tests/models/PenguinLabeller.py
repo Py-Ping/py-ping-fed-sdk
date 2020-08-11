@@ -4,7 +4,7 @@ class PenguinLabeller():
     Attributes
     ----------
     PenguinNames : array
- List of great names for a pet penguin.
+        List of great names for a pet penguin.
 
     """
 
@@ -26,7 +26,7 @@ class PenguinLabeller():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.PenguinNames))
+        return hash(frozenset([self.PenguinNames]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

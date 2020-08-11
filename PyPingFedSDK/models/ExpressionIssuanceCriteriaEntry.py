@@ -4,21 +4,15 @@ class ExpressionIssuanceCriteriaEntry():
     Attributes
     ----------
     errorResult : string
- The error result to return if this issuance criterion fails. This error result will show up in the PingFederate server logs.
+        The error result to return if this issuance criterion fails. This error result will show up in the PingFederate server logs.
     expression : string
- The OGNL expression to evaluate.
+        The OGNL expression to evaluate.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, expression, errorResult=None) -> None:
+    def __init__(self, expression:str, errorResult:str=None) -> None:
         self.errorResult = errorResult
         self.expression = expression
-=======
-    def __init__(self, expression, errorResult=None):
-        self.errorResult: str = errorResult
-        self.expression: str = expression
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["expression"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ExpressionIssuanceCriteriaEntry():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.errorResult, self.expression))
+        return hash(frozenset(self.errorResult, self.expression))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["errorResult", "expression"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

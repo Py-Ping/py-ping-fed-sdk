@@ -4,21 +4,15 @@ class Entity():
     Attributes
     ----------
     entityDescription : string
- Entity description.
+        Entity description.
     entityId : string
- Unique entity identifier.
+        Unique entity identifier.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, entityDescription=None, entityId=None) -> None:
+    def __init__(self, entityDescription:str=None, entityId:str=None) -> None:
         self.entityDescription = entityDescription
         self.entityId = entityId
-=======
-    def __init__(self, entityDescription=None, entityId=None):
-        self.entityDescription: str = entityDescription
-        self.entityId: str = entityId
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class Entity():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.entityDescription, self.entityId))
+        return hash(frozenset(self.entityDescription, self.entityId))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["entityDescription", "entityId"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

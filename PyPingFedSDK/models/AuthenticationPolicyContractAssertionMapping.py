@@ -4,24 +4,23 @@ class AuthenticationPolicyContractAssertionMapping():
     Attributes
     ----------
     abortSsoTransactionAsFailSafe : boolean
- If set to true, SSO transaction will be aborted as a fail-safe when the data-store's attribute mappings fail to complete the attribute contract. Otherwise, the attribute contract with default values is used. By default, this value is false.
+        If set to true, SSO transaction will be aborted as a fail-safe when the data-store's attribute mappings fail to complete the attribute contract. Otherwise, the attribute contract with default values is used. By default, this value is false.
     attributeContractFulfillment : str
- A list of mappings from attribute names to their fulfillment values.
+        A list of mappings from attribute names to their fulfillment values.
     attributeSources : array
- A list of configured data stores to look up attributes from.
+        A list of configured data stores to look up attributes from.
     authenticationPolicyContractRef : str
- Reference to the associated Authentication Policy Contract.
+        Reference to the associated Authentication Policy Contract.
     issuanceCriteria : str
- The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
+        The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
     restrictVirtualEntityIds : boolean
- Restricts this mapping to specific virtual entity IDs.
+        Restricts this mapping to specific virtual entity IDs.
     restrictedVirtualEntityIds : array
- The list of virtual server IDs that this mapping is restricted to.
+        The list of virtual server IDs that this mapping is restricted to.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
+    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe:bool=None, attributeSources:list=None, issuanceCriteria=None, restrictVirtualEntityIds:bool=None, restrictedVirtualEntityIds:list=None) -> None:
         self.abortSsoTransactionAsFailSafe = abortSsoTransactionAsFailSafe
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
@@ -29,16 +28,6 @@ class AuthenticationPolicyContractAssertionMapping():
         self.issuanceCriteria = issuanceCriteria
         self.restrictVirtualEntityIds = restrictVirtualEntityIds
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
-=======
-    def __init__(self, authenticationPolicyContractRef, attributeContractFulfillment, abortSsoTransactionAsFailSafe=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
-        self.abortSsoTransactionAsFailSafe: bool = abortSsoTransactionAsFailSafe
-        self.attributeContractFulfillment: str = attributeContractFulfillment
-        self.attributeSources: list = attributeSources
-        self.authenticationPolicyContractRef: str = authenticationPolicyContractRef
-        self.issuanceCriteria: str = issuanceCriteria
-        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
-        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["authenticationPolicyContractRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -55,17 +44,13 @@ class AuthenticationPolicyContractAssertionMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.abortSsoTransactionAsFailSafe, self.attributeContractFulfillment, self.attributeSources, self.authenticationPolicyContractRef, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds))
+        return hash(frozenset(self.abortSsoTransactionAsFailSafe, self.attributeContractFulfillment, self.attributeSources, self.authenticationPolicyContractRef, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["abortSsoTransactionAsFailSafe", "attributeContractFulfillment", "attributeSources", "authenticationPolicyContractRef", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

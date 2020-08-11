@@ -4,21 +4,15 @@ class MetadataEventNotificationSettings():
     Attributes
     ----------
     emailAddress : string
- The email address where metadata update notifications are sent.
+        The email address where metadata update notifications are sent.
     notificationPublisherRef : str
- Reference to the associated notification publisher.
+        Reference to the associated notification publisher.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, emailAddress, notificationPublisherRef=None) -> None:
+    def __init__(self, emailAddress:str, notificationPublisherRef=None) -> None:
         self.emailAddress = emailAddress
         self.notificationPublisherRef = notificationPublisherRef
-=======
-    def __init__(self, emailAddress, notificationPublisherRef=None):
-        self.emailAddress: str = emailAddress
-        self.notificationPublisherRef: str = notificationPublisherRef
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["emailAddress"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class MetadataEventNotificationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.emailAddress, self.notificationPublisherRef))
+        return hash(frozenset(self.emailAddress, self.notificationPublisherRef))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["emailAddress", "notificationPublisherRef"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

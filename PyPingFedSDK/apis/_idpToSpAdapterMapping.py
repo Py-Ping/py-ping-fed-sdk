@@ -42,7 +42,7 @@ class _idpToSpAdapterMapping():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -88,18 +88,14 @@ class _idpToSpAdapterMapping():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateIdpToSpAdapterMapping(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateIdpToSpAdapterMapping(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateIdpToSpAdapterMapping(self, var_id, body, XBypassExternalValidation):
         """ Update the specified IdP-to-SP Adapter mapping.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

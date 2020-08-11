@@ -4,21 +4,15 @@ class AssertionLifetime():
     Attributes
     ----------
     minutesAfter : integer
- Assertion validity in minutes after the assertion issuance.
+        Assertion validity in minutes after the assertion issuance.
     minutesBefore : integer
- Assertion validity in minutes before the assertion issuance.
+        Assertion validity in minutes before the assertion issuance.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, minutesBefore, minutesAfter) -> None:
+    def __init__(self, minutesBefore:int, minutesAfter:int) -> None:
         self.minutesAfter = minutesAfter
         self.minutesBefore = minutesBefore
-=======
-    def __init__(self, minutesBefore, minutesAfter):
-        self.minutesAfter: str = minutesAfter
-        self.minutesBefore: str = minutesBefore
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["minutesBefore", "minutesAfter"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class AssertionLifetime():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.minutesAfter, self.minutesBefore))
+        return hash(frozenset(self.minutesAfter, self.minutesBefore))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["minutesAfter", "minutesBefore"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

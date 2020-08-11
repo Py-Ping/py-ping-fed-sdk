@@ -4,37 +4,27 @@ class GlobalAuthenticationSessionPolicy():
     Attributes
     ----------
     enableSessions : boolean
- Determines whether authentication sessions are enabled globally.
+        Determines whether authentication sessions are enabled globally.
     idleTimeoutDisplayUnit : str
- The display unit for the idle timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.
+        The display unit for the idle timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.
     idleTimeoutMins : integer
- The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.
+        The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.
     maxTimeoutDisplayUnit : str
- The display unit for the maximum timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.
+        The display unit for the maximum timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.
     maxTimeoutMins : integer
- The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.
+        The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.
     persistentSessions : boolean
- Determines whether authentication sessions are persistent by default. Persistent sessions are linked to a persistent cookie and stored in a data store. This field is ignored if enableSessions is false.
+        Determines whether authentication sessions are persistent by default. Persistent sessions are linked to a persistent cookie and stored in a data store. This field is ignored if enableSessions is false.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, enableSessions, idleTimeoutDisplayUnit=None, idleTimeoutMins=None, maxTimeoutDisplayUnit=None, maxTimeoutMins=None, persistentSessions=None) -> None:
+    def __init__(self, enableSessions:bool, idleTimeoutDisplayUnit=None, idleTimeoutMins:int=None, maxTimeoutDisplayUnit=None, maxTimeoutMins:int=None, persistentSessions:bool=None) -> None:
         self.enableSessions = enableSessions
         self.idleTimeoutDisplayUnit = idleTimeoutDisplayUnit
         self.idleTimeoutMins = idleTimeoutMins
         self.maxTimeoutDisplayUnit = maxTimeoutDisplayUnit
         self.maxTimeoutMins = maxTimeoutMins
         self.persistentSessions = persistentSessions
-=======
-    def __init__(self, enableSessions, idleTimeoutDisplayUnit=None, idleTimeoutMins=None, maxTimeoutDisplayUnit=None, maxTimeoutMins=None, persistentSessions=None):
-        self.enableSessions: bool = enableSessions
-        self.idleTimeoutDisplayUnit: str = idleTimeoutDisplayUnit
-        self.idleTimeoutMins: str = idleTimeoutMins
-        self.maxTimeoutDisplayUnit: str = maxTimeoutDisplayUnit
-        self.maxTimeoutMins: str = maxTimeoutMins
-        self.persistentSessions: bool = persistentSessions
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["enableSessions"] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class GlobalAuthenticationSessionPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.enableSessions, self.idleTimeoutDisplayUnit, self.idleTimeoutMins, self.maxTimeoutDisplayUnit, self.maxTimeoutMins, self.persistentSessions))
+        return hash(frozenset(self.enableSessions, self.idleTimeoutDisplayUnit, self.idleTimeoutMins, self.maxTimeoutDisplayUnit, self.maxTimeoutMins, self.persistentSessions))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableSessions", "idleTimeoutDisplayUnit", "idleTimeoutMins", "maxTimeoutDisplayUnit", "maxTimeoutMins", "persistentSessions"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

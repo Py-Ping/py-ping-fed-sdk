@@ -4,25 +4,18 @@ class ClientMetadata():
     Attributes
     ----------
     description : string
- The metadata description.
+        The metadata description.
     multiValued : boolean
- If the field should allow multiple values.
+        If the field should allow multiple values.
     parameter : string
- The metadata name.
+        The metadata name.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, description=None, multiValued=None, parameter=None) -> None:
+    def __init__(self, description:str=None, multiValued:bool=None, parameter:str=None) -> None:
         self.description = description
         self.multiValued = multiValued
         self.parameter = parameter
-=======
-    def __init__(self, description=None, multiValued=None, parameter=None):
-        self.description: str = description
-        self.multiValued: bool = multiValued
-        self.parameter: str = parameter
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class ClientMetadata():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.description, self.multiValued, self.parameter))
+        return hash(frozenset(self.description, self.multiValued, self.parameter))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "multiValued", "parameter"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

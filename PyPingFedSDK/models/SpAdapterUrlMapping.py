@@ -4,21 +4,15 @@ class SpAdapterUrlMapping():
     Attributes
     ----------
     adapterRef : str
- The adapter instance mapped for this URL.
+        The adapter instance mapped for this URL.
     url : string
- The URL that will be compared against the target URL. Use a wildcard (*) to match multiple URLs to the same adapter instance.
+        The URL that will be compared against the target URL. Use a wildcard (*) to match multiple URLs to the same adapter instance.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, adapterRef=None, url=None) -> None:
+    def __init__(self, adapterRef=None, url:str=None) -> None:
         self.adapterRef = adapterRef
         self.url = url
-=======
-    def __init__(self, adapterRef=None, url=None):
-        self.adapterRef: str = adapterRef
-        self.url: str = url
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class SpAdapterUrlMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.adapterRef, self.url))
+        return hash(frozenset(self.adapterRef, self.url))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["adapterRef", "url"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

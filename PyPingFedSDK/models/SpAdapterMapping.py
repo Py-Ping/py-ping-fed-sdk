@@ -4,24 +4,23 @@ class SpAdapterMapping():
     Attributes
     ----------
     adapterOverrideSettings : str
- Connection specific overridden adapter instance for mapping.
+        Connection specific overridden adapter instance for mapping.
     attributeContractFulfillment : str
- A list of mappings from attribute names to their fulfillment values.
+        A list of mappings from attribute names to their fulfillment values.
     attributeSources : array
- A list of configured data stores to look up attributes from.
+        A list of configured data stores to look up attributes from.
     issuanceCriteria : str
- The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
+        The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
     restrictVirtualEntityIds : boolean
- Restricts this mapping to specific virtual entity IDs.
+        Restricts this mapping to specific virtual entity IDs.
     restrictedVirtualEntityIds : array
- The list of virtual server IDs that this mapping is restricted to.
+        The list of virtual server IDs that this mapping is restricted to.
     spAdapterRef : str
- Reference to the associated SP adapter.<br>Note: This is ignored if adapter overrides for this mapping exists. In this case, the override's parent adapter reference is used.
+        Reference to the associated SP adapter.<br>Note: This is ignored if adapter overrides for this mapping exists. In this case, the override's parent adapter reference is used.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None) -> None:
+    def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources:list=None, issuanceCriteria=None, restrictVirtualEntityIds:bool=None, restrictedVirtualEntityIds:list=None) -> None:
         self.adapterOverrideSettings = adapterOverrideSettings
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
@@ -29,16 +28,6 @@ class SpAdapterMapping():
         self.restrictVirtualEntityIds = restrictVirtualEntityIds
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
         self.spAdapterRef = spAdapterRef
-=======
-    def __init__(self, spAdapterRef, attributeContractFulfillment, adapterOverrideSettings=None, attributeSources=None, issuanceCriteria=None, restrictVirtualEntityIds=None, restrictedVirtualEntityIds=None):
-        self.adapterOverrideSettings: str = adapterOverrideSettings
-        self.attributeContractFulfillment: str = attributeContractFulfillment
-        self.attributeSources: list = attributeSources
-        self.issuanceCriteria: str = issuanceCriteria
-        self.restrictVirtualEntityIds: bool = restrictVirtualEntityIds
-        self.restrictedVirtualEntityIds: list = restrictedVirtualEntityIds
-        self.spAdapterRef: str = spAdapterRef
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["spAdapterRef", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -55,17 +44,13 @@ class SpAdapterMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.adapterOverrideSettings, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds, self.spAdapterRef))
+        return hash(frozenset(self.adapterOverrideSettings, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds, self.spAdapterRef))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["adapterOverrideSettings", "attributeContractFulfillment", "attributeSources", "issuanceCriteria", "restrictVirtualEntityIds", "restrictedVirtualEntityIds", "spAdapterRef"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -44,7 +44,7 @@ class _idp_spConnections():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -94,18 +94,14 @@ class _idp_spConnections():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateConnection(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateConnection(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateConnection(self, var_id, body, XBypassExternalValidation):
         """ Update an SP connection.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

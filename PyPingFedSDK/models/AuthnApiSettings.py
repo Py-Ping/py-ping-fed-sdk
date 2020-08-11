@@ -4,25 +4,18 @@ class AuthnApiSettings():
     Attributes
     ----------
     apiEnabled : boolean
- Specifies whether the authentication API is enabled. The default value is false.
+        Specifies whether the authentication API is enabled. The default value is false.
     defaultApplicationRef : str
- Application for non authentication policy use cases.
+        Application for non authentication policy use cases.
     enableApiDescriptions : boolean
- Enable the API Descriptions endpoint.
+        Enable the API Descriptions endpoint.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, apiEnabled=None, defaultApplicationRef=None, enableApiDescriptions=None) -> None:
+    def __init__(self, apiEnabled:bool=None, defaultApplicationRef=None, enableApiDescriptions:bool=None) -> None:
         self.apiEnabled = apiEnabled
         self.defaultApplicationRef = defaultApplicationRef
         self.enableApiDescriptions = enableApiDescriptions
-=======
-    def __init__(self, apiEnabled=None, defaultApplicationRef=None, enableApiDescriptions=None):
-        self.apiEnabled: bool = apiEnabled
-        self.defaultApplicationRef: str = defaultApplicationRef
-        self.enableApiDescriptions: bool = enableApiDescriptions
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class AuthnApiSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.apiEnabled, self.defaultApplicationRef, self.enableApiDescriptions))
+        return hash(frozenset(self.apiEnabled, self.defaultApplicationRef, self.enableApiDescriptions))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["apiEnabled", "defaultApplicationRef", "enableApiDescriptions"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

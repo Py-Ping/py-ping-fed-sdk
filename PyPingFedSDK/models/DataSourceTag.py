@@ -9,19 +9,10 @@ class DataSourceTag():
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, defaultSource=None, tags=None, tagsHashSet=None) -> None:
+    def __init__(self, defaultSource:bool=None, tags:str=None, tagsHashSet=None) -> None:
         self.defaultSource = defaultSource
         self.tags = tags
         self.tagsHashSet = tagsHashSet
-=======
-    __slots__ = ["defaultSource", "tags", "tagsHashSet"]
-
-    def __init__(self, defaultSource=None, tags=None, tagsHashSet=None):
-        self.defaultSource: bool = defaultSource
-        self.tags: str = tags
-        self.tagsHashSet: str = tagsHashSet
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -38,17 +29,13 @@ class DataSourceTag():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.defaultSource, self.tags, self.tagsHashSet))
+        return hash(frozenset(self.defaultSource, self.tags, self.tagsHashSet))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultSource", "tags", "tagsHashSet"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

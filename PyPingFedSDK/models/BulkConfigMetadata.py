@@ -4,17 +4,12 @@ class BulkConfigMetadata():
     Attributes
     ----------
     pfVersion : string
- The version of PingFederate this config was generated from.
+        The version of PingFederate this config was generated from.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, pfVersion) -> None:
+    def __init__(self, pfVersion:str) -> None:
         self.pfVersion = pfVersion
-=======
-    def __init__(self, pfVersion):
-        self.pfVersion: str = pfVersion
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["pfVersion"] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class BulkConfigMetadata():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.pfVersion))
+        return hash(frozenset(self.pfVersion))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["pfVersion"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

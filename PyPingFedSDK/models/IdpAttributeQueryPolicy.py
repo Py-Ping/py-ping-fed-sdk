@@ -4,37 +4,27 @@ class IdpAttributeQueryPolicy():
     Attributes
     ----------
     encryptNameId : boolean
- Encrypt the name identifier.
+        Encrypt the name identifier.
     maskAttributeValues : boolean
- Mask attributes in log files.
+        Mask attributes in log files.
     requireEncryptedAssertion : boolean
- Require encrypted assertion.
+        Require encrypted assertion.
     requireSignedAssertion : boolean
- Require signed assertion.
+        Require signed assertion.
     requireSignedResponse : boolean
- Require signed response.
+        Require signed response.
     signAttributeQuery : boolean
- Sign the attribute query.
+        Sign the attribute query.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, encryptNameId=None, maskAttributeValues=None, requireEncryptedAssertion=None, requireSignedAssertion=None, requireSignedResponse=None, signAttributeQuery=None) -> None:
+    def __init__(self, encryptNameId:bool=None, maskAttributeValues:bool=None, requireEncryptedAssertion:bool=None, requireSignedAssertion:bool=None, requireSignedResponse:bool=None, signAttributeQuery:bool=None) -> None:
         self.encryptNameId = encryptNameId
         self.maskAttributeValues = maskAttributeValues
         self.requireEncryptedAssertion = requireEncryptedAssertion
         self.requireSignedAssertion = requireSignedAssertion
         self.requireSignedResponse = requireSignedResponse
         self.signAttributeQuery = signAttributeQuery
-=======
-    def __init__(self, encryptNameId=None, maskAttributeValues=None, requireEncryptedAssertion=None, requireSignedAssertion=None, requireSignedResponse=None, signAttributeQuery=None):
-        self.encryptNameId: bool = encryptNameId
-        self.maskAttributeValues: bool = maskAttributeValues
-        self.requireEncryptedAssertion: bool = requireEncryptedAssertion
-        self.requireSignedAssertion: bool = requireSignedAssertion
-        self.requireSignedResponse: bool = requireSignedResponse
-        self.signAttributeQuery: bool = signAttributeQuery
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class IdpAttributeQueryPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.encryptNameId, self.maskAttributeValues, self.requireEncryptedAssertion, self.requireSignedAssertion, self.requireSignedResponse, self.signAttributeQuery))
+        return hash(frozenset(self.encryptNameId, self.maskAttributeValues, self.requireEncryptedAssertion, self.requireSignedAssertion, self.requireSignedResponse, self.signAttributeQuery))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptNameId", "maskAttributeValues", "requireEncryptedAssertion", "requireSignedAssertion", "requireSignedResponse", "signAttributeQuery"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

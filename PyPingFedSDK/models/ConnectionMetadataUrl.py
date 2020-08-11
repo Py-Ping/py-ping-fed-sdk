@@ -4,21 +4,15 @@ class ConnectionMetadataUrl():
     Attributes
     ----------
     enableAutoMetadataUpdate : boolean
- Specifies whether the metadata of the connection will be automatically reloaded. The default value is true.
+        Specifies whether the metadata of the connection will be automatically reloaded. The default value is true.
     metadataUrlRef : str
- ID of the saved Metadata URL.
+        ID of the saved Metadata URL.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, metadataUrlRef, enableAutoMetadataUpdate=None) -> None:
+    def __init__(self, metadataUrlRef, enableAutoMetadataUpdate:bool=None) -> None:
         self.enableAutoMetadataUpdate = enableAutoMetadataUpdate
         self.metadataUrlRef = metadataUrlRef
-=======
-    def __init__(self, metadataUrlRef, enableAutoMetadataUpdate=None):
-        self.enableAutoMetadataUpdate: bool = enableAutoMetadataUpdate
-        self.metadataUrlRef: str = metadataUrlRef
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["metadataUrlRef"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ConnectionMetadataUrl():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.enableAutoMetadataUpdate, self.metadataUrlRef))
+        return hash(frozenset(self.enableAutoMetadataUpdate, self.metadataUrlRef))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableAutoMetadataUpdate", "metadataUrlRef"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

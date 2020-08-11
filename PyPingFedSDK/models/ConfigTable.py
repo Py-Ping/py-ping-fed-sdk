@@ -4,25 +4,18 @@ class ConfigTable():
     Attributes
     ----------
     inherited : boolean
- Whether this table is inherited from its parent instance. If true, the rows become read-only. The default value is false.
+        Whether this table is inherited from its parent instance. If true, the rows become read-only. The default value is false.
     name : string
- The name of the table.
+        The name of the table.
     rows : array
- List of table rows.
+        List of table rows.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name, inherited=None, rows=None) -> None:
+    def __init__(self, name:str, inherited:bool=None, rows:list=None) -> None:
         self.inherited = inherited
         self.name = name
         self.rows = rows
-=======
-    def __init__(self, name, inherited=None, rows=None):
-        self.inherited: bool = inherited
-        self.name: str = name
-        self.rows: list = rows
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class ConfigTable():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.inherited, self.name, self.rows))
+        return hash(frozenset(self.inherited, self.name, self.rows))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["inherited", "name", "rows"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

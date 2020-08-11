@@ -65,10 +65,10 @@
     
     
       <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
 </ul>
 
     
@@ -111,41 +111,44 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    accountStatusAlgorithm : str</span>
-<span class="sd">        The account status algorithm name. ACCOUNT_STATUS_ALGORITHM_AD -  Algorithm name for Active Directory, which uses a bitmap for each user entry. ACCOUNT_STATUS_ALGORITHM_FLAG - Algorithm name for Oracle Directory Server and other LDAP directories that use a separate attribute to store the user&#39;s status. When this option is selected, the Flag Comparison Value and Flag Comparison Status fields should be used.    accountStatusAttributeName : string</span>
-<span class="sd">        The account status attribute name.    defaultStatus : boolean</span>
-<span class="sd">        The default status of the account.    flagComparisonStatus : boolean</span>
-<span class="sd">        The flag that represents comparison status.    flagComparisonValue : string</span>
+<span class="sd">        The account status algorithm name. ACCOUNT_STATUS_ALGORITHM_AD -  Algorithm name for Active Directory, which uses a bitmap for each user entry. ACCOUNT_STATUS_ALGORITHM_FLAG - Algorithm name for Oracle Directory Server and other LDAP directories that use a separate attribute to store the user&#39;s status. When this option is selected, the Flag Comparison Value and Flag Comparison Status fields should be used.</span>
+<span class="sd">    accountStatusAttributeName : string</span>
+<span class="sd">        The account status attribute name.</span>
+<span class="sd">    defaultStatus : boolean</span>
+<span class="sd">        The default status of the account.</span>
+<span class="sd">    flagComparisonStatus : boolean</span>
+<span class="sd">        The flag that represents comparison status.</span>
+<span class="sd">    flagComparisonValue : string</span>
 <span class="sd">        The flag that represents comparison value.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;accountStatusAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;accountStatusAttributeName&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;flagComparisonStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;flagComparisonValue&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accountStatusAttributeName</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">accountStatusAlgorithm</span><span class="p">,</span> <span class="n">defaultStatus</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flagComparisonStatus</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flagComparisonValue</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accountStatusAlgorithm</span> <span class="o">=</span> <span class="n">accountStatusAlgorithm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accountStatusAttributeName</span> <span class="o">=</span> <span class="n">accountStatusAttributeName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultStatus</span> <span class="o">=</span> <span class="n">defaultStatus</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flagComparisonStatus</span> <span class="o">=</span> <span class="n">flagComparisonStatus</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flagComparisonValue</span> <span class="o">=</span> <span class="n">flagComparisonValue</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accountStatusAttributeName</span><span class="p">,</span> <span class="n">accountStatusAlgorithm</span><span class="p">,</span> <span class="n">defaultStatus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flagComparisonStatus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flagComparisonValue</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accountStatusAlgorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">accountStatusAlgorithm</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accountStatusAttributeName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">accountStatusAttributeName</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">defaultStatus</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">defaultStatus</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">flagComparisonStatus</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">flagComparisonStatus</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">flagComparisonValue</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">flagComparisonValue</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;accountStatusAttributeName&quot;</span><span class="p">,</span> <span class="s2">&quot;accountStatusAlgorithm&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;accountStatusAttributeName&#39;</span><span class="p">,</span> <span class="s1">&#39;accountStatusAlgorithm&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">AccountManagementSettings</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">accountStatusAlgorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">accountStatusAttributeName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultStatus</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flagComparisonStatus</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flagComparisonValue</span><span class="p">))</span>
 
 <div class="viewcode-block" id="AccountManagementSettings.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.AccountManagementSettings.AccountManagementSettings.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;accountStatusAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;accountStatusAttributeName&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;flagComparisonStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;flagComparisonValue&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

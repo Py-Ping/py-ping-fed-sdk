@@ -4,29 +4,21 @@ class SaasPluginDescriptor():
     Attributes
     ----------
     configDescriptor : str
- The plugin configuration that includes information to access the target service provider.
+        The plugin configuration that includes information to access the target service provider.
     description : string
- The SaaS plugin description.
+        The SaaS plugin description.
     id : string
- The SaaS plugin type.
+        The SaaS plugin type.
     saasPluginFieldInfoDescriptors : array
- The SaaS plugin attribute list for mapping from the local data store into Fields specified by the service provide.
+        The SaaS plugin attribute list for mapping from the local data store into Fields specified by the service provide.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, configDescriptor=None, description=None, var_id=None, saasPluginFieldInfoDescriptors=None) -> None:
+    def __init__(self, configDescriptor=None, description:str=None, var_id:str=None, saasPluginFieldInfoDescriptors:list=None) -> None:
         self.configDescriptor = configDescriptor
         self.description = description
         self.var_id = var_id
         self.saasPluginFieldInfoDescriptors = saasPluginFieldInfoDescriptors
-=======
-    def __init__(self, configDescriptor=None, description=None, id=None, saasPluginFieldInfoDescriptors=None):
-        self.configDescriptor: str = configDescriptor
-        self.description: str = description
-        self.id: str = id
-        self.saasPluginFieldInfoDescriptors: list = saasPluginFieldInfoDescriptors
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class SaasPluginDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.configDescriptor, self.description, self.var_id, self.saasPluginFieldInfoDescriptors))
+        return hash(frozenset(self.configDescriptor, self.description, self.var_id, self.saasPluginFieldInfoDescriptors))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["configDescriptor", "description", "var_id", "saasPluginFieldInfoDescriptors"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

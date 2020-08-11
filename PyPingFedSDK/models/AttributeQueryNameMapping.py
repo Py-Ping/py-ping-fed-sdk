@@ -4,21 +4,15 @@ class AttributeQueryNameMapping():
     Attributes
     ----------
     localName : string
- The local attribute name.
+        The local attribute name.
     remoteName : string
- The remote attribute name as defined by the attribute authority.
+        The remote attribute name as defined by the attribute authority.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, localName, remoteName) -> None:
+    def __init__(self, localName:str, remoteName:str) -> None:
         self.localName = localName
         self.remoteName = remoteName
-=======
-    def __init__(self, localName, remoteName):
-        self.localName: str = localName
-        self.remoteName: str = remoteName
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["localName", "remoteName"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class AttributeQueryNameMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.localName, self.remoteName))
+        return hash(frozenset(self.localName, self.remoteName))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["localName", "remoteName"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

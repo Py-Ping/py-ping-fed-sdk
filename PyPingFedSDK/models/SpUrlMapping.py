@@ -4,25 +4,18 @@ class SpUrlMapping():
     Attributes
     ----------
     ref : str
- The adapter or connection instance mapped for this URL.
+        The adapter or connection instance mapped for this URL.
     type : str
- The URL mapping type
+        The URL mapping type
     url : string
- The URL that will be compared against the target URL. Use a wildcard (*) to match multiple URLs to the same adapter or connection instance.
+        The URL that will be compared against the target URL. Use a wildcard (*) to match multiple URLs to the same adapter or connection instance.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, ref=None, var_type=None, url=None) -> None:
+    def __init__(self, ref=None, var_type=None, url:str=None) -> None:
         self.ref = ref
         self.var_type = var_type
         self.url = url
-=======
-    def __init__(self, ref=None, type=None, url=None):
-        self.ref: str = ref
-        self.type: str = type
-        self.url: str = url
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class SpUrlMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.ref, self.var_type, self.url))
+        return hash(frozenset(self.ref, self.var_type, self.url))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["ref", "var_type", "url"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,25 +4,18 @@ class IdpAdapterAttribute():
     Attributes
     ----------
     masked : boolean
- Specifies whether this attribute is masked in PingFederate logs. Defaults to false.
+        Specifies whether this attribute is masked in PingFederate logs. Defaults to false.
     name : string
- The name of this attribute.
+        The name of this attribute.
     pseudonym : boolean
- Specifies whether this attribute is used to construct a pseudonym for the SP. Defaults to false.
+        Specifies whether this attribute is used to construct a pseudonym for the SP. Defaults to false.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name, masked=None, pseudonym=None) -> None:
+    def __init__(self, name:str, masked:bool=None, pseudonym:bool=None) -> None:
         self.masked = masked
         self.name = name
         self.pseudonym = pseudonym
-=======
-    def __init__(self, name, masked=None, pseudonym=None):
-        self.masked: bool = masked
-        self.name: str = name
-        self.pseudonym: bool = pseudonym
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class IdpAdapterAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.masked, self.name, self.pseudonym))
+        return hash(frozenset(self.masked, self.name, self.pseudonym))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["masked", "name", "pseudonym"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

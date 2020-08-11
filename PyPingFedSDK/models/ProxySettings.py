@@ -4,21 +4,15 @@ class ProxySettings():
     Attributes
     ----------
     host : string
- Host name.
+        Host name.
     port : integer
- Port number.
+        Port number.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, host=None, port=None) -> None:
+    def __init__(self, host:str=None, port:int=None) -> None:
         self.host = host
         self.port = port
-=======
-    def __init__(self, host=None, port=None):
-        self.host: str = host
-        self.port: str = port
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ProxySettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.host, self.port))
+        return hash(frozenset(self.host, self.port))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["host", "port"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

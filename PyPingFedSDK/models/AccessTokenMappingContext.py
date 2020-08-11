@@ -4,21 +4,15 @@ class AccessTokenMappingContext():
     Attributes
     ----------
     contextRef : str
- Reference to the associated Access Token Mapping Context instance.
+        Reference to the associated Access Token Mapping Context instance.
     type : str
- The Access Token Mapping Context type.
+        The Access Token Mapping Context type.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, var_type, contextRef) -> None:
         self.contextRef = contextRef
         self.var_type = var_type
-=======
-    def __init__(self, type, contextRef):
-        self.contextRef: str = contextRef
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "contextRef"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class AccessTokenMappingContext():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.contextRef, self.var_type))
+        return hash(frozenset(self.contextRef, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["contextRef", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

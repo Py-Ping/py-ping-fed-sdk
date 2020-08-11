@@ -4,29 +4,21 @@ class ApiResult():
     Attributes
     ----------
     developerMessage : string
- Developer-oriented error message, if available.
+        Developer-oriented error message, if available.
     message : string
- Success or error message.
+        Success or error message.
     resultId : string
- Result identifier.
+        Result identifier.
     validationErrors : array
- List of validation errors, if any.
+        List of validation errors, if any.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, developerMessage=None, message=None, resultId=None, validationErrors=None) -> None:
+    def __init__(self, developerMessage:str=None, message:str=None, resultId:str=None, validationErrors:list=None) -> None:
         self.developerMessage = developerMessage
         self.message = message
         self.resultId = resultId
         self.validationErrors = validationErrors
-=======
-    def __init__(self, developerMessage=None, message=None, resultId=None, validationErrors=None):
-        self.developerMessage: str = developerMessage
-        self.message: str = message
-        self.resultId: str = resultId
-        self.validationErrors: list = validationErrors
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class ApiResult():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.developerMessage, self.message, self.resultId, self.validationErrors))
+        return hash(frozenset(self.developerMessage, self.message, self.resultId, self.validationErrors))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["developerMessage", "message", "resultId", "validationErrors"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

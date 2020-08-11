@@ -4,29 +4,21 @@ class CrlSettings():
     Attributes
     ----------
     nextRetryMinsWhenNextUpdateInPast : integer
- Next retry on next update expiration in minutes. This value defaults to "60".
+        Next retry on next update expiration in minutes. This value defaults to "60".
     nextRetryMinsWhenResolveFailed : integer
- Next retry on resolution failure in minutes. This value defaults to "1440".
+        Next retry on resolution failure in minutes. This value defaults to "1440".
     treatNonRetrievableCrlAsRevoked : boolean
- Treat non retrievable CRL as revoked. This setting defaults to disabled.
+        Treat non retrievable CRL as revoked. This setting defaults to disabled.
     verifyCrlSignature : boolean
- Verify CRL signature. This setting defaults to enabled.
+        Verify CRL signature. This setting defaults to enabled.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, nextRetryMinsWhenNextUpdateInPast=None, nextRetryMinsWhenResolveFailed=None, treatNonRetrievableCrlAsRevoked=None, verifyCrlSignature=None) -> None:
+    def __init__(self, nextRetryMinsWhenNextUpdateInPast:int=None, nextRetryMinsWhenResolveFailed:int=None, treatNonRetrievableCrlAsRevoked:bool=None, verifyCrlSignature:bool=None) -> None:
         self.nextRetryMinsWhenNextUpdateInPast = nextRetryMinsWhenNextUpdateInPast
         self.nextRetryMinsWhenResolveFailed = nextRetryMinsWhenResolveFailed
         self.treatNonRetrievableCrlAsRevoked = treatNonRetrievableCrlAsRevoked
         self.verifyCrlSignature = verifyCrlSignature
-=======
-    def __init__(self, nextRetryMinsWhenNextUpdateInPast=None, nextRetryMinsWhenResolveFailed=None, treatNonRetrievableCrlAsRevoked=None, verifyCrlSignature=None):
-        self.nextRetryMinsWhenNextUpdateInPast: str = nextRetryMinsWhenNextUpdateInPast
-        self.nextRetryMinsWhenResolveFailed: str = nextRetryMinsWhenResolveFailed
-        self.treatNonRetrievableCrlAsRevoked: bool = treatNonRetrievableCrlAsRevoked
-        self.verifyCrlSignature: bool = verifyCrlSignature
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class CrlSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.nextRetryMinsWhenNextUpdateInPast, self.nextRetryMinsWhenResolveFailed, self.treatNonRetrievableCrlAsRevoked, self.verifyCrlSignature))
+        return hash(frozenset(self.nextRetryMinsWhenNextUpdateInPast, self.nextRetryMinsWhenResolveFailed, self.treatNonRetrievableCrlAsRevoked, self.verifyCrlSignature))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["nextRetryMinsWhenNextUpdateInPast", "nextRetryMinsWhenResolveFailed", "treatNonRetrievableCrlAsRevoked", "verifyCrlSignature"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

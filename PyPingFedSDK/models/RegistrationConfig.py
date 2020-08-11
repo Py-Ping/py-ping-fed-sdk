@@ -4,21 +4,15 @@ class RegistrationConfig():
     Attributes
     ----------
     captchaEnabled : boolean
- Whether CAPTCHA is enabled or not in the registration configuration.
+        Whether CAPTCHA is enabled or not in the registration configuration.
     templateName : string
- The template name for the registration configuration.
+        The template name for the registration configuration.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, templateName, captchaEnabled=None) -> None:
+    def __init__(self, templateName:str, captchaEnabled:bool=None) -> None:
         self.captchaEnabled = captchaEnabled
         self.templateName = templateName
-=======
-    def __init__(self, templateName, captchaEnabled=None):
-        self.captchaEnabled: bool = captchaEnabled
-        self.templateName: str = templateName
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["templateName"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class RegistrationConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.captchaEnabled, self.templateName))
+        return hash(frozenset(self.captchaEnabled, self.templateName))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["captchaEnabled", "templateName"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

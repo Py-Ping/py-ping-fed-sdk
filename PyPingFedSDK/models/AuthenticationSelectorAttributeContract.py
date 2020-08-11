@@ -4,17 +4,12 @@ class AuthenticationSelectorAttributeContract():
     Attributes
     ----------
     extendedAttributes : array
- A list of additional attributes that can be returned by the Authentication Selector. The extended attributes are only used if the Authentication Selector supports them.
+        A list of additional attributes that can be returned by the Authentication Selector. The extended attributes are only used if the Authentication Selector supports them.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, extendedAttributes=None) -> None:
+    def __init__(self, extendedAttributes:list=None) -> None:
         self.extendedAttributes = extendedAttributes
-=======
-    def __init__(self, extendedAttributes=None):
-        self.extendedAttributes: list = extendedAttributes
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class AuthenticationSelectorAttributeContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.extendedAttributes))
+        return hash(frozenset(self.extendedAttributes))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["extendedAttributes"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,33 +4,24 @@ class ConfigOperation():
     Attributes
     ----------
     itemIds : array
- The item ID's for the operation. This field only applies to the DELETE operation type.
+        The item ID's for the operation. This field only applies to the DELETE operation type.
     items : array
- The configuration items for the operation. This field only applies to the SAVE operation type.
+        The configuration items for the operation. This field only applies to the SAVE operation type.
     operationType : str
- The type of operation to be performed.
+        The type of operation to be performed.
     resourceType : string
- The identifier for the resource type the operation applies to.
+        The identifier for the resource type the operation applies to.
     subResource : string
- The subresource for the operation.
+        The subresource for the operation.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, resourceType, operationType, itemIds=None, items=None, subResource=None) -> None:
+    def __init__(self, resourceType:str, operationType, itemIds:list=None, items:list=None, subResource:str=None) -> None:
         self.itemIds = itemIds
         self.items = items
         self.operationType = operationType
         self.resourceType = resourceType
         self.subResource = subResource
-=======
-    def __init__(self, resourceType, operationType, itemIds=None, items=None, subResource=None):
-        self.itemIds: list = itemIds
-        self.items: list = items
-        self.operationType: str = operationType
-        self.resourceType: str = resourceType
-        self.subResource: str = subResource
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["resourceType", "operationType"] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class ConfigOperation():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.itemIds, self.items, self.operationType, self.resourceType, self.subResource))
+        return hash(frozenset(self.itemIds, self.items, self.operationType, self.resourceType, self.subResource))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["itemIds", "items", "operationType", "resourceType", "subResource"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

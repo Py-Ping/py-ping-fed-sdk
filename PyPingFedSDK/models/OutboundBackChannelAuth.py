@@ -4,32 +4,23 @@ class OutboundBackChannelAuth():
     Attributes
     ----------
     digitalSignature : boolean
- If incoming or outgoing messages must be signed.
+        If incoming or outgoing messages must be signed.
     httpBasicCredentials : str
- The credentials to use when you authenticate with the SOAP endpoint.
+        The credentials to use when you authenticate with the SOAP endpoint.
     sslAuthKeyPairRef : str
- The ID of the key pair used to authenticate with your partner's SOAP endpoint. The ID of the key pair is also known as the alias and can be found by viewing the corresponding certificate under 'SSL Server Certificates' in the PingFederate Administrative Console.
+        The ID of the key pair used to authenticate with your partner's SOAP endpoint. The ID of the key pair is also known as the alias and can be found by viewing the corresponding certificate under 'SSL Server Certificates' in the PingFederate Administrative Console.
     type : str
     validatePartnerCert : boolean
- Validate the partner server certificate. Default is true.
+        Validate the partner server certificate. Default is true.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, digitalSignature=None, httpBasicCredentials=None, sslAuthKeyPairRef=None, var_type=None, validatePartnerCert=None) -> None:
+    def __init__(self, digitalSignature:bool=None, httpBasicCredentials=None, sslAuthKeyPairRef=None, var_type=None, validatePartnerCert:bool=None) -> None:
         self.digitalSignature = digitalSignature
         self.httpBasicCredentials = httpBasicCredentials
         self.sslAuthKeyPairRef = sslAuthKeyPairRef
         self.var_type = var_type
         self.validatePartnerCert = validatePartnerCert
-=======
-    def __init__(self, digitalSignature=None, httpBasicCredentials=None, sslAuthKeyPairRef=None, type=None, validatePartnerCert=None):
-        self.digitalSignature: bool = digitalSignature
-        self.httpBasicCredentials: str = httpBasicCredentials
-        self.sslAuthKeyPairRef: str = sslAuthKeyPairRef
-        self.type: str = type
-        self.validatePartnerCert: bool = validatePartnerCert
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -46,17 +37,13 @@ class OutboundBackChannelAuth():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.digitalSignature, self.httpBasicCredentials, self.sslAuthKeyPairRef, self.var_type, self.validatePartnerCert))
+        return hash(frozenset(self.digitalSignature, self.httpBasicCredentials, self.sslAuthKeyPairRef, self.var_type, self.validatePartnerCert))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["digitalSignature", "httpBasicCredentials", "sslAuthKeyPairRef", "var_type", "validatePartnerCert"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

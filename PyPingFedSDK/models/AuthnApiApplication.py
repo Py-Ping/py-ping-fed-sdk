@@ -4,33 +4,24 @@ class AuthnApiApplication():
     Attributes
     ----------
     additionalAllowedOrigins : array
- The domain in the redirect URL is always whitelisted. This field contains a list of additional allowed origin URL's for cross-origin resource sharing.
+        The domain in the redirect URL is always whitelisted. This field contains a list of additional allowed origin URL's for cross-origin resource sharing.
     description : string
- The Authentication API Application description.
+        The Authentication API Application description.
     id : string
- The persistent, unique ID for the Authentication API application. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
+        The persistent, unique ID for the Authentication API application. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
     name : string
- The Authentication API Application Name. Name must be unique.
+        The Authentication API Application Name. Name must be unique.
     url : string
- The Authentication API Application redirect URL.
+        The Authentication API Application redirect URL.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_id, name, url, additionalAllowedOrigins=None, description=None) -> None:
+    def __init__(self, var_id:str, name:str, url:str, additionalAllowedOrigins:list=None, description:str=None) -> None:
         self.additionalAllowedOrigins = additionalAllowedOrigins
         self.description = description
         self.var_id = var_id
         self.name = name
         self.url = url
-=======
-    def __init__(self, id, name, url, additionalAllowedOrigins=None, description=None):
-        self.additionalAllowedOrigins: list = additionalAllowedOrigins
-        self.description: str = description
-        self.id: str = id
-        self.name: str = name
-        self.url: str = url
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "url"] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class AuthnApiApplication():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.additionalAllowedOrigins, self.description, self.var_id, self.name, self.url))
+        return hash(frozenset(self.additionalAllowedOrigins, self.description, self.var_id, self.name, self.url))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["additionalAllowedOrigins", "description", "var_id", "name", "url"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,33 +4,24 @@ class ContactInfo():
     Attributes
     ----------
     company : string
- Company name.
+        Company name.
     email : string
- Contact email address.
+        Contact email address.
     firstName : string
- Contact first name.
+        Contact first name.
     lastName : string
- Contact last name.
+        Contact last name.
     phone : string
- Contact phone number.
+        Contact phone number.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, company=None, email=None, firstName=None, lastName=None, phone=None) -> None:
+    def __init__(self, company:str=None, email:str=None, firstName:str=None, lastName:str=None, phone:str=None) -> None:
         self.company = company
         self.email = email
         self.firstName = firstName
         self.lastName = lastName
         self.phone = phone
-=======
-    def __init__(self, company=None, email=None, firstName=None, lastName=None, phone=None):
-        self.company: str = company
-        self.email: str = email
-        self.firstName: str = firstName
-        self.lastName: str = lastName
-        self.phone: str = phone
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class ContactInfo():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.company, self.email, self.firstName, self.lastName, self.phone))
+        return hash(frozenset(self.company, self.email, self.firstName, self.lastName, self.phone))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["company", "email", "firstName", "lastName", "phone"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

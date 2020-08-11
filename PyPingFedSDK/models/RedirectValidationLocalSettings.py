@@ -4,33 +4,24 @@ class RedirectValidationLocalSettings():
     Attributes
     ----------
     enableInErrorResourceValidation : boolean
- Enable validation for error resource.
+        Enable validation for error resource.
     enableTargetResourceValidationForIdpDiscovery : boolean
- Enable target resource validation for IdP discovery.
+        Enable target resource validation for IdP discovery.
     enableTargetResourceValidationForSLO : boolean
- Enable target resource validation for SLO.
+        Enable target resource validation for SLO.
     enableTargetResourceValidationForSSO : boolean
- Enable target resource validation for SSO.
+        Enable target resource validation for SSO.
     whiteList : array
- List of URLs that are designated as valid target resources.
+        List of URLs that are designated as valid target resources.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, enableInErrorResourceValidation=None, enableTargetResourceValidationForIdpDiscovery=None, enableTargetResourceValidationForSLO=None, enableTargetResourceValidationForSSO=None, whiteList=None) -> None:
+    def __init__(self, enableInErrorResourceValidation:bool=None, enableTargetResourceValidationForIdpDiscovery:bool=None, enableTargetResourceValidationForSLO:bool=None, enableTargetResourceValidationForSSO:bool=None, whiteList:list=None) -> None:
         self.enableInErrorResourceValidation = enableInErrorResourceValidation
         self.enableTargetResourceValidationForIdpDiscovery = enableTargetResourceValidationForIdpDiscovery
         self.enableTargetResourceValidationForSLO = enableTargetResourceValidationForSLO
         self.enableTargetResourceValidationForSSO = enableTargetResourceValidationForSSO
         self.whiteList = whiteList
-=======
-    def __init__(self, enableInErrorResourceValidation=None, enableTargetResourceValidationForIdpDiscovery=None, enableTargetResourceValidationForSLO=None, enableTargetResourceValidationForSSO=None, whiteList=None):
-        self.enableInErrorResourceValidation: bool = enableInErrorResourceValidation
-        self.enableTargetResourceValidationForIdpDiscovery: bool = enableTargetResourceValidationForIdpDiscovery
-        self.enableTargetResourceValidationForSLO: bool = enableTargetResourceValidationForSLO
-        self.enableTargetResourceValidationForSSO: bool = enableTargetResourceValidationForSSO
-        self.whiteList: list = whiteList
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class RedirectValidationLocalSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.enableInErrorResourceValidation, self.enableTargetResourceValidationForIdpDiscovery, self.enableTargetResourceValidationForSLO, self.enableTargetResourceValidationForSSO, self.whiteList))
+        return hash(frozenset(self.enableInErrorResourceValidation, self.enableTargetResourceValidationForIdpDiscovery, self.enableTargetResourceValidationForSLO, self.enableTargetResourceValidationForSSO, self.whiteList))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableInErrorResourceValidation", "enableTargetResourceValidationForIdpDiscovery", "enableTargetResourceValidationForSLO", "enableTargetResourceValidationForSSO", "whiteList"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

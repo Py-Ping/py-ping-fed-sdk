@@ -4,21 +4,15 @@ class SourceTypeIdKey():
     Attributes
     ----------
     id : string
- The attribute source ID that refers to the attribute source that this key references. In some resources, the ID is optional and will be ignored. In these cases the ID should be omitted. If the source type is not an attribute source then the ID can be omitted.
+        The attribute source ID that refers to the attribute source that this key references. In some resources, the ID is optional and will be ignored. In these cases the ID should be omitted. If the source type is not an attribute source then the ID can be omitted.
     type : str
- The source type of this key.
+        The source type of this key.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, var_id=None) -> None:
+    def __init__(self, var_type, var_id:str=None) -> None:
         self.var_id = var_id
         self.var_type = var_type
-=======
-    def __init__(self, type, id=None):
-        self.id: str = id
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class SourceTypeIdKey():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.var_id, self.var_type))
+        return hash(frozenset(self.var_id, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

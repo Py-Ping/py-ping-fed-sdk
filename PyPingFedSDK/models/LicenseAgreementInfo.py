@@ -4,21 +4,15 @@ class LicenseAgreementInfo():
     Attributes
     ----------
     accepted : boolean
- Indicates whether license agreement has been accepted. The default value is false.
+        Indicates whether license agreement has been accepted. The default value is false.
     licenseAgreementUrl : string
- URL to license agreement.
+        URL to license agreement.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, accepted=None, licenseAgreementUrl=None) -> None:
+    def __init__(self, accepted:bool=None, licenseAgreementUrl:str=None) -> None:
         self.accepted = accepted
         self.licenseAgreementUrl = licenseAgreementUrl
-=======
-    def __init__(self, accepted=None, licenseAgreementUrl=None):
-        self.accepted: bool = accepted
-        self.licenseAgreementUrl: str = licenseAgreementUrl
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class LicenseAgreementInfo():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.accepted, self.licenseAgreementUrl))
+        return hash(frozenset(self.accepted, self.licenseAgreementUrl))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accepted", "licenseAgreementUrl"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

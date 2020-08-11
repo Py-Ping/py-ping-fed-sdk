@@ -65,10 +65,10 @@
     
     
       <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
 </ul>
 
     
@@ -111,59 +111,71 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    attributeGroup : boolean</span>
-<span class="sd">        Indicates whether this field belongs to group of attribute such as multivalued or sub-type custom attributes.    code : string</span>
-<span class="sd">        The name or code that represents a field.    defaultValue : string</span>
-<span class="sd">        Default value for the field.    dsLdapMap : boolean</span>
-<span class="sd">        Indicates whether the field can be mapped raw to an LDAP attribute.    label : string</span>
-<span class="sd">        The label for a field.    maxLength : integer</span>
-<span class="sd">        Maximum character length for a value.    minLength : integer</span>
-<span class="sd">        Minimum character length for a value.    multiValue : boolean</span>
-<span class="sd">        Whether the field can have multiple values.    notes : array</span>
-<span class="sd">        Description or notes for the field.    options : array</span>
-<span class="sd">        List of Option values available for this field.    pattern : str</span>
-<span class="sd">        Pattern used to validate values of this field.    persistForMembership : boolean</span>
-<span class="sd">        The code that represents the field.    required : boolean</span>
-<span class="sd">        Indicates whether a value is required for this field.    unique : boolean</span>
+<span class="sd">        Indicates whether this field belongs to group of attribute such as multivalued or sub-type custom attributes.</span>
+<span class="sd">    code : string</span>
+<span class="sd">        The name or code that represents a field.</span>
+<span class="sd">    defaultValue : string</span>
+<span class="sd">        Default value for the field.</span>
+<span class="sd">    dsLdapMap : boolean</span>
+<span class="sd">        Indicates whether the field can be mapped raw to an LDAP attribute.</span>
+<span class="sd">    label : string</span>
+<span class="sd">        The label for a field.</span>
+<span class="sd">    maxLength : integer</span>
+<span class="sd">        Maximum character length for a value.</span>
+<span class="sd">    minLength : integer</span>
+<span class="sd">        Minimum character length for a value.</span>
+<span class="sd">    multiValue : boolean</span>
+<span class="sd">        Whether the field can have multiple values.</span>
+<span class="sd">    notes : array</span>
+<span class="sd">        Description or notes for the field.</span>
+<span class="sd">    options : array</span>
+<span class="sd">        List of Option values available for this field.</span>
+<span class="sd">    pattern : str</span>
+<span class="sd">        Pattern used to validate values of this field.</span>
+<span class="sd">    persistForMembership : boolean</span>
+<span class="sd">        The code that represents the field.</span>
+<span class="sd">    required : boolean</span>
+<span class="sd">        Indicates whether a value is required for this field.</span>
+<span class="sd">    unique : boolean</span>
 <span class="sd">        indicates whether the value of this field is unique.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;attributeGroup&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultValue&quot;</span><span class="p">,</span> <span class="s2">&quot;dsLdapMap&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;maxLength&quot;</span><span class="p">,</span> <span class="s2">&quot;minLength&quot;</span><span class="p">,</span> <span class="s2">&quot;multiValue&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">,</span> <span class="s2">&quot;pattern&quot;</span><span class="p">,</span> <span class="s2">&quot;persistForMembership&quot;</span><span class="p">,</span> <span class="s2">&quot;required&quot;</span><span class="p">,</span> <span class="s2">&quot;unique&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">attributeGroup</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dsLdapMap</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxLength</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minLength</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multiValue</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">notes</span><span class="p">:</span><span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span><span class="nb">list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistForMembership</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unique</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributeGroup</span> <span class="o">=</span> <span class="n">attributeGroup</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultValue</span> <span class="o">=</span> <span class="n">defaultValue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dsLdapMap</span> <span class="o">=</span> <span class="n">dsLdapMap</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxLength</span> <span class="o">=</span> <span class="n">maxLength</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minLength</span> <span class="o">=</span> <span class="n">minLength</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiValue</span> <span class="o">=</span> <span class="n">multiValue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="n">notes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">pattern</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistForMembership</span> <span class="o">=</span> <span class="n">persistForMembership</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="n">required</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unique</span> <span class="o">=</span> <span class="n">unique</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">attributeGroup</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">defaultValue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dsLdapMap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxLength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minLength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multiValue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">notes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistForMembership</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attributeGroup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">attributeGroup</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">code</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">defaultValue</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">defaultValue</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dsLdapMap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">dsLdapMap</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">label</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">maxLength</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">maxLength</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">minLength</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">minLength</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">multiValue</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">multiValue</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">notes</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">options</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">pattern</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">persistForMembership</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">persistForMembership</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">required</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">required</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">unique</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">unique</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SaasPluginFieldInfoDescriptor</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">attributeGroup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultValue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dsLdapMap</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxLength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minLength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiValue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">notes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistForMembership</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">required</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique</span><span class="p">))</span>
 
 <div class="viewcode-block" id="SaasPluginFieldInfoDescriptor.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SaasPluginFieldInfoDescriptor.SaasPluginFieldInfoDescriptor.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;attributeGroup&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultValue&quot;</span><span class="p">,</span> <span class="s2">&quot;dsLdapMap&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;maxLength&quot;</span><span class="p">,</span> <span class="s2">&quot;minLength&quot;</span><span class="p">,</span> <span class="s2">&quot;multiValue&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">,</span> <span class="s2">&quot;pattern&quot;</span><span class="p">,</span> <span class="s2">&quot;persistForMembership&quot;</span><span class="p">,</span> <span class="s2">&quot;required&quot;</span><span class="p">,</span> <span class="s2">&quot;unique&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

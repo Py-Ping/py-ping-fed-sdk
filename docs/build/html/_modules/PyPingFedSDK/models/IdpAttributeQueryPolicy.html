@@ -65,10 +65,10 @@
     
     
       <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
 </ul>
 
     
@@ -111,43 +111,47 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    encryptNameId : boolean</span>
-<span class="sd">        Encrypt the name identifier.    maskAttributeValues : boolean</span>
-<span class="sd">        Mask attributes in log files.    requireEncryptedAssertion : boolean</span>
-<span class="sd">        Require encrypted assertion.    requireSignedAssertion : boolean</span>
-<span class="sd">        Require signed assertion.    requireSignedResponse : boolean</span>
-<span class="sd">        Require signed response.    signAttributeQuery : boolean</span>
+<span class="sd">        Encrypt the name identifier.</span>
+<span class="sd">    maskAttributeValues : boolean</span>
+<span class="sd">        Mask attributes in log files.</span>
+<span class="sd">    requireEncryptedAssertion : boolean</span>
+<span class="sd">        Require encrypted assertion.</span>
+<span class="sd">    requireSignedAssertion : boolean</span>
+<span class="sd">        Require signed assertion.</span>
+<span class="sd">    requireSignedResponse : boolean</span>
+<span class="sd">        Require signed response.</span>
+<span class="sd">    signAttributeQuery : boolean</span>
 <span class="sd">        Sign the attribute query.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;encryptNameId&quot;</span><span class="p">,</span> <span class="s2">&quot;maskAttributeValues&quot;</span><span class="p">,</span> <span class="s2">&quot;requireEncryptedAssertion&quot;</span><span class="p">,</span> <span class="s2">&quot;requireSignedAssertion&quot;</span><span class="p">,</span> <span class="s2">&quot;requireSignedResponse&quot;</span><span class="p">,</span> <span class="s2">&quot;signAttributeQuery&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encryptNameId</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maskAttributeValues</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requireEncryptedAssertion</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requireSignedAssertion</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requireSignedResponse</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">signAttributeQuery</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encryptNameId</span> <span class="o">=</span> <span class="n">encryptNameId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maskAttributeValues</span> <span class="o">=</span> <span class="n">maskAttributeValues</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requireEncryptedAssertion</span> <span class="o">=</span> <span class="n">requireEncryptedAssertion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requireSignedAssertion</span> <span class="o">=</span> <span class="n">requireSignedAssertion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requireSignedResponse</span> <span class="o">=</span> <span class="n">requireSignedResponse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">signAttributeQuery</span> <span class="o">=</span> <span class="n">signAttributeQuery</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encryptNameId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maskAttributeValues</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requireEncryptedAssertion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requireSignedAssertion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requireSignedResponse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">signAttributeQuery</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">encryptNameId</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">encryptNameId</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">maskAttributeValues</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">maskAttributeValues</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">requireEncryptedAssertion</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">requireEncryptedAssertion</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">requireSignedAssertion</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">requireSignedAssertion</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">requireSignedResponse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">requireSignedResponse</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">signAttributeQuery</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">signAttributeQuery</span>
-
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">IdpAttributeQueryPolicy</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">encryptNameId</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maskAttributeValues</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requireEncryptedAssertion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requireSignedAssertion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requireSignedResponse</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">signAttributeQuery</span><span class="p">))</span>
 
 <div class="viewcode-block" id="IdpAttributeQueryPolicy.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.IdpAttributeQueryPolicy.IdpAttributeQueryPolicy.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;encryptNameId&quot;</span><span class="p">,</span> <span class="s2">&quot;maskAttributeValues&quot;</span><span class="p">,</span> <span class="s2">&quot;requireEncryptedAssertion&quot;</span><span class="p">,</span> <span class="s2">&quot;requireSignedAssertion&quot;</span><span class="p">,</span> <span class="s2">&quot;requireSignedResponse&quot;</span><span class="p">,</span> <span class="s2">&quot;signAttributeQuery&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

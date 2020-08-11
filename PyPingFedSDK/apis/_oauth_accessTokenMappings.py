@@ -42,7 +42,7 @@ class _oauth_accessTokenMappings():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -92,18 +92,14 @@ class _oauth_accessTokenMappings():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateMapping(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateMapping(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateMapping(self, var_id, body, XBypassExternalValidation):
         """ Update an Access Token Mapping.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

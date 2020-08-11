@@ -4,13 +4,13 @@ class Penguin():
     Attributes
     ----------
     firstName : string
- The penguins first name.
+        The penguins first name.
     lastName : string
- The penguins last name.
+        The penguins last name.
     height : string
- Height of the penguin.
+        Height of the penguin.
     soundMade : string
- List of sounds made.
+        List of sounds made.
 
     """
 
@@ -35,7 +35,7 @@ class Penguin():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.firstName, self.lastName, self.height, self.soundMade))
+        return hash(frozenset([self.firstName, self.lastName, self.height, self.soundMade]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

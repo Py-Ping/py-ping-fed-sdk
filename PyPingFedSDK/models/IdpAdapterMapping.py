@@ -4,33 +4,24 @@ class IdpAdapterMapping():
     Attributes
     ----------
     attributeContractFulfillment : str
- A list of mappings from attribute names to their fulfillment values.
+        A list of mappings from attribute names to their fulfillment values.
     attributeSources : array
- A list of configured data stores to look up attributes from.
+        A list of configured data stores to look up attributes from.
     id : string
- The ID of the adapter mapping.
+        The ID of the adapter mapping.
     idpAdapterRef : str
- Read only reference to the associated IdP adapter.
+        Read only reference to the associated IdP adapter.
     issuanceCriteria : str
- The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
+        The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_id, attributeContractFulfillment, attributeSources=None, idpAdapterRef=None, issuanceCriteria=None) -> None:
+    def __init__(self, var_id:str, attributeContractFulfillment, attributeSources:list=None, idpAdapterRef=None, issuanceCriteria=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.var_id = var_id
         self.idpAdapterRef = idpAdapterRef
         self.issuanceCriteria = issuanceCriteria
-=======
-    def __init__(self, id, attributeContractFulfillment, attributeSources=None, idpAdapterRef=None, issuanceCriteria=None):
-        self.attributeContractFulfillment: str = attributeContractFulfillment
-        self.attributeSources: list = attributeSources
-        self.id: str = id
-        self.idpAdapterRef: str = idpAdapterRef
-        self.issuanceCriteria: str = issuanceCriteria
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class IdpAdapterMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeContractFulfillment, self.attributeSources, self.var_id, self.idpAdapterRef, self.issuanceCriteria))
+        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.var_id, self.idpAdapterRef, self.issuanceCriteria))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "var_id", "idpAdapterRef", "issuanceCriteria"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

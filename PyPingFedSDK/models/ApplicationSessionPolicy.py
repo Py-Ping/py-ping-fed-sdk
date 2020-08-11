@@ -4,21 +4,15 @@ class ApplicationSessionPolicy():
     Attributes
     ----------
     idleTimeoutMins : integer
- The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.
+        The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.
     maxTimeoutMins : integer
- The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.
+        The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, idleTimeoutMins=None, maxTimeoutMins=None) -> None:
+    def __init__(self, idleTimeoutMins:int=None, maxTimeoutMins:int=None) -> None:
         self.idleTimeoutMins = idleTimeoutMins
         self.maxTimeoutMins = maxTimeoutMins
-=======
-    def __init__(self, idleTimeoutMins=None, maxTimeoutMins=None):
-        self.idleTimeoutMins: str = idleTimeoutMins
-        self.maxTimeoutMins: str = maxTimeoutMins
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ApplicationSessionPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.idleTimeoutMins, self.maxTimeoutMins))
+        return hash(frozenset(self.idleTimeoutMins, self.maxTimeoutMins))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["idleTimeoutMins", "maxTimeoutMins"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

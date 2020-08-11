@@ -4,25 +4,18 @@ class IdpAttributeQuery():
     Attributes
     ----------
     nameMappings : array
- The attribute name mappings between the SP and the IdP.
+        The attribute name mappings between the SP and the IdP.
     policy : str
- The attribute query profile's security policy.
+        The attribute query profile's security policy.
     url : string
- The URL at your IdP partner's site where attribute queries are to be sent.
+        The URL at your IdP partner's site where attribute queries are to be sent.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, url, nameMappings=None, policy=None) -> None:
+    def __init__(self, url:str, nameMappings:list=None, policy=None) -> None:
         self.nameMappings = nameMappings
         self.policy = policy
         self.url = url
-=======
-    def __init__(self, url, nameMappings=None, policy=None):
-        self.nameMappings: list = nameMappings
-        self.policy: str = policy
-        self.url: str = url
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["url"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class IdpAttributeQuery():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.nameMappings, self.policy, self.url))
+        return hash(frozenset(self.nameMappings, self.policy, self.url))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["nameMappings", "policy", "url"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

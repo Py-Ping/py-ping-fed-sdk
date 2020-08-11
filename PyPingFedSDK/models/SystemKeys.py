@@ -4,25 +4,18 @@ class SystemKeys():
     Attributes
     ----------
     current : str
- The current secret.
+        The current secret.
     pending : str
- The next secret.
+        The next secret.
     previous : str
- Previously used secret.
+        Previously used secret.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, current, pending, previous=None) -> None:
         self.current = current
         self.pending = pending
         self.previous = previous
-=======
-    def __init__(self, current, pending, previous=None):
-        self.current: str = current
-        self.pending: str = pending
-        self.previous: str = previous
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["current", "pending"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class SystemKeys():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.current, self.pending, self.previous))
+        return hash(frozenset(self.current, self.pending, self.previous))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["current", "pending", "previous"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

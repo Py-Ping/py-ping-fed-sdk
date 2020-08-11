@@ -42,7 +42,7 @@ class _sp_authenticationPolicyContractMappings():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -92,18 +92,14 @@ class _sp_authenticationPolicyContractMappings():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateApcToSpAdapterMappingById(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateApcToSpAdapterMappingById(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateApcToSpAdapterMappingById(self, var_id, body, XBypassExternalValidation):
         """ Update an APC-to-SP Adapter Mapping.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

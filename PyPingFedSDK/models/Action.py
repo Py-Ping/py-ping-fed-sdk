@@ -4,33 +4,24 @@ class Action():
     Attributes
     ----------
     description : string
- The description of this action.
+        The description of this action.
     download : boolean
- Whether this action will trigger a download or invoke an internal action that will return a string result.
+        Whether this action will trigger a download or invoke an internal action that will return a string result.
     id : string
- The ID of this action.
+        The ID of this action.
     invocationRef : str
- Whether this action will trigger a download or invoke an internal action that will return a string result.
+        Whether this action will trigger a download or invoke an internal action that will return a string result.
     name : string
- The name of this action.
+        The name of this action.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, description=None, download=None, var_id=None, invocationRef=None, name=None) -> None:
+    def __init__(self, description:str=None, download:bool=None, var_id:str=None, invocationRef=None, name:str=None) -> None:
         self.description = description
         self.download = download
         self.var_id = var_id
         self.invocationRef = invocationRef
         self.name = name
-=======
-    def __init__(self, description=None, download=None, id=None, invocationRef=None, name=None):
-        self.description: str = description
-        self.download: bool = download
-        self.id: str = id
-        self.invocationRef: str = invocationRef
-        self.name: str = name
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class Action():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.description, self.download, self.var_id, self.invocationRef, self.name))
+        return hash(frozenset(self.description, self.download, self.var_id, self.invocationRef, self.name))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "download", "var_id", "invocationRef", "name"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

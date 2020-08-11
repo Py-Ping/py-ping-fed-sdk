@@ -4,25 +4,18 @@ class IdpDefaultUrl():
     Attributes
     ----------
     confirmIdpSlo : boolean
- Prompt user to confirm Single Logout (SLO).
+        Prompt user to confirm Single Logout (SLO).
     idpErrorMsg : string
- Provide the error text displayed in a user's browser when an SSO operation fails.
+        Provide the error text displayed in a user's browser when an SSO operation fails.
     idpSloSuccessUrl : string
- Provide the default URL you would like to send the user to when Single Logout has succeeded.
+        Provide the default URL you would like to send the user to when Single Logout has succeeded.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, idpErrorMsg, confirmIdpSlo=None, idpSloSuccessUrl=None) -> None:
+    def __init__(self, idpErrorMsg:str, confirmIdpSlo:bool=None, idpSloSuccessUrl:str=None) -> None:
         self.confirmIdpSlo = confirmIdpSlo
         self.idpErrorMsg = idpErrorMsg
         self.idpSloSuccessUrl = idpSloSuccessUrl
-=======
-    def __init__(self, idpErrorMsg, confirmIdpSlo=None, idpSloSuccessUrl=None):
-        self.confirmIdpSlo: bool = confirmIdpSlo
-        self.idpErrorMsg: str = idpErrorMsg
-        self.idpSloSuccessUrl: str = idpSloSuccessUrl
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["idpErrorMsg"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class IdpDefaultUrl():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.confirmIdpSlo, self.idpErrorMsg, self.idpSloSuccessUrl))
+        return hash(frozenset(self.confirmIdpSlo, self.idpErrorMsg, self.idpSloSuccessUrl))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["confirmIdpSlo", "idpErrorMsg", "idpSloSuccessUrl"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

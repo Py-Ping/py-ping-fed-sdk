@@ -4,25 +4,18 @@ class SpAdapterTargetApplicationInfo():
     Attributes
     ----------
     applicationIconUrl : string
- The application icon URL.
+        The application icon URL.
     applicationName : string
- The application name.
+        The application name.
     inherited : boolean
- Specifies Whether target application information is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
+        Specifies Whether target application information is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, applicationIconUrl=None, applicationName=None, inherited=None) -> None:
+    def __init__(self, applicationIconUrl:str=None, applicationName:str=None, inherited:bool=None) -> None:
         self.applicationIconUrl = applicationIconUrl
         self.applicationName = applicationName
         self.inherited = inherited
-=======
-    def __init__(self, applicationIconUrl=None, applicationName=None, inherited=None):
-        self.applicationIconUrl: str = applicationIconUrl
-        self.applicationName: str = applicationName
-        self.inherited: bool = inherited
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class SpAdapterTargetApplicationInfo():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.applicationIconUrl, self.applicationName, self.inherited))
+        return hash(frozenset(self.applicationIconUrl, self.applicationName, self.inherited))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["applicationIconUrl", "applicationName", "inherited"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,21 +4,15 @@ class ClientSettings():
     Attributes
     ----------
     clientMetadata : array
- The client metadata.
+        The client metadata.
     dynamicClientRegistration : str
- Dynamic client registration settings.
+        Dynamic client registration settings.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, clientMetadata=None, dynamicClientRegistration=None) -> None:
+    def __init__(self, clientMetadata:list=None, dynamicClientRegistration=None) -> None:
         self.clientMetadata = clientMetadata
         self.dynamicClientRegistration = dynamicClientRegistration
-=======
-    def __init__(self, clientMetadata=None, dynamicClientRegistration=None):
-        self.clientMetadata: list = clientMetadata
-        self.dynamicClientRegistration: str = dynamicClientRegistration
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ClientSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.clientMetadata, self.dynamicClientRegistration))
+        return hash(frozenset(self.clientMetadata, self.dynamicClientRegistration))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["clientMetadata", "dynamicClientRegistration"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

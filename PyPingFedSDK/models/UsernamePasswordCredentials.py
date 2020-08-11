@@ -4,25 +4,18 @@ class UsernamePasswordCredentials():
     Attributes
     ----------
     encryptedPassword : string
- For GET requests, this field contains the encrypted password, if one exists.  For POST and PUT requests, if you wish to reuse the existing password, this field should be passed back unchanged.
+        For GET requests, this field contains the encrypted password, if one exists.  For POST and PUT requests, if you wish to reuse the existing password, this field should be passed back unchanged.
     password : string
- User password.  To update the password, specify the plaintext value in this field.  This field will not be populated for GET requests.
+        User password.  To update the password, specify the plaintext value in this field.  This field will not be populated for GET requests.
     username : string
- The username.
+        The username.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, encryptedPassword=None, password=None, username=None) -> None:
+    def __init__(self, encryptedPassword:str=None, password:str=None, username:str=None) -> None:
         self.encryptedPassword = encryptedPassword
         self.password = password
         self.username = username
-=======
-    def __init__(self, encryptedPassword=None, password=None, username=None):
-        self.encryptedPassword: str = encryptedPassword
-        self.password: str = password
-        self.username: str = username
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class UsernamePasswordCredentials():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.encryptedPassword, self.password, self.username))
+        return hash(frozenset(self.encryptedPassword, self.password, self.username))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedPassword", "password", "username"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,25 +4,18 @@ class LdapTagConfig():
     Attributes
     ----------
     defaultSource : boolean
- Whether this is the default connection. Defaults to false if not specified.
+        Whether this is the default connection. Defaults to false if not specified.
     hostnames : array
- The LDAP host names.
+        The LDAP host names.
     tags : string
- Tags associated with this data source.
+        Tags associated with this data source.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, hostnames, defaultSource=None, tags=None) -> None:
+    def __init__(self, hostnames:list, defaultSource:bool=None, tags:str=None) -> None:
         self.defaultSource = defaultSource
         self.hostnames = hostnames
         self.tags = tags
-=======
-    def __init__(self, hostnames, defaultSource=None, tags=None):
-        self.defaultSource: bool = defaultSource
-        self.hostnames: list = hostnames
-        self.tags: str = tags
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["hostnames"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class LdapTagConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.defaultSource, self.hostnames, self.tags))
+        return hash(frozenset(self.defaultSource, self.hostnames, self.tags))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultSource", "hostnames", "tags"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

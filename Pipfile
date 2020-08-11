@@ -8,11 +8,14 @@ pytest = "*"
 pytest-cov = "*"
 pytest-html = "*"
 hypothesis = "*"
+requests = "*"
+Jinja2 = "*"
 
 [packages]
 python-decouple = "*"
 PyYAML = "*"
 Jinja2 = "*"
+requests = "*"
 
 [requires]
 python_version = "3.6"

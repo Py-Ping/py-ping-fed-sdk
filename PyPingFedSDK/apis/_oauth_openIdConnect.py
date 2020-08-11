@@ -95,7 +95,7 @@ class _oauth_openIdConnect():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -145,18 +145,14 @@ class _oauth_openIdConnect():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updatePolicy(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updatePolicy(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updatePolicy(self, var_id, body, XBypassExternalValidation):
         """ Update an OpenID Connect Policy.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

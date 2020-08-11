@@ -4,42 +4,41 @@ class LicenseView():
     Attributes
     ----------
     enforcementType : string
- The enforcement type is a 3-bit binary value, expressed as a decimal digit. The bits from left to right are: <br>1: Shutdown on expire <br>2: Notify on expire <br>4: Enforce minor version <br>if all three enforcements are active, the enforcement type will be 7 (1 + 2 + 4); if only the first two are active, you have an enforcement type of 3 (1 + 2).
+        The enforcement type is a 3-bit binary value, expressed as a decimal digit. The bits from left to right are: <br>1: Shutdown on expire <br>2: Notify on expire <br>4: Enforce minor version <br>if all three enforcements are active, the enforcement type will be 7 (1 + 2 + 4); if only the first two are active, you have an enforcement type of 3 (1 + 2).
     expirationDate : string
- The expiration date value from the license file (if applicable).
+        The expiration date value from the license file (if applicable).
     gracePeriod : integer
- Number of days provided as grace period, past the expiration date (if applicable).
+        Number of days provided as grace period, past the expiration date (if applicable).
     id : string
- Unique identifier of a license.
+        Unique identifier of a license.
     issueDate : string
- The issue date value from the license file.
+        The issue date value from the license file.
     licenseGroups : array
- License connection groups, if applicable.
+        License connection groups, if applicable.
     maxConnections : integer
- Maximum number of connections that can be created under this license (if applicable).
+        Maximum number of connections that can be created under this license (if applicable).
     name : string
- Name of the person the license was issued to.
+        Name of the person the license was issued to.
     nodeLimit : integer
- Maximum number of clustered nodes allowed under this license (if applicable).
+        Maximum number of clustered nodes allowed under this license (if applicable).
     oauthEnabled : boolean
- Indicates whether OAuth role is enabled for this license.
+        Indicates whether OAuth role is enabled for this license.
     organization : string
- The organization value from the license file.
+        The organization value from the license file.
     product : string
- The Ping Identity product value from the license file.
+        The Ping Identity product value from the license file.
     provisioningEnabled : boolean
- Indicates whether Provisioning role is enabled for this license.
+        Indicates whether Provisioning role is enabled for this license.
     tier : string
- The tier value from the license file. The possible values are FREE, PERPETUAL or SUBSCRIPTION.
+        The tier value from the license file. The possible values are FREE, PERPETUAL or SUBSCRIPTION.
     version : string
- The Ping Identity product version from the license file.
+        The Ping Identity product version from the license file.
     wsTrustEnabled : boolean
- Indicates whether WS-Trust role is enabled for this license.
+        Indicates whether WS-Trust role is enabled for this license.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, enforcementType=None, expirationDate=None, gracePeriod=None, var_id=None, issueDate=None, licenseGroups=None, maxConnections=None, name=None, nodeLimit=None, oauthEnabled=None, organization=None, product=None, provisioningEnabled=None, tier=None, version=None, wsTrustEnabled=None) -> None:
+    def __init__(self, enforcementType:str=None, expirationDate:str=None, gracePeriod:int=None, var_id:str=None, issueDate:str=None, licenseGroups:list=None, maxConnections:int=None, name:str=None, nodeLimit:int=None, oauthEnabled:bool=None, organization:str=None, product:str=None, provisioningEnabled:bool=None, tier:str=None, version:str=None, wsTrustEnabled:bool=None) -> None:
         self.enforcementType = enforcementType
         self.expirationDate = expirationDate
         self.gracePeriod = gracePeriod
@@ -56,25 +55,6 @@ class LicenseView():
         self.tier = tier
         self.version = version
         self.wsTrustEnabled = wsTrustEnabled
-=======
-    def __init__(self, enforcementType=None, expirationDate=None, gracePeriod=None, id=None, issueDate=None, licenseGroups=None, maxConnections=None, name=None, nodeLimit=None, oauthEnabled=None, organization=None, product=None, provisioningEnabled=None, tier=None, version=None, wsTrustEnabled=None):
-        self.enforcementType: str = enforcementType
-        self.expirationDate: str = expirationDate
-        self.gracePeriod: str = gracePeriod
-        self.id: str = id
-        self.issueDate: str = issueDate
-        self.licenseGroups: list = licenseGroups
-        self.maxConnections: str = maxConnections
-        self.name: str = name
-        self.nodeLimit: str = nodeLimit
-        self.oauthEnabled: bool = oauthEnabled
-        self.organization: str = organization
-        self.product: str = product
-        self.provisioningEnabled: bool = provisioningEnabled
-        self.tier: str = tier
-        self.version: str = version
-        self.wsTrustEnabled: bool = wsTrustEnabled
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -91,17 +71,13 @@ class LicenseView():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.enforcementType, self.expirationDate, self.gracePeriod, self.var_id, self.issueDate, self.licenseGroups, self.maxConnections, self.name, self.nodeLimit, self.oauthEnabled, self.organization, self.product, self.provisioningEnabled, self.tier, self.version, self.wsTrustEnabled))
+        return hash(frozenset(self.enforcementType, self.expirationDate, self.gracePeriod, self.var_id, self.issueDate, self.licenseGroups, self.maxConnections, self.name, self.nodeLimit, self.oauthEnabled, self.organization, self.product, self.provisioningEnabled, self.tier, self.version, self.wsTrustEnabled))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enforcementType", "expirationDate", "gracePeriod", "var_id", "issueDate", "licenseGroups", "maxConnections", "name", "nodeLimit", "oauthEnabled", "organization", "product", "provisioningEnabled", "tier", "version", "wsTrustEnabled"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,38 +4,37 @@ class SaasPluginFieldInfoDescriptor():
     Attributes
     ----------
     attributeGroup : boolean
- Indicates whether this field belongs to group of attribute such as multivalued or sub-type custom attributes.
+        Indicates whether this field belongs to group of attribute such as multivalued or sub-type custom attributes.
     code : string
- The name or code that represents a field.
+        The name or code that represents a field.
     defaultValue : string
- Default value for the field.
+        Default value for the field.
     dsLdapMap : boolean
- Indicates whether the field can be mapped raw to an LDAP attribute.
+        Indicates whether the field can be mapped raw to an LDAP attribute.
     label : string
- The label for a field.
+        The label for a field.
     maxLength : integer
- Maximum character length for a value.
+        Maximum character length for a value.
     minLength : integer
- Minimum character length for a value.
+        Minimum character length for a value.
     multiValue : boolean
- Whether the field can have multiple values.
+        Whether the field can have multiple values.
     notes : array
- Description or notes for the field.
+        Description or notes for the field.
     options : array
- List of Option values available for this field.
+        List of Option values available for this field.
     pattern : str
- Pattern used to validate values of this field.
+        Pattern used to validate values of this field.
     persistForMembership : boolean
- The code that represents the field.
+        The code that represents the field.
     required : boolean
- Indicates whether a value is required for this field.
+        Indicates whether a value is required for this field.
     unique : boolean
- indicates whether the value of this field is unique.
+        indicates whether the value of this field is unique.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, code, label, attributeGroup=None, defaultValue=None, dsLdapMap=None, maxLength=None, minLength=None, multiValue=None, notes=None, options=None, pattern=None, persistForMembership=None, required=None, unique=None) -> None:
+    def __init__(self, code:str, label:str, attributeGroup:bool=None, defaultValue:str=None, dsLdapMap:bool=None, maxLength:int=None, minLength:int=None, multiValue:bool=None, notes:list=None, options:list=None, pattern=None, persistForMembership:bool=None, required:bool=None, unique:bool=None) -> None:
         self.attributeGroup = attributeGroup
         self.code = code
         self.defaultValue = defaultValue
@@ -50,23 +49,6 @@ class SaasPluginFieldInfoDescriptor():
         self.persistForMembership = persistForMembership
         self.required = required
         self.unique = unique
-=======
-    def __init__(self, code, label, attributeGroup=None, defaultValue=None, dsLdapMap=None, maxLength=None, minLength=None, multiValue=None, notes=None, options=None, pattern=None, persistForMembership=None, required=None, unique=None):
-        self.attributeGroup: bool = attributeGroup
-        self.code: str = code
-        self.defaultValue: str = defaultValue
-        self.dsLdapMap: bool = dsLdapMap
-        self.label: str = label
-        self.maxLength: str = maxLength
-        self.minLength: str = minLength
-        self.multiValue: bool = multiValue
-        self.notes: list = notes
-        self.options: list = options
-        self.pattern: str = pattern
-        self.persistForMembership: bool = persistForMembership
-        self.required: bool = required
-        self.unique: bool = unique
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["code", "label"] if self.__dict__[x] is not None)
@@ -83,17 +65,13 @@ class SaasPluginFieldInfoDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeGroup, self.code, self.defaultValue, self.dsLdapMap, self.label, self.maxLength, self.minLength, self.multiValue, self.notes, self.options, self.pattern, self.persistForMembership, self.required, self.unique))
+        return hash(frozenset(self.attributeGroup, self.code, self.defaultValue, self.dsLdapMap, self.label, self.maxLength, self.minLength, self.multiValue, self.notes, self.options, self.pattern, self.persistForMembership, self.required, self.unique))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeGroup", "code", "defaultValue", "dsLdapMap", "label", "maxLength", "minLength", "multiValue", "notes", "options", "pattern", "persistForMembership", "required", "unique"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

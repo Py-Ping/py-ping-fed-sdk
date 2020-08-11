@@ -4,21 +4,15 @@ class SaasAttributeMapping():
     Attributes
     ----------
     fieldName : string
- The name of target field.
+        The name of target field.
     saasFieldInfo : str
- The settings that represent how attribute values from source data store will be mapped into Fields specified by the service provider.
+        The settings that represent how attribute values from source data store will be mapped into Fields specified by the service provider.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, fieldName, saasFieldInfo) -> None:
+    def __init__(self, fieldName:str, saasFieldInfo) -> None:
         self.fieldName = fieldName
         self.saasFieldInfo = saasFieldInfo
-=======
-    def __init__(self, fieldName, saasFieldInfo):
-        self.fieldName: str = fieldName
-        self.saasFieldInfo: str = saasFieldInfo
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["fieldName", "saasFieldInfo"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class SaasAttributeMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.fieldName, self.saasFieldInfo))
+        return hash(frozenset(self.fieldName, self.saasFieldInfo))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["fieldName", "saasFieldInfo"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,26 +4,25 @@ class HashedTextFieldDescriptor():
     Attributes
     ----------
     advanced : boolean
- Whether this is an advanced field or not.
+        Whether this is an advanced field or not.
     defaultValue : string
- Default value of the field.
+        Default value of the field.
     description : string
- Description of the field.
+        Description of the field.
     label : string
- Label of the field to be displayed in the administrative console.
+        Label of the field to be displayed in the administrative console.
     name : string
- Name of the field.
+        Name of the field.
     required : boolean
- Whether a value is required for this field or not.
+        Whether a value is required for this field or not.
     size : integer
- The size of the text field.
+        The size of the text field.
     type : str
- The type of field descriptor.
+        The type of field descriptor.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, required=None, size=None, var_type=None) -> None:
+    def __init__(self, advanced:bool=None, defaultValue:str=None, description:str=None, label:str=None, name:str=None, required:bool=None, size:int=None, var_type=None) -> None:
         self.advanced = advanced
         self.defaultValue = defaultValue
         self.description = description
@@ -32,17 +31,6 @@ class HashedTextFieldDescriptor():
         self.required = required
         self.size = size
         self.var_type = var_type
-=======
-    def __init__(self, advanced=None, defaultValue=None, description=None, label=None, name=None, required=None, size=None, type=None):
-        self.advanced: bool = advanced
-        self.defaultValue: str = defaultValue
-        self.description: str = description
-        self.label: str = label
-        self.name: str = name
-        self.required: bool = required
-        self.size: str = size
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -59,17 +47,13 @@ class HashedTextFieldDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.advanced, self.defaultValue, self.description, self.label, self.name, self.required, self.size, self.var_type))
+        return hash(frozenset(self.advanced, self.defaultValue, self.description, self.label, self.name, self.required, self.size, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["advanced", "defaultValue", "description", "label", "name", "required", "size", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

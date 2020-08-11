@@ -42,7 +42,7 @@ class _oauth_resourceOwnerCredentialsMappings():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -92,18 +92,14 @@ class _oauth_resourceOwnerCredentialsMappings():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateResourceOwnerCredentialsMapping(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateResourceOwnerCredentialsMapping(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateResourceOwnerCredentialsMapping(self, var_id, body, XBypassExternalValidation):
         """ Update a Resource Owner Credentials mapping.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

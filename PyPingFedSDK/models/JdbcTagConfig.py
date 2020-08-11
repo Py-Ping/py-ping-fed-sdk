@@ -4,25 +4,18 @@ class JdbcTagConfig():
     Attributes
     ----------
     connectionUrl : string
- The location of the JDBC database.
+        The location of the JDBC database.
     defaultSource : boolean
- Whether this is the default connection. Defaults to false if not specified.
+        Whether this is the default connection. Defaults to false if not specified.
     tags : string
- Tags associated with this data source.
+        Tags associated with this data source.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, connectionUrl, defaultSource=None, tags=None) -> None:
+    def __init__(self, connectionUrl:str, defaultSource:bool=None, tags:str=None) -> None:
         self.connectionUrl = connectionUrl
         self.defaultSource = defaultSource
         self.tags = tags
-=======
-    def __init__(self, connectionUrl, defaultSource=None, tags=None):
-        self.connectionUrl: str = connectionUrl
-        self.defaultSource: bool = defaultSource
-        self.tags: str = tags
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["connectionUrl"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class JdbcTagConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.connectionUrl, self.defaultSource, self.tags))
+        return hash(frozenset(self.connectionUrl, self.defaultSource, self.tags))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionUrl", "defaultSource", "tags"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

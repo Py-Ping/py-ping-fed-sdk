@@ -4,21 +4,15 @@ class GroupMembershipDetection():
     Attributes
     ----------
     groupMemberAttributeName : string
- The name of the attribute that represents group members in a group, also known as group member attribute.
+        The name of the attribute that represents group members in a group, also known as group member attribute.
     memberOfGroupAttributeName : string
- The name of the attribute that indicates the entity is a member of a group, also known as member of attribute.
+        The name of the attribute that indicates the entity is a member of a group, also known as member of attribute.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, groupMemberAttributeName, memberOfGroupAttributeName=None) -> None:
+    def __init__(self, groupMemberAttributeName:str, memberOfGroupAttributeName:str=None) -> None:
         self.groupMemberAttributeName = groupMemberAttributeName
         self.memberOfGroupAttributeName = memberOfGroupAttributeName
-=======
-    def __init__(self, groupMemberAttributeName, memberOfGroupAttributeName=None):
-        self.groupMemberAttributeName: str = groupMemberAttributeName
-        self.memberOfGroupAttributeName: str = memberOfGroupAttributeName
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["groupMemberAttributeName"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class GroupMembershipDetection():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.groupMemberAttributeName, self.memberOfGroupAttributeName))
+        return hash(frozenset(self.groupMemberAttributeName, self.memberOfGroupAttributeName))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["groupMemberAttributeName", "memberOfGroupAttributeName"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

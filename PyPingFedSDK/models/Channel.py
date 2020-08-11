@@ -4,37 +4,27 @@ class Channel():
     Attributes
     ----------
     active : boolean
- Indicates whether the channel is the active channel for this connection.
+        Indicates whether the channel is the active channel for this connection.
     attributeMapping : array
- The mapping of attributes from the local data store into Fields specified by the service provider.
+        The mapping of attributes from the local data store into Fields specified by the service provider.
     channelSource : str
- The LDAP settings that apply to the source user-data store.
+        The LDAP settings that apply to the source user-data store.
     maxThreads : integer
- The number of processing threads. The default value is 1.
+        The number of processing threads. The default value is 1.
     name : string
- The name of the channel.
+        The name of the channel.
     timeout : integer
- Timeout is the number of seconds that can be adjusted if more time is needed for provisioning a large amount of data. It is applicable when the number of processing thread is more than 1. The default value is 60.
+        Timeout is the number of seconds that can be adjusted if more time is needed for provisioning a large amount of data. It is applicable when the number of processing thread is more than 1. The default value is 60.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, active, channelSource, attributeMapping, name, maxThreads, timeout) -> None:
+    def __init__(self, active:bool, channelSource, attributeMapping:list, name:str, maxThreads:int, timeout:int) -> None:
         self.active = active
         self.attributeMapping = attributeMapping
         self.channelSource = channelSource
         self.maxThreads = maxThreads
         self.name = name
         self.timeout = timeout
-=======
-    def __init__(self, active, channelSource, attributeMapping, name, maxThreads, timeout):
-        self.active: bool = active
-        self.attributeMapping: list = attributeMapping
-        self.channelSource: str = channelSource
-        self.maxThreads: str = maxThreads
-        self.name: str = name
-        self.timeout: str = timeout
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["active", "channelSource", "attributeMapping", "name", "maxThreads", "timeout"] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class Channel():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.active, self.attributeMapping, self.channelSource, self.maxThreads, self.name, self.timeout))
+        return hash(frozenset(self.active, self.attributeMapping, self.channelSource, self.maxThreads, self.name, self.timeout))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["active", "attributeMapping", "channelSource", "maxThreads", "name", "timeout"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

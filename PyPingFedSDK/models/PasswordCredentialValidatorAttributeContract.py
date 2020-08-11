@@ -4,25 +4,18 @@ class PasswordCredentialValidatorAttributeContract():
     Attributes
     ----------
     coreAttributes : array
- A list of read-only attributes that are automatically populated by the password credential validator descriptor.
+        A list of read-only attributes that are automatically populated by the password credential validator descriptor.
     extendedAttributes : array
- A list of additional attributes that can be returned by the password credential validator. The extended attributes are only used if the adapter supports them.
+        A list of additional attributes that can be returned by the password credential validator. The extended attributes are only used if the adapter supports them.
     inherited : boolean
- Whether this attribute contract is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
+        Whether this attribute contract is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, coreAttributes=None, extendedAttributes=None, inherited=None) -> None:
+    def __init__(self, coreAttributes:list=None, extendedAttributes:list=None, inherited:bool=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
         self.inherited = inherited
-=======
-    def __init__(self, coreAttributes=None, extendedAttributes=None, inherited=None):
-        self.coreAttributes: list = coreAttributes
-        self.extendedAttributes: list = extendedAttributes
-        self.inherited: bool = inherited
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class PasswordCredentialValidatorAttributeContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.coreAttributes, self.extendedAttributes, self.inherited))
+        return hash(frozenset(self.coreAttributes, self.extendedAttributes, self.inherited))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes", "inherited"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

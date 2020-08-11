@@ -4,33 +4,24 @@ class ClusterStatus():
     Attributes
     ----------
     lastConfigUpdateTime : string
- Time when the configuration of this node was last updated.
+        Time when the configuration of this node was last updated.
     lastReplicationTime : string
- Time when configuration changes were last replicated.
+        Time when configuration changes were last replicated.
     mixedMode : boolean
- Indicates whether there is more than one version of PingFederate in the cluster.
+        Indicates whether there is more than one version of PingFederate in the cluster.
     nodes : array
- List of nodes in the cluster.
+        List of nodes in the cluster.
     replicationRequired : boolean
- Indicates whether a replication is required to propagate config updates.
+        Indicates whether a replication is required to propagate config updates.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, lastConfigUpdateTime=None, lastReplicationTime=None, mixedMode=None, nodes=None, replicationRequired=None) -> None:
+    def __init__(self, lastConfigUpdateTime:str=None, lastReplicationTime:str=None, mixedMode:bool=None, nodes:list=None, replicationRequired:bool=None) -> None:
         self.lastConfigUpdateTime = lastConfigUpdateTime
         self.lastReplicationTime = lastReplicationTime
         self.mixedMode = mixedMode
         self.nodes = nodes
         self.replicationRequired = replicationRequired
-=======
-    def __init__(self, lastConfigUpdateTime=None, lastReplicationTime=None, mixedMode=None, nodes=None, replicationRequired=None):
-        self.lastConfigUpdateTime: str = lastConfigUpdateTime
-        self.lastReplicationTime: str = lastReplicationTime
-        self.mixedMode: bool = mixedMode
-        self.nodes: list = nodes
-        self.replicationRequired: bool = replicationRequired
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class ClusterStatus():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.lastConfigUpdateTime, self.lastReplicationTime, self.mixedMode, self.nodes, self.replicationRequired))
+        return hash(frozenset(self.lastConfigUpdateTime, self.lastReplicationTime, self.mixedMode, self.nodes, self.replicationRequired))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["lastConfigUpdateTime", "lastReplicationTime", "mixedMode", "nodes", "replicationRequired"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

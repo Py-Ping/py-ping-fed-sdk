@@ -4,21 +4,15 @@ class ProtocolMessageCustomization():
     Attributes
     ----------
     contextName : string
- The context in which the customization will be applied. Depending on the connection type and protocol, this can either be 'assertion', 'authn-response' or 'authn-request'.
+        The context in which the customization will be applied. Depending on the connection type and protocol, this can either be 'assertion', 'authn-response' or 'authn-request'.
     messageExpression : string
- The OGNL expression that will be executed. Refer to the Admin Manual for a list of variables provided by PingFederate.
+        The OGNL expression that will be executed. Refer to the Admin Manual for a list of variables provided by PingFederate.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, contextName=None, messageExpression=None) -> None:
+    def __init__(self, contextName:str=None, messageExpression:str=None) -> None:
         self.contextName = contextName
         self.messageExpression = messageExpression
-=======
-    def __init__(self, contextName=None, messageExpression=None):
-        self.contextName: str = contextName
-        self.messageExpression: str = messageExpression
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ProtocolMessageCustomization():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.contextName, self.messageExpression))
+        return hash(frozenset(self.contextName, self.messageExpression))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["contextName", "messageExpression"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

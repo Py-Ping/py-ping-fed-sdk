@@ -4,21 +4,15 @@ class LocalIdentityAuthSource():
     Attributes
     ----------
     id : string
- The persistent, unique ID for the local identity authentication source. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
+        The persistent, unique ID for the local identity authentication source. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
     source : string
- The local identity authentication source. Source is unique.
+        The local identity authentication source. Source is unique.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_id=None, source=None) -> None:
+    def __init__(self, var_id:str=None, source:str=None) -> None:
         self.var_id = var_id
         self.source = source
-=======
-    def __init__(self, id=None, source=None):
-        self.id: str = id
-        self.source: str = source
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class LocalIdentityAuthSource():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.var_id, self.source))
+        return hash(frozenset(self.var_id, self.source))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "source"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

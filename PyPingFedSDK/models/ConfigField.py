@@ -4,29 +4,21 @@ class ConfigField():
     Attributes
     ----------
     encryptedValue : string
- For encrypted or hashed fields, this attribute contains the encrypted representation of the field's value, if a value is defined. If you do not want to update the stored value, this attribute should be passed back unchanged.
+        For encrypted or hashed fields, this attribute contains the encrypted representation of the field's value, if a value is defined. If you do not want to update the stored value, this attribute should be passed back unchanged.
     inherited : boolean
- Whether this field is inherited from its parent instance. If true, the value/encrypted value properties become read-only. The default value is false.
+        Whether this field is inherited from its parent instance. If true, the value/encrypted value properties become read-only. The default value is false.
     name : string
- The name of the configuration field.
+        The name of the configuration field.
     value : string
- The value for the configuration field. For encrypted or hashed fields, GETs will not return this attribute. To update an encrypted or hashed field, specify the new value in this attribute.
+        The value for the configuration field. For encrypted or hashed fields, GETs will not return this attribute. To update an encrypted or hashed field, specify the new value in this attribute.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, name, encryptedValue=None, inherited=None, value=None) -> None:
+    def __init__(self, name:str, encryptedValue:str=None, inherited:bool=None, value:str=None) -> None:
         self.encryptedValue = encryptedValue
         self.inherited = inherited
         self.name = name
         self.value = value
-=======
-    def __init__(self, name, encryptedValue=None, inherited=None, value=None):
-        self.encryptedValue: str = encryptedValue
-        self.inherited: bool = inherited
-        self.name: str = name
-        self.value: str = value
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["name"] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class ConfigField():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.encryptedValue, self.inherited, self.name, self.value))
+        return hash(frozenset(self.encryptedValue, self.inherited, self.name, self.value))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["encryptedValue", "inherited", "name", "value"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

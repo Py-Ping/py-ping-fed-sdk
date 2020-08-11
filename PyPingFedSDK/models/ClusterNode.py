@@ -4,37 +4,27 @@ class ClusterNode():
     Attributes
     ----------
     address : string
- The IP address and port this node is running on.
+        The IP address and port this node is running on.
     index : integer
- Index of the node within the cluster, or -1 if an index is not assigned.
+        Index of the node within the cluster, or -1 if an index is not assigned.
     mode : str
- The deployment mode of this node, from a clustering standpoint.
+        The deployment mode of this node, from a clustering standpoint.
     nodeGroup : string
- The node group for this node. This field is only populated if adaptive clustering is enabled.
+        The node group for this node. This field is only populated if adaptive clustering is enabled.
     nodeTags : string
- The node tags for this node. This field is only populated for engine nodes.
+        The node tags for this node. This field is only populated for engine nodes.
     version : string
- The PingFederate version this node is running on.
+        The PingFederate version this node is running on.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, address=None, index=None, mode=None, nodeGroup=None, nodeTags=None, version=None) -> None:
+    def __init__(self, address:str=None, index:int=None, mode=None, nodeGroup:str=None, nodeTags:str=None, version:str=None) -> None:
         self.address = address
         self.index = index
         self.mode = mode
         self.nodeGroup = nodeGroup
         self.nodeTags = nodeTags
         self.version = version
-=======
-    def __init__(self, address=None, index=None, mode=None, nodeGroup=None, nodeTags=None, version=None):
-        self.address: str = address
-        self.index: str = index
-        self.mode: str = mode
-        self.nodeGroup: str = nodeGroup
-        self.nodeTags: str = nodeTags
-        self.version: str = version
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class ClusterNode():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.address, self.index, self.mode, self.nodeGroup, self.nodeTags, self.version))
+        return hash(frozenset(self.address, self.index, self.mode, self.nodeGroup, self.nodeTags, self.version))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["address", "index", "mode", "nodeGroup", "nodeTags", "version"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

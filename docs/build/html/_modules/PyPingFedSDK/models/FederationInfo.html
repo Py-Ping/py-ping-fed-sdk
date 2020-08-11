@@ -65,10 +65,10 @@
     
     
       <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
 </ul>
 
     
@@ -111,43 +111,47 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    autoConnectEntityId : string</span>
-<span class="sd">        This property has been deprecated and no longer used    baseUrl : string</span>
-<span class="sd">        The fully qualified host name, port, and path (if applicable) on which the PingFederate server runs.    saml1xIssuerId : string</span>
-<span class="sd">        This ID identifies your federation server for SAML 1.x transactions. As with SAML 2.0, it is usually defined as an organization&#39;s URL or a DNS address. The SourceID used for artifact resolution is derived from this ID using SHA1.    saml1xSourceId : string</span>
-<span class="sd">        If supplied, the Source ID value entered here is used for SAML 1.x, instead of being derived from the SAML 1.x Issuer/Audience.    saml2EntityId : string</span>
-<span class="sd">        This ID defines your organization as the entity operating the server for SAML 2.0 transactions. It is usually defined as an organization&#39;s URL or a DNS address; for example: pingidentity.com. The SAML SourceID used for artifact resolution is derived from this ID using SHA1.    wsfedRealm : string</span>
+<span class="sd">        This property has been deprecated and no longer used</span>
+<span class="sd">    baseUrl : string</span>
+<span class="sd">        The fully qualified host name, port, and path (if applicable) on which the PingFederate server runs.</span>
+<span class="sd">    saml1xIssuerId : string</span>
+<span class="sd">        This ID identifies your federation server for SAML 1.x transactions. As with SAML 2.0, it is usually defined as an organization&#39;s URL or a DNS address. The SourceID used for artifact resolution is derived from this ID using SHA1.</span>
+<span class="sd">    saml1xSourceId : string</span>
+<span class="sd">        If supplied, the Source ID value entered here is used for SAML 1.x, instead of being derived from the SAML 1.x Issuer/Audience.</span>
+<span class="sd">    saml2EntityId : string</span>
+<span class="sd">        This ID defines your organization as the entity operating the server for SAML 2.0 transactions. It is usually defined as an organization&#39;s URL or a DNS address; for example: pingidentity.com. The SAML SourceID used for artifact resolution is derived from this ID using SHA1.</span>
+<span class="sd">    wsfedRealm : string</span>
 <span class="sd">        The URI of the realm associated with the PingFederate server. A realm represents a single unit of security administration or trust.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;autoConnectEntityId&quot;</span><span class="p">,</span> <span class="s2">&quot;baseUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;saml1xIssuerId&quot;</span><span class="p">,</span> <span class="s2">&quot;saml1xSourceId&quot;</span><span class="p">,</span> <span class="s2">&quot;saml2EntityId&quot;</span><span class="p">,</span> <span class="s2">&quot;wsfedRealm&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">autoConnectEntityId</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">baseUrl</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml1xIssuerId</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml1xSourceId</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml2EntityId</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wsfedRealm</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autoConnectEntityId</span> <span class="o">=</span> <span class="n">autoConnectEntityId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseUrl</span> <span class="o">=</span> <span class="n">baseUrl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saml1xIssuerId</span> <span class="o">=</span> <span class="n">saml1xIssuerId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saml1xSourceId</span> <span class="o">=</span> <span class="n">saml1xSourceId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saml2EntityId</span> <span class="o">=</span> <span class="n">saml2EntityId</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wsfedRealm</span> <span class="o">=</span> <span class="n">wsfedRealm</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">autoConnectEntityId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">baseUrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml1xIssuerId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml1xSourceId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saml2EntityId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wsfedRealm</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">autoConnectEntityId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">autoConnectEntityId</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">baseUrl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">baseUrl</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">saml1xIssuerId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">saml1xIssuerId</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">saml1xSourceId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">saml1xSourceId</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">saml2EntityId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">saml2EntityId</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wsfedRealm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">wsfedRealm</span>
-
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">FederationInfo</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">autoConnectEntityId</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseUrl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">saml1xIssuerId</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">saml1xSourceId</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">saml2EntityId</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wsfedRealm</span><span class="p">))</span>
 
 <div class="viewcode-block" id="FederationInfo.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.FederationInfo.FederationInfo.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;autoConnectEntityId&quot;</span><span class="p">,</span> <span class="s2">&quot;baseUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;saml1xIssuerId&quot;</span><span class="p">,</span> <span class="s2">&quot;saml1xSourceId&quot;</span><span class="p">,</span> <span class="s2">&quot;saml2EntityId&quot;</span><span class="p">,</span> <span class="s2">&quot;wsfedRealm&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

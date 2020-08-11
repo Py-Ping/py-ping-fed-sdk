@@ -4,33 +4,24 @@ class TableDescriptor():
     Attributes
     ----------
     columns : array
- Get the columns in the table.
+        Get the columns in the table.
     description : string
- Description for the table.
+        Description for the table.
     label : string
- Label for the table to be displayed in the administrative console.
+        Label for the table to be displayed in the administrative console.
     name : string
- The name of the table.
+        The name of the table.
     requireDefaultRow : boolean
- Configure whether this table requires default row to be set.
+        Configure whether this table requires default row to be set.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, columns=None, description=None, label=None, name=None, requireDefaultRow=None) -> None:
+    def __init__(self, columns:list=None, description:str=None, label:str=None, name:str=None, requireDefaultRow:bool=None) -> None:
         self.columns = columns
         self.description = description
         self.label = label
         self.name = name
         self.requireDefaultRow = requireDefaultRow
-=======
-    def __init__(self, columns=None, description=None, label=None, name=None, requireDefaultRow=None):
-        self.columns: list = columns
-        self.description: str = description
-        self.label: str = label
-        self.name: str = name
-        self.requireDefaultRow: bool = requireDefaultRow
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class TableDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.columns, self.description, self.label, self.name, self.requireDefaultRow))
+        return hash(frozenset(self.columns, self.description, self.label, self.name, self.requireDefaultRow))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["columns", "description", "label", "name", "requireDefaultRow"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

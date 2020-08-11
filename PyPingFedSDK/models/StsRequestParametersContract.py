@@ -4,25 +4,18 @@ class StsRequestParametersContract():
     Attributes
     ----------
     id : string
- The ID of the Security Token Service request parameter contract.<br>Note: Ignored for PUT requests.
+        The ID of the Security Token Service request parameter contract.<br>Note: Ignored for PUT requests.
     name : string
- The name of the Security Token Service request parameter contract.<br>Note: Ignored for PUT requests.
+        The name of the Security Token Service request parameter contract.<br>Note: Ignored for PUT requests.
     parameters : array
- The list of parameters within the Security  Token Service request parameter contract.
+        The list of parameters within the Security  Token Service request parameter contract.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_id, name, parameters) -> None:
+    def __init__(self, var_id:str, name:str, parameters:list) -> None:
         self.var_id = var_id
         self.name = name
         self.parameters = parameters
-=======
-    def __init__(self, id, name, parameters):
-        self.id: str = id
-        self.name: str = name
-        self.parameters: list = parameters
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "name", "parameters"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class StsRequestParametersContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.var_id, self.name, self.parameters))
+        return hash(frozenset(self.var_id, self.name, self.parameters))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["var_id", "name", "parameters"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -42,7 +42,7 @@ class _tokenProcessorToTokenGeneratorMappings():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -92,18 +92,14 @@ class _tokenProcessorToTokenGeneratorMappings():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateTokenToTokenMappingById(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateTokenToTokenMappingById(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateTokenToTokenMappingById(self, var_id, body, XBypassExternalValidation):
         """ Update a Token Processor to Token Generator Mapping.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

@@ -4,25 +4,18 @@ class ExtendedProperty():
     Attributes
     ----------
     description : string
- The property description.
+        The property description.
     multiValued : boolean
- Indicates whether the property should allow multiple values.
+        Indicates whether the property should allow multiple values.
     name : string
- The property name.
+        The property name.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, description=None, multiValued=None, name=None) -> None:
+    def __init__(self, description:str=None, multiValued:bool=None, name:str=None) -> None:
         self.description = description
         self.multiValued = multiValued
         self.name = name
-=======
-    def __init__(self, description=None, multiValued=None, name=None):
-        self.description: str = description
-        self.multiValued: bool = multiValued
-        self.name: str = name
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class ExtendedProperty():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.description, self.multiValued, self.name))
+        return hash(frozenset(self.description, self.multiValued, self.name))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["description", "multiValued", "name"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

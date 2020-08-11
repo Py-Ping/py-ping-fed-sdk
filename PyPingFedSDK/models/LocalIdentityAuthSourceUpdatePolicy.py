@@ -4,29 +4,21 @@ class LocalIdentityAuthSourceUpdatePolicy():
     Attributes
     ----------
     retainAttributes : boolean
- Whether or not to keep attributes after user disconnects.
+        Whether or not to keep attributes after user disconnects.
     storeAttributes : boolean
- Whether or not to store attributes that came from authentication sources.
+        Whether or not to store attributes that came from authentication sources.
     updateAttributes : boolean
- Whether or not to update attributes when users authenticate.
+        Whether or not to update attributes when users authenticate.
     updateInterval : number
- The minimum number of days between updates.
+        The minimum number of days between updates.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, retainAttributes=None, storeAttributes=None, updateAttributes=None, updateInterval=None) -> None:
+    def __init__(self, retainAttributes:bool=None, storeAttributes:bool=None, updateAttributes:bool=None, updateInterval=None) -> None:
         self.retainAttributes = retainAttributes
         self.storeAttributes = storeAttributes
         self.updateAttributes = updateAttributes
         self.updateInterval = updateInterval
-=======
-    def __init__(self, retainAttributes=None, storeAttributes=None, updateAttributes=None, updateInterval=None):
-        self.retainAttributes: bool = retainAttributes
-        self.storeAttributes: bool = storeAttributes
-        self.updateAttributes: bool = updateAttributes
-        self.updateInterval: str = updateInterval
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class LocalIdentityAuthSourceUpdatePolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.retainAttributes, self.storeAttributes, self.updateAttributes, self.updateInterval))
+        return hash(frozenset(self.retainAttributes, self.storeAttributes, self.updateAttributes, self.updateInterval))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["retainAttributes", "storeAttributes", "updateAttributes", "updateInterval"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

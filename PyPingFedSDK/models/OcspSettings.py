@@ -4,30 +4,29 @@ class OcspSettings():
     Attributes
     ----------
     actionOnResponderUnavailable : string
- Action on responder unavailable. This value defaults to  "CONTINUE".
+        Action on responder unavailable. This value defaults to  "CONTINUE".
     actionOnStatusUnknown : string
- Action on status unknown. This value defaults to  "FAIL".
+        Action on status unknown. This value defaults to  "FAIL".
     actionOnUnsuccessfulResponse : string
- Action on unsuccessful response. This value defaults to  "FAIL".
+        Action on unsuccessful response. This value defaults to  "FAIL".
     currentUpdateGracePeriod : integer
- Current update grace period in minutes. This value defaults to "5".
+        Current update grace period in minutes. This value defaults to "5".
     nextUpdateGracePeriod : integer
- Next update grace period in minutes. This value defaults to "5".
+        Next update grace period in minutes. This value defaults to "5".
     requesterAddNonce : boolean
- Do not allow responder to use cached responses. This setting defaults to disabled.
+        Do not allow responder to use cached responses. This setting defaults to disabled.
     responderCertReference : str
- Resource link to OCSP responder signature verification certificate. A previously selected certificate will be deselected if this attribute is not defined.
+        Resource link to OCSP responder signature verification certificate. A previously selected certificate will be deselected if this attribute is not defined.
     responderTimeout : integer
- Responder connection timeout in seconds. This value defaults to "5".
+        Responder connection timeout in seconds. This value defaults to "5".
     responderUrl : string
- Responder URL address. This field is required if OCSP revocation is enabled.
+        Responder URL address. This field is required if OCSP revocation is enabled.
     responseCachePeriod : integer
- Response cache period in hours. This value defaults to "48".
+        Response cache period in hours. This value defaults to "48".
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, responderUrl, actionOnResponderUnavailable=None, actionOnStatusUnknown=None, actionOnUnsuccessfulResponse=None, currentUpdateGracePeriod=None, nextUpdateGracePeriod=None, requesterAddNonce=None, responderCertReference=None, responderTimeout=None, responseCachePeriod=None) -> None:
+    def __init__(self, responderUrl:str, actionOnResponderUnavailable:str=None, actionOnStatusUnknown:str=None, actionOnUnsuccessfulResponse:str=None, currentUpdateGracePeriod:int=None, nextUpdateGracePeriod:int=None, requesterAddNonce:bool=None, responderCertReference=None, responderTimeout:int=None, responseCachePeriod:int=None) -> None:
         self.actionOnResponderUnavailable = actionOnResponderUnavailable
         self.actionOnStatusUnknown = actionOnStatusUnknown
         self.actionOnUnsuccessfulResponse = actionOnUnsuccessfulResponse
@@ -38,19 +37,6 @@ class OcspSettings():
         self.responderTimeout = responderTimeout
         self.responderUrl = responderUrl
         self.responseCachePeriod = responseCachePeriod
-=======
-    def __init__(self, responderUrl, actionOnResponderUnavailable=None, actionOnStatusUnknown=None, actionOnUnsuccessfulResponse=None, currentUpdateGracePeriod=None, nextUpdateGracePeriod=None, requesterAddNonce=None, responderCertReference=None, responderTimeout=None, responseCachePeriod=None):
-        self.actionOnResponderUnavailable: str = actionOnResponderUnavailable
-        self.actionOnStatusUnknown: str = actionOnStatusUnknown
-        self.actionOnUnsuccessfulResponse: str = actionOnUnsuccessfulResponse
-        self.currentUpdateGracePeriod: str = currentUpdateGracePeriod
-        self.nextUpdateGracePeriod: str = nextUpdateGracePeriod
-        self.requesterAddNonce: bool = requesterAddNonce
-        self.responderCertReference: str = responderCertReference
-        self.responderTimeout: str = responderTimeout
-        self.responderUrl: str = responderUrl
-        self.responseCachePeriod: str = responseCachePeriod
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["responderUrl"] if self.__dict__[x] is not None)
@@ -67,17 +53,13 @@ class OcspSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.actionOnResponderUnavailable, self.actionOnStatusUnknown, self.actionOnUnsuccessfulResponse, self.currentUpdateGracePeriod, self.nextUpdateGracePeriod, self.requesterAddNonce, self.responderCertReference, self.responderTimeout, self.responderUrl, self.responseCachePeriod))
+        return hash(frozenset(self.actionOnResponderUnavailable, self.actionOnStatusUnknown, self.actionOnUnsuccessfulResponse, self.currentUpdateGracePeriod, self.nextUpdateGracePeriod, self.requesterAddNonce, self.responderCertReference, self.responderTimeout, self.responderUrl, self.responseCachePeriod))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["actionOnResponderUnavailable", "actionOnStatusUnknown", "actionOnUnsuccessfulResponse", "currentUpdateGracePeriod", "nextUpdateGracePeriod", "requesterAddNonce", "responderCertReference", "responderTimeout", "responderUrl", "responseCachePeriod"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

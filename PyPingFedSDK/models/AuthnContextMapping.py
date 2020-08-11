@@ -4,21 +4,15 @@ class AuthnContextMapping():
     Attributes
     ----------
     local : string
- The local authentication context value.
+        The local authentication context value.
     remote : string
- The remote authentication context value.
+        The remote authentication context value.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, local=None, remote=None) -> None:
+    def __init__(self, local:str=None, remote:str=None) -> None:
         self.local = local
         self.remote = remote
-=======
-    def __init__(self, local=None, remote=None):
-        self.local: str = local
-        self.remote: str = remote
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class AuthnContextMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.local, self.remote))
+        return hash(frozenset(self.local, self.remote))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["local", "remote"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

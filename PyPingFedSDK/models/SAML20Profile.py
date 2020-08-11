@@ -4,21 +4,15 @@ class SAML20Profile():
     Attributes
     ----------
     enable : boolean
- Enable SAML2.0 profile.
+        Enable SAML2.0 profile.
     enableAutoConnect : boolean
- This property has been deprecated and no longer used
+        This property has been deprecated and no longer used
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, enable=None, enableAutoConnect=None) -> None:
+    def __init__(self, enable:bool=None, enableAutoConnect:bool=None) -> None:
         self.enable = enable
         self.enableAutoConnect = enableAutoConnect
-=======
-    def __init__(self, enable=None, enableAutoConnect=None):
-        self.enable: bool = enable
-        self.enableAutoConnect: bool = enableAutoConnect
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class SAML20Profile():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.enable, self.enableAutoConnect))
+        return hash(frozenset(self.enable, self.enableAutoConnect))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enable", "enableAutoConnect"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

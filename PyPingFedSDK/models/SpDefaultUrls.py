@@ -4,25 +4,18 @@ class SpDefaultUrls():
     Attributes
     ----------
     confirmSlo : boolean
- Determines whether the user is prompted to confirm Single Logout (SLO). The default is false.
+        Determines whether the user is prompted to confirm Single Logout (SLO). The default is false.
     sloSuccessUrl : string
- Provide the default URL you would like to send the user to when Single Logout (SLO) has succeeded.
+        Provide the default URL you would like to send the user to when Single Logout (SLO) has succeeded.
     ssoSuccessUrl : string
- Provide the default URL you would like to send the user to when Single Sign On (SSO) has succeeded.
+        Provide the default URL you would like to send the user to when Single Sign On (SSO) has succeeded.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, confirmSlo=None, sloSuccessUrl=None, ssoSuccessUrl=None) -> None:
+    def __init__(self, confirmSlo:bool=None, sloSuccessUrl:str=None, ssoSuccessUrl:str=None) -> None:
         self.confirmSlo = confirmSlo
         self.sloSuccessUrl = sloSuccessUrl
         self.ssoSuccessUrl = ssoSuccessUrl
-=======
-    def __init__(self, confirmSlo=None, sloSuccessUrl=None, ssoSuccessUrl=None):
-        self.confirmSlo: bool = confirmSlo
-        self.sloSuccessUrl: str = sloSuccessUrl
-        self.ssoSuccessUrl: str = ssoSuccessUrl
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class SpDefaultUrls():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.confirmSlo, self.sloSuccessUrl, self.ssoSuccessUrl))
+        return hash(frozenset(self.confirmSlo, self.sloSuccessUrl, self.ssoSuccessUrl))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["confirmSlo", "sloSuccessUrl", "ssoSuccessUrl"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

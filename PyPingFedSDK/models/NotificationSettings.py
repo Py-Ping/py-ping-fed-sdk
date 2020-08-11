@@ -4,33 +4,24 @@ class NotificationSettings():
     Attributes
     ----------
     accountChangesNotificationPublisherRef : str
- Reference to the associated notification publisher for admin user account changes.
+        Reference to the associated notification publisher for admin user account changes.
     certificateExpirations : str
- Settings for certificate expiration notifications.
+        Settings for certificate expiration notifications.
     licenseEvents : str
- Settings for license event notifications.
+        Settings for license event notifications.
     metadataNotificationSettings : str
- Settings for metadata update event notifications.
+        Settings for metadata update event notifications.
     notifyAdminUserPasswordChanges : boolean
- Determines whether admin users are notified through email when their account is changed.
+        Determines whether admin users are notified through email when their account is changed.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, accountChangesNotificationPublisherRef=None, certificateExpirations=None, licenseEvents=None, metadataNotificationSettings=None, notifyAdminUserPasswordChanges=None) -> None:
+    def __init__(self, accountChangesNotificationPublisherRef=None, certificateExpirations=None, licenseEvents=None, metadataNotificationSettings=None, notifyAdminUserPasswordChanges:bool=None) -> None:
         self.accountChangesNotificationPublisherRef = accountChangesNotificationPublisherRef
         self.certificateExpirations = certificateExpirations
         self.licenseEvents = licenseEvents
         self.metadataNotificationSettings = metadataNotificationSettings
         self.notifyAdminUserPasswordChanges = notifyAdminUserPasswordChanges
-=======
-    def __init__(self, accountChangesNotificationPublisherRef=None, certificateExpirations=None, licenseEvents=None, metadataNotificationSettings=None, notifyAdminUserPasswordChanges=None):
-        self.accountChangesNotificationPublisherRef: str = accountChangesNotificationPublisherRef
-        self.certificateExpirations: str = certificateExpirations
-        self.licenseEvents: str = licenseEvents
-        self.metadataNotificationSettings: str = metadataNotificationSettings
-        self.notifyAdminUserPasswordChanges: bool = notifyAdminUserPasswordChanges
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class NotificationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.accountChangesNotificationPublisherRef, self.certificateExpirations, self.licenseEvents, self.metadataNotificationSettings, self.notifyAdminUserPasswordChanges))
+        return hash(frozenset(self.accountChangesNotificationPublisherRef, self.certificateExpirations, self.licenseEvents, self.metadataNotificationSettings, self.notifyAdminUserPasswordChanges))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accountChangesNotificationPublisherRef", "certificateExpirations", "licenseEvents", "metadataNotificationSettings", "notifyAdminUserPasswordChanges"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,66 +4,65 @@ class DynamicClientRegistration():
     Attributes
     ----------
     allowedExclusiveScopes : array
- The exclusive scopes to allow.
+        The exclusive scopes to allow.
     bypassActivationCodeConfirmationOverride : boolean
- Indicates if the Activation Code Confirmation page should be bypassed if 'verification_url_complete' is used by the end user to authorize a device.
+        Indicates if the Activation Code Confirmation page should be bypassed if 'verification_url_complete' is used by the end user to authorize a device.
     cibaPollingInterval : integer
- The minimum amount of time in seconds that the Client must wait between polling requests to the token endpoint. The default is 3 seconds.
+        The minimum amount of time in seconds that the Client must wait between polling requests to the token endpoint. The default is 3 seconds.
     cibaRequireSignedRequests : boolean
- Determines whether CIBA signed requests are required for this client.
+        Determines whether CIBA signed requests are required for this client.
     clientCertIssuerRef : str
- Client TLS Certificate Issuer DN.
+        Client TLS Certificate Issuer DN.
     clientCertIssuerType : str
- Client TLS Certificate Issuer Type.
+        Client TLS Certificate Issuer Type.
     defaultAccessTokenManagerRef : str
- The default access token manager for this client.
+        The default access token manager for this client.
     deviceFlowSettingType : str
- Allows an administrator to override the Device Authorization Settings set globally for the OAuth AS. Defaults to SERVER_DEFAULT.
+        Allows an administrator to override the Device Authorization Settings set globally for the OAuth AS. Defaults to SERVER_DEFAULT.
     devicePollingIntervalOverride : integer
- The amount of time client should wait between polling requests, in seconds.
+        The amount of time client should wait between polling requests, in seconds.
     enforceReplayPrevention : boolean
- Enforce replay prevention.
+        Enforce replay prevention.
     initialAccessTokenScope : string
- The initial access token to prevent unwanted client registrations.
+        The initial access token to prevent unwanted client registrations.
     oidcPolicy : str
- Open ID Connect Policy settings.  This is included in the message only when OIDC is enabled.
+        Open ID Connect Policy settings.  This is included in the message only when OIDC is enabled.
     pendingAuthorizationTimeoutOverride : integer
- The 'device_code' and 'user_code' timeout, in seconds.
+        The 'device_code' and 'user_code' timeout, in seconds.
     persistentGrantExpirationTime : integer
- The persistent grant expiration time.
+        The persistent grant expiration time.
     persistentGrantExpirationTimeUnit : str
- The persistent grant expiration time unit.
+        The persistent grant expiration time unit.
     persistentGrantExpirationType : str
- Allows an administrator to override the Persistent Grant Lifetime set globally for the OAuth AS. Defaults to SERVER_DEFAULT.
+        Allows an administrator to override the Persistent Grant Lifetime set globally for the OAuth AS. Defaults to SERVER_DEFAULT.
     persistentGrantIdleTimeout : integer
- The persistent grant idle timeout.
+        The persistent grant idle timeout.
     persistentGrantIdleTimeoutTimeUnit : str
- The persistent grant idle timeout time unit.
+        The persistent grant idle timeout time unit.
     persistentGrantIdleTimeoutType : str
- Allows an administrator to override the Persistent Grant Idle Timeout set globally for the OAuth AS. Defaults to SERVER_DEFAULT.
+        Allows an administrator to override the Persistent Grant Idle Timeout set globally for the OAuth AS. Defaults to SERVER_DEFAULT.
     policyRefs : array
- The client registration policies.
+        The client registration policies.
     refreshRolling : str
- Use ROLL or DONT_ROLL to override the Roll Refresh Token Values setting on the Authorization Server Settings. SERVER_DEFAULT will default to the Roll Refresh Token Values setting on the Authorization Server Setting screen. Defaults to SERVER_DEFAULT.
+        Use ROLL or DONT_ROLL to override the Roll Refresh Token Values setting on the Authorization Server Settings. SERVER_DEFAULT will default to the Roll Refresh Token Values setting on the Authorization Server Setting screen. Defaults to SERVER_DEFAULT.
     requestPolicyRef : str
- The CIBA request policy.
+        The CIBA request policy.
     requireProofKeyForCodeExchange : boolean
- Determines whether Proof Key for Code Exchange (PKCE) is required for the dynamically created client.
+        Determines whether Proof Key for Code Exchange (PKCE) is required for the dynamically created client.
     requireSignedRequests : boolean
- Require signed requests.
+        Require signed requests.
     restrictCommonScopes : boolean
- Restrict common scopes.
+        Restrict common scopes.
     restrictedCommonScopes : array
- The common scopes to restrict.
+        The common scopes to restrict.
     tokenExchangeProcessorPolicyRef : str
- The Token Exchange Processor policy.
+        The Token Exchange Processor policy.
     userAuthorizationUrlOverride : string
- The URL is used as 'verification_url' and 'verification_url_complete' values in a Device Authorization request.
+        The URL is used as 'verification_url' and 'verification_url_complete' values in a Device Authorization request.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, allowedExclusiveScopes=None, bypassActivationCodeConfirmationOverride=None, cibaPollingInterval=None, cibaRequireSignedRequests=None, clientCertIssuerRef=None, clientCertIssuerType=None, defaultAccessTokenManagerRef=None, deviceFlowSettingType=None, devicePollingIntervalOverride=None, enforceReplayPrevention=None, initialAccessTokenScope=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride=None, persistentGrantExpirationTime=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, policyRefs=None, refreshRolling=None, requestPolicyRef=None, requireProofKeyForCodeExchange=None, requireSignedRequests=None, restrictCommonScopes=None, restrictedCommonScopes=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride=None) -> None:
+    def __init__(self, allowedExclusiveScopes:list=None, bypassActivationCodeConfirmationOverride:bool=None, cibaPollingInterval:int=None, cibaRequireSignedRequests:bool=None, clientCertIssuerRef=None, clientCertIssuerType=None, defaultAccessTokenManagerRef=None, deviceFlowSettingType=None, devicePollingIntervalOverride:int=None, enforceReplayPrevention:bool=None, initialAccessTokenScope:str=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride:int=None, persistentGrantExpirationTime:int=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout:int=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, policyRefs:list=None, refreshRolling=None, requestPolicyRef=None, requireProofKeyForCodeExchange:bool=None, requireSignedRequests:bool=None, restrictCommonScopes:bool=None, restrictedCommonScopes:list=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride:str=None) -> None:
         self.allowedExclusiveScopes = allowedExclusiveScopes
         self.bypassActivationCodeConfirmationOverride = bypassActivationCodeConfirmationOverride
         self.cibaPollingInterval = cibaPollingInterval
@@ -92,37 +91,6 @@ class DynamicClientRegistration():
         self.restrictedCommonScopes = restrictedCommonScopes
         self.tokenExchangeProcessorPolicyRef = tokenExchangeProcessorPolicyRef
         self.userAuthorizationUrlOverride = userAuthorizationUrlOverride
-=======
-    def __init__(self, allowedExclusiveScopes=None, bypassActivationCodeConfirmationOverride=None, cibaPollingInterval=None, cibaRequireSignedRequests=None, clientCertIssuerRef=None, clientCertIssuerType=None, defaultAccessTokenManagerRef=None, deviceFlowSettingType=None, devicePollingIntervalOverride=None, enforceReplayPrevention=None, initialAccessTokenScope=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride=None, persistentGrantExpirationTime=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, policyRefs=None, refreshRolling=None, requestPolicyRef=None, requireProofKeyForCodeExchange=None, requireSignedRequests=None, restrictCommonScopes=None, restrictedCommonScopes=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride=None):
-        self.allowedExclusiveScopes: list = allowedExclusiveScopes
-        self.bypassActivationCodeConfirmationOverride: bool = bypassActivationCodeConfirmationOverride
-        self.cibaPollingInterval: str = cibaPollingInterval
-        self.cibaRequireSignedRequests: bool = cibaRequireSignedRequests
-        self.clientCertIssuerRef: str = clientCertIssuerRef
-        self.clientCertIssuerType: str = clientCertIssuerType
-        self.defaultAccessTokenManagerRef: str = defaultAccessTokenManagerRef
-        self.deviceFlowSettingType: str = deviceFlowSettingType
-        self.devicePollingIntervalOverride: str = devicePollingIntervalOverride
-        self.enforceReplayPrevention: bool = enforceReplayPrevention
-        self.initialAccessTokenScope: str = initialAccessTokenScope
-        self.oidcPolicy: str = oidcPolicy
-        self.pendingAuthorizationTimeoutOverride: str = pendingAuthorizationTimeoutOverride
-        self.persistentGrantExpirationTime: str = persistentGrantExpirationTime
-        self.persistentGrantExpirationTimeUnit: str = persistentGrantExpirationTimeUnit
-        self.persistentGrantExpirationType: str = persistentGrantExpirationType
-        self.persistentGrantIdleTimeout: str = persistentGrantIdleTimeout
-        self.persistentGrantIdleTimeoutTimeUnit: str = persistentGrantIdleTimeoutTimeUnit
-        self.persistentGrantIdleTimeoutType: str = persistentGrantIdleTimeoutType
-        self.policyRefs: list = policyRefs
-        self.refreshRolling: str = refreshRolling
-        self.requestPolicyRef: str = requestPolicyRef
-        self.requireProofKeyForCodeExchange: bool = requireProofKeyForCodeExchange
-        self.requireSignedRequests: bool = requireSignedRequests
-        self.restrictCommonScopes: bool = restrictCommonScopes
-        self.restrictedCommonScopes: list = restrictedCommonScopes
-        self.tokenExchangeProcessorPolicyRef: str = tokenExchangeProcessorPolicyRef
-        self.userAuthorizationUrlOverride: str = userAuthorizationUrlOverride
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -139,17 +107,13 @@ class DynamicClientRegistration():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.allowedExclusiveScopes, self.bypassActivationCodeConfirmationOverride, self.cibaPollingInterval, self.cibaRequireSignedRequests, self.clientCertIssuerRef, self.clientCertIssuerType, self.defaultAccessTokenManagerRef, self.deviceFlowSettingType, self.devicePollingIntervalOverride, self.enforceReplayPrevention, self.initialAccessTokenScope, self.oidcPolicy, self.pendingAuthorizationTimeoutOverride, self.persistentGrantExpirationTime, self.persistentGrantExpirationTimeUnit, self.persistentGrantExpirationType, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantIdleTimeoutType, self.policyRefs, self.refreshRolling, self.requestPolicyRef, self.requireProofKeyForCodeExchange, self.requireSignedRequests, self.restrictCommonScopes, self.restrictedCommonScopes, self.tokenExchangeProcessorPolicyRef, self.userAuthorizationUrlOverride))
+        return hash(frozenset(self.allowedExclusiveScopes, self.bypassActivationCodeConfirmationOverride, self.cibaPollingInterval, self.cibaRequireSignedRequests, self.clientCertIssuerRef, self.clientCertIssuerType, self.defaultAccessTokenManagerRef, self.deviceFlowSettingType, self.devicePollingIntervalOverride, self.enforceReplayPrevention, self.initialAccessTokenScope, self.oidcPolicy, self.pendingAuthorizationTimeoutOverride, self.persistentGrantExpirationTime, self.persistentGrantExpirationTimeUnit, self.persistentGrantExpirationType, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantIdleTimeoutType, self.policyRefs, self.refreshRolling, self.requestPolicyRef, self.requireProofKeyForCodeExchange, self.requireSignedRequests, self.restrictCommonScopes, self.restrictedCommonScopes, self.tokenExchangeProcessorPolicyRef, self.userAuthorizationUrlOverride))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowedExclusiveScopes", "bypassActivationCodeConfirmationOverride", "cibaPollingInterval", "cibaRequireSignedRequests", "clientCertIssuerRef", "clientCertIssuerType", "defaultAccessTokenManagerRef", "deviceFlowSettingType", "devicePollingIntervalOverride", "enforceReplayPrevention", "initialAccessTokenScope", "oidcPolicy", "pendingAuthorizationTimeoutOverride", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantExpirationType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantIdleTimeoutType", "policyRefs", "refreshRolling", "requestPolicyRef", "requireProofKeyForCodeExchange", "requireSignedRequests", "restrictCommonScopes", "restrictedCommonScopes", "tokenExchangeProcessorPolicyRef", "userAuthorizationUrlOverride"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

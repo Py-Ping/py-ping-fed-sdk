@@ -4,25 +4,18 @@ class AlternativeLoginHintTokenIssuer():
     Attributes
     ----------
     issuer : string
- The issuer. Issuer is unique.
+        The issuer. Issuer is unique.
     jwks : string
- The JWKS.
+        The JWKS.
     jwksURL : string
- The JWKS URL.
+        The JWKS URL.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, issuer, jwks=None, jwksURL=None) -> None:
+    def __init__(self, issuer:str, jwks:str=None, jwksURL:str=None) -> None:
         self.issuer = issuer
         self.jwks = jwks
         self.jwksURL = jwksURL
-=======
-    def __init__(self, issuer, jwks=None, jwksURL=None):
-        self.issuer: str = issuer
-        self.jwks: str = jwks
-        self.jwksURL: str = jwksURL
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["issuer"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class AlternativeLoginHintTokenIssuer():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.issuer, self.jwks, self.jwksURL))
+        return hash(frozenset(self.issuer, self.jwks, self.jwksURL))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["issuer", "jwks", "jwksURL"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

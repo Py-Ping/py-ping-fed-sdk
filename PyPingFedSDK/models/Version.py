@@ -4,17 +4,12 @@ class Version():
     Attributes
     ----------
     version : string
- Server version.
+        Server version.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, version=None) -> None:
+    def __init__(self, version:str=None) -> None:
         self.version = version
-=======
-    def __init__(self, version=None):
-        self.version: str = version
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class Version():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.version))
+        return hash(frozenset(self.version))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["version"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

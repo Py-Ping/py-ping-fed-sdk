@@ -4,42 +4,41 @@ class JdbcDataStore():
     Attributes
     ----------
     allowMultiValueAttributes : boolean
- Indicates that this data store can select more than one record from a column and return the results as a multi-value attribute.
+        Indicates that this data store can select more than one record from a column and return the results as a multi-value attribute.
     blockingTimeout : integer
- The amount of time in milliseconds a request waits to get a connection from the connection pool before it fails. Omitting this attribute will set the value to the connection pool default.
+        The amount of time in milliseconds a request waits to get a connection from the connection pool before it fails. Omitting this attribute will set the value to the connection pool default.
     connectionUrl : string
- The default location of the JDBC database. This field is required if no mapping for JDBC database location and tags are specified.
+        The default location of the JDBC database. This field is required if no mapping for JDBC database location and tags are specified.
     connectionUrlTags : array
- The set of connection URLs and associated tags for this JDBC data store.
+        The set of connection URLs and associated tags for this JDBC data store.
     driverClass : string
- The name of the driver class used to communicate with the source database.
+        The name of the driver class used to communicate with the source database.
     encryptedPassword : string
- The encrypted password needed to access the database. If you do not want to update the stored value, this attribute should be passed back unchanged.
+        The encrypted password needed to access the database. If you do not want to update the stored value, this attribute should be passed back unchanged.
     id : string
- The persistent, unique ID for the data store. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
+        The persistent, unique ID for the data store. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.
     idleTimeout : integer
- The length of time in minutes the connection can be idle in the pool before it is closed. Omitting this attribute will set the value to the connection pool default.
+        The length of time in minutes the connection can be idle in the pool before it is closed. Omitting this attribute will set the value to the connection pool default.
     maskAttributeValues : boolean
- Whether attribute values should be masked in the log.
+        Whether attribute values should be masked in the log.
     maxPoolSize : integer
- The largest number of database connections in the connection pool for the given data store. Omitting this attribute will set the value to the connection pool default.
+        The largest number of database connections in the connection pool for the given data store. Omitting this attribute will set the value to the connection pool default.
     minPoolSize : integer
- The smallest number of database connections in the connection pool for the given data store. Omitting this attribute will set the value to the connection pool default.
+        The smallest number of database connections in the connection pool for the given data store. Omitting this attribute will set the value to the connection pool default.
     name : string
- The data store name with a unique value across all data sources. Omitting this attribute will set the value to a combination of the connection url and the username.
+        The data store name with a unique value across all data sources. Omitting this attribute will set the value to a combination of the connection url and the username.
     password : string
- The password needed to access the database. GETs will not return this attribute. To update this field, specify the new value in this attribute.
+        The password needed to access the database. GETs will not return this attribute. To update this field, specify the new value in this attribute.
     type : str
- The data store type.
+        The data store type.
     userName : string
- The name that identifies the user when connecting to the database.
+        The name that identifies the user when connecting to the database.
     validateConnectionSql : string
- A simple SQL statement used by PingFederate at runtime to verify that the database connection is still active and to reconnect if needed.
+        A simple SQL statement used by PingFederate at runtime to verify that the database connection is still active and to reconnect if needed.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, driverClass, userName, allowMultiValueAttributes=None, blockingTimeout=None, connectionUrl=None, connectionUrlTags=None, encryptedPassword=None, var_id=None, idleTimeout=None, maskAttributeValues=None, maxPoolSize=None, minPoolSize=None, name=None, password=None, validateConnectionSql=None) -> None:
+    def __init__(self, var_type, driverClass:str, userName:str, allowMultiValueAttributes:bool=None, blockingTimeout:int=None, connectionUrl:str=None, connectionUrlTags:list=None, encryptedPassword:str=None, var_id:str=None, idleTimeout:int=None, maskAttributeValues:bool=None, maxPoolSize:int=None, minPoolSize:int=None, name:str=None, password:str=None, validateConnectionSql:str=None) -> None:
         self.allowMultiValueAttributes = allowMultiValueAttributes
         self.blockingTimeout = blockingTimeout
         self.connectionUrl = connectionUrl
@@ -56,25 +55,6 @@ class JdbcDataStore():
         self.var_type = var_type
         self.userName = userName
         self.validateConnectionSql = validateConnectionSql
-=======
-    def __init__(self, type, driverClass, userName, allowMultiValueAttributes=None, blockingTimeout=None, connectionUrl=None, connectionUrlTags=None, encryptedPassword=None, id=None, idleTimeout=None, maskAttributeValues=None, maxPoolSize=None, minPoolSize=None, name=None, password=None, validateConnectionSql=None):
-        self.allowMultiValueAttributes: bool = allowMultiValueAttributes
-        self.blockingTimeout: str = blockingTimeout
-        self.connectionUrl: str = connectionUrl
-        self.connectionUrlTags: list = connectionUrlTags
-        self.driverClass: str = driverClass
-        self.encryptedPassword: str = encryptedPassword
-        self.id: str = id
-        self.idleTimeout: str = idleTimeout
-        self.maskAttributeValues: bool = maskAttributeValues
-        self.maxPoolSize: str = maxPoolSize
-        self.minPoolSize: str = minPoolSize
-        self.name: str = name
-        self.password: str = password
-        self.type: str = type
-        self.userName: str = userName
-        self.validateConnectionSql: str = validateConnectionSql
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "driverClass", "userName"] if self.__dict__[x] is not None)
@@ -91,17 +71,13 @@ class JdbcDataStore():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.allowMultiValueAttributes, self.blockingTimeout, self.connectionUrl, self.connectionUrlTags, self.driverClass, self.encryptedPassword, self.var_id, self.idleTimeout, self.maskAttributeValues, self.maxPoolSize, self.minPoolSize, self.name, self.password, self.var_type, self.userName, self.validateConnectionSql))
+        return hash(frozenset(self.allowMultiValueAttributes, self.blockingTimeout, self.connectionUrl, self.connectionUrlTags, self.driverClass, self.encryptedPassword, self.var_id, self.idleTimeout, self.maskAttributeValues, self.maxPoolSize, self.minPoolSize, self.name, self.password, self.var_type, self.userName, self.validateConnectionSql))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["allowMultiValueAttributes", "blockingTimeout", "connectionUrl", "connectionUrlTags", "driverClass", "encryptedPassword", "var_id", "idleTimeout", "maskAttributeValues", "maxPoolSize", "minPoolSize", "name", "password", "var_type", "userName", "validateConnectionSql"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

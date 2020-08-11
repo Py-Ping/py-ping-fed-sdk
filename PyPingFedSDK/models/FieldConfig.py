@@ -4,17 +4,12 @@ class FieldConfig():
     Attributes
     ----------
     fields : array
- The field configuration for the local identity profile.
+        The field configuration for the local identity profile.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, fields=None) -> None:
+    def __init__(self, fields:list=None) -> None:
         self.fields = fields
-=======
-    def __init__(self, fields=None):
-        self.fields: list = fields
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class FieldConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.fields))
+        return hash(frozenset(self.fields))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["fields"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

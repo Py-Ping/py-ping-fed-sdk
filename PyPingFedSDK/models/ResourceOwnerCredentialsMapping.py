@@ -4,33 +4,24 @@ class ResourceOwnerCredentialsMapping():
     Attributes
     ----------
     attributeContractFulfillment : str
- A list of mappings from attribute names to their fulfillment values.
+        A list of mappings from attribute names to their fulfillment values.
     attributeSources : array
- A list of configured data stores to look up attributes from.
+        A list of configured data stores to look up attributes from.
     id : string
- The ID of the Resource Owner Credentials Mapping.
+        The ID of the Resource Owner Credentials Mapping.
     issuanceCriteria : str
- The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
+        The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
     passwordValidatorRef : str
- Read only reference to the associated Source Password Validator Instance.
+        Read only reference to the associated Source Password Validator Instance.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_id, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, passwordValidatorRef=None) -> None:
+    def __init__(self, var_id:str, attributeContractFulfillment, attributeSources:list=None, issuanceCriteria=None, passwordValidatorRef=None) -> None:
         self.attributeContractFulfillment = attributeContractFulfillment
         self.attributeSources = attributeSources
         self.var_id = var_id
         self.issuanceCriteria = issuanceCriteria
         self.passwordValidatorRef = passwordValidatorRef
-=======
-    def __init__(self, id, attributeContractFulfillment, attributeSources=None, issuanceCriteria=None, passwordValidatorRef=None):
-        self.attributeContractFulfillment: str = attributeContractFulfillment
-        self.attributeSources: list = attributeSources
-        self.id: str = id
-        self.issuanceCriteria: str = issuanceCriteria
-        self.passwordValidatorRef: str = passwordValidatorRef
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_id", "attributeContractFulfillment"] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class ResourceOwnerCredentialsMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeContractFulfillment, self.attributeSources, self.var_id, self.issuanceCriteria, self.passwordValidatorRef))
+        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.var_id, self.issuanceCriteria, self.passwordValidatorRef))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContractFulfillment", "attributeSources", "var_id", "issuanceCriteria", "passwordValidatorRef"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

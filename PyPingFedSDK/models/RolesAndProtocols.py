@@ -4,29 +4,21 @@ class RolesAndProtocols():
     Attributes
     ----------
     enableIdpDiscovery : boolean
- Enable IdP Discovery.
+        Enable IdP Discovery.
     idpRole : str
- Identity Provider (IdP) settings.
+        Identity Provider (IdP) settings.
     oauthRole : str
- OAuth role settings.
+        OAuth role settings.
     spRole : str
- Service Provider (SP) settings.
+        Service Provider (SP) settings.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, enableIdpDiscovery=None, idpRole=None, oauthRole=None, spRole=None) -> None:
+    def __init__(self, enableIdpDiscovery:bool=None, idpRole=None, oauthRole=None, spRole=None) -> None:
         self.enableIdpDiscovery = enableIdpDiscovery
         self.idpRole = idpRole
         self.oauthRole = oauthRole
         self.spRole = spRole
-=======
-    def __init__(self, enableIdpDiscovery=None, idpRole=None, oauthRole=None, spRole=None):
-        self.enableIdpDiscovery: bool = enableIdpDiscovery
-        self.idpRole: str = idpRole
-        self.oauthRole: str = oauthRole
-        self.spRole: str = spRole
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class RolesAndProtocols():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.enableIdpDiscovery, self.idpRole, self.oauthRole, self.spRole))
+        return hash(frozenset(self.enableIdpDiscovery, self.idpRole, self.oauthRole, self.spRole))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["enableIdpDiscovery", "idpRole", "oauthRole", "spRole"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

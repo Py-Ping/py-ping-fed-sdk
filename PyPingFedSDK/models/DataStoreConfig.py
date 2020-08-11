@@ -4,25 +4,18 @@ class DataStoreConfig():
     Attributes
     ----------
     dataStoreMapping : str
- The data store mapping.
+        The data store mapping.
     dataStoreRef : str
- Reference to the associated data store.
+        Reference to the associated data store.
     type : str
- The data store config type.
+        The data store config type.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, var_type, dataStoreRef, dataStoreMapping=None) -> None:
         self.dataStoreMapping = dataStoreMapping
         self.dataStoreRef = dataStoreRef
         self.var_type = var_type
-=======
-    def __init__(self, type, dataStoreRef, dataStoreMapping=None):
-        self.dataStoreMapping: str = dataStoreMapping
-        self.dataStoreRef: str = dataStoreRef
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "dataStoreRef"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class DataStoreConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.dataStoreMapping, self.dataStoreRef, self.var_type))
+        return hash(frozenset(self.dataStoreMapping, self.dataStoreRef, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["dataStoreMapping", "dataStoreRef", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

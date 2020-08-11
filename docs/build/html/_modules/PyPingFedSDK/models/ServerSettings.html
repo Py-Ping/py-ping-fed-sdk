@@ -65,10 +65,10 @@
     
     
       <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
 </ul>
 
     
@@ -111,43 +111,47 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    captchaSettings : str</span>
-<span class="sd">        Captcha Settings.    contactInfo : str</span>
-<span class="sd">        Information that identifies the server.    emailServer : str</span>
-<span class="sd">        Email Server Settings.    federationInfo : str</span>
-<span class="sd">        Federation Info.    notifications : str</span>
-<span class="sd">        Notification settings for license and certificate expiration events.    rolesAndProtocols : str</span>
+<span class="sd">        Captcha Settings.</span>
+<span class="sd">    contactInfo : str</span>
+<span class="sd">        Information that identifies the server.</span>
+<span class="sd">    emailServer : str</span>
+<span class="sd">        Email Server Settings.</span>
+<span class="sd">    federationInfo : str</span>
+<span class="sd">        Federation Info.</span>
+<span class="sd">    notifications : str</span>
+<span class="sd">        Notification settings for license and certificate expiration events.</span>
+<span class="sd">    rolesAndProtocols : str</span>
 <span class="sd">        Configure roles and protocols.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;captchaSettings&quot;</span><span class="p">,</span> <span class="s2">&quot;contactInfo&quot;</span><span class="p">,</span> <span class="s2">&quot;emailServer&quot;</span><span class="p">,</span> <span class="s2">&quot;federationInfo&quot;</span><span class="p">,</span> <span class="s2">&quot;notifications&quot;</span><span class="p">,</span> <span class="s2">&quot;rolesAndProtocols&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">captchaSettings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailServer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">federationInfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">notifications</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rolesAndProtocols</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">captchaSettings</span> <span class="o">=</span> <span class="n">captchaSettings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contactInfo</span> <span class="o">=</span> <span class="n">contactInfo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emailServer</span> <span class="o">=</span> <span class="n">emailServer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">federationInfo</span> <span class="o">=</span> <span class="n">federationInfo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notifications</span> <span class="o">=</span> <span class="n">notifications</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rolesAndProtocols</span> <span class="o">=</span> <span class="n">rolesAndProtocols</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">captchaSettings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">emailServer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">federationInfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">notifications</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rolesAndProtocols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">captchaSettings</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">captchaSettings</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">contactInfo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">contactInfo</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">emailServer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">emailServer</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">federationInfo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">federationInfo</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notifications</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">notifications</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rolesAndProtocols</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">rolesAndProtocols</span>
-
-    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ServerSettings</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">captchaSettings</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contactInfo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emailServer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">federationInfo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">notifications</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rolesAndProtocols</span><span class="p">))</span>
 
 <div class="viewcode-block" id="ServerSettings.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.ServerSettings.ServerSettings.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;captchaSettings&quot;</span><span class="p">,</span> <span class="s2">&quot;contactInfo&quot;</span><span class="p">,</span> <span class="s2">&quot;emailServer&quot;</span><span class="p">,</span> <span class="s2">&quot;federationInfo&quot;</span><span class="p">,</span> <span class="s2">&quot;notifications&quot;</span><span class="p">,</span> <span class="s2">&quot;rolesAndProtocols&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

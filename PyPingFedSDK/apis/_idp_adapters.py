@@ -90,7 +90,7 @@ class _idp_adapters():
 
         payload = {
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 
@@ -140,18 +140,14 @@ class _idp_adapters():
         finally:
             return response.json()
 
-<<<<<<< HEAD
-    def updateIdpAdapter(self, var_id, body, X-BypassExternalValidation):
-=======
-    def updateIdpAdapter(self, id, body, XBypassExternalValidation):
->>>>>>> Baseline Sphinx generation
+    def updateIdpAdapter(self, var_id, body, XBypassExternalValidation):
         """ Update an IdP adapter instance.
         """
 
         payload = {
             "var_id": var_id,
             "body": body,
-            "X-BypassExternalValidation": X-BypassExternalValidation
+            "XBypassExternalValidation": XBypassExternalValidation
 
         }
 

@@ -4,21 +4,15 @@ class IdpOAuthGrantAttributeMapping():
     Attributes
     ----------
     accessTokenManagerMappings : array
- A mapping in a connection that defines how access tokens are created.
+        A mapping in a connection that defines how access tokens are created.
     idpOAuthAttributeContract : str
- A set of user attributes that the IdP sends in the OAuth Assertion Grant.
+        A set of user attributes that the IdP sends in the OAuth Assertion Grant.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, accessTokenManagerMappings=None, idpOAuthAttributeContract=None) -> None:
+    def __init__(self, accessTokenManagerMappings:list=None, idpOAuthAttributeContract=None) -> None:
         self.accessTokenManagerMappings = accessTokenManagerMappings
         self.idpOAuthAttributeContract = idpOAuthAttributeContract
-=======
-    def __init__(self, accessTokenManagerMappings=None, idpOAuthAttributeContract=None):
-        self.accessTokenManagerMappings: list = accessTokenManagerMappings
-        self.idpOAuthAttributeContract: str = idpOAuthAttributeContract
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class IdpOAuthGrantAttributeMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.accessTokenManagerMappings, self.idpOAuthAttributeContract))
+        return hash(frozenset(self.accessTokenManagerMappings, self.idpOAuthAttributeContract))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["accessTokenManagerMappings", "idpOAuthAttributeContract"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

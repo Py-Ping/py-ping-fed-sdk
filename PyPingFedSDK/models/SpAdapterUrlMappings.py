@@ -4,17 +4,12 @@ class SpAdapterUrlMappings():
     Attributes
     ----------
     items : array
- The actual list of SP adapter URL mappings.
+        The actual list of SP adapter URL mappings.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, items=None) -> None:
+    def __init__(self, items:list=None) -> None:
         self.items = items
-=======
-    def __init__(self, items=None):
-        self.items: list = items
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class SpAdapterUrlMappings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.items))
+        return hash(frozenset(self.items))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["items"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

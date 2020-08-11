@@ -4,37 +4,27 @@ class ConvertMetadataRequest():
     Attributes
     ----------
     connectionType : str
- The expected connection type to convert.
+        The expected connection type to convert.
     expectedEntityId : string
- The entity ID of the connection to be obtained from the input SAML Metadata. Required if the SAML Metadata has more than one connection defined.
+        The entity ID of the connection to be obtained from the input SAML Metadata. Required if the SAML Metadata has more than one connection defined.
     expectedProtocol : str
- The expected browser-based SSO protocol to convert. In this case the protocol is restricted to SAML.
+        The expected browser-based SSO protocol to convert. In this case the protocol is restricted to SAML.
     samlMetadata : string
- The base-64 encoded XML SAML metadata.
+        The base-64 encoded XML SAML metadata.
     templateConnection : str
- The template connection to overlay the metadata on.
+        The template connection to overlay the metadata on.
     verificationCertificate : string
- The certificate to validate the metadata signature against. The certificate can be in PEM format or base-64 encoded DER format.
+        The certificate to validate the metadata signature against. The certificate can be in PEM format or base-64 encoded DER format.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, connectionType, expectedProtocol, samlMetadata, expectedEntityId=None, templateConnection=None, verificationCertificate=None) -> None:
+    def __init__(self, connectionType, expectedProtocol, samlMetadata:str, expectedEntityId:str=None, templateConnection=None, verificationCertificate:str=None) -> None:
         self.connectionType = connectionType
         self.expectedEntityId = expectedEntityId
         self.expectedProtocol = expectedProtocol
         self.samlMetadata = samlMetadata
         self.templateConnection = templateConnection
         self.verificationCertificate = verificationCertificate
-=======
-    def __init__(self, connectionType, expectedProtocol, samlMetadata, expectedEntityId=None, templateConnection=None, verificationCertificate=None):
-        self.connectionType: str = connectionType
-        self.expectedEntityId: str = expectedEntityId
-        self.expectedProtocol: str = expectedProtocol
-        self.samlMetadata: str = samlMetadata
-        self.templateConnection: str = templateConnection
-        self.verificationCertificate: str = verificationCertificate
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["connectionType", "expectedProtocol", "samlMetadata"] if self.__dict__[x] is not None)
@@ -51,17 +41,13 @@ class ConvertMetadataRequest():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.connectionType, self.expectedEntityId, self.expectedProtocol, self.samlMetadata, self.templateConnection, self.verificationCertificate))
+        return hash(frozenset(self.connectionType, self.expectedEntityId, self.expectedProtocol, self.samlMetadata, self.templateConnection, self.verificationCertificate))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["connectionType", "expectedEntityId", "expectedProtocol", "samlMetadata", "templateConnection", "verificationCertificate"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

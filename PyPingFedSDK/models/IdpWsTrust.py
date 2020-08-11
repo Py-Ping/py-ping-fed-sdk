@@ -4,25 +4,18 @@ class IdpWsTrust():
     Attributes
     ----------
     attributeContract : str
- A set of user attributes that the SP receives in the incoming token.
+        A set of user attributes that the SP receives in the incoming token.
     generateLocalToken : boolean
- Indicates whether a local token needs to be generated. The default value is false.
+        Indicates whether a local token needs to be generated. The default value is false.
     tokenGeneratorMappings : array
- A list of token generators to generate local tokens. Required if a local token needs to be generated.
+        A list of token generators to generate local tokens. Required if a local token needs to be generated.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, attributeContract, generateLocalToken, tokenGeneratorMappings=None) -> None:
+    def __init__(self, attributeContract, generateLocalToken:bool, tokenGeneratorMappings:list=None) -> None:
         self.attributeContract = attributeContract
         self.generateLocalToken = generateLocalToken
         self.tokenGeneratorMappings = tokenGeneratorMappings
-=======
-    def __init__(self, attributeContract, generateLocalToken, tokenGeneratorMappings=None):
-        self.attributeContract: str = attributeContract
-        self.generateLocalToken: bool = generateLocalToken
-        self.tokenGeneratorMappings: list = tokenGeneratorMappings
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["attributeContract", "generateLocalToken"] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class IdpWsTrust():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.attributeContract, self.generateLocalToken, self.tokenGeneratorMappings))
+        return hash(frozenset(self.attributeContract, self.generateLocalToken, self.tokenGeneratorMappings))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["attributeContract", "generateLocalToken", "tokenGeneratorMappings"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

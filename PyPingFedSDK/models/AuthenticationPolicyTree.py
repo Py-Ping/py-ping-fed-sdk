@@ -4,33 +4,24 @@ class AuthenticationPolicyTree():
     Attributes
     ----------
     authenticationApiApplicationRef : str
- Authentication API Application Id to be used in this policy branch. If the value is not specified, no Authentication API Application will be used.
+        Authentication API Application Id to be used in this policy branch. If the value is not specified, no Authentication API Application will be used.
     description : string
- A description for the authentication policy.
+        A description for the authentication policy.
     enabled : boolean
- Whether or not this authentication policy tree is enabled. Default is true.
+        Whether or not this authentication policy tree is enabled. Default is true.
     name : string
- The authentication policy name. Name is unique.
+        The authentication policy name. Name is unique.
     rootNode : str
- A node inside the authentication policy tree.
+        A node inside the authentication policy tree.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, authenticationApiApplicationRef=None, description=None, enabled=None, name=None, rootNode=None) -> None:
+    def __init__(self, authenticationApiApplicationRef=None, description:str=None, enabled:bool=None, name:str=None, rootNode=None) -> None:
         self.authenticationApiApplicationRef = authenticationApiApplicationRef
         self.description = description
         self.enabled = enabled
         self.name = name
         self.rootNode = rootNode
-=======
-    def __init__(self, authenticationApiApplicationRef=None, description=None, enabled=None, name=None, rootNode=None):
-        self.authenticationApiApplicationRef: str = authenticationApiApplicationRef
-        self.description: str = description
-        self.enabled: bool = enabled
-        self.name: str = name
-        self.rootNode: str = rootNode
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -47,17 +38,13 @@ class AuthenticationPolicyTree():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.authenticationApiApplicationRef, self.description, self.enabled, self.name, self.rootNode))
+        return hash(frozenset(self.authenticationApiApplicationRef, self.description, self.enabled, self.name, self.rootNode))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["authenticationApiApplicationRef", "description", "enabled", "name", "rootNode"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

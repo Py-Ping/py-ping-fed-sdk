@@ -4,25 +4,18 @@ class CertificateRevocationSettings():
     Attributes
     ----------
     crlSettings : str
- Certificate revocation CRL settings. CRL revocation is enabled by default. It will be disabled if this attribute is not defined in the request body.
+        Certificate revocation CRL settings. CRL revocation is enabled by default. It will be disabled if this attribute is not defined in the request body.
     ocspSettings : str
- Certificate revocation OCSP settings. OCSP revocation is disabled by default. It will be enabled if this attribute is defined in the request body.
+        Certificate revocation OCSP settings. OCSP revocation is disabled by default. It will be enabled if this attribute is defined in the request body.
     proxySettings : str
- If OCSP messaging is routed through a proxy server, specify the server's host (DNS name or IP address) and the port number. The same proxy information applies to CRL checking, when CRL is enabled for failover.
+        If OCSP messaging is routed through a proxy server, specify the server's host (DNS name or IP address) and the port number. The same proxy information applies to CRL checking, when CRL is enabled for failover.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, crlSettings=None, ocspSettings=None, proxySettings=None) -> None:
         self.crlSettings = crlSettings
         self.ocspSettings = ocspSettings
         self.proxySettings = proxySettings
-=======
-    def __init__(self, crlSettings=None, ocspSettings=None, proxySettings=None):
-        self.crlSettings: str = crlSettings
-        self.ocspSettings: str = ocspSettings
-        self.proxySettings: str = proxySettings
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -39,17 +32,13 @@ class CertificateRevocationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.crlSettings, self.ocspSettings, self.proxySettings))
+        return hash(frozenset(self.crlSettings, self.ocspSettings, self.proxySettings))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["crlSettings", "ocspSettings", "proxySettings"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

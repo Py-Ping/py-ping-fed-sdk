@@ -4,21 +4,15 @@ class ProfileConfig():
     Attributes
     ----------
     deleteIdentityEnabled : boolean
- Whether the end user is allowed to use delete functionality.
+        Whether the end user is allowed to use delete functionality.
     templateName : string
- The template name for end-user profile management.
+        The template name for end-user profile management.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, templateName, deleteIdentityEnabled=None) -> None:
+    def __init__(self, templateName:str, deleteIdentityEnabled:bool=None) -> None:
         self.deleteIdentityEnabled = deleteIdentityEnabled
         self.templateName = templateName
-=======
-    def __init__(self, templateName, deleteIdentityEnabled=None):
-        self.deleteIdentityEnabled: bool = deleteIdentityEnabled
-        self.templateName: str = templateName
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["templateName"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class ProfileConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.deleteIdentityEnabled, self.templateName))
+        return hash(frozenset(self.deleteIdentityEnabled, self.templateName))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["deleteIdentityEnabled", "templateName"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

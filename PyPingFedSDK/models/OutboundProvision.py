@@ -4,29 +4,21 @@ class OutboundProvision():
     Attributes
     ----------
     channels : array
- Includes settings of a source data store, managing provisioning threads and mapping of attributes.
+        Includes settings of a source data store, managing provisioning threads and mapping of attributes.
     customSchema : str
- Custom SCIM attribute configuration.
+        Custom SCIM attribute configuration.
     targetSettings : array
- Configuration fields that includes credentials to target SaaS application.
+        Configuration fields that includes credentials to target SaaS application.
     type : string
- The SaaS plugin type.
+        The SaaS plugin type.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, var_type, targetSettings, channels, customSchema=None) -> None:
+    def __init__(self, var_type:str, targetSettings:list, channels:list, customSchema=None) -> None:
         self.channels = channels
         self.customSchema = customSchema
         self.targetSettings = targetSettings
         self.var_type = var_type
-=======
-    def __init__(self, type, targetSettings, channels, customSchema=None):
-        self.channels: list = channels
-        self.customSchema: str = customSchema
-        self.targetSettings: list = targetSettings
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "targetSettings", "channels"] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class OutboundProvision():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.channels, self.customSchema, self.targetSettings, self.var_type))
+        return hash(frozenset(self.channels, self.customSchema, self.targetSettings, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["channels", "customSchema", "targetSettings", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

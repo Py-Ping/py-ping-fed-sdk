@@ -4,21 +4,15 @@ class IdpSsoServiceEndpoint():
     Attributes
     ----------
     binding : str
- The binding of this endpoint, if applicable - usually only required for SAML 2.0 endpoints.
+        The binding of this endpoint, if applicable - usually only required for SAML 2.0 endpoints.
     url : string
- The absolute or relative URL of the endpoint. A relative URL can be specified if a base URL for the connection has been defined.
+        The absolute or relative URL of the endpoint. A relative URL can be specified if a base URL for the connection has been defined.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, binding, url) -> None:
+    def __init__(self, binding, url:str) -> None:
         self.binding = binding
         self.url = url
-=======
-    def __init__(self, binding, url):
-        self.binding: str = binding
-        self.url: str = url
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["binding", "url"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class IdpSsoServiceEndpoint():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.binding, self.url))
+        return hash(frozenset(self.binding, self.url))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["binding", "url"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,21 +4,15 @@ class IdpOAuthAttributeContract():
     Attributes
     ----------
     coreAttributes : array
- A list of read-only assertion attributes that are automatically populated by PingFederate.
+        A list of read-only assertion attributes that are automatically populated by PingFederate.
     extendedAttributes : array
- A list of additional attributes that are present in the incoming assertion.
+        A list of additional attributes that are present in the incoming assertion.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, coreAttributes=None, extendedAttributes=None) -> None:
+    def __init__(self, coreAttributes:list=None, extendedAttributes:list=None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
-=======
-    def __init__(self, coreAttributes=None, extendedAttributes=None):
-        self.coreAttributes: list = coreAttributes
-        self.extendedAttributes: list = extendedAttributes
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class IdpOAuthAttributeContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.coreAttributes, self.extendedAttributes))
+        return hash(frozenset(self.coreAttributes, self.extendedAttributes))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["coreAttributes", "extendedAttributes"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

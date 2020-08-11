@@ -4,21 +4,15 @@ class RedirectValidationSettings():
     Attributes
     ----------
     redirectValidationLocalSettings : str
- Settings for local redirect validation.
+        Settings for local redirect validation.
     redirectValidationPartnerSettings : str
- Settings for redirection at a partner site.
+        Settings for redirection at a partner site.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, redirectValidationLocalSettings=None, redirectValidationPartnerSettings=None) -> None:
         self.redirectValidationLocalSettings = redirectValidationLocalSettings
         self.redirectValidationPartnerSettings = redirectValidationPartnerSettings
-=======
-    def __init__(self, redirectValidationLocalSettings=None, redirectValidationPartnerSettings=None):
-        self.redirectValidationLocalSettings: str = redirectValidationLocalSettings
-        self.redirectValidationPartnerSettings: str = redirectValidationPartnerSettings
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class RedirectValidationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.redirectValidationLocalSettings, self.redirectValidationPartnerSettings))
+        return hash(frozenset(self.redirectValidationLocalSettings, self.redirectValidationPartnerSettings))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["redirectValidationLocalSettings", "redirectValidationPartnerSettings"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

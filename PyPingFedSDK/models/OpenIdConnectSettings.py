@@ -4,21 +4,15 @@ class OpenIdConnectSettings():
     Attributes
     ----------
     defaultPolicyRef : str
- Reference to the default policy.
+        Reference to the default policy.
     sessionSettings : str
- Settings relating to OpenID Connect session management.
+        Settings relating to OpenID Connect session management.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, defaultPolicyRef=None, sessionSettings=None) -> None:
         self.defaultPolicyRef = defaultPolicyRef
         self.sessionSettings = sessionSettings
-=======
-    def __init__(self, defaultPolicyRef=None, sessionSettings=None):
-        self.defaultPolicyRef: str = defaultPolicyRef
-        self.sessionSettings: str = sessionSettings
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class OpenIdConnectSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.defaultPolicyRef, self.sessionSettings))
+        return hash(frozenset(self.defaultPolicyRef, self.sessionSettings))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["defaultPolicyRef", "sessionSettings"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

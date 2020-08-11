@@ -4,17 +4,12 @@ class PKCS12ExportSettings():
     Attributes
     ----------
     password : string
- The password for the PKCS12 file that is created.
+        The password for the PKCS12 file that is created.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, password) -> None:
+    def __init__(self, password:str) -> None:
         self.password = password
-=======
-    def __init__(self, password):
-        self.password: str = password
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["password"] if self.__dict__[x] is not None)
@@ -31,17 +26,13 @@ class PKCS12ExportSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.password))
+        return hash(frozenset(self.password))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["password"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

@@ -4,29 +4,21 @@ class SchemaAttribute():
     Attributes
     ----------
     multiValued : boolean
- Indicates whether the attribute is multi-valued.
+        Indicates whether the attribute is multi-valued.
     name : string
- Name of the attribute.
+        Name of the attribute.
     subAttributes : array
- List of sub-attributes for an attribute.
+        List of sub-attributes for an attribute.
     types : array
- Represents the name of each attribute type in case of multi-valued attribute.
+        Represents the name of each attribute type in case of multi-valued attribute.
 
     """
 
-<<<<<<< HEAD
-    def __init__(self, multiValued=None, name=None, subAttributes=None, types=None) -> None:
+    def __init__(self, multiValued:bool=None, name:str=None, subAttributes:list=None, types:list=None) -> None:
         self.multiValued = multiValued
         self.name = name
         self.subAttributes = subAttributes
         self.types = types
-=======
-    def __init__(self, multiValued=None, name=None, subAttributes=None, types=None):
-        self.multiValued: bool = multiValued
-        self.name: str = name
-        self.subAttributes: list = subAttributes
-        self.types: list = types
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in [] if self.__dict__[x] is not None)
@@ -43,17 +35,13 @@ class SchemaAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.multiValued, self.name, self.subAttributes, self.types))
+        return hash(frozenset(self.multiValued, self.name, self.subAttributes, self.types))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["multiValued", "name", "subAttributes", "types"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

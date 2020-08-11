@@ -4,21 +4,15 @@ class AuthenticationSource():
     Attributes
     ----------
     sourceRef : str
- A reference to the authentication source.
+        A reference to the authentication source.
     type : str
- The type of this authentication source.
+        The type of this authentication source.
 
     """
 
-<<<<<<< HEAD
     def __init__(self, var_type, sourceRef) -> None:
         self.sourceRef = sourceRef
         self.var_type = var_type
-=======
-    def __init__(self, type, sourceRef):
-        self.sourceRef: str = sourceRef
-        self.type: str = type
->>>>>>> Baseline Sphinx generation
 
     def _validate(self) -> bool:
         return any(x for x in ["var_type", "sourceRef"] if self.__dict__[x] is not None)
@@ -35,17 +29,13 @@ class AuthenticationSource():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash((self.sourceRef, self.var_type))
+        return hash(frozenset(self.sourceRef, self.var_type))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in ["sourceRef", "var_type"]}
 
-<<<<<<< HEAD
-        return cls(**valid_data)
-=======
         return cls(**valid_data)
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation
