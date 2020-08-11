@@ -14,7 +14,7 @@ class Penguin():
 
     """
 
-    def __init__(self, firstName=None, lastName=None, height=None, soundMade=None) -> None:
+    def __init__(self, firstName:str=None, lastName:str=None, height:str=None, soundMade:str=None) -> None:
         self.firstName = firstName
         self.lastName = lastName
         self.height = height

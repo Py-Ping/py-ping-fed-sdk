@@ -5,3 +5,6 @@
 ./PyPingFedSDK/apis/*
 ./PyPingFedSDK/models/*
 ./PyPingFedSDK/source/*
+./PyPingFedSDK/.coverage
+.coverage
+requirements.txt
