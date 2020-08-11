@@ -11,17 +11,9 @@ class {{ class_name }}():
 
     """
 
-<<<<<<< HEAD
     def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(property) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}:{{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ safe_variable(property) }}{% if json_type_convert(attributes.get('type', '')) != '' %}:{{ json_type_convert(attributes.get('type', '')) }}{% endif %}=None{% endfor %}) -> None:
 {% for property in details.get('properties') %}
         self.{{ safe_variable(property) }} = {{ safe_variable(property) }}
-=======
-    __slots__ = [{% for property in details.get('properties', {}) %}"{{property}}"{% if not loop.last %}, {% endif %}{% endfor %}]
-
-    def __init__(self{% for property in details.get('required', {}) %}, {{property}}{% endfor %}{% for property in details.get('properties', []) if property not in details.get('required', []) %}, {{property}}=None{% endfor %}):
-{% for property, prop_details in details.get('properties').items() %}
-        self.{{ property }}: {{type_lookup(prop_details.get('type', 'str'))}} = {{ property }}
->>>>>>> Baseline Sphinx generation
 {% endfor %}
 
     def _validate(self) -> bool:
@@ -46,9 +38,6 @@ class {{ class_name }}():
         valid_data = {k: v for k, v in python_dict.items() if k in [{% for property in details.get('properties', {}) %}"{{ safe_variable(property) }}"{% if not loop.last %}, {% endif %}{% endfor %}]}
 
         return cls(**valid_data)
-<<<<<<< HEAD
-=======
 
     def to_dict(self):
         return self.__dict__
->>>>>>> Baseline Sphinx generation

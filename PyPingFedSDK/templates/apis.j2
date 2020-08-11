@@ -16,11 +16,7 @@ class {{ safe_name(class_name) }}():
 
 {% for api in details %}
 {% for operation in api.get('operations',[]) %}
-<<<<<<< HEAD
     def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(parameter.get('name')) }}{% endfor %}):
-=======
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_name(parameter.get('name')) }}{% endfor %}):
->>>>>>> Baseline Sphinx generation
         """ {{ operation.get('summary') }}
         """
 {% if operation.get('method') in ['POST', 'PUT'] %}
