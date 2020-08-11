@@ -1,0 +1,241 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="../../../_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="../../../_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>PyPingFedSDK.models.AuthorizationServerSettings &#8212; PyPingFedSDK 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar"><div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+</ul>
+
+    
+  </div>
+</div>
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="../../../search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="../../../index.html">Docs</a></li>
+              
+                <li><a href="../../index.html">Module code</a></li>
+              
+              <li>PyPingFedSDK.models.AuthorizationServerSettings</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <h1>Source code for PyPingFedSDK.models.AuthorizationServerSettings</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="AuthorizationServerSettings"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.AuthorizationServerSettings.AuthorizationServerSettings">[docs]</a><span></span><span class="k">class</span> <span class="nc">AuthorizationServerSettings</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Authorization Server Settings attributes.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    adminWebServicePcvRef : str</span>
+<span class="sd">        The password credential validator reference that is used for authenticating access to the OAuth Administrative Web Service.    allowUnidentifiedClientExtensionGrants : boolean</span>
+<span class="sd">        Allow unidentified clients to request extension grants. The default value is false.    allowUnidentifiedClientROCreds : boolean</span>
+<span class="sd">        Allow unidentified clients to request resource owner password credentials grants. The default value is false.    allowedOrigins : array</span>
+<span class="sd">        The list of allowed origins.    approvedScopesAttribute : string</span>
+<span class="sd">        Attribute from the external consent adapter&#39;s contract, intended for storing approved scopes returned by the external consent page.    atmIdForOAuthGrantManagement : string</span>
+<span class="sd">        The ID of the Access Token Manager used for OAuth enabled grant management.    authorizationCodeEntropy : integer</span>
+<span class="sd">        The authorization code entropy, in bytes.    authorizationCodeTimeout : integer</span>
+<span class="sd">        The authorization code timeout, in seconds.    bypassActivationCodeConfirmation : boolean</span>
+<span class="sd">        Indicates if the Activation Code Confirmation page should be bypassed if &#39;verification_url_complete&#39; is used by the end user to authorize a device.    bypassAuthorizationForApprovedGrants : boolean</span>
+<span class="sd">        Bypass authorization for previously approved persistent grants. The default value is false.    defaultScopeDescription : string</span>
+<span class="sd">        The default scope description.    devicePollingInterval : integer</span>
+<span class="sd">        The amount of time client should wait between polling requests, in seconds.    exclusiveScopeGroups : array</span>
+<span class="sd">        The list of exclusive scope groups.    exclusiveScopes : array</span>
+<span class="sd">        The list of exclusive scopes.    pendingAuthorizationTimeout : integer</span>
+<span class="sd">        The &#39;device_code&#39; and &#39;user_code&#39; timeout, in seconds.    persistentGrantContract : str</span>
+<span class="sd">        The persistent grant contract defines attributes that are associated with OAuth persistent grants.    persistentGrantIdleTimeout : integer</span>
+<span class="sd">        The persistent grant idle timeout.    persistentGrantIdleTimeoutTimeUnit : str</span>
+<span class="sd">        The persistent grant idle timeout time unit.    persistentGrantLifetime : integer</span>
+<span class="sd">        The persistent grant lifetime. The default value is indefinite.    persistentGrantLifetimeUnit : str</span>
+<span class="sd">        The persistent grant lifetime unit.    persistentGrantReuseGrantTypes : array</span>
+<span class="sd">        The grant types that the OAuth AS can reuse rather than creating a new grant for each request.    refreshRollingInterval : integer</span>
+<span class="sd">        The minimum interval to roll refresh tokens, in hours.    refreshTokenLength : integer</span>
+<span class="sd">        The refresh token length in number of characters.    registeredAuthorizationPath : string</span>
+<span class="sd">        The Registered Authorization Path is concatenated to PingFederate base URL to generate &#39;verification_url&#39; and &#39;verification_url_complete&#39; values in a Device Authorization request. PingFederate listens to this path if specified    rollRefreshTokenValues : boolean</span>
+<span class="sd">        The roll refresh token values default policy. The default value is true.    scopeForOAuthGrantManagement : string</span>
+<span class="sd">        The OAuth scope to validate when accessing grant management service.    scopeGroups : array</span>
+<span class="sd">        The list of common scope groups.    scopes : array</span>
+<span class="sd">        The list of common scopes.    tokenEndpointBaseUrl : string</span>
+<span class="sd">        The token endpoint base URL used to validate the &#39;aud&#39; claim during Private Key JWT Client Authentication.    trackUserSessionsForLogout : boolean</span>
+<span class="sd">        Determines whether user sessions are tracked for logout. If this property is not provided on a PUT, the setting is left unchanged.    userAuthorizationConsentAdapter : string</span>
+<span class="sd">        Adapter ID of the external consent adapter to be used for the consent page user interface.    userAuthorizationConsentPageSetting : str</span>
+<span class="sd">        User Authorization Consent Page setting to use PingFederate&#39;s internal consent page or an external system    userAuthorizationUrl : string</span>
+<span class="sd">        The URL used to generate &#39;verification_url&#39; and &#39;verification_url_complete&#39; values in a Device Authorization request</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adminWebServicePcvRef&quot;</span><span class="p">,</span> <span class="s2">&quot;allowUnidentifiedClientExtensionGrants&quot;</span><span class="p">,</span> <span class="s2">&quot;allowUnidentifiedClientROCreds&quot;</span><span class="p">,</span> <span class="s2">&quot;allowedOrigins&quot;</span><span class="p">,</span> <span class="s2">&quot;approvedScopesAttribute&quot;</span><span class="p">,</span> <span class="s2">&quot;atmIdForOAuthGrantManagement&quot;</span><span class="p">,</span> <span class="s2">&quot;authorizationCodeEntropy&quot;</span><span class="p">,</span> <span class="s2">&quot;authorizationCodeTimeout&quot;</span><span class="p">,</span> <span class="s2">&quot;bypassActivationCodeConfirmation&quot;</span><span class="p">,</span> <span class="s2">&quot;bypassAuthorizationForApprovedGrants&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultScopeDescription&quot;</span><span class="p">,</span> <span class="s2">&quot;devicePollingInterval&quot;</span><span class="p">,</span> <span class="s2">&quot;exclusiveScopeGroups&quot;</span><span class="p">,</span> <span class="s2">&quot;exclusiveScopes&quot;</span><span class="p">,</span> <span class="s2">&quot;pendingAuthorizationTimeout&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantContract&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantIdleTimeout&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantIdleTimeoutTimeUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantLifetime&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantLifetimeUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantReuseGrantTypes&quot;</span><span class="p">,</span> <span class="s2">&quot;refreshRollingInterval&quot;</span><span class="p">,</span> <span class="s2">&quot;refreshTokenLength&quot;</span><span class="p">,</span> <span class="s2">&quot;registeredAuthorizationPath&quot;</span><span class="p">,</span> <span class="s2">&quot;rollRefreshTokenValues&quot;</span><span class="p">,</span> <span class="s2">&quot;scopeForOAuthGrantManagement&quot;</span><span class="p">,</span> <span class="s2">&quot;scopeGroups&quot;</span><span class="p">,</span> <span class="s2">&quot;scopes&quot;</span><span class="p">,</span> <span class="s2">&quot;tokenEndpointBaseUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;trackUserSessionsForLogout&quot;</span><span class="p">,</span> <span class="s2">&quot;userAuthorizationConsentAdapter&quot;</span><span class="p">,</span> <span class="s2">&quot;userAuthorizationConsentPageSetting&quot;</span><span class="p">,</span> <span class="s2">&quot;userAuthorizationUrl&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">defaultScopeDescription</span><span class="p">,</span> <span class="n">authorizationCodeTimeout</span><span class="p">,</span> <span class="n">authorizationCodeEntropy</span><span class="p">,</span> <span class="n">refreshTokenLength</span><span class="p">,</span> <span class="n">refreshRollingInterval</span><span class="p">,</span> <span class="n">registeredAuthorizationPath</span><span class="p">,</span> <span class="n">pendingAuthorizationTimeout</span><span class="p">,</span> <span class="n">devicePollingInterval</span><span class="p">,</span> <span class="n">bypassActivationCodeConfirmation</span><span class="p">,</span> <span class="n">adminWebServicePcvRef</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allowUnidentifiedClientExtensionGrants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allowUnidentifiedClientROCreds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allowedOrigins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">approvedScopesAttribute</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atmIdForOAuthGrantManagement</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bypassAuthorizationForApprovedGrants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclusiveScopeGroups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclusiveScopes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistentGrantContract</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistentGrantIdleTimeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistentGrantIdleTimeoutTimeUnit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistentGrantLifetime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistentGrantLifetimeUnit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistentGrantReuseGrantTypes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rollRefreshTokenValues</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scopeForOAuthGrantManagement</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scopeGroups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scopes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tokenEndpointBaseUrl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trackUserSessionsForLogout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">userAuthorizationConsentAdapter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">userAuthorizationConsentPageSetting</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">userAuthorizationUrl</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adminWebServicePcvRef</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">adminWebServicePcvRef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowUnidentifiedClientExtensionGrants</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">allowUnidentifiedClientExtensionGrants</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowUnidentifiedClientROCreds</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">allowUnidentifiedClientROCreds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowedOrigins</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">allowedOrigins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">approvedScopesAttribute</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">approvedScopesAttribute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">atmIdForOAuthGrantManagement</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">atmIdForOAuthGrantManagement</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authorizationCodeEntropy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">authorizationCodeEntropy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authorizationCodeTimeout</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">authorizationCodeTimeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bypassActivationCodeConfirmation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">bypassActivationCodeConfirmation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bypassAuthorizationForApprovedGrants</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">bypassAuthorizationForApprovedGrants</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultScopeDescription</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">defaultScopeDescription</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">devicePollingInterval</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">devicePollingInterval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclusiveScopeGroups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">exclusiveScopeGroups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclusiveScopes</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">exclusiveScopes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pendingAuthorizationTimeout</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">pendingAuthorizationTimeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantContract</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">persistentGrantContract</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantIdleTimeout</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">persistentGrantIdleTimeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantIdleTimeoutTimeUnit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">persistentGrantIdleTimeoutTimeUnit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantLifetime</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">persistentGrantLifetime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantLifetimeUnit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">persistentGrantLifetimeUnit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantReuseGrantTypes</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">persistentGrantReuseGrantTypes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refreshRollingInterval</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">refreshRollingInterval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refreshTokenLength</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">refreshTokenLength</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registeredAuthorizationPath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">registeredAuthorizationPath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rollRefreshTokenValues</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">rollRefreshTokenValues</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scopeForOAuthGrantManagement</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">scopeForOAuthGrantManagement</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scopeGroups</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">scopeGroups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scopes</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">scopes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenEndpointBaseUrl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">tokenEndpointBaseUrl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trackUserSessionsForLogout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">trackUserSessionsForLogout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">userAuthorizationConsentAdapter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">userAuthorizationConsentAdapter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">userAuthorizationConsentPageSetting</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">userAuthorizationConsentPageSetting</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">userAuthorizationUrl</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">userAuthorizationUrl</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;defaultScopeDescription&#39;</span><span class="p">,</span> <span class="s1">&#39;authorizationCodeTimeout&#39;</span><span class="p">,</span> <span class="s1">&#39;authorizationCodeEntropy&#39;</span><span class="p">,</span> <span class="s1">&#39;refreshTokenLength&#39;</span><span class="p">,</span> <span class="s1">&#39;refreshRollingInterval&#39;</span><span class="p">,</span> <span class="s1">&#39;registeredAuthorizationPath&#39;</span><span class="p">,</span> <span class="s1">&#39;pendingAuthorizationTimeout&#39;</span><span class="p">,</span> <span class="s1">&#39;devicePollingInterval&#39;</span><span class="p">,</span> <span class="s1">&#39;bypassActivationCodeConfirmation&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">AuthorizationServerSettings</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">adminWebServicePcvRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowUnidentifiedClientExtensionGrants</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowUnidentifiedClientROCreds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowedOrigins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">approvedScopesAttribute</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">atmIdForOAuthGrantManagement</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorizationCodeEntropy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorizationCodeTimeout</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bypassActivationCodeConfirmation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bypassAuthorizationForApprovedGrants</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultScopeDescription</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">devicePollingInterval</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclusiveScopeGroups</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exclusiveScopes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pendingAuthorizationTimeout</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantContract</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantIdleTimeout</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantIdleTimeoutTimeUnit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantLifetime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantLifetimeUnit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentGrantReuseGrantTypes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshRollingInterval</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refreshTokenLength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">registeredAuthorizationPath</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rollRefreshTokenValues</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scopeForOAuthGrantManagement</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scopeGroups</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scopes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenEndpointBaseUrl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trackUserSessionsForLogout</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">userAuthorizationConsentAdapter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">userAuthorizationConsentPageSetting</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">userAuthorizationUrl</span><span class="p">))</span>
+
+<div class="viewcode-block" id="AuthorizationServerSettings.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.AuthorizationServerSettings.AuthorizationServerSettings.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+        <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;adminWebServicePcvRef&quot;</span><span class="p">,</span> <span class="s2">&quot;allowUnidentifiedClientExtensionGrants&quot;</span><span class="p">,</span> <span class="s2">&quot;allowUnidentifiedClientROCreds&quot;</span><span class="p">,</span> <span class="s2">&quot;allowedOrigins&quot;</span><span class="p">,</span> <span class="s2">&quot;approvedScopesAttribute&quot;</span><span class="p">,</span> <span class="s2">&quot;atmIdForOAuthGrantManagement&quot;</span><span class="p">,</span> <span class="s2">&quot;authorizationCodeEntropy&quot;</span><span class="p">,</span> <span class="s2">&quot;authorizationCodeTimeout&quot;</span><span class="p">,</span> <span class="s2">&quot;bypassActivationCodeConfirmation&quot;</span><span class="p">,</span> <span class="s2">&quot;bypassAuthorizationForApprovedGrants&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultScopeDescription&quot;</span><span class="p">,</span> <span class="s2">&quot;devicePollingInterval&quot;</span><span class="p">,</span> <span class="s2">&quot;exclusiveScopeGroups&quot;</span><span class="p">,</span> <span class="s2">&quot;exclusiveScopes&quot;</span><span class="p">,</span> <span class="s2">&quot;pendingAuthorizationTimeout&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantContract&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantIdleTimeout&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantIdleTimeoutTimeUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantLifetime&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantLifetimeUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentGrantReuseGrantTypes&quot;</span><span class="p">,</span> <span class="s2">&quot;refreshRollingInterval&quot;</span><span class="p">,</span> <span class="s2">&quot;refreshTokenLength&quot;</span><span class="p">,</span> <span class="s2">&quot;registeredAuthorizationPath&quot;</span><span class="p">,</span> <span class="s2">&quot;rollRefreshTokenValues&quot;</span><span class="p">,</span> <span class="s2">&quot;scopeForOAuthGrantManagement&quot;</span><span class="p">,</span> <span class="s2">&quot;scopeGroups&quot;</span><span class="p">,</span> <span class="s2">&quot;scopes&quot;</span><span class="p">,</span> <span class="s2">&quot;tokenEndpointBaseUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;trackUserSessionsForLogout&quot;</span><span class="p">,</span> <span class="s2">&quot;userAuthorizationConsentAdapter&quot;</span><span class="p">,</span> <span class="s2">&quot;userAuthorizationConsentPageSetting&quot;</span><span class="p">,</span> <span class="s2">&quot;userAuthorizationUrl&quot;</span><span class="p">]}</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AuthorizationServerSettings.to_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.AuthorizationServerSettings.AuthorizationServerSettings.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span></div></div>
+</pre></div>
+
+          </div>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyPingFedSDK 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="../../../_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2020, Michael Kelly, Liam Dixon. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>
