@@ -32,7 +32,7 @@ class ChannelSourceLocation():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.filter, self.groupDN, self.nestedSearch))
+        return hash(frozenset([self.filter, self.groupDN, self.nestedSearch]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

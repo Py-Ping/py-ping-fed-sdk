@@ -38,7 +38,7 @@ class ActionDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.description, self.download, self.downloadContentType, self.downloadFileName, self.name))
+        return hash(frozenset([self.description, self.download, self.downloadContentType, self.downloadFileName, self.name]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

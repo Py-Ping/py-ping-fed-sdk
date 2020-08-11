@@ -50,7 +50,7 @@ class ChannelSource():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.accountManagementSettings, self.baseDn, self.changeDetectionSettings, self.dataSource, self.groupMembershipDetection, self.groupSourceLocation, self.guidAttributeName, self.guidBinary, self.userSourceLocation))
+        return hash(frozenset([self.accountManagementSettings, self.baseDn, self.changeDetectionSettings, self.dataSource, self.groupMembershipDetection, self.groupSourceLocation, self.guidAttributeName, self.guidBinary, self.userSourceLocation]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

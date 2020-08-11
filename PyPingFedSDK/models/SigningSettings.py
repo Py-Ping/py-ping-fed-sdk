@@ -35,7 +35,7 @@ class SigningSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.algorithm, self.includeCertInSignature, self.includeRawKeyInSignature, self.signingKeyPairRef))
+        return hash(frozenset([self.algorithm, self.includeCertInSignature, self.includeRawKeyInSignature, self.signingKeyPairRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

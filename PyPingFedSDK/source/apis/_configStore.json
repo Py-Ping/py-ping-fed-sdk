@@ -48,7 +48,7 @@
                     ],
                     "method": "PUT",
                     "nickname": "updateSetting",
-                    "notes": "This is an advanced operation with minimal validation. Incorrect use of this operation can harm the integrity of your PingFederate configuration. Please ensure you have specified the correct bundle name, setting ID, and setting value before invoking this operation.",
+                    "notes": "Create or update a setting/bundle. This is an advanced operation with minimal validation. Incorrect use of this operation can harm the integrity of your PingFederate configuration. Please ensure you have specified the correct bundle name, setting ID, and setting value before invoking this operation.",
                     "parameters": [
                         {
                             "allowMultiple": false,
@@ -81,7 +81,7 @@
                     "responseMessages": [
                         {
                             "code": 200,
-                            "message": "Configuration setting updated."
+                            "message": "Configuration setting created/updated."
                         },
                         {
                             "code": 400,
@@ -97,13 +97,13 @@
                             "responseModel": "ApiResult"
                         }
                     ],
-                    "summary": "Update a setting.",
+                    "summary": "Create or update a setting/bundle.",
                     "type": "ConfigStoreSetting"
                 },
                 {
                     "method": "DELETE",
                     "nickname": "deleteSetting",
-                    "notes": "This is an advanced operation with minimal validation. Incorrect use of this operation can harm the integrity of your PingFederate configuration. Please ensure you have specified the correct bundle name and setting ID before invoking this operation.",
+                    "notes": "Delete a setting. This is an advanced operation with minimal validation. Incorrect use of this operation can harm the integrity of your PingFederate configuration. Please ensure you have specified the correct bundle name and setting ID before invoking this operation.",
                     "parameters": [
                         {
                             "allowMultiple": false,
@@ -179,7 +179,7 @@
             "path": "/configStore/{bundle}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApiResult": {
             "description": "Details on the result of the operation.",

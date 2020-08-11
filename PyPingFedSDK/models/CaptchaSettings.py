@@ -32,7 +32,7 @@ class CaptchaSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptedSecretKey, self.secretKey, self.siteKey))
+        return hash(frozenset([self.encryptedSecretKey, self.secretKey, self.siteKey]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -26,7 +26,7 @@ class AccessTokenManagementSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultAccessTokenManagerRef))
+        return hash(frozenset([self.defaultAccessTokenManagerRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

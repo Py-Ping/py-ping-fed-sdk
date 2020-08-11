@@ -29,7 +29,7 @@ class MetadataSigningSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.signatureAlgorithm, self.signingKeyRef))
+        return hash(frozenset([self.signatureAlgorithm, self.signingKeyRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

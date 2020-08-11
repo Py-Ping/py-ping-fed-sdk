@@ -35,7 +35,7 @@ class AuthenticationPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.authnSelectionTrees, self.defaultAuthenticationSources, self.failIfNoSelection, self.trackedHttpParameters))
+        return hash(frozenset([self.authnSelectionTrees, self.defaultAuthenticationSources, self.failIfNoSelection, self.trackedHttpParameters]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

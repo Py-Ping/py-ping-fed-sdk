@@ -731,7 +731,7 @@
             "path": "/oauth/authServerSettings/scopes/exclusiveScopeGroups/{name}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApiResult": {
             "description": "Details on the result of the operation.",
@@ -840,7 +840,7 @@
                     "description": "The persistent grant contract defines attributes that are associated with OAuth persistent grants."
                 },
                 "persistentGrantIdleTimeout": {
-                    "description": "The persistent grant idle timeout.",
+                    "description": "The persistent grant idle timeout. The default value is 30 (days). -1 indicates an indefinite amount of time.",
                     "format": "int64",
                     "type": "integer"
                 },
@@ -854,7 +854,7 @@
                     ]
                 },
                 "persistentGrantLifetime": {
-                    "description": "The persistent grant lifetime. The default value is indefinite.",
+                    "description": "The persistent grant lifetime. The default value is indefinite. -1 indicates an indefinite amount of time.",
                     "format": "int64",
                     "type": "integer"
                 },

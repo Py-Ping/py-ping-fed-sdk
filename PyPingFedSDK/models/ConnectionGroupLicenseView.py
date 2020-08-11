@@ -35,7 +35,7 @@ class ConnectionGroupLicenseView():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.connectionCount, self.endDate, self.name, self.startDate))
+        return hash(frozenset([self.connectionCount, self.endDate, self.name, self.startDate]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

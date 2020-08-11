@@ -82,7 +82,7 @@
             "path": "/connectionMetadata/convert"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "consumes": [
         "application/json"
     ],
@@ -854,8 +854,8 @@
                     "enum": [
                         "NONE",
                         "STANDARD",
-                        "FULL",
-                        "ENHANCED"
+                        "ENHANCED",
+                        "FULL"
                     ]
                 },
                 "metadataReloadSettings": {
@@ -1766,8 +1766,8 @@
                     "enum": [
                         "NONE",
                         "STANDARD",
-                        "FULL",
-                        "ENHANCED"
+                        "ENHANCED",
+                        "FULL"
                     ]
                 },
                 "metadataReloadSettings": {
@@ -3111,8 +3111,8 @@
                     "enum": [
                         "NONE",
                         "STANDARD",
-                        "FULL",
-                        "ENHANCED"
+                        "ENHANCED",
+                        "FULL"
                     ]
                 },
                 "metadataReloadSettings": {
@@ -3315,7 +3315,7 @@
                     "type": "string"
                 },
                 "namespace": {
-                    "description": "The attribute namespace.  This required when the Default Token Type is SAML1.1 or SAML1.1 for Office 365.",
+                    "description": "The attribute namespace.  This is required when the Default Token Type is SAML2.0 or SAML1.1 or SAML1.1 for Office 365.",
                     "type": "string"
                 }
             },

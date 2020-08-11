@@ -37,7 +37,7 @@ class BaseProviderRole():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enable, self.enableSaml10, self.enableSaml11, self.enableWsFed, self.enableWsTrust))
+        return hash(frozenset([self.enable, self.enableSaml10, self.enableSaml11, self.enableWsFed, self.enableWsTrust]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

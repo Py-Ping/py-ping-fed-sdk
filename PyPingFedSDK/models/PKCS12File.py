@@ -38,7 +38,7 @@ class PKCS12File():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.cryptoProvider, self.encryptedPassword, self.fileData, self.var_id, self.password))
+        return hash(frozenset([self.cryptoProvider, self.encryptedPassword, self.fileData, self.var_id, self.password]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

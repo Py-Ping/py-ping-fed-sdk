@@ -68,7 +68,7 @@ class CertView():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.cryptoProvider, self.expires, self.var_id, self.issuerDN, self.keyAlgorithm, self.keySize, self.serialNumber, self.sha1Fingerprint, self.sha256Fingerprint, self.signatureAlgorithm, self.status, self.subjectAlternativeNames, self.subjectDN, self.validFrom, self.version))
+        return hash(frozenset([self.cryptoProvider, self.expires, self.var_id, self.issuerDN, self.keyAlgorithm, self.keySize, self.serialNumber, self.sha1Fingerprint, self.sha256Fingerprint, self.signatureAlgorithm, self.status, self.subjectAlternativeNames, self.subjectDN, self.validFrom, self.version]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

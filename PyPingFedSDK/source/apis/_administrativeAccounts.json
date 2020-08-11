@@ -249,7 +249,7 @@
             "path": "/administrativeAccounts/changePassword"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "AdministrativeAccount": {
             "description": "A PingFederate administrator account.",
@@ -289,13 +289,14 @@
                 },
                 "roles": {
                     "$ref": "Set",
-                    "description": "Roles available for an administrator. <br>USER_ADMINISTRATOR - Can create, deactivate or delete accounts and reset passwords. Additionally, install replacement license keys. <br> CRYPTO_ADMINISTRATOR - Can manage local keys and certificates. <br> ADMINISTRATOR - Can configure partner connections and most system settings (except the management of native accounts and the handling of local keys and certificates. <br>",
+                    "description": "Roles available for an administrator. <br>USER_ADMINISTRATOR - Can create, deactivate or delete accounts and reset passwords. Additionally, install replacement license keys. <br> CRYPTO_ADMINISTRATOR - Can manage local keys and certificates. <br> ADMINISTRATOR - Can configure partner connections and most system settings (except the management of native accounts and the handling of local keys and certificates. <br>EXPRESSION_ADMINISTRATOR - Can add and update OGNL expressions. <br>",
                     "items": {
                         "$ref": "AdministrativeRoleType",
                         "enum": [
                             "USER_ADMINISTRATOR",
                             "CRYPTO_ADMINISTRATOR",
-                            "ADMINISTRATOR"
+                            "ADMINISTRATOR",
+                            "EXPRESSION_ADMINISTRATOR"
                         ]
                     }
                 },

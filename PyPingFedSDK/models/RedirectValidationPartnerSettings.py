@@ -26,7 +26,7 @@ class RedirectValidationPartnerSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enableWreplyValidationSLO))
+        return hash(frozenset([self.enableWreplyValidationSLO]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

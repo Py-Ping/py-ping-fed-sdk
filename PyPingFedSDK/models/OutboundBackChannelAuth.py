@@ -37,7 +37,7 @@ class OutboundBackChannelAuth():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.digitalSignature, self.httpBasicCredentials, self.sslAuthKeyPairRef, self.var_type, self.validatePartnerCert))
+        return hash(frozenset([self.digitalSignature, self.httpBasicCredentials, self.sslAuthKeyPairRef, self.var_type, self.validatePartnerCert]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

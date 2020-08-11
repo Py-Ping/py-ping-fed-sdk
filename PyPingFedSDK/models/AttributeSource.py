@@ -38,7 +38,7 @@ class AttributeSource():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.dataStoreRef, self.description, self.var_id, self.var_type))
+        return hash(frozenset([self.attributeContractFulfillment, self.dataStoreRef, self.description, self.var_id, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -38,7 +38,7 @@ class AuthenticationPolicyTree():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.authenticationApiApplicationRef, self.description, self.enabled, self.name, self.rootNode))
+        return hash(frozenset([self.authenticationApiApplicationRef, self.description, self.enabled, self.name, self.rootNode]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

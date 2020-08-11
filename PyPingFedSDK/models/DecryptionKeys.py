@@ -29,7 +29,7 @@ class DecryptionKeys():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.primaryKeyRef, self.secondaryKeyPairRef))
+        return hash(frozenset([self.primaryKeyRef, self.secondaryKeyPairRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

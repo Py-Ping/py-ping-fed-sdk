@@ -318,7 +318,7 @@
             "path": "/oauth/clients/{id}/clientAuth/clientSecret"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApiResult": {
             "description": "Details on the result of the operation.",
@@ -349,6 +349,10 @@
             "description": "OAuth client.",
             "id": "Client",
             "properties": {
+                "allowAuthenticationApiInit": {
+                    "description": "Set to true to allow authentication API initiated OAuth authorization flow.",
+                    "type": "boolean"
+                },
                 "bypassActivationCodeConfirmationOverride": {
                     "description": "Indicates if the Activation Code Confirmation page should be bypassed if 'verification_url_complete' is used by the end user to authorize a device. This overrides the 'bypassUseCodeConfirmation' value present in Authorization Server Settings.",
                     "type": "boolean"
@@ -664,6 +668,10 @@
             "properties": {
                 "grantAccessSessionRevocationApi": {
                     "description": "Determines whether this client is allowed to access the Session Revocation API.",
+                    "type": "boolean"
+                },
+                "grantAccessSessionSessionManagementApi": {
+                    "description": "Determines whether this client is allowed to access the Session Management API.",
                     "type": "boolean"
                 },
                 "idTokenContentEncryptionAlgorithm": {

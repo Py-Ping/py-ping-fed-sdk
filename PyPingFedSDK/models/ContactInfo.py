@@ -38,7 +38,7 @@ class ContactInfo():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.company, self.email, self.firstName, self.lastName, self.phone))
+        return hash(frozenset([self.company, self.email, self.firstName, self.lastName, self.phone]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

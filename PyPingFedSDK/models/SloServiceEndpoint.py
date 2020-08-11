@@ -32,7 +32,7 @@ class SloServiceEndpoint():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.binding, self.responseUrl, self.url))
+        return hash(frozenset([self.binding, self.responseUrl, self.url]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

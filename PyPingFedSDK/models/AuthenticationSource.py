@@ -29,7 +29,7 @@ class AuthenticationSource():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.sourceRef, self.var_type))
+        return hash(frozenset([self.sourceRef, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -5,6 +5,8 @@ class EmailServerSettings():
     ----------
     emailServer : string
         The IP address or hostname of your email server.
+    enableUtf8MessageHeaders : boolean
+        Only set this flag to true if the email server supports UTF-8 characters in message headers. Otherwise, this is defaulted to false.
     encryptedPassword : string
         For GET requests, this field contains the encrypted password, if one exists.  For POST and PUT requests, if you wish to reuse the existing password, this field should be passed back unchanged.
     password : string
@@ -34,8 +36,9 @@ class EmailServerSettings():
 
     """
 
-    def __init__(self, sourceAddr:str, emailServer:str, port:int, encryptedPassword:str=None, password:str=None, retryAttempts:int=None, retryDelay:int=None, sslPort:int=None, timeout:int=None, useDebugging:bool=None, useSSL:bool=None, useTLS:bool=None, username:str=None, verifyHostname:bool=None) -> None:
+    def __init__(self, sourceAddr:str, emailServer:str, port:int, enableUtf8MessageHeaders:bool=None, encryptedPassword:str=None, password:str=None, retryAttempts:int=None, retryDelay:int=None, sslPort:int=None, timeout:int=None, useDebugging:bool=None, useSSL:bool=None, useTLS:bool=None, username:str=None, verifyHostname:bool=None) -> None:
         self.emailServer = emailServer
+        self.enableUtf8MessageHeaders = enableUtf8MessageHeaders
         self.encryptedPassword = encryptedPassword
         self.password = password
         self.port = port
@@ -65,11 +68,11 @@ class EmailServerSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.emailServer, self.encryptedPassword, self.password, self.port, self.retryAttempts, self.retryDelay, self.sourceAddr, self.sslPort, self.timeout, self.useDebugging, self.useSSL, self.useTLS, self.username, self.verifyHostname))
+        return hash(frozenset([self.emailServer, self.enableUtf8MessageHeaders, self.encryptedPassword, self.password, self.port, self.retryAttempts, self.retryDelay, self.sourceAddr, self.sslPort, self.timeout, self.useDebugging, self.useSSL, self.useTLS, self.username, self.verifyHostname]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["emailServer", "encryptedPassword", "password", "port", "retryAttempts", "retryDelay", "sourceAddr", "sslPort", "timeout", "useDebugging", "useSSL", "useTLS", "username", "verifyHostname"]}
+        valid_data = {k: v for k, v in python_dict.items() if k in ["emailServer", "enableUtf8MessageHeaders", "encryptedPassword", "password", "port", "retryAttempts", "retryDelay", "sourceAddr", "sslPort", "timeout", "useDebugging", "useSSL", "useTLS", "username", "verifyHostname"]}
 
         return cls(**valid_data)
 

@@ -44,7 +44,7 @@ class IncomingProxySettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.clientCertChainSSLHeaderName, self.clientCertSSLHeaderName, self.forwardedHostHeaderIndex, self.forwardedHostHeaderName, self.forwardedIpAddressHeaderIndex, self.forwardedIpAddressHeaderName, self.proxyTerminatesHttpsConns))
+        return hash(frozenset([self.clientCertChainSSLHeaderName, self.clientCertSSLHeaderName, self.forwardedHostHeaderIndex, self.forwardedHostHeaderName, self.forwardedIpAddressHeaderIndex, self.forwardedIpAddressHeaderName, self.proxyTerminatesHttpsConns]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -32,7 +32,7 @@ class SpUrlMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.ref, self.var_type, self.url))
+        return hash(frozenset([self.ref, self.var_type, self.url]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

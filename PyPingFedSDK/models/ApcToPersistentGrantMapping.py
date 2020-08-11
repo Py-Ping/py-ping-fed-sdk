@@ -38,7 +38,7 @@ class ApcToPersistentGrantMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.authenticationPolicyContractRef, self.var_id, self.issuanceCriteria))
+        return hash(frozenset([self.attributeContractFulfillment, self.attributeSources, self.authenticationPolicyContractRef, self.var_id, self.issuanceCriteria]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

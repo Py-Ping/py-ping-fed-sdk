@@ -38,7 +38,7 @@ class AuthenticationSelector():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContract, self.configuration, self.var_id, self.name, self.pluginDescriptorRef))
+        return hash(frozenset([self.attributeContract, self.configuration, self.var_id, self.name, self.pluginDescriptorRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

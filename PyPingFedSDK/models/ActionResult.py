@@ -26,7 +26,7 @@ class ActionResult():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.message))
+        return hash(frozenset([self.message]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

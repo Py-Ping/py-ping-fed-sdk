@@ -38,7 +38,7 @@ class IdpTokenProcessorMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.idpTokenProcessorRef, self.issuanceCriteria, self.restrictedVirtualEntityIds))
+        return hash(frozenset([self.attributeContractFulfillment, self.attributeSources, self.idpTokenProcessorRef, self.issuanceCriteria, self.restrictedVirtualEntityIds]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -47,7 +47,7 @@ class JdbcAttributeSource():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.dataStoreRef, self.description, self.filter, self.var_id, self.schema, self.table, self.var_type))
+        return hash(frozenset([self.attributeContractFulfillment, self.dataStoreRef, self.description, self.filter, self.var_id, self.schema, self.table, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

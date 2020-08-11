@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PyPingFedSDK APIs
 ===================
 
@@ -10,6 +11,15 @@ Subpackages
 
 Submodules
 ----------
+=======
+****
+APIs
+****
+
+.. contents:: Table of Contents
+   :depth: 2
+
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 
 _idp_tokenProcessors
 --------------------

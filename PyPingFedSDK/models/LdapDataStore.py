@@ -107,7 +107,7 @@ class LdapDataStore():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.binaryAttributes, self.bindAnonymously, self.connectionTimeout, self.createIfNecessary, self.dnsTtl, self.encryptedPassword, self.followLDAPReferrals, self.hostnames, self.hostnamesTags, self.var_id, self.ldapDnsSrvPrefix, self.ldapType, self.ldapsDnsSrvPrefix, self.maskAttributeValues, self.maxConnections, self.maxWait, self.minConnections, self.name, self.password, self.readTimeout, self.testOnBorrow, self.testOnReturn, self.timeBetweenEvictions, self.var_type, self.useDnsSrvRecords, self.useSsl, self.userDN, self.verifyHost))
+        return hash(frozenset([self.binaryAttributes, self.bindAnonymously, self.connectionTimeout, self.createIfNecessary, self.dnsTtl, self.encryptedPassword, self.followLDAPReferrals, self.hostnames, self.hostnamesTags, self.var_id, self.ldapDnsSrvPrefix, self.ldapType, self.ldapsDnsSrvPrefix, self.maskAttributeValues, self.maxConnections, self.maxWait, self.minConnections, self.name, self.password, self.readTimeout, self.testOnBorrow, self.testOnReturn, self.timeBetweenEvictions, self.var_type, self.useDnsSrvRecords, self.useSsl, self.userDN, self.verifyHost]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

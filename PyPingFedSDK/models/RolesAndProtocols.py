@@ -1,5 +1,5 @@
 class RolesAndProtocols():
-    """Roles and protocols settings.
+    """This property has been deprecated and is no longer used. All Roles and protocols are always enabled.
 
     Attributes
     ----------
@@ -35,7 +35,7 @@ class RolesAndProtocols():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enableIdpDiscovery, self.idpRole, self.oauthRole, self.spRole))
+        return hash(frozenset([self.enableIdpDiscovery, self.idpRole, self.oauthRole, self.spRole]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -53,7 +53,7 @@ class LdapAttributeSource():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.baseDn, self.binaryAttributeSettings, self.dataStoreRef, self.description, self.var_id, self.memberOfNestedGroup, self.searchFilter, self.searchScope, self.var_type))
+        return hash(frozenset([self.attributeContractFulfillment, self.baseDn, self.binaryAttributeSettings, self.dataStoreRef, self.description, self.var_id, self.memberOfNestedGroup, self.searchFilter, self.searchScope, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

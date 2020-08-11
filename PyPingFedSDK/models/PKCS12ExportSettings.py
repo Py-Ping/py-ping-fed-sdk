@@ -26,7 +26,7 @@ class PKCS12ExportSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.password))
+        return hash(frozenset([self.password]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

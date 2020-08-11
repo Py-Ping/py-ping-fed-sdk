@@ -38,7 +38,7 @@ class SpAttributeQueryPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptAssertion, self.requireEncryptedNameId, self.requireSignedAttributeQuery, self.signAssertion, self.signResponse))
+        return hash(frozenset([self.encryptAssertion, self.requireEncryptedNameId, self.requireSignedAttributeQuery, self.signAssertion, self.signResponse]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

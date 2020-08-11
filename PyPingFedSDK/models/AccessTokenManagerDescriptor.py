@@ -41,7 +41,7 @@ class AccessTokenManagerDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContract, self.className, self.configDescriptor, self.var_id, self.name, self.supportsExtendedContract))
+        return hash(frozenset([self.attributeContract, self.className, self.configDescriptor, self.var_id, self.name, self.supportsExtendedContract]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

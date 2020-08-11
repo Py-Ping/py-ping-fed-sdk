@@ -41,7 +41,7 @@ class GlobalAuthenticationSessionPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enableSessions, self.idleTimeoutDisplayUnit, self.idleTimeoutMins, self.maxTimeoutDisplayUnit, self.maxTimeoutMins, self.persistentSessions))
+        return hash(frozenset([self.enableSessions, self.idleTimeoutDisplayUnit, self.idleTimeoutMins, self.maxTimeoutDisplayUnit, self.maxTimeoutMins, self.persistentSessions]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

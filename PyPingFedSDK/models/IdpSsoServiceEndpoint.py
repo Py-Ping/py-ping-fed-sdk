@@ -29,7 +29,7 @@ class IdpSsoServiceEndpoint():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.binding, self.url))
+        return hash(frozenset([self.binding, self.url]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -1,5 +1,5 @@
 class OAuthRole():
-    """OAuth role settings.
+    """This property has been deprecated and is no longer used. OAuth and OpenID Connect are always enabled.
 
     Attributes
     ----------
@@ -29,7 +29,7 @@ class OAuthRole():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enableOauth, self.enableOpenIdConnect))
+        return hash(frozenset([self.enableOauth, self.enableOpenIdConnect]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

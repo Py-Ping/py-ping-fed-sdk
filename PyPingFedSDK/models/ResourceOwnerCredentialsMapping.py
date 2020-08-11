@@ -38,7 +38,7 @@ class ResourceOwnerCredentialsMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.var_id, self.issuanceCriteria, self.passwordValidatorRef))
+        return hash(frozenset([self.attributeContractFulfillment, self.attributeSources, self.var_id, self.issuanceCriteria, self.passwordValidatorRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

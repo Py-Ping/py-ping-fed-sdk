@@ -32,7 +32,7 @@ class TokenExchangeGeneratorMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultMapping, self.requestedTokenType, self.tokenGenerator))
+        return hash(frozenset([self.defaultMapping, self.requestedTokenType, self.tokenGenerator]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -32,7 +32,7 @@ class ClientMetadata():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.description, self.multiValued, self.parameter))
+        return hash(frozenset([self.description, self.multiValued, self.parameter]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

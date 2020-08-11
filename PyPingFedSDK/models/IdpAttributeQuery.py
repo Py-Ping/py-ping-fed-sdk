@@ -32,7 +32,7 @@ class IdpAttributeQuery():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.nameMappings, self.policy, self.url))
+        return hash(frozenset([self.nameMappings, self.policy, self.url]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -32,7 +32,7 @@ class IdpWsTrust():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContract, self.generateLocalToken, self.tokenGeneratorMappings))
+        return hash(frozenset([self.attributeContract, self.generateLocalToken, self.tokenGeneratorMappings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

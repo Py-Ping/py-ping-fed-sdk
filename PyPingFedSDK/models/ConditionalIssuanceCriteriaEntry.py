@@ -38,7 +38,7 @@ class ConditionalIssuanceCriteriaEntry():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeName, self.condition, self.errorResult, self.source, self.value))
+        return hash(frozenset([self.attributeName, self.condition, self.errorResult, self.source, self.value]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

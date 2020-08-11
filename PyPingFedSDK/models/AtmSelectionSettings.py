@@ -29,7 +29,7 @@ class AtmSelectionSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.inherited, self.resourceUris))
+        return hash(frozenset([self.inherited, self.resourceUris]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

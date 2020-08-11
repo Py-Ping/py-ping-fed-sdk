@@ -47,7 +47,7 @@ class RedirectValidationSettingsWhitelistEntry():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.allowQueryAndFragment, self.idpDiscovery, self.inErrorResource, self.requireHttps, self.targetResourceSLO, self.targetResourceSSO, self.validDomain, self.validPath))
+        return hash(frozenset([self.allowQueryAndFragment, self.idpDiscovery, self.inErrorResource, self.requireHttps, self.targetResourceSLO, self.targetResourceSSO, self.validDomain, self.validPath]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -41,7 +41,7 @@ class ServerSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.captchaSettings, self.contactInfo, self.emailServer, self.federationInfo, self.notifications, self.rolesAndProtocols))
+        return hash(frozenset([self.captchaSettings, self.contactInfo, self.emailServer, self.federationInfo, self.notifications, self.rolesAndProtocols]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

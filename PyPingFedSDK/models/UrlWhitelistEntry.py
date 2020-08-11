@@ -35,7 +35,7 @@ class UrlWhitelistEntry():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.allowQueryAndFragment, self.requireHttps, self.validDomain, self.validPath))
+        return hash(frozenset([self.allowQueryAndFragment, self.requireHttps, self.validDomain, self.validPath]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

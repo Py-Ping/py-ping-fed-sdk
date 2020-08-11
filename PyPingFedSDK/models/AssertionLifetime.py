@@ -29,7 +29,7 @@ class AssertionLifetime():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.minutesAfter, self.minutesBefore))
+        return hash(frozenset([self.minutesAfter, self.minutesBefore]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

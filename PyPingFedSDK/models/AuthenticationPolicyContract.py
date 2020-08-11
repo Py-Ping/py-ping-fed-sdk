@@ -35,7 +35,7 @@ class AuthenticationPolicyContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.coreAttributes, self.extendedAttributes, self.var_id, self.name))
+        return hash(frozenset([self.coreAttributes, self.extendedAttributes, self.var_id, self.name]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

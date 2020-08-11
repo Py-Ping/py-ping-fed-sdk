@@ -29,7 +29,7 @@ class OpenIdConnectSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultPolicyRef, self.sessionSettings))
+        return hash(frozenset([self.defaultPolicyRef, self.sessionSettings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

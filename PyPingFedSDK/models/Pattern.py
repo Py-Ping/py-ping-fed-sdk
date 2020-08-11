@@ -27,7 +27,7 @@ class Pattern():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.flags, self.pattern))
+        return hash(frozenset([self.flags, self.pattern]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

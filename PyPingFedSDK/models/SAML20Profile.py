@@ -29,7 +29,7 @@ class SAML20Profile():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enable, self.enableAutoConnect))
+        return hash(frozenset([self.enable, self.enableAutoConnect]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

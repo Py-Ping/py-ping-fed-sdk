@@ -32,7 +32,7 @@ class SystemKey():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.creationDate, self.encryptedKeyData, self.keyData))
+        return hash(frozenset([self.creationDate, self.encryptedKeyData, self.keyData]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

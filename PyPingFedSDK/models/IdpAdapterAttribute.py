@@ -32,7 +32,7 @@ class IdpAdapterAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.masked, self.name, self.pseudonym))
+        return hash(frozenset([self.masked, self.name, self.pseudonym]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

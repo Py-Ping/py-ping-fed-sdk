@@ -43,7 +43,7 @@ class KeyPairRotationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.activationBufferDays, self.creationBufferDays, self.var_id, self.keyAlgorithm, self.keySize, self.signatureAlgorithm, self.validDays))
+        return hash(frozenset([self.activationBufferDays, self.creationBufferDays, self.var_id, self.keyAlgorithm, self.keySize, self.signatureAlgorithm, self.validDays]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

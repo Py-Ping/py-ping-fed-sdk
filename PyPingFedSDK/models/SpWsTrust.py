@@ -59,7 +59,7 @@ class SpWsTrust():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.abortIfNotFulfilledFromRequest, self.attributeContract, self.defaultTokenType, self.encryptSaml2Assertion, self.generateKey, self.messageCustomizations, self.minutesAfter, self.minutesBefore, self.oAuthAssertionProfiles, self.partnerServiceIds, self.requestContractRef, self.tokenProcessorMappings))
+        return hash(frozenset([self.abortIfNotFulfilledFromRequest, self.attributeContract, self.defaultTokenType, self.encryptSaml2Assertion, self.generateKey, self.messageCustomizations, self.minutesAfter, self.minutesBefore, self.oAuthAssertionProfiles, self.partnerServiceIds, self.requestContractRef, self.tokenProcessorMappings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

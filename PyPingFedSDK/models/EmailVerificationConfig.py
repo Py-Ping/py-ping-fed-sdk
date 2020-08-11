@@ -24,7 +24,7 @@ class EmailVerificationConfig():
 
     """
 
-    def __init__(self, fieldForEmailToVerify:str, fieldStoringVerificationStatus:str, emailVerificationEnabled:bool=None, emailVerificationErrorTemplateName:str=None, emailVerificationSentTemplateName:str=None, emailVerificationSuccessTemplateName:str=None, notificationPublisherRef=None, otlTimeToLive:int=None, verifyEmailTemplateName:str=None) -> None:
+    def __init__(self, fieldStoringVerificationStatus:str, fieldForEmailToVerify:str, emailVerificationEnabled:bool=None, emailVerificationErrorTemplateName:str=None, emailVerificationSentTemplateName:str=None, emailVerificationSuccessTemplateName:str=None, notificationPublisherRef=None, otlTimeToLive:int=None, verifyEmailTemplateName:str=None) -> None:
         self.emailVerificationEnabled = emailVerificationEnabled
         self.emailVerificationErrorTemplateName = emailVerificationErrorTemplateName
         self.emailVerificationSentTemplateName = emailVerificationSentTemplateName
@@ -36,7 +36,7 @@ class EmailVerificationConfig():
         self.verifyEmailTemplateName = verifyEmailTemplateName
 
     def _validate(self) -> bool:
-        return any(x for x in ["fieldForEmailToVerify", "fieldStoringVerificationStatus"] if self.__dict__[x] is not None)
+        return any(x for x in ["fieldStoringVerificationStatus", "fieldForEmailToVerify"] if self.__dict__[x] is not None)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -50,7 +50,7 @@ class EmailVerificationConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.emailVerificationEnabled, self.emailVerificationErrorTemplateName, self.emailVerificationSentTemplateName, self.emailVerificationSuccessTemplateName, self.fieldForEmailToVerify, self.fieldStoringVerificationStatus, self.notificationPublisherRef, self.otlTimeToLive, self.verifyEmailTemplateName))
+        return hash(frozenset([self.emailVerificationEnabled, self.emailVerificationErrorTemplateName, self.emailVerificationSentTemplateName, self.emailVerificationSuccessTemplateName, self.fieldForEmailToVerify, self.fieldStoringVerificationStatus, self.notificationPublisherRef, self.otlTimeToLive, self.verifyEmailTemplateName]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

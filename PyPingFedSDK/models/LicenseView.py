@@ -71,7 +71,7 @@ class LicenseView():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enforcementType, self.expirationDate, self.gracePeriod, self.var_id, self.issueDate, self.licenseGroups, self.maxConnections, self.name, self.nodeLimit, self.oauthEnabled, self.organization, self.product, self.provisioningEnabled, self.tier, self.version, self.wsTrustEnabled))
+        return hash(frozenset([self.enforcementType, self.expirationDate, self.gracePeriod, self.var_id, self.issueDate, self.licenseGroups, self.maxConnections, self.name, self.nodeLimit, self.oauthEnabled, self.organization, self.product, self.provisioningEnabled, self.tier, self.version, self.wsTrustEnabled]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

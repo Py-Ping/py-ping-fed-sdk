@@ -32,7 +32,7 @@ class AtmAccessControlSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.allowedClients, self.inherited, self.restrictClients))
+        return hash(frozenset([self.allowedClients, self.inherited, self.restrictClients]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

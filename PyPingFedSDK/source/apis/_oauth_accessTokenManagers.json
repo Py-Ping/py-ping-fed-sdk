@@ -303,7 +303,7 @@
             "path": "/oauth/accessTokenManagers/{id}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "AccessTokenAttribute": {
             "description": "An attribute for an Access Token's attribute contract.",
@@ -1089,6 +1089,10 @@
                 },
                 "checkValidAuthnSession": {
                     "description": "Check for a valid authentication session when validating the access token.",
+                    "type": "boolean"
+                },
+                "includeSessionId": {
+                    "description": "Include the session identifier in the access token. Note that if any of the session validation features is enabled, the session identifier will already be included in the access tokens.",
                     "type": "boolean"
                 },
                 "inherited": {

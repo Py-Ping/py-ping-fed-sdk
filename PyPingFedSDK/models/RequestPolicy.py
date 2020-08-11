@@ -56,7 +56,7 @@ class RequestPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.allowUnsignedLoginHintToken, self.alternativeLoginHintTokenIssuers, self.authenticatorRef, self.var_id, self.identityHintContract, self.identityHintContractFulfillment, self.identityHintMapping, self.name, self.requireTokenForIdentityHint, self.transactionLifetime, self.userCodePcvRef))
+        return hash(frozenset([self.allowUnsignedLoginHintToken, self.alternativeLoginHintTokenIssuers, self.authenticatorRef, self.var_id, self.identityHintContract, self.identityHintContractFulfillment, self.identityHintMapping, self.name, self.requireTokenForIdentityHint, self.transactionLifetime, self.userCodePcvRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

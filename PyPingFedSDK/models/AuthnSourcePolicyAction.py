@@ -38,7 +38,7 @@ class AuthnSourcePolicyAction():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeRules, self.authenticationSource, self.context, self.inputUserIdMapping, self.var_type))
+        return hash(frozenset([self.attributeRules, self.authenticationSource, self.context, self.inputUserIdMapping, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

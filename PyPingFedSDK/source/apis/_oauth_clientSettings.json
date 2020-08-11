@@ -64,7 +64,7 @@
             "path": "/oauth/clientSettings"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApiResult": {
             "description": "Details on the result of the operation.",
@@ -189,6 +189,10 @@
             "description": "Dynamic client registration settings.",
             "id": "DynamicClientRegistration",
             "properties": {
+                "allowClientDelete": {
+                    "description": "Allow client deletion from dynamic client management.",
+                    "type": "boolean"
+                },
                 "allowedExclusiveScopes": {
                     "description": "The exclusive scopes to allow.",
                     "items": {
@@ -238,6 +242,10 @@
                     "description": "The amount of time client should wait between polling requests, in seconds.",
                     "format": "int32",
                     "type": "integer"
+                },
+                "disableRegistrationAccessTokens": {
+                    "description": "Disable registration access tokens. Local standards may mandate different registration access token requirements. If applicable, implement custom validation and enforcement rules using the DynamicClientRegistrationPlugin interface from the PingFederate SDK, configure the client registration policies (policyRefs), and set this property (disableRegistrationAccessTokens) to true. CAUTION: When the disableRegistrationAccessTokens property is set to true, all clients, not just the ones created using the Dynamic Client Registration protocol, are vulnerable to unrestricted retrievals, updates (including modifications to the client authentication scheme and redirect URIs), and deletes at the /as/clients.oauth2 endpoint unless one or more client registration policies are in place to protect against unauthorized attempts.",
+                    "type": "boolean"
                 },
                 "enforceReplayPrevention": {
                     "description": "Enforce replay prevention.",
@@ -340,6 +348,14 @@
                         "type": "string"
                     },
                     "type": "array"
+                },
+                "rotateClientSecret": {
+                    "description": "Rotate registration access token on dynamic client management requests.",
+                    "type": "boolean"
+                },
+                "rotateRegistrationAccessToken": {
+                    "description": "Rotate client secret on dynamic client management requests.",
+                    "type": "boolean"
                 },
                 "tokenExchangeProcessorPolicyRef": {
                     "$ref": "ResourceLink",

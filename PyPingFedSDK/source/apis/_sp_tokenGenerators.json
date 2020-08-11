@@ -241,7 +241,7 @@
             "path": "/sp/tokenGenerators/{id}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ActionDescriptor": {
             "description": "Describes an arbitrary action that is available for a plugin.",

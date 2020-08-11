@@ -35,7 +35,7 @@ class SchemaAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.multiValued, self.name, self.subAttributes, self.types))
+        return hash(frozenset([self.multiValued, self.name, self.subAttributes, self.types]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

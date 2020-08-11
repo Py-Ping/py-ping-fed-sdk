@@ -29,7 +29,7 @@ class Entity():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.entityDescription, self.entityId))
+        return hash(frozenset([self.entityDescription, self.entityId]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

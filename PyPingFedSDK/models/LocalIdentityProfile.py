@@ -59,7 +59,7 @@ class LocalIdentityProfile():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.apcId, self.authSourceUpdatePolicy, self.authSources, self.dataStoreConfig, self.emailVerificationConfig, self.fieldConfig, self.var_id, self.name, self.profileConfig, self.profileEnabled, self.registrationConfig, self.registrationEnabled))
+        return hash(frozenset([self.apcId, self.authSourceUpdatePolicy, self.authSources, self.dataStoreConfig, self.emailVerificationConfig, self.fieldConfig, self.var_id, self.name, self.profileConfig, self.profileEnabled, self.registrationConfig, self.registrationEnabled]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

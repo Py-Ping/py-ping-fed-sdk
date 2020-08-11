@@ -29,7 +29,7 @@ class UserCredentials():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.currentPassword, self.newPassword))
+        return hash(frozenset([self.currentPassword, self.newPassword]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

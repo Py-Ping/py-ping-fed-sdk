@@ -372,7 +372,7 @@
             "path": "/serverSettings/outboundProvisioning"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApiResult": {
             "description": "Details on the result of the operation.",
@@ -508,6 +508,10 @@
                     "description": "The IP address or hostname of your email server.",
                     "type": "string"
                 },
+                "enableUtf8MessageHeaders": {
+                    "description": "Only set this flag to true if the email server supports UTF-8 characters in message headers. Otherwise, this is defaulted to false.",
+                    "type": "boolean"
+                },
                 "encryptedPassword": {
                     "description": "For GET requests, this field contains the encrypted password, if one exists.  For POST and PUT requests, if you wish to reuse the existing password, this field should be passed back unchanged.",
                     "type": "string"
@@ -603,7 +607,7 @@
             }
         },
         "IdpRole": {
-            "description": "Identity Provider (IdP) role settings.",
+            "description": "This property has been deprecated and is no longer used. All Roles and protocols are always enabled.",
             "extends": "BaseProviderRole",
             "id": "IdpRole",
             "properties": {
@@ -698,7 +702,7 @@
             }
         },
         "OAuthRole": {
-            "description": "OAuth role settings.",
+            "description": "This property has been deprecated and is no longer used. OAuth and OpenID Connect are always enabled.",
             "id": "OAuthRole",
             "properties": {
                 "enableOauth": {
@@ -747,7 +751,7 @@
             ]
         },
         "RolesAndProtocols": {
-            "description": "Roles and protocols settings.",
+            "description": "This property has been deprecated and is no longer used. All Roles and protocols are always enabled.",
             "id": "RolesAndProtocols",
             "properties": {
                 "enableIdpDiscovery": {
@@ -816,7 +820,7 @@
             }
         },
         "SpRole": {
-            "description": "Service Provider (SP) role settings.",
+            "description": "This property has been deprecated and is no longer used. All Roles and protocols are always enabled.",
             "extends": "BaseProviderRole",
             "id": "SpRole",
             "properties": {

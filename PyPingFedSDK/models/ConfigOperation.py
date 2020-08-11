@@ -38,7 +38,7 @@ class ConfigOperation():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.itemIds, self.items, self.operationType, self.resourceType, self.subResource))
+        return hash(frozenset([self.itemIds, self.items, self.operationType, self.resourceType, self.subResource]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

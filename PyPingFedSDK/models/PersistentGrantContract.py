@@ -29,7 +29,7 @@ class PersistentGrantContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.coreAttributes, self.extendedAttributes))
+        return hash(frozenset([self.coreAttributes, self.extendedAttributes]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

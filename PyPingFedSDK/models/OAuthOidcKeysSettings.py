@@ -98,7 +98,7 @@ class OAuthOidcKeysSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.p256ActiveCertRef, self.p256DecryptionActiveCertRef, self.p256DecryptionPreviousCertRef, self.p256DecryptionPublishX5cParameter, self.p256PreviousCertRef, self.p256PublishX5cParameter, self.p384ActiveCertRef, self.p384DecryptionActiveCertRef, self.p384DecryptionPreviousCertRef, self.p384DecryptionPublishX5cParameter, self.p384PreviousCertRef, self.p384PublishX5cParameter, self.p521ActiveCertRef, self.p521DecryptionActiveCertRef, self.p521DecryptionPreviousCertRef, self.p521DecryptionPublishX5cParameter, self.p521PreviousCertRef, self.p521PublishX5cParameter, self.rsaActiveCertRef, self.rsaDecryptionActiveCertRef, self.rsaDecryptionPreviousCertRef, self.rsaDecryptionPublishX5cParameter, self.rsaPreviousCertRef, self.rsaPublishX5cParameter, self.staticJwksEnabled))
+        return hash(frozenset([self.p256ActiveCertRef, self.p256DecryptionActiveCertRef, self.p256DecryptionPreviousCertRef, self.p256DecryptionPublishX5cParameter, self.p256PreviousCertRef, self.p256PublishX5cParameter, self.p384ActiveCertRef, self.p384DecryptionActiveCertRef, self.p384DecryptionPreviousCertRef, self.p384DecryptionPublishX5cParameter, self.p384PreviousCertRef, self.p384PublishX5cParameter, self.p521ActiveCertRef, self.p521DecryptionActiveCertRef, self.p521DecryptionPreviousCertRef, self.p521DecryptionPublishX5cParameter, self.p521PreviousCertRef, self.p521PublishX5cParameter, self.rsaActiveCertRef, self.rsaDecryptionActiveCertRef, self.rsaDecryptionPreviousCertRef, self.rsaDecryptionPublishX5cParameter, self.rsaPreviousCertRef, self.rsaPublishX5cParameter, self.staticJwksEnabled]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

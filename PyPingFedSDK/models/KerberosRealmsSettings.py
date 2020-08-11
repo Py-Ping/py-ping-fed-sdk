@@ -35,7 +35,7 @@ class KerberosRealmsSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.debugLogOutput, self.forceTcp, self.kdcRetries, self.kdcTimeout))
+        return hash(frozenset([self.debugLogOutput, self.forceTcp, self.kdcRetries, self.kdcTimeout]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

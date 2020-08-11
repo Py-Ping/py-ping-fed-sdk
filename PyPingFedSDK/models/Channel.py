@@ -41,7 +41,7 @@ class Channel():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.active, self.attributeMapping, self.channelSource, self.maxThreads, self.name, self.timeout))
+        return hash(frozenset([self.active, self.attributeMapping, self.channelSource, self.maxThreads, self.name, self.timeout]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

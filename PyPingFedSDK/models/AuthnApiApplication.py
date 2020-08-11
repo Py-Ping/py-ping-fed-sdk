@@ -38,7 +38,7 @@ class AuthnApiApplication():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.additionalAllowedOrigins, self.description, self.var_id, self.name, self.url))
+        return hash(frozenset([self.additionalAllowedOrigins, self.description, self.var_id, self.name, self.url]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

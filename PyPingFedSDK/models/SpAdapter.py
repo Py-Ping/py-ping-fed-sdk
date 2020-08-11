@@ -44,7 +44,7 @@ class SpAdapter():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContract, self.configuration, self.var_id, self.name, self.parentRef, self.pluginDescriptorRef, self.targetApplicationInfo))
+        return hash(frozenset([self.attributeContract, self.configuration, self.var_id, self.name, self.parentRef, self.pluginDescriptorRef, self.targetApplicationInfo]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

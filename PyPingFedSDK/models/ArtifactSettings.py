@@ -32,7 +32,7 @@ class ArtifactSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.lifetime, self.resolverLocations, self.sourceId))
+        return hash(frozenset([self.lifetime, self.resolverLocations, self.sourceId]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

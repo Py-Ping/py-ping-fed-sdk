@@ -35,7 +35,7 @@ class AccessTokenManagerMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.accessTokenManagerRef, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria))
+        return hash(frozenset([self.accessTokenManagerRef, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

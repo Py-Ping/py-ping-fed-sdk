@@ -41,7 +41,7 @@ class ConvertMetadataResponse():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.certExpiration, self.certSerialNumber, self.certSubjectDn, self.certTrustStatus, self.connection, self.signatureStatus))
+        return hash(frozenset([self.certExpiration, self.certSerialNumber, self.certSubjectDn, self.certTrustStatus, self.connection, self.signatureStatus]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

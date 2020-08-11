@@ -38,7 +38,7 @@ class ChangeDetectionSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.changedUsersAlgorithm, self.groupObjectClass, self.timeStampAttributeName, self.userObjectClass, self.usnAttributeName))
+        return hash(frozenset([self.changedUsersAlgorithm, self.groupObjectClass, self.timeStampAttributeName, self.userObjectClass, self.usnAttributeName]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

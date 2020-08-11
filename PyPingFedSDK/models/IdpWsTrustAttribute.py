@@ -29,7 +29,7 @@ class IdpWsTrustAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.masked, self.name))
+        return hash(frozenset([self.masked, self.name]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

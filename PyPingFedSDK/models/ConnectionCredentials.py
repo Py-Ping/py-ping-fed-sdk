@@ -53,7 +53,7 @@ class ConnectionCredentials():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.blockEncryptionAlgorithm, self.certs, self.decryptionKeyPairRef, self.inboundBackChannelAuth, self.keyTransportAlgorithm, self.outboundBackChannelAuth, self.secondaryDecryptionKeyPairRef, self.signingSettings, self.verificationIssuerDN, self.verificationSubjectDN))
+        return hash(frozenset([self.blockEncryptionAlgorithm, self.certs, self.decryptionKeyPairRef, self.inboundBackChannelAuth, self.keyTransportAlgorithm, self.outboundBackChannelAuth, self.secondaryDecryptionKeyPairRef, self.signingSettings, self.verificationIssuerDN, self.verificationSubjectDN]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -26,7 +26,7 @@ class AuthenticationSelectorAttributeContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.extendedAttributes))
+        return hash(frozenset([self.extendedAttributes]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

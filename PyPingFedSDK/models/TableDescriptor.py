@@ -38,7 +38,7 @@ class TableDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.columns, self.description, self.label, self.name, self.requireDefaultRow))
+        return hash(frozenset([self.columns, self.description, self.label, self.name, self.requireDefaultRow]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

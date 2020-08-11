@@ -278,7 +278,7 @@
             "path": "/oauth/cibaServerPolicy/requestPolicies/{id}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "AlternativeLoginHintTokenIssuer": {
             "description": "JSON Web Key Set Settings.",

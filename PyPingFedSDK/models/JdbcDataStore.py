@@ -71,7 +71,7 @@ class JdbcDataStore():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.allowMultiValueAttributes, self.blockingTimeout, self.connectionUrl, self.connectionUrlTags, self.driverClass, self.encryptedPassword, self.var_id, self.idleTimeout, self.maskAttributeValues, self.maxPoolSize, self.minPoolSize, self.name, self.password, self.var_type, self.userName, self.validateConnectionSql))
+        return hash(frozenset([self.allowMultiValueAttributes, self.blockingTimeout, self.connectionUrl, self.connectionUrlTags, self.driverClass, self.encryptedPassword, self.var_id, self.idleTimeout, self.maskAttributeValues, self.maxPoolSize, self.minPoolSize, self.name, self.password, self.var_type, self.userName, self.validateConnectionSql]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

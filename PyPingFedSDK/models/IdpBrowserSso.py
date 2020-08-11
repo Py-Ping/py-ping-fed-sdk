@@ -83,7 +83,7 @@ class IdpBrowserSso():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.adapterMappings, self.artifact, self.assertionsSigned, self.attributeContract, self.authenticationPolicyContractMappings, self.authnContextMappings, self.decryptionPolicy, self.defaultTargetUrl, self.enabledProfiles, self.idpIdentityMapping, self.incomingBindings, self.messageCustomizations, self.oauthAuthenticationPolicyContractRef, self.oidcProviderSettings, self.protocol, self.signAuthnRequests, self.sloServiceEndpoints, self.ssoOAuthMapping, self.ssoServiceEndpoints, self.urlWhitelistEntries))
+        return hash(frozenset([self.adapterMappings, self.artifact, self.assertionsSigned, self.attributeContract, self.authenticationPolicyContractMappings, self.authnContextMappings, self.decryptionPolicy, self.defaultTargetUrl, self.enabledProfiles, self.idpIdentityMapping, self.incomingBindings, self.messageCustomizations, self.oauthAuthenticationPolicyContractRef, self.oidcProviderSettings, self.protocol, self.signAuthnRequests, self.sloServiceEndpoints, self.ssoOAuthMapping, self.ssoServiceEndpoints, self.urlWhitelistEntries]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

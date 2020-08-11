@@ -20,7 +20,7 @@ class AdministrativeAccount():
     phoneNumber : string
         Phone number associated with the account.
     roles : str
-        Roles available for an administrator. <br>USER_ADMINISTRATOR - Can create, deactivate or delete accounts and reset passwords. Additionally, install replacement license keys. <br> CRYPTO_ADMINISTRATOR - Can manage local keys and certificates. <br> ADMINISTRATOR - Can configure partner connections and most system settings (except the management of native accounts and the handling of local keys and certificates. <br>
+        Roles available for an administrator. <br>USER_ADMINISTRATOR - Can create, deactivate or delete accounts and reset passwords. Additionally, install replacement license keys. <br> CRYPTO_ADMINISTRATOR - Can manage local keys and certificates. <br> ADMINISTRATOR - Can configure partner connections and most system settings (except the management of native accounts and the handling of local keys and certificates. <br>EXPRESSION_ADMINISTRATOR - Can add and update OGNL expressions. <br>
     username : string
         Username for the Administrative Account.
 
@@ -53,7 +53,7 @@ class AdministrativeAccount():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.active, self.auditor, self.department, self.description, self.emailAddress, self.encryptedPassword, self.password, self.phoneNumber, self.roles, self.username))
+        return hash(frozenset([self.active, self.auditor, self.department, self.description, self.emailAddress, self.encryptedPassword, self.password, self.phoneNumber, self.roles, self.username]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

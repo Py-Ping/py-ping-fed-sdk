@@ -35,7 +35,7 @@ class IdpAdapterContractMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.inherited, self.issuanceCriteria))
+        return hash(frozenset([self.attributeContractFulfillment, self.attributeSources, self.inherited, self.issuanceCriteria]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -35,7 +35,7 @@ class LocalIdentityAuthSourceUpdatePolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.retainAttributes, self.storeAttributes, self.updateAttributes, self.updateInterval))
+        return hash(frozenset([self.retainAttributes, self.storeAttributes, self.updateAttributes, self.updateInterval]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -35,7 +35,7 @@ class ConfigField():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptedValue, self.inherited, self.name, self.value))
+        return hash(frozenset([self.encryptedValue, self.inherited, self.name, self.value]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

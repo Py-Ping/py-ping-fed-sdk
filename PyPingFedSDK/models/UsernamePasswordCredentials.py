@@ -32,7 +32,7 @@ class UsernamePasswordCredentials():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptedPassword, self.password, self.username))
+        return hash(frozenset([self.encryptedPassword, self.password, self.username]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

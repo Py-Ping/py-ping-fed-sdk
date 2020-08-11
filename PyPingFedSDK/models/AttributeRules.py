@@ -29,7 +29,7 @@ class AttributeRules():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.fallbackToSuccess, self.items))
+        return hash(frozenset([self.fallbackToSuccess, self.items]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

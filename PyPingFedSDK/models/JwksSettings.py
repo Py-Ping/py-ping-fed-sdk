@@ -29,7 +29,7 @@ class JwksSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.jwks, self.jwksUrl))
+        return hash(frozenset([self.jwks, self.jwksUrl]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

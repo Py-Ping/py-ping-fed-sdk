@@ -65,10 +65,17 @@
     
     
       <ul>
+<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
+=======
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 </ul>
 
     
@@ -111,6 +118,7 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    clientCertChainSSLHeaderName : string</span>
+<<<<<<< HEAD
 <span class="sd">        While the proxy server is configured to pass client certificates as HTTP request headers, specify the chain header name here.</span>
 <span class="sd">    clientCertSSLHeaderName : string</span>
 <span class="sd">        While the proxy server is configured to pass client certificates as HTTP request headers, specify the header name here.</span>
@@ -146,15 +154,55 @@
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+=======
+<span class="sd">        While the proxy server is configured to pass client certificates as HTTP request headers, specify the chain header name here.    clientCertSSLHeaderName : string</span>
+<span class="sd">        While the proxy server is configured to pass client certificates as HTTP request headers, specify the header name here.    forwardedHostHeaderIndex : str</span>
+<span class="sd">        PingFederate combines multiple comma-separated header values into the same order that they are received. Define which hostname you want to use. Default is to use the last hostname.    forwardedHostHeaderName : string</span>
+<span class="sd">        Globally specify the header name (for example, X-Forwarded-Host) where PingFederate should attempt to retrieve the hostname and port in all HTTP requests.    forwardedIpAddressHeaderIndex : str</span>
+<span class="sd">        PingFederate combines multiple comma-separated header values into the same order that they are received. Define which IP address you want to use. Default is to use the last address.    forwardedIpAddressHeaderName : string</span>
+<span class="sd">        Globally specify the header name (for example, X-Forwarded-For) where PingFederate should attempt to retrieve the client IP address in all HTTP requests.    proxyTerminatesHttpsConns : boolean</span>
+<span class="sd">        Allows you to globally specify that connections to the reverse proxy are made over HTTPS even when HTTP is used between the reverse proxy and PingFederate.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;clientCertChainSSLHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;clientCertSSLHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedHostHeaderIndex&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedHostHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedIpAddressHeaderIndex&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedIpAddressHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;proxyTerminatesHttpsConns&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clientCertChainSSLHeaderName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clientCertSSLHeaderName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">forwardedHostHeaderIndex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">forwardedHostHeaderName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">forwardedIpAddressHeaderIndex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">forwardedIpAddressHeaderName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proxyTerminatesHttpsConns</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clientCertChainSSLHeaderName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">clientCertChainSSLHeaderName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clientCertSSLHeaderName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">clientCertSSLHeaderName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forwardedHostHeaderIndex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">forwardedHostHeaderIndex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forwardedHostHeaderName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">forwardedHostHeaderName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forwardedIpAddressHeaderIndex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">forwardedIpAddressHeaderIndex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forwardedIpAddressHeaderName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">forwardedIpAddressHeaderName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proxyTerminatesHttpsConns</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">proxyTerminatesHttpsConns</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">IncomingProxySettings</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
+<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">clientCertChainSSLHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clientCertSSLHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedHostHeaderIndex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedHostHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedIpAddressHeaderIndex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedIpAddressHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxyTerminatesHttpsConns</span><span class="p">))</span>
 
 <div class="viewcode-block" id="IncomingProxySettings.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.IncomingProxySettings.IncomingProxySettings.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+=======
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">clientCertChainSSLHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clientCertSSLHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedHostHeaderIndex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedHostHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedIpAddressHeaderIndex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forwardedIpAddressHeaderName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxyTerminatesHttpsConns</span><span class="p">))</span>
+
+<div class="viewcode-block" id="IncomingProxySettings.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.IncomingProxySettings.IncomingProxySettings.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;clientCertChainSSLHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;clientCertSSLHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedHostHeaderIndex&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedHostHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedIpAddressHeaderIndex&quot;</span><span class="p">,</span> <span class="s2">&quot;forwardedIpAddressHeaderName&quot;</span><span class="p">,</span> <span class="s2">&quot;proxyTerminatesHttpsConns&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

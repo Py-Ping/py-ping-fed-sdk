@@ -86,7 +86,7 @@ class SpConnection():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.active, self.additionalAllowedEntitiesConfiguration, self.applicationIconUrl, self.applicationName, self.attributeQuery, self.baseUrl, self.contactInfo, self.credentials, self.defaultVirtualEntityId, self.entityId, self.extendedProperties, self.var_id, self.licenseConnectionGroup, self.loggingMode, self.metadataReloadSettings, self.name, self.outboundProvision, self.spBrowserSso, self.var_type, self.virtualEntityIds, self.wsTrust))
+        return hash(frozenset([self.active, self.additionalAllowedEntitiesConfiguration, self.applicationIconUrl, self.applicationName, self.attributeQuery, self.baseUrl, self.contactInfo, self.credentials, self.defaultVirtualEntityId, self.entityId, self.extendedProperties, self.var_id, self.licenseConnectionGroup, self.loggingMode, self.metadataReloadSettings, self.name, self.outboundProvision, self.spBrowserSso, self.var_type, self.virtualEntityIds, self.wsTrust]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

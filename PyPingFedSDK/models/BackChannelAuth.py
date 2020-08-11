@@ -32,7 +32,7 @@ class BackChannelAuth():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.digitalSignature, self.httpBasicCredentials, self.var_type))
+        return hash(frozenset([self.digitalSignature, self.httpBasicCredentials, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -41,7 +41,7 @@ class AuthenticationPolicyContractMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.authenticationPolicyContractRef, self.issuanceCriteria, self.restrictVirtualServerIds, self.restrictedVirtualServerIds))
+        return hash(frozenset([self.attributeContractFulfillment, self.attributeSources, self.authenticationPolicyContractRef, self.issuanceCriteria, self.restrictVirtualServerIds, self.restrictedVirtualServerIds]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

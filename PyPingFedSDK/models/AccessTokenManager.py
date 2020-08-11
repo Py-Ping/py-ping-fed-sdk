@@ -50,7 +50,7 @@ class AccessTokenManager():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.accessControlSettings, self.attributeContract, self.configuration, self.var_id, self.name, self.parentRef, self.pluginDescriptorRef, self.selectionSettings, self.sessionValidationSettings))
+        return hash(frozenset([self.accessControlSettings, self.attributeContract, self.configuration, self.var_id, self.name, self.parentRef, self.pluginDescriptorRef, self.selectionSettings, self.sessionValidationSettings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

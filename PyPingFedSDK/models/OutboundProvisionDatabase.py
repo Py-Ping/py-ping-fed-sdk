@@ -29,7 +29,7 @@ class OutboundProvisionDatabase():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.dataStoreRef, self.synchronizationFrequency))
+        return hash(frozenset([self.dataStoreRef, self.synchronizationFrequency]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

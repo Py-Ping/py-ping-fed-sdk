@@ -32,7 +32,7 @@ class SystemKeys():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.current, self.pending, self.previous))
+        return hash(frozenset([self.current, self.pending, self.previous]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

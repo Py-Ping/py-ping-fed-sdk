@@ -32,7 +32,7 @@ class SpDefaultUrls():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.confirmSlo, self.sloSuccessUrl, self.ssoSuccessUrl))
+        return hash(frozenset([self.confirmSlo, self.sloSuccessUrl, self.ssoSuccessUrl]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

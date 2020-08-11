@@ -29,7 +29,7 @@ class AttributeQueryNameMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.localName, self.remoteName))
+        return hash(frozenset([self.localName, self.remoteName]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

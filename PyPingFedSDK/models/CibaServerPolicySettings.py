@@ -26,7 +26,7 @@ class CibaServerPolicySettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultRequestPolicyRef))
+        return hash(frozenset([self.defaultRequestPolicyRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

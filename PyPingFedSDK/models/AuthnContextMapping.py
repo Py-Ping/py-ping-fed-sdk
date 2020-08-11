@@ -29,7 +29,7 @@ class AuthnContextMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.local, self.remote))
+        return hash(frozenset([self.local, self.remote]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

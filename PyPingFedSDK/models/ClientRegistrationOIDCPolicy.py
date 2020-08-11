@@ -35,7 +35,7 @@ class ClientRegistrationOIDCPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.idTokenContentEncryptionAlgorithm, self.idTokenEncryptionAlgorithm, self.idTokenSigningAlgorithm, self.policyGroup))
+        return hash(frozenset([self.idTokenContentEncryptionAlgorithm, self.idTokenEncryptionAlgorithm, self.idTokenSigningAlgorithm, self.policyGroup]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

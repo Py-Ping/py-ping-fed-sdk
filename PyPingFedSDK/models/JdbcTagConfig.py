@@ -32,7 +32,7 @@ class JdbcTagConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.connectionUrl, self.defaultSource, self.tags))
+        return hash(frozenset([self.connectionUrl, self.defaultSource, self.tags]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

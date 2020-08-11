@@ -29,7 +29,7 @@ class ConnectionMetadataUrl():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enableAutoMetadataUpdate, self.metadataUrlRef))
+        return hash(frozenset([self.enableAutoMetadataUpdate, self.metadataUrlRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -29,7 +29,7 @@ class ProfileConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.deleteIdentityEnabled, self.templateName))
+        return hash(frozenset([self.deleteIdentityEnabled, self.templateName]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

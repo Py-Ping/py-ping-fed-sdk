@@ -67,68 +67,6 @@
             "operations": [
                 {
                     "method": "GET",
-                    "nickname": "getGlobalPolicy",
-                    "notes": "",
-                    "parameters": [],
-                    "responseMessages": [
-                        {
-                            "code": 200,
-                            "message": "Success."
-                        },
-                        {
-                            "code": 403,
-                            "message": "PingFederate does not have the appropriate IdP/SP role enabled. Operation not available."
-                        }
-                    ],
-                    "summary": "Get the global authentication session policy.",
-                    "type": "GlobalAuthenticationSessionPolicy"
-                },
-                {
-                    "consumes": [
-                        "application/json"
-                    ],
-                    "method": "PUT",
-                    "nickname": "updateGlobalPolicy",
-                    "notes": "",
-                    "parameters": [
-                        {
-                            "allowMultiple": false,
-                            "description": "Global authentication session policy.",
-                            "name": "body",
-                            "paramType": "body",
-                            "required": true,
-                            "type": "GlobalAuthenticationSessionPolicy"
-                        }
-                    ],
-                    "responseMessages": [
-                        {
-                            "code": 200,
-                            "message": "Global authentication session policy updated."
-                        },
-                        {
-                            "code": 400,
-                            "message": "The request was improperly formatted or contained invalid fields."
-                        },
-                        {
-                            "code": 403,
-                            "message": "PingFederate does not have the appropriate IdP/SP role enabled. Operation not available."
-                        },
-                        {
-                            "code": 422,
-                            "message": "Validation error(s) occurred.",
-                            "responseModel": "ApiResult"
-                        }
-                    ],
-                    "summary": "Update the global authentication session policy.",
-                    "type": "GlobalAuthenticationSessionPolicy"
-                }
-            ],
-            "path": "/session/authenticationSessionPolicies/global"
-        },
-        {
-            "operations": [
-                {
-                    "method": "GET",
                     "nickname": "getApplicationPolicy",
                     "notes": "",
                     "parameters": [],
@@ -186,6 +124,68 @@
                 }
             ],
             "path": "/session/applicationSessionPolicy"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getGlobalPolicy",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have the appropriate IdP/SP role enabled. Operation not available."
+                        }
+                    ],
+                    "summary": "Get the global authentication session policy.",
+                    "type": "GlobalAuthenticationSessionPolicy"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateGlobalPolicy",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Global authentication session policy.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "GlobalAuthenticationSessionPolicy"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Global authentication session policy updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 403,
+                            "message": "PingFederate does not have the appropriate IdP/SP role enabled. Operation not available."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update the global authentication session policy.",
+                    "type": "GlobalAuthenticationSessionPolicy"
+                }
+            ],
+            "path": "/session/authenticationSessionPolicies/global"
         },
         {
             "operations": [
@@ -370,7 +370,7 @@
             "path": "/session/authenticationSessionPolicies/{id}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApiResult": {
             "description": "Details on the result of the operation.",

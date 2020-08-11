@@ -86,7 +86,7 @@ class SpBrowserSso():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.adapterMappings, self.artifact, self.assertionLifetime, self.attributeContract, self.authenticationPolicyContractAssertionMappings, self.defaultTargetUrl, self.enabledProfiles, self.encryptionPolicy, self.incomingBindings, self.messageCustomizations, self.protocol, self.requireSignedAuthnRequests, self.signAssertions, self.signResponseAsRequired, self.sloServiceEndpoints, self.spSamlIdentityMapping, self.spWsFedIdentityMapping, self.ssoServiceEndpoints, self.urlWhitelistEntries, self.wsFedTokenType, self.wsTrustVersion))
+        return hash(frozenset([self.adapterMappings, self.artifact, self.assertionLifetime, self.attributeContract, self.authenticationPolicyContractAssertionMappings, self.defaultTargetUrl, self.enabledProfiles, self.encryptionPolicy, self.incomingBindings, self.messageCustomizations, self.protocol, self.requireSignedAuthnRequests, self.signAssertions, self.signResponseAsRequired, self.sloServiceEndpoints, self.spSamlIdentityMapping, self.spWsFedIdentityMapping, self.ssoServiceEndpoints, self.urlWhitelistEntries, self.wsFedTokenType, self.wsTrustVersion]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

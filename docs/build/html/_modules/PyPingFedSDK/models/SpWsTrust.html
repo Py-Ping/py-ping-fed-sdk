@@ -65,10 +65,17 @@
     
     
       <ul>
+<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
+=======
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 </ul>
 
     
@@ -111,6 +118,7 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    abortIfNotFulfilledFromRequest : boolean</span>
+<<<<<<< HEAD
 <span class="sd">        If the attribute contract cannot be fulfilled using data from the Request, abort the transaction.</span>
 <span class="sd">    attributeContract : str</span>
 <span class="sd">        A set of user attributes that the IdP sends in the token.</span>
@@ -161,15 +169,65 @@
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+=======
+<span class="sd">        If the attribute contract cannot be fulfilled using data from the Request, abort the transaction.    attributeContract : str</span>
+<span class="sd">        A set of user attributes that the IdP sends in the token.    defaultTokenType : str</span>
+<span class="sd">        The default token type when a web service client (WSC) does not specify in the token request which token type the STS should issue. Defaults to SAML 2.0.    encryptSaml2Assertion : boolean</span>
+<span class="sd">        When selected, the STS encrypts the SAML 2.0 assertion. Applicable only to SAML 2.0 security token.  This option does not apply to OAuth assertion profiles.    generateKey : boolean</span>
+<span class="sd">        When selected, the STS generates a symmetric key to be used in conjunction with the &quot;Holder of Key&quot; (HoK) designation for the assertion&#39;s Subject Confirmation Method.  This option does not apply to OAuth assertion profiles.    messageCustomizations : array</span>
+<span class="sd">        The message customizations for WS-Trust. Depending on server settings, connection type, and protocol this may or may not be supported.    minutesAfter : integer</span>
+<span class="sd">        The amount of time after the SAML token was issued during which it is to be considered valid. The default value is 30.    minutesBefore : integer</span>
+<span class="sd">        The amount of time before the SAML token was issued during which it is to be considered valid. The default value is 5.    oAuthAssertionProfiles : boolean</span>
+<span class="sd">        When selected, four additional token-type requests become available.    partnerServiceIds : array</span>
+<span class="sd">        The partner service identifiers.    requestContractRef : str</span>
+<span class="sd">        Request Contract to be used to map attribute values into the security token.    tokenProcessorMappings : array</span>
+<span class="sd">        A list of token processors to validate incoming tokens.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;abortIfNotFulfilledFromRequest&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeContract&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultTokenType&quot;</span><span class="p">,</span> <span class="s2">&quot;encryptSaml2Assertion&quot;</span><span class="p">,</span> <span class="s2">&quot;generateKey&quot;</span><span class="p">,</span> <span class="s2">&quot;messageCustomizations&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesAfter&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesBefore&quot;</span><span class="p">,</span> <span class="s2">&quot;oAuthAssertionProfiles&quot;</span><span class="p">,</span> <span class="s2">&quot;partnerServiceIds&quot;</span><span class="p">,</span> <span class="s2">&quot;requestContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;tokenProcessorMappings&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">partnerServiceIds</span><span class="p">,</span> <span class="n">attributeContract</span><span class="p">,</span> <span class="n">tokenProcessorMappings</span><span class="p">,</span> <span class="n">abortIfNotFulfilledFromRequest</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">defaultTokenType</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encryptSaml2Assertion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">generateKey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">messageCustomizations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minutesAfter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minutesBefore</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">oAuthAssertionProfiles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">requestContractRef</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abortIfNotFulfilledFromRequest</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">abortIfNotFulfilledFromRequest</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributeContract</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attributeContract</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaultTokenType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">defaultTokenType</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encryptSaml2Assertion</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">encryptSaml2Assertion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generateKey</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">generateKey</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">messageCustomizations</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">messageCustomizations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minutesAfter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">minutesAfter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minutesBefore</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">minutesBefore</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">oAuthAssertionProfiles</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">oAuthAssertionProfiles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">partnerServiceIds</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">partnerServiceIds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requestContractRef</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">requestContractRef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenProcessorMappings</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">tokenProcessorMappings</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;partnerServiceIds&#39;</span><span class="p">,</span> <span class="s1">&#39;attributeContract&#39;</span><span class="p">,</span> <span class="s1">&#39;tokenProcessorMappings&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SpWsTrust</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
+<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">abortIfNotFulfilledFromRequest</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributeContract</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultTokenType</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encryptSaml2Assertion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generateKey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">messageCustomizations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutesAfter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutesBefore</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">oAuthAssertionProfiles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">partnerServiceIds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestContractRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenProcessorMappings</span><span class="p">))</span>
 
 <div class="viewcode-block" id="SpWsTrust.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+=======
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">abortIfNotFulfilledFromRequest</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributeContract</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultTokenType</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encryptSaml2Assertion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generateKey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">messageCustomizations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutesAfter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minutesBefore</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">oAuthAssertionProfiles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">partnerServiceIds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestContractRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenProcessorMappings</span><span class="p">))</span>
+
+<div class="viewcode-block" id="SpWsTrust.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.SpWsTrust.SpWsTrust.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;abortIfNotFulfilledFromRequest&quot;</span><span class="p">,</span> <span class="s2">&quot;attributeContract&quot;</span><span class="p">,</span> <span class="s2">&quot;defaultTokenType&quot;</span><span class="p">,</span> <span class="s2">&quot;encryptSaml2Assertion&quot;</span><span class="p">,</span> <span class="s2">&quot;generateKey&quot;</span><span class="p">,</span> <span class="s2">&quot;messageCustomizations&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesAfter&quot;</span><span class="p">,</span> <span class="s2">&quot;minutesBefore&quot;</span><span class="p">,</span> <span class="s2">&quot;oAuthAssertionProfiles&quot;</span><span class="p">,</span> <span class="s2">&quot;partnerServiceIds&quot;</span><span class="p">,</span> <span class="s2">&quot;requestContractRef&quot;</span><span class="p">,</span> <span class="s2">&quot;tokenProcessorMappings&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

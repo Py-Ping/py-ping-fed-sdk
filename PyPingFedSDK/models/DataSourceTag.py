@@ -29,7 +29,7 @@ class DataSourceTag():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultSource, self.tags, self.tagsHashSet))
+        return hash(frozenset([self.defaultSource, self.tags, self.tagsHashSet]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

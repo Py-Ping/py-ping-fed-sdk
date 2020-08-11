@@ -29,7 +29,7 @@ class IdpOAuthGrantAttributeMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.accessTokenManagerMappings, self.idpOAuthAttributeContract))
+        return hash(frozenset([self.accessTokenManagerMappings, self.idpOAuthAttributeContract]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

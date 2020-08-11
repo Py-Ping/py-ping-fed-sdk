@@ -44,7 +44,7 @@ class KerberosRealm():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.var_id, self.kerberosEncryptedPassword, self.kerberosPassword, self.kerberosRealmName, self.kerberosUsername, self.keyDistributionCenters, self.suppressDomainNameConcatenation))
+        return hash(frozenset([self.var_id, self.kerberosEncryptedPassword, self.kerberosPassword, self.kerberosRealmName, self.kerberosUsername, self.keyDistributionCenters, self.suppressDomainNameConcatenation]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -35,7 +35,7 @@ class ApiResult():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.developerMessage, self.message, self.resultId, self.validationErrors))
+        return hash(frozenset([self.developerMessage, self.message, self.resultId, self.validationErrors]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

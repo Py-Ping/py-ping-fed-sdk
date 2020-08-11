@@ -29,7 +29,7 @@ class GroupMembershipDetection():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.groupMemberAttributeName, self.memberOfGroupAttributeName))
+        return hash(frozenset([self.groupMemberAttributeName, self.memberOfGroupAttributeName]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

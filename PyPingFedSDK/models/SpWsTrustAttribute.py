@@ -6,7 +6,7 @@ class SpWsTrustAttribute():
     name : string
         The name of this attribute.
     namespace : string
-        The attribute namespace.  This required when the Default Token Type is SAML1.1 or SAML1.1 for Office 365.
+        The attribute namespace.  This is required when the Default Token Type is SAML2.0 or SAML1.1 or SAML1.1 for Office 365.
 
     """
 
@@ -29,7 +29,7 @@ class SpWsTrustAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.name, self.namespace))
+        return hash(frozenset([self.name, self.namespace]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

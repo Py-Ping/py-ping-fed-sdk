@@ -7,6 +7,8 @@ class SessionValidationSettings():
         Check the session revocation status when validating the access token.
     checkValidAuthnSession : boolean
         Check for a valid authentication session when validating the access token.
+    includeSessionId : boolean
+        Include the session identifier in the access token. Note that if any of the session validation features is enabled, the session identifier will already be included in the access tokens.
     inherited : boolean
         If this token manager has a parent, this flag determines whether session validation settings, such as checkValidAuthnSession, are inherited from the parent. When set to true, the other fields in this model become read-only. The default value is false.
     updateAuthnSessionActivity : boolean
@@ -14,9 +16,10 @@ class SessionValidationSettings():
 
     """
 
-    def __init__(self, checkSessionRevocationStatus:bool=None, checkValidAuthnSession:bool=None, inherited:bool=None, updateAuthnSessionActivity:bool=None) -> None:
+    def __init__(self, checkSessionRevocationStatus:bool=None, checkValidAuthnSession:bool=None, includeSessionId:bool=None, inherited:bool=None, updateAuthnSessionActivity:bool=None) -> None:
         self.checkSessionRevocationStatus = checkSessionRevocationStatus
         self.checkValidAuthnSession = checkValidAuthnSession
+        self.includeSessionId = includeSessionId
         self.inherited = inherited
         self.updateAuthnSessionActivity = updateAuthnSessionActivity
 
@@ -35,11 +38,11 @@ class SessionValidationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.checkSessionRevocationStatus, self.checkValidAuthnSession, self.inherited, self.updateAuthnSessionActivity))
+        return hash(frozenset([self.checkSessionRevocationStatus, self.checkValidAuthnSession, self.includeSessionId, self.inherited, self.updateAuthnSessionActivity]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["checkSessionRevocationStatus", "checkValidAuthnSession", "inherited", "updateAuthnSessionActivity"]}
+        valid_data = {k: v for k, v in python_dict.items() if k in ["checkSessionRevocationStatus", "checkValidAuthnSession", "includeSessionId", "inherited", "updateAuthnSessionActivity"]}
 
         return cls(**valid_data)
 

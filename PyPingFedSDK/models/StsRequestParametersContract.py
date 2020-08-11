@@ -32,7 +32,7 @@ class StsRequestParametersContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.var_id, self.name, self.parameters))
+        return hash(frozenset([self.var_id, self.name, self.parameters]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

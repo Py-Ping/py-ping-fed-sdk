@@ -26,7 +26,7 @@ class Version():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.version))
+        return hash(frozenset([self.version]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

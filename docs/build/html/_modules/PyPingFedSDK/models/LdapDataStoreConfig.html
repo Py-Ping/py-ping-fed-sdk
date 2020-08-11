@@ -65,10 +65,17 @@
     
     
       <ul>
+<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
+=======
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 </ul>
 
     
@@ -111,6 +118,7 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    baseDn : string</span>
+<<<<<<< HEAD
 <span class="sd">        The base DN to search from. If not specified, the search will start at the LDAP&#39;s root.</span>
 <span class="sd">    createPattern : string</span>
 <span class="sd">        The Relative DN Pattern that will be used to create objects in the directory.</span>
@@ -143,16 +151,55 @@
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+=======
+<span class="sd">        The base DN to search from. If not specified, the search will start at the LDAP&#39;s root.    createPattern : string</span>
+<span class="sd">        The Relative DN Pattern that will be used to create objects in the directory.    dataStoreMapping : str</span>
+<span class="sd">        The data store mapping.    dataStoreRef : str</span>
+<span class="sd">        Reference to the associated data store.    objectClass : string</span>
+<span class="sd">        The Object Class used by the new objects stored in the LDAP data store.    type : str</span>
+<span class="sd">        The data store config type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;baseDn&quot;</span><span class="p">,</span> <span class="s2">&quot;createPattern&quot;</span><span class="p">,</span> <span class="s2">&quot;dataStoreMapping&quot;</span><span class="p">,</span> <span class="s2">&quot;dataStoreRef&quot;</span><span class="p">,</span> <span class="s2">&quot;objectClass&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">dataStoreRef</span><span class="p">,</span> <span class="n">baseDn</span><span class="p">,</span> <span class="n">createPattern</span><span class="p">,</span> <span class="n">objectClass</span><span class="p">,</span> <span class="n">dataStoreMapping</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseDn</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">baseDn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">createPattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">createPattern</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataStoreMapping</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dataStoreMapping</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataStoreRef</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dataStoreRef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objectClass</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">objectClass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">type</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;dataStoreRef&#39;</span><span class="p">,</span> <span class="s1">&#39;baseDn&#39;</span><span class="p">,</span> <span class="s1">&#39;createPattern&#39;</span><span class="p">,</span> <span class="s1">&#39;objectClass&#39;</span><span class="p">,</span> <span class="s1">&#39;dataStoreMapping&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">LdapDataStoreConfig</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
+<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">baseDn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">createPattern</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataStoreMapping</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataStoreRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">objectClass</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_type</span><span class="p">))</span>
 
 <div class="viewcode-block" id="LdapDataStoreConfig.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.LdapDataStoreConfig.LdapDataStoreConfig.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;baseDn&quot;</span><span class="p">,</span> <span class="s2">&quot;createPattern&quot;</span><span class="p">,</span> <span class="s2">&quot;dataStoreMapping&quot;</span><span class="p">,</span> <span class="s2">&quot;dataStoreRef&quot;</span><span class="p">,</span> <span class="s2">&quot;objectClass&quot;</span><span class="p">,</span> <span class="s2">&quot;var_type&quot;</span><span class="p">]}</span>
+=======
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">baseDn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">createPattern</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataStoreMapping</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataStoreRef</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">objectClass</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">))</span>
+
+<div class="viewcode-block" id="LdapDataStoreConfig.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.LdapDataStoreConfig.LdapDataStoreConfig.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+        <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;baseDn&quot;</span><span class="p">,</span> <span class="s2">&quot;createPattern&quot;</span><span class="p">,</span> <span class="s2">&quot;dataStoreMapping&quot;</span><span class="p">,</span> <span class="s2">&quot;dataStoreRef&quot;</span><span class="p">,</span> <span class="s2">&quot;objectClass&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">]}</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>
 

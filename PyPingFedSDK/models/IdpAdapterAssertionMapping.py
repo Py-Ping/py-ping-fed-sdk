@@ -47,7 +47,7 @@ class IdpAdapterAssertionMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.abortSsoTransactionAsFailSafe, self.adapterOverrideSettings, self.attributeContractFulfillment, self.attributeSources, self.idpAdapterRef, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds))
+        return hash(frozenset([self.abortSsoTransactionAsFailSafe, self.adapterOverrideSettings, self.attributeContractFulfillment, self.attributeSources, self.idpAdapterRef, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

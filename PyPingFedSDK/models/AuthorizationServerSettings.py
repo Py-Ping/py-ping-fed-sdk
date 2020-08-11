@@ -36,11 +36,11 @@ class AuthorizationServerSettings():
     persistentGrantContract : str
         The persistent grant contract defines attributes that are associated with OAuth persistent grants.
     persistentGrantIdleTimeout : integer
-        The persistent grant idle timeout.
+        The persistent grant idle timeout. The default value is 30 (days). -1 indicates an indefinite amount of time.
     persistentGrantIdleTimeoutTimeUnit : str
         The persistent grant idle timeout time unit.
     persistentGrantLifetime : integer
-        The persistent grant lifetime. The default value is indefinite.
+        The persistent grant lifetime. The default value is indefinite. -1 indicates an indefinite amount of time.
     persistentGrantLifetimeUnit : str
         The persistent grant lifetime unit.
     persistentGrantReuseGrantTypes : array
@@ -122,7 +122,7 @@ class AuthorizationServerSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.adminWebServicePcvRef, self.allowUnidentifiedClientExtensionGrants, self.allowUnidentifiedClientROCreds, self.allowedOrigins, self.approvedScopesAttribute, self.atmIdForOAuthGrantManagement, self.authorizationCodeEntropy, self.authorizationCodeTimeout, self.bypassActivationCodeConfirmation, self.bypassAuthorizationForApprovedGrants, self.defaultScopeDescription, self.devicePollingInterval, self.exclusiveScopeGroups, self.exclusiveScopes, self.pendingAuthorizationTimeout, self.persistentGrantContract, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantLifetime, self.persistentGrantLifetimeUnit, self.persistentGrantReuseGrantTypes, self.refreshRollingInterval, self.refreshTokenLength, self.registeredAuthorizationPath, self.rollRefreshTokenValues, self.scopeForOAuthGrantManagement, self.scopeGroups, self.scopes, self.tokenEndpointBaseUrl, self.trackUserSessionsForLogout, self.userAuthorizationConsentAdapter, self.userAuthorizationConsentPageSetting, self.userAuthorizationUrl))
+        return hash(frozenset([self.adminWebServicePcvRef, self.allowUnidentifiedClientExtensionGrants, self.allowUnidentifiedClientROCreds, self.allowedOrigins, self.approvedScopesAttribute, self.atmIdForOAuthGrantManagement, self.authorizationCodeEntropy, self.authorizationCodeTimeout, self.bypassActivationCodeConfirmation, self.bypassAuthorizationForApprovedGrants, self.defaultScopeDescription, self.devicePollingInterval, self.exclusiveScopeGroups, self.exclusiveScopes, self.pendingAuthorizationTimeout, self.persistentGrantContract, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantLifetime, self.persistentGrantLifetimeUnit, self.persistentGrantReuseGrantTypes, self.refreshRollingInterval, self.refreshTokenLength, self.registeredAuthorizationPath, self.rollRefreshTokenValues, self.scopeForOAuthGrantManagement, self.scopeGroups, self.scopes, self.tokenEndpointBaseUrl, self.trackUserSessionsForLogout, self.userAuthorizationConsentAdapter, self.userAuthorizationConsentPageSetting, self.userAuthorizationUrl]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

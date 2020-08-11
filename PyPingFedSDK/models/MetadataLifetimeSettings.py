@@ -29,7 +29,7 @@ class MetadataLifetimeSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.cacheDuration, self.reloadDelay))
+        return hash(frozenset([self.cacheDuration, self.reloadDelay]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

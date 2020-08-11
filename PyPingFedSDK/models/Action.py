@@ -38,7 +38,7 @@ class Action():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.description, self.download, self.var_id, self.invocationRef, self.name))
+        return hash(frozenset([self.description, self.download, self.var_id, self.invocationRef, self.name]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

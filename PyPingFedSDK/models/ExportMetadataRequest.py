@@ -41,7 +41,7 @@ class ExportMetadataRequest():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.connectionId, self.connectionType, self.signingSettings, self.useSecondaryPortForSoap, self.virtualHostName, self.virtualServerId))
+        return hash(frozenset([self.connectionId, self.connectionType, self.signingSettings, self.useSecondaryPortForSoap, self.virtualHostName, self.virtualServerId]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -47,7 +47,7 @@ class AuthenticationSessionPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.authenticationSource, self.authnContextSensitive, self.enableSessions, self.var_id, self.idleTimeoutMins, self.maxTimeoutMins, self.persistent, self.timeoutDisplayUnit))
+        return hash(frozenset([self.authenticationSource, self.authnContextSensitive, self.enableSessions, self.var_id, self.idleTimeoutMins, self.maxTimeoutMins, self.persistent, self.timeoutDisplayUnit]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

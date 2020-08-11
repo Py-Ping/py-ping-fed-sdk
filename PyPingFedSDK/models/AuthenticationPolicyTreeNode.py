@@ -29,7 +29,7 @@ class AuthenticationPolicyTreeNode():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.action, self.children))
+        return hash(frozenset([self.action, self.children]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

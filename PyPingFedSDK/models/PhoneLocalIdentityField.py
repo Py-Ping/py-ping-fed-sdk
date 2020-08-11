@@ -41,7 +41,7 @@ class PhoneLocalIdentityField():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributes, self.var_id, self.label, self.profilePageField, self.registrationPageField, self.var_type))
+        return hash(frozenset([self.attributes, self.var_id, self.label, self.profilePageField, self.registrationPageField, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

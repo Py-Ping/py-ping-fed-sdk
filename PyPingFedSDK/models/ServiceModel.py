@@ -32,7 +32,7 @@ class ServiceModel():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptedSharedSecret, self.var_id, self.sharedSecret))
+        return hash(frozenset([self.encryptedSharedSecret, self.var_id, self.sharedSecret]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

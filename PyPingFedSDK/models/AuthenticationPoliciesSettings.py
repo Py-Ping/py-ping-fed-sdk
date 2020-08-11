@@ -29,7 +29,7 @@ class AuthenticationPoliciesSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enableIdpAuthnSelection, self.enableSpAuthnSelection))
+        return hash(frozenset([self.enableIdpAuthnSelection, self.enableSpAuthnSelection]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

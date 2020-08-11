@@ -32,7 +32,7 @@ class SpAdapterTargetApplicationInfo():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.applicationIconUrl, self.applicationName, self.inherited))
+        return hash(frozenset([self.applicationIconUrl, self.applicationName, self.inherited]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

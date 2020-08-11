@@ -29,7 +29,7 @@ class RedirectValidationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.redirectValidationLocalSettings, self.redirectValidationPartnerSettings))
+        return hash(frozenset([self.redirectValidationLocalSettings, self.redirectValidationPartnerSettings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -44,7 +44,7 @@ class CustomDataStore():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.configuration, self.var_id, self.maskAttributeValues, self.name, self.parentRef, self.pluginDescriptorRef, self.var_type))
+        return hash(frozenset([self.configuration, self.var_id, self.maskAttributeValues, self.name, self.parentRef, self.pluginDescriptorRef, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

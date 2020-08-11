@@ -38,7 +38,7 @@ class KeyAlgorithm():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultKeySize, self.defaultSignatureAlgorithm, self.keySizes, self.name, self.signatureAlgorithms))
+        return hash(frozenset([self.defaultKeySize, self.defaultSignatureAlgorithm, self.keySizes, self.name, self.signatureAlgorithms]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

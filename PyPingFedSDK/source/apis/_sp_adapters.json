@@ -454,7 +454,7 @@
             "path": "/sp/adapters/urlMappings"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "Action": {
             "description": "A read-only plugin action that either represents a file download or an arbitrary invocation performed by the plugin.",

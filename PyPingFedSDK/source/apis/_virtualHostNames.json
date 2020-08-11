@@ -48,7 +48,7 @@
             "path": "/virtualHostNames"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "VirtualHostNameSettings": {
             "description": "Settings for virtual host names.",

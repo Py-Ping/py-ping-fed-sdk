@@ -35,7 +35,7 @@ class SaasPluginDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.configDescriptor, self.description, self.var_id, self.saasPluginFieldInfoDescriptors))
+        return hash(frozenset([self.configDescriptor, self.description, self.var_id, self.saasPluginFieldInfoDescriptors]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

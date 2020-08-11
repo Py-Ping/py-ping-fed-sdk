@@ -41,7 +41,7 @@ class MetadataUrl():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.certView, self.var_id, self.name, self.url, self.validateSignature, self.x509File))
+        return hash(frozenset([self.certView, self.var_id, self.name, self.url, self.validateSignature, self.x509File]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

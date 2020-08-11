@@ -67,59 +67,6 @@ class _session():
         finally:
             return response.json()
 
-    def getGlobalPolicy(self):
-        """ Get the global authentication session policy.
-        """
-
-        try:
-            response = requests.get(
-
-                url=self._build_uri("/session/authenticationSessionPolicies/global"),
-                headers={'Accept': 'application/json'}
-            )
-        except HTTPError as http_err:
-            self.logger.error(f'HTTP error occurred: {http_err}')
-        except Exception as err:
-            self.logger.error(f'Error occurred: {err}')
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-            if response.status_code == 403:
-                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
-        finally:
-            return response.json()
-
-    def updateGlobalPolicy(self, body):
-        """ Update the global authentication session policy.
-        """
-
-        payload = {
-            "body": body
-
-        }
-
-        try:
-            response = requests.put(
-                data=payload,
-                url=self._build_uri("/session/authenticationSessionPolicies/global"),
-                headers={'Accept': 'application/json'}
-            )
-        except HTTPError as http_err:
-            self.logger.error(f'HTTP error occurred: {http_err}')
-        except Exception as err:
-            self.logger.error(f'Error occurred: {err}')
-        else:
-            if response.status_code == 200:
-                self.logger.info("Global authentication session policy updated.")
-            if response.status_code == 400:
-                self.logger.info("The request was improperly formatted or contained invalid fields.")
-            if response.status_code == 403:
-                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
-            if response.status_code == 422:
-                self.logger.info("Validation error(s) occurred.")
-        finally:
-            return response.json()
-
     def getApplicationPolicy(self):
         """ Get the application session policy.
         """
@@ -164,6 +111,59 @@ class _session():
         else:
             if response.status_code == 200:
                 self.logger.info("Application session policy updated.")
+            if response.status_code == 400:
+                self.logger.info("The request was improperly formatted or contained invalid fields.")
+            if response.status_code == 403:
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
+            if response.status_code == 422:
+                self.logger.info("Validation error(s) occurred.")
+        finally:
+            return response.json()
+
+    def getGlobalPolicy(self):
+        """ Get the global authentication session policy.
+        """
+
+        try:
+            response = requests.get(
+
+                url=self._build_uri("/session/authenticationSessionPolicies/global"),
+                headers={'Accept': 'application/json'}
+            )
+        except HTTPError as http_err:
+            self.logger.error(f'HTTP error occurred: {http_err}')
+        except Exception as err:
+            self.logger.error(f'Error occurred: {err}')
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+            if response.status_code == 403:
+                self.logger.info("PingFederate does not have the appropriate IdP/SP role enabled. Operation not available.")
+        finally:
+            return response.json()
+
+    def updateGlobalPolicy(self, body):
+        """ Update the global authentication session policy.
+        """
+
+        payload = {
+            "body": body
+
+        }
+
+        try:
+            response = requests.put(
+                data=payload,
+                url=self._build_uri("/session/authenticationSessionPolicies/global"),
+                headers={'Accept': 'application/json'}
+            )
+        except HTTPError as http_err:
+            self.logger.error(f'HTTP error occurred: {http_err}')
+        except Exception as err:
+            self.logger.error(f'Error occurred: {err}')
+        else:
+            if response.status_code == 200:
+                self.logger.info("Global authentication session policy updated.")
             if response.status_code == 400:
                 self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:

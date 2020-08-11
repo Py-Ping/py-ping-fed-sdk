@@ -44,7 +44,7 @@ class TokenExchangeProcessorMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.actorTokenProcessor, self.actorTokenType, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria, self.subjectTokenProcessor, self.subjectTokenType))
+        return hash(frozenset([self.actorTokenProcessor, self.actorTokenType, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria, self.subjectTokenProcessor, self.subjectTokenType]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

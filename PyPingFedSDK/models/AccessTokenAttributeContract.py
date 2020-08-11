@@ -35,7 +35,7 @@ class AccessTokenAttributeContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.coreAttributes, self.defaultSubjectAttribute, self.extendedAttributes, self.inherited))
+        return hash(frozenset([self.coreAttributes, self.defaultSubjectAttribute, self.extendedAttributes, self.inherited]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

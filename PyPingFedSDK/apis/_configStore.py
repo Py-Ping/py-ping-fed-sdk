@@ -39,7 +39,7 @@ class _configStore():
             return response.json()
 
     def updateSetting(self, bundle, var_id, body):
-        """ Update a setting.
+        """ Create or update a setting/bundle.
         """
 
         payload = {
@@ -61,7 +61,7 @@ class _configStore():
             self.logger.error(f'Error occurred: {err}')
         else:
             if response.status_code == 200:
-                self.logger.info("Configuration setting updated.")
+                self.logger.info("Configuration setting created/updated.")
             if response.status_code == 400:
                 self.logger.info("The request was improperly formatted or contained invalid fields.")
             if response.status_code == 403:

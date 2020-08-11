@@ -41,7 +41,7 @@ class IdpAttributeQueryPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptNameId, self.maskAttributeValues, self.requireEncryptedAssertion, self.requireSignedAssertion, self.requireSignedResponse, self.signAttributeQuery))
+        return hash(frozenset([self.encryptNameId, self.maskAttributeValues, self.requireEncryptedAssertion, self.requireSignedAssertion, self.requireSignedResponse, self.signAttributeQuery]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

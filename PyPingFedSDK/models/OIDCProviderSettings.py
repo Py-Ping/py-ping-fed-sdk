@@ -53,7 +53,7 @@ class OIDCProviderSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.authenticationScheme, self.authenticationSigningAlgorithm, self.authorizationEndpoint, self.jwksURL, self.loginType, self.requestParameters, self.requestSigningAlgorithm, self.scopes, self.tokenEndpoint, self.userInfoEndpoint))
+        return hash(frozenset([self.authenticationScheme, self.authenticationSigningAlgorithm, self.authorizationEndpoint, self.jwksURL, self.loginType, self.requestParameters, self.requestSigningAlgorithm, self.scopes, self.tokenEndpoint, self.userInfoEndpoint]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

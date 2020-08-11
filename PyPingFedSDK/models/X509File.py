@@ -32,7 +32,7 @@ class X509File():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.cryptoProvider, self.fileData, self.var_id))
+        return hash(frozenset([self.cryptoProvider, self.fileData, self.var_id]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

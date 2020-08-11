@@ -5,6 +5,8 @@ class ClientOIDCPolicy():
     ----------
     grantAccessSessionRevocationApi : boolean
         Determines whether this client is allowed to access the Session Revocation API.
+    grantAccessSessionSessionManagementApi : boolean
+        Determines whether this client is allowed to access the Session Management API.
     idTokenContentEncryptionAlgorithm : str
         The JSON Web Encryption [JWE] content encryption algorithm for the ID Token.<br>AES_128_CBC_HMAC_SHA_256 - Composite AES-CBC-128 HMAC-SHA-256<br>AES_192_CBC_HMAC_SHA_384 - Composite AES-CBC-192 HMAC-SHA-384<br>AES_256_CBC_HMAC_SHA_512 - Composite AES-CBC-256 HMAC-SHA-512<br>AES-GCM-128 - AES_128_GCM<br>AES_192_GCM - AES-GCM-192<br>AES_256_GCM - AES-GCM-256
     idTokenEncryptionAlgorithm : str
@@ -24,8 +26,9 @@ class ClientOIDCPolicy():
 
     """
 
-    def __init__(self, grantAccessSessionRevocationApi:bool=None, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, logoutUris:list=None, pairwiseIdentifierUserType:bool=None, pingAccessLogoutCapable:bool=None, policyGroup=None, sectorIdentifierUri:str=None) -> None:
+    def __init__(self, grantAccessSessionRevocationApi:bool=None, grantAccessSessionSessionManagementApi:bool=None, idTokenContentEncryptionAlgorithm=None, idTokenEncryptionAlgorithm=None, idTokenSigningAlgorithm=None, logoutUris:list=None, pairwiseIdentifierUserType:bool=None, pingAccessLogoutCapable:bool=None, policyGroup=None, sectorIdentifierUri:str=None) -> None:
         self.grantAccessSessionRevocationApi = grantAccessSessionRevocationApi
+        self.grantAccessSessionSessionManagementApi = grantAccessSessionSessionManagementApi
         self.idTokenContentEncryptionAlgorithm = idTokenContentEncryptionAlgorithm
         self.idTokenEncryptionAlgorithm = idTokenEncryptionAlgorithm
         self.idTokenSigningAlgorithm = idTokenSigningAlgorithm
@@ -50,11 +53,11 @@ class ClientOIDCPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.grantAccessSessionRevocationApi, self.idTokenContentEncryptionAlgorithm, self.idTokenEncryptionAlgorithm, self.idTokenSigningAlgorithm, self.logoutUris, self.pairwiseIdentifierUserType, self.pingAccessLogoutCapable, self.policyGroup, self.sectorIdentifierUri))
+        return hash(frozenset([self.grantAccessSessionRevocationApi, self.grantAccessSessionSessionManagementApi, self.idTokenContentEncryptionAlgorithm, self.idTokenEncryptionAlgorithm, self.idTokenSigningAlgorithm, self.logoutUris, self.pairwiseIdentifierUserType, self.pingAccessLogoutCapable, self.policyGroup, self.sectorIdentifierUri]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["grantAccessSessionRevocationApi", "idTokenContentEncryptionAlgorithm", "idTokenEncryptionAlgorithm", "idTokenSigningAlgorithm", "logoutUris", "pairwiseIdentifierUserType", "pingAccessLogoutCapable", "policyGroup", "sectorIdentifierUri"]}
+        valid_data = {k: v for k, v in python_dict.items() if k in ["grantAccessSessionRevocationApi", "grantAccessSessionSessionManagementApi", "idTokenContentEncryptionAlgorithm", "idTokenEncryptionAlgorithm", "idTokenSigningAlgorithm", "logoutUris", "pairwiseIdentifierUserType", "pingAccessLogoutCapable", "policyGroup", "sectorIdentifierUri"]}
 
         return cls(**valid_data)
 

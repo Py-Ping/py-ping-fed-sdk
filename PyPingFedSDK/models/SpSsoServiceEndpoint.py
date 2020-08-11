@@ -35,7 +35,7 @@ class SpSsoServiceEndpoint():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.binding, self.index, self.isDefault, self.url))
+        return hash(frozenset([self.binding, self.index, self.isDefault, self.url]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -35,7 +35,7 @@ class EncryptionPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptAssertion, self.encryptSloSubjectNameId, self.encryptedAttributes, self.sloSubjectNameIDEncrypted))
+        return hash(frozenset([self.encryptAssertion, self.encryptSloSubjectNameId, self.encryptedAttributes, self.sloSubjectNameIDEncrypted]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

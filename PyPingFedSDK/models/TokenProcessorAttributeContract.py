@@ -35,7 +35,7 @@ class TokenProcessorAttributeContract():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.coreAttributes, self.extendedAttributes, self.inherited, self.maskOgnlValues))
+        return hash(frozenset([self.coreAttributes, self.extendedAttributes, self.inherited, self.maskOgnlValues]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

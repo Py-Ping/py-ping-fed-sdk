@@ -38,7 +38,7 @@ class ConfigStoreSetting():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.var_id, self.listValue, self.mapValue, self.stringValue, self.var_type))
+        return hash(frozenset([self.var_id, self.listValue, self.mapValue, self.stringValue, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

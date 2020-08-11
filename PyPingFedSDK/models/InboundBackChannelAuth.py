@@ -43,7 +43,7 @@ class InboundBackChannelAuth():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.certs, self.digitalSignature, self.httpBasicCredentials, self.requireSsl, self.var_type, self.verificationIssuerDN, self.verificationSubjectDN))
+        return hash(frozenset([self.certs, self.digitalSignature, self.httpBasicCredentials, self.requireSsl, self.var_type, self.verificationIssuerDN, self.verificationSubjectDN]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

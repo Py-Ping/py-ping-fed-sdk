@@ -1,5 +1,5 @@
 class SpRole():
-    """Service Provider (SP) role settings.
+    """This property has been deprecated and is no longer used. All Roles and protocols are always enabled.
 
     Attributes
     ----------
@@ -47,7 +47,7 @@ class SpRole():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enable, self.enableInboundProvisioning, self.enableOpenIDConnect, self.enableSaml10, self.enableSaml11, self.enableWsFed, self.enableWsTrust, self.saml20Profile))
+        return hash(frozenset([self.enable, self.enableInboundProvisioning, self.enableOpenIDConnect, self.enableSaml10, self.enableSaml11, self.enableWsFed, self.enableWsTrust, self.saml20Profile]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

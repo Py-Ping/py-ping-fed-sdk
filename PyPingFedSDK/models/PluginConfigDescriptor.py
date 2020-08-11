@@ -35,7 +35,7 @@ class PluginConfigDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.actionDescriptors, self.description, self.fields, self.tables))
+        return hash(frozenset([self.actionDescriptors, self.description, self.fields, self.tables]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -38,7 +38,7 @@ class NotificationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.accountChangesNotificationPublisherRef, self.certificateExpirations, self.licenseEvents, self.metadataNotificationSettings, self.notifyAdminUserPasswordChanges))
+        return hash(frozenset([self.accountChangesNotificationPublisherRef, self.certificateExpirations, self.licenseEvents, self.metadataNotificationSettings, self.notifyAdminUserPasswordChanges]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

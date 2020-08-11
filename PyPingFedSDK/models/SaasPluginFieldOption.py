@@ -29,7 +29,7 @@ class SaasPluginFieldOption():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.code, self.label))
+        return hash(frozenset([self.code, self.label]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

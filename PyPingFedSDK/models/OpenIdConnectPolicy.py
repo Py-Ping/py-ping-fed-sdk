@@ -56,7 +56,7 @@ class OpenIdConnectPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.accessTokenManagerRef, self.attributeContract, self.attributeMapping, self.var_id, self.idTokenLifetime, self.includeSHashInIdToken, self.includeSriInIdToken, self.includeUserInfoInIdToken, self.name, self.returnIdTokenOnRefreshGrant, self.scopeAttributeMappings))
+        return hash(frozenset([self.accessTokenManagerRef, self.attributeContract, self.attributeMapping, self.var_id, self.idTokenLifetime, self.includeSHashInIdToken, self.includeSriInIdToken, self.includeUserInfoInIdToken, self.name, self.returnIdTokenOnRefreshGrant, self.scopeAttributeMappings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

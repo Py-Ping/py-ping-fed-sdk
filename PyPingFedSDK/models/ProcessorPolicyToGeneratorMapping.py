@@ -44,7 +44,7 @@ class ProcessorPolicyToGeneratorMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.var_id, self.issuanceCriteria, self.licenseConnectionGroupAssignment, self.sourceId, self.targetId))
+        return hash(frozenset([self.attributeContractFulfillment, self.attributeSources, self.var_id, self.issuanceCriteria, self.licenseConnectionGroupAssignment, self.sourceId, self.targetId]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

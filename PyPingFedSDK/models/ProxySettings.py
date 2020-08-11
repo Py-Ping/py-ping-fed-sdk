@@ -29,7 +29,7 @@ class ProxySettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.host, self.port))
+        return hash(frozenset([self.host, self.port]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

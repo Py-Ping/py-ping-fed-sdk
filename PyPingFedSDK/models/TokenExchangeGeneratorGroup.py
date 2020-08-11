@@ -35,7 +35,7 @@ class TokenExchangeGeneratorGroup():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.generatorMappings, self.var_id, self.name, self.resourceUris))
+        return hash(frozenset([self.generatorMappings, self.var_id, self.name, self.resourceUris]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -44,7 +44,7 @@ class ClientAuth():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.clientCertIssuerDn, self.clientCertSubjectDn, self.encryptedSecret, self.enforceReplayPrevention, self.secret, self.tokenEndpointAuthSigningAlgorithm, self.var_type))
+        return hash(frozenset([self.clientCertIssuerDn, self.clientCertSubjectDn, self.encryptedSecret, self.enforceReplayPrevention, self.secret, self.tokenEndpointAuthSigningAlgorithm, self.var_type]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

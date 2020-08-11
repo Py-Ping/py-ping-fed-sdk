@@ -32,7 +32,7 @@ class AlternativeLoginHintTokenIssuer():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.issuer, self.jwks, self.jwksURL))
+        return hash(frozenset([self.issuer, self.jwks, self.jwksURL]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

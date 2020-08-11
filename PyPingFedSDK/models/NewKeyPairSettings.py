@@ -62,7 +62,7 @@ class NewKeyPairSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.city, self.commonName, self.country, self.cryptoProvider, self.var_id, self.keyAlgorithm, self.keySize, self.organization, self.organizationUnit, self.signatureAlgorithm, self.state, self.subjectAlternativeNames, self.validDays))
+        return hash(frozenset([self.city, self.commonName, self.country, self.cryptoProvider, self.var_id, self.keyAlgorithm, self.keySize, self.organization, self.organizationUnit, self.signatureAlgorithm, self.state, self.subjectAlternativeNames, self.validDays]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

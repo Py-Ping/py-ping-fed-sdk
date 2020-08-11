@@ -38,7 +38,7 @@ class ClusterStatus():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.lastConfigUpdateTime, self.lastReplicationTime, self.mixedMode, self.nodes, self.replicationRequired))
+        return hash(frozenset([self.lastConfigUpdateTime, self.lastReplicationTime, self.mixedMode, self.nodes, self.replicationRequired]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

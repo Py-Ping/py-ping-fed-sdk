@@ -41,7 +41,7 @@ class FederationInfo():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.autoConnectEntityId, self.baseUrl, self.saml1xIssuerId, self.saml1xSourceId, self.saml2EntityId, self.wsfedRealm))
+        return hash(frozenset([self.autoConnectEntityId, self.baseUrl, self.saml1xIssuerId, self.saml1xSourceId, self.saml2EntityId, self.wsfedRealm]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

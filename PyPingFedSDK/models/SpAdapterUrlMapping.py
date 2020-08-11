@@ -29,7 +29,7 @@ class SpAdapterUrlMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.adapterRef, self.url))
+        return hash(frozenset([self.adapterRef, self.url]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

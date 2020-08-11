@@ -35,7 +35,7 @@ class CrlSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.nextRetryMinsWhenNextUpdateInPast, self.nextRetryMinsWhenResolveFailed, self.treatNonRetrievableCrlAsRevoked, self.verifyCrlSignature))
+        return hash(frozenset([self.nextRetryMinsWhenNextUpdateInPast, self.nextRetryMinsWhenResolveFailed, self.treatNonRetrievableCrlAsRevoked, self.verifyCrlSignature]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

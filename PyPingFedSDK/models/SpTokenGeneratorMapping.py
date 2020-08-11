@@ -41,7 +41,7 @@ class SpTokenGeneratorMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeContractFulfillment, self.attributeSources, self.defaultMapping, self.issuanceCriteria, self.restrictedVirtualEntityIds, self.spTokenGeneratorRef))
+        return hash(frozenset([self.attributeContractFulfillment, self.attributeSources, self.defaultMapping, self.issuanceCriteria, self.restrictedVirtualEntityIds, self.spTokenGeneratorRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -26,7 +26,7 @@ class FieldConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.fields))
+        return hash(frozenset([self.fields]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -47,7 +47,7 @@ class SaasFieldConfiguration():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeNames, self.characterCase, self.createOnly, self.defaultValue, self.expression, self.masked, self.parser, self.trim))
+        return hash(frozenset([self.attributeNames, self.characterCase, self.createOnly, self.defaultValue, self.expression, self.masked, self.parser, self.trim]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

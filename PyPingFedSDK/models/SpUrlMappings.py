@@ -26,7 +26,7 @@ class SpUrlMappings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.items))
+        return hash(frozenset([self.items]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

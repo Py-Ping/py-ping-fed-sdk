@@ -53,7 +53,7 @@ class IdpToSpAdapterMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.applicationIconUrl, self.applicationName, self.attributeContractFulfillment, self.attributeSources, self.defaultTargetResource, self.var_id, self.issuanceCriteria, self.licenseConnectionGroupAssignment, self.sourceId, self.targetId))
+        return hash(frozenset([self.applicationIconUrl, self.applicationName, self.attributeContractFulfillment, self.attributeSources, self.defaultTargetResource, self.var_id, self.issuanceCriteria, self.licenseConnectionGroupAssignment, self.sourceId, self.targetId]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

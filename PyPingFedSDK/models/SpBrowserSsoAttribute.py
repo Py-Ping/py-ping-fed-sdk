@@ -29,7 +29,7 @@ class SpBrowserSsoAttribute():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.name, self.nameFormat))
+        return hash(frozenset([self.name, self.nameFormat]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

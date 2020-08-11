@@ -32,7 +32,7 @@ class AuthnApiSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.apiEnabled, self.defaultApplicationRef, self.enableApiDescriptions))
+        return hash(frozenset([self.apiEnabled, self.defaultApplicationRef, self.enableApiDescriptions]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

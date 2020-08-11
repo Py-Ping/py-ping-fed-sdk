@@ -53,7 +53,7 @@ class OcspSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.actionOnResponderUnavailable, self.actionOnStatusUnknown, self.actionOnUnsuccessfulResponse, self.currentUpdateGracePeriod, self.nextUpdateGracePeriod, self.requesterAddNonce, self.responderCertReference, self.responderTimeout, self.responderUrl, self.responseCachePeriod))
+        return hash(frozenset([self.actionOnResponderUnavailable, self.actionOnStatusUnknown, self.actionOnUnsuccessfulResponse, self.currentUpdateGracePeriod, self.nextUpdateGracePeriod, self.requesterAddNonce, self.responderCertReference, self.responderTimeout, self.responderUrl, self.responseCachePeriod]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

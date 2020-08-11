@@ -38,7 +38,7 @@ class RedirectValidationLocalSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enableInErrorResourceValidation, self.enableTargetResourceValidationForIdpDiscovery, self.enableTargetResourceValidationForSLO, self.enableTargetResourceValidationForSSO, self.whiteList))
+        return hash(frozenset([self.enableInErrorResourceValidation, self.enableTargetResourceValidationForIdpDiscovery, self.enableTargetResourceValidationForSLO, self.enableTargetResourceValidationForSSO, self.whiteList]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -29,7 +29,7 @@ class ClientSecret():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.encryptedSecret, self.secret))
+        return hash(frozenset([self.encryptedSecret, self.secret]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

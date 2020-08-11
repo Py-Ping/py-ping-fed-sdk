@@ -65,10 +65,17 @@
     
     
       <ul>
+<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
+=======
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 </ul>
 
     
@@ -111,6 +118,7 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    cryptoProvider : str</span>
+<<<<<<< HEAD
 <span class="sd">        Cryptographic Provider. This is only applicable if Hybrid HSM mode is true.</span>
 <span class="sd">    expires : string</span>
 <span class="sd">        The end date up until which the item is valid, in ISO 8601 format (UTC).</span>
@@ -170,16 +178,73 @@
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+=======
+<span class="sd">        Cryptographic Provider. This is only applicable if Hybrid HSM mode is true.    expires : string</span>
+<span class="sd">        The end date up until which the item is valid, in ISO 8601 format (UTC).    id : string</span>
+<span class="sd">        The persistent, unique ID for the certificate.    issuerDN : string</span>
+<span class="sd">        The issuer&#39;s distinguished name.    keyAlgorithm : string</span>
+<span class="sd">        The public key algorithm.    keySize : integer</span>
+<span class="sd">        The public key size.    serialNumber : string</span>
+<span class="sd">        The serial number assigned by the CA.    sha1Fingerprint : string</span>
+<span class="sd">        SHA-1 fingerprint in Hex encoding.    sha256Fingerprint : string</span>
+<span class="sd">        SHA-256 fingerprint in Hex encoding.    signatureAlgorithm : string</span>
+<span class="sd">        The signature algorithm.    status : str</span>
+<span class="sd">        Status of the item.    subjectAlternativeNames : array</span>
+<span class="sd">        The subject alternative names (SAN).    subjectDN : string</span>
+<span class="sd">        The subject&#39;s distinguished name.    validFrom : string</span>
+<span class="sd">        The start date from which the item is valid, in ISO 8601 format (UTC).    version : integer</span>
+<span class="sd">        The X.509 version to which the item conforms.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cryptoProvider&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;issuerDN&quot;</span><span class="p">,</span> <span class="s2">&quot;keyAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;keySize&quot;</span><span class="p">,</span> <span class="s2">&quot;serialNumber&quot;</span><span class="p">,</span> <span class="s2">&quot;sha1Fingerprint&quot;</span><span class="p">,</span> <span class="s2">&quot;sha256Fingerprint&quot;</span><span class="p">,</span> <span class="s2">&quot;signatureAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;subjectAlternativeNames&quot;</span><span class="p">,</span> <span class="s2">&quot;subjectDN&quot;</span><span class="p">,</span> <span class="s2">&quot;validFrom&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cryptoProvider</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expires</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">issuerDN</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keyAlgorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keySize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">serialNumber</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sha1Fingerprint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sha256Fingerprint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">signatureAlgorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subjectAlternativeNames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subjectDN</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validFrom</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cryptoProvider</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cryptoProvider</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expires</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">expires</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">issuerDN</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">issuerDN</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keyAlgorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">keyAlgorithm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keySize</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">keySize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialNumber</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">serialNumber</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sha1Fingerprint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">sha1Fingerprint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sha256Fingerprint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">sha256Fingerprint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">signatureAlgorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">signatureAlgorithm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">status</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subjectAlternativeNames</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">subjectAlternativeNames</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subjectDN</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">subjectDN</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validFrom</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">validFrom</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">version</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">CertView</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
+<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">cryptoProvider</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expires</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">issuerDN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyAlgorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">keySize</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sha1Fingerprint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sha256Fingerprint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">signatureAlgorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subjectAlternativeNames</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subjectDN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">validFrom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
 
 <div class="viewcode-block" id="CertView.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.CertView.CertView.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cryptoProvider&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="p">,</span> <span class="s2">&quot;var_id&quot;</span><span class="p">,</span> <span class="s2">&quot;issuerDN&quot;</span><span class="p">,</span> <span class="s2">&quot;keyAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;keySize&quot;</span><span class="p">,</span> <span class="s2">&quot;serialNumber&quot;</span><span class="p">,</span> <span class="s2">&quot;sha1Fingerprint&quot;</span><span class="p">,</span> <span class="s2">&quot;sha256Fingerprint&quot;</span><span class="p">,</span> <span class="s2">&quot;signatureAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;subjectAlternativeNames&quot;</span><span class="p">,</span> <span class="s2">&quot;subjectDN&quot;</span><span class="p">,</span> <span class="s2">&quot;validFrom&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">]}</span>
+=======
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">cryptoProvider</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expires</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">issuerDN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyAlgorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">keySize</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialNumber</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sha1Fingerprint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sha256Fingerprint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">signatureAlgorithm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subjectAlternativeNames</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subjectDN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">validFrom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
+
+<div class="viewcode-block" id="CertView.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.CertView.CertView.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+        <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;cryptoProvider&quot;</span><span class="p">,</span> <span class="s2">&quot;expires&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;issuerDN&quot;</span><span class="p">,</span> <span class="s2">&quot;keyAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;keySize&quot;</span><span class="p">,</span> <span class="s2">&quot;serialNumber&quot;</span><span class="p">,</span> <span class="s2">&quot;sha1Fingerprint&quot;</span><span class="p">,</span> <span class="s2">&quot;sha256Fingerprint&quot;</span><span class="p">,</span> <span class="s2">&quot;signatureAlgorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;subjectAlternativeNames&quot;</span><span class="p">,</span> <span class="s2">&quot;subjectDN&quot;</span><span class="p">,</span> <span class="s2">&quot;validFrom&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">]}</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>
 

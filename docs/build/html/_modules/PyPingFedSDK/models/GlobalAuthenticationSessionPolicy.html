@@ -65,10 +65,17 @@
     
     
       <ul>
+<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">PyPingFedSDK APIs</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">PyPingFedSDK models</a></li>
+=======
+<li class="toctree-l1"><a class="reference internal" href="../../../apis/apis.html">APIs</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/models.html">Models</a></li>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 </ul>
 
     
@@ -111,6 +118,7 @@
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    enableSessions : boolean</span>
+<<<<<<< HEAD
 <span class="sd">        Determines whether authentication sessions are enabled globally.</span>
 <span class="sd">    idleTimeoutDisplayUnit : str</span>
 <span class="sd">        The display unit for the idle timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.</span>
@@ -143,15 +151,53 @@
         <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+=======
+<span class="sd">        Determines whether authentication sessions are enabled globally.    idleTimeoutDisplayUnit : str</span>
+<span class="sd">        The display unit for the idle timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.    idleTimeoutMins : integer</span>
+<span class="sd">        The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.    maxTimeoutDisplayUnit : str</span>
+<span class="sd">        The display unit for the maximum timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.    maxTimeoutMins : integer</span>
+<span class="sd">        The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.    persistentSessions : boolean</span>
+<span class="sd">        Determines whether authentication sessions are persistent by default. Persistent sessions are linked to a persistent cookie and stored in a data store. This field is ignored if enableSessions is false.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;enableSessions&quot;</span><span class="p">,</span> <span class="s2">&quot;idleTimeoutDisplayUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;idleTimeoutMins&quot;</span><span class="p">,</span> <span class="s2">&quot;maxTimeoutDisplayUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;maxTimeoutMins&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentSessions&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enableSessions</span><span class="p">,</span> <span class="n">idleTimeoutDisplayUnit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">idleTimeoutMins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxTimeoutDisplayUnit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxTimeoutMins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">persistentSessions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enableSessions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">enableSessions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idleTimeoutDisplayUnit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">idleTimeoutDisplayUnit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">idleTimeoutMins</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">idleTimeoutMins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxTimeoutDisplayUnit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">maxTimeoutDisplayUnit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxTimeoutMins</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">maxTimeoutMins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persistentSessions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">persistentSessions</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;enableSessions&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__class__.__name__}</span><span class="s2">(</span><span class="si">{self.__dict__}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.__dict__}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">GlobalAuthenticationSessionPolicy</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="vm">__dict__</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
 
+<<<<<<< HEAD
     <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">enableSessions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idleTimeoutDisplayUnit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idleTimeoutMins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxTimeoutDisplayUnit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxTimeoutMins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentSessions</span><span class="p">))</span>
 
 <div class="viewcode-block" id="GlobalAuthenticationSessionPolicy.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.GlobalAuthenticationSessionPolicy.GlobalAuthenticationSessionPolicy.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+=======
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">enableSessions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idleTimeoutDisplayUnit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">idleTimeoutMins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxTimeoutDisplayUnit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxTimeoutMins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">persistentSessions</span><span class="p">))</span>
+
+<div class="viewcode-block" id="GlobalAuthenticationSessionPolicy.from_dict"><a class="viewcode-back" href="../../../models/models.html#PyPingFedSDK.models.GlobalAuthenticationSessionPolicy.GlobalAuthenticationSessionPolicy.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">python_dict</span><span class="p">):</span>
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
         <span class="n">valid_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">python_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;enableSessions&quot;</span><span class="p">,</span> <span class="s2">&quot;idleTimeoutDisplayUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;idleTimeoutMins&quot;</span><span class="p">,</span> <span class="s2">&quot;maxTimeoutDisplayUnit&quot;</span><span class="p">,</span> <span class="s2">&quot;maxTimeoutMins&quot;</span><span class="p">,</span> <span class="s2">&quot;persistentSessions&quot;</span><span class="p">]}</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">valid_data</span><span class="p">)</span></div>

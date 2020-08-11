@@ -44,7 +44,7 @@ class SpAdapterMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.adapterOverrideSettings, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds, self.spAdapterRef))
+        return hash(frozenset([self.adapterOverrideSettings, self.attributeContractFulfillment, self.attributeSources, self.issuanceCriteria, self.restrictVirtualEntityIds, self.restrictedVirtualEntityIds, self.spAdapterRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

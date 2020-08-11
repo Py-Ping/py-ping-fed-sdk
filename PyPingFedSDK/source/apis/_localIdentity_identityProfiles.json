@@ -237,7 +237,7 @@
             "path": "/localIdentity/identityProfiles/{id}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApiResult": {
             "description": "Details on the result of the operation.",
@@ -741,8 +741,8 @@
                 }
             },
             "required": [
-                "fieldForEmailToVerify",
-                "fieldStoringVerificationStatus"
+                "fieldStoringVerificationStatus",
+                "fieldForEmailToVerify"
             ]
         },
         "FieldConfig": {
@@ -1111,8 +1111,20 @@
                     "description": "Whether CAPTCHA is enabled or not in the registration configuration.",
                     "type": "boolean"
                 },
+                "createAuthnSessionAfterRegistration": {
+                    "description": "Whether to create an Authentication Session when registering a local account. Default is true.",
+                    "type": "boolean"
+                },
                 "templateName": {
                     "description": "The template name for the registration configuration.",
+                    "type": "string"
+                },
+                "thisIsMyDeviceEnabled": {
+                    "description": "Allows users to indicate whether their device is shared or private. In this mode, PingFederate Authentication Sessions will not be stored unless the user indicates the device is private.",
+                    "type": "boolean"
+                },
+                "usernameField": {
+                    "description": "When creating an Authentication Session after registering a local account, PingFederate will pass the Unique ID field's value as the username. If the Unique ID value is not the username, then override which field's value will be used as the username.",
                     "type": "string"
                 }
             },

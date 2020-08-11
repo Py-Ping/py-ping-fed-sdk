@@ -32,7 +32,7 @@ class ExtendedProperty():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.description, self.multiValued, self.name))
+        return hash(frozenset([self.description, self.multiValued, self.name]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

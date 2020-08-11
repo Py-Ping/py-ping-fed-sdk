@@ -35,7 +35,7 @@ class CertificateExpirationNotificationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.emailAddress, self.finalWarningPeriod, self.initialWarningPeriod, self.notificationPublisherRef))
+        return hash(frozenset([self.emailAddress, self.finalWarningPeriod, self.initialWarningPeriod, self.notificationPublisherRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

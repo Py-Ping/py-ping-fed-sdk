@@ -16,7 +16,7 @@ class TokenExchangeProcessorPolicy():
 
     """
 
-    def __init__(self, var_id:str, name:str, processorMappings:list, attributeContract, actorTokenRequired:bool=None) -> None:
+    def __init__(self, var_id:str, name:str, attributeContract, processorMappings:list, actorTokenRequired:bool=None) -> None:
         self.actorTokenRequired = actorTokenRequired
         self.attributeContract = attributeContract
         self.var_id = var_id
@@ -24,7 +24,7 @@ class TokenExchangeProcessorPolicy():
         self.processorMappings = processorMappings
 
     def _validate(self) -> bool:
-        return any(x for x in ["var_id", "name", "processorMappings", "attributeContract"] if self.__dict__[x] is not None)
+        return any(x for x in ["var_id", "name", "attributeContract", "processorMappings"] if self.__dict__[x] is not None)
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.__dict__})"
@@ -38,7 +38,7 @@ class TokenExchangeProcessorPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.actorTokenRequired, self.attributeContract, self.var_id, self.name, self.processorMappings))
+        return hash(frozenset([self.actorTokenRequired, self.attributeContract, self.var_id, self.name, self.processorMappings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

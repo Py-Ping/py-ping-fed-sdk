@@ -26,7 +26,7 @@ class TokenExchangeProcessorSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultProcessorPolicyRef))
+        return hash(frozenset([self.defaultProcessorPolicyRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

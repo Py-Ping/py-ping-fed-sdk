@@ -32,7 +32,7 @@ class AdditionalAllowedEntitiesConfiguration():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.additionalAllowedEntities, self.allowAdditionalEntities, self.allowAllEntities))
+        return hash(frozenset([self.additionalAllowedEntities, self.allowAdditionalEntities, self.allowAllEntities]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

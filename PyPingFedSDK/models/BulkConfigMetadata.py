@@ -26,7 +26,7 @@ class BulkConfigMetadata():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.pfVersion))
+        return hash(frozenset([self.pfVersion]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

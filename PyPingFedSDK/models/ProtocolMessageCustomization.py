@@ -29,7 +29,7 @@ class ProtocolMessageCustomization():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.contextName, self.messageExpression))
+        return hash(frozenset([self.contextName, self.messageExpression]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

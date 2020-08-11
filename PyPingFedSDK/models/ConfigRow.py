@@ -29,7 +29,7 @@ class ConfigRow():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultRow, self.fields))
+        return hash(frozenset([self.defaultRow, self.fields]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

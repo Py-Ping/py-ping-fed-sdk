@@ -1,5 +1,9 @@
 # Makefile for building publishing container
+<<<<<<< HEAD
 PROJECT = pypingfedsdk
+=======
+PROJECT = PyPingFedSDK
+>>>>>>> a470843ff454e80ecc2afd88ac02a493fc831957
 VERSION = $(shell whoami)
 #AUTH = $(shell aws --profile build --region ap-southeast-2 secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN | jq -r '.SecretString | fromjson | .OAuthKey')
 PWD = $(shell pwd)

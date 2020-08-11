@@ -32,7 +32,7 @@ class OIDCClientCredentials():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.clientId, self.clientSecret, self.encryptedSecret))
+        return hash(frozenset([self.clientId, self.clientSecret, self.encryptedSecret]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

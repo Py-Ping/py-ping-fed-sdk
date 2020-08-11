@@ -68,7 +68,7 @@ class Connection():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.active, self.additionalAllowedEntitiesConfiguration, self.baseUrl, self.contactInfo, self.credentials, self.defaultVirtualEntityId, self.entityId, self.extendedProperties, self.var_id, self.licenseConnectionGroup, self.loggingMode, self.metadataReloadSettings, self.name, self.var_type, self.virtualEntityIds))
+        return hash(frozenset([self.active, self.additionalAllowedEntitiesConfiguration, self.baseUrl, self.contactInfo, self.credentials, self.defaultVirtualEntityId, self.entityId, self.extendedProperties, self.var_id, self.licenseConnectionGroup, self.loggingMode, self.metadataReloadSettings, self.name, self.var_type, self.virtualEntityIds]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

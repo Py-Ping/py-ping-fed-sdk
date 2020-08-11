@@ -21,7 +21,7 @@
             "path": "/keyPairs/keyAlgorithms"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "KeyAlgorithm": {
             "description": "Details for a key algorithm.",

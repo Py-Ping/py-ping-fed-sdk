@@ -6,7 +6,7 @@
                 {
                     "method": "GET",
                     "nickname": "exportConfiguration",
-                    "notes": "For the /configStore resource type, only the settings that are different from the defaults for this version of PingFederate are included in the export.<br><br>Only resource types currently supported by the Administrative API are included in the exported data. Resources not yet supported include:<br><br>- PingOne Settings<br>- Incoming Proxy Settings<br>- SMS Provider Settings<br>- Connection Metadata Settings<br>- WS-Trust STS Settings<br>- Service Authentication Settings<br>- Inbound Provisioning Connections and Stores<br>",
+                    "notes": "For the /configStore resource type, only the settings that are different from the defaults for this version of PingFederate are included in the export.<br><br>Only resource types currently supported by the Administrative API are included in the exported data. Resources not yet supported include:<br><br>- PingOne Settings<br>- SMS Provider Settings<br>- WS-Trust STS Settings<br>- Service Authentication Settings<br>- Inbound Provisioning Connections and Stores<br>",
                     "parameters": [
                         {
                             "allowMultiple": false,
@@ -50,7 +50,7 @@
                         {
                             "allowMultiple": false,
                             "defaultValue": "true",
-                            "description": "When set to true, stops the import as soon as any validation errors are encountered.",
+                            "description": "When set to true, stops the import as soon as any validation errors are encountered. When false, import will continue to validate configuration after the first failure to identify all validation errors. If any validation errors are present PingFederate will roll back to the state prior to the import attempt.",
                             "name": "failFast",
                             "paramType": "query",
                             "required": false,
@@ -98,7 +98,7 @@
             "path": "/bulk/import"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "BulkConfig": {
             "description": "Model describing a series of configuration operations.",

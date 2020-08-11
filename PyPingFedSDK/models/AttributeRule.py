@@ -35,7 +35,7 @@ class AttributeRule():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeName, self.condition, self.expectedValue, self.result))
+        return hash(frozenset([self.attributeName, self.condition, self.expectedValue, self.result]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

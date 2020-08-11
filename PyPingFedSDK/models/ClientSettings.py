@@ -29,7 +29,7 @@ class ClientSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.clientMetadata, self.dynamicClientRegistration))
+        return hash(frozenset([self.clientMetadata, self.dynamicClientRegistration]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

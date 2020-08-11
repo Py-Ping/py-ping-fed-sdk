@@ -65,7 +65,7 @@ class SaasPluginFieldInfoDescriptor():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeGroup, self.code, self.defaultValue, self.dsLdapMap, self.label, self.maxLength, self.minLength, self.multiValue, self.notes, self.options, self.pattern, self.persistForMembership, self.required, self.unique))
+        return hash(frozenset([self.attributeGroup, self.code, self.defaultValue, self.dsLdapMap, self.label, self.maxLength, self.minLength, self.multiValue, self.notes, self.options, self.pattern, self.persistForMembership, self.required, self.unique]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

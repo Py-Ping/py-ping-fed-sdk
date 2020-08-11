@@ -32,7 +32,7 @@ class ConfigTable():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.inherited, self.name, self.rows))
+        return hash(frozenset([self.inherited, self.name, self.rows]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

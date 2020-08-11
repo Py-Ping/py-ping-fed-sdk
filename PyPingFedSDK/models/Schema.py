@@ -27,7 +27,7 @@ class Schema():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributes, self.namespace))
+        return hash(frozenset([self.attributes, self.namespace]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

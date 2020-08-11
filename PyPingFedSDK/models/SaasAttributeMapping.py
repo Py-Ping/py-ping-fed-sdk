@@ -29,7 +29,7 @@ class SaasAttributeMapping():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.fieldName, self.saasFieldInfo))
+        return hash(frozenset([self.fieldName, self.saasFieldInfo]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

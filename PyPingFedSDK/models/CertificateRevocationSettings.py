@@ -32,7 +32,7 @@ class CertificateRevocationSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.crlSettings, self.ocspSettings, self.proxySettings))
+        return hash(frozenset([self.crlSettings, self.ocspSettings, self.proxySettings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

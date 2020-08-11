@@ -35,7 +35,7 @@ class ValidationError():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.developerMessage, self.errorId, self.fieldPath, self.message))
+        return hash(frozenset([self.developerMessage, self.errorId, self.fieldPath, self.message]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

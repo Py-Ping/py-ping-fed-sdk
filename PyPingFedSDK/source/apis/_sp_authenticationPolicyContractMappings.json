@@ -197,7 +197,7 @@
             "path": "/sp/authenticationPolicyContractMappings/{id}"
         }
     ],
-    "basePath": "https://ip-10-101-29-72:9999/pf-admin-api/v1",
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
     "models": {
         "ApcToSpAdapterMapping": {
             "description": "The Authentication Policy Contract (APC) to SP Adapter Mapping.",

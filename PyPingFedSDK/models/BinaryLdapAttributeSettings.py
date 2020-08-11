@@ -26,7 +26,7 @@ class BinaryLdapAttributeSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.binaryEncoding))
+        return hash(frozenset([self.binaryEncoding]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

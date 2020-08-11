@@ -41,7 +41,7 @@ class ConvertMetadataRequest():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.connectionType, self.expectedEntityId, self.expectedProtocol, self.samlMetadata, self.templateConnection, self.verificationCertificate))
+        return hash(frozenset([self.connectionType, self.expectedEntityId, self.expectedProtocol, self.samlMetadata, self.templateConnection, self.verificationCertificate]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

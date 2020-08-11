@@ -32,7 +32,7 @@ class IdpDefaultUrl():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.confirmIdpSlo, self.idpErrorMsg, self.idpSloSuccessUrl))
+        return hash(frozenset([self.confirmIdpSlo, self.idpErrorMsg, self.idpSloSuccessUrl]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

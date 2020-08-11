@@ -29,7 +29,7 @@ class OptionValue():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.name, self.value))
+        return hash(frozenset([self.name, self.value]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

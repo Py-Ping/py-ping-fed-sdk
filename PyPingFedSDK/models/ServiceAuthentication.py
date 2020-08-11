@@ -35,7 +35,7 @@ class ServiceAuthentication():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.attributeQuery, self.connectionManagement, self.jmx, self.ssoDirectoryService))
+        return hash(frozenset([self.attributeQuery, self.connectionManagement, self.jmx, self.ssoDirectoryService]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

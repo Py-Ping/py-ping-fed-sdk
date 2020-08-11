@@ -32,7 +32,7 @@ class LdapTagConfig():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultSource, self.hostnames, self.tags))
+        return hash(frozenset([self.defaultSource, self.hostnames, self.tags]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

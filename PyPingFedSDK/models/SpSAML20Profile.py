@@ -32,7 +32,7 @@ class SpSAML20Profile():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.enable, self.enableAutoConnect, self.enableXASP))
+        return hash(frozenset([self.enable, self.enableAutoConnect, self.enableXASP]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

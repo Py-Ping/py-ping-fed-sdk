@@ -3,6 +3,8 @@ class DynamicClientRegistration():
 
     Attributes
     ----------
+    allowClientDelete : boolean
+        Allow client deletion from dynamic client management.
     allowedExclusiveScopes : array
         The exclusive scopes to allow.
     bypassActivationCodeConfirmationOverride : boolean
@@ -21,6 +23,8 @@ class DynamicClientRegistration():
         Allows an administrator to override the Device Authorization Settings set globally for the OAuth AS. Defaults to SERVER_DEFAULT.
     devicePollingIntervalOverride : integer
         The amount of time client should wait between polling requests, in seconds.
+    disableRegistrationAccessTokens : boolean
+        Disable registration access tokens. Local standards may mandate different registration access token requirements. If applicable, implement custom validation and enforcement rules using the DynamicClientRegistrationPlugin interface from the PingFederate SDK, configure the client registration policies (policyRefs), and set this property (disableRegistrationAccessTokens) to true. CAUTION: When the disableRegistrationAccessTokens property is set to true, all clients, not just the ones created using the Dynamic Client Registration protocol, are vulnerable to unrestricted retrievals, updates (including modifications to the client authentication scheme and redirect URIs), and deletes at the /as/clients.oauth2 endpoint unless one or more client registration policies are in place to protect against unauthorized attempts.
     enforceReplayPrevention : boolean
         Enforce replay prevention.
     initialAccessTokenScope : string
@@ -55,6 +59,10 @@ class DynamicClientRegistration():
         Restrict common scopes.
     restrictedCommonScopes : array
         The common scopes to restrict.
+    rotateClientSecret : boolean
+        Rotate registration access token on dynamic client management requests.
+    rotateRegistrationAccessToken : boolean
+        Rotate client secret on dynamic client management requests.
     tokenExchangeProcessorPolicyRef : str
         The Token Exchange Processor policy.
     userAuthorizationUrlOverride : string
@@ -62,7 +70,8 @@ class DynamicClientRegistration():
 
     """
 
-    def __init__(self, allowedExclusiveScopes:list=None, bypassActivationCodeConfirmationOverride:bool=None, cibaPollingInterval:int=None, cibaRequireSignedRequests:bool=None, clientCertIssuerRef=None, clientCertIssuerType=None, defaultAccessTokenManagerRef=None, deviceFlowSettingType=None, devicePollingIntervalOverride:int=None, enforceReplayPrevention:bool=None, initialAccessTokenScope:str=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride:int=None, persistentGrantExpirationTime:int=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout:int=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, policyRefs:list=None, refreshRolling=None, requestPolicyRef=None, requireProofKeyForCodeExchange:bool=None, requireSignedRequests:bool=None, restrictCommonScopes:bool=None, restrictedCommonScopes:list=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride:str=None) -> None:
+    def __init__(self, allowClientDelete:bool=None, allowedExclusiveScopes:list=None, bypassActivationCodeConfirmationOverride:bool=None, cibaPollingInterval:int=None, cibaRequireSignedRequests:bool=None, clientCertIssuerRef=None, clientCertIssuerType=None, defaultAccessTokenManagerRef=None, deviceFlowSettingType=None, devicePollingIntervalOverride:int=None, disableRegistrationAccessTokens:bool=None, enforceReplayPrevention:bool=None, initialAccessTokenScope:str=None, oidcPolicy=None, pendingAuthorizationTimeoutOverride:int=None, persistentGrantExpirationTime:int=None, persistentGrantExpirationTimeUnit=None, persistentGrantExpirationType=None, persistentGrantIdleTimeout:int=None, persistentGrantIdleTimeoutTimeUnit=None, persistentGrantIdleTimeoutType=None, policyRefs:list=None, refreshRolling=None, requestPolicyRef=None, requireProofKeyForCodeExchange:bool=None, requireSignedRequests:bool=None, restrictCommonScopes:bool=None, restrictedCommonScopes:list=None, rotateClientSecret:bool=None, rotateRegistrationAccessToken:bool=None, tokenExchangeProcessorPolicyRef=None, userAuthorizationUrlOverride:str=None) -> None:
+        self.allowClientDelete = allowClientDelete
         self.allowedExclusiveScopes = allowedExclusiveScopes
         self.bypassActivationCodeConfirmationOverride = bypassActivationCodeConfirmationOverride
         self.cibaPollingInterval = cibaPollingInterval
@@ -72,6 +81,7 @@ class DynamicClientRegistration():
         self.defaultAccessTokenManagerRef = defaultAccessTokenManagerRef
         self.deviceFlowSettingType = deviceFlowSettingType
         self.devicePollingIntervalOverride = devicePollingIntervalOverride
+        self.disableRegistrationAccessTokens = disableRegistrationAccessTokens
         self.enforceReplayPrevention = enforceReplayPrevention
         self.initialAccessTokenScope = initialAccessTokenScope
         self.oidcPolicy = oidcPolicy
@@ -89,6 +99,8 @@ class DynamicClientRegistration():
         self.requireSignedRequests = requireSignedRequests
         self.restrictCommonScopes = restrictCommonScopes
         self.restrictedCommonScopes = restrictedCommonScopes
+        self.rotateClientSecret = rotateClientSecret
+        self.rotateRegistrationAccessToken = rotateRegistrationAccessToken
         self.tokenExchangeProcessorPolicyRef = tokenExchangeProcessorPolicyRef
         self.userAuthorizationUrlOverride = userAuthorizationUrlOverride
 
@@ -107,11 +119,11 @@ class DynamicClientRegistration():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.allowedExclusiveScopes, self.bypassActivationCodeConfirmationOverride, self.cibaPollingInterval, self.cibaRequireSignedRequests, self.clientCertIssuerRef, self.clientCertIssuerType, self.defaultAccessTokenManagerRef, self.deviceFlowSettingType, self.devicePollingIntervalOverride, self.enforceReplayPrevention, self.initialAccessTokenScope, self.oidcPolicy, self.pendingAuthorizationTimeoutOverride, self.persistentGrantExpirationTime, self.persistentGrantExpirationTimeUnit, self.persistentGrantExpirationType, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantIdleTimeoutType, self.policyRefs, self.refreshRolling, self.requestPolicyRef, self.requireProofKeyForCodeExchange, self.requireSignedRequests, self.restrictCommonScopes, self.restrictedCommonScopes, self.tokenExchangeProcessorPolicyRef, self.userAuthorizationUrlOverride))
+        return hash(frozenset([self.allowClientDelete, self.allowedExclusiveScopes, self.bypassActivationCodeConfirmationOverride, self.cibaPollingInterval, self.cibaRequireSignedRequests, self.clientCertIssuerRef, self.clientCertIssuerType, self.defaultAccessTokenManagerRef, self.deviceFlowSettingType, self.devicePollingIntervalOverride, self.disableRegistrationAccessTokens, self.enforceReplayPrevention, self.initialAccessTokenScope, self.oidcPolicy, self.pendingAuthorizationTimeoutOverride, self.persistentGrantExpirationTime, self.persistentGrantExpirationTimeUnit, self.persistentGrantExpirationType, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantIdleTimeoutType, self.policyRefs, self.refreshRolling, self.requestPolicyRef, self.requireProofKeyForCodeExchange, self.requireSignedRequests, self.restrictCommonScopes, self.restrictedCommonScopes, self.rotateClientSecret, self.rotateRegistrationAccessToken, self.tokenExchangeProcessorPolicyRef, self.userAuthorizationUrlOverride]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in ["allowedExclusiveScopes", "bypassActivationCodeConfirmationOverride", "cibaPollingInterval", "cibaRequireSignedRequests", "clientCertIssuerRef", "clientCertIssuerType", "defaultAccessTokenManagerRef", "deviceFlowSettingType", "devicePollingIntervalOverride", "enforceReplayPrevention", "initialAccessTokenScope", "oidcPolicy", "pendingAuthorizationTimeoutOverride", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantExpirationType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantIdleTimeoutType", "policyRefs", "refreshRolling", "requestPolicyRef", "requireProofKeyForCodeExchange", "requireSignedRequests", "restrictCommonScopes", "restrictedCommonScopes", "tokenExchangeProcessorPolicyRef", "userAuthorizationUrlOverride"]}
+        valid_data = {k: v for k, v in python_dict.items() if k in ["allowClientDelete", "allowedExclusiveScopes", "bypassActivationCodeConfirmationOverride", "cibaPollingInterval", "cibaRequireSignedRequests", "clientCertIssuerRef", "clientCertIssuerType", "defaultAccessTokenManagerRef", "deviceFlowSettingType", "devicePollingIntervalOverride", "disableRegistrationAccessTokens", "enforceReplayPrevention", "initialAccessTokenScope", "oidcPolicy", "pendingAuthorizationTimeoutOverride", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantExpirationType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantIdleTimeoutType", "policyRefs", "refreshRolling", "requestPolicyRef", "requireProofKeyForCodeExchange", "requireSignedRequests", "restrictCommonScopes", "restrictedCommonScopes", "rotateClientSecret", "rotateRegistrationAccessToken", "tokenExchangeProcessorPolicyRef", "userAuthorizationUrlOverride"]}
 
         return cls(**valid_data)
 

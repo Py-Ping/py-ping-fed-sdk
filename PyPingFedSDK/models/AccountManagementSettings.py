@@ -38,7 +38,7 @@ class AccountManagementSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.accountStatusAlgorithm, self.accountStatusAttributeName, self.defaultStatus, self.flagComparisonStatus, self.flagComparisonValue))
+        return hash(frozenset([self.accountStatusAlgorithm, self.accountStatusAttributeName, self.defaultStatus, self.flagComparisonStatus, self.flagComparisonValue]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

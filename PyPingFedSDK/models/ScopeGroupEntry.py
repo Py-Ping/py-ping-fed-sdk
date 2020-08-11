@@ -32,7 +32,7 @@ class ScopeGroupEntry():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.description, self.name, self.scopes))
+        return hash(frozenset([self.description, self.name, self.scopes]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

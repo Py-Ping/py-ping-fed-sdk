@@ -29,7 +29,7 @@ class ResourceLink():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.var_id, self.location))
+        return hash(frozenset([self.var_id, self.location]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

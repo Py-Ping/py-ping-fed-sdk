@@ -35,7 +35,7 @@ class SslServerSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.activeAdminConsoleCerts, self.activeRuntimeServerCerts, self.adminConsoleCertRef, self.runtimeServerCertRef))
+        return hash(frozenset([self.activeAdminConsoleCerts, self.activeRuntimeServerCerts, self.adminConsoleCertRef, self.runtimeServerCertRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -26,7 +26,7 @@ class TokenExchangeGeneratorSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.defaultGeneratorGroupRef))
+        return hash(frozenset([self.defaultGeneratorGroupRef]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

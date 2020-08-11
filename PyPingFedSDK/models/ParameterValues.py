@@ -26,7 +26,7 @@ class ParameterValues():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.values))
+        return hash(frozenset([self.values]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

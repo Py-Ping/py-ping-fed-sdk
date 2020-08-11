@@ -15,7 +15,7 @@ class _oauth_resourceOwnerCredentialsMappings():
         return f"{self.endpoint}{path}"
 
     def getResourceOwnerCredentialsMappings(self):
-        """ Get the list of Resource Owner Credentials mappings.
+        """ Get the list of Resource Owner Credentials Grant Mapping.
         """
 
         try:

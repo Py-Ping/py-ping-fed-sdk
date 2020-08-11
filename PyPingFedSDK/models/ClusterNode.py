@@ -41,7 +41,7 @@ class ClusterNode():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.address, self.index, self.mode, self.nodeGroup, self.nodeTags, self.version))
+        return hash(frozenset([self.address, self.index, self.mode, self.nodeGroup, self.nodeTags, self.version]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

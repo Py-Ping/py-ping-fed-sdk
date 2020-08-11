@@ -26,7 +26,7 @@ class VirtualHostNameSettings():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.virtualHostNames))
+        return hash(frozenset([self.virtualHostNames]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):

@@ -29,7 +29,7 @@ class ApplicationSessionPolicy():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset(self.idleTimeoutMins, self.maxTimeoutMins))
+        return hash(frozenset([self.idleTimeoutMins, self.maxTimeoutMins]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
