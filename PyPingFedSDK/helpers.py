@@ -24,10 +24,6 @@ def safe_variable(unsafe_variable):
     return unsafe_variable
 
 
-def requests_verb(verb):
-    return verb.lower()
-
-
 def json_type_convert(json_type):
     if json_type == "enum":
         return "str"
