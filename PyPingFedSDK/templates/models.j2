@@ -4,7 +4,7 @@ class {{ class_name }}():
     Attributes
     ----------
 {% for property, prop_details in details.get('properties').items() %}
-    {{property}} : {{prop_details.get('type', 'str')}}
+    {{ property }} {% if prop_details.get('type', '')%} : {{prop_details.get('type')}} {% endif %}
 {% if prop_details.get('description', '')%}        {{prop_details.get('description', '').replace("\n","").strip()}}
 {% endif %}
 {% endfor %}
