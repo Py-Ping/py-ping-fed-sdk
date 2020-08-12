@@ -44,3 +44,12 @@ To regenerate the APIs and models of the SDK
 make generate
 ```
 
+
+# Regenerate Documents
+
+To regenerate the documents, after the generation of the SDK has been performed do the following.
+
+```bash
+cd docs
+make html
+```

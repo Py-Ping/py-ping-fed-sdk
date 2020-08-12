@@ -57,6 +57,9 @@ Resources:
                 Owner: !Ref GitHubRepoOwner
                 PollForSourceChanges: 'true'
                 Repo: !Ref GitHubRepo
+              RoleArn: !GetAtt 
+                - CodeBuildRole
+                - Arn
               RunOrder: 1
               ActionTypeId:
                 Category: Source
@@ -127,7 +130,6 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - 'arn:aws:iam::012345678901:role/BuildRole'
                 - !GetAtt 
                   - CodeBuildRole
                   - Arn
@@ -140,7 +142,6 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - 'arn:aws:iam::012345678901:role/BuildRole'
                 - !GetAtt 
                   - CodeBuildRole
                   - Arn
@@ -243,13 +244,11 @@ Resources:
                   - 'sts:AssumeRole'
                 Effect: Allow
                 Resource:
-                  - 'arn:aws:iam::012345678901:role/BuildRole'
                   - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ProjectId}*'
               - Action:
                   - 'iam:PassRole'
                 Effect: Allow
                 Resource:
-                  - 'arn:aws:iam::012345678901:role/BuildRole'
                   - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ProjectId}*'
           PolicyName: CodeBuildPolicy
       RoleName: !Sub '${ProjectId}-CodeBuildRole'

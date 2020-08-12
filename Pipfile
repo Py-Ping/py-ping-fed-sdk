@@ -8,11 +8,16 @@ pytest = "*"
 pytest-cov = "*"
 pytest-html = "*"
 hypothesis = "*"
+requests = "*"
+Jinja2 = "*"
 
 [packages]
 python-decouple = "*"
 PyYAML = "*"
 Jinja2 = "*"
+requests = "*"
+sphinx = "*"
+guzzle-sphinx-theme = "*"
 
 [requires]
 python_version = "3.6"

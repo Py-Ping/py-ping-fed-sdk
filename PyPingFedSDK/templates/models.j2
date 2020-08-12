@@ -5,15 +5,15 @@ class {{ class_name }}():
     ----------
 {% for property, prop_details in details.get('properties').items() %}
     {{property}} : {{prop_details.get('type', 'str')}}
-{% if prop_details.get('description', '')%} {{prop_details.get('description', '').replace("\n","").strip()}}
+{% if prop_details.get('description', '')%}        {{prop_details.get('description', '').replace("\n","").strip()}}
 {% endif %}
 {% endfor %}
 
     """
 
-    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(property) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}:{{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ safe_variable(property) }}{% if json_type_convert(attributes.get('type', '')) != '' %}:{{ json_type_convert(attributes.get('type', '')) }}{% endif %}=None{% endfor %}) -> None:
+    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(safe_name(property)) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}:{{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ safe_variable(property) }}{% if json_type_convert(attributes.get('type', '')) != '' %}:{{ json_type_convert(attributes.get('type', '')) }}{% endif %}=None{% endfor %}) -> None:
 {% for property in details.get('properties') %}
-        self.{{ safe_variable(property) }} = {{ safe_variable(property) }}
+        self.{{ safe_variable(safe_name(property)) }} = {{ safe_variable(safe_name(property)) }}
 {% endfor %}
 
     def _validate(self) -> bool:
@@ -31,10 +31,13 @@ class {{ class_name }}():
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(({% for property in details.get('properties') %}self.{{ safe_variable(property) }}{% if not loop.last %}, {% endif %}{% endfor %}))
+        return hash(frozenset([{% for property in details.get('properties') %}self.{{ safe_variable(property) }}{% if not loop.last %}, {% endif %}{% endfor %}]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {k: v for k, v in python_dict.items() if k in [{% for property in details.get('properties', {}) %}"{{ safe_variable(property) }}"{% if not loop.last %}, {% endif %}{% endfor %}]}
 
         return cls(**valid_data)
+
+    def to_dict(self):
+        return self.__dict__

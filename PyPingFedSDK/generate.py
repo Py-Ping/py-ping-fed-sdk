@@ -27,15 +27,33 @@ class Generate():
                 folder='models'
             )
 
+        template = self.get_template('models_doc', name='models_doc', details=self.fetch_data.get('models'))
+
+        self.write_template(
+            content=template,
+            file_name='models',
+            file_type='rst',
+            folder='../docs/source/models'
+        )
+
         for api, details in self.fetch_data.get('apis').items():
-            template = self.get_template('apis', name=api, details=details)
+            template = self.get_template('apis', name=safe_name(api), details=details)
 
             self.write_template(
                 content=template,
-                file_name=api,
+                file_name=safe_name(api),
                 file_type='py',
                 folder='apis'
             )
+
+        template = self.get_template('apis_doc', name='apis_doc', details=self.fetch_data.get('apis'))
+
+        self.write_template(
+            content=template,
+            file_name='apis',
+            file_type='rst',
+            folder='../docs/source/apis'
+        )
 
     def get_template(self, template, name, details, template_directory='templates'):
         currentdirectory = os.path.dirname(__file__)

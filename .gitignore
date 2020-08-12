@@ -1,7 +1,11 @@
 *__pycache__*
 .env
-./source/*.json
-./source/*/*.json
-./PyPingFedSDK/apis/*
-./PyPingFedSDK/models/*
-./PyPingFedSDK/source/*
+source/*.json
+source/*/*.json
+PyPingFedSDK/apis/*
+PyPingFedSDK/models/*
+PyPingFedSDK/source/*
+PyPingFedSDK/.coverage
+docs/build/*
+.coverage
+requirements.txt
