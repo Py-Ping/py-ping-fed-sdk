@@ -62,7 +62,7 @@ def retry_with_backoff(func, retries=5, backoff=5):
         try:
             func()
         except Exception as ex:
-            print(f'{ex}, attempting retry {total_retries - (retries + 1)}/5, wait {backoff} seconds...')
+            print(f'{ex}, attempting retry {total_retries - (retries + 1)}/{total_retries}, wait {backoff} seconds...')
             retries-=1
             sleep(backoff)
             backoff += backoff
