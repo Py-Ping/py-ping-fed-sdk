@@ -9,3 +9,5 @@ PyPingFedSDK/.coverage
 docs/build/*
 .coverage
 requirements.txt
+docs/source/apis/apis.rst
+docs/source/models/models.rst

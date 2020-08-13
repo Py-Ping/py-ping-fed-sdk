@@ -1,15 +1,10 @@
 PyPingFedSDK models
 ===================
 
-Subpackages
------------
-
 .. toctree::
   :maxdepth: 2
   :glob:
 
-Submodules
-----------
 
 ActionDescriptor
 ----------------
