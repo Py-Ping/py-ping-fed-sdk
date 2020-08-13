@@ -1,5 +1,7 @@
-{% for imp in details.get('imports') %}
-from models.{{ imp }} import {{ imp }}
+{% for folder, imports in details.get('imports').items() %}
+{% for imp in imports %}
+from {{ folder }}.{{ imp }} import {{ imp }}
+{% endfor %}
 {% endfor %}
 
 
@@ -10,7 +12,7 @@ class {{ class_name }}:
     ----------
 {% for property, prop_details in details.get('properties').items() %}
 {% if prop_details.get('type', '')%}    {{ property }}: {{ prop_details.get('type') }}{% endif %}
-{% if prop_details.get('$ref', '')%}    {{ property }}: {{ prop_details.get('$ref') }}{% endif %}
+{% if prop_details.get('$ref', '')%}    {{ property }}: {{ ref_type_convert(prop_details) }}{% endif %}
 
 {% if prop_details.get('description', '')%}        {{ prop_details.get('description', '').replace("\n","").replace("<br>","\n        ").strip() }}
 
@@ -18,7 +20,7 @@ class {{ class_name }}:
 {% endfor %}
     """
 
-    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(safe_name(property)) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}:{{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}:{% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property].get('$ref', '')) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property].get('$ref', '')) }}{% endif %}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ safe_variable(property) }}{% if json_type_convert(attributes.get('type', '')) != '' %}:{{ json_type_convert(attributes.get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}:{% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property].get('$ref', '')) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property].get('$ref', '')) }}{% endif %}{% endif %}=None{% endfor %}) -> None:
+    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(safe_name(property)) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}:{{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}:{% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ safe_variable(property) }}{% if json_type_convert(attributes.get('type', '')) != '' %}:{{ json_type_convert(attributes.get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}:{% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %}=None{% endfor %}) -> None:
 {% for property in details.get('properties') %}
         self.{{ safe_variable(safe_name(property)) }} = {{ safe_variable(safe_name(property)) }}
 {% endfor %}

@@ -25,10 +25,10 @@ def safe_variable(unsafe_variable):
     return unsafe_variable
 
 
-def ref_type_convert(ref_type):
-    if ref_type.startswith('Map'):
-        return 'dict'
-    return ref_type
+def ref_type_convert(ref_obj):
+    if ref_obj["$ref"].startswith("Map"):
+        return "dict"
+    return ref_obj["$ref"]
 
 
 def json_type_convert(json_type):
