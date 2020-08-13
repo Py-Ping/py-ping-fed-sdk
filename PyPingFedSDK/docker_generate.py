@@ -124,6 +124,10 @@ if __name__ == "__main__":
         if not retry_with_backoff(Generate(swagger_url).generate):
             print("Container service didn't stabilise, exiting...")
             exit(1)
-        version = __import__("apis._version", fromlist=[""])
-        response = version._version(endpoint, session).getVersion()
-        print(f"Ping Federate, version: {response['version']}")
+        try:
+            version = __import__("apis._version", fromlist=[""])
+            response = version._version(endpoint, session).getVersion()
+            print(f"Ping Federate, version: {response['version']}")
+        except Exception as ex:
+            print(f"Was unable to determine the Ping Federate version.")
+            print(traceback.format_exc())
