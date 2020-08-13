@@ -5,7 +5,7 @@ import requests
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_name, safe_variable, json_type_convert
+from helpers import safe_name, safe_variable, json_type_convert, ref_type_convert
 
 
 class Generate():
@@ -18,6 +18,14 @@ class Generate():
 
     def generate(self):
         for model, details in self.fetch_data.get('models').items():
+
+            imports = set()
+            for model_attrs in details.get("properties").values():
+                class_name = model_attrs.get("$ref", "")
+                if class_name and class_name not in imports:
+                    if not class_name.startswith("Map"):
+                        imports.add(class_name)
+            details["imports"] = imports
             template = self.get_template('models', name=model, details=details)
 
             self.write_template(
@@ -64,7 +72,7 @@ class Generate():
         )
         jinjaenvironment.globals.update(
             safe_name=safe_name, safe_variable=safe_variable,
-            json_type_convert=json_type_convert
+            json_type_convert=json_type_convert, ref_type_convert=ref_type_convert
         )
         jinjatemplate = jinjaenvironment.get_template(f'./{template}.j2')
 

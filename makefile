@@ -50,8 +50,13 @@ buildRequirements:
 
 generate: ## run the SDK generator
 	$(info [+] Running SDK package generator...)
-	python3 PyPingFedSDK/docker_generate.py
+	python3 PyPingFedSDK/generate.py
 .PHONY: generate
+
+docker-generate: ## run the SDK generator
+	$(info [+] Running Dockerised SDK package generator...)
+	python3 PyPingFedSDK/docker_generate.py
+.PHONY: docker-generate
 
 unittest:
 	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ python3 -m unittest discover -s PyPingFedSDK/tests/

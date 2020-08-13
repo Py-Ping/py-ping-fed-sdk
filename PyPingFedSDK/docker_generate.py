@@ -4,24 +4,24 @@ import traceback
 import os
 import logging
 
+from helpers import get_auth_session, retry_with_backoff
 from generate import Generate
 from time import sleep
 
 
-class ContainedGenerator:
+class Container:
     """
         Manager class for the SDK generator, encapsulates the process in a docker
-        container such that there is no external dependency on a live pingfederate
+        container such that there is no external dependency on a live ping federate
         instance
 
         TODO: make generic to run any other Ping solution
     """
 
-    def __init__(self, swagger_url, home_path, user, pass_key):
+    def __init__(self, home_path, user, pass_key):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
         )
-        self.swagger_url = swagger_url
         self.logger = logging.getLogger("PingDSL.Docker")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
 
@@ -86,14 +86,9 @@ class ContainedGenerator:
                 return True
         return False
 
-    def generate(self):
+    def __enter__(self):
         """
-            Check to see if the ping fed container is running, if not run it and
-            block until the container is available. Once available, generate the
-            SDK from the swagger coming from the Ping Federate service. Once
-            done, terminate the running container.
-
-            TODO: wait on availability of running service
+            Enter method to setup a PingFed container
         """
         if not self.running(self.image_name):
             self.logger.info("Initialising Ping Federate container...")
@@ -106,12 +101,12 @@ class ContainedGenerator:
         sleep(45)
         self.logger.info("Container ready, generating SDK objects...")
 
-        try:
-            Generate(self.swagger_url).generate()
-        except Exception:
-            self.logger.error(traceback.format_exc())
-
+    def __exit__(self, type, value, traceback):
+        """
+            Exit method to cleanup PingFed container when done
+        """
         self.logger.info("Terminating container...")
+        self.logger.debug("Terminating container...")
         self.terminate()
 
 
@@ -119,7 +114,16 @@ if __name__ == "__main__":
     home = os.environ["HOME"]
     ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
     ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"]
-    swagger_url = "https://localhost:9999/pf-admin-api/v1/api-docs"
-    ContainedGenerator(
-        swagger_url, home, ping_user, ping_key
-    ).generate()
+    endpoint = "https://localhost:9999/pf-admin-api/v1"
+    swagger_url = f"{endpoint}/api-docs"
+    session = get_auth_session()
+    session.verify = False
+
+    with Container(home, ping_user, ping_key):
+        Generate(swagger_url).generate()
+        if not retry_with_backoff(Generate(swagger_url).generate):
+            print("Container service didn't stabilise, exiting...")
+            exit(1)
+        version = __import__("apis._version", fromlist=[""])
+        response = version._version(endpoint, session).getVersion()
+        print(f"Ping Federate, version: {response['version']}")

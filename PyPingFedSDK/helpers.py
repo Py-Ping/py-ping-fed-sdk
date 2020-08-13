@@ -1,5 +1,6 @@
 import os
 import requests
+from time import sleep
 from requests.auth import HTTPBasicAuth
 
 
@@ -22,6 +23,12 @@ def safe_variable(unsafe_variable):
     elif unsafe_variable == "type":
         return "var_type"
     return unsafe_variable
+
+
+def ref_type_convert(ref_type):
+    if ref_type.startswith('Map'):
+        return 'dict'
+    return ref_type
 
 
 def json_type_convert(json_type):
@@ -47,3 +54,20 @@ def get_auth_session():
     session.headers = {"Accept": "application/json", "X-Xsrf-Header": "PingFederate"}
 
     return session
+
+
+def retry_with_backoff(func):
+    backoff = 5
+    retries=5
+    while retries:
+        try:
+            func()
+        except Exception as ex:
+            print(f'{ex}, attempting retry {6 - retries}/5, wait {backoff} seconds...')
+            retries-=1
+            sleep(backoff)
+            backoff += backoff
+            continue
+        return True
+    if not retries:
+        return False

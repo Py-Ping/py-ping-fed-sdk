@@ -4,7 +4,7 @@ from requests import Session
 from requests.exceptions import HTTPError
 
 
-class {{ safe_name(class_name) }}():
+class {{ safe_name(class_name) }}:
     def __init__(self, endpoint:str, session:Session) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL.{{ safe_name(class_name) }}')
