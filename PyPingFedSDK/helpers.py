@@ -46,8 +46,8 @@ def json_type_convert(json_type):
 
 
 def get_auth_session():
-    ping_user = os.environ["PING_IDENTITY_DEVOPS_ADMINISTRATOR"]
-    ping_pass = os.environ["PING_IDENTITY_DEVOPS_PASSWORD"]
+    ping_user = os.environ.get("PING_IDENTITY_DEVOPS_ADMINISTRATOR", "administrator")
+    ping_pass = os.environ=("PING_IDENTITY_DEVOPS_PASSWORD", "2FederateM0re")
 
     session = requests.Session()
     session.auth = HTTPBasicAuth(ping_user, ping_pass)
@@ -56,14 +56,13 @@ def get_auth_session():
     return session
 
 
-def retry_with_backoff(func):
-    backoff = 5
-    retries=5
+def retry_with_backoff(func, retries=5, backoff=5):
+    total_retries = retries
     while retries:
         try:
             func()
         except Exception as ex:
-            print(f'{ex}, attempting retry {6 - retries}/5, wait {backoff} seconds...')
+            print(f'{ex}, attempting retry {total_retries - (retries + 1)}/5, wait {backoff} seconds...')
             retries-=1
             sleep(backoff)
             backoff += backoff
