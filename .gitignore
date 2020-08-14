@@ -5,6 +5,7 @@ source/*/*.json
 PyPingFedSDK/apis/*
 PyPingFedSDK/models/*
 PyPingFedSDK/source/*
+PyPingFedSDK/enums.py
 PyPingFedSDK/.coverage
 docs/build/*
 .coverage

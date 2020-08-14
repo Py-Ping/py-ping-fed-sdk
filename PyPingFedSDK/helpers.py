@@ -1,5 +1,6 @@
 import os
 import requests
+from time import sleep
 from requests.auth import HTTPBasicAuth
 
 
@@ -24,6 +25,12 @@ def safe_variable(unsafe_variable):
     return unsafe_variable
 
 
+def ref_type_convert(ref_obj):
+    if ref_obj["$ref"].startswith("Map"):
+        return "dict"
+    return ref_obj["$ref"]
+
+
 def json_type_convert(json_type):
     if json_type == "enum":
         return "str"
@@ -39,11 +46,27 @@ def json_type_convert(json_type):
 
 
 def get_auth_session():
-    ping_user = os.environ["PING_IDENTITY_DEVOPS_ADMINISTRATOR"]
-    ping_pass = os.environ["PING_IDENTITY_DEVOPS_PASSWORD"]
+    ping_user = os.environ.get("PING_IDENTITY_DEVOPS_ADMINISTRATOR", "administrator")
+    ping_pass = os.environ.get("PING_IDENTITY_DEVOPS_PASSWORD", "2FederateM0re")
 
     session = requests.Session()
     session.auth = HTTPBasicAuth(ping_user, ping_pass)
     session.headers = {"Accept": "application/json", "X-Xsrf-Header": "PingFederate"}
 
     return session
+
+
+def retry_with_backoff(func, retries=5, backoff=5):
+    total_retries = retries
+    while retries:
+        try:
+            func()
+        except Exception as ex:
+            print(f'{ex}, attempting retry {total_retries - (retries + 1)}/{total_retries}, wait {backoff} seconds...')
+            retries-=1
+            sleep(backoff)
+            backoff += backoff
+            continue
+        return True
+    if not retries:
+        return False
