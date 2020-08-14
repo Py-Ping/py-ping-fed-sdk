@@ -120,7 +120,6 @@ if __name__ == "__main__":
     session.verify = False
 
     with Container(home, ping_user, ping_key):
-        Generate(swagger_url).generate()
         if not retry_with_backoff(Generate(swagger_url).generate):
             print("Container service didn't stabilise, exiting...")
             exit(1)
