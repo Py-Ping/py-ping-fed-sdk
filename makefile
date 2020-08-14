@@ -59,5 +59,5 @@ docker-generate: ## run the SDK generator
 .PHONY: docker-generate
 
 unittest:
-	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ python3 -m unittest discover -s PyPingFedSDK/tests/
+	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ python3 -m unittest discover -s tests/
 .PHONY: test

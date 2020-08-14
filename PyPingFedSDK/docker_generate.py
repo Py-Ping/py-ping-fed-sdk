@@ -126,7 +126,7 @@ if __name__ == "__main__":
         try:
             version = __import__("apis._version", fromlist=[""])
             response = version._version(endpoint, session).getVersion()
-            print(f"Ping Federate, version: {response['version']}")
+            print(f"Ping Federate, version: {response.version}")
         except Exception as ex:
             print(f"Was unable to determine the Ping Federate version.")
             print(traceback.format_exc())

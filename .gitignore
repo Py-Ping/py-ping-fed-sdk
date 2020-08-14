@@ -12,3 +12,6 @@ docs/build/*
 requirements.txt
 docs/source/apis/apis.rst
 docs/source/models/models.rst
+tests/apis/*
+tests/models/*
+tests/enums.py
