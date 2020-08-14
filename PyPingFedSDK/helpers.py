@@ -5,10 +5,14 @@ from requests.auth import HTTPBasicAuth
 
 
 def safe_name(unsafe_string, unsafe_char="/", sub_char="_"):
-    safe_string_list = [x if x not in unsafe_char else sub_char for x in unsafe_string]
-    safe_string_list = [x if x not in "{}-" else "" for x in safe_string_list]
+    safe_string_list = [
+        x if x not in unsafe_char else sub_char for x in unsafe_string
+    ]
+    safe_string_list = [
+        x if x not in "{}-" else "" for x in safe_string_list
+    ]
 
-    return str("".join(safe_string_list))
+    return "".join(safe_string_list)
 
 
 def safe_variable(unsafe_variable):
@@ -46,12 +50,19 @@ def json_type_convert(json_type):
 
 
 def get_auth_session():
-    ping_user = os.environ.get("PING_IDENTITY_DEVOPS_ADMINISTRATOR", "administrator")
-    ping_pass = os.environ.get("PING_IDENTITY_DEVOPS_PASSWORD", "2FederateM0re")
+    ping_user = os.environ.get(
+        "PING_IDENTITY_DEVOPS_ADMINISTRATOR", "administrator"
+    )
+    ping_pass = os.environ.get(
+        "PING_IDENTITY_DEVOPS_PASSWORD", "2FederateM0re"
+    )
 
     session = requests.Session()
     session.auth = HTTPBasicAuth(ping_user, ping_pass)
-    session.headers = {"Accept": "application/json", "X-Xsrf-Header": "PingFederate"}
+    session.headers = {
+        "Accept": "application/json",
+        "X-Xsrf-Header": "PingFederate"
+    }
 
     return session
 
@@ -62,7 +73,11 @@ def retry_with_backoff(func, retries=5, backoff=5):
         try:
             func()
         except Exception as ex:
-            print(f'{ex}, attempting retry {total_retries - (retries + 1)}/{total_retries}, wait {backoff} seconds...')
+            print(
+                f'{ex}, attempting retry'
+                '{total_retries - (retries + 1)}/{total_retries},'
+                'wait {backoff} seconds...'
+            )
             retries-=1
             sleep(backoff)
             backoff += backoff

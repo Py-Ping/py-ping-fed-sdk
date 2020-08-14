@@ -53,4 +53,5 @@ class {{ safe_name(class_name) }}:
 {% endfor %}
         finally:
             return {{ operation.get('type') }}(**response.json())
+
 {% endfor %}{% endfor %}
