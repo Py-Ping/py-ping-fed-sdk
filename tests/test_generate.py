@@ -9,6 +9,7 @@ from generate import Generate
 
 REAL_PATH = os.path.realpath(__file__)
 
+
 class TestGenerate(TestCase):
     """ Tests for the Generate class """
 
@@ -16,8 +17,15 @@ class TestGenerate(TestCase):
     @patch("generate.Fetch")
     def setUp(self, fetch_mock, realpath_mock):
         test_directory = os.path.dirname(__file__)
-        shutil.rmtree(f"{test_directory}/apis")
-        shutil.rmtree(f"{test_directory}/models")
+
+        try:
+            shutil.rmtree(f"{test_directory}/apis")
+        except FileNotFoundError:
+            pass
+        try:
+            shutil.rmtree(f"{test_directory}/models")
+        except FileNotFoundError:
+            pass
 
         self.fetch_response = {
             "apis": {
@@ -104,6 +112,19 @@ class TestGenerate(TestCase):
                             "type": "string"
                         }
                     }
+                },
+                "Penguins": {
+                    "description": "A collection of penguins.",
+                    "id": "Penguins",
+                    "properties": {
+                        "items": {
+                            "description": "The actual list of penguins.",
+                            "items": {
+                                "$ref": "Penguin"
+                            },
+                            "type": "array"
+                        }
+                    }
                 }
             }
         }
@@ -141,23 +162,24 @@ class TestGenerate(TestCase):
             hash(Penguin.Penguin(**penguin_dict)), hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
 
-
+    @patch("apis._penguins.Penguin")
     @patch("apis._penguins.logging")
     @patch("apis._penguins.Session")
-    def test_api(self, requests_mock, logging_mock):
+    def test_api(self, requests_mock, logging_mock, penguin_mock):
         """
             Dynamically import the created api module, instantiate the class
             and make some assertions about the object methods
         """
+        self.maxDiff = None
         penguins = __import__("apis._penguins", fromlist=[""])
         session_mock = MagicMock()
         penguin_api = penguins._penguins("test-endpoint", session_mock)
         self.assertEqual(
             penguin_api.addPenguin("philip"),
-            session_mock.post.return_value
+            penguin_mock.return_value
         )
 
         self.assertEqual(
             penguin_api.getPenguinDetails(),
-            session_mock.get.return_value
+            penguin_mock.return_value
         )
