@@ -58,7 +58,15 @@ class Generate():
         )
 
         for api, details in self.fetch_data.get("apis").items():
-            template = self.render_file("apis", name=safe_name(api), details=details)
+
+            imports = set()
+            for detail in details:
+                for op in detail["operations"]:
+                    if not json_type_convert(op["type"]) and op["type"] not in imports:
+                        imports.add(op["type"])
+
+            payload = {"imports": imports, "details": details}
+            template = self.render_file("apis", name=safe_name(api), details=payload)
 
             self.write_template(
                 content=template,

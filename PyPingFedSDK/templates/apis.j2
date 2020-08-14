@@ -3,6 +3,10 @@ import logging
 from requests import Session
 from requests.exceptions import HTTPError
 
+{% for imp in details.get('imports') %}
+from models.{{ imp }} import {{ imp }}
+{% endfor %}
+
 
 class {{ safe_name(class_name) }}:
     def __init__(self, endpoint:str, session:Session) -> None:
@@ -15,9 +19,9 @@ class {{ safe_name(class_name) }}:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-{% for api in details %}
+{% for api in details.get('details') %}
 {% for operation in api.get('operations',[]) %}
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}{% endfor %}):
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}{% endfor %}) -> {{ operation.get('type') }}:
         """ {{ operation.get('summary') }}
         """
 {% if operation.get('method') in ['POST', 'PUT'] %}
@@ -48,6 +52,5 @@ class {{ safe_name(class_name) }}:
                 self.logger.info("{{response_message.get('message')}}")
 {% endfor %}
         finally:
-            return response.json()
-
+            return {{ operation.get('type') }}(**response.json())
 {% endfor %}{% endfor %}
