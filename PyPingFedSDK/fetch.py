@@ -21,6 +21,7 @@ class Fetch():
         self.ping_data = {}
         self.models = {}
         self.apis = {}
+        self.enums = {}
 
     def get_source(self, verify=False):
         """
@@ -98,13 +99,41 @@ class Fetch():
                     self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
                     self.write_json(data=r_json, name=safe_api_path, directory="./source/apis/")
 
+        for model, details in self.models.items():
+            details["imports"] = self.get_model_imports(details)
+            self.models[model] = details
+
+    def get_model_imports(self, model_data):
+        """
+        For a given model, determine it's other model dependencies, enum dependencies
+        and cache discovered
+        """
+        imports = {"models": set(), "enums": set()}
+        for prop in model_data.get("properties").values():
+            class_name = prop.get("$ref", "")
+            # check for a model import and add it to the set
+            if class_name and class_name not in imports \
+               and "enum" not in prop and not class_name.startswith("Map"):
+                imports["models"].add(class_name)
+            # check for an enum import and add it to the set
+            elif class_name and "enum" in prop:
+                if class_name in self.enums and self.enums[class_name] != prop["enum"]:
+                    self.logger.warn(
+                        f"Found redefined enum type: {class_name} original -> {self.enums[class_name]}, new -> {prop['enum']}..."
+                    )
+                self.enums[class_name] = prop["enum"]
+                imports["enums"].add(class_name)
+
+        return imports
+
     def fetch(self):
         self.get_source()
         self.get_api_schema()
 
         return {
             "models": self.models,
-            "apis": self.apis
+            "apis": self.apis,
+            "enums": self.enums
         }
 
     def safe_name(self, unsafe_string, unsafe_char="/", sub_char="_"):

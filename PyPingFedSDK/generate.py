@@ -15,41 +15,26 @@ class Generate():
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
         self.api_schema_key = api_schema_key
         self.fetch_data = Fetch(swagger_url).fetch()
-        self.enums = {}
 
-    def get_model_imports(self, model_data):
+    def get_api_imports(self, api_data):
         """
-        For a given model, determine it's other model dependencies, enum dependencies
-        and cache discovered
+        Pre-process the API document and determine what needs to be imported
+        to dynamically generate return objects
         """
-        imports = {"models": set(), "enums": set()}
-        for prop in model_data.get("properties").values():
-            class_name = prop.get("$ref", "")
-            # check for a model import and add it to the set
-            if class_name and class_name not in imports \
-               and "enum" not in prop and not class_name.startswith("Map"):
-                imports["models"].add(class_name)
-            # check for an enum import and add it to the set
-            elif class_name and "enum" in prop:
-                if class_name in self.enums and self.enums[class_name] != prop["enum"]:
-                    self.logger.warn(
-                        f"Found redefined enum type: {class_name} original -> {self.enums[class_name]}, new -> {prop['enum']}..."
-                    )
-                self.enums[class_name] = prop["enum"]
-                imports["enums"].add(class_name)
-
+        imports = set()
+        for data in api_data:
+            for op in data["operations"]:
+                if not json_type_convert(op["type"]) and op["type"] not in imports:
+                    imports.add(op["type"])
         return imports
 
     def generate(self):
-        enums = {}
         for model, details in self.fetch_data.get("models").items():
-            details["imports"] = self.get_model_imports(details)
+            #details["imports"] = self.get_model_imports(details)
             template = self.render_file("models", name=model, details=details)
 
             self.write_template(
-                content=template,
-                file_name=model,
-                file_type="py",
+                content=template, file_name=model, file_type="py",
                 folder="models"
             )
 
@@ -64,25 +49,16 @@ class Generate():
             folder="../docs/source/models"
         )
 
-        enum_template = self.render_file("enums", name="enums", details=enums)
+        enum_template = self.render_file(
+            "enums", name="enums", details=self.fetch_data.get("enums")
+        )
         self.write_template(
-            content=enum_template,
-            file_name="enums",
-            file_type="py",
+            content=enum_template, file_name="enums", file_type="py",
             folder="."
         )
 
         for api, details in self.fetch_data.get("apis").items():
-
-            # Pre-process the API document and determine what needs to be imported
-            # to dynamically generate return objects
-            imports = set()
-            for detail in details:
-                for op in detail["operations"]:
-                    if not json_type_convert(op["type"]) and op["type"] not in imports:
-                        imports.add(op["type"])
-
-            payload = {"imports": imports, "details": details}
+            payload = {"imports": self.get_api_imports(details), "details": details}
             template = self.render_file("apis", name=safe_name(api), details=payload)
 
             self.write_template(
@@ -97,9 +73,7 @@ class Generate():
         )
 
         self.write_template(
-            content=template,
-            file_name="apis",
-            file_type="rst",
+            content=template, file_name="apis", file_type="rst",
             folder="../docs/source/apis"
         )
 
