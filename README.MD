@@ -44,6 +44,11 @@ To regenerate the APIs and models of the SDK
 make generate
 ```
 
+This requires an available Ping Federate admin server instance with a set of credentials for access, to do this against a dockerised version of Ping Federate run the following:
+
+```bash
+make docker-generate
+```
 
 # Regenerate Documents
 
