@@ -30,7 +30,6 @@ class Generate():
 
     def generate(self):
         for model, details in self.fetch_data.get("models").items():
-            #details["imports"] = self.get_model_imports(details)
             template = self.render_file("models", name=model, details=details)
 
             self.write_template(
