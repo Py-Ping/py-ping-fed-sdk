@@ -11,6 +11,7 @@ hypothesis = "*"
 requests = "*"
 Jinja2 = "*"
 flake8 = "*"
+pipenv-setup = "*"
 
 [packages]
 python-decouple = "*"

@@ -1,25 +1,33 @@
 #!/usr/bin/env python
 
-import setuptools
+from setuptools import setup
 
-def slurp(infile_path, as_list=False):
-    """Return lines of a file as a list or a string"""
-    with open(infile_path, 'r') as infile:
-        if as_list:
-            all_contents = infile.readlines()
-            return [line.strip() for line in all_contents if not line.startswith('#')]
-        else:
-            return infile.read()
+def read_contents(name):
+    with open(name, "r") as fh:
+        return fh.read()
 
-
-setuptools.setup(name='py-ping-fed-sdk',
-    version=slurp('VERSION'),
-    description=slurp('description.txt'),
-    author='ProServ',
-    author_email='support@versent.com.au',
+setup(
+    name="PyPingFedSDK",
+    version=read_contents("VERSION"),
+    description=read_contents("DESCRIPTION"),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Development Status :: 2 - Pre-Alpha",
+        "License :: Other/Proprietary License",
+        "Natural Language :: English",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Operation System :: OS Independant",
+    ],
+    author="ProServ",
+    author_email="support@versent.com.au",
     license="proprietary",
     url="https://github.com/Versent/py-ping-fed-sdk",
-    packages=setuptools.find_packages(exclude=["docs", "tests*"]),
-    install_requires=slurp('requirements.txt', as_list=True),
+    py_modules=["pingfedsdk"],
+    package_dir={"": "PyPingFedSDK"},
+    install_requires=[],
     zip_safe=False,
 )

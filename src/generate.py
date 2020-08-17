@@ -18,7 +18,7 @@ class Generate():
             template = self.render_file("models", name=model, details=details)
             self.write_template(
                 content=template, file_name=model, file_type="py",
-                folder="models"
+                folder="../PyPingFedSDK/models"
             )
 
         template = self.render_file(
@@ -37,7 +37,7 @@ class Generate():
         )
         self.write_template(
             content=enum_template, file_name="enums", file_type="py",
-            folder="."
+            folder="../PyPingFedSDK/"
         )
 
         for api, details in self.fetch_data.get("apis").items():
@@ -49,7 +49,7 @@ class Generate():
                 content=template,
                 file_name=safe_name(api),
                 file_type="py",
-                folder="apis"
+                folder="../PyPingFedSDK/apis"
             )
 
         template = self.render_file(

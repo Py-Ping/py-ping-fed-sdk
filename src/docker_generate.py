@@ -122,7 +122,7 @@ if __name__ == "__main__":
             print("Container service didn't stabilise, exiting...")
             exit(1)
         try:
-            version = __import__("apis._version", fromlist=[""])
+            version = __import__("PyPingFedSDK.apis._version", fromlist=[""])
             response = version._version(endpoint, session).getVersion()
             print(f"Ping Federate, version: {response.version}")
         except Exception as err:
