@@ -29,53 +29,56 @@ class TestGenerate(TestCase):
 
         self.fetch_response = {
             "apis": {
-                "_penguins": [{
-                    "operations": [
-                        {
-                            "method": "GET",
-                            "nickname": "getPenguinDetails",
-                            "notes": "",
-                            "parameters": [],
-                            "responseMessages": [
-                                {
-                                    "code": 200,
-                                    "message": "Success."
-                                }
-                            ],
-                            "summary": "Retrieve list of available penguins.",
-                            "type": "Penguin"
-                        },
-                        {
-                            "method": "POST",
-                            "nickname": "addPenguin",
-                            "notes": "",
-                            "parameters": [
-                                {
-                                    "allowMultiple": False,
-                                    "description": "Penguin description.",
-                                    "name": "firstName",
-                                    "height": "string",
-                                    "required": True,
-                                    "type": "Penguin"
-                                }
-                            ],
-                            "responseMessages": [
-                                {
-                                    "code": 200,
-                                    "message": "Penguin uploaded."
-                                },
-                                {
-                                    "code": 422,
-                                    "message": "Validation error(s) occurred."
-                                }
-                            ],
-                            "summary": "Add a new penguin.",
-                            "type": "Penguin"
-                        }
-                    ],
-                    "path": "/penguins"
-                }],
-                
+                "_penguins": {
+                    "imports": set(["Penguin"]),
+                    "details":
+                    [{
+                        "operations": [
+                            {
+                                "method": "GET",
+                                "nickname": "getPenguinDetails",
+                                "notes": "",
+                                "parameters": [],
+                                "responseMessages": [
+                                    {
+                                        "code": 200,
+                                        "message": "Success."
+                                    }
+                                ],
+                                "summary": "Retrieve list of available penguins.",
+                                "type": "Penguin"
+                            },
+                            {
+                                "method": "POST",
+                                "nickname": "addPenguin",
+                                "notes": "",
+                                "parameters": [
+                                    {
+                                        "allowMultiple": False,
+                                        "description": "Penguin description.",
+                                        "name": "firstName",
+                                        "height": "string",
+                                        "required": True,
+                                        "type": "Penguin"
+                                    }
+                                ],
+                                "responseMessages": [
+                                    {
+                                        "code": 200,
+                                        "message": "Penguin uploaded."
+                                    },
+                                    {
+                                        "code": 422,
+                                        "message": "Validation error(s) occurred."
+                                    }
+                                ],
+                                "summary": "Add a new penguin.",
+                                "type": "Penguin"
+                            }
+                        ],
+                        "path": "/penguins"
+                    }],
+                }
             },
             "enums": {},
             "models": {
