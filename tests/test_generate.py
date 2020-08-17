@@ -77,6 +77,7 @@ class TestGenerate(TestCase):
                 }],
                 
             },
+            "enums": {},
             "models": {
                 "PenguinLabeller": {
                     "description": "Labels penguins.",
@@ -89,7 +90,8 @@ class TestGenerate(TestCase):
                             },
                             "type": "array"
                         }
-                    }
+                    },
+                    "imports": {}
                 },
                 "Penguin": {
                     "description": "The details of a penguin.",
@@ -111,7 +113,8 @@ class TestGenerate(TestCase):
                             "description": "List of sounds made.",
                             "type": "string"
                         }
-                    }
+                    },
+                    "imports": {}
                 },
                 "Penguins": {
                     "description": "A collection of penguins.",
@@ -124,7 +127,8 @@ class TestGenerate(TestCase):
                             },
                             "type": "array"
                         }
-                    }
+                    },
+                    "imports": {}
                 }
             }
         }
