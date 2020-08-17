@@ -16,22 +16,9 @@ class Generate():
         self.api_schema_key = api_schema_key
         self.fetch_data = Fetch(swagger_url).fetch()
 
-    def get_api_imports(self, api_data):
-        """
-        Pre-process the API document and determine what needs to be imported
-        to dynamically generate return objects
-        """
-        imports = set()
-        for data in api_data:
-            for op in data["operations"]:
-                if not json_type_convert(op["type"]) and op["type"] not in imports:
-                    imports.add(op["type"])
-        return imports
-
     def generate(self):
         for model, details in self.fetch_data.get("models").items():
             template = self.render_file("models", name=model, details=details)
-
             self.write_template(
                 content=template, file_name=model, file_type="py",
                 folder="models"
@@ -57,8 +44,9 @@ class Generate():
         )
 
         for api, details in self.fetch_data.get("apis").items():
-            payload = {"imports": self.get_api_imports(details), "details": details}
-            template = self.render_file("apis", name=safe_name(api), details=payload)
+            template = self.render_file(
+                "apis", name=safe_name(api), details=details
+            )
 
             self.write_template(
                 content=template,

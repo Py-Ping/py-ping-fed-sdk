@@ -4,6 +4,7 @@ import sys
 import requests
 import logging
 from urllib3.exceptions import ConnectionError
+from helpers import json_type_convert
 
 
 class Fetch():
@@ -84,7 +85,7 @@ class Fetch():
             abs_path = f"{self.project_path}/source/apis/{safe_api_path}.json"
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
-                self.apis[self.safe_name(response.get("resourcePath", safe_api_path))] = (response.get("apis", []))
+                self.apis[self.safe_name(response.get("resourcePath", safe_api_path))] = self.get_api_imports(response.get("apis", []))
                 self.models.update(response.get("models", {}))
             else:
                 try:
@@ -94,7 +95,7 @@ class Fetch():
                     self.logger.error(f"Failed to download swagger from: {self.swagger_url}{api_path} with error {err}")
                 else:
                     r_json = response.json()
-                    self.apis[r_json.get("resourcePath", safe_api_path)] = (r_json.get("apis", []))
+                    self.apis[r_json.get("resourcePath", safe_api_path)] = self.get_api_imports(r_json.get("apis", []))
                     self.models.update(r_json.get("models", {}))
                     self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
                     self.write_json(data=r_json, name=safe_api_path, directory="./source/apis/")
@@ -102,6 +103,18 @@ class Fetch():
         for model, details in self.models.items():
             details["imports"] = self.get_model_imports(details)
             self.models[model] = details
+
+    def get_api_imports(self, api_data):
+        """
+        Pre-process the API document and determine what needs to be imported
+        to dynamically generate return objects
+        """
+        imports = set()
+        for data in api_data:
+            for op in data["operations"]:
+                if not json_type_convert(op["type"]) and op["type"] not in imports:
+                    imports.add(op["type"])
+        return {"imports": imports, "details": api_data}
 
     def get_model_imports(self, model_data):
         """
