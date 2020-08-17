@@ -75,8 +75,8 @@ def retry_with_backoff(func, retries=5, backoff=5):
         except Exception as ex:
             print(
                 f'{ex}, attempting retry'
-                '{total_retries - (retries + 1)}/{total_retries},'
-                'wait {backoff} seconds...'
+                f'{total_retries - (retries + 1)}/{total_retries},'
+                f'wait {backoff} seconds...'
             )
             retries-=1
             sleep(backoff)
