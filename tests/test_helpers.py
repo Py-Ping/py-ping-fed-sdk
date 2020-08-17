@@ -1,6 +1,6 @@
 
 from unittest import TestCase
-from unittest.mock import patch, Mock, MagicMock, call
+from unittest.mock import patch, MagicMock, call
 from helpers import safe_name, safe_variable, \
     ref_type_convert, json_type_convert, get_auth_session, \
     retry_with_backoff
@@ -83,7 +83,9 @@ class TestHelpers(TestCase):
     @patch("helpers.HTTPBasicAuth")
     @patch("helpers.requests")
     @patch("helpers.os")
-    def test_get_auth_session(self, os_mock, requests_mock, http_basic_auth_mock):
+    def test_get_auth_session(
+        self, os_mock, requests_mock, http_basic_auth_mock
+    ):
         self.assertEqual(
             get_auth_session(),
             requests_mock.Session.return_value

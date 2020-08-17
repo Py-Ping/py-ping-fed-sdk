@@ -60,4 +60,12 @@ docker-generate: ## run the SDK generator
 
 unittest:
 	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ python3 -m unittest discover -s tests/
-.PHONY: test
+.PHONY: unittest
+
+coverage:
+	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*
+.PHONY: coverage
+
+lint:
+	flake8 --exclude */apis/*,*/models/*,*/source/*,*/enums.py,
+.PHONY: lint

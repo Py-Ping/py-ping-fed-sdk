@@ -3,8 +3,7 @@ import os
 import sys
 import requests
 import logging
-from urllib3.exceptions import ConnectionError
-from helpers import json_type_convert
+from helpers import json_type_convert, safe_name
 
 
 class Fetch():
@@ -28,8 +27,6 @@ class Fetch():
         """
             Pull the API JSON from the remote swagger url
         """
-        content_type = "application/json"
-        request_headers = {"Content-Type": content_type}
 
         try:
             response = requests.get(self.swagger_url, verify=verify)
@@ -77,15 +74,13 @@ class Fetch():
             down each paths content. Store in the api and model dictionaries
             and write to the repository
         """
-
         for api in self.ping_data.get(api_schema_key, {}):
-
-            safe_api_path = self.safe_name(api.get("path"))
+            safe_api_path = safe_name(api.get("path"))
             api_path = api.get("path")
             abs_path = f"{self.project_path}/source/apis/{safe_api_path}.json"
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
-                self.apis[self.safe_name(response.get("resourcePath", safe_api_path))] = self.get_api_imports(response.get("apis", []))
+                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = self.get_api_imports(response.get("apis", []))
                 self.models.update(response.get("models", {}))
             else:
                 try:
@@ -149,12 +144,6 @@ class Fetch():
             "enums": self.enums
         }
 
-    def safe_name(self, unsafe_string, unsafe_char="/", sub_char="_"):
-        """
-            replace all instances of unsafe_char with sub_char and return the string
-        """
-        safe_string_list = [x if x not in unsafe_char else sub_char for x in unsafe_string]
-        return "".join(safe_string_list)
 
 if __name__ == "__main__":
     Fetch("https://localhost:9999/pf-admin-api/v1/api-docs").fetch()

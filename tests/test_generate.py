@@ -4,7 +4,7 @@ import os
 import shutil
 
 from unittest import TestCase
-from unittest.mock import patch, Mock, MagicMock
+from unittest.mock import patch, MagicMock
 from generate import Generate
 
 REAL_PATH = os.path.realpath(__file__)
@@ -45,7 +45,8 @@ class TestGenerate(TestCase):
                                         "message": "Success."
                                     }
                                 ],
-                                "summary": "Retrieve list of available penguins.",
+                                "summary":
+                                "Retrieve list of available penguins.",
                                 "type": "Penguin"
                             },
                             {
@@ -69,7 +70,8 @@ class TestGenerate(TestCase):
                                     },
                                     {
                                         "code": 422,
-                                        "message": "Validation error(s) occurred."
+                                        "message":
+                                        "Validation error(s) occurred."
                                     }
                                 ],
                                 "summary": "Add a new penguin.",
@@ -87,7 +89,8 @@ class TestGenerate(TestCase):
                     "id": "PenguinLabeller",
                     "properties": {
                         "PenguinNames": {
-                            "description": "List of great names for a pet penguin.",
+                            "description":
+                            "List of great names for a pet penguin.",
                             "items": {
                                 "type": "string"
                             },
@@ -153,7 +156,8 @@ class TestGenerate(TestCase):
         self.assertTrue(penguin_inst == penguin_inst)
         self.assertEqual(
             str(penguin_inst),
-            "{'firstName': None, 'lastName': None, 'height': None, 'soundMade': None}"
+            "{'firstName': None, 'lastName': None, "
+            "'height': None, 'soundMade': None}"
         )
 
         penguin_dict = {
@@ -166,7 +170,8 @@ class TestGenerate(TestCase):
             penguin_dict
         ), Penguin.Penguin(**penguin_dict))
         self.assertEqual(
-            hash(Penguin.Penguin(**penguin_dict)), hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
+            hash(Penguin.Penguin(**penguin_dict)),
+            hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
 
     @patch("apis._penguins.Penguin")
