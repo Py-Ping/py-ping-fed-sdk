@@ -12,7 +12,7 @@ REAL_PATH = os.path.realpath(__file__)
 
 
 def wipe_test_fixtures():
-    test_files = f"{os.path.dirname(__file__)}/../PyPingFedSDK"
+    test_files = f"{os.path.dirname(__file__)}/../pingfedsdk"
     wipe_files = (
         f"{test_files}/models/Penguin.py",
         f"{test_files}/models/Penguins.py",
@@ -155,7 +155,7 @@ class TestGenerate(TestCase):
             Dynamically import the created model module, instantiate the class
             and make some assertions about the object state
         """
-        Penguin = __import__("PyPingFedSDK.models.Penguin", fromlist=[""])
+        Penguin = __import__("pingfedsdk.models.Penguin", fromlist=[""])
         penguin_inst = Penguin.Penguin()
         self.assertEqual(
             hash(penguin_inst), hash(frozenset([None, None, None, None]))
@@ -181,15 +181,15 @@ class TestGenerate(TestCase):
             hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
 
-    @patch("PyPingFedSDK.apis._penguins.Penguin")
-    @patch("PyPingFedSDK.apis._penguins.logging")
-    @patch("PyPingFedSDK.apis._penguins.Session")
+    @patch("pingfedsdk.apis._penguins.Penguin")
+    @patch("pingfedsdk.apis._penguins.logging")
+    @patch("pingfedsdk.apis._penguins.Session")
     def test_api(self, session_mock, logging_mock, penguin_mock):
         """
             Dynamically import the created api module, instantiate the class
             and make some assertions about the object methods
         """
-        penguins = __import__("PyPingFedSDK.apis._penguins", fromlist=[""])
+        penguins = __import__("pingfedsdk.apis._penguins", fromlist=[""])
         session_mock = MagicMock()
         penguin_api = penguins._penguins("test-endpoint", session_mock)
         self.assertEqual(

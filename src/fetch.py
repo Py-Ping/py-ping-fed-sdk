@@ -35,7 +35,7 @@ class Fetch():
             raise ConnectionError(err_str)
         self.logger.info(f"Successfully downloaded Ping Swagger document: {self.swagger_url}")
         self.ping_data = response.json()
-        self.write_json(data=self.ping_data, name="pf-admin-api", directory="../PyPingFedSDK/source/")
+        self.write_json(data=self.ping_data, name="pf-admin-api", directory="../pingfedsdk/source/")
         self.logger.debug(
             json.dumps(self.ping_data, default=str, sort_keys=True, indent=4, separators=(",", ": "))
         )
@@ -76,7 +76,7 @@ class Fetch():
         for api in self.ping_data.get(api_schema_key, {}):
             safe_api_path = safe_name(api.get("path"))
             api_path = api.get("path")
-            abs_path = f"{self.project_path}/PyPingFedSDK/source/apis/{safe_api_path}.json"
+            abs_path = f"{self.project_path}/pingfedsdk/source/apis/{safe_api_path}.json"
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
                 self.apis[safe_name(response.get("resourcePath", safe_api_path))] = self.get_api_imports(response.get("apis", []))
@@ -92,7 +92,7 @@ class Fetch():
                     self.apis[r_json.get("resourcePath", safe_api_path)] = self.get_api_imports(r_json.get("apis", []))
                     self.models.update(r_json.get("models", {}))
                     self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
-                    self.write_json(data=r_json, name=safe_api_path, directory="../PyPingFedSDK/source/apis/")
+                    self.write_json(data=r_json, name=safe_api_path, directory="../pingfedsdk/source/apis/")
 
         for model, details in self.models.items():
             details["imports"] = self.get_model_imports(details)

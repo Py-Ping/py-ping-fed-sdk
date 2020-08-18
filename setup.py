@@ -7,7 +7,7 @@ def read_contents(name):
         return fh.read()
 
 setup(
-    name="PyPingFedSDK",
+    name="pingfedsdk",
     version=read_contents("VERSION"),
     description=read_contents("DESCRIPTION"),
     classifiers=[
@@ -27,7 +27,7 @@ setup(
     license="proprietary",
     url="https://github.com/Versent/py-ping-fed-sdk",
     py_modules=["pingfedsdk"],
-    package_dir={"": "PyPingFedSDK"},
+    package_dir={"": "pingfedsdk"},
     install_requires=[],
     zip_safe=False,
 )

@@ -20,6 +20,7 @@ Jinja2 = "*"
 requests = "*"
 sphinx = "*"
 guzzle-sphinx-theme = "*"
+tox = "*"
 
 [requires]
 python_version = "3.7"
