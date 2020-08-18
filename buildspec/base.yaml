@@ -39,7 +39,7 @@ phases:
     commands:
       - python PyPingFedSDK/docker_generate.py
   
-  post-build:
+  post_build:
     commands:
       - aws codeartifact login --tool twine --repository $VAR_AppName --domain $VAR_Domain --domain-owner $VAR_DomainOwner
       - python setup.py sdist bdist_wheel
