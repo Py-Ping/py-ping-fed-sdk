@@ -79,7 +79,9 @@ class Fetch():
             abs_path = f"{self.project_path}/pingfedsdk/source/apis/{safe_api_path}.json"
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
-                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = self.get_api_imports(response.get("apis", []))
+                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = self.get_api_imports(
+                    response.get("apis", [])
+                )
                 self.models.update(response.get("models", {}))
             else:
                 try:
@@ -126,7 +128,8 @@ class Fetch():
             elif class_name and "enum" in prop:
                 if class_name in self.enums and self.enums[class_name] != prop["enum"]:
                     self.logger.warn(
-                        f"Found redefined enum type: {class_name} original -> {self.enums[class_name]}, new -> {prop['enum']}..."
+                        f"Found redefined enum type: {class_name}"
+                        f" original -> {self.enums[class_name]}, new -> {prop['enum']}..."
                     )
                 self.enums[class_name] = prop["enum"]
                 imports["enums"].add(class_name)

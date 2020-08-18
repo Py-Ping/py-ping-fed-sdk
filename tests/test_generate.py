@@ -1,7 +1,6 @@
 """ Tests for generate.py """
 
 import os
-import shutil
 
 from unittest import TestCase
 from unittest.mock import patch, MagicMock
@@ -203,4 +202,4 @@ class TestGenerate(TestCase):
         )
 
     def tearDown(self):
-       wipe_test_fixtures()
+        wipe_test_fixtures()
