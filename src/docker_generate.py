@@ -11,16 +11,17 @@ from time import sleep
 
 class Container:
     """
-        Manager class for the SDK generator, encapsulates the process in a docker
-        container such that there is no external dependency on a live ping federate
-        instance
+        Manager class for the SDK generator, encapsulates the process in a
+        docker container such that there is no external dependency on a
+        live ping federate instance
 
         TODO: make generic to run any other Ping solution
     """
 
     def __init__(self, home_path, user, pass_key):
         logging.basicConfig(
-            format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
+            format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
+            datefmt="%m/%d/%Y %I:%M:%S %p"
         )
         self.logger = logging.getLogger("PingDSL.Docker")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
@@ -43,7 +44,8 @@ class Container:
                 f"PING_IDENTITY_DEVOPS_HOME={self.home}/projects/devops",
                 "PING_IDENTITY_DEVOPS_REGISTRY=docker.io/pingidentity",
                 "PING_IDENTITY_DEVOPS_TAG=edge",
-                "SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git",
+                "SERVER_PROFILE_URL=https://github.com/"
+                "pingidentity/pingidentity-server-profiles.git",
                 "SERVER_PROFILE_PATH=getting-started/pingfederate"
             ],
             name="pingfederate",

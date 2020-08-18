@@ -7,7 +7,8 @@ from helpers import safe_name, safe_variable, json_type_convert, ref_type_conver
 
 class Generate():
     def __init__(self, swagger_url, api_schema_key="apis"):
-        logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p")
+        logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
+                            datefmt="%m/%d/%Y %I:%M:%S %p")
         self.logger = logging.getLogger("PingDSL.Generate")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
         self.api_schema_key = api_schema_key

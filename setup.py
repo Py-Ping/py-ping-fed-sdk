@@ -2,9 +2,11 @@
 
 from setuptools import setup
 
+
 def read_contents(name):
     with open(name, "r") as fh:
         return fh.read()
+
 
 setup(
     name="pingfedsdk",
