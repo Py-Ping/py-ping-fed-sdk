@@ -1,6 +1,5 @@
 import json
 import os
-import sys
 import requests
 import logging
 from helpers import json_type_convert, safe_name
@@ -65,7 +64,7 @@ class Fetch():
         try:
             with open(os.path.join(self.project_path, file), "r") as file:
                 return json.loads(file.read())
-        except IOError as err:
+        except IOError:
             return False
 
     def get_api_schema(self, api_schema_key="apis", verify=False):

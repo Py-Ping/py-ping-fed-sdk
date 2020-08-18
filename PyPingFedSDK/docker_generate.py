@@ -71,9 +71,7 @@ class Container:
         """
             Block execution until the container is paused, exited or running.
         """
-        while self.container.status != "running" and \
-              self.container.status != "exited" and \
-              self.container.status != "paused":
+        while self.container.status not in ["running", "exited", "paused"]:
             self.container = self.client.containers.get(self.container.id)
             sleep(5)
 
@@ -127,6 +125,6 @@ if __name__ == "__main__":
             version = __import__("apis._version", fromlist=[""])
             response = version._version(endpoint, session).getVersion()
             print(f"Ping Federate, version: {response.version}")
-        except Exception as ex:
+        except Exception:
             print(f"Was unable to determine the Ping Federate version.")
             print(traceback.format_exc())

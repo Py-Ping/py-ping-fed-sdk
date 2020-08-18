@@ -1,7 +1,4 @@
-import json
 import os
-import sys
-import requests
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
@@ -104,6 +101,7 @@ class Generate():
         path = f"{targetdirectory}/{file_name}.{file_type}"
         with open(os.path.join(filedirectory, path), "w") as fh:
             fh.write(content)
+
 
 if __name__ == "__main__":
     Generate("https://localhost:9999/pf-admin-api/v1/api-docs").generate()

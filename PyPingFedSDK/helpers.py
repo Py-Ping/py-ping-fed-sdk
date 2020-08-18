@@ -78,7 +78,7 @@ def retry_with_backoff(func, retries=5, backoff=5):
                 f'{total_retries - (retries + 1)}/{total_retries},'
                 f'wait {backoff} seconds...'
             )
-            retries-=1
+            retries -= 1
             sleep(backoff)
             backoff += backoff
             continue
