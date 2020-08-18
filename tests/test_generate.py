@@ -32,7 +32,7 @@ class TestGenerate(TestCase):
     @patch("generate.os.path.realpath")
     @patch("generate.Fetch")
     def setUp(self, fetch_mock, realpath_mock):
-        #wipe_test_fixtures()
+        wipe_test_fixtures()
 
         self.fetch_response = {
             "apis": {
