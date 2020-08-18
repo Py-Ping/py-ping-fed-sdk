@@ -1,5 +1,5 @@
 # Makefile for building publishing container
-PROJECT = pypingfedsdk
+PROJECT = pingfedsdk
 VERSION = $(shell whoami)
 #AUTH = $(shell aws --profile build --region ap-southeast-2 secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN | jq -r '.SecretString | fromjson | .OAuthKey')
 PWD = $(shell pwd)
@@ -50,20 +50,20 @@ buildRequirements:
 
 generate: ## run the SDK generator
 	$(info [+] Running SDK package generator...)
-	python3 PyPingFedSDK/generate.py
+	python3 pingfedsdk/generate.py
 .PHONY: generate
 
 docker-generate: ## run the SDK generator
 	$(info [+] Running Dockerised SDK package generator...)
-	python3 PyPingFedSDK/docker_generate.py
+	PYTHONPATH=$(shell pwd) python3 src/docker_generate.py
 .PHONY: docker-generate
 
 unittest:
-	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ python3 -m unittest discover -s tests/
+	PYTHONPATH=$(shell pwd)/src/ python3 -m unittest discover -s tests/
 .PHONY: unittest
 
 coverage:
-	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*
+	PYTHONPATH=$(shell pwd)/src/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*
 .PHONY: coverage
 
 lint:

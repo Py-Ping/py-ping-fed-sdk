@@ -11,6 +11,7 @@ hypothesis = "*"
 requests = "*"
 Jinja2 = "*"
 flake8 = "*"
+pipenv-setup = "*"
 
 [packages]
 python-decouple = "*"
@@ -19,6 +20,7 @@ Jinja2 = "*"
 requests = "*"
 sphinx = "*"
 guzzle-sphinx-theme = "*"
+tox = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

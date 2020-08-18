@@ -4,7 +4,7 @@ from requests import Session
 from requests.exceptions import HTTPError
 
 {% for imp in details.get('imports') %}
-from models.{{ imp }} import {{ imp }}
+from pingfedsdk.models.{{ imp }} import {{ imp }}
 {% endfor %}
 
 

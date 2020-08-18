@@ -27,7 +27,7 @@ class TestFetch(TestCase):
         requests_mock.get.return_value.json.assert_called_once_with()
         write_json_mock.assert_called_once_with(
             data=requests_mock.get.return_value.json.return_value,
-            name="pf-admin-api", directory="./source/"
+            name="pf-admin-api", directory="../pingfedsdk/source/",
         )
         self.logging_mock.info.assert_called_once_with(
             "Successfully downloaded Ping Swagger document: "

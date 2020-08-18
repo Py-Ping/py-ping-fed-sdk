@@ -1,4 +1,4 @@
-PyPingFedSDK models
+pingfedsdk models
 ===================
 
 .. toctree::
@@ -6,172 +6,10 @@ PyPingFedSDK models
   :glob:
 
 
-ActionDescriptor
-----------------
-
-.. automodule:: PyPingFedSDK.models.ActionDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ApiResult
----------
-
-.. automodule:: PyPingFedSDK.models.ApiResult
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-BaseSelectionFieldDescriptor
-----------------------------
-
-.. automodule:: PyPingFedSDK.models.BaseSelectionFieldDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CheckBoxFieldDescriptor
------------------------
-
-.. automodule:: PyPingFedSDK.models.CheckBoxFieldDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConfigField
------------
-
-.. automodule:: PyPingFedSDK.models.ConfigField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConfigRow
----------
-
-.. automodule:: PyPingFedSDK.models.ConfigRow
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConfigTable
------------
-
-.. automodule:: PyPingFedSDK.models.ConfigTable
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-FieldDescriptor
----------------
-
-.. automodule:: PyPingFedSDK.models.FieldDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-HashedTextFieldDescriptor
--------------------------
-
-.. automodule:: PyPingFedSDK.models.HashedTextFieldDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OptionValue
------------
-
-.. automodule:: PyPingFedSDK.models.OptionValue
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PluginConfigDescriptor
-----------------------
-
-.. automodule:: PyPingFedSDK.models.PluginConfigDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PluginConfiguration
--------------------
-
-.. automodule:: PyPingFedSDK.models.PluginConfiguration
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PluginDescriptor
-----------------
-
-.. automodule:: PyPingFedSDK.models.PluginDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
 PluginInstance
 --------------
 
-.. automodule:: PyPingFedSDK.models.PluginInstance
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-RadioGroupFieldDescriptor
--------------------------
-
-.. automodule:: PyPingFedSDK.models.RadioGroupFieldDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ResourceLink
-------------
-
-.. automodule:: PyPingFedSDK.models.ResourceLink
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SelectFieldDescriptor
----------------------
-
-.. automodule:: PyPingFedSDK.models.SelectFieldDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TableDescriptor
----------------
-
-.. automodule:: PyPingFedSDK.models.TableDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TextAreaFieldDescriptor
------------------------
-
-.. automodule:: PyPingFedSDK.models.TextAreaFieldDescriptor
+.. automodule:: pingfedsdk.models.PluginInstance
     :members:
     :undoc-members:
     :inherited-members:
@@ -180,34 +18,25 @@ TextAreaFieldDescriptor
 TextFieldDescriptor
 -------------------
 
-.. automodule:: PyPingFedSDK.models.TextFieldDescriptor
+.. automodule:: pingfedsdk.models.TextFieldDescriptor
     :members:
     :undoc-members:
     :inherited-members:
 
 
-TokenProcessor
---------------
+TableDescriptor
+---------------
 
-.. automodule:: PyPingFedSDK.models.TokenProcessor
+.. automodule:: pingfedsdk.models.TableDescriptor
     :members:
     :undoc-members:
     :inherited-members:
 
 
-TokenProcessorAttribute
------------------------
+OptionValue
+-----------
 
-.. automodule:: PyPingFedSDK.models.TokenProcessorAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TokenProcessorAttributeContract
--------------------------------
-
-.. automodule:: PyPingFedSDK.models.TokenProcessorAttributeContract
+.. automodule:: pingfedsdk.models.OptionValue
     :members:
     :undoc-members:
     :inherited-members:
@@ -216,7 +45,34 @@ TokenProcessorAttributeContract
 TokenProcessorDescriptor
 ------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenProcessorDescriptor
+.. automodule:: pingfedsdk.models.TokenProcessorDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CheckBoxFieldDescriptor
+-----------------------
+
+.. automodule:: pingfedsdk.models.CheckBoxFieldDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConfigField
+-----------
+
+.. automodule:: pingfedsdk.models.ConfigField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+HashedTextFieldDescriptor
+-------------------------
+
+.. automodule:: pingfedsdk.models.HashedTextFieldDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -225,7 +81,7 @@ TokenProcessorDescriptor
 TokenProcessorDescriptors
 -------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenProcessorDescriptors
+.. automodule:: pingfedsdk.models.TokenProcessorDescriptors
     :members:
     :undoc-members:
     :inherited-members:
@@ -234,16 +90,61 @@ TokenProcessorDescriptors
 TokenProcessors
 ---------------
 
-.. automodule:: PyPingFedSDK.models.TokenProcessors
+.. automodule:: pingfedsdk.models.TokenProcessors
     :members:
     :undoc-members:
     :inherited-members:
 
 
-UploadFileFieldDescriptor
--------------------------
+TokenProcessorAttributeContract
+-------------------------------
 
-.. automodule:: PyPingFedSDK.models.UploadFileFieldDescriptor
+.. automodule:: pingfedsdk.models.TokenProcessorAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConfigRow
+---------
+
+.. automodule:: pingfedsdk.models.ConfigRow
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenProcessorAttribute
+-----------------------
+
+.. automodule:: pingfedsdk.models.TokenProcessorAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PluginDescriptor
+----------------
+
+.. automodule:: pingfedsdk.models.PluginDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConfigTable
+-----------
+
+.. automodule:: pingfedsdk.models.ConfigTable
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ActionDescriptor
+----------------
+
+.. automodule:: pingfedsdk.models.ActionDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -252,7 +153,106 @@ UploadFileFieldDescriptor
 ValidationError
 ---------------
 
-.. automodule:: PyPingFedSDK.models.ValidationError
+.. automodule:: pingfedsdk.models.ValidationError
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PluginConfiguration
+-------------------
+
+.. automodule:: pingfedsdk.models.PluginConfiguration
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+BaseSelectionFieldDescriptor
+----------------------------
+
+.. automodule:: pingfedsdk.models.BaseSelectionFieldDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+RadioGroupFieldDescriptor
+-------------------------
+
+.. automodule:: pingfedsdk.models.RadioGroupFieldDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TextAreaFieldDescriptor
+-----------------------
+
+.. automodule:: pingfedsdk.models.TextAreaFieldDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ResourceLink
+------------
+
+.. automodule:: pingfedsdk.models.ResourceLink
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PluginConfigDescriptor
+----------------------
+
+.. automodule:: pingfedsdk.models.PluginConfigDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ApiResult
+---------
+
+.. automodule:: pingfedsdk.models.ApiResult
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+UploadFileFieldDescriptor
+-------------------------
+
+.. automodule:: pingfedsdk.models.UploadFileFieldDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenProcessor
+--------------
+
+.. automodule:: pingfedsdk.models.TokenProcessor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SelectFieldDescriptor
+---------------------
+
+.. automodule:: pingfedsdk.models.SelectFieldDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+FieldDescriptor
+---------------
+
+.. automodule:: pingfedsdk.models.FieldDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -261,7 +261,7 @@ ValidationError
 MetadataLifetimeSettings
 ------------------------
 
-.. automodule:: PyPingFedSDK.models.MetadataLifetimeSettings
+.. automodule:: pingfedsdk.models.MetadataLifetimeSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -270,133 +270,7 @@ MetadataLifetimeSettings
 MetadataSigningSettings
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.MetadataSigningSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-Action
-------
-
-.. automodule:: PyPingFedSDK.models.Action
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ActionResult
-------------
-
-.. automodule:: PyPingFedSDK.models.ActionResult
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-Actions
--------
-
-.. automodule:: PyPingFedSDK.models.Actions
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AttributeFulfillmentValue
--------------------------
-
-.. automodule:: PyPingFedSDK.models.AttributeFulfillmentValue
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AttributeSource
----------------
-
-.. automodule:: PyPingFedSDK.models.AttributeSource
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-BinaryLdapAttributeSettings
----------------------------
-
-.. automodule:: PyPingFedSDK.models.BinaryLdapAttributeSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConditionalIssuanceCriteriaEntry
---------------------------------
-
-.. automodule:: PyPingFedSDK.models.ConditionalIssuanceCriteriaEntry
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CustomAttributeSource
----------------------
-
-.. automodule:: PyPingFedSDK.models.CustomAttributeSource
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ExpressionIssuanceCriteriaEntry
--------------------------------
-
-.. automodule:: PyPingFedSDK.models.ExpressionIssuanceCriteriaEntry
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-FieldEntry
-----------
-
-.. automodule:: PyPingFedSDK.models.FieldEntry
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpAdapter
-----------
-
-.. automodule:: PyPingFedSDK.models.IdpAdapter
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpAdapterAttribute
--------------------
-
-.. automodule:: PyPingFedSDK.models.IdpAdapterAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpAdapterAttributeContract
----------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpAdapterAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpAdapterContractMapping
--------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpAdapterContractMapping
+.. automodule:: pingfedsdk.models.MetadataSigningSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -405,16 +279,25 @@ IdpAdapterContractMapping
 IdpAdapterDescriptor
 --------------------
 
-.. automodule:: PyPingFedSDK.models.IdpAdapterDescriptor
+.. automodule:: pingfedsdk.models.IdpAdapterDescriptor
     :members:
     :undoc-members:
     :inherited-members:
 
 
-IdpAdapterDescriptors
----------------------
+AttributeSource
+---------------
 
-.. automodule:: PyPingFedSDK.models.IdpAdapterDescriptors
+.. automodule:: pingfedsdk.models.AttributeSource
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AttributeFulfillmentValue
+-------------------------
+
+.. automodule:: pingfedsdk.models.AttributeFulfillmentValue
     :members:
     :undoc-members:
     :inherited-members:
@@ -423,16 +306,43 @@ IdpAdapterDescriptors
 IdpAdapters
 -----------
 
-.. automodule:: PyPingFedSDK.models.IdpAdapters
+.. automodule:: pingfedsdk.models.IdpAdapters
     :members:
     :undoc-members:
     :inherited-members:
 
 
-IssuanceCriteria
-----------------
+IdpAdapterContractMapping
+-------------------------
 
-.. automodule:: PyPingFedSDK.models.IssuanceCriteria
+.. automodule:: pingfedsdk.models.IdpAdapterContractMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ActionResult
+------------
+
+.. automodule:: pingfedsdk.models.ActionResult
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CustomAttributeSource
+---------------------
+
+.. automodule:: pingfedsdk.models.CustomAttributeSource
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConditionalIssuanceCriteriaEntry
+--------------------------------
+
+.. automodule:: pingfedsdk.models.ConditionalIssuanceCriteriaEntry
     :members:
     :undoc-members:
     :inherited-members:
@@ -441,16 +351,70 @@ IssuanceCriteria
 JdbcAttributeSource
 -------------------
 
-.. automodule:: PyPingFedSDK.models.JdbcAttributeSource
+.. automodule:: pingfedsdk.models.JdbcAttributeSource
     :members:
     :undoc-members:
     :inherited-members:
 
 
-LdapAttributeSource
+IdpAdapter
+----------
+
+.. automodule:: pingfedsdk.models.IdpAdapter
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IssuanceCriteria
+----------------
+
+.. automodule:: pingfedsdk.models.IssuanceCriteria
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ExpressionIssuanceCriteriaEntry
+-------------------------------
+
+.. automodule:: pingfedsdk.models.ExpressionIssuanceCriteriaEntry
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpAdapterAttributeContract
+---------------------------
+
+.. automodule:: pingfedsdk.models.IdpAdapterAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpAdapterDescriptors
+---------------------
+
+.. automodule:: pingfedsdk.models.IdpAdapterDescriptors
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpAdapterAttribute
 -------------------
 
-.. automodule:: PyPingFedSDK.models.LdapAttributeSource
+.. automodule:: pingfedsdk.models.IdpAdapterAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+FieldEntry
+----------
+
+.. automodule:: pingfedsdk.models.FieldEntry
     :members:
     :undoc-members:
     :inherited-members:
@@ -459,7 +423,43 @@ LdapAttributeSource
 SourceTypeIdKey
 ---------------
 
-.. automodule:: PyPingFedSDK.models.SourceTypeIdKey
+.. automodule:: pingfedsdk.models.SourceTypeIdKey
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+BinaryLdapAttributeSettings
+---------------------------
+
+.. automodule:: pingfedsdk.models.BinaryLdapAttributeSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LdapAttributeSource
+-------------------
+
+.. automodule:: pingfedsdk.models.LdapAttributeSource
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Actions
+-------
+
+.. automodule:: pingfedsdk.models.Actions
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Action
+------
+
+.. automodule:: pingfedsdk.models.Action
     :members:
     :undoc-members:
     :inherited-members:
@@ -468,7 +468,7 @@ SourceTypeIdKey
 IncomingProxySettings
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.IncomingProxySettings
+.. automodule:: pingfedsdk.models.IncomingProxySettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -477,7 +477,7 @@ IncomingProxySettings
 ServiceAuthentication
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.ServiceAuthentication
+.. automodule:: pingfedsdk.models.ServiceAuthentication
     :members:
     :undoc-members:
     :inherited-members:
@@ -486,25 +486,7 @@ ServiceAuthentication
 ServiceModel
 ------------
 
-.. automodule:: PyPingFedSDK.models.ServiceModel
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConnectionGroupLicenseView
---------------------------
-
-.. automodule:: PyPingFedSDK.models.ConnectionGroupLicenseView
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-LicenseAgreementInfo
---------------------
-
-.. automodule:: PyPingFedSDK.models.LicenseAgreementInfo
+.. automodule:: pingfedsdk.models.ServiceModel
     :members:
     :undoc-members:
     :inherited-members:
@@ -513,7 +495,25 @@ LicenseAgreementInfo
 LicenseFile
 -----------
 
-.. automodule:: PyPingFedSDK.models.LicenseFile
+.. automodule:: pingfedsdk.models.LicenseFile
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConnectionGroupLicenseView
+--------------------------
+
+.. automodule:: pingfedsdk.models.ConnectionGroupLicenseView
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LicenseAgreementInfo
+--------------------
+
+.. automodule:: pingfedsdk.models.LicenseAgreementInfo
     :members:
     :undoc-members:
     :inherited-members:
@@ -522,16 +522,7 @@ LicenseFile
 LicenseView
 -----------
 
-.. automodule:: PyPingFedSDK.models.LicenseView
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AdministrativeAccount
----------------------
-
-.. automodule:: PyPingFedSDK.models.AdministrativeAccount
+.. automodule:: pingfedsdk.models.LicenseView
     :members:
     :undoc-members:
     :inherited-members:
@@ -540,7 +531,7 @@ AdministrativeAccount
 AdministrativeAccounts
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.AdministrativeAccounts
+.. automodule:: pingfedsdk.models.AdministrativeAccounts
     :members:
     :undoc-members:
     :inherited-members:
@@ -549,25 +540,16 @@ AdministrativeAccounts
 UserCredentials
 ---------------
 
-.. automodule:: PyPingFedSDK.models.UserCredentials
+.. automodule:: pingfedsdk.models.UserCredentials
     :members:
     :undoc-members:
     :inherited-members:
 
 
-TokenGenerator
---------------
+AdministrativeAccount
+---------------------
 
-.. automodule:: PyPingFedSDK.models.TokenGenerator
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TokenGeneratorAttribute
------------------------
-
-.. automodule:: PyPingFedSDK.models.TokenGeneratorAttribute
+.. automodule:: pingfedsdk.models.AdministrativeAccount
     :members:
     :undoc-members:
     :inherited-members:
@@ -576,7 +558,16 @@ TokenGeneratorAttribute
 TokenGeneratorAttributeContract
 -------------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenGeneratorAttributeContract
+.. automodule:: pingfedsdk.models.TokenGeneratorAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenGeneratorAttribute
+-----------------------
+
+.. automodule:: pingfedsdk.models.TokenGeneratorAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -585,16 +576,7 @@ TokenGeneratorAttributeContract
 TokenGeneratorDescriptor
 ------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenGeneratorDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TokenGeneratorDescriptors
--------------------------
-
-.. automodule:: PyPingFedSDK.models.TokenGeneratorDescriptors
+.. automodule:: pingfedsdk.models.TokenGeneratorDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -603,7 +585,25 @@ TokenGeneratorDescriptors
 TokenGenerators
 ---------------
 
-.. automodule:: PyPingFedSDK.models.TokenGenerators
+.. automodule:: pingfedsdk.models.TokenGenerators
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenGenerator
+--------------
+
+.. automodule:: pingfedsdk.models.TokenGenerator
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenGeneratorDescriptors
+-------------------------
+
+.. automodule:: pingfedsdk.models.TokenGeneratorDescriptors
     :members:
     :undoc-members:
     :inherited-members:
@@ -612,7 +612,7 @@ TokenGenerators
 ConfigStoreBundle
 -----------------
 
-.. automodule:: PyPingFedSDK.models.ConfigStoreBundle
+.. automodule:: pingfedsdk.models.ConfigStoreBundle
     :members:
     :undoc-members:
     :inherited-members:
@@ -621,43 +621,7 @@ ConfigStoreBundle
 ConfigStoreSetting
 ------------------
 
-.. automodule:: PyPingFedSDK.models.ConfigStoreSetting
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CertView
---------
-
-.. automodule:: PyPingFedSDK.models.CertView
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CertViews
----------
-
-.. automodule:: PyPingFedSDK.models.CertViews
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CertificateRevocationSettings
------------------------------
-
-.. automodule:: PyPingFedSDK.models.CertificateRevocationSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CrlSettings
------------
-
-.. automodule:: PyPingFedSDK.models.CrlSettings
+.. automodule:: pingfedsdk.models.ConfigStoreSetting
     :members:
     :undoc-members:
     :inherited-members:
@@ -666,7 +630,25 @@ CrlSettings
 OcspSettings
 ------------
 
-.. automodule:: PyPingFedSDK.models.OcspSettings
+.. automodule:: pingfedsdk.models.OcspSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CertViews
+---------
+
+.. automodule:: pingfedsdk.models.CertViews
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CertificateRevocationSettings
+-----------------------------
+
+.. automodule:: pingfedsdk.models.CertificateRevocationSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -675,7 +657,7 @@ OcspSettings
 ProxySettings
 -------------
 
-.. automodule:: PyPingFedSDK.models.ProxySettings
+.. automodule:: pingfedsdk.models.ProxySettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -684,7 +666,25 @@ ProxySettings
 X509File
 --------
 
-.. automodule:: PyPingFedSDK.models.X509File
+.. automodule:: pingfedsdk.models.X509File
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CrlSettings
+-----------
+
+.. automodule:: pingfedsdk.models.CrlSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CertView
+--------
+
+.. automodule:: pingfedsdk.models.CertView
     :members:
     :undoc-members:
     :inherited-members:
@@ -693,34 +693,7 @@ X509File
 Pattern
 -------
 
-.. automodule:: PyPingFedSDK.models.Pattern
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SaasPluginDescriptor
---------------------
-
-.. automodule:: PyPingFedSDK.models.SaasPluginDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SaasPluginDescriptors
----------------------
-
-.. automodule:: PyPingFedSDK.models.SaasPluginDescriptors
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SaasPluginFieldInfoDescriptor
------------------------------
-
-.. automodule:: PyPingFedSDK.models.SaasPluginFieldInfoDescriptor
+.. automodule:: pingfedsdk.models.Pattern
     :members:
     :undoc-members:
     :inherited-members:
@@ -729,7 +702,34 @@ SaasPluginFieldInfoDescriptor
 SaasPluginFieldOption
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.SaasPluginFieldOption
+.. automodule:: pingfedsdk.models.SaasPluginFieldOption
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SaasPluginDescriptor
+--------------------
+
+.. automodule:: pingfedsdk.models.SaasPluginDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SaasPluginDescriptors
+---------------------
+
+.. automodule:: pingfedsdk.models.SaasPluginDescriptors
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SaasPluginFieldInfoDescriptor
+-----------------------------
+
+.. automodule:: pingfedsdk.models.SaasPluginFieldInfoDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -738,7 +738,7 @@ SaasPluginFieldOption
 IdpToSpAdapterMapping
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.IdpToSpAdapterMapping
+.. automodule:: pingfedsdk.models.IdpToSpAdapterMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -747,43 +747,7 @@ IdpToSpAdapterMapping
 IdpToSpAdapterMappings
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.IdpToSpAdapterMappings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAdapter
----------
-
-.. automodule:: PyPingFedSDK.models.SpAdapter
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAdapterAttribute
-------------------
-
-.. automodule:: PyPingFedSDK.models.SpAdapterAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAdapterAttributeContract
---------------------------
-
-.. automodule:: PyPingFedSDK.models.SpAdapterAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAdapterDescriptor
--------------------
-
-.. automodule:: PyPingFedSDK.models.SpAdapterDescriptor
+.. automodule:: pingfedsdk.models.IdpToSpAdapterMappings
     :members:
     :undoc-members:
     :inherited-members:
@@ -792,34 +756,16 @@ SpAdapterDescriptor
 SpAdapterDescriptors
 --------------------
 
-.. automodule:: PyPingFedSDK.models.SpAdapterDescriptors
+.. automodule:: pingfedsdk.models.SpAdapterDescriptors
     :members:
     :undoc-members:
     :inherited-members:
 
 
-SpAdapterTargetApplicationInfo
-------------------------------
-
-.. automodule:: PyPingFedSDK.models.SpAdapterTargetApplicationInfo
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAdapterUrlMapping
+SpAdapterDescriptor
 -------------------
 
-.. automodule:: PyPingFedSDK.models.SpAdapterUrlMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAdapterUrlMappings
---------------------
-
-.. automodule:: PyPingFedSDK.models.SpAdapterUrlMappings
+.. automodule:: pingfedsdk.models.SpAdapterDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -828,16 +774,61 @@ SpAdapterUrlMappings
 SpAdapters
 ----------
 
-.. automodule:: PyPingFedSDK.models.SpAdapters
+.. automodule:: pingfedsdk.models.SpAdapters
     :members:
     :undoc-members:
     :inherited-members:
 
 
-SpUrlMapping
-------------
+SpAdapterUrlMapping
+-------------------
 
-.. automodule:: PyPingFedSDK.models.SpUrlMapping
+.. automodule:: pingfedsdk.models.SpAdapterUrlMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAdapterUrlMappings
+--------------------
+
+.. automodule:: pingfedsdk.models.SpAdapterUrlMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAdapterAttributeContract
+--------------------------
+
+.. automodule:: pingfedsdk.models.SpAdapterAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAdapterTargetApplicationInfo
+------------------------------
+
+.. automodule:: pingfedsdk.models.SpAdapterTargetApplicationInfo
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAdapter
+---------
+
+.. automodule:: pingfedsdk.models.SpAdapter
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAdapterAttribute
+------------------
+
+.. automodule:: pingfedsdk.models.SpAdapterAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -846,7 +837,16 @@ SpUrlMapping
 SpUrlMappings
 -------------
 
-.. automodule:: PyPingFedSDK.models.SpUrlMappings
+.. automodule:: pingfedsdk.models.SpUrlMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpUrlMapping
+------------
+
+.. automodule:: pingfedsdk.models.SpUrlMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -855,7 +855,7 @@ SpUrlMappings
 IdpDefaultUrl
 -------------
 
-.. automodule:: PyPingFedSDK.models.IdpDefaultUrl
+.. automodule:: pingfedsdk.models.IdpDefaultUrl
     :members:
     :undoc-members:
     :inherited-members:
@@ -864,7 +864,7 @@ IdpDefaultUrl
 StsRequestParametersContract
 ----------------------------
 
-.. automodule:: PyPingFedSDK.models.StsRequestParametersContract
+.. automodule:: pingfedsdk.models.StsRequestParametersContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -873,169 +873,7 @@ StsRequestParametersContract
 StsRequestParametersContracts
 -----------------------------
 
-.. automodule:: PyPingFedSDK.models.StsRequestParametersContracts
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenManagerMapping
--------------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenManagerMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccountManagementSettings
--------------------------
-
-.. automodule:: PyPingFedSDK.models.AccountManagementSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AdditionalAllowedEntitiesConfiguration
---------------------------------------
-
-.. automodule:: PyPingFedSDK.models.AdditionalAllowedEntitiesConfiguration
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ArtifactResolverLocation
-------------------------
-
-.. automodule:: PyPingFedSDK.models.ArtifactResolverLocation
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ArtifactSettings
-----------------
-
-.. automodule:: PyPingFedSDK.models.ArtifactSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AssertionLifetime
------------------
-
-.. automodule:: PyPingFedSDK.models.AssertionLifetime
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AttributeQueryNameMapping
--------------------------
-
-.. automodule:: PyPingFedSDK.models.AttributeQueryNameMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationPolicyContractAssertionMapping
---------------------------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicyContractAssertionMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationPolicyContractMapping
------------------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicyContractMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthnContextMapping
--------------------
-
-.. automodule:: PyPingFedSDK.models.AuthnContextMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-BackChannelAuth
----------------
-
-.. automodule:: PyPingFedSDK.models.BackChannelAuth
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ChangeDetectionSettings
------------------------
-
-.. automodule:: PyPingFedSDK.models.ChangeDetectionSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-Channel
--------
-
-.. automodule:: PyPingFedSDK.models.Channel
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ChannelSource
--------------
-
-.. automodule:: PyPingFedSDK.models.ChannelSource
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ChannelSourceLocation
----------------------
-
-.. automodule:: PyPingFedSDK.models.ChannelSourceLocation
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-Connection
-----------
-
-.. automodule:: PyPingFedSDK.models.Connection
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConnectionCert
---------------
-
-.. automodule:: PyPingFedSDK.models.ConnectionCert
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConnectionCerts
----------------
-
-.. automodule:: PyPingFedSDK.models.ConnectionCerts
+.. automodule:: pingfedsdk.models.StsRequestParametersContracts
     :members:
     :undoc-members:
     :inherited-members:
@@ -1044,349 +882,7 @@ ConnectionCerts
 ConnectionCredentials
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.ConnectionCredentials
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConnectionMetadataUrl
----------------------
-
-.. automodule:: PyPingFedSDK.models.ConnectionMetadataUrl
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ContactInfo
------------
-
-.. automodule:: PyPingFedSDK.models.ContactInfo
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-DecryptionKeys
---------------
-
-.. automodule:: PyPingFedSDK.models.DecryptionKeys
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-DecryptionPolicy
-----------------
-
-.. automodule:: PyPingFedSDK.models.DecryptionPolicy
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-EncryptionPolicy
-----------------
-
-.. automodule:: PyPingFedSDK.models.EncryptionPolicy
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-Entity
-------
-
-.. automodule:: PyPingFedSDK.models.Entity
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-GroupMembershipDetection
-------------------------
-
-.. automodule:: PyPingFedSDK.models.GroupMembershipDetection
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpAdapterAssertionMapping
---------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpAdapterAssertionMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpAttributeQuery
------------------
-
-.. automodule:: PyPingFedSDK.models.IdpAttributeQuery
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpAttributeQueryPolicy
------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpAttributeQueryPolicy
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpBrowserSso
--------------
-
-.. automodule:: PyPingFedSDK.models.IdpBrowserSso
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpBrowserSsoAttribute
-----------------------
-
-.. automodule:: PyPingFedSDK.models.IdpBrowserSsoAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpBrowserSsoAttributeContract
-------------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpBrowserSsoAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpConnection
--------------
-
-.. automodule:: PyPingFedSDK.models.IdpConnection
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpOAuthAttributeContract
--------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpOAuthAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpOAuthGrantAttributeMapping
------------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpOAuthGrantAttributeMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpSsoServiceEndpoint
----------------------
-
-.. automodule:: PyPingFedSDK.models.IdpSsoServiceEndpoint
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpTokenProcessorMapping
-------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpTokenProcessorMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpWsTrust
-----------
-
-.. automodule:: PyPingFedSDK.models.IdpWsTrust
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpWsTrustAttribute
--------------------
-
-.. automodule:: PyPingFedSDK.models.IdpWsTrustAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpWsTrustAttributeContract
----------------------------
-
-.. automodule:: PyPingFedSDK.models.IdpWsTrustAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-InboundBackChannelAuth
-----------------------
-
-.. automodule:: PyPingFedSDK.models.InboundBackChannelAuth
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OIDCClientCredentials
----------------------
-
-.. automodule:: PyPingFedSDK.models.OIDCClientCredentials
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OIDCProviderSettings
---------------------
-
-.. automodule:: PyPingFedSDK.models.OIDCProviderSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OIDCRequestParameter
---------------------
-
-.. automodule:: PyPingFedSDK.models.OIDCRequestParameter
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OutboundBackChannelAuth
------------------------
-
-.. automodule:: PyPingFedSDK.models.OutboundBackChannelAuth
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OutboundProvision
------------------
-
-.. automodule:: PyPingFedSDK.models.OutboundProvision
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ParameterValues
----------------
-
-.. automodule:: PyPingFedSDK.models.ParameterValues
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ProtocolMessageCustomization
-----------------------------
-
-.. automodule:: PyPingFedSDK.models.ProtocolMessageCustomization
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SaasAttributeMapping
---------------------
-
-.. automodule:: PyPingFedSDK.models.SaasAttributeMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SaasFieldConfiguration
-----------------------
-
-.. automodule:: PyPingFedSDK.models.SaasFieldConfiguration
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-Schema
-------
-
-.. automodule:: PyPingFedSDK.models.Schema
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SchemaAttribute
----------------
-
-.. automodule:: PyPingFedSDK.models.SchemaAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SigningSettings
----------------
-
-.. automodule:: PyPingFedSDK.models.SigningSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SloServiceEndpoint
-------------------
-
-.. automodule:: PyPingFedSDK.models.SloServiceEndpoint
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAdapterMapping
-----------------
-
-.. automodule:: PyPingFedSDK.models.SpAdapterMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAttributeQuery
-----------------
-
-.. automodule:: PyPingFedSDK.models.SpAttributeQuery
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpAttributeQueryPolicy
-----------------------
-
-.. automodule:: PyPingFedSDK.models.SpAttributeQueryPolicy
+.. automodule:: pingfedsdk.models.ConnectionCredentials
     :members:
     :undoc-members:
     :inherited-members:
@@ -1395,61 +891,52 @@ SpAttributeQueryPolicy
 SpBrowserSso
 ------------
 
-.. automodule:: PyPingFedSDK.models.SpBrowserSso
+.. automodule:: pingfedsdk.models.SpBrowserSso
     :members:
     :undoc-members:
     :inherited-members:
 
 
-SpBrowserSsoAttribute
----------------------
+AdditionalAllowedEntitiesConfiguration
+--------------------------------------
 
-.. automodule:: PyPingFedSDK.models.SpBrowserSsoAttribute
+.. automodule:: pingfedsdk.models.AdditionalAllowedEntitiesConfiguration
     :members:
     :undoc-members:
     :inherited-members:
 
 
-SpBrowserSsoAttributeContract
------------------------------
+SchemaAttribute
+---------------
 
-.. automodule:: PyPingFedSDK.models.SpBrowserSsoAttributeContract
+.. automodule:: pingfedsdk.models.SchemaAttribute
     :members:
     :undoc-members:
     :inherited-members:
 
 
-SpConnection
-------------
-
-.. automodule:: PyPingFedSDK.models.SpConnection
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpConnections
--------------
-
-.. automodule:: PyPingFedSDK.models.SpConnections
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpSsoServiceEndpoint
---------------------
-
-.. automodule:: PyPingFedSDK.models.SpSsoServiceEndpoint
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpTokenGeneratorMapping
+OutboundBackChannelAuth
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.SpTokenGeneratorMapping
+.. automodule:: pingfedsdk.models.OutboundBackChannelAuth
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SigningSettings
+---------------
+
+.. automodule:: pingfedsdk.models.SigningSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ArtifactResolverLocation
+------------------------
+
+.. automodule:: pingfedsdk.models.ArtifactResolverLocation
     :members:
     :undoc-members:
     :inherited-members:
@@ -1458,7 +945,160 @@ SpTokenGeneratorMapping
 SpWsTrust
 ---------
 
-.. automodule:: PyPingFedSDK.models.SpWsTrust
+.. automodule:: pingfedsdk.models.SpWsTrust
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpAttributeQuery
+-----------------
+
+.. automodule:: pingfedsdk.models.IdpAttributeQuery
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+GroupMembershipDetection
+------------------------
+
+.. automodule:: pingfedsdk.models.GroupMembershipDetection
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+BackChannelAuth
+---------------
+
+.. automodule:: pingfedsdk.models.BackChannelAuth
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Channel
+-------
+
+.. automodule:: pingfedsdk.models.Channel
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpBrowserSso
+-------------
+
+.. automodule:: pingfedsdk.models.IdpBrowserSso
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SaasAttributeMapping
+--------------------
+
+.. automodule:: pingfedsdk.models.SaasAttributeMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpSsoServiceEndpoint
+---------------------
+
+.. automodule:: pingfedsdk.models.IdpSsoServiceEndpoint
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpOAuthAttributeContract
+-------------------------
+
+.. automodule:: pingfedsdk.models.IdpOAuthAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+DecryptionKeys
+--------------
+
+.. automodule:: pingfedsdk.models.DecryptionKeys
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SloServiceEndpoint
+------------------
+
+.. automodule:: pingfedsdk.models.SloServiceEndpoint
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ArtifactSettings
+----------------
+
+.. automodule:: pingfedsdk.models.ArtifactSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SaasFieldConfiguration
+----------------------
+
+.. automodule:: pingfedsdk.models.SaasFieldConfiguration
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpAdapterAssertionMapping
+--------------------------
+
+.. automodule:: pingfedsdk.models.IdpAdapterAssertionMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Entity
+------
+
+.. automodule:: pingfedsdk.models.Entity
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpOAuthGrantAttributeMapping
+-----------------------------
+
+.. automodule:: pingfedsdk.models.IdpOAuthGrantAttributeMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ContactInfo
+-----------
+
+.. automodule:: pingfedsdk.models.ContactInfo
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationPolicyContractAssertionMapping
+--------------------------------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationPolicyContractAssertionMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -1467,34 +1107,151 @@ SpWsTrust
 SpWsTrustAttribute
 ------------------
 
-.. automodule:: PyPingFedSDK.models.SpWsTrustAttribute
+.. automodule:: pingfedsdk.models.SpWsTrustAttribute
     :members:
     :undoc-members:
     :inherited-members:
 
 
-SpWsTrustAttributeContract
---------------------------
+SpBrowserSsoAttributeContract
+-----------------------------
 
-.. automodule:: PyPingFedSDK.models.SpWsTrustAttributeContract
+.. automodule:: pingfedsdk.models.SpBrowserSsoAttributeContract
     :members:
     :undoc-members:
     :inherited-members:
 
 
-SsoOAuthMapping
----------------
-
-.. automodule:: PyPingFedSDK.models.SsoOAuthMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-UrlWhitelistEntry
+AssertionLifetime
 -----------------
 
-.. automodule:: PyPingFedSDK.models.UrlWhitelistEntry
+.. automodule:: pingfedsdk.models.AssertionLifetime
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpWsTrustAttribute
+-------------------
+
+.. automodule:: pingfedsdk.models.IdpWsTrustAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpAttributeQueryPolicy
+-----------------------
+
+.. automodule:: pingfedsdk.models.IdpAttributeQueryPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+InboundBackChannelAuth
+----------------------
+
+.. automodule:: pingfedsdk.models.InboundBackChannelAuth
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+EncryptionPolicy
+----------------
+
+.. automodule:: pingfedsdk.models.EncryptionPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpConnections
+-------------
+
+.. automodule:: pingfedsdk.models.SpConnections
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpConnection
+-------------
+
+.. automodule:: pingfedsdk.models.IdpConnection
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ProtocolMessageCustomization
+----------------------------
+
+.. automodule:: pingfedsdk.models.ProtocolMessageCustomization
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Connection
+----------
+
+.. automodule:: pingfedsdk.models.Connection
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAdapterMapping
+----------------
+
+.. automodule:: pingfedsdk.models.SpAdapterMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpBrowserSsoAttribute
+----------------------
+
+.. automodule:: pingfedsdk.models.IdpBrowserSsoAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpBrowserSsoAttributeContract
+------------------------------
+
+.. automodule:: pingfedsdk.models.IdpBrowserSsoAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccountManagementSettings
+-------------------------
+
+.. automodule:: pingfedsdk.models.AccountManagementSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpWsTrust
+----------
+
+.. automodule:: pingfedsdk.models.IdpWsTrust
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OIDCProviderSettings
+--------------------
+
+.. automodule:: pingfedsdk.models.OIDCProviderSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -1503,7 +1260,250 @@ UrlWhitelistEntry
 UsernamePasswordCredentials
 ---------------------------
 
-.. automodule:: PyPingFedSDK.models.UsernamePasswordCredentials
+.. automodule:: pingfedsdk.models.UsernamePasswordCredentials
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+DecryptionPolicy
+----------------
+
+.. automodule:: pingfedsdk.models.DecryptionPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationPolicyContractMapping
+-----------------------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationPolicyContractMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConnectionMetadataUrl
+---------------------
+
+.. automodule:: pingfedsdk.models.ConnectionMetadataUrl
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConnectionCert
+--------------
+
+.. automodule:: pingfedsdk.models.ConnectionCert
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConnectionCerts
+---------------
+
+.. automodule:: pingfedsdk.models.ConnectionCerts
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ParameterValues
+---------------
+
+.. automodule:: pingfedsdk.models.ParameterValues
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpWsTrustAttributeContract
+--------------------------
+
+.. automodule:: pingfedsdk.models.SpWsTrustAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OIDCRequestParameter
+--------------------
+
+.. automodule:: pingfedsdk.models.OIDCRequestParameter
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAttributeQuery
+----------------
+
+.. automodule:: pingfedsdk.models.SpAttributeQuery
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpAttributeQueryPolicy
+----------------------
+
+.. automodule:: pingfedsdk.models.SpAttributeQueryPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+UrlWhitelistEntry
+-----------------
+
+.. automodule:: pingfedsdk.models.UrlWhitelistEntry
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ChannelSource
+-------------
+
+.. automodule:: pingfedsdk.models.ChannelSource
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ChannelSourceLocation
+---------------------
+
+.. automodule:: pingfedsdk.models.ChannelSourceLocation
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OIDCClientCredentials
+---------------------
+
+.. automodule:: pingfedsdk.models.OIDCClientCredentials
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ChangeDetectionSettings
+-----------------------
+
+.. automodule:: pingfedsdk.models.ChangeDetectionSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AttributeQueryNameMapping
+-------------------------
+
+.. automodule:: pingfedsdk.models.AttributeQueryNameMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SsoOAuthMapping
+---------------
+
+.. automodule:: pingfedsdk.models.SsoOAuthMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Schema
+------
+
+.. automodule:: pingfedsdk.models.Schema
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OutboundProvision
+-----------------
+
+.. automodule:: pingfedsdk.models.OutboundProvision
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpTokenGeneratorMapping
+-----------------------
+
+.. automodule:: pingfedsdk.models.SpTokenGeneratorMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpBrowserSsoAttribute
+---------------------
+
+.. automodule:: pingfedsdk.models.SpBrowserSsoAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpTokenProcessorMapping
+------------------------
+
+.. automodule:: pingfedsdk.models.IdpTokenProcessorMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+IdpWsTrustAttributeContract
+---------------------------
+
+.. automodule:: pingfedsdk.models.IdpWsTrustAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenManagerMapping
+-------------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenManagerMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpSsoServiceEndpoint
+--------------------
+
+.. automodule:: pingfedsdk.models.SpSsoServiceEndpoint
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthnContextMapping
+-------------------
+
+.. automodule:: pingfedsdk.models.AuthnContextMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpConnection
+------------
+
+.. automodule:: pingfedsdk.models.SpConnection
     :members:
     :undoc-members:
     :inherited-members:
@@ -1512,7 +1512,7 @@ UsernamePasswordCredentials
 SpDefaultUrls
 -------------
 
-.. automodule:: PyPingFedSDK.models.SpDefaultUrls
+.. automodule:: pingfedsdk.models.SpDefaultUrls
     :members:
     :undoc-members:
     :inherited-members:
@@ -1521,7 +1521,7 @@ SpDefaultUrls
 IdpConnections
 --------------
 
-.. automodule:: PyPingFedSDK.models.IdpConnections
+.. automodule:: pingfedsdk.models.IdpConnections
     :members:
     :undoc-members:
     :inherited-members:
@@ -1530,7 +1530,7 @@ IdpConnections
 ApcToSpAdapterMapping
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.ApcToSpAdapterMapping
+.. automodule:: pingfedsdk.models.ApcToSpAdapterMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -1539,16 +1539,7 @@ ApcToSpAdapterMapping
 ApcToSpAdapterMappings
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.ApcToSpAdapterMappings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ExtendedProperties
-------------------
-
-.. automodule:: PyPingFedSDK.models.ExtendedProperties
+.. automodule:: pingfedsdk.models.ApcToSpAdapterMappings
     :members:
     :undoc-members:
     :inherited-members:
@@ -1557,7 +1548,16 @@ ExtendedProperties
 ExtendedProperty
 ----------------
 
-.. automodule:: PyPingFedSDK.models.ExtendedProperty
+.. automodule:: pingfedsdk.models.ExtendedProperty
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ExtendedProperties
+------------------
+
+.. automodule:: pingfedsdk.models.ExtendedProperties
     :members:
     :undoc-members:
     :inherited-members:
@@ -1566,7 +1566,7 @@ ExtendedProperty
 BulkConfig
 ----------
 
-.. automodule:: PyPingFedSDK.models.BulkConfig
+.. automodule:: pingfedsdk.models.BulkConfig
     :members:
     :undoc-members:
     :inherited-members:
@@ -1575,7 +1575,7 @@ BulkConfig
 BulkConfigMetadata
 ------------------
 
-.. automodule:: PyPingFedSDK.models.BulkConfigMetadata
+.. automodule:: pingfedsdk.models.BulkConfigMetadata
     :members:
     :undoc-members:
     :inherited-members:
@@ -1584,16 +1584,7 @@ BulkConfigMetadata
 ConfigOperation
 ---------------
 
-.. automodule:: PyPingFedSDK.models.ConfigOperation
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ApcMappingPolicyAction
-----------------------
-
-.. automodule:: PyPingFedSDK.models.ApcMappingPolicyAction
+.. automodule:: pingfedsdk.models.ConfigOperation
     :members:
     :undoc-members:
     :inherited-members:
@@ -1602,88 +1593,7 @@ ApcMappingPolicyAction
 AttributeMapping
 ----------------
 
-.. automodule:: PyPingFedSDK.models.AttributeMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AttributeRule
--------------
-
-.. automodule:: PyPingFedSDK.models.AttributeRule
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AttributeRules
---------------
-
-.. automodule:: PyPingFedSDK.models.AttributeRules
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationPoliciesSettings
-------------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationPoliciesSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationPolicy
---------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicy
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationPolicyTree
-------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicyTree
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationPolicyTreeNode
-----------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicyTreeNode
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationSource
---------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationSource
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthnSelectorPolicyAction
--------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthnSelectorPolicyAction
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthnSourcePolicyAction
------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthnSourcePolicyAction
+.. automodule:: pingfedsdk.models.AttributeMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -1692,7 +1602,61 @@ AuthnSourcePolicyAction
 ContinuePolicyAction
 --------------------
 
-.. automodule:: PyPingFedSDK.models.ContinuePolicyAction
+.. automodule:: pingfedsdk.models.ContinuePolicyAction
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ApcMappingPolicyAction
+----------------------
+
+.. automodule:: pingfedsdk.models.ApcMappingPolicyAction
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthnSourcePolicyAction
+-----------------------
+
+.. automodule:: pingfedsdk.models.AuthnSourcePolicyAction
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationPolicy
+--------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationPolicyTreeNode
+----------------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationPolicyTreeNode
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AttributeRule
+-------------
+
+.. automodule:: pingfedsdk.models.AttributeRule
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationSource
+--------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationSource
     :members:
     :undoc-members:
     :inherited-members:
@@ -1701,16 +1665,7 @@ ContinuePolicyAction
 DonePolicyAction
 ----------------
 
-.. automodule:: PyPingFedSDK.models.DonePolicyAction
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-LocalIdentityMappingPolicyAction
---------------------------------
-
-.. automodule:: PyPingFedSDK.models.LocalIdentityMappingPolicyAction
+.. automodule:: pingfedsdk.models.DonePolicyAction
     :members:
     :undoc-members:
     :inherited-members:
@@ -1719,7 +1674,25 @@ LocalIdentityMappingPolicyAction
 PolicyAction
 ------------
 
-.. automodule:: PyPingFedSDK.models.PolicyAction
+.. automodule:: pingfedsdk.models.PolicyAction
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LocalIdentityMappingPolicyAction
+--------------------------------
+
+.. automodule:: pingfedsdk.models.LocalIdentityMappingPolicyAction
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthnSelectorPolicyAction
+-------------------------
+
+.. automodule:: pingfedsdk.models.AuthnSelectorPolicyAction
     :members:
     :undoc-members:
     :inherited-members:
@@ -1728,16 +1701,34 @@ PolicyAction
 RestartPolicyAction
 -------------------
 
-.. automodule:: PyPingFedSDK.models.RestartPolicyAction
+.. automodule:: pingfedsdk.models.RestartPolicyAction
     :members:
     :undoc-members:
     :inherited-members:
 
 
-TokenExchangeGeneratorGroup
----------------------------
+AuthenticationPolicyTree
+------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenExchangeGeneratorGroup
+.. automodule:: pingfedsdk.models.AuthenticationPolicyTree
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AttributeRules
+--------------
+
+.. automodule:: pingfedsdk.models.AttributeRules
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationPoliciesSettings
+------------------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationPoliciesSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -1746,7 +1737,7 @@ TokenExchangeGeneratorGroup
 TokenExchangeGeneratorGroups
 ----------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenExchangeGeneratorGroups
+.. automodule:: pingfedsdk.models.TokenExchangeGeneratorGroups
     :members:
     :undoc-members:
     :inherited-members:
@@ -1755,7 +1746,16 @@ TokenExchangeGeneratorGroups
 TokenExchangeGeneratorMapping
 -----------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenExchangeGeneratorMapping
+.. automodule:: pingfedsdk.models.TokenExchangeGeneratorMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenExchangeGeneratorGroup
+---------------------------
+
+.. automodule:: pingfedsdk.models.TokenExchangeGeneratorGroup
     :members:
     :undoc-members:
     :inherited-members:
@@ -1764,16 +1764,7 @@ TokenExchangeGeneratorMapping
 TokenExchangeGeneratorSettings
 ------------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenExchangeGeneratorSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TokenExchangeProcessorAttribute
--------------------------------
-
-.. automodule:: PyPingFedSDK.models.TokenExchangeProcessorAttribute
+.. automodule:: pingfedsdk.models.TokenExchangeGeneratorSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -1782,34 +1773,7 @@ TokenExchangeProcessorAttribute
 TokenExchangeProcessorAttributeContract
 ---------------------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenExchangeProcessorAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TokenExchangeProcessorMapping
------------------------------
-
-.. automodule:: PyPingFedSDK.models.TokenExchangeProcessorMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TokenExchangeProcessorPolicies
-------------------------------
-
-.. automodule:: PyPingFedSDK.models.TokenExchangeProcessorPolicies
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-TokenExchangeProcessorPolicy
-----------------------------
-
-.. automodule:: PyPingFedSDK.models.TokenExchangeProcessorPolicy
+.. automodule:: pingfedsdk.models.TokenExchangeProcessorAttributeContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -1818,16 +1782,43 @@ TokenExchangeProcessorPolicy
 TokenExchangeProcessorSettings
 ------------------------------
 
-.. automodule:: PyPingFedSDK.models.TokenExchangeProcessorSettings
+.. automodule:: pingfedsdk.models.TokenExchangeProcessorSettings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-AuthenticationSelector
-----------------------
+TokenExchangeProcessorMapping
+-----------------------------
 
-.. automodule:: PyPingFedSDK.models.AuthenticationSelector
+.. automodule:: pingfedsdk.models.TokenExchangeProcessorMapping
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenExchangeProcessorPolicy
+----------------------------
+
+.. automodule:: pingfedsdk.models.TokenExchangeProcessorPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenExchangeProcessorPolicies
+------------------------------
+
+.. automodule:: pingfedsdk.models.TokenExchangeProcessorPolicies
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+TokenExchangeProcessorAttribute
+-------------------------------
+
+.. automodule:: pingfedsdk.models.TokenExchangeProcessorAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -1836,7 +1827,7 @@ AuthenticationSelector
 AuthenticationSelectorAttribute
 -------------------------------
 
-.. automodule:: PyPingFedSDK.models.AuthenticationSelectorAttribute
+.. automodule:: pingfedsdk.models.AuthenticationSelectorAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -1845,25 +1836,7 @@ AuthenticationSelectorAttribute
 AuthenticationSelectorAttributeContract
 ---------------------------------------
 
-.. automodule:: PyPingFedSDK.models.AuthenticationSelectorAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationSelectorDescriptor
---------------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationSelectorDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationSelectorDescriptors
----------------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationSelectorDescriptors
+.. automodule:: pingfedsdk.models.AuthenticationSelectorAttributeContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -1872,79 +1845,34 @@ AuthenticationSelectorDescriptors
 AuthenticationSelectors
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.AuthenticationSelectors
+.. automodule:: pingfedsdk.models.AuthenticationSelectors
     :members:
     :undoc-members:
     :inherited-members:
 
 
-CustomDataStore
----------------
+AuthenticationSelector
+----------------------
 
-.. automodule:: PyPingFedSDK.models.CustomDataStore
+.. automodule:: pingfedsdk.models.AuthenticationSelector
     :members:
     :undoc-members:
     :inherited-members:
 
 
-CustomDataStoreDescriptor
--------------------------
+AuthenticationSelectorDescriptors
+---------------------------------
 
-.. automodule:: PyPingFedSDK.models.CustomDataStoreDescriptor
+.. automodule:: pingfedsdk.models.AuthenticationSelectorDescriptors
     :members:
     :undoc-members:
     :inherited-members:
 
 
-CustomDataStoreDescriptors
---------------------------
+AuthenticationSelectorDescriptor
+--------------------------------
 
-.. automodule:: PyPingFedSDK.models.CustomDataStoreDescriptors
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-DataSourceTag
--------------
-
-.. automodule:: PyPingFedSDK.models.DataSourceTag
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-DataStore
----------
-
-.. automodule:: PyPingFedSDK.models.DataStore
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-DataStores
-----------
-
-.. automodule:: PyPingFedSDK.models.DataStores
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-JdbcDataStore
--------------
-
-.. automodule:: PyPingFedSDK.models.JdbcDataStore
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-JdbcTagConfig
--------------
-
-.. automodule:: PyPingFedSDK.models.JdbcTagConfig
+.. automodule:: pingfedsdk.models.AuthenticationSelectorDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -1953,7 +1881,25 @@ JdbcTagConfig
 LdapDataStore
 -------------
 
-.. automodule:: PyPingFedSDK.models.LdapDataStore
+.. automodule:: pingfedsdk.models.LdapDataStore
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+DataStore
+---------
+
+.. automodule:: pingfedsdk.models.DataStore
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+JdbcDataStore
+-------------
+
+.. automodule:: pingfedsdk.models.JdbcDataStore
     :members:
     :undoc-members:
     :inherited-members:
@@ -1962,133 +1908,61 @@ LdapDataStore
 LdapTagConfig
 -------------
 
-.. automodule:: PyPingFedSDK.models.LdapTagConfig
+.. automodule:: pingfedsdk.models.LdapTagConfig
     :members:
     :undoc-members:
     :inherited-members:
 
 
-BaseDefaultValueLocalIdentityField
-----------------------------------
+DataSourceTag
+-------------
 
-.. automodule:: PyPingFedSDK.models.BaseDefaultValueLocalIdentityField
+.. automodule:: pingfedsdk.models.DataSourceTag
     :members:
     :undoc-members:
     :inherited-members:
 
 
-BaseSelectionLocalIdentityField
--------------------------------
-
-.. automodule:: PyPingFedSDK.models.BaseSelectionLocalIdentityField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CheckboxGroupLocalIdentityField
--------------------------------
-
-.. automodule:: PyPingFedSDK.models.CheckboxGroupLocalIdentityField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CheckboxLocalIdentityField
+CustomDataStoreDescriptors
 --------------------------
 
-.. automodule:: PyPingFedSDK.models.CheckboxLocalIdentityField
+.. automodule:: pingfedsdk.models.CustomDataStoreDescriptors
     :members:
     :undoc-members:
     :inherited-members:
 
 
-DataStoreAttribute
-------------------
+DataStores
+----------
 
-.. automodule:: PyPingFedSDK.models.DataStoreAttribute
+.. automodule:: pingfedsdk.models.DataStores
     :members:
     :undoc-members:
     :inherited-members:
 
 
-DataStoreConfig
+CustomDataStore
 ---------------
 
-.. automodule:: PyPingFedSDK.models.DataStoreConfig
+.. automodule:: pingfedsdk.models.CustomDataStore
     :members:
     :undoc-members:
     :inherited-members:
 
 
-DateLocalIdentityField
-----------------------
+JdbcTagConfig
+-------------
 
-.. automodule:: PyPingFedSDK.models.DateLocalIdentityField
+.. automodule:: pingfedsdk.models.JdbcTagConfig
     :members:
     :undoc-members:
     :inherited-members:
 
 
-DropDownLocalIdentityField
---------------------------
+CustomDataStoreDescriptor
+-------------------------
 
-.. automodule:: PyPingFedSDK.models.DropDownLocalIdentityField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-EmailLocalIdentityField
------------------------
-
-.. automodule:: PyPingFedSDK.models.EmailLocalIdentityField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-EmailVerificationConfig
------------------------
-
-.. automodule:: PyPingFedSDK.models.EmailVerificationConfig
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-FieldConfig
------------
-
-.. automodule:: PyPingFedSDK.models.FieldConfig
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-HiddenLocalIdentityField
-------------------------
-
-.. automodule:: PyPingFedSDK.models.HiddenLocalIdentityField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-LdapDataStoreAttribute
-----------------------
-
-.. automodule:: PyPingFedSDK.models.LdapDataStoreAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-LdapDataStoreConfig
--------------------
-
-.. automodule:: PyPingFedSDK.models.LdapDataStoreConfig
+.. automodule:: pingfedsdk.models.CustomDataStoreDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -2097,70 +1971,25 @@ LdapDataStoreConfig
 LocalIdentityAuthSource
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.LocalIdentityAuthSource
+.. automodule:: pingfedsdk.models.LocalIdentityAuthSource
     :members:
     :undoc-members:
     :inherited-members:
 
 
-LocalIdentityAuthSourceUpdatePolicy
------------------------------------
+LdapDataStoreAttribute
+----------------------
 
-.. automodule:: PyPingFedSDK.models.LocalIdentityAuthSourceUpdatePolicy
+.. automodule:: pingfedsdk.models.LdapDataStoreAttribute
     :members:
     :undoc-members:
     :inherited-members:
 
 
-LocalIdentityField
-------------------
-
-.. automodule:: PyPingFedSDK.models.LocalIdentityField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-LocalIdentityProfile
---------------------
-
-.. automodule:: PyPingFedSDK.models.LocalIdentityProfile
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-LocalIdentityProfiles
----------------------
-
-.. automodule:: PyPingFedSDK.models.LocalIdentityProfiles
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PhoneLocalIdentityField
+EmailVerificationConfig
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.PhoneLocalIdentityField
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ProfileConfig
--------------
-
-.. automodule:: PyPingFedSDK.models.ProfileConfig
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-RegistrationConfig
-------------------
-
-.. automodule:: PyPingFedSDK.models.RegistrationConfig
+.. automodule:: pingfedsdk.models.EmailVerificationConfig
     :members:
     :undoc-members:
     :inherited-members:
@@ -2169,16 +1998,178 @@ RegistrationConfig
 TextLocalIdentityField
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.TextLocalIdentityField
+.. automodule:: pingfedsdk.models.TextLocalIdentityField
     :members:
     :undoc-members:
     :inherited-members:
 
 
-AlternativeLoginHintTokenIssuer
+HiddenLocalIdentityField
+------------------------
+
+.. automodule:: pingfedsdk.models.HiddenLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CheckboxLocalIdentityField
+--------------------------
+
+.. automodule:: pingfedsdk.models.CheckboxLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PhoneLocalIdentityField
+-----------------------
+
+.. automodule:: pingfedsdk.models.PhoneLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LdapDataStoreConfig
+-------------------
+
+.. automodule:: pingfedsdk.models.LdapDataStoreConfig
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+BaseDefaultValueLocalIdentityField
+----------------------------------
+
+.. automodule:: pingfedsdk.models.BaseDefaultValueLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CheckboxGroupLocalIdentityField
 -------------------------------
 
-.. automodule:: PyPingFedSDK.models.AlternativeLoginHintTokenIssuer
+.. automodule:: pingfedsdk.models.CheckboxGroupLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LocalIdentityAuthSourceUpdatePolicy
+-----------------------------------
+
+.. automodule:: pingfedsdk.models.LocalIdentityAuthSourceUpdatePolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+FieldConfig
+-----------
+
+.. automodule:: pingfedsdk.models.FieldConfig
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LocalIdentityProfiles
+---------------------
+
+.. automodule:: pingfedsdk.models.LocalIdentityProfiles
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ProfileConfig
+-------------
+
+.. automodule:: pingfedsdk.models.ProfileConfig
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+RegistrationConfig
+------------------
+
+.. automodule:: pingfedsdk.models.RegistrationConfig
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+DataStoreConfig
+---------------
+
+.. automodule:: pingfedsdk.models.DataStoreConfig
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+DateLocalIdentityField
+----------------------
+
+.. automodule:: pingfedsdk.models.DateLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+DropDownLocalIdentityField
+--------------------------
+
+.. automodule:: pingfedsdk.models.DropDownLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LocalIdentityProfile
+--------------------
+
+.. automodule:: pingfedsdk.models.LocalIdentityProfile
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+EmailLocalIdentityField
+-----------------------
+
+.. automodule:: pingfedsdk.models.EmailLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LocalIdentityField
+------------------
+
+.. automodule:: pingfedsdk.models.LocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+BaseSelectionLocalIdentityField
+-------------------------------
+
+.. automodule:: pingfedsdk.models.BaseSelectionLocalIdentityField
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+DataStoreAttribute
+------------------
+
+.. automodule:: pingfedsdk.models.DataStoreAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -2187,7 +2178,7 @@ AlternativeLoginHintTokenIssuer
 CibaServerPolicySettings
 ------------------------
 
-.. automodule:: PyPingFedSDK.models.CibaServerPolicySettings
+.. automodule:: pingfedsdk.models.CibaServerPolicySettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2196,7 +2187,7 @@ CibaServerPolicySettings
 IdentityHintAttribute
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.IdentityHintAttribute
+.. automodule:: pingfedsdk.models.IdentityHintAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -2205,7 +2196,7 @@ IdentityHintAttribute
 IdentityHintContract
 --------------------
 
-.. automodule:: PyPingFedSDK.models.IdentityHintContract
+.. automodule:: pingfedsdk.models.IdentityHintContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -2214,7 +2205,7 @@ IdentityHintContract
 RequestPolicies
 ---------------
 
-.. automodule:: PyPingFedSDK.models.RequestPolicies
+.. automodule:: pingfedsdk.models.RequestPolicies
     :members:
     :undoc-members:
     :inherited-members:
@@ -2223,34 +2214,16 @@ RequestPolicies
 RequestPolicy
 -------------
 
-.. automodule:: PyPingFedSDK.models.RequestPolicy
+.. automodule:: pingfedsdk.models.RequestPolicy
     :members:
     :undoc-members:
     :inherited-members:
 
 
-PasswordCredentialValidator
----------------------------
+AlternativeLoginHintTokenIssuer
+-------------------------------
 
-.. automodule:: PyPingFedSDK.models.PasswordCredentialValidator
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PasswordCredentialValidatorAttribute
-------------------------------------
-
-.. automodule:: PyPingFedSDK.models.PasswordCredentialValidatorAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PasswordCredentialValidatorAttributeContract
---------------------------------------------
-
-.. automodule:: PyPingFedSDK.models.PasswordCredentialValidatorAttributeContract
+.. automodule:: pingfedsdk.models.AlternativeLoginHintTokenIssuer
     :members:
     :undoc-members:
     :inherited-members:
@@ -2259,16 +2232,25 @@ PasswordCredentialValidatorAttributeContract
 PasswordCredentialValidatorDescriptor
 -------------------------------------
 
-.. automodule:: PyPingFedSDK.models.PasswordCredentialValidatorDescriptor
+.. automodule:: pingfedsdk.models.PasswordCredentialValidatorDescriptor
     :members:
     :undoc-members:
     :inherited-members:
 
 
-PasswordCredentialValidatorDescriptors
---------------------------------------
+PasswordCredentialValidatorAttribute
+------------------------------------
 
-.. automodule:: PyPingFedSDK.models.PasswordCredentialValidatorDescriptors
+.. automodule:: pingfedsdk.models.PasswordCredentialValidatorAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PasswordCredentialValidatorAttributeContract
+--------------------------------------------
+
+.. automodule:: pingfedsdk.models.PasswordCredentialValidatorAttributeContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -2277,16 +2259,25 @@ PasswordCredentialValidatorDescriptors
 PasswordCredentialValidators
 ----------------------------
 
-.. automodule:: PyPingFedSDK.models.PasswordCredentialValidators
+.. automodule:: pingfedsdk.models.PasswordCredentialValidators
     :members:
     :undoc-members:
     :inherited-members:
 
 
-KerberosRealm
--------------
+PasswordCredentialValidator
+---------------------------
 
-.. automodule:: PyPingFedSDK.models.KerberosRealm
+.. automodule:: pingfedsdk.models.PasswordCredentialValidator
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PasswordCredentialValidatorDescriptors
+--------------------------------------
+
+.. automodule:: pingfedsdk.models.PasswordCredentialValidatorDescriptors
     :members:
     :undoc-members:
     :inherited-members:
@@ -2295,7 +2286,16 @@ KerberosRealm
 KerberosRealms
 --------------
 
-.. automodule:: PyPingFedSDK.models.KerberosRealms
+.. automodule:: pingfedsdk.models.KerberosRealms
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+KerberosRealm
+-------------
+
+.. automodule:: pingfedsdk.models.KerberosRealm
     :members:
     :undoc-members:
     :inherited-members:
@@ -2304,16 +2304,7 @@ KerberosRealms
 KerberosRealmsSettings
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.KerberosRealmsSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthnApiApplication
--------------------
-
-.. automodule:: PyPingFedSDK.models.AuthnApiApplication
+.. automodule:: pingfedsdk.models.KerberosRealmsSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2322,7 +2313,16 @@ AuthnApiApplication
 AuthnApiApplications
 --------------------
 
-.. automodule:: PyPingFedSDK.models.AuthnApiApplications
+.. automodule:: pingfedsdk.models.AuthnApiApplications
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthnApiApplication
+-------------------
+
+.. automodule:: pingfedsdk.models.AuthnApiApplication
     :members:
     :undoc-members:
     :inherited-members:
@@ -2331,7 +2331,7 @@ AuthnApiApplications
 AuthnApiSettings
 ----------------
 
-.. automodule:: PyPingFedSDK.models.AuthnApiSettings
+.. automodule:: pingfedsdk.models.AuthnApiSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2340,7 +2340,7 @@ AuthnApiSettings
 AuthenticationPolicyContract
 ----------------------------
 
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicyContract
+.. automodule:: pingfedsdk.models.AuthenticationPolicyContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -2349,7 +2349,7 @@ AuthenticationPolicyContract
 AuthenticationPolicyContractAttribute
 -------------------------------------
 
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicyContractAttribute
+.. automodule:: pingfedsdk.models.AuthenticationPolicyContractAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -2358,43 +2358,7 @@ AuthenticationPolicyContractAttribute
 AuthenticationPolicyContracts
 -----------------------------
 
-.. automodule:: PyPingFedSDK.models.AuthenticationPolicyContracts
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ApplicationSessionPolicy
-------------------------
-
-.. automodule:: PyPingFedSDK.models.ApplicationSessionPolicy
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationSessionPolicies
------------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationSessionPolicies
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthenticationSessionPolicy
----------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthenticationSessionPolicy
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-GlobalAuthenticationSessionPolicy
----------------------------------
-
-.. automodule:: PyPingFedSDK.models.GlobalAuthenticationSessionPolicy
+.. automodule:: pingfedsdk.models.AuthenticationPolicyContracts
     :members:
     :undoc-members:
     :inherited-members:
@@ -2403,7 +2367,43 @@ GlobalAuthenticationSessionPolicy
 SessionSettings
 ---------------
 
-.. automodule:: PyPingFedSDK.models.SessionSettings
+.. automodule:: pingfedsdk.models.SessionSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationSessionPolicy
+---------------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationSessionPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthenticationSessionPolicies
+-----------------------------
+
+.. automodule:: pingfedsdk.models.AuthenticationSessionPolicies
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ApplicationSessionPolicy
+------------------------
+
+.. automodule:: pingfedsdk.models.ApplicationSessionPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+GlobalAuthenticationSessionPolicy
+---------------------------------
+
+.. automodule:: pingfedsdk.models.GlobalAuthenticationSessionPolicy
     :members:
     :undoc-members:
     :inherited-members:
@@ -2412,7 +2412,7 @@ SessionSettings
 KeyAlgorithm
 ------------
 
-.. automodule:: PyPingFedSDK.models.KeyAlgorithm
+.. automodule:: pingfedsdk.models.KeyAlgorithm
     :members:
     :undoc-members:
     :inherited-members:
@@ -2421,7 +2421,7 @@ KeyAlgorithm
 KeyAlgorithms
 -------------
 
-.. automodule:: PyPingFedSDK.models.KeyAlgorithms
+.. automodule:: pingfedsdk.models.KeyAlgorithms
     :members:
     :undoc-members:
     :inherited-members:
@@ -2430,43 +2430,7 @@ KeyAlgorithms
 OutOfBandAuthAttribute
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.OutOfBandAuthAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OutOfBandAuthAttributeContract
-------------------------------
-
-.. automodule:: PyPingFedSDK.models.OutOfBandAuthAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OutOfBandAuthPluginDescriptor
------------------------------
-
-.. automodule:: PyPingFedSDK.models.OutOfBandAuthPluginDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OutOfBandAuthPluginDescriptors
-------------------------------
-
-.. automodule:: PyPingFedSDK.models.OutOfBandAuthPluginDescriptors
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OutOfBandAuthenticator
-----------------------
-
-.. automodule:: PyPingFedSDK.models.OutOfBandAuthenticator
+.. automodule:: pingfedsdk.models.OutOfBandAuthAttribute
     :members:
     :undoc-members:
     :inherited-members:
@@ -2475,61 +2439,43 @@ OutOfBandAuthenticator
 OutOfBandAuthenticators
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.OutOfBandAuthenticators
+.. automodule:: pingfedsdk.models.OutOfBandAuthenticators
     :members:
     :undoc-members:
     :inherited-members:
 
 
-CSRResponse
------------
+OutOfBandAuthPluginDescriptor
+-----------------------------
 
-.. automodule:: PyPingFedSDK.models.CSRResponse
+.. automodule:: pingfedsdk.models.OutOfBandAuthPluginDescriptor
     :members:
     :undoc-members:
     :inherited-members:
 
 
-KeyPairRotationSettings
------------------------
+OutOfBandAuthenticator
+----------------------
 
-.. automodule:: PyPingFedSDK.models.KeyPairRotationSettings
+.. automodule:: pingfedsdk.models.OutOfBandAuthenticator
     :members:
     :undoc-members:
     :inherited-members:
 
 
-KeyPairView
------------
+OutOfBandAuthPluginDescriptors
+------------------------------
 
-.. automodule:: PyPingFedSDK.models.KeyPairView
+.. automodule:: pingfedsdk.models.OutOfBandAuthPluginDescriptors
     :members:
     :undoc-members:
     :inherited-members:
 
 
-KeyPairViews
-------------
+OutOfBandAuthAttributeContract
+------------------------------
 
-.. automodule:: PyPingFedSDK.models.KeyPairViews
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-NewKeyPairSettings
-------------------
-
-.. automodule:: PyPingFedSDK.models.NewKeyPairSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PKCS12ExportSettings
---------------------
-
-.. automodule:: PyPingFedSDK.models.PKCS12ExportSettings
+.. automodule:: pingfedsdk.models.OutOfBandAuthAttributeContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -2538,7 +2484,61 @@ PKCS12ExportSettings
 PKCS12File
 ----------
 
-.. automodule:: PyPingFedSDK.models.PKCS12File
+.. automodule:: pingfedsdk.models.PKCS12File
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+KeyPairViews
+------------
+
+.. automodule:: pingfedsdk.models.KeyPairViews
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+KeyPairView
+-----------
+
+.. automodule:: pingfedsdk.models.KeyPairView
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PKCS12ExportSettings
+--------------------
+
+.. automodule:: pingfedsdk.models.PKCS12ExportSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+KeyPairRotationSettings
+-----------------------
+
+.. automodule:: pingfedsdk.models.KeyPairRotationSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CSRResponse
+-----------
+
+.. automodule:: pingfedsdk.models.CSRResponse
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+NewKeyPairSettings
+------------------
+
+.. automodule:: pingfedsdk.models.NewKeyPairSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2547,25 +2547,7 @@ PKCS12File
 SslServerSettings
 -----------------
 
-.. automodule:: PyPingFedSDK.models.SslServerSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AuthorizationServerSettings
----------------------------
-
-.. automodule:: PyPingFedSDK.models.AuthorizationServerSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-PersistentGrantAttribute
-------------------------
-
-.. automodule:: PyPingFedSDK.models.PersistentGrantAttribute
+.. automodule:: pingfedsdk.models.SslServerSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2574,16 +2556,7 @@ PersistentGrantAttribute
 PersistentGrantContract
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.PersistentGrantContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ScopeEntry
-----------
-
-.. automodule:: PyPingFedSDK.models.ScopeEntry
+.. automodule:: pingfedsdk.models.PersistentGrantContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -2592,7 +2565,34 @@ ScopeEntry
 ScopeGroupEntry
 ---------------
 
-.. automodule:: PyPingFedSDK.models.ScopeGroupEntry
+.. automodule:: pingfedsdk.models.ScopeGroupEntry
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+PersistentGrantAttribute
+------------------------
+
+.. automodule:: pingfedsdk.models.PersistentGrantAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ScopeEntry
+----------
+
+.. automodule:: pingfedsdk.models.ScopeEntry
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AuthorizationServerSettings
+---------------------------
+
+.. automodule:: pingfedsdk.models.AuthorizationServerSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2601,79 +2601,7 @@ ScopeGroupEntry
 OAuthOidcKeysSettings
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.OAuthOidcKeysSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenAttribute
---------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenAttributeContract
-----------------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenManagementSettings
------------------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenManagementSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenManager
-------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenManager
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenManagerDescriptor
-----------------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenManagerDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenManagerDescriptors
------------------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenManagerDescriptors
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenManagers
--------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenManagers
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AtmAccessControlSettings
-------------------------
-
-.. automodule:: PyPingFedSDK.models.AtmAccessControlSettings
+.. automodule:: pingfedsdk.models.OAuthOidcKeysSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2682,7 +2610,70 @@ AtmAccessControlSettings
 AtmSelectionSettings
 --------------------
 
-.. automodule:: PyPingFedSDK.models.AtmSelectionSettings
+.. automodule:: pingfedsdk.models.AtmSelectionSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AtmAccessControlSettings
+------------------------
+
+.. automodule:: pingfedsdk.models.AtmAccessControlSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenManager
+------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenManager
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenManagerDescriptor
+----------------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenManagerDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenManagerDescriptors
+-----------------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenManagerDescriptors
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenManagers
+-------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenManagers
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenAttribute
+--------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenAttributeContract
+----------------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenAttributeContract
     :members:
     :undoc-members:
     :inherited-members:
@@ -2691,7 +2682,16 @@ AtmSelectionSettings
 SessionValidationSettings
 -------------------------
 
-.. automodule:: PyPingFedSDK.models.SessionValidationSettings
+.. automodule:: pingfedsdk.models.SessionValidationSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+AccessTokenManagementSettings
+-----------------------------
+
+.. automodule:: pingfedsdk.models.AccessTokenManagementSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2700,43 +2700,7 @@ SessionValidationSettings
 OIDCSessionSettings
 -------------------
 
-.. automodule:: PyPingFedSDK.models.OIDCSessionSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OpenIdConnectAttribute
-----------------------
-
-.. automodule:: PyPingFedSDK.models.OpenIdConnectAttribute
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OpenIdConnectAttributeContract
-------------------------------
-
-.. automodule:: PyPingFedSDK.models.OpenIdConnectAttributeContract
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OpenIdConnectPolicies
----------------------
-
-.. automodule:: PyPingFedSDK.models.OpenIdConnectPolicies
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OpenIdConnectPolicy
--------------------
-
-.. automodule:: PyPingFedSDK.models.OpenIdConnectPolicy
+.. automodule:: pingfedsdk.models.OIDCSessionSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2745,25 +2709,43 @@ OpenIdConnectPolicy
 OpenIdConnectSettings
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.OpenIdConnectSettings
+.. automodule:: pingfedsdk.models.OpenIdConnectSettings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-Client
-------
+OpenIdConnectPolicy
+-------------------
 
-.. automodule:: PyPingFedSDK.models.Client
+.. automodule:: pingfedsdk.models.OpenIdConnectPolicy
     :members:
     :undoc-members:
     :inherited-members:
 
 
-ClientAuth
-----------
+OpenIdConnectAttribute
+----------------------
 
-.. automodule:: PyPingFedSDK.models.ClientAuth
+.. automodule:: pingfedsdk.models.OpenIdConnectAttribute
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OpenIdConnectAttributeContract
+------------------------------
+
+.. automodule:: pingfedsdk.models.OpenIdConnectAttributeContract
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OpenIdConnectPolicies
+---------------------
+
+.. automodule:: pingfedsdk.models.OpenIdConnectPolicies
     :members:
     :undoc-members:
     :inherited-members:
@@ -2772,25 +2754,7 @@ ClientAuth
 ClientOIDCPolicy
 ----------------
 
-.. automodule:: PyPingFedSDK.models.ClientOIDCPolicy
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ClientSecret
-------------
-
-.. automodule:: PyPingFedSDK.models.ClientSecret
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-Clients
--------
-
-.. automodule:: PyPingFedSDK.models.Clients
+.. automodule:: pingfedsdk.models.ClientOIDCPolicy
     :members:
     :undoc-members:
     :inherited-members:
@@ -2799,16 +2763,43 @@ Clients
 JwksSettings
 ------------
 
-.. automodule:: PyPingFedSDK.models.JwksSettings
+.. automodule:: pingfedsdk.models.JwksSettings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-ClientMetadata
---------------
+ClientAuth
+----------
 
-.. automodule:: PyPingFedSDK.models.ClientMetadata
+.. automodule:: pingfedsdk.models.ClientAuth
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ClientSecret
+------------
+
+.. automodule:: pingfedsdk.models.ClientSecret
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Clients
+-------
+
+.. automodule:: pingfedsdk.models.Clients
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+Client
+------
+
+.. automodule:: pingfedsdk.models.Client
     :members:
     :undoc-members:
     :inherited-members:
@@ -2817,7 +2808,16 @@ ClientMetadata
 ClientRegistrationOIDCPolicy
 ----------------------------
 
-.. automodule:: PyPingFedSDK.models.ClientRegistrationOIDCPolicy
+.. automodule:: pingfedsdk.models.ClientRegistrationOIDCPolicy
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ClientMetadata
+--------------
+
+.. automodule:: pingfedsdk.models.ClientMetadata
     :members:
     :undoc-members:
     :inherited-members:
@@ -2826,7 +2826,7 @@ ClientRegistrationOIDCPolicy
 ClientSettings
 --------------
 
-.. automodule:: PyPingFedSDK.models.ClientSettings
+.. automodule:: pingfedsdk.models.ClientSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2835,7 +2835,7 @@ ClientSettings
 DynamicClientRegistration
 -------------------------
 
-.. automodule:: PyPingFedSDK.models.DynamicClientRegistration
+.. automodule:: pingfedsdk.models.DynamicClientRegistration
     :members:
     :undoc-members:
     :inherited-members:
@@ -2844,16 +2844,7 @@ DynamicClientRegistration
 ClientRegistrationPolicies
 --------------------------
 
-.. automodule:: PyPingFedSDK.models.ClientRegistrationPolicies
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ClientRegistrationPolicy
-------------------------
-
-.. automodule:: PyPingFedSDK.models.ClientRegistrationPolicy
+.. automodule:: pingfedsdk.models.ClientRegistrationPolicies
     :members:
     :undoc-members:
     :inherited-members:
@@ -2862,7 +2853,16 @@ ClientRegistrationPolicy
 ClientRegistrationPolicyDescriptor
 ----------------------------------
 
-.. automodule:: PyPingFedSDK.models.ClientRegistrationPolicyDescriptor
+.. automodule:: pingfedsdk.models.ClientRegistrationPolicyDescriptor
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ClientRegistrationPolicy
+------------------------
+
+.. automodule:: pingfedsdk.models.ClientRegistrationPolicy
     :members:
     :undoc-members:
     :inherited-members:
@@ -2871,16 +2871,7 @@ ClientRegistrationPolicyDescriptor
 ClientRegistrationPolicyDescriptors
 -----------------------------------
 
-.. automodule:: PyPingFedSDK.models.ClientRegistrationPolicyDescriptors
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ResourceOwnerCredentialsMapping
--------------------------------
-
-.. automodule:: PyPingFedSDK.models.ResourceOwnerCredentialsMapping
+.. automodule:: pingfedsdk.models.ClientRegistrationPolicyDescriptors
     :members:
     :undoc-members:
     :inherited-members:
@@ -2889,16 +2880,16 @@ ResourceOwnerCredentialsMapping
 ResourceOwnerCredentialsMappings
 --------------------------------
 
-.. automodule:: PyPingFedSDK.models.ResourceOwnerCredentialsMappings
+.. automodule:: pingfedsdk.models.ResourceOwnerCredentialsMappings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-ApcToPersistentGrantMapping
----------------------------
+ResourceOwnerCredentialsMapping
+-------------------------------
 
-.. automodule:: PyPingFedSDK.models.ApcToPersistentGrantMapping
+.. automodule:: pingfedsdk.models.ResourceOwnerCredentialsMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -2907,7 +2898,16 @@ ApcToPersistentGrantMapping
 ApcToPersistentGrantMappings
 ----------------------------
 
-.. automodule:: PyPingFedSDK.models.ApcToPersistentGrantMappings
+.. automodule:: pingfedsdk.models.ApcToPersistentGrantMappings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ApcToPersistentGrantMapping
+---------------------------
+
+.. automodule:: pingfedsdk.models.ApcToPersistentGrantMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -2916,7 +2916,7 @@ ApcToPersistentGrantMappings
 IdpAdapterMapping
 -----------------
 
-.. automodule:: PyPingFedSDK.models.IdpAdapterMapping
+.. automodule:: pingfedsdk.models.IdpAdapterMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -2925,25 +2925,7 @@ IdpAdapterMapping
 IdpAdapterMappings
 ------------------
 
-.. automodule:: PyPingFedSDK.models.IdpAdapterMappings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenMapping
-------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenMapping
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-AccessTokenMappingContext
--------------------------
-
-.. automodule:: PyPingFedSDK.models.AccessTokenMappingContext
+.. automodule:: pingfedsdk.models.IdpAdapterMappings
     :members:
     :undoc-members:
     :inherited-members:
@@ -2952,34 +2934,25 @@ AccessTokenMappingContext
 AccessTokenMappings
 -------------------
 
-.. automodule:: PyPingFedSDK.models.AccessTokenMappings
+.. automodule:: pingfedsdk.models.AccessTokenMappings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-NotificationPublisher
----------------------
+AccessTokenMappingContext
+-------------------------
 
-.. automodule:: PyPingFedSDK.models.NotificationPublisher
+.. automodule:: pingfedsdk.models.AccessTokenMappingContext
     :members:
     :undoc-members:
     :inherited-members:
 
 
-NotificationPublisherDescriptor
--------------------------------
+AccessTokenMapping
+------------------
 
-.. automodule:: PyPingFedSDK.models.NotificationPublisherDescriptor
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-NotificationPublisherDescriptors
---------------------------------
-
-.. automodule:: PyPingFedSDK.models.NotificationPublisherDescriptors
+.. automodule:: pingfedsdk.models.AccessTokenMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -2988,7 +2961,16 @@ NotificationPublisherDescriptors
 NotificationPublishers
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.NotificationPublishers
+.. automodule:: pingfedsdk.models.NotificationPublishers
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+NotificationPublisherDescriptors
+--------------------------------
+
+.. automodule:: pingfedsdk.models.NotificationPublisherDescriptors
     :members:
     :undoc-members:
     :inherited-members:
@@ -2997,16 +2979,25 @@ NotificationPublishers
 NotificationPublishersSettings
 ------------------------------
 
-.. automodule:: PyPingFedSDK.models.NotificationPublishersSettings
+.. automodule:: pingfedsdk.models.NotificationPublishersSettings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-TokenToTokenMapping
--------------------
+NotificationPublisher
+---------------------
 
-.. automodule:: PyPingFedSDK.models.TokenToTokenMapping
+.. automodule:: pingfedsdk.models.NotificationPublisher
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+NotificationPublisherDescriptor
+-------------------------------
+
+.. automodule:: pingfedsdk.models.NotificationPublisherDescriptor
     :members:
     :undoc-members:
     :inherited-members:
@@ -3015,16 +3006,16 @@ TokenToTokenMapping
 TokenToTokenMappings
 --------------------
 
-.. automodule:: PyPingFedSDK.models.TokenToTokenMappings
+.. automodule:: pingfedsdk.models.TokenToTokenMappings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-ProcessorPolicyToGeneratorMapping
----------------------------------
+TokenToTokenMapping
+-------------------
 
-.. automodule:: PyPingFedSDK.models.ProcessorPolicyToGeneratorMapping
+.. automodule:: pingfedsdk.models.TokenToTokenMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -3033,79 +3024,16 @@ ProcessorPolicyToGeneratorMapping
 ProcessorPolicyToGeneratorMappings
 ----------------------------------
 
-.. automodule:: PyPingFedSDK.models.ProcessorPolicyToGeneratorMappings
+.. automodule:: pingfedsdk.models.ProcessorPolicyToGeneratorMappings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-BaseProviderRole
-----------------
-
-.. automodule:: PyPingFedSDK.models.BaseProviderRole
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CaptchaSettings
----------------
-
-.. automodule:: PyPingFedSDK.models.CaptchaSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-CertificateExpirationNotificationSettings
------------------------------------------
-
-.. automodule:: PyPingFedSDK.models.CertificateExpirationNotificationSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-EmailServerSettings
--------------------
-
-.. automodule:: PyPingFedSDK.models.EmailServerSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-FederationInfo
---------------
-
-.. automodule:: PyPingFedSDK.models.FederationInfo
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-IdpRole
--------
-
-.. automodule:: PyPingFedSDK.models.IdpRole
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-LicenseEventNotificationSettings
---------------------------------
-
-.. automodule:: PyPingFedSDK.models.LicenseEventNotificationSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-MetadataEventNotificationSettings
+ProcessorPolicyToGeneratorMapping
 ---------------------------------
 
-.. automodule:: PyPingFedSDK.models.MetadataEventNotificationSettings
+.. automodule:: pingfedsdk.models.ProcessorPolicyToGeneratorMapping
     :members:
     :undoc-members:
     :inherited-members:
@@ -3114,79 +3042,16 @@ MetadataEventNotificationSettings
 NotificationSettings
 --------------------
 
-.. automodule:: PyPingFedSDK.models.NotificationSettings
+.. automodule:: pingfedsdk.models.NotificationSettings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-OAuthRole
----------
+IdpRole
+-------
 
-.. automodule:: PyPingFedSDK.models.OAuthRole
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-OutboundProvisionDatabase
--------------------------
-
-.. automodule:: PyPingFedSDK.models.OutboundProvisionDatabase
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-RolesAndProtocols
------------------
-
-.. automodule:: PyPingFedSDK.models.RolesAndProtocols
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SAML20Profile
--------------
-
-.. automodule:: PyPingFedSDK.models.SAML20Profile
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ServerSettings
---------------
-
-.. automodule:: PyPingFedSDK.models.ServerSettings
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpRole
-------
-
-.. automodule:: PyPingFedSDK.models.SpRole
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SpSAML20Profile
----------------
-
-.. automodule:: PyPingFedSDK.models.SpSAML20Profile
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-SystemKey
----------
-
-.. automodule:: PyPingFedSDK.models.SystemKey
+.. automodule:: pingfedsdk.models.IdpRole
     :members:
     :undoc-members:
     :inherited-members:
@@ -3195,34 +3060,142 @@ SystemKey
 SystemKeys
 ----------
 
-.. automodule:: PyPingFedSDK.models.SystemKeys
+.. automodule:: pingfedsdk.models.SystemKeys
     :members:
     :undoc-members:
     :inherited-members:
 
 
-RedirectValidationLocalSettings
--------------------------------
+SAML20Profile
+-------------
 
-.. automodule:: PyPingFedSDK.models.RedirectValidationLocalSettings
+.. automodule:: pingfedsdk.models.SAML20Profile
     :members:
     :undoc-members:
     :inherited-members:
 
 
-RedirectValidationPartnerSettings
+RolesAndProtocols
+-----------------
+
+.. automodule:: pingfedsdk.models.RolesAndProtocols
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OutboundProvisionDatabase
+-------------------------
+
+.. automodule:: pingfedsdk.models.OutboundProvisionDatabase
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+LicenseEventNotificationSettings
+--------------------------------
+
+.. automodule:: pingfedsdk.models.LicenseEventNotificationSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+EmailServerSettings
+-------------------
+
+.. automodule:: pingfedsdk.models.EmailServerSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CaptchaSettings
+---------------
+
+.. automodule:: pingfedsdk.models.CaptchaSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+MetadataEventNotificationSettings
 ---------------------------------
 
-.. automodule:: PyPingFedSDK.models.RedirectValidationPartnerSettings
+.. automodule:: pingfedsdk.models.MetadataEventNotificationSettings
     :members:
     :undoc-members:
     :inherited-members:
 
 
-RedirectValidationSettings
---------------------------
+SystemKey
+---------
 
-.. automodule:: PyPingFedSDK.models.RedirectValidationSettings
+.. automodule:: pingfedsdk.models.SystemKey
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpSAML20Profile
+---------------
+
+.. automodule:: pingfedsdk.models.SpSAML20Profile
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+BaseProviderRole
+----------------
+
+.. automodule:: pingfedsdk.models.BaseProviderRole
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+CertificateExpirationNotificationSettings
+-----------------------------------------
+
+.. automodule:: pingfedsdk.models.CertificateExpirationNotificationSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+FederationInfo
+--------------
+
+.. automodule:: pingfedsdk.models.FederationInfo
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+OAuthRole
+---------
+
+.. automodule:: pingfedsdk.models.OAuthRole
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ServerSettings
+--------------
+
+.. automodule:: pingfedsdk.models.ServerSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+SpRole
+------
+
+.. automodule:: pingfedsdk.models.SpRole
     :members:
     :undoc-members:
     :inherited-members:
@@ -3231,16 +3204,34 @@ RedirectValidationSettings
 RedirectValidationSettingsWhitelistEntry
 ----------------------------------------
 
-.. automodule:: PyPingFedSDK.models.RedirectValidationSettingsWhitelistEntry
+.. automodule:: pingfedsdk.models.RedirectValidationSettingsWhitelistEntry
     :members:
     :undoc-members:
     :inherited-members:
 
 
-ClusterNode
------------
+RedirectValidationPartnerSettings
+---------------------------------
 
-.. automodule:: PyPingFedSDK.models.ClusterNode
+.. automodule:: pingfedsdk.models.RedirectValidationPartnerSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+RedirectValidationSettings
+--------------------------
+
+.. automodule:: pingfedsdk.models.RedirectValidationSettings
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+RedirectValidationLocalSettings
+-------------------------------
+
+.. automodule:: pingfedsdk.models.RedirectValidationLocalSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -3249,7 +3240,16 @@ ClusterNode
 ClusterStatus
 -------------
 
-.. automodule:: PyPingFedSDK.models.ClusterStatus
+.. automodule:: pingfedsdk.models.ClusterStatus
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ClusterNode
+-----------
+
+.. automodule:: pingfedsdk.models.ClusterNode
     :members:
     :undoc-members:
     :inherited-members:
@@ -3258,7 +3258,7 @@ ClusterStatus
 VirtualHostNameSettings
 -----------------------
 
-.. automodule:: PyPingFedSDK.models.VirtualHostNameSettings
+.. automodule:: pingfedsdk.models.VirtualHostNameSettings
     :members:
     :undoc-members:
     :inherited-members:
@@ -3267,16 +3267,7 @@ VirtualHostNameSettings
 ConvertMetadataRequest
 ----------------------
 
-.. automodule:: PyPingFedSDK.models.ConvertMetadataRequest
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-ConvertMetadataResponse
------------------------
-
-.. automodule:: PyPingFedSDK.models.ConvertMetadataResponse
+.. automodule:: pingfedsdk.models.ConvertMetadataRequest
     :members:
     :undoc-members:
     :inherited-members:
@@ -3285,7 +3276,16 @@ ConvertMetadataResponse
 ExportMetadataRequest
 ---------------------
 
-.. automodule:: PyPingFedSDK.models.ExportMetadataRequest
+.. automodule:: pingfedsdk.models.ExportMetadataRequest
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+
+ConvertMetadataResponse
+-----------------------
+
+.. automodule:: pingfedsdk.models.ConvertMetadataResponse
     :members:
     :undoc-members:
     :inherited-members:
@@ -3294,7 +3294,7 @@ ExportMetadataRequest
 MetadataUrl
 -----------
 
-.. automodule:: PyPingFedSDK.models.MetadataUrl
+.. automodule:: pingfedsdk.models.MetadataUrl
     :members:
     :undoc-members:
     :inherited-members:
@@ -3303,7 +3303,7 @@ MetadataUrl
 MetadataUrls
 ------------
 
-.. automodule:: PyPingFedSDK.models.MetadataUrls
+.. automodule:: pingfedsdk.models.MetadataUrls
     :members:
     :undoc-members:
     :inherited-members:
@@ -3312,7 +3312,7 @@ MetadataUrls
 Version
 -------
 
-.. automodule:: PyPingFedSDK.models.Version
+.. automodule:: pingfedsdk.models.Version
     :members:
     :undoc-members:
     :inherited-members:
