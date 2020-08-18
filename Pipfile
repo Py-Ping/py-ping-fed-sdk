@@ -10,6 +10,7 @@ pytest-html = "*"
 hypothesis = "*"
 requests = "*"
 Jinja2 = "*"
+flake8 = "*"
 
 [packages]
 python-decouple = "*"
