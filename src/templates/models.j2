@@ -1,10 +1,10 @@
 {% for folder, imports in details.get('imports').items() %}
 {% for imp in imports %}
 {% if folder == 'models' %}
-from {{ folder }}.{{ imp }} import {{ imp }}
+from PyPingFedSDK.{{ folder }}.{{ imp }} import {{ imp }}
 {% endif %}
 {% if folder == 'enums' %}
-from {{ folder }} import {{ imp }}
+from PyPingFedSDK.{{ folder }} import {{ imp }}
 {% endif %}
 {% endfor %}
 {% endfor %}

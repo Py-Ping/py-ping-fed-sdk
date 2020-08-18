@@ -59,11 +59,11 @@ docker-generate: ## run the SDK generator
 .PHONY: docker-generate
 
 unittest:
-	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ python3 -m unittest discover -s tests/
+	PYTHONPATH=$(shell pwd)/src/ python3 -m unittest discover -s tests/
 .PHONY: unittest
 
 coverage:
-	PYTHONPATH=$(shell pwd)/PyPingFedSDK/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*
+	PYTHONPATH=$(shell pwd)/src/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*
 .PHONY: coverage
 
 lint:
