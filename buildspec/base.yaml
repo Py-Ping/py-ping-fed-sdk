@@ -18,7 +18,7 @@ phases:
       - apt install -y wget zip jq
       - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       - unzip awscliv2.zip
-      - sudo ./aws/install --update
+      - ./aws/install --update
       - pip install --upgrade pip
       - pip install --upgrade setuptools
       - pip install --upgrade wheel
