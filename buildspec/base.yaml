@@ -11,11 +11,14 @@ env:
 phases:
   install:
     runtime-versions:
-      python: 3.7
+      python: 3.8
     commands:
       # Install all the test packages
       - apt update
       - apt install -y wget zip jq
+      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - unzip awscliv2.zip
+      - sudo ./aws/install --update
       - pip install --upgrade pip
       - pip install --upgrade setuptools
       - pip install --upgrade wheel
