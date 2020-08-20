@@ -100,3 +100,7 @@ def get_exception_by_code(http_response_code):
         return "NotFound"
     elif http_response_code == 422:
         return "ValidationError"
+
+
+def get_request_path(raw_path):
+    return raw_path.replace("{id}", "{var_id}").replace("{type}", "{var_type}")

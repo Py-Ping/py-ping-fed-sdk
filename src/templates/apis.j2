@@ -28,7 +28,7 @@ class {{ safe_name(class_name) }}:
 {% for api in details.get('details') %}
 {% for operation in api.get('operations',[]) %}
 
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}{% endfor %}) -> {% if json_type_convert(operation.get('type')) != '' %}{{ json_type_convert(operation.get('type')) }}{% else %}{{ operation.get('type') }}{% endif %}:
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}{% endfor %}) -> {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}{% elif json_type_convert(operation.get('type')) == 'None' %}dict{% else %}{{ operation.get('type') }}{% endif %}:
         """ {{ operation.get('summary') }}
         """
 {% if operation.get('method') in ['POST', 'PUT'] %}
@@ -46,7 +46,7 @@ class {{ safe_name(class_name) }}:
             response = self.session.{{ operation.get('method').lower() }}(
 {% if operation.get('method') in ['POST', 'PUT'] %}                data=payload,{% endif %}
 
-                url=self._build_uri("{{api.get('path')}}"),
+                url=self._build_uri(f"{{ get_request_path(api.get('path')) }}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:
@@ -67,5 +67,6 @@ class {{ safe_name(class_name) }}:
 {% endif %}
 {% endfor %}
         finally:
-            return {% if json_type_convert(operation.get('type')) != '' %}{{ json_type_convert(operation.get('type')) }}{% else %}{{ operation.get('type') }}{% endif %}(**response.json())
+            return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}(**response.json()){% elif json_type_convert(operation.get('type')) == 'None' %}response.json(){% else %}{{ operation.get('type') }}(**response.json()){% endif %}
+
 {% endfor %}{% endfor %}

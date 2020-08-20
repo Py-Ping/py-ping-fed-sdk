@@ -3,7 +3,7 @@ import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
 from helpers import safe_name, safe_variable, json_type_convert, \
-    ref_type_convert, get_exception_by_code
+    ref_type_convert, get_exception_by_code, get_request_path
 
 
 class Generate():
@@ -95,7 +95,8 @@ class Generate():
             safe_variable=safe_variable,
             json_type_convert=json_type_convert,
             ref_type_convert=ref_type_convert,
-            get_exception_by_code=get_exception_by_code
+            get_exception_by_code=get_exception_by_code,
+            get_request_path=get_request_path
         )
         jinjatemplate = jinjaenvironment.get_template(f"./{template}.j2")
 
