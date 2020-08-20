@@ -104,3 +104,13 @@ def get_exception_by_code(http_response_code):
 
 def get_request_path(raw_path):
     return raw_path.replace("{id}", "{var_id}").replace("{type}", "{var_type}")
+
+
+def has_substitution(check_string):
+    """
+    Return True if the string needs to be converted to an f-string
+    because it has {} for substitution
+    """
+    l_paren = check_string.find("{") + 1
+    r_paren = check_string.find("}") + 1
+    return l_paren and r_paren and l_paren < r_paren

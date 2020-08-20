@@ -67,7 +67,7 @@ coverage:
 .PHONY: coverage
 
 lint:
-	flake8 --max-line-length 120 --exclude */apis/*,*/models/*,*/source/*,*/enums.py,.tox/*
+	flake8 --max-line-length 120 --exclude */apis/*,*/models/*,*/source/*,*/enums.py,,*/exceptions.py,*/model.py,.tox/*
 .PHONY: lint
 
 lint-generated:

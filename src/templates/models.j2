@@ -1,3 +1,4 @@
+from model import Model
 {% for folder, imports in details.get('imports').items() %}
 {% for imp in imports %}
 {% if folder == 'models' %}
@@ -10,7 +11,7 @@ from pingfedsdk.{{ folder }} import {{ imp }}
 {% endfor %}
 
 
-class {{ class_name }}:
+class {{ class_name }}(Model):
     """{{details.get('description', '').replace("\n","").strip()}}
 
     Attributes
@@ -54,5 +55,33 @@ class {{ class_name }}:
         return cls(**valid_data)
 
     def to_dict(self):
-        return self.__dict__
+        """
+        Naive dictionary serialiser. Recursively handles most types in this
+        module. If you make your own class you need to inherit from model
+        and implement to_dict.
+        """
+        body = {}
+        for k, v in self.__dict__.items():
+            if k in [{% for property in details.get('properties', {}) %}"{{ safe_variable(property) }}"{% if not loop.last %}, {% endif %}{% endfor %}]:
+                if isinstance(v, Model):
+                    body[k] = v.to_dict()
+                elif isinstance(v, list):
+                    vals = []
+                    for x in v:
+                        if isinstance(x, Model):
+                            vals.append(x.to_dict())
+                        else:
+                            vals.append(x)
+                    body[k] = vals
+                elif isinstance(v, dict):
+                    vals = {}
+                    for x, y in v.items():
+                        if isinstance(y, Model):
+                            vals[x] = y.to_dict()
+                        else:
+                            vals[x] = y
+                    body[k] = vals
+                else:
+                    body[k] = v
+        return body
 

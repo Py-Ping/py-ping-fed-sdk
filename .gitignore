@@ -6,6 +6,7 @@ pingfedsdk/models/*
 pingfedsdk/source/*
 pingfedsdk/enums.py
 pingfedsdk/exceptions.py
+pingfedsdk/model.py
 pingfedsdk/.coverage
 docs/build/*
 requirements.txt

@@ -1,5 +1,6 @@
 import os
 import logging
+from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
 {% for response_code in details.get('codes', []) %}
@@ -28,14 +29,14 @@ class {{ safe_name(class_name) }}:
 {% for api in details.get('details') %}
 {% for operation in api.get('operations',[]) %}
 
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}{% endfor %}) -> {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}{% elif json_type_convert(operation.get('type')) == 'None' %}dict{% else %}{{ operation.get('type') }}{% endif %}:
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}: {% if json_type_convert(parameter.get('type')) %}{{ json_type_convert(parameter.get('type')) }}{% else %}{{ parameter.get('type') }}{% endif %}{% endfor %}) -> {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}{% elif json_type_convert(operation.get('type')) == 'None' %}dict{% else %}{{ operation.get('type') }}{% endif %}:
         """ {{ operation.get('summary') }}
         """
 {% if operation.get('method') in ['POST', 'PUT'] %}
 
         payload = {
 {% for parameter in operation.get('parameters',[]) %}
-            "{{ safe_variable(safe_name(parameter.get('name'))) }}": {{ safe_variable(safe_name(parameter.get('name'))) }}{% if not loop.last %},{% endif %}
+            "{{ safe_variable(safe_name(parameter.get('name'))) }}": {{ safe_variable(safe_name(parameter.get('name'))) }}{% if not json_type_convert(parameter.get('type')) %}.to_dict(){% endif %}{% if not loop.last %},{% endif %}
 
 {% endfor %}
 
@@ -44,9 +45,9 @@ class {{ safe_name(class_name) }}:
 
         try:
             response = self.session.{{ operation.get('method').lower() }}(
-{% if operation.get('method') in ['POST', 'PUT'] %}                data=payload,{% endif %}
+{% if operation.get('method') in ['POST', 'PUT'] %}                data=dumps(payload),{% endif %}
 
-                url=self._build_uri(f"{{ get_request_path(api.get('path')) }}"),
+                url=self._build_uri({% if has_substitution(api.get('path')) %}f{% endif %}"{{ get_request_path(api.get('path')) }}"),
                 headers={'Accept': 'application/json'}
             )
         except HTTPError as http_err:

@@ -148,6 +148,12 @@ class TestGenerate(TestCase):
 
         realpath_mock.return_value = REAL_PATH
         Generate("fake-url.com:9999").generate()
+        self.penguin_dict = {
+            "firstName": "terrence",
+            "lastName": "mcflappy",
+            "height": "1.42",
+            "soundMade": "honk"
+        }
 
     def test_model(self):
         """
@@ -166,17 +172,11 @@ class TestGenerate(TestCase):
             "'height': None, 'soundMade': None}"
         )
 
-        penguin_dict = {
-            "firstName": "terrence",
-            "lastName": "mcflappy",
-            "height": "1.42",
-            "soundMade": "honk"
-        }
         self.assertEqual(Penguin.Penguin().from_dict(
-            penguin_dict
-        ), Penguin.Penguin(**penguin_dict))
+            self.penguin_dict
+        ), Penguin.Penguin(**self.penguin_dict))
         self.assertEqual(
-            hash(Penguin.Penguin(**penguin_dict)),
+            hash(Penguin.Penguin(**self.penguin_dict)),
             hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
 
@@ -189,10 +189,13 @@ class TestGenerate(TestCase):
             and make some assertions about the object methods
         """
         penguins = __import__("pingfedsdk.apis._penguins", fromlist=[""])
+        Penguin = __import__("pingfedsdk.models.Penguin", fromlist=[""])
         session_mock = MagicMock()
         penguin_api = penguins._penguins("test-endpoint", session_mock)
         self.assertEqual(
-            penguin_api.addPenguin("philip"),
+            penguin_api.addPenguin(Penguin.Penguin().from_dict(
+                self.penguin_dict
+            )),
             penguin_mock.return_value
         )
 
