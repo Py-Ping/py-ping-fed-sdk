@@ -34,12 +34,6 @@ class {{ class_name }}(Model):
     def _validate(self) -> bool:
         return any(x for x in [{% for property in details.get('required', []) %}"{{ safe_variable(property) }}"{% if not loop.last %}, {% endif %}{% endfor %}] if self.__dict__[x] is not None)
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.__dict__})"
-
-    def __str__(self) -> str:
-        return f"{self.__dict__}"
-
     def __eq__(self, other) -> bool:
         if isinstance(other, {{ class_name }}):
             return self.__dict__ == other.__dict__

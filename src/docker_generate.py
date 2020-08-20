@@ -23,7 +23,7 @@ class Container:
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
             datefmt="%m/%d/%Y %I:%M:%S %p"
         )
-        self.logger = logging.getLogger("PingDSL.Docker")
+        self.logger = logging.getLogger("PingSDK.Docker")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
 
         self.client = docker.from_env()
@@ -124,9 +124,10 @@ if __name__ == "__main__":
             print("Container service didn't stabilise, exiting...")
             exit(1)
         try:
-            version = __import__("pingfedsdk.apis._version", fromlist=[""])
-            response = version._version(endpoint, session).getVersion()
+            version = __import__("pingfedsdk.apis.version", fromlist=[""])
+            response = version.version(endpoint, session).getVersion()
             print(f"Ping Federate, version: {response.version}")
+
         except Exception as err:
             print(f"Was unable to determine the Ping Federate version: {err}")
             print(traceback.format_exc())
