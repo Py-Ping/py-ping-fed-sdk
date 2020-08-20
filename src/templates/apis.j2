@@ -24,6 +24,9 @@ class {{ safe_name(class_name) }}:
         self.endpoint = endpoint
         self.session = session
 
+    def _safe_response(self, response_obj):
+        return {x.replace("id", "var_id").replace("type", "var_type"): y for x, y in response_obj.json().items()}
+
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 {% for api in details.get('details') %}
@@ -50,6 +53,7 @@ class {{ safe_name(class_name) }}:
                 url=self._build_uri({% if has_substitution(api.get('path')) %}f{% endif %}"{{ get_request_path(api.get('path')) }}"),
                 headers={'Accept': 'application/json'}
             )
+            clean_response = self._safe_response(response)
         except HTTPError as http_err:
             self.logger.error(f'HTTP error occurred: {http_err}')
         except Exception as err:
@@ -58,7 +62,7 @@ class {{ safe_name(class_name) }}:
 {% for response_message in operation.get('responseMessages') %}
             if response.status_code == {{response_message.get('code')}}:
 {% if response_message.get('code') == 422 %}
-                raise ValidationError(ApiResult(**response.json()).to_dict())
+                raise ValidationError(ApiResult(**clean_response).to_dict())
 {% elif response_message.get('code') in (200, 201) %}
                 self.logger.info("{{ response_message.get('message') }}")
 {% elif get_exception_by_code(response_message.get('code')) %}
@@ -68,6 +72,6 @@ class {{ safe_name(class_name) }}:
 {% endif %}
 {% endfor %}
         finally:
-            return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}(**response.json()){% elif json_type_convert(operation.get('type')) == 'None' %}response.json(){% else %}{{ operation.get('type') }}(**response.json()){% endif %}
+            return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}(**clean_response){% elif json_type_convert(operation.get('type')) == 'None' %}clean_response{% else %}{{ operation.get('type') }}(**clean_response){% endif %}
 
 {% endfor %}{% endfor %}
