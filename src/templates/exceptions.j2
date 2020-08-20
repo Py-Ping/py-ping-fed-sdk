@@ -1,0 +1,9 @@
+# exception classes
+
+{% for exception_name in details %}
+class {{ exception_name }}(Exception):
+    pass
+{% if not loop.last %}
+
+
+{% else %}{% endif %}{% endfor %}

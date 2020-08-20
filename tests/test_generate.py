@@ -37,8 +37,8 @@ class TestGenerate(TestCase):
             "apis": {
                 "_penguins": {
                     "imports": set(["Penguin"]),
-                    "details":
-                    [{
+                    "codes": {200, 422},
+                    "details": [{
                         "operations": [
                             {
                                 "method": "GET",
@@ -85,7 +85,7 @@ class TestGenerate(TestCase):
                             }
                         ],
                         "path": "/penguins"
-                    }],
+                    }]
                 }
             },
             "enums": {},
