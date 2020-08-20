@@ -2,14 +2,21 @@ import os
 import logging
 from requests import Session
 from requests.exceptions import HTTPError
-
+{% for response_code in details.get('codes', []) %}
+{% if get_exception_by_code(response_code) and response_code != 403 %}
+from pingfedsdk.exceptions import {{ get_exception_by_code(response_code) }}
+{% endif %}
+{% endfor %}
+{% if 'ApiResult' not in details.get('imports') and 422 in details.get('codes', []) %}
+from pingfedsdk.models.ApiResult import ApiResult
+{% endif %}
 {% for imp in details.get('imports') %}
 from pingfedsdk.models.{{ imp }} import {{ imp }}
 {% endfor %}
 
 
 class {{ safe_name(class_name) }}:
-    def __init__(self, endpoint:str, session:Session) -> None:
+    def __init__(self, endpoint: str, session: Session) -> None:
         logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         self.logger = logging.getLogger('PingDSL.{{ safe_name(class_name) }}')
         self.logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
@@ -18,10 +25,10 @@ class {{ safe_name(class_name) }}:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
-
 {% for api in details.get('details') %}
 {% for operation in api.get('operations',[]) %}
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}{% endfor %}) -> {{ operation.get('type') }}:
+
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}{% endfor %}) -> {% if json_type_convert(operation.get('type')) != '' %}{{ json_type_convert(operation.get('type')) }}{% else %}{{ operation.get('type') }}{% endif %}:
         """ {{ operation.get('summary') }}
         """
 {% if operation.get('method') in ['POST', 'PUT'] %}
@@ -49,9 +56,16 @@ class {{ safe_name(class_name) }}:
         else:
 {% for response_message in operation.get('responseMessages') %}
             if response.status_code == {{response_message.get('code')}}:
-                self.logger.info("{{response_message.get('message')}}")
+{% if response_message.get('code') == 422 %}
+                raise ValidationError(ApiResult(**response.json()).to_dict())
+{% elif response_message.get('code') in (200, 201) %}
+                self.logger.info("{{ response_message.get('message') }}")
+{% elif get_exception_by_code(response_message.get('code')) %}
+                message = "{{response_message.get('message')}}"
+                self.logger.info(message)
+                raise {{ get_exception_by_code(response_message.get('code')) }}(message)
+{% endif %}
 {% endfor %}
         finally:
-            return {{ operation.get('type') }}(**response.json())
-
+            return {% if json_type_convert(operation.get('type')) != '' %}{{ json_type_convert(operation.get('type')) }}{% else %}{{ operation.get('type') }}{% endif %}(**response.json())
 {% endfor %}{% endfor %}

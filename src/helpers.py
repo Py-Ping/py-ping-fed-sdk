@@ -46,6 +46,8 @@ def json_type_convert(json_type):
         return "list"
     elif json_type == "integer":
         return "int"
+    elif json_type == "void":
+        return "None"
     return ""
 
 
@@ -85,3 +87,16 @@ def retry_with_backoff(func, retries=5, backoff=5):
         return True
     if not retries:
         return False
+
+
+def get_exception_by_code(http_response_code):
+    if http_response_code == 204:
+        return "ObjectDeleted"
+    elif http_response_code == 400:
+        return "BadRequest"
+    elif http_response_code == 403:
+        return "NotImplementedError"
+    elif http_response_code == 404:
+        return "NotFound"
+    elif http_response_code == 422:
+        return "ValidationError"

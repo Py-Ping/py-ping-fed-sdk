@@ -69,3 +69,7 @@ coverage:
 lint:
 	flake8 --max-line-length 120 --exclude */apis/*,*/models/*,*/source/*,*/enums.py,.tox/*
 .PHONY: lint
+
+lint-generated:
+	flake8 pingfedsdk --ignore E501
+.PHONY: lint-generated

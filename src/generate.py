@@ -2,7 +2,8 @@ import os
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_name, safe_variable, json_type_convert, ref_type_convert
+from helpers import safe_name, safe_variable, json_type_convert, \
+    ref_type_convert, get_exception_by_code
 
 
 class Generate():
@@ -41,6 +42,20 @@ class Generate():
             folder="../pingfedsdk/"
         )
 
+        exception_types = (
+            "ObjectDeleted",
+            "BadRequest",
+            "NotFound",
+            "ValidationError"
+        )
+        except_template = self.render_file(
+            "exceptions", name="exceptions", details=exception_types
+        )
+        self.write_template(
+            content=except_template, file_name="exceptions", file_type="py",
+            folder="../pingfedsdk/"
+        )
+
         for api, details in self.fetch_data.get("apis").items():
             template = self.render_file(
                 "apis", name=safe_name(api), details=details
@@ -76,8 +91,11 @@ class Generate():
             trim_blocks=True
         )
         jinjaenvironment.globals.update(
-            safe_name=safe_name, safe_variable=safe_variable,
-            json_type_convert=json_type_convert, ref_type_convert=ref_type_convert
+            safe_name=safe_name,
+            safe_variable=safe_variable,
+            json_type_convert=json_type_convert,
+            ref_type_convert=ref_type_convert,
+            get_exception_by_code=get_exception_by_code
         )
         jinjatemplate = jinjaenvironment.get_template(f"./{template}.j2")
 

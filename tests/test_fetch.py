@@ -121,25 +121,25 @@ class TestFetch(TestCase):
             self.fetch.read_json("another_file_name.test")
         )
 
-    def test_get_api_imports(self):
+    def test_preprocess_api(self):
         test_api_data = [{
             "operations": [
-                {"type": "boolean"},
-                {"type": "Penguin"},
-                {"type": "integer"}
+                {"type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}]},
+                {"type": "Penguin", "responseMessages": [{"code": 200}, {"code": 422}]},
+                {"type": "integer", "responseMessages": [{"code": 200}, {"code": 201}]}
             ]
         }]
 
         self.assertEqual(
-            self.fetch.get_api_imports(test_api_data),
-            {"imports": {"Penguin"}, "details": test_api_data}
+            self.fetch.preprocess_api(test_api_data),
+            {"imports": {"Penguin"}, "details": test_api_data, "codes": {200, 403, 422, 201}}
         )
 
         self.assertEqual(
-            self.fetch.get_api_imports(
+            self.fetch.preprocess_api(
                 [{"operations": []}]
             ),
-            {"imports": set({}), "details": [{"operations": []}]}
+            {"imports": set(), "details": [{"operations": []}], "codes": set()}
         )
 
     def test_get_model_imports(self):
@@ -171,13 +171,13 @@ class TestFetch(TestCase):
 
     @patch("fetch.Fetch.write_json")
     @patch("fetch.requests")
-    @patch("fetch.Fetch.get_api_imports")
+    @patch("fetch.Fetch.preprocess_api")
     @patch("fetch.Fetch.read_json")
     @patch("fetch.os")
     @patch("fetch.safe_name")
     def test_api_schema(
         self, safe_name_mock, os_mock, read_json_mock,
-        get_api_imports_mock, requests_mock, write_json_mock
+        preprocess_api_mock, requests_mock, write_json_mock
     ):
 
         self.fetch.ping_data = {}
@@ -206,11 +206,13 @@ class TestFetch(TestCase):
             "models": {}
         }
         side_effects = [
-            {"imports": {"Penguin"}, "details": [{
+            {"imports": {"Penguin"},
+             "codes": set({200, 400}),
+             "details": [{
                 "operations": [
-                    {"type": "boolean"},
-                    {"type": "Penguin"},
-                    {"type": "integer"}
+                    {"type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}]},
+                    {"type": "Penguin", "responseMessages": [{"code": 300}]},
+                    {"type": "integer", "responseMessages": [{"code": 200}]}
                 ]
             }]},
             {"imports": {"Pelican"}, "details": [{
@@ -222,7 +224,7 @@ class TestFetch(TestCase):
             }]},
         ]
 
-        get_api_imports_mock.side_effect = side_effects
+        preprocess_api_mock.side_effect = side_effects
 
         requests_mock.get.return_value.json.return_value = {
             "models": {}
