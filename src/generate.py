@@ -11,7 +11,7 @@ class Generate():
     def __init__(self, swagger_url, api_schema_key="apis"):
         logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
                             datefmt="%m/%d/%Y %I:%M:%S %p")
-        self.logger = logging.getLogger("PingDSL.Generate")
+        self.logger = logging.getLogger("PingSDK.Generate")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
         self.api_schema_key = api_schema_key
         self.fetch_data = Fetch(swagger_url).fetch()
@@ -58,13 +58,14 @@ class Generate():
         )
 
         for api, details in self.fetch_data.get("apis").items():
+            if safe_name(api).startswith("_"):
+                api = safe_name(api)[1:]
             template = self.render_file(
-                "apis", name=safe_name(api), details=details
+                "apis", name=api, details=details
             )
-
             self.write_template(
                 content=template,
-                file_name=safe_name(api),
+                file_name=api,
                 file_type="py",
                 folder="../pingfedsdk/apis"
             )

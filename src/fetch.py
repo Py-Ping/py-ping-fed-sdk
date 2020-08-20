@@ -11,7 +11,7 @@ class Fetch():
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
         )
         self.project_path = os.path.dirname(os.path.realpath(__file__))
-        self.logger = logging.getLogger("PingDSL.Fetch")
+        self.logger = logging.getLogger("PingSDK.Fetch")
         self.logger.setLevel(
             int(os.environ.get("Logging", logging.INFO))
         )
@@ -94,6 +94,8 @@ class Fetch():
                     self.apis[r_json.get("resourcePath", safe_api_path)] = self.preprocess_api(r_json.get("apis", []))
                     self.models.update(r_json.get("models", {}))
                     self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
+                    if safe_api_path.startswith('_'):
+                        safe_api_path = safe_api_path[1:]
                     self.write_json(data=r_json, name=safe_api_path, directory="../pingfedsdk/source/apis/")
 
         for model, details in self.models.items():

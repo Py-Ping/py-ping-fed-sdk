@@ -175,23 +175,29 @@ class TestGenerate(TestCase):
         self.assertEqual(Penguin.Penguin().from_dict(
             self.penguin_dict
         ), Penguin.Penguin(**self.penguin_dict))
+
+        self.assertEqual(
+            self.penguin_dict,
+            Penguin.Penguin(**self.penguin_dict).to_dict()
+        )
+
         self.assertEqual(
             hash(Penguin.Penguin(**self.penguin_dict)),
             hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
 
-    @patch("pingfedsdk.apis._penguins.Penguin")
-    @patch("pingfedsdk.apis._penguins.logging")
-    @patch("pingfedsdk.apis._penguins.Session")
+    @patch("pingfedsdk.apis.penguins.Penguin")
+    @patch("pingfedsdk.apis.penguins.logging")
+    @patch("pingfedsdk.apis.penguins.Session")
     def test_api(self, session_mock, logging_mock, penguin_mock):
         """
             Dynamically import the created api module, instantiate the class
             and make some assertions about the object methods
         """
-        penguins = __import__("pingfedsdk.apis._penguins", fromlist=[""])
+        penguins = __import__("pingfedsdk.apis.penguins", fromlist=[""])
         Penguin = __import__("pingfedsdk.models.Penguin", fromlist=[""])
         session_mock = MagicMock()
-        penguin_api = penguins._penguins("test-endpoint", session_mock)
+        penguin_api = penguins.penguins("test-endpoint", session_mock)
         self.assertEqual(
             penguin_api.addPenguin(Penguin.Penguin().from_dict(
                 self.penguin_dict
