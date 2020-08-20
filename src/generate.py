@@ -3,7 +3,8 @@ import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
 from helpers import safe_name, safe_variable, json_type_convert, \
-    ref_type_convert, get_exception_by_code, get_request_path
+    ref_type_convert, get_exception_by_code, get_request_path, \
+    has_substitution
 
 
 class Generate():
@@ -77,6 +78,14 @@ class Generate():
             folder="../docs/source/apis"
         )
 
+        template = self.render_file(
+            "model", name="model", details={}
+        )
+        self.write_template(
+            content=template, file_name="model", file_type="py",
+            folder="../pingfedsdk/"
+        )
+
     def render_file(self, template, name, details, template_directory="templates"):
         """
             Given the name of the jinja2 template to work from, the name of the
@@ -96,7 +105,8 @@ class Generate():
             json_type_convert=json_type_convert,
             ref_type_convert=ref_type_convert,
             get_exception_by_code=get_exception_by_code,
-            get_request_path=get_request_path
+            get_request_path=get_request_path,
+            has_substitution=has_substitution
         )
         jinjatemplate = jinjaenvironment.get_template(f"./{template}.j2")
 

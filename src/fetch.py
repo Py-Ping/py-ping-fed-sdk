@@ -109,6 +109,9 @@ class Fetch():
         response_codes = set()
         for data in api_data:
             for op in data["operations"]:
+                for param in op["parameters"]:
+                    if not json_type_convert(param["type"]) and param["type"] not in imports:
+                        imports.add(param["type"])
                 for response_code in op["responseMessages"]:
                     if response_code["code"] not in response_codes:
                         response_codes.add(response_code["code"])

@@ -124,9 +124,18 @@ class TestFetch(TestCase):
     def test_preprocess_api(self):
         test_api_data = [{
             "operations": [
-                {"type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}]},
-                {"type": "Penguin", "responseMessages": [{"code": 200}, {"code": 422}]},
-                {"type": "integer", "responseMessages": [{"code": 200}, {"code": 201}]}
+                {
+                    "type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}],
+                    "parameters": [{"type": "integer"}]
+                },
+                {
+                    "type": "Penguin", "responseMessages": [{"code": 200}, {"code": 422}],
+                    "parameters": []
+                },
+                {
+                    "type": "integer", "responseMessages": [{"code": 200}, {"code": 201}],
+                    "parameters": [{"type": "integer"}, {"type": "enum"}]
+                }
             ]
         }]
 
@@ -206,15 +215,19 @@ class TestFetch(TestCase):
             "models": {}
         }
         side_effects = [
-            {"imports": {"Penguin"},
-             "codes": set({200, 400}),
-             "details": [{
-                "operations": [
-                    {"type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}]},
-                    {"type": "Penguin", "responseMessages": [{"code": 300}]},
-                    {"type": "integer", "responseMessages": [{"code": 200}]}
+            {
+                "imports": {"Penguin"},
+                "codes": set({200, 400}),
+                "details": [
+                    {
+                        "operations": [
+                            {"type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}]},
+                            {"type": "Penguin", "responseMessages": [{"code": 300}]},
+                            {"type": "integer", "responseMessages": [{"code": 200}]}
+                        ]
+                    }
                 ]
-            }]},
+            },
             {"imports": {"Pelican"}, "details": [{
                 "operations": [
                     {"type": "array"},
