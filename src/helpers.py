@@ -32,6 +32,8 @@ def safe_variable(unsafe_variable):
 def ref_type_convert(ref_obj):
     if ref_obj["$ref"].startswith("Map"):
         return "dict"
+    if ref_obj["$ref"].startswith("Set"):
+        return "set"
     return ref_obj["$ref"]
 
 
