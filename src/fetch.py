@@ -131,7 +131,7 @@ class Fetch():
             class_name = prop.get("$ref", "")
             # check for a model import and add it to the set
             if class_name and class_name not in imports \
-               and "enum" not in prop and not class_name.startswith("Map"):
+               and "enum" not in prop and not class_name.startswith("Map") and not class_name.startswith("Set"):
                 imports["models"].add(class_name)
             # check for an enum import and add it to the set
             elif class_name and "enum" in prop:
