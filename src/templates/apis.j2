@@ -46,9 +46,7 @@ class {{ safe_name(class_name) }}:
 {% endfor %}
 
         }
-
 {% endif %}
-
         try:
             response = self.session.{{ operation.get('method').lower() }}(
 {% if operation.get('method') in ['POST', 'PUT'] %}                data=dumps(payload),{% endif %}
