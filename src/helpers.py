@@ -38,9 +38,7 @@ def ref_type_convert(ref_obj):
 
 
 def json_type_convert(json_type):
-    if json_type == "enum":
-        return "str"
-    elif json_type == "string":
+    if json_type in ("enum", "string", "File"):
         return "str"
     elif json_type == "boolean":
         return "bool"
