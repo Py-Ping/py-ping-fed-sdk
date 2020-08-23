@@ -1,22 +1,7 @@
+"""
 
+"""
 
-# import json
-# import glob
-# from collections import defaultdict
-# response_codes = defaultdict(lambda: defaultdict(int))
-# for file in glob.glob("../pingfedsdk/source/apis/*.json"):
-#   #print(file)
-#   with open(file) as fh:
-#       raw_apis = json.loads(fh.read())
-#       for api in raw_apis["apis"]:
-#           for operation in api["operations"]:
-#               for response_code in operation["responseMessages"]:
-#                   response_codes[response_code["code"]][response_code["message"]] += 1
-# from pprint import pprint
-# pprint(response_codes)
-
-
-import json
 import glob
 
 working = 0
@@ -37,7 +22,10 @@ for file in glob.glob("pingfedsdk/apis/*.py"):
         broken += 1
         print(ex)
 
-print(f"Found {working}/{total_modules} working, {broken}/{total_modules} broken API modules.")
+print(
+    f"Found {working}/{total_modules} working, "
+    f"{broken}/{total_modules} broken API modules."
+)
 print(f"Found {total_methods} API methods.")
 
 
@@ -56,4 +44,7 @@ for file in glob.glob("pingfedsdk/models/*.py"):
         broken += 1
         print(ex)
 
-print(f"Found {working}/{total_modules} working, {broken}/{total_modules} broken model modules.")
+print(
+    f"Found {working}/{total_modules} working, "
+    f"{broken}/{total_modules} broken model modules."
+)

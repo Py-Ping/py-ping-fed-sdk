@@ -62,6 +62,10 @@ unittest:
 	PYTHONPATH=$(shell pwd)/src/ python3 -m unittest discover -s tests/
 .PHONY: unittest
 
+module-load-test:
+	PYTHONPATH=$(shell pwd) python3 scripts/preload_modules.py
+.PHONY: module-load-test
+
 coverage:
 	PYTHONPATH=$(shell pwd)/src/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*,pingfedsdk/*
 .PHONY: coverage
