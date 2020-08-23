@@ -63,7 +63,7 @@ unittest:
 .PHONY: unittest
 
 coverage:
-	PYTHONPATH=$(shell pwd)/src/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*
+	PYTHONPATH=$(shell pwd)/src/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*,pingfedsdk/*
 .PHONY: coverage
 
 lint:

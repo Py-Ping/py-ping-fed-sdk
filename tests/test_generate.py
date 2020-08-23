@@ -16,7 +16,7 @@ def wipe_test_fixtures():
         f"{test_files}/models/Penguin.py",
         f"{test_files}/models/Penguins.py",
         f"{test_files}/models/PenguinLabeller.py",
-        f"{test_files}/apis/_penguins.py",
+        f"{test_files}/apis/penguins.py",
     )
     for filepath in wipe_files:
         try:
