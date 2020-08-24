@@ -75,6 +75,14 @@ class {{ class_name }}(Model):
                         else:
                             vals[x] = y
                     body[k] = vals
+                elif isinstance(v, set):
+                    vals = []
+                    for x in v:
+                        if isinstance(x, Model):
+                            vals.append(x.to_dict())
+                        else:
+                            vals.append(x)
+                    body[k] = vals
                 else:
                     body[k] = v
         return body

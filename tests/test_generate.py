@@ -63,7 +63,7 @@ class TestGenerate(TestCase):
                                     {
                                         "allowMultiple": False,
                                         "description": "Penguin description.",
-                                        "name": "firstName",
+                                        "name": "body",
                                         "height": "string",
                                         "required": True,
                                         "type": "Penguin"

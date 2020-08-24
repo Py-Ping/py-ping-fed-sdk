@@ -37,25 +37,16 @@ class {{ safe_name(class_name) }}:
     def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_variable(safe_name(parameter.get('name'))) }}: {% if json_type_convert(parameter.get('type')) %}{{ json_type_convert(parameter.get('type')) }}{% else %}{{ parameter.get('type') }}{% endif %}{% endfor %}) -> {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}{% elif json_type_convert(operation.get('type')) == 'None' %}dict{% else %}{{ operation.get('type') }}{% endif %}:
         """ {{ operation.get('summary') }}
         """
-{% if operation.get('method') in ['POST', 'PUT'] %}
 
-        payload = {
-{% for parameter in operation.get('parameters',[]) %}
-{% if parameter.get('type') != 'File' %}            "{{ safe_variable(safe_name(parameter.get('name'))) }}": {{ safe_variable(safe_name(parameter.get('name'))) }}{% if not json_type_convert(parameter.get('type')) %}.to_dict(){% endif %}{% if not loop.last %},
-{% endif %}{% endif %}
-{% endfor %}
-
-        }
-{% endif %}
         try:
             response = self.session.{{ operation.get('method').lower() }}(
-{% if operation.get('method') in ['POST', 'PUT'] %}                data=dumps(payload),
+{% if operation.get('method') in ['POST', 'PUT'] %}                data=dumps(body.to_dict()),
 {% endif %}
 {% if operation.get('method') == 'POST' %}{% for parameter in operation.get('parameters',[]) %}{% if parameter.get('type') == 'File' %}
                 files={'file': open({{ parameter.get('name') }}, "rb")},
 {% endif %}{% endfor %}{% endif %}
                 url=self._build_uri({% if has_substitution(api.get('path')) %}f{% endif %}"{{ get_request_path(api.get('path')) }}"),
-                headers={'Accept': 'application/json'}
+                headers={'Content-Type': 'application/json'}
             )
         except HTTPError as http_err:
             print(traceback.format_exc())
