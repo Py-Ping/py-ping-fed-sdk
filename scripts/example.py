@@ -65,7 +65,6 @@ with Container(home, ping_user, ping_key) as container:
 	exec(container, f"mv /opt/{demo_package}/sample/IdpSample.war {pf_path}/deploy/")
 	exec(container, f"mv /opt/{demo_package}/sample/SpSample.war {pf_path}/deploy/")
 
-	#print(result)
 	container.stop()
 	container.wait()
 	container.start()
