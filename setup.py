@@ -7,9 +7,11 @@ def read_contents(name):
     with open(name, "r") as fh:
         return fh.read()
 
+
 requires = [
     'requests>=2.23.0,<2.24.0'
 ]
+
 
 setup(
     name="pingfedsdk",

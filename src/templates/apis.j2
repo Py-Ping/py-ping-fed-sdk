@@ -76,8 +76,7 @@ class {{ safe_name(class_name) }}:
                 raise {{ get_exception_by_code(response_message.get('code')) }}(message)
 {% endif %}
 {% endfor %}
-        finally:
-            clean_response = self._safe_response(response)
-            return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}(**clean_response){% elif json_type_convert(operation.get('type')) == 'None' %}clean_response{% else %}{{ operation.get('type') }}(**clean_response){% endif %}
+        clean_response = self._safe_response(response)
+        return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}(**clean_response){% elif json_type_convert(operation.get('type')) == 'None' %}clean_response{% else %}{{ operation.get('type') }}(**clean_response){% endif %}
 
 {% endfor %}{% endfor %}
