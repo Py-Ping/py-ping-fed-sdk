@@ -9,4 +9,4 @@ FROM TestBench
 COPY ./ /opt/app/
 WORKDIR /opt/app/
 
-RUN PYTHONPATH=pingfedsdk:src:$PYTHONPATH pytest --cov=pingfedsdk -vv --cov-report term-missing
+RUN PYTHONPATH=pingfedsdk:src:$PYTHONPATH pytest --cov=src -vv --cov-report term-missing

@@ -37,7 +37,7 @@ class TestGenerate(TestCase):
             "apis": {
                 "_penguins": {
                     "imports": set(["Penguin"]),
-                    "codes": {200, 422},
+                    "codes": {200, 404},
                     "details": [{
                         "operations": [
                             {
@@ -75,7 +75,7 @@ class TestGenerate(TestCase):
                                         "message": "Penguin uploaded."
                                     },
                                     {
-                                        "code": 422,
+                                        "code": 404,
                                         "message":
                                         "Validation error(s) occurred."
                                     }
@@ -211,4 +211,5 @@ class TestGenerate(TestCase):
         )
 
     def tearDown(self):
-        wipe_test_fixtures()
+        pass
+        #wipe_test_fixtures()
