@@ -30,6 +30,7 @@ phases:
       - pipenv lock -r --dev > requirements_test.txt
       - pip install -r requirements_test.txt
     finally:
+      - aws --version
       - printenv
 
   pre_build:  
@@ -40,7 +41,7 @@ phases:
   
   build:
     commands:
-      - python src/docker_generate.py
+      - python src/docker_generate.py edge
   
   post_build:
     commands:

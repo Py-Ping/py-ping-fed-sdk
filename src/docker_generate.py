@@ -3,11 +3,16 @@ import docker
 import traceback
 import os
 import logging
+import argparse
 
 from helpers import get_auth_session, retry_with_backoff
 from generate import Generate
 from time import sleep
 
+parser = argparse.ArgumentParser(description='PyLogger Generator')
+
+def add_args():
+    parser.add_argument('version', type=str, choices=["9.3.3", "10.0.4", "10.1.0", "edge"], default="edge", help='Ping Federate Version')
 
 class Container:
     """
@@ -18,7 +23,7 @@ class Container:
         TODO: make generic to run any other Ping solution
     """
 
-    def __init__(self, home_path, user, pass_key):
+    def __init__(self, home_path, user, pass_key, version="edge"):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
             datefmt="%m/%d/%Y %I:%M:%S %p"
@@ -27,7 +32,7 @@ class Container:
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
 
         self.client = docker.from_env()
-        self.image_name = "pingidentity/pingfederate:edge"
+        self.image_name = f"pingidentity/pingfederate:{version}"
         self.home = home_path
         self.ping_user = user
         self.ping_key = pass_key
@@ -35,6 +40,7 @@ class Container:
         self.container = None
 
     def run(self):
+        self.logger.info(f'Starting Container: {self.image_name}')
         self.container = self.client.containers.run(
             self.image_name,
             environment=[
@@ -111,6 +117,8 @@ class Container:
 
 
 if __name__ == "__main__":
+    add_args()
+    args = parser.parse_args()
     home = os.environ["HOME"]
     ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
     ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"]
@@ -119,7 +127,7 @@ if __name__ == "__main__":
     session = get_auth_session()
     session.verify = False
 
-    with Container(home, ping_user, ping_key):
+    with Container(home, ping_user, ping_key, args.version):
         if not retry_with_backoff(Generate(swagger_url).generate):
             print("Container service didn't stabilise, exiting...")
             exit(1)

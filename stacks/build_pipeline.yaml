@@ -104,7 +104,7 @@ Resources:
         Packaging: ZIP
       Environment:
         Type: LINUX_CONTAINER
-        PrivilegedMode: false
+        PrivilegedMode: true
         Certificate: !Ref 'AWS::NoValue'
         ComputeType: !Sub BUILD_GENERAL1_MEDIUM
         Image: !Sub 'aws/codebuild/standard:3.0'
