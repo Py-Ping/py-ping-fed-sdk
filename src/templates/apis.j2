@@ -27,7 +27,15 @@ class {{ safe_name(class_name) }}:
         self.session = session
 
     def _safe_response(self, response_obj):
-        return {x.replace("id", "var_id").replace("type", "var_type"): y for x, y in response_obj.json().items()}
+        safe_response = {}
+        for x, y in response_obj.json().items():
+            if x == "id":
+                safe_response["var_id"] = y
+            elif x == "type":
+                safe_response["var_type"] = y
+            else:
+                safe_response[x] = y
+        return safe_response
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
