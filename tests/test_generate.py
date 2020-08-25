@@ -211,5 +211,4 @@ class TestGenerate(TestCase):
         )
 
     def tearDown(self):
-        pass
-        #wipe_test_fixtures()
+        wipe_test_fixtures()

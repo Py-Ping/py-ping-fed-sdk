@@ -11,8 +11,13 @@ from time import sleep
 
 parser = argparse.ArgumentParser(description='PyLogger Generator')
 
+
 def add_args():
-    parser.add_argument('version', type=str, choices=["9.3.3", "10.0.4", "10.1.0", "edge"], default="edge", help='Ping Federate Version')
+    parser.add_argument(
+        'version', type=str, choices=["9.3.3", "10.0.4", "10.1.0", "edge"],
+        default="edge", help='Ping Federate Version'
+    )
+
 
 class Container:
     """
@@ -135,7 +140,6 @@ if __name__ == "__main__":
             version = __import__("pingfedsdk.apis.version", fromlist=[""])
             response = version.version(endpoint, session).getVersion()
             print(f"Ping Federate, version: {response.version}")
-
         except Exception as err:
             print(f"Was unable to determine the Ping Federate version: {err}")
             print(traceback.format_exc())
