@@ -107,6 +107,7 @@ class Container:
             self.wait()
         else:
             self.container = self.get_by_image_name(self.image_name)
+        return self.container
 
         # replace with something that polls on service availability
         sleep(45)
@@ -132,7 +133,8 @@ if __name__ == "__main__":
     session = get_auth_session()
     session.verify = False
 
-    with Container(home, ping_user, ping_key, args.version):
+    with Container(home, ping_user, ping_key, args.version) as container:
+        print(f'Running container {container.id}')
         if not retry_with_backoff(Generate(swagger_url).generate):
             print("Container service didn't stabilise, exiting...")
             exit(1)
