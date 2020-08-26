@@ -88,9 +88,9 @@ with Container(home, ping_user, ping_key) as container:
 	)
 	print(license_obj.updateLicenseAgreement(agreement))
 
-	blah = idp_adapters(endpoint, session).getIdpAdapters(1, 1, filter="OTIdPJava")
+	adp = idp_adapters(endpoint, session).getIdpAdapters(1, 1, filter="OTIdPJava")
 	from pprint import pprint
-	pprint(blah.to_dict())
+	pprint(adp.to_dict())
 
 	try:
 		pprint(idp_adapters(endpoint, session).deleteIdpAdapter(var_id='OTIdPJava'))
