@@ -77,3 +77,7 @@ lint:
 lint-generated:
 	flake8 pingfedsdk --ignore E501
 .PHONY: lint-generated
+
+example:
+	PYTHONPATH=$(shell pwd)/src:$(shell pwd) python3 scripts/example.py
+.PHONY: example

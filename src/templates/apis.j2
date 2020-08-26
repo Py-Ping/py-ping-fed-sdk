@@ -20,13 +20,13 @@ from pingfedsdk.models.{{ imp }} import {{ imp }}
 
 class {{ safe_class_name(class_name) }}:
     def __init__(self, endpoint: str, session: Session) -> None:
-        logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p")
+        logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p")
         self.logger = logging.getLogger("PingSDK.{{ safe_class_name(class_name) }}")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
         self.endpoint = endpoint
         self.session = session
 
-    def _safe_response(self, response_obj):
+    def _safe_response(self, response_obj: dict) -> dict:
         safe_response = {}
         for x, y in response_obj.json().items():
             if x == "id":
@@ -54,14 +54,14 @@ class {{ safe_class_name(class_name) }}:
                 files={'file': open({{ parameter.get('name') }}, "rb")},
 {% endif %}{% endfor %}{% endif %}
                 url=self._build_uri({% if has_substitution(api.get('path')) %}f{% endif %}"{{ get_request_path(api.get('path')) }}"),
-                headers={'Content-Type': 'application/json'}
+                headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
             print(traceback.format_exc())
-            self.logger.error(f'HTTP error occurred: {http_err}')
+            self.logger.error(f"HTTP error occurred: {http_err}")
         except Exception as err:
             print(traceback.format_exc())
-            self.logger.error(f'Error occurred: {err}')
+            self.logger.error(f"Error occurred: {err}")
         else:
 {% for response_message in operation.get('responseMessages') %}
             if response.status_code == {{response_message.get('code')}}:
