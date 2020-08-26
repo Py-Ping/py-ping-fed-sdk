@@ -5,7 +5,6 @@ from time import sleep
 from helpers import get_auth_session, retry_with_backoff
 from docker_generate import Container
 
-
 from pingfedsdk.models.LicenseAgreementInfo import LicenseAgreementInfo
 from pingfedsdk.models.AdministrativeAccount import AdministrativeAccount
 from pingfedsdk.exceptions import ValidationError
@@ -14,6 +13,14 @@ from pingfedsdk.apis.idp_defaultUrls import idp_defaultUrls
 from pingfedsdk.apis.version import version
 from pingfedsdk.apis.license import license
 from pingfedsdk.apis.administrativeAccounts import administrativeAccounts
+from pingfedsdk.apis.sp_idpConnections import sp_idpConnections
+from pingfedsdk.apis.sp_adapters import sp_adapters
+from pingfedsdk.apis.sp_targetUrlMappings import sp_targetUrlMappings
+from pingfedsdk.apis.sp_defaultUrls import sp_defaultUrls
+from pingfedsdk.apis.idp_spConnections import idp_spConnections
+from pingfedsdk.apis.idp_connectors import idp_connectors
+from pingfedsdk.apis.idpToSpAdapterMapping import idpToSpAdapterMapping
+from pingfedsdk.apis.authenticationApi import authenticationApi
 
 
 home = os.environ["HOME"]
@@ -58,12 +65,12 @@ with Container(home, ping_user, ping_key) as container:
 	copy_to(f'./{demo_package}.zip', f'{container.id}:/opt/{demo_package}.zip')
 
 	pf_path = "/opt/out/instance/server/default"
-
+	kit_path = f"/opt/{demo_package}/sample"
 	exec(container, f"unzip /opt/{demo_package}.zip")
 	sleep(20)
-	exec(container, f"mv /opt/{demo_package}/sample/data.zip {pf_path}/data/drop-in-deployer/")
-	exec(container, f"mv /opt/{demo_package}/sample/IdpSample.war {pf_path}/deploy/")
-	exec(container, f"mv /opt/{demo_package}/sample/SpSample.war {pf_path}/deploy/")
+	exec(container, f"mv {kit_path}/data.zip {pf_path}/data/drop-in-deployer/")
+	exec(container, f"mv {kit_path}/IdpSample.war {pf_path}/deploy/")
+	exec(container, f"mv {kit_path}/SpSample.war {pf_path}/deploy/")
 
 	container.stop()
 	container.wait()
@@ -73,16 +80,47 @@ with Container(home, ping_user, ping_key) as container:
 	response = version(endpoint, session).getVersion()
 	print(response.version)
 	license_obj = license(endpoint, session)
-	agreement = LicenseAgreementInfo(**{'accepted': True, 'licenseAgreementUrl': 'https://localhost:9999/pf-admin-api/license-agreement'})
+	agreement = LicenseAgreementInfo(
+		**{
+			'accepted': True,
+			'licenseAgreementUrl': 'https://localhost:9999/pf-admin-api/license-agreement'
+		}
+	)
 	print(license_obj.updateLicenseAgreement(agreement))
 
-	idp_adapters = idp_adapters(endpoint, session).getIdpAdapters(1, 1, filter="OTIdPJava")
+	adp = idp_adapters(endpoint, session).getIdpAdapters(1, 1, filter="OTIdPJava")
 	from pprint import pprint
+	pprint(adp.to_dict())
 
-	pprint(idp_adapters.to_dict())
+	try:
+		pprint(idp_adapters(endpoint, session).deleteIdpAdapter(var_id='OTIdPJava'))
+	except ValidationError as ex:
+		print(ex)
 
 	pprint(idp_defaultUrls(endpoint, session).getDefaultUrl().to_dict())
-	
+	pprint(idp_spConnections(endpoint, session).getConnections(entityId='OTIdPJava', page=1, numberPerPage=1, filter='').to_dict())
+	pprint(idp_connectors(endpoint, session).getIdpConnectorDescriptors().to_dict())
+
+	sp_id_connections = sp_idpConnections(endpoint, session)
+	response = sp_id_connections.getConnections(entityId='OTSPJava', page=1, numberPerPage=1, filter='OTSPJava')
+	pprint(response.items[0]["id"])
+	pprint(sp_id_connections.deleteConnection(response.items[0]["id"]))
+
+	pprint(sp_adapters(endpoint, session).getSpAdapterDescriptors().to_dict())
+	pprint(sp_adapters(endpoint, session).getSpAdapters(page=1, numberPerPage=1, filter='').to_dict())
+
+	try:
+		sp_adapters(endpoint, session).deleteSpAdapter(var_id='OTSPJava')
+	except ValidationError as ex:
+		print(ex)
+
+	pprint(idpToSpAdapterMapping(endpoint, session).getIdpToSpAdapterMappings().to_dict())
+	pprint(authenticationApi(endpoint, session).getAuthenticationApiSettings().to_dict())
+
+
+	pprint(sp_targetUrlMappings(endpoint, session).getUrlMappings().to_dict())
+	pprint(sp_defaultUrls(endpoint, session).getDefaultUrls().to_dict())
+
 	admin_accounts = administrativeAccounts(endpoint, session)
 	admin_account = AdministrativeAccount(
 		username='penguin',
@@ -101,6 +139,4 @@ with Container(home, ping_user, ping_key) as container:
 	except ValidationError:
 		print("User already exists, skipping...")
 
-	print(admin_accounts.getAccounts())
-
-	input('wait...')
+	pprint(admin_accounts.getAccounts().to_dict())

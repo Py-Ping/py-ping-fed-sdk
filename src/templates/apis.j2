@@ -6,7 +6,7 @@ from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
 {% for response_code in details.get('codes', []) %}
-{% if get_exception_by_code(response_code) and response_code != 403 %}
+{% if get_exception_by_code(response_code) and response_code not in (204, 403) %}
 from pingfedsdk.exceptions import {{ get_exception_by_code(response_code) }}
 {% endif %}
 {% endfor %}
@@ -70,6 +70,9 @@ class {{ safe_name(class_name) }}:
                 raise ValidationError(ApiResult(**clean_response).to_dict())
 {% elif response_message.get('code') in (200, 201) %}
                 self.logger.info("{{ response_message.get('message') }}")
+{% elif response_message.get('code') == 204 %}
+                self.logger.info("{{ response_message.get('message') }}")
+                return ApiResult(message="{{ response_message.get('message') }}", validationErrors=[])
 {% elif get_exception_by_code(response_message.get('code')) %}
                 message = "{{response_message.get('message')}}"
                 self.logger.info(message)
