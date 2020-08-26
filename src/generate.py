@@ -44,7 +44,6 @@ class Generate():
         )
 
         exception_types = (
-            "ObjectDeleted",
             "BadRequest",
             "NotFound",
             "ValidationError"
