@@ -35,7 +35,7 @@ class TestGenerate(TestCase):
 
         self.fetch_response = {
             "apis": {
-                "_penguins": {
+                "/penguins": {
                     "imports": set(["Penguin"]),
                     "codes": {200, 404},
                     "details": [{
@@ -145,7 +145,6 @@ class TestGenerate(TestCase):
             }
         }
         fetch_mock.return_value.fetch.return_value = self.fetch_response
-
         realpath_mock.return_value = REAL_PATH
         Generate("fake-url.com:9999").generate()
         self.penguin_dict = {
@@ -197,7 +196,7 @@ class TestGenerate(TestCase):
         penguins = __import__("pingfedsdk.apis.penguins", fromlist=[""])
         Penguin = __import__("pingfedsdk.models.Penguin", fromlist=[""])
         session_mock = MagicMock()
-        penguin_api = penguins.penguins("test-endpoint", session_mock)
+        penguin_api = penguins.Penguins("test-endpoint", session_mock)
         self.assertEqual(
             penguin_api.addPenguin(Penguin.Penguin().from_dict(
                 self.penguin_dict

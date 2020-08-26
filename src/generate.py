@@ -2,7 +2,7 @@ import os
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_name, safe_variable, json_type_convert, \
+from helpers import safe_class_name, safe_module_name, safe_name, safe_variable, json_type_convert, \
     ref_type_convert, get_exception_by_code, get_request_path, \
     has_substitution
 
@@ -58,14 +58,12 @@ class Generate():
         )
 
         for api, details in self.fetch_data.get("apis").items():
-            if safe_name(api).startswith("_"):
-                api = safe_name(api)[1:]
             template = self.render_file(
-                "apis", name=api, details=details
+                "apis", name=safe_class_name(api), details=details
             )
             self.write_template(
                 content=template,
-                file_name=api,
+                file_name=safe_module_name(api),
                 file_type="py",
                 folder="../pingfedsdk/apis"
             )
@@ -101,6 +99,7 @@ class Generate():
             trim_blocks=True
         )
         jinjaenvironment.globals.update(
+            safe_class_name=safe_class_name,
             safe_name=safe_name,
             safe_variable=safe_variable,
             json_type_convert=json_type_convert,

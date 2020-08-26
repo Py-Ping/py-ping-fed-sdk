@@ -15,6 +15,26 @@ def safe_name(unsafe_string, unsafe_char="/", sub_char="_"):
     return "".join(safe_string_list)
 
 
+def safe_module_name(unsafe_string, unsafe_char="/", sub_char="_"):
+    safe_string_list = safe_name(unsafe_string)
+    safe_module_name_list = [
+        x if x.islower() or x == sub_char else f"{sub_char}{x.lower()}" for x in safe_string_list
+    ]
+
+    if safe_module_name_list[0] == '_':
+        safe_module_name_list.remove(safe_module_name_list[0])
+
+    return "".join(safe_module_name_list)
+
+
+def safe_class_name(unsafe_string, unsafe_char="/"):
+    safe_class_name = ''
+    for substr in unsafe_string.split(unsafe_char):
+        if substr:
+            safe_class_name += substr[0].capitalize() + substr[1:]
+    return safe_class_name
+
+
 def safe_variable(unsafe_variable):
     """
     Some APIs define variables that are unsafe to Python code

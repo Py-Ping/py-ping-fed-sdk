@@ -25,8 +25,8 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'pingfedsdk'
-copyright = '2020, Michael Kelly, Liam Dixon'
-author = 'Michael Kelly, Liam Dixon'
+copyright = '2020, Michael Kelly, Liam Dixon, Ted de Vaal'
+author = 'Michael Kelly, Liam Dixon, Ted de Vaal'
 
 # The short X.Y version.
 version = '0.1'
