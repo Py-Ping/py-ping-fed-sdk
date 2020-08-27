@@ -114,3 +114,21 @@ def has_substitution(check_string):
     l_paren = check_string.find("{") + 1
     r_paren = check_string.find("}") + 1
     return l_paren and r_paren and l_paren < r_paren
+
+
+def write_template(content, file_name="PINGVERSION", folder=".."):
+    """
+    Given a version of Ping will write it out into a PINGVERSION file.
+    """
+    filedirectory = os.path.dirname(os.path.realpath(__file__))
+    targetdirectory = os.path.join(
+        filedirectory,
+        folder
+    )
+
+    if not os.path.exists(targetdirectory):
+        os.makedirs(targetdirectory)
+
+    path = f"{targetdirectory}/{file_name}"
+    with open(os.path.join(filedirectory, path), "w") as fh:
+        fh.write(content)
