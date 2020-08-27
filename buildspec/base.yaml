@@ -48,5 +48,5 @@ phases:
       - aws codeartifact login --tool twine --repository $VAR_AppName --domain $VAR_Domain --domain-owner $VAR_DomainOwner
       - python setup.py sdist bdist_wheel
     finally:
-      - python -m twine upload --verbose --repository codeartifact dist/*
+      - python -m twine upload --repository codeartifact dist/* --verbose
 
