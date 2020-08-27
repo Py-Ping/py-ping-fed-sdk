@@ -7,6 +7,7 @@ from docker_generate import Container
 
 from pingfedsdk.models.LicenseAgreementInfo import LicenseAgreementInfo
 from pingfedsdk.models.AdministrativeAccount import AdministrativeAccount
+from pingfedsdk.models.IdpConnection import IdpConnection
 from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.apis.idp_adapters import idp_adapters
 from pingfedsdk.apis.idp_defaultUrls import idp_defaultUrls
@@ -82,8 +83,8 @@ with Container(home, ping_user, ping_key) as container:
 	license_obj = license(endpoint, session)
 	agreement = LicenseAgreementInfo(
 		**{
-			'accepted': True,
-			'licenseAgreementUrl': 'https://localhost:9999/pf-admin-api/license-agreement'
+			"accepted": True,
+			"licenseAgreementUrl": "https://localhost:9999/pf-admin-api/license-agreement"
 		}
 	)
 	print(license_obj.updateLicenseAgreement(agreement))
@@ -93,24 +94,28 @@ with Container(home, ping_user, ping_key) as container:
 	pprint(adp.to_dict())
 
 	try:
-		pprint(idp_adapters(endpoint, session).deleteIdpAdapter(var_id='OTIdPJava'))
+		pprint(idp_adapters(endpoint, session).deleteIdpAdapter(id='OTIdPJava'))
 	except ValidationError as ex:
 		print(ex)
 
 	pprint(idp_defaultUrls(endpoint, session).getDefaultUrl().to_dict())
-	pprint(idp_spConnections(endpoint, session).getConnections(entityId='OTIdPJava', page=1, numberPerPage=1, filter='').to_dict())
+	idp_sp_conn = idp_spConnections(endpoint, session).getConnections(entityId='OTIdPJava', page=1, numberPerPage=1, filter='').to_dict()
 	pprint(idp_connectors(endpoint, session).getIdpConnectorDescriptors().to_dict())
 
 	sp_id_connections = sp_idpConnections(endpoint, session)
 	response = sp_id_connections.getConnections(entityId='OTSPJava', page=1, numberPerPage=1, filter='OTSPJava')
-	pprint(response.items[0]["id"])
+	conn = response.items[0]
+	pprint(conn)
 	pprint(sp_id_connections.deleteConnection(response.items[0]["id"]))
+
+	pprint(IdpConnection.from_dict(conn))
+	pprint(sp_id_connections.createConnection(body=IdpConnection(**conn), XBypassExternalValidation=True).to_dict())
 
 	pprint(sp_adapters(endpoint, session).getSpAdapterDescriptors().to_dict())
 	pprint(sp_adapters(endpoint, session).getSpAdapters(page=1, numberPerPage=1, filter='').to_dict())
 
 	try:
-		sp_adapters(endpoint, session).deleteSpAdapter(var_id='OTSPJava')
+		sp_adapters(endpoint, session).deleteSpAdapter(id='OTSPJava')
 	except ValidationError as ex:
 		print(ex)
 
