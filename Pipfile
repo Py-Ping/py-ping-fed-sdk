@@ -12,6 +12,7 @@ requests = "*"
 Jinja2 = "*"
 flake8 = "*"
 pipenv-setup = "*"
+twine = "*"
 
 [packages]
 python-decouple = "*"
