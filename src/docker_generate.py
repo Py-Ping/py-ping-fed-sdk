@@ -5,7 +5,7 @@ import os
 import logging
 import argparse
 
-from helpers import get_auth_session, retry_with_backoff
+from helpers import get_auth_session, retry_with_backoff, write_template
 from generate import Generate
 from time import sleep
 
@@ -145,3 +145,7 @@ if __name__ == "__main__":
         except Exception as err:
             print(f"Was unable to determine the Ping Federate version: {err}")
             print(traceback.format_exc())
+        else:
+            write_template(content=response.version)
+        finally:
+            print("Ping Federation SDK Generation Finished")

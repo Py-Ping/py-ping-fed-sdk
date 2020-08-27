@@ -41,7 +41,7 @@ phases:
   
   build:
     commands:
-      - python src/docker_generate.py edge
+      - PYTHONPATH=$(shell pwd) python src/docker_generate.py edge
   
   post_build:
     commands:
