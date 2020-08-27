@@ -285,6 +285,7 @@ Resources:
                 Effect: Allow
                 Resource:
                   - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:domain/internal-tools-versent'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/pypingfedsdk'
           PolicyName: CodeBuildPolicy
       RoleName: !Sub '${ProjectId}-CodeBuildRole'
 Outputs:
