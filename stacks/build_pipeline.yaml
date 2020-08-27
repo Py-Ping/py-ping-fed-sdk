@@ -264,6 +264,22 @@ Resources:
                 Effect: Allow
                 Resource:
                   - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ProjectId}*'
+              - Action:
+                 - 'codeartifact:DescribeRepository'
+                 - 'codeartifact:GetAuthorizationToken'
+                 - 'codeartifact:ListPackageVersionAssets'
+                 - 'codeartifact:ListPackageVersionDependencies'
+                 - 'codeartifact:ListPackageVersions'
+                 - 'codeartifact:ListPackages'
+                 - 'codeartifact:ListRepositories'
+                 - 'codeartifact:ListRepositoriesInDomain'
+                 - 'codeartifact:PublishPackageVersion'
+                 - 'codeartifact:PutPackageMetadata'
+                 - 'codeartifact:ReadFromRepository'
+                 - 'codeartifact:UpdatePackageVersionsStatus'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:domain/internal-tools-versent'
           PolicyName: CodeBuildPolicy
       RoleName: !Sub '${ProjectId}-CodeBuildRole'
 Outputs:
