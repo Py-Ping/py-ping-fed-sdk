@@ -16,13 +16,13 @@ def safe_name(unsafe_string, unsafe_char="/", sub_char="_"):
 
 
 def safe_module_name(unsafe_string, unsafe_char="/", sub_char="_"):
-    safe_string_list = safe_name(unsafe_string)
+    safe_string = safe_name(unsafe_string)
     safe_module_name_list = [
-        x if x.islower() or x == sub_char else f"{sub_char}{x.lower()}" for x in safe_string_list
+        x if x.islower() or x == sub_char else f"{sub_char}{x.lower()}" for x in safe_string
     ]
 
     if safe_module_name_list[0] == '_':
-        safe_module_name_list.remove(safe_module_name_list[0])
+        safe_module_name_list = safe_module_name_list[1:]
 
     return "".join(safe_module_name_list)
 
