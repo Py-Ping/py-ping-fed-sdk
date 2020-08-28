@@ -140,7 +140,7 @@ if __name__ == "__main__":
             exit(1)
         try:
             version = __import__("pingfedsdk.apis.version", fromlist=[""])
-            response = version.version(endpoint, session).getVersion()
+            response = version.Version(endpoint, session).getVersion()
             print(f"Ping Federate, version: {response.version}")
         except Exception as err:
             print(f"Was unable to determine the Ping Federate version: {err}")

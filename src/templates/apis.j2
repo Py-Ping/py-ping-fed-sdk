@@ -18,10 +18,10 @@ from pingfedsdk.models.{{ imp }} import {{ imp }}
 {% endfor %}
 
 
-class {{ safe_name(class_name) }}:
+class {{ safe_class_name(class_name) }}:
     def __init__(self, endpoint: str, session: Session) -> None:
         logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p")
-        self.logger = logging.getLogger("PingSDK.{{ safe_name(class_name) }}")
+        self.logger = logging.getLogger("PingSDK.{{ safe_class_name(class_name) }}")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
         self.endpoint = endpoint
         self.session = session
