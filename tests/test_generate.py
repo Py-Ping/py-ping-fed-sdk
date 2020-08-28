@@ -201,12 +201,12 @@ class TestGenerate(TestCase):
             penguin_api.addPenguin(Penguin.Penguin().from_dict(
                 self.penguin_dict
             )),
-            penguin_mock.return_value
+            penguin_mock.from_dict.return_value
         )
 
         self.assertEqual(
             penguin_api.getPenguinDetails(),
-            penguin_mock.return_value
+            penguin_mock.from_dict.return_value
         )
 
     def tearDown(self):

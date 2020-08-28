@@ -156,7 +156,7 @@ class TestFetch(TestCase):
             "properties": {
                 "PenguinImport": {"$ref": "Penguin"},
                 "DuckImport": {"type": "boolean", "enum": "dummy"},
-                "PelicanImport": {"type": "array"},
+                "PelicanImport": {"type": "array", "items": {}},
                 "IbisImport": {"$ref": "Ibis", "enum": ["bin", "tree", "air"]},
                 "AnotherIbisImport": {
                     "$ref": "Ibis", "enum": ["bin", "tree", "snoot"]
