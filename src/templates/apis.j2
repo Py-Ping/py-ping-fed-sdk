@@ -11,10 +11,10 @@ from pingfedsdk.exceptions import {{ get_exception_by_code(response_code) }}
 {% endif %}
 {% endfor %}
 {% if 'ApiResult' not in details.get('imports') and 422 in details.get('codes', []) %}
-from pingfedsdk.models.ApiResult import ApiResult
+from pingfedsdk.models.ApiResult import ApiResult as ModelApiResult
 {% endif %}
 {% for imp in details.get('imports') %}
-from pingfedsdk.models.{{ imp }} import {{ imp }}
+from pingfedsdk.models.{{ imp }} import {{ imp }} as Model{{ imp }}
 {% endfor %}
 
 
@@ -31,7 +31,7 @@ class {{ safe_class_name(class_name) }}:
 {% for api in details.get('details') %}
 {% for operation in api.get('operations',[]) %}
 
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_name(parameter.get('name')) }}: {% if json_type_convert(parameter.get('type')) %}{{ json_type_convert(parameter.get('type')) }}{% else %}{{ parameter.get('type') }}{% endif %}{% endfor %}) -> {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}{% elif json_type_convert(operation.get('type')) == 'None' %}dict{% else %}{{ operation.get('type') }}{% endif %}:
+    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_name(parameter.get('name')) }}: {% if json_type_convert(parameter.get('type')) %}{{ json_type_convert(parameter.get('type')) }}{% else %}Model{{ parameter.get('type') }}{% endif %}{% endfor %}) -> {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}{% elif json_type_convert(operation.get('type')) == 'None' %}dict{% else %}Model{{ operation.get('type') }}{% endif %}:
         """ {{ operation.get('summary') }}
         """
 
@@ -55,18 +55,18 @@ class {{ safe_class_name(class_name) }}:
 {% for response_message in operation.get('responseMessages') %}
             if response.status_code == {{response_message.get('code')}}:
 {% if response_message.get('code') == 422 %}
-                raise ValidationError(ApiResult.from_dict(response.json()).to_dict())
+                raise ValidationError(ModelApiResult.from_dict(response.json()).to_dict())
 {% elif response_message.get('code') in (200, 201) %}
                 self.logger.info("{{ response_message.get('message') }}")
 {% elif response_message.get('code') == 204 %}
                 self.logger.info("{{ response_message.get('message') }}")
-                return ApiResult(message="{{ response_message.get('message') }}", validationErrors=[])
+                return ModelApiResult(message="{{ response_message.get('message') }}", validationErrors=[])
 {% elif get_exception_by_code(response_message.get('code')) %}
                 message = "{{response_message.get('message')}}"
                 self.logger.info(message)
                 raise {{ get_exception_by_code(response_message.get('code')) }}(message)
 {% endif %}
 {% endfor %}
-        return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}.from_dict(response){% elif json_type_convert(operation.get('type')) == 'None' %}response{% else %}{{ operation.get('type') }}.from_dict(response.json()){% endif %}
+        return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}.from_dict(response){% elif json_type_convert(operation.get('type')) == 'None' %}response{% else %}Model{{ operation.get('type') }}.from_dict(response.json()){% endif %}
 
 {% endfor %}{% endfor %}

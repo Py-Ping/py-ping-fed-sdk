@@ -10,19 +10,19 @@ from pingfedsdk.models.AdministrativeAccount import AdministrativeAccount
 from pingfedsdk.models.IdpConnection import IdpConnection
 from pingfedsdk.models.Version import Version
 from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.apis.idp_adapters import idp_adapters
-from pingfedsdk.apis.idp_defaultUrls import idp_defaultUrls
-from pingfedsdk.apis.version import version
-from pingfedsdk.apis.license import license
-from pingfedsdk.apis.administrativeAccounts import administrativeAccounts
-from pingfedsdk.apis.sp_idpConnections import sp_idpConnections
-from pingfedsdk.apis.sp_adapters import sp_adapters
-from pingfedsdk.apis.sp_targetUrlMappings import sp_targetUrlMappings
-from pingfedsdk.apis.sp_defaultUrls import sp_defaultUrls
-from pingfedsdk.apis.idp_spConnections import idp_spConnections
-from pingfedsdk.apis.idp_connectors import idp_connectors
-from pingfedsdk.apis.idpToSpAdapterMapping import idpToSpAdapterMapping
-from pingfedsdk.apis.authenticationApi import authenticationApi
+from pingfedsdk.apis.idp_adapters import IdpAdapters
+from pingfedsdk.apis.idp_default_urls import IdpDefaultUrls
+from pingfedsdk.apis.version import Version
+from pingfedsdk.apis.license import License
+from pingfedsdk.apis.administrative_accounts import AdministrativeAccounts
+from pingfedsdk.apis.sp_idp_connections import SpIdpConnections
+from pingfedsdk.apis.sp_adapters import SpAdapters
+from pingfedsdk.apis.sp_target_url_mappings import SpTargetUrlMappings
+from pingfedsdk.apis.sp_default_urls import SpDefaultUrls
+from pingfedsdk.apis.idp_sp_connections import IdpSpConnections
+from pingfedsdk.apis.idp_connectors import IdpConnectors
+from pingfedsdk.apis.idp_to_sp_adapter_mapping import IdpToSpAdapterMapping
+from pingfedsdk.apis.authentication_api import AuthenticationApi
 
 
 home = os.environ["HOME"]
@@ -80,9 +80,9 @@ with Container(home, ping_user, ping_key) as container:
 
 	sleep(45)
 
-	response = version(endpoint, session).getVersion()
+	response = Version(endpoint, session).getVersion()
 	print(response.version)
-	license_obj = license(endpoint, session)
+	license_obj = License(endpoint, session)
 	agreement = LicenseAgreementInfo(
 		**{
 			"accepted": True,
@@ -91,20 +91,20 @@ with Container(home, ping_user, ping_key) as container:
 	)
 	print(license_obj.updateLicenseAgreement(agreement))
 
-	adp = idp_adapters(endpoint, session).getIdpAdapters(1, 1, filter="OTIdPJava")
+	adp = IdpAdapters(endpoint, session).getIdpAdapters(1, 1, filter="OTIdPJava")
 	from pprint import pprint
 	pprint(adp.to_dict())
 
 	try:
-		pprint(idp_adapters(endpoint, session).deleteIdpAdapter(id='OTIdPJava'))
+		pprint(IdpAdapters(endpoint, session).deleteIdpAdapter(id='OTIdPJava'))
 	except ValidationError as ex:
 		print(ex)
 
-	pprint(idp_defaultUrls(endpoint, session).getDefaultUrl().to_dict())
-	idp_sp_conn = idp_spConnections(endpoint, session).getConnections(entityId='OTIdPJava', page=1, numberPerPage=1, filter='').to_dict()
-	pprint(idp_connectors(endpoint, session).getIdpConnectorDescriptors().to_dict())
+	pprint(IdpDefaultUrls(endpoint, session).getDefaultUrl().to_dict())
+	idp_sp_conn = IdpSpConnections(endpoint, session).getConnections(entityId='OTIdPJava', page=1, numberPerPage=1, filter='').to_dict()
+	pprint(IdpConnectors(endpoint, session).getIdpConnectorDescriptors().to_dict())
 
-	sp_id_connections = sp_idpConnections(endpoint, session)
+	sp_id_connections = SpIdpConnections(endpoint, session)
 	response = sp_id_connections.getConnections(entityId='OTSPJava', page=1, numberPerPage=1, filter='OTSPJava')
 	conn = response.items[0]
 	pprint(conn)
@@ -115,21 +115,21 @@ with Container(home, ping_user, ping_key) as container:
 	idp_conn = sp_id_connections.createConnection(body=conn, XBypassExternalValidation=True)
 	pprint(idp_conn.credentials.certs)
 
-	pprint(sp_adapters(endpoint, session).getSpAdapterDescriptors().to_dict())
-	pprint(sp_adapters(endpoint, session).getSpAdapters(page=1, numberPerPage=1, filter='').to_dict())
+	pprint(SpAdapters(endpoint, session).getSpAdapterDescriptors().to_dict())
+	pprint(SpAdapters(endpoint, session).getSpAdapters(page=1, numberPerPage=1, filter='').to_dict())
 
 	try:
-		sp_adapters(endpoint, session).deleteSpAdapter(id='OTSPJava')
+		SpAdapters(endpoint, session).deleteSpAdapter(id='OTSPJava')
 	except ValidationError as ex:
 		print(ex)
 
-	pprint(idpToSpAdapterMapping(endpoint, session).getIdpToSpAdapterMappings().to_dict())
-	pprint(authenticationApi(endpoint, session).getAuthenticationApiSettings().to_dict())
+	pprint(IdpToSpAdapterMapping(endpoint, session).getIdpToSpAdapterMappings().to_dict())
+	pprint(AuthenticationApi(endpoint, session).getAuthenticationApiSettings().to_dict())
 
-	pprint(sp_targetUrlMappings(endpoint, session).getUrlMappings().to_dict())
-	pprint(sp_defaultUrls(endpoint, session).getDefaultUrls().to_dict())
+	pprint(SpTargetUrlMappings(endpoint, session).getUrlMappings().to_dict())
+	pprint(SpDefaultUrls(endpoint, session).getDefaultUrls().to_dict())
 
-	admin_accounts = administrativeAccounts(endpoint, session)
+	admin_accounts = AdministrativeAccounts(endpoint, session)
 	admin_account = AdministrativeAccount(
 		username='penguin',
 		password='2FederateM0re',

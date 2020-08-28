@@ -185,7 +185,7 @@ class TestGenerate(TestCase):
             hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
 
-    @patch("pingfedsdk.apis.penguins.Penguin")
+    @patch("pingfedsdk.apis.penguins.ModelPenguin")
     @patch("pingfedsdk.apis.penguins.logging")
     @patch("pingfedsdk.apis.penguins.Session")
     def test_api(self, session_mock, logging_mock, penguin_mock):
@@ -209,5 +209,5 @@ class TestGenerate(TestCase):
             penguin_mock.from_dict.return_value
         )
 
-    def tearDown(self):
-        wipe_test_fixtures()
+    # def tearDown(self):
+    #     wipe_test_fixtures()
