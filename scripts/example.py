@@ -8,6 +8,7 @@ from docker_generate import Container
 from pingfedsdk.models.LicenseAgreementInfo import LicenseAgreementInfo
 from pingfedsdk.models.AdministrativeAccount import AdministrativeAccount
 from pingfedsdk.models.IdpConnection import IdpConnection
+from pingfedsdk.models.Version import Version
 from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.apis.idp_adapters import idp_adapters
 from pingfedsdk.apis.idp_defaultUrls import idp_defaultUrls
@@ -78,6 +79,7 @@ with Container(home, ping_user, ping_key) as container:
 	container.start()
 
 	sleep(45)
+
 	response = version(endpoint, session).getVersion()
 	print(response.version)
 	license_obj = license(endpoint, session)
@@ -106,10 +108,12 @@ with Container(home, ping_user, ping_key) as container:
 	response = sp_id_connections.getConnections(entityId='OTSPJava', page=1, numberPerPage=1, filter='OTSPJava')
 	conn = response.items[0]
 	pprint(conn)
-	pprint(sp_id_connections.deleteConnection(response.items[0]["id"]))
+	pprint(sp_id_connections.deleteConnection(conn.id))
 
-	pprint(IdpConnection.from_dict(conn))
-	pprint(sp_id_connections.createConnection(body=IdpConnection(**conn), XBypassExternalValidation=True).to_dict())
+	sleep(5)
+	pprint(IdpConnection.from_dict(conn.to_dict()))
+	idp_conn = sp_id_connections.createConnection(body=conn, XBypassExternalValidation=True)
+	pprint(idp_conn.credentials.certs)
 
 	pprint(sp_adapters(endpoint, session).getSpAdapterDescriptors().to_dict())
 	pprint(sp_adapters(endpoint, session).getSpAdapters(page=1, numberPerPage=1, filter='').to_dict())
@@ -121,7 +125,6 @@ with Container(home, ping_user, ping_key) as container:
 
 	pprint(idpToSpAdapterMapping(endpoint, session).getIdpToSpAdapterMappings().to_dict())
 	pprint(authenticationApi(endpoint, session).getAuthenticationApiSettings().to_dict())
-
 
 	pprint(sp_targetUrlMappings(endpoint, session).getUrlMappings().to_dict())
 	pprint(sp_defaultUrls(endpoint, session).getDefaultUrls().to_dict())

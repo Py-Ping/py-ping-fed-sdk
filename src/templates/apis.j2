@@ -67,6 +67,6 @@ class {{ safe_class_name(class_name) }}:
                 raise {{ get_exception_by_code(response_message.get('code')) }}(message)
 {% endif %}
 {% endfor %}
-        return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}.from_dict(response){% elif json_type_convert(operation.get('type')) == 'None' %}response{% else %}{{ operation.get('type') }}(**response.json()){% endif %}
+        return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}.from_dict(response){% elif json_type_convert(operation.get('type')) == 'None' %}response{% else %}{{ operation.get('type') }}.from_dict(response.json()){% endif %}
 
 {% endfor %}{% endfor %}

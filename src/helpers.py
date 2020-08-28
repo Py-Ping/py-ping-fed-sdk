@@ -71,6 +71,44 @@ def json_type_convert(json_type):
     return ""
 
 
+def get_map_args(map_str):
+    types = ("enum", "string", "File", "boolean", "integer", "array")
+    map_str = map_str.replace("Map[", "").replace("]", "").split(",")
+    key_assign = ""
+    val_assign = ""
+    if map_str[0] in types:
+        key_assign = f"{map_str[0]}(x)"
+    else:
+        key_assign = f"{map_str[0]}(**x)"
+    if map_str[1] in types:
+        val_assign = f"{map_str[1]}(y)"
+    else:
+        val_assign = f"{map_str[1]}(**y)"
+    return key_assign, val_assign
+
+
+def get_list_dict_converter(list_dict):
+    list_dict = list_dict["items"]
+    if "type" in list_dict:
+        return f"[{json_type_convert(list_dict['type'])}(x) for x in v]"
+    elif "$ref" in list_dict:
+        return f"[{list_dict['$ref']}(**x) for x in v]"
+
+
+def get_set_dict_converter(set_dict):
+    set_items = set_dict["items"]
+    if "enum" in set_items and "$ref" in set_items:
+        return "set({str(x) for x in v})"
+    elif "type" in set_items:
+        # print(set_items('type'))
+        # print(json_type_convert(set_items('type')))
+        return f"set({{{json_type_convert(set_items['type'])}(x) for x in v}})"
+    elif "$ref" in set_items:
+        return f"set({{{set_items['$ref']}(**x) for x in v}})"
+    else:
+        return "set({str(x) for x in v})"
+
+
 def get_auth_session():
     ping_user = os.environ.get(
         "PING_IDENTITY_DEVOPS_ADMINISTRATOR", "administrator"
@@ -122,10 +160,6 @@ def get_exception_by_code(http_response_code):
         return "ValidationError"
 
 
-def get_request_path(raw_path):
-    return raw_path.replace("{id}", "{var_id}").replace("{type}", "{var_type}")
-
-
 def has_substitution(check_string):
     """
     Return True if the string needs to be converted to an f-string
@@ -134,21 +168,3 @@ def has_substitution(check_string):
     l_paren = check_string.find("{") + 1
     r_paren = check_string.find("}") + 1
     return l_paren and r_paren and l_paren < r_paren
-
-
-def write_template(content, file_name="PINGVERSION", folder=".."):
-    """
-    Given a version of Ping will write it out into a PINGVERSION file.
-    """
-    filedirectory = os.path.dirname(os.path.realpath(__file__))
-    targetdirectory = os.path.join(
-        filedirectory,
-        folder
-    )
-
-    if not os.path.exists(targetdirectory):
-        os.makedirs(targetdirectory)
-
-    path = f"{targetdirectory}/{file_name}"
-    with open(os.path.join(filedirectory, path), "w") as fh:
-        fh.write(content)
