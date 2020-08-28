@@ -64,7 +64,7 @@ class {{ class_name }}(Model):
                 {% else %}
     valid_data[k] = {{ ref_type_convert(detail) }}(v)
                 {% endif %}{% endif %}{% endfor %}
-        
+
         return cls(**valid_data)
 
     def to_dict(self):

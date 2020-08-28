@@ -2,7 +2,7 @@ import os
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_class_name, safe_module_name, safe_name, safe_variable, json_type_convert, \
+from helpers import safe_class_name, safe_module_name, safe_name, json_type_convert, \
     ref_type_convert, get_exception_by_code, has_substitution, get_map_args, get_set_dict_converter, \
     get_list_dict_converter
 
