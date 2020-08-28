@@ -209,5 +209,5 @@ class TestGenerate(TestCase):
             penguin_mock.from_dict.return_value
         )
 
-    # def tearDown(self):
-    #     wipe_test_fixtures()
+    def tearDown(self):
+        wipe_test_fixtures()
