@@ -2,9 +2,9 @@ import os
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_class_name, safe_module_name, safe_name, safe_variable, json_type_convert, \
-    ref_type_convert, get_exception_by_code, get_request_path, \
-    has_substitution
+from helpers import safe_class_name, safe_module_name, safe_name, json_type_convert, \
+    ref_type_convert, get_exception_by_code, has_substitution, get_map_args, get_set_dict_converter, \
+    get_list_dict_converter
 
 
 class Generate():
@@ -100,12 +100,13 @@ class Generate():
         jinjaenvironment.globals.update(
             safe_class_name=safe_class_name,
             safe_name=safe_name,
-            safe_variable=safe_variable,
             json_type_convert=json_type_convert,
             ref_type_convert=ref_type_convert,
             get_exception_by_code=get_exception_by_code,
-            get_request_path=get_request_path,
-            has_substitution=has_substitution
+            has_substitution=has_substitution,
+            get_map_args=get_map_args,
+            get_set_dict_converter=get_set_dict_converter,
+            get_list_dict_converter=get_list_dict_converter
         )
         jinjatemplate = jinjaenvironment.get_template(f"./{template}.j2")
 

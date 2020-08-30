@@ -130,12 +130,29 @@ class Fetch():
         for prop in model_data.get("properties").values():
             class_name = prop.get("$ref", "")
             # check for a model import and add it to the set
-            if class_name and class_name not in imports \
-               and "enum" not in prop and not class_name.startswith("Map") \
-               and not class_name.startswith("Set") \
-               and not class_name.startswith("File"):
-                imports["models"].add(class_name)
-            # check for an enum import and add it to the set
+            if class_name and "enum" not in prop and not class_name.startswith("File"):
+                if class_name.startswith("Map"):
+                    key_label, value_label = class_name.replace("Map[", "").replace("]", "").split(",")
+                    if not json_type_convert(key_label):
+                        imports["models"].add(key_label)
+                    if not json_type_convert(value_label):
+                        imports["models"].add(value_label)
+                elif class_name == "Set" and "items" in prop:
+                    if "enum" in prop["items"]:
+                        imports["enums"].add(prop["items"]["$ref"])
+                        if prop["items"]["$ref"] in self.enums and self.enums[prop["items"]["$ref"]] != prop["items"]["enum"]:
+                            self.logger.warn(
+                                f"Found redefined enum type: {class_name}"
+                                f" original -> {self.enums[class_name]}, new -> {prop['enum']}..."
+                            )
+                        self.enums[prop["items"]["$ref"]] = prop["items"]["enum"]
+                    elif "$ref" in prop["items"] and not json_type_convert(prop["items"]["$ref"]):
+                        imports["models"].add(prop["items"]["$ref"])
+                else:
+                    imports["models"].add(class_name)
+            elif "type" in prop and prop["type"] == "array":
+                if "$ref" in prop["items"] and not json_type_convert(prop["items"]["$ref"]):
+                    imports["models"].add(prop["items"]["$ref"])
             elif class_name and "enum" in prop:
                 if class_name in self.enums and self.enums[class_name] != prop["enum"]:
                     self.logger.warn(
@@ -144,7 +161,6 @@ class Fetch():
                     )
                 self.enums[class_name] = prop["enum"]
                 imports["enums"].add(class_name)
-
         return imports
 
     def fetch(self):

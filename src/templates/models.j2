@@ -26,13 +26,13 @@ class {{ class_name }}(Model):
 {% endfor %}
     """
 
-    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_variable(safe_name(property)) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}: {{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}: {% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ safe_variable(property) }}{% if json_type_convert(attributes.get('type', '')) != '' %}: {{ json_type_convert(attributes.get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}: {% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %} = None{% endfor %}) -> None:
+    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_name(property) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}: {{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}: {% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}{% if json_type_convert(attributes.get('type', '')) != '' %}: {{ json_type_convert(attributes.get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}: {% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %} = None{% endfor %}) -> None:
 {% for property in details.get('properties') %}
-        self.{{ safe_variable(safe_name(property)) }} = {{ safe_variable(safe_name(property)) }}
+        self.{{ safe_name(property) }} = {{ safe_name(property) }}
 {% endfor %}
 
     def _validate(self) -> bool:
-        return any(x for x in [{% for property in details.get('required', []) %}"{{ safe_variable(property) }}"{% if not loop.last %}, {% endif %}{% endfor %}] if self.__dict__[x] is not None)
+        return any(x for x in [{% for property in details.get('required', []) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, {{ class_name }}):
@@ -40,11 +40,30 @@ class {{ class_name }}(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([{% for property in details.get('properties') %}self.{{ safe_variable(property) }}{% if not loop.last %}, {% endif %}{% endfor %}]))
+        return hash(frozenset([{% for property in details.get('properties') %}self.{{ property }}{% if not loop.last %}, {% endif %}{% endfor %}]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
-        valid_data = {k: v for k, v in python_dict.items() if k in [{% for property in details.get('properties', {}) %}"{{ safe_variable(property) }}"{% if not loop.last %}, {% endif %}{% endfor %}]}
+        valid_data = {}
+        for k, v in python_dict.items():
+            if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] and v is not None:
+                {% for property, detail in details.get('properties', {}).items() %}{% if json_type_convert(detail.get('type', '')) == 'list' %}if k == "{{ safe_name(property) }}":
+                    valid_data[k] = {{ get_list_dict_converter(detail) }}
+                {% elif json_type_convert(detail.get('type', '')) != '' %}if k == "{{ safe_name(property) }}":
+                    valid_data[k] = {{ json_type_convert(detail.get('type', '')) }}(v)
+                {% endif %}{% if detail.get('$ref', '') != '' %}if k == "{{ safe_name(property) }}":
+                {% if detail.get('$ref', '') == ref_type_convert(detail) and detail.get('enum', '') == '' %}
+    valid_data[k] = {{ detail.get('$ref', '') }}(**v)
+                {% elif detail.get('enum', '') != '' %}
+    valid_data[k] = v
+                {% elif ref_type_convert(detail) == 'dict' %}
+    valid_data[k] = {% raw %}{{% endraw %}{{ get_map_args(detail["$ref"])[0] }}: {{get_map_args(detail["$ref"])[1]}} for x, y in v.items(){% raw %}}{% endraw %}
+
+                {% elif ref_type_convert(detail) == 'set' %}
+    valid_data[k] = {{ get_set_dict_converter(detail) }}
+                {% else %}
+    valid_data[k] = {{ ref_type_convert(detail) }}(v)
+                {% endif %}{% endif %}{% endfor %}
 
         return cls(**valid_data)
 
@@ -56,7 +75,7 @@ class {{ class_name }}(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in [{% for property in details.get('properties', {}) %}"{{ safe_variable(property) }}"{% if not loop.last %}, {% endif %}{% endfor %}]:
+            if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict()
                 elif isinstance(v, list):
