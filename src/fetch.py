@@ -99,7 +99,7 @@ class Fetch():
                     self.write_json(data=r_json, name=safe_api_path, directory="../pingfedsdk/source/apis/")
 
         for model, details in self.models.items():
-            details["imports"] = self.get_model_imports(details)
+            details["imports"] = self.get_model_imports(model, details)
             self.models[model] = details
 
     def preprocess_api(self, api_data):
@@ -121,7 +121,7 @@ class Fetch():
                     imports.add(op["type"])
         return {"imports": imports, "codes": response_codes, "details": api_data}
 
-    def get_model_imports(self, model_data):
+    def get_model_imports(self, model_name, model_data):
         """
         For a given model, determine it's other model dependencies, enum dependencies
         and cache discovered
@@ -133,26 +133,36 @@ class Fetch():
             if class_name and "enum" not in prop and not class_name.startswith("File"):
                 if class_name.startswith("Map"):
                     key_label, value_label = class_name.replace("Map[", "").replace("]", "").split(",")
-                    if not json_type_convert(key_label):
+                    if not json_type_convert(key_label) and value_label != model_name:
                         imports["models"].add(key_label)
-                    if not json_type_convert(value_label):
+                    if not json_type_convert(value_label) and value_label != model_name:
                         imports["models"].add(value_label)
                 elif class_name == "Set" and "items" in prop:
-                    if "enum" in prop["items"]:
-                        imports["enums"].add(prop["items"]["$ref"])
-                        if prop["items"]["$ref"] in self.enums and self.enums[prop["items"]["$ref"]] != prop["items"]["enum"]:
+                    items = prop["items"]
+                    if "enum" in items:
+                        imports["enums"].add(items["$ref"])
+                        if items["$ref"] in self.enums and self.enums[items["$ref"]] != items["enum"]:
                             self.logger.warn(
                                 f"Found redefined enum type: {class_name}"
                                 f" original -> {self.enums[class_name]}, new -> {prop['enum']}..."
                             )
-                        self.enums[prop["items"]["$ref"]] = prop["items"]["enum"]
-                    elif "$ref" in prop["items"] and not json_type_convert(prop["items"]["$ref"]):
-                        imports["models"].add(prop["items"]["$ref"])
+                        self.enums[items["$ref"]] = items["enum"]
+                    elif "$ref" in items and not json_type_convert(items["$ref"]) and items["$ref"] != model_name:
+                        imports["models"].add(items["$ref"])
                 else:
                     imports["models"].add(class_name)
             elif "type" in prop and prop["type"] == "array":
-                if "$ref" in prop["items"] and not json_type_convert(prop["items"]["$ref"]):
-                    imports["models"].add(prop["items"]["$ref"])
+                items = prop["items"]
+                if "enum" in items:
+                    imports["enums"].add(items["$ref"])
+                    if items["$ref"] in self.enums and self.enums[items["$ref"]] != items["enum"]:
+                        self.logger.warn(
+                            f"Found redefined enum type: {class_name}"
+                            f" original -> {self.enums[class_name]}, new -> {prop['enum']}..."
+                        )
+                    self.enums[items["$ref"]] = items["enum"]
+                elif "$ref" in items and not json_type_convert(items["$ref"]) and items["$ref"] != model_name and items["$ref"] != "Object":
+                    imports["models"].add(items["$ref"])
             elif class_name and "enum" in prop:
                 if class_name in self.enums and self.enums[class_name] != prop["enum"]:
                     self.logger.warn(

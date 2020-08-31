@@ -92,6 +92,8 @@ def get_list_dict_converter(list_dict):
     if "type" in list_dict:
         return f"[{json_type_convert(list_dict['type'])}(x) for x in v]"
     elif "$ref" in list_dict:
+        if list_dict["$ref"] == "Object":
+            return "v"
         return f"[{list_dict['$ref']}(**x) for x in v]"
 
 
