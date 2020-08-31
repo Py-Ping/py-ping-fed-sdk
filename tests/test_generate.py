@@ -159,8 +159,8 @@ class TestGenerate(TestCase):
             Dynamically import the created model module, instantiate the class
             and make some assertions about the object state
         """
-        Penguin = __import__("pingfedsdk.models.Penguin", fromlist=[""])
-        penguin_inst = Penguin.Penguin()
+        penguin = __import__("pingfedsdk.models.penguin", fromlist=[""])
+        penguin_inst = penguin.Penguin()
         self.assertEqual(
             hash(penguin_inst), hash(frozenset([None, None, None, None]))
         )
@@ -171,17 +171,17 @@ class TestGenerate(TestCase):
             "'height': None, 'soundMade': None}"
         )
 
-        self.assertEqual(Penguin.Penguin().from_dict(
+        self.assertEqual(penguin.Penguin().from_dict(
             self.penguin_dict
-        ), Penguin.Penguin(**self.penguin_dict))
+        ), penguin.Penguin(**self.penguin_dict))
 
         self.assertEqual(
             self.penguin_dict,
-            Penguin.Penguin(**self.penguin_dict).to_dict()
+            penguin.Penguin(**self.penguin_dict).to_dict()
         )
 
         self.assertEqual(
-            hash(Penguin.Penguin(**self.penguin_dict)),
+            hash(penguin.Penguin(**self.penguin_dict)),
             hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
 
@@ -194,11 +194,11 @@ class TestGenerate(TestCase):
             and make some assertions about the object methods
         """
         penguins = __import__("pingfedsdk.apis.penguins", fromlist=[""])
-        Penguin = __import__("pingfedsdk.models.Penguin", fromlist=[""])
+        penguin = __import__("pingfedsdk.models.penguin", fromlist=[""])
         session_mock = MagicMock()
         penguin_api = penguins.Penguins("test-endpoint", session_mock)
         self.assertEqual(
-            penguin_api.addPenguin(Penguin.Penguin().from_dict(
+            penguin_api.addPenguin(penguin.Penguin().from_dict(
                 self.penguin_dict
             )),
             penguin_mock.from_dict.return_value

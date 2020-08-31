@@ -11,10 +11,10 @@ from pingfedsdk.exceptions import {{ get_exception_by_code(response_code) }}
 {% endif %}
 {% endfor %}
 {% if 'ApiResult' not in details.get('imports') and 422 in details.get('codes', []) %}
-from pingfedsdk.models.ApiResult import ApiResult as ModelApiResult
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 {% endif %}
 {% for imp in details.get('imports') %}
-from pingfedsdk.models.{{ imp }} import {{ imp }} as Model{{ imp }}
+from pingfedsdk.models.{{ safe_module_name(imp) }} import {{ imp }} as Model{{ imp }}
 {% endfor %}
 
 

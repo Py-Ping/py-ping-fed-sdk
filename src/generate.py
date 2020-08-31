@@ -20,7 +20,7 @@ class Generate():
         for model, details in self.fetch_data.get("models").items():
             template = self.render_file("models", name=model, details=details)
             self.write_template(
-                content=template, file_name=model, file_type="py",
+                content=template, file_name=safe_module_name(model), file_type="py",
                 folder="../pingfedsdk/models"
             )
 
@@ -99,6 +99,7 @@ class Generate():
         )
         jinjaenvironment.globals.update(
             safe_class_name=safe_class_name,
+            safe_module_name=safe_module_name,
             safe_name=safe_name,
             json_type_convert=json_type_convert,
             ref_type_convert=ref_type_convert,
