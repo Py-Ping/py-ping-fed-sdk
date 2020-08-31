@@ -164,7 +164,7 @@ class TestFetch(TestCase):
             }
         }
         self.assertEqual(
-            self.fetch.get_model_imports(test_model_data),
+            self.fetch.get_model_imports("Penguins", test_model_data),
             {"enums": {"Ibis"}, "models": {"Penguin"}}
         )
 
@@ -174,7 +174,7 @@ class TestFetch(TestCase):
         )
 
         self.assertEqual(
-            self.fetch.get_model_imports({"properties": {}}),
+            self.fetch.get_model_imports("Penguins", {"properties": {}}),
             {"models": set(), "enums": set()}
         )
 
