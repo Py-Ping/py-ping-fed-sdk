@@ -151,33 +151,6 @@ class TestFetch(TestCase):
             {"imports": set(), "details": [{"operations": []}], "codes": set()}
         )
 
-    def test_get_model_imports(self):
-        test_model_data = {
-            "properties": {
-                "PenguinImport": {"$ref": "Penguin"},
-                "DuckImport": {"type": "boolean", "enum": "dummy"},
-                "PelicanImport": {"type": "array", "items": {}},
-                "IbisImport": {"$ref": "Ibis", "enum": ["bin", "tree", "air"]},
-                "AnotherIbisImport": {
-                    "$ref": "Ibis", "enum": ["bin", "tree", "snoot"]
-                },
-            }
-        }
-        self.assertEqual(
-            self.fetch.get_model_imports("Penguins", test_model_data),
-            {"enums": {"Ibis"}, "models": {"Penguin"}}
-        )
-
-        self.logging_mock.warn.assert_called_once_with(
-            "Found redefined enum type: Ibis original "
-            "-> ['bin', 'tree', 'air'], new -> ['bin', 'tree', 'snoot']..."
-        )
-
-        self.assertEqual(
-            self.fetch.get_model_imports("Penguins", {"properties": {}}),
-            {"models": set(), "enums": set()}
-        )
-
     @patch("fetch.Fetch.write_json")
     @patch("fetch.requests")
     @patch("fetch.Fetch.preprocess_api")
