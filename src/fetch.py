@@ -6,8 +6,6 @@ from helpers import json_type_convert, safe_name
 from property import Property
 
 
-
-
 class Fetch():
     def __init__(self, swagger_url, api_schema_key="apis"):
         logging.basicConfig(
