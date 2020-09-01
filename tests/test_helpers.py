@@ -77,6 +77,10 @@ class TestHelpers(TestCase):
             "int"
         )
         self.assertEqual(
+            json_type_convert("number"),
+            "float"
+        )
+        self.assertEqual(
             json_type_convert("notatype"),
             ""
         )

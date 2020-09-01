@@ -14,6 +14,20 @@ class Property:
         self._process()
 
     def _process(self):
+        """
+        Each property section of a model defines details of the variable it represents, including:
+         - it's type
+         - if it is a data structure, what subtypes it has
+         - if the type is another model which model it is
+         - if it is an enum what domain does it have
+
+         This method loads all values from the dictionary into the class so type information can
+         be queried when we generate the package. This includes:
+          - determing what models to import
+          - determining the enum classes to import
+          - generating the type marshalling string for the `from_dict` method
+          - providing more type hint details
+        """
         type_class = self.raw_property_dict.get("$ref")
 
         if type_class and "enum" in self.raw_property_dict:
