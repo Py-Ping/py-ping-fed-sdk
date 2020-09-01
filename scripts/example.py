@@ -5,9 +5,9 @@ from time import sleep
 from helpers import get_auth_session
 from docker_generate import Container
 
-from pingfedsdk.models.LicenseAgreementInfo import LicenseAgreementInfo
-from pingfedsdk.models.AdministrativeAccount import AdministrativeAccount
-from pingfedsdk.models.IdpConnection import IdpConnection
+from pingfedsdk.models.license_agreement_info import LicenseAgreementInfo
+from pingfedsdk.models.administrative_account import AdministrativeAccount
+from pingfedsdk.models.idp_connection import IdpConnection
 from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.apis.idp_adapters import IdpAdapters
 from pingfedsdk.apis.idp_default_urls import IdpDefaultUrls
