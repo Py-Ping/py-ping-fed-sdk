@@ -27,8 +27,8 @@ class TestHelpers(TestCase):
             "test_snake_with_camel_case_string"
         )
         self.assertEqual(
-            safe_module_name("_test_snakeWithCamelCaseString"),
-            "test_snake_with_camel_case_string"
+            safe_module_name("CamelCaseString"),
+            "camel_case_string"
         )
 
     def test_safe_class_name(self):
