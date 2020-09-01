@@ -100,7 +100,9 @@ with Container(home, ping_user, ping_key) as container:
         print(ex)
 
     pprint(IdpDefaultUrls(endpoint, session).getDefaultUrl().to_dict())
-    idp_sp_conn = IdpSpConnections(endpoint, session).getConnections(entityId='OTIdPJava', page=1, numberPerPage=1, filter='').to_dict()
+    idp_sp_conn = IdpSpConnections(endpoint, session).getConnections(
+        entityId='OTIdPJava', page=1, numberPerPage=1, filter=''
+    ).to_dict()
     pprint(IdpConnectors(endpoint, session).getIdpConnectorDescriptors().to_dict())
 
     sp_id_connections = SpIdpConnections(endpoint, session)

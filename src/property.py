@@ -27,7 +27,7 @@ class Property:
 
             items = self.raw_property_dict["items"]
             if "enum" in items:
-                self.type = type_class 
+                self.type = type_class
                 self.json_sub_type = "enum"
                 self.enum_domain = items["$ref"]
             elif "$ref" in items and not json_type_convert(items["$ref"]):
@@ -55,22 +55,22 @@ class Property:
             self.json_type = "File"
 
         elif type_class == "Set" and "items" in self.raw_property_dict:
-                items = self.raw_property_dict["items"]
-                self.type = "set"
-                self.json_type = "Set"
-                if "enum" in items:
-                    self.sub_type = type_class 
-                    self.json_sub_type = "enum"
-                    self.enum_domain = items["$ref"]
-                elif "$ref" in items and json_type_convert(items["$ref"]):
-                    self.sub_type = json_type_convert(items["$ref"])
-                    self.json_sub_type = items["$ref"]
-                elif "$ref" in items:
-                    self.sub_type = items["$ref"]
-                    self.json_sub_type = items["$ref"]
-                elif "type" in items:
-                    self.sub_type = json_type_convert(items["type"])
-                    self.json_sub_type = items["type"]
+            items = self.raw_property_dict["items"]
+            self.type = "set"
+            self.json_type = "Set"
+            if "enum" in items:
+                self.sub_type = type_class
+                self.json_sub_type = "enum"
+                self.enum_domain = items["$ref"]
+            elif "$ref" in items and json_type_convert(items["$ref"]):
+                self.sub_type = json_type_convert(items["$ref"])
+                self.json_sub_type = items["$ref"]
+            elif "$ref" in items:
+                self.sub_type = items["$ref"]
+                self.json_sub_type = items["$ref"]
+            elif "type" in items:
+                self.sub_type = json_type_convert(items["type"])
+                self.json_sub_type = items["type"]
 
         elif "type" in self.raw_property_dict:
             self.json_type = self.raw_property_dict["type"]
@@ -82,7 +82,6 @@ class Property:
             self.json_type = self.raw_property_dict["$ref"]
             self.type = self.raw_property_dict["$ref"]
 
-
     def get_model_import(self):
         """
         Return the model import for this property
@@ -90,7 +89,9 @@ class Property:
         if self.type == self.model_name or self.json_sub_type == self.model_name:
             return None
         elif self.type == "dict":
-            if not json_type_convert(self.json_sub_type[1]) and self.json_sub_type[1] != self.model_name and self.json_sub_type[1] != "Object":
+            if not json_type_convert(self.json_sub_type[1]) and \
+               self.json_sub_type[1] != self.model_name and \
+               self.json_sub_type[1] != "Object":
                 return self.json_sub_type[1]
         elif self.type in ("list", "set"):
             if not json_type_convert(self.json_sub_type) and self.json_sub_type not in ("enum", "Object"):
@@ -163,7 +164,7 @@ class Property:
             return f"{self.type}(**v)"
 
         elif self.type == "None":
-            return f"None"
+            return "None"
 
         else:
             return f"{self.type}(v)"

@@ -59,7 +59,6 @@ class TestContainer(TestCase):
         container_a.status = "starting"
         container_b = MagicMock()
         container_b.status = "running"
-        container_obj = self.container
         self.container.client.containers.get.side_effect = [container_a, container_b]
         self.container.wait()
         sleep_mock.assert_has_calls([call(5), call(5)])
