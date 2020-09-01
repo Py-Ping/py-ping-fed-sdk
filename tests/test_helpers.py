@@ -2,8 +2,7 @@
 from unittest import TestCase
 from unittest.mock import patch, MagicMock, call
 from helpers import safe_class_name, safe_name, safe_module_name, \
-    ref_type_convert, json_type_convert, get_auth_session, \
-    retry_with_backoff
+    json_type_convert, get_auth_session, retry_with_backoff
 
 
 class TestHelpers(TestCase):
@@ -39,20 +38,6 @@ class TestHelpers(TestCase):
         self.assertEqual(
             safe_class_name("/oauth/resourceOwnerCredentialsMappings"),
             "OauthResourceOwnerCredentialsMappings"
-        )
-
-    def test_ref_type_convert(self):
-        self.assertEqual(
-            ref_type_convert(
-                {"$ref": "Map[string, SomeClass]"}
-            ),
-            "dict"
-        )
-        self.assertEqual(
-            ref_type_convert(
-                {"$ref": "SomeClass"}
-            ),
-            "SomeClass"
         )
 
     def test_json_type_convert(self):
