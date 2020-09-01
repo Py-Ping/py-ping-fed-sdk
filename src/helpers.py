@@ -52,6 +52,8 @@ def json_type_convert(json_type):
         return "list"
     elif json_type == "integer":
         return "int"
+    elif json_type == "int":
+        return "int"
     elif json_type == "number":
         return "float"
     elif json_type == "void":

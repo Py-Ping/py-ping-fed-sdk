@@ -10,7 +10,8 @@ class Property:
         self.type = None
         self.json_sub_type = None
         self.model_name = model_name
-        self.property_name = property_name
+        self.name = property_name
+        self.description = None
         self._process()
 
     def _process(self):
@@ -29,6 +30,9 @@ class Property:
           - providing more type hint details
         """
         type_class = self.raw_property_dict.get("$ref")
+        self.description = self.raw_property_dict.get(
+            "description", ""
+        ).replace("\n","").replace("<br>","\n        ").replace(" \n","\n").strip()
 
         if type_class and "enum" in self.raw_property_dict:
             self.enum_domain = self.raw_property_dict["enum"]
