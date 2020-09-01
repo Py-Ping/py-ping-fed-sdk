@@ -35,28 +35,6 @@ def safe_class_name(unsafe_string, unsafe_char="/"):
     return safe_class_name
 
 
-def safe_variable(unsafe_variable):
-    """
-    Some APIs define variables that are unsafe to Python code
-    e.g. id and type are both reserved words in Python.
-    This helper adds 'var_' to the beginning to avoid shadowing
-    these builtins.
-    """
-    if unsafe_variable == "id":
-        return "var_id"
-    elif unsafe_variable == "type":
-        return "var_type"
-    return unsafe_variable
-
-
-def ref_type_convert(ref_obj):
-    if ref_obj["$ref"].startswith("Map"):
-        return "dict"
-    if ref_obj["$ref"].startswith("Set"):
-        return "set"
-    return ref_obj["$ref"]
-
-
 def json_type_convert(json_type):
     if json_type in ("enum", "string", "File"):
         return "str"
@@ -66,49 +44,13 @@ def json_type_convert(json_type):
         return "list"
     elif json_type == "integer":
         return "int"
+    elif json_type == "int":
+        return "int"
+    elif json_type == "number":
+        return "float"
     elif json_type == "void":
         return "None"
     return ""
-
-
-def get_map_args(map_str):
-    types = ("enum", "string", "File", "boolean", "integer", "array")
-    map_str = map_str.replace("Map[", "").replace("]", "").split(",")
-    key_assign = ""
-    val_assign = ""
-    if map_str[0] in types:
-        key_assign = f"{map_str[0]}(x)"
-    else:
-        key_assign = f"{map_str[0]}(**x)"
-    if map_str[1] in types:
-        val_assign = f"{map_str[1]}(y)"
-    else:
-        val_assign = f"{map_str[1]}(**y)"
-    return key_assign, val_assign
-
-
-def get_list_dict_converter(list_dict):
-    list_dict = list_dict["items"]
-    if "type" in list_dict:
-        return f"[{json_type_convert(list_dict['type'])}(x) for x in v]"
-    elif "$ref" in list_dict:
-        if list_dict["$ref"] == "Object":
-            return "v"
-        return f"[{list_dict['$ref']}(**x) for x in v]"
-
-
-def get_set_dict_converter(set_dict):
-    set_items = set_dict["items"]
-    if "enum" in set_items and "$ref" in set_items:
-        return "set({str(x) for x in v})"
-    elif "type" in set_items:
-        # print(set_items('type'))
-        # print(json_type_convert(set_items('type')))
-        return f"set({{{json_type_convert(set_items['type'])}(x) for x in v}})"
-    elif "$ref" in set_items:
-        return f"set({{{set_items['$ref']}(**x) for x in v}})"
-    else:
-        return "set({str(x) for x in v})"
 
 
 def get_auth_session():

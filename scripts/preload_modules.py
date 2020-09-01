@@ -4,12 +4,14 @@
 
 import glob
 
+
 def to_camel_case(snake_str):
     snake_str_list = snake_str.split('_')
     camel_case_list = [
         x.title() for x in snake_str_list
     ]
     return "".join(camel_case_list)
+
 
 working = 0
 broken = 0

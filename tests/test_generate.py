@@ -6,6 +6,7 @@ from unittest import TestCase
 from unittest.mock import patch, MagicMock
 from generate import Generate
 from pathlib import Path
+from property import Property
 
 
 REAL_PATH = os.path.realpath(__file__)
@@ -95,14 +96,14 @@ class TestGenerate(TestCase):
                     "description": "Labels penguins.",
                     "id": "PenguinLabeller",
                     "properties": {
-                        "PenguinNames": {
+                        "PenguinNames": Property({
                             "description":
                             "List of great names for a pet penguin.",
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        }
+                        }, property_name="PenguinNames")
                     },
                     "imports": {}
                 },
@@ -110,22 +111,22 @@ class TestGenerate(TestCase):
                     "description": "The details of a penguin.",
                     "id": "BestPenguin",
                     "properties": {
-                        "firstName": {
+                        "firstName": Property({
                             "description": "The penguins first name.",
                             "type": "string"
-                        },
-                        "lastName": {
+                        }, property_name="firstName"),
+                        "lastName": Property({
                             "description": "The penguins last name.",
                             "type": "string"
-                        },
-                        "height": {
+                        }, property_name="lastName"),
+                        "height": Property({
                             "description": "Height of the penguin.",
                             "type": "string"
-                        },
-                        "soundMade": {
+                        }, property_name="height"),
+                        "soundMade": Property({
                             "description": "List of sounds made.",
                             "type": "string"
-                        }
+                        }, property_name="soundMade")
                     },
                     "imports": {}
                 },
@@ -133,13 +134,13 @@ class TestGenerate(TestCase):
                     "description": "A collection of penguins.",
                     "id": "Penguins",
                     "properties": {
-                        "items": {
+                        "items": Property({
                             "description": "The actual list of penguins.",
                             "items": {
                                 "$ref": "Penguin"
                             },
                             "type": "array"
-                        }
+                        }, property_name="items")
                     },
                     "imports": {}
                 }
