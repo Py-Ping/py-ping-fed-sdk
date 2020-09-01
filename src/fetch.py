@@ -104,7 +104,6 @@ class Fetch():
             imports = {"models": set(), "enums": set()}
             for prop_name, prop in details.get("properties", {}).items():
                 model_property = Property(prop, model, prop_name)
-                print(model_property.__dict__)
                 model_import = model_property.get_model_import()
                 enum_import = model_property.get_enum_import()
                 if model_import and model_import not in imports["models"]:
@@ -116,6 +115,8 @@ class Fetch():
                 if enums:
                     enum_name, enum_domain = enums
                     self.enums[enum_name] = enum_domain
+
+                details["properties"][prop_name] = model_property
             details["imports"] = imports
 
             self.models[model] = details

@@ -17,16 +17,14 @@ class {{ class_name }}(Model):
     Attributes
     ----------
 {% for property, prop_details in details.get('properties').items() %}
-{% if prop_details.get('type', '')%}    {{ property }}: {{ prop_details.get('type') }}{% endif %}
-{% if prop_details.get('$ref', '')%}    {{ property }}: {{ ref_type_convert(prop_details).strip() }}{% endif %}
-
-{% if prop_details.get('description', '')%}        {{ prop_details.get('description', '').replace("\n","").replace("<br>","\n        ").replace(" \n","\n").strip() }}
+    {{ property }}: {{ prop_details.type }}
+{% if prop_details.description %}        {{ prop_details.description }}
 
 {% endif %}
 {% endfor %}
     """
 
-    def __init__(self{% for property in details.get('required', {}) %}, {{ safe_name(property) }}{% if json_type_convert(details['properties'][property].get('type', '')) != '' %}: {{ json_type_convert(details['properties'][property].get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}: {% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}{% if json_type_convert(attributes.get('type', '')) != '' %}: {{ json_type_convert(attributes.get('type', '')) }}{% endif %}{% if details['properties'][property].get('$ref', '') != '' %}: {% if details['properties'][property].get('$ref', '') == ref_type_convert(details['properties'][property]) %}{{ details['properties'][property].get('$ref', '') }}{% else %}{{ ref_type_convert(details['properties'][property]) }}{% endif %}{% endif %} = None{% endfor %}) -> None:
+    def __init__(self{% for property in details.get('required', []) %}, {{ safe_name(property) }}: {{ details['properties'][property].type }}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}: {{ attributes.type }} = None{% endfor %}) -> None:
 {% for property in details.get('properties') %}
         self.{{ safe_name(property) }} = {{ safe_name(property) }}
 {% endfor %}
@@ -47,23 +45,9 @@ class {{ class_name }}(Model):
         valid_data = {}
         for k, v in python_dict.items():
             if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] and v is not None:
-                {% for property, detail in details.get('properties', {}).items() %}{% if detail.get('type', '') == 'array' %}if k == "{{ safe_name(property) }}":
-                    valid_data[k] = {{ get_list_dict_converter(detail) }}
-                {% elif json_type_convert(detail.get('type', '')) != '' %}if k == "{{ safe_name(property) }}":
-                    valid_data[k] = {{ json_type_convert(detail.get('type', '')) }}(v)
-                {% endif %}{% if detail.get('$ref', '') != '' %}if k == "{{ safe_name(property) }}":
-                {% if detail.get('$ref', '') == ref_type_convert(detail) and detail.get('enum', '') == '' %}
-    valid_data[k] = {{ detail.get('$ref', '') }}(**v)
-                {% elif detail.get('enum', '') != '' %}
-    valid_data[k] = v
-                {% elif ref_type_convert(detail) == 'dict' %}
-    valid_data[k] = {% raw %}{{% endraw %}{{ get_map_args(detail["$ref"])[0] }}: {{get_map_args(detail["$ref"])[1]}} for x, y in v.items(){% raw %}}{% endraw %}
-
-                {% elif ref_type_convert(detail) == 'set' %}
-    valid_data[k] = {{ get_set_dict_converter(detail) }}
-                {% else %}
-    valid_data[k] = {{ ref_type_convert(detail) }}(v)
-                {% endif %}{% endif %}{% endfor %}
+                {% for property, detail in details.get('properties').items() %}if k == "{{ safe_name(property) }}":
+                    valid_data[k] = {{ detail.get_from_dict_str() }}
+                {% endfor %}
 
         return cls(**valid_data)
 
