@@ -88,13 +88,12 @@ class Property:
         Return the model import for this property
         """
         if self.type == self.model_name or self.json_sub_type == self.model_name:
-            print("im here")
             return None
         elif self.type == "dict":
-            if not json_type_convert(self.json_sub_type[1]) and self.json_sub_type[1] != self.model_name:
+            if not json_type_convert(self.json_sub_type[1]) and self.json_sub_type[1] != self.model_name and self.json_sub_type[1] != "Object":
                 return self.json_sub_type[1]
         elif self.type in ("list", "set"):
-            if not json_type_convert(self.json_sub_type) and self.json_sub_type != "enum":
+            if not json_type_convert(self.json_sub_type) and self.json_sub_type not in ("enum", "Object"):
                 return self.sub_type
         elif json_type_convert(self.json_type):
             return None
