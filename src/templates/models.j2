@@ -47,7 +47,7 @@ class {{ class_name }}(Model):
         valid_data = {}
         for k, v in python_dict.items():
             if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] and v is not None:
-                {% for property, detail in details.get('properties', {}).items() %}{% if json_type_convert(detail.get('type', '')) == 'list' %}if k == "{{ safe_name(property) }}":
+                {% for property, detail in details.get('properties', {}).items() %}{% if detail.get('type', '') == 'array' %}if k == "{{ safe_name(property) }}":
                     valid_data[k] = {{ get_list_dict_converter(detail) }}
                 {% elif json_type_convert(detail.get('type', '')) != '' %}if k == "{{ safe_name(property) }}":
                     valid_data[k] = {{ json_type_convert(detail.get('type', '')) }}(v)

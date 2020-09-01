@@ -2,7 +2,7 @@
 from unittest import TestCase
 from unittest.mock import patch, MagicMock, call
 from helpers import safe_class_name, safe_name, safe_module_name, \
-    safe_variable, ref_type_convert, json_type_convert, get_auth_session, \
+    ref_type_convert, json_type_convert, get_auth_session, \
     retry_with_backoff
 
 
@@ -41,24 +41,6 @@ class TestHelpers(TestCase):
             "OauthResourceOwnerCredentialsMappings"
         )
 
-    def test_safe_variable(self):
-        self.assertEqual(
-            safe_variable("id"),
-            "var_id"
-        )
-        self.assertEqual(
-            safe_variable("type"),
-            "var_type"
-        )
-        self.assertEqual(
-            safe_variable("another_type"),
-            "another_type"
-        )
-        self.assertEqual(
-            safe_variable("another_id"),
-            "another_id"
-        )
-
     def test_ref_type_convert(self):
         self.assertEqual(
             ref_type_convert(
@@ -93,6 +75,10 @@ class TestHelpers(TestCase):
         self.assertEqual(
             json_type_convert("integer"),
             "int"
+        )
+        self.assertEqual(
+            json_type_convert("number"),
+            "float"
         )
         self.assertEqual(
             json_type_convert("notatype"),

@@ -35,20 +35,6 @@ def safe_class_name(unsafe_string, unsafe_char="/"):
     return safe_class_name
 
 
-def safe_variable(unsafe_variable):
-    """
-    Some APIs define variables that are unsafe to Python code
-    e.g. id and type are both reserved words in Python.
-    This helper adds 'var_' to the beginning to avoid shadowing
-    these builtins.
-    """
-    if unsafe_variable == "id":
-        return "var_id"
-    elif unsafe_variable == "type":
-        return "var_type"
-    return unsafe_variable
-
-
 def ref_type_convert(ref_obj):
     if ref_obj["$ref"].startswith("Map"):
         return "dict"
@@ -66,6 +52,8 @@ def json_type_convert(json_type):
         return "list"
     elif json_type == "integer":
         return "int"
+    elif json_type == "number":
+        return "float"
     elif json_type == "void":
         return "None"
     return ""
