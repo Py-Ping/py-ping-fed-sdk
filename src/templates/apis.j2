@@ -7,14 +7,14 @@ from requests import Session
 from requests.exceptions import HTTPError
 {% for response_code in details.get('codes', []) %}
 {% if get_exception_by_code(response_code) and response_code not in (204, 403) %}
-from pingfedsdk.exceptions import {{ get_exception_by_code(response_code) }}
+from {{ package }}.exceptions import {{ get_exception_by_code(response_code) }}
 {% endif %}
 {% endfor %}
 {% if 'ApiResult' not in details.get('imports') and 422 in details.get('codes', []) %}
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from {{ package }}.models.api_result import ApiResult as ModelApiResult
 {% endif %}
 {% for imp in details.get('imports') %}
-from pingfedsdk.models.{{ safe_module_name(imp) }} import {{ imp }} as Model{{ imp }}
+from {{ package }}.models.{{ safe_module_name(imp) }} import {{ imp }} as Model{{ imp }}
 {% endfor %}
 
 

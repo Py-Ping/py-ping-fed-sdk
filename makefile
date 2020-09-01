@@ -59,8 +59,9 @@ docker-generate: ## run the SDK generator
 .PHONY: docker-generate
 
 unittest:
-	PYTHONPATH=$(shell pwd)/src/ python3 -m unittest discover -s tests/
-.PHONY: unittest
+	$(info [+] Running Python unit tests...)
+	pipenv run nosetests -v tests --with-coverage  --cover-html --cover-html-dir=htmlcov --cover-erase --cover-package=. tests
+.PHONY: test
 
 module-load-test:
 	PYTHONPATH=$(shell pwd) python3 scripts/preload_modules.py

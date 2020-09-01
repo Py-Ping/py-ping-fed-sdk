@@ -8,11 +8,12 @@ from helpers import safe_class_name, safe_module_name, safe_name, json_type_conv
 
 
 class Generate():
-    def __init__(self, swagger_url, api_schema_key="apis"):
+    def __init__(self, swagger_url, api_schema_key="apis", package="pingfedsdk"):
         logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
                             datefmt="%m/%d/%Y %I:%M:%S %p")
         self.logger = logging.getLogger("PingSDK.Generate")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
+        self.package = package
         self.api_schema_key = api_schema_key
         self.fetch_data = Fetch(swagger_url).fetch()
 
@@ -21,7 +22,7 @@ class Generate():
             template = self.render_file("models", name=model, details=details)
             self.write_template(
                 content=template, file_name=safe_module_name(model), file_type="py",
-                folder="../pingfedsdk/models"
+                folder=f"../{self.package}/models"
             )
 
         template = self.render_file(
@@ -40,7 +41,7 @@ class Generate():
         )
         self.write_template(
             content=enum_template, file_name="enums", file_type="py",
-            folder="../pingfedsdk/"
+            folder=f"../{self.package}/"
         )
 
         exception_types = (
@@ -53,7 +54,7 @@ class Generate():
         )
         self.write_template(
             content=except_template, file_name="exceptions", file_type="py",
-            folder="../pingfedsdk/"
+            folder=f"../{self.package}/"
         )
 
         for api, details in self.fetch_data.get("apis").items():
@@ -64,7 +65,7 @@ class Generate():
                 content=template,
                 file_name=safe_module_name(api),
                 file_type="py",
-                folder="../pingfedsdk/apis"
+                folder=f"../{self.package}/apis"
             )
 
         template = self.render_file(
@@ -81,7 +82,7 @@ class Generate():
         )
         self.write_template(
             content=template, file_name="model", file_type="py",
-            folder="../pingfedsdk/"
+            folder=f"../{self.package}/"
         )
 
     def render_file(self, template, name, details, template_directory="templates"):
@@ -98,6 +99,7 @@ class Generate():
             trim_blocks=True
         )
         jinjaenvironment.globals.update(
+            package=self.package,
             safe_class_name=safe_class_name,
             safe_module_name=safe_module_name,
             safe_name=safe_name,
