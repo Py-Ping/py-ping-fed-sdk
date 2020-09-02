@@ -5,15 +5,15 @@ import traceback
 from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-{% for response_code in details.get('codes', []) %}
+{% for response_code in details.response_codes %}
 {% if get_exception_by_code(response_code) and response_code not in (204, 403) %}
 from pingfedsdk.exceptions import {{ get_exception_by_code(response_code) }}
 {% endif %}
 {% endfor %}
-{% if 'ApiResult' not in details.get('imports') and 422 in details.get('codes', []) %}
+{% if 'ApiResult' not in details.imports and 422 in details.response_codes %}
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 {% endif %}
-{% for imp in details.get('imports') %}
+{% for imp in details.imports %}
 from pingfedsdk.models.{{ safe_module_name(imp) }} import {{ imp }} as Model{{ imp }}
 {% endfor %}
 
@@ -28,21 +28,20 @@ class {{ safe_class_name(class_name) }}:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
-{% for api in details.get('details') %}
-{% for operation in api.get('operations',[]) %}
+{% for operation in details.operations %}
 
-    def {{ operation.get('nickname') }}(self{% for parameter in operation.get('parameters',[]) %}, {{ safe_name(parameter.get('name')) }}: {% if json_type_convert(parameter.get('type')) %}{{ json_type_convert(parameter.get('type')) }}{% else %}Model{{ parameter.get('type') }}{% endif %}{% endfor %}) -> {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}{% elif json_type_convert(operation.get('type')) == 'None' %}dict{% else %}Model{{ operation.get('type') }}{% endif %}:
-        """ {{ operation.get('summary') }}
+    def {{ operation.nickname }}(self{% for parameter in operation.parameters %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }}{% endfor %}) -> {{ operation.get_return_type_str() }}:
+        """ {{ operation.summary }}
         """
 
         try:
-            response = self.session.{{ operation.get('method').lower() }}(
-{% if operation.get('method') in ['POST', 'PUT'] %}{% for parameter in operation.get('parameters',[]) %}{% if parameter.get('name') == 'body' %}                data=dumps({% raw %}{{% endraw %}x: y for x, y in body.to_dict().items() if y != None{% raw %}}{% endraw %}),
+            response = self.session.{{ operation.method.lower() }}(
+{% if operation.method in ['POST', 'PUT'] %}{% for parameter in operation.parameters %}{% if parameter.name == 'body' %}                data=dumps({% raw %}{{% endraw %}x: y for x, y in body.to_dict().items() if y is not None{% raw %}}{% endraw %}),
 {% endif %}{% endfor %}{% endif %}
-{% if operation.get('method') == 'POST' %}{% for parameter in operation.get('parameters',[]) %}{% if parameter.get('type') == 'File' %}
-                files={'file': open({{ parameter.get('name') }}, "rb")},
+{% if operation.method == 'POST' %}{% for parameter in operation.parameters %}{% if parameter.json_type == 'File' %}
+                files={'file': open({{ parameter.name }}, "rb")},
 {% endif %}{% endfor %}{% endif %}
-                url=self._build_uri({% if has_substitution(api.get('path')) %}f{% endif %}"{{ api.get('path') }}"),
+                url=self._build_uri({% if has_substitution(operation.api_path) %}f{% endif %}"{{ operation.api_path }}"),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
@@ -52,21 +51,20 @@ class {{ safe_class_name(class_name) }}:
             print(traceback.format_exc())
             self.logger.error(f"Error occurred: {err}")
         else:
-{% for response_message in operation.get('responseMessages') %}
-            if response.status_code == {{response_message.get('code')}}:
-{% if response_message.get('code') == 422 %}
+{% for response_code in operation.response_codes %}
+            if response.status_code == {{ response_code["code"] }}:
+{% if response_code["code"] == 422 %}
                 raise ValidationError(ModelApiResult.from_dict(response.json()).to_dict())
-{% elif response_message.get('code') in (200, 201) %}
-                self.logger.info("{{ response_message.get('message') }}")
-{% elif response_message.get('code') == 204 %}
-                self.logger.info("{{ response_message.get('message') }}")
-                return ModelApiResult(message="{{ response_message.get('message') }}", validationErrors=[])
-{% elif get_exception_by_code(response_message.get('code')) %}
-                message = "{{response_message.get('message')}}"
+{% elif response_code["code"] in (200, 201) %}
+                self.logger.info("{{ response_code["message"] }}")
+{% elif response_code["code"] == 204 %}
+                self.logger.info("{{ response_code["message"] }}")
+                return ModelApiResult(message="{{ response_code["message"] }}", validationErrors=[])
+{% elif get_exception_by_code(response_code["code"]) %}
+                message = "{{ response_code["message"] }}"
                 self.logger.info(message)
-                raise {{ get_exception_by_code(response_message.get('code')) }}(message)
+                raise {{ get_exception_by_code(response_code["code"]) }}(message)
 {% endif %}
 {% endfor %}
-        return {% if json_type_convert(operation.get('type')) not in ('', 'None') %}{{ json_type_convert(operation.get('type')) }}.from_dict(response){% elif json_type_convert(operation.get('type')) == 'None' %}response{% else %}Model{{ operation.get('type') }}.from_dict(response.json()){% endif %}
-
-{% endfor %}{% endfor %}
+        return {{ operation.get_response_str() }}
+{% endfor %}

@@ -6,6 +6,89 @@ from helpers import json_type_convert, safe_name
 from property import Property
 
 
+class ApiEndpoint:
+    def __init__(self, api_path, api_data):
+        self.api_data = api_data
+        self.safe_api_path = safe_name(api_path)
+        self.path = api_path
+        self.response_codes = []
+        self.imports = set()
+        self.operations = []
+        self._process()
+
+    def _process(self):
+        for data in self.api_data:
+            for op in data["operations"]:
+                params = []
+                for param in op["parameters"]:
+                    param_obj = Parameter(param)
+                    params.append(param_obj)
+                    if not param_obj.is_primitive_type and param_obj.type not in self.imports:
+                        self.imports.add(param_obj.type)
+
+                op_response_codes = []
+                for response_code in op["responseMessages"]:
+                    op_code = {"code": response_code["code"], "message": response_code["code"]}
+                    op_response_codes.append(op_code)
+                    if response_code["code"] not in self.response_codes:
+                        self.response_codes.append(response_code["code"])
+
+                if not json_type_convert(op["type"]) and op["type"] not in self.imports:
+                    self.imports.add(op["type"])
+                self.operations.append(
+                    Operation(
+                        params, op_response_codes, op["type"],
+                        op["nickname"], op["summary"], op["method"], data["path"])
+                )
+
+
+class Operation:
+    def __init__(self, parameters=[], response_codes=[], op_type=None, nickname='', summary='', method='', api_path=''):
+        self.parameters = parameters
+        self.response_codes = response_codes
+        self.json_type = op_type
+        self.type = op_type
+        if json_type_convert(op_type):
+            self.type = json_type_convert(op_type)
+        self.is_primitive_type = bool(json_type_convert(op_type))
+        self.nickname = nickname
+        self.summary = summary
+        self.method = method
+        self.api_path = api_path
+
+    def get_response_str(self):
+        if json_type_convert(self.json_type) not in ("", "None") and self.is_primitive_type:
+            return f"{self.type}(response)"
+        elif json_type_convert(self.json_type) == "None":
+            return "response"
+        else:
+            return f"Model{self.type}.from_dict(response.json())"
+
+    def get_return_type_str(self):
+        if self.type not in ("", "None") and self.is_primitive_type:
+            return self.type
+        elif self.type == "None":
+            return "dict"
+        return f"Model{self.json_type}"
+
+
+class Parameter:
+    def __init__(self, param):
+        self._raw_param = param
+        self.json_type = self._raw_param["type"]
+        self.type = self._raw_param["type"]
+        if json_type_convert(self._raw_param["type"]):
+            self.type = json_type_convert(self._raw_param["type"])
+        self.name = self._raw_param["name"]
+        self.safe_name = safe_name(self._raw_param["name"])
+        self.is_primitive_type = bool(json_type_convert(self._raw_param["type"]))
+
+    def get_parameter_str(self):
+        if self.is_primitive_type:
+            return self.type
+        return f"Model{self.json_type}"
+
+
 class Fetch():
     def __init__(self, swagger_url, api_schema_key="apis"):
         logging.basicConfig(
@@ -80,8 +163,8 @@ class Fetch():
             abs_path = f"{self.project_path}/pingfedsdk/source/apis/{safe_api_path}.json"
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
-                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = self.preprocess_api(
-                    response.get("apis", [])
+                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = ApiEndpoint(
+                    api_path, response.get("apis", [])
                 )
                 self.models.update(response.get("models", {}))
             else:
@@ -92,7 +175,8 @@ class Fetch():
                     self.logger.error(f"Failed to download swagger from: {self.swagger_url}{api_path} with error {err}")
                 else:
                     r_json = response.json()
-                    self.apis[r_json.get("resourcePath", safe_api_path)] = self.preprocess_api(r_json.get("apis", []))
+
+                    self.apis[r_json.get("resourcePath", safe_api_path)] = ApiEndpoint(api_path, r_json.get("apis", []))
                     self.models.update(r_json.get("models", {}))
                     self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
                     if safe_api_path.startswith('_'):
@@ -120,25 +204,6 @@ class Fetch():
             details["imports"] = imports
 
             self.models[model] = details
-
-    def preprocess_api(self, api_data):
-        """
-        Pre-process the API document and determine what needs to be imported
-        to dynamically generate return objects
-        """
-        imports = set()
-        response_codes = set()
-        for data in api_data:
-            for op in data["operations"]:
-                for param in op["parameters"]:
-                    if not json_type_convert(param["type"]) and param["type"] not in imports:
-                        imports.add(param["type"])
-                for response_code in op["responseMessages"]:
-                    if response_code["code"] not in response_codes:
-                        response_codes.add(response_code["code"])
-                if not json_type_convert(op["type"]) and op["type"] not in imports:
-                    imports.add(op["type"])
-        return {"imports": imports, "codes": response_codes, "details": api_data}
 
     def fetch(self):
         self.get_source()
