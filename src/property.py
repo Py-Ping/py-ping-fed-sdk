@@ -32,7 +32,7 @@ class Property:
         type_class = self.raw_property_dict.get("$ref")
         self.description = self.raw_property_dict.get(
             "description", ""
-        ).replace("\n","").replace("<br>","\n        ").replace(" \n","\n").strip()
+        ).replace("\n", "").replace("<br>", "\n        ").replace(" \n", "\n").strip()
 
         if type_class and "enum" in self.raw_property_dict:
             self.enum_domain = self.raw_property_dict["enum"]
@@ -45,9 +45,10 @@ class Property:
 
             items = self.raw_property_dict["items"]
             if "enum" in items:
-                self.type = type_class
                 self.json_sub_type = "enum"
                 self.enum_domain = items["$ref"]
+                self.sub_type = items["$ref"]
+                self.enum_domain = items["enum"]
             elif "$ref" in items and not json_type_convert(items["$ref"]):
                 self.json_sub_type = items["$ref"]
                 self.sub_type = items["$ref"]
@@ -62,9 +63,9 @@ class Property:
             self.json_sub_type = key_label, value_label
 
             if json_type_convert(key_label):
-                key_label = key_label
+                key_label = json_type_convert(key_label)
             if json_type_convert(value_label):
-                value_label = value_label
+                value_label = json_type_convert(value_label)
 
             self.sub_type = key_label, value_label
 
@@ -77,9 +78,9 @@ class Property:
             self.type = "set"
             self.json_type = "Set"
             if "enum" in items:
-                self.sub_type = type_class
                 self.json_sub_type = "enum"
-                self.enum_domain = items["$ref"]
+                self.sub_type = items["$ref"]
+                self.enum_domain = items["enum"]
             elif "$ref" in items and json_type_convert(items["$ref"]):
                 self.sub_type = json_type_convert(items["$ref"])
                 self.json_sub_type = items["$ref"]
@@ -123,12 +124,13 @@ class Property:
         """
         Return the enum import for this property
         """
+
         if self.json_type == "enum":
             return self.type
-        elif json_type_convert(self.json_type):
-            return None
         elif self.type in ("list", "set") and self.json_sub_type == "enum":
             return self.sub_type
+        elif json_type_convert(self.json_type):
+            return None
 
     def get_enums(self):
         enum_name = self.get_enum_import()
@@ -157,7 +159,7 @@ class Property:
                 val_assign = f"{self.sub_type[1]}(y)"
             else:
                 val_assign = f"{self.sub_type[1]}(**y)"
-            return f"{{ {key_assign}: {val_assign} for x, y in v.items() }}"
+            return f"{{{key_assign}: {val_assign} for x, y in v.items()}}"
 
         elif self.type in ("set", "list"):
             if self.type == "set":
@@ -167,7 +169,7 @@ class Property:
                 start_bracket = "["
                 end_bracket = "]"
             if self.json_sub_type == "enum":
-                return f"{start_bracket}str(x) for x in v{end_bracket}"
+                return f'{start_bracket}{self.sub_type}[x] for x in v{end_bracket}'
             elif json_type_convert(self.json_sub_type):
                 return f"{start_bracket}{self.sub_type}(x) for x in v{end_bracket}"
             elif self.json_sub_type == "Object":
@@ -176,7 +178,7 @@ class Property:
                 return f"{start_bracket}{self.sub_type}(**x) for x in v{end_bracket}"
 
         elif self.json_type == "enum":
-            return "str(v)"
+            return f'{self.type}[v]'
 
         elif not json_type_convert(self.json_type):
             return f"{self.type}(**v)"
@@ -186,18 +188,3 @@ class Property:
 
         else:
             return f"{self.type}(v)"
-
-    def is_enum(self):
-        return self.json_type == "enum"
-
-    def is_map(self):
-        return self.type == "dict"
-
-    def is_list(self):
-        return self.type == "list"
-
-    def is_set(self):
-        return self.type == "set"
-
-    def is_file(self):
-        return self.type == "file"
