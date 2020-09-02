@@ -37,8 +37,8 @@ class {{ safe_class_name(class_name) }}:
 
         try:
             response = self.session.{{ operation.get('method').lower() }}(
-{% if operation.get('method') in ['POST', 'PUT'] %}                data=dumps(body.to_dict()),
-{% endif %}
+{% if operation.get('method') in ['POST', 'PUT'] %}{% for parameter in operation.get('parameters',[]) %}{% if parameter.get('name') == 'body' %}                data=dumps(body.to_dict()),
+{% endif %}{% endfor %}{% endif %}
 {% if operation.get('method') == 'POST' %}{% for parameter in operation.get('parameters',[]) %}{% if parameter.get('type') == 'File' %}
                 files={'file': open({{ parameter.get('name') }}, "rb")},
 {% endif %}{% endfor %}{% endif %}
