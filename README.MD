@@ -26,16 +26,6 @@ pip install .
 # OR python setup.py install
 ```
 
-
-# Test
-
-To run the unit tests use
-
-```bash
-make unittest
-```
-
-
 # Regenerate SDK
 
 To regenerate the APIs and models of the SDK
@@ -48,6 +38,46 @@ This requires an available Ping Federate admin server instance with a set of cre
 
 ```bash
 make docker-generate
+```
+
+# Testing
+
+A set of testing commands are available to assert that the generated SDK hasn't had any obvious issues in the generation process.
+
+To run the unit tests use
+
+```bash
+make unittest
+```
+
+To check the code coverage for the unit tests
+
+```bash
+make coverage
+```
+
+To lint the generator code and confirm it still follows PEP8 standards
+
+```bash
+make lint
+```
+
+To lint the generated code and confirm it still follows PEP8 standards
+
+```bash
+make lint-generated
+```
+
+To confirm the modules generated can be dynamically loaded into memory without syntax or dependency issues
+
+```bash
+make module-load-test
+```
+
+To load the Java integration kit and run some sample SDK commands to exercise the generated code
+
+```bash
+make example
 ```
 
 # Regenerate Documents
