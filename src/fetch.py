@@ -2,7 +2,7 @@ import json
 import os
 import requests
 import logging
-from helpers import json_type_convert, safe_name
+from helpers import safe_name
 from property import Property
 from api import ApiEndpoint
 

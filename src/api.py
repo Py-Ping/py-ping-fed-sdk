@@ -1,12 +1,20 @@
 
 from helpers import json_type_convert, safe_name
 
+
 class ApiEndpoint:
+    """
+    Manages data and logic for working with an Api class
+    This was created to take out as much logic as possible from
+    the Jinja template and make it compatible with Python native
+    Dynamic classes.
+    """
+
     def __init__(self, api_path, api_data):
         self.api_data = api_data
         self.safe_api_path = safe_name(api_path)
         self.path = api_path
-        self.response_codes = []
+        self.response_codes = set()
         self.imports = set()
         self.operations = []
         self._process()
@@ -23,10 +31,10 @@ class ApiEndpoint:
 
                 op_response_codes = []
                 for response_code in op["responseMessages"]:
-                    op_code = {"code": response_code["code"], "message": response_code["code"]}
+                    op_code = {"code": response_code["code"], "message": response_code["message"]}
                     op_response_codes.append(op_code)
                     if response_code["code"] not in self.response_codes:
-                        self.response_codes.append(response_code["code"])
+                        self.response_codes.add(response_code["code"])
 
                 if not json_type_convert(op["type"]) and op["type"] not in self.imports:
                     self.imports.add(op["type"])

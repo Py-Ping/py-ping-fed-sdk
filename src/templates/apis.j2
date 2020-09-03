@@ -61,7 +61,7 @@ class {{ safe_class_name(class_name) }}:
                 self.logger.info("{{ response_code["message"] }}")
                 return ModelApiResult(message="{{ response_code["message"] }}", validationErrors=[])
 {% elif get_exception_by_code(response_code["code"]) %}
-                message = "{{ response_code["message"] }}"
+                message = "({{ response_code["code"] }}) {{ response_code["message"] }}"
                 self.logger.info(message)
                 raise {{ get_exception_by_code(response_code["code"]) }}(message)
 {% endif %}

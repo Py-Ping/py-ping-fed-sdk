@@ -121,45 +121,15 @@ class TestFetch(TestCase):
             self.fetch.read_json("another_file_name.test")
         )
 
-    def test_preprocess_api(self):
-        test_api_data = [{
-            "operations": [
-                {
-                    "type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}],
-                    "parameters": [{"type": "integer"}]
-                },
-                {
-                    "type": "Penguin", "responseMessages": [{"code": 200}, {"code": 422}],
-                    "parameters": []
-                },
-                {
-                    "type": "integer", "responseMessages": [{"code": 200}, {"code": 201}],
-                    "parameters": [{"type": "integer"}, {"type": "enum"}]
-                }
-            ]
-        }]
-
-        self.assertEqual(
-            self.fetch.preprocess_api(test_api_data),
-            {"imports": {"Penguin"}, "details": test_api_data, "codes": {200, 403, 422, 201}}
-        )
-
-        self.assertEqual(
-            self.fetch.preprocess_api(
-                [{"operations": []}]
-            ),
-            {"imports": set(), "details": [{"operations": []}], "codes": set()}
-        )
-
+    @patch("fetch.ApiEndpoint")
     @patch("fetch.Fetch.write_json")
     @patch("fetch.requests")
-    @patch("fetch.Fetch.preprocess_api")
     @patch("fetch.Fetch.read_json")
     @patch("fetch.os")
     @patch("fetch.safe_name")
     def test_api_schema(
         self, safe_name_mock, os_mock, read_json_mock,
-        preprocess_api_mock, requests_mock, write_json_mock
+        requests_mock, write_json_mock, api_endpoint_mock
     ):
 
         self.fetch.ping_data = {}
@@ -210,8 +180,6 @@ class TestFetch(TestCase):
             }]},
         ]
 
-        preprocess_api_mock.side_effect = side_effects
-
         requests_mock.get.return_value.json.return_value = {
             "models": {}
         }
@@ -233,8 +201,8 @@ class TestFetch(TestCase):
         self.assertEqual(
             self.fetch.apis,
             {
-                "have_a_penguin": side_effects[0],
-                "have_a_pelican": side_effects[1]
+                "have_a_penguin": api_endpoint_mock.return_value,
+                "have_a_pelican": api_endpoint_mock.return_value
             }
         )
         self.assertEqual(self.fetch.enums, {})
