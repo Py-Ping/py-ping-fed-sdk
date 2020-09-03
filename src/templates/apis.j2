@@ -47,9 +47,11 @@ class {{ safe_class_name(class_name) }}:
         except HTTPError as http_err:
             print(traceback.format_exc())
             self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
         except Exception as err:
             print(traceback.format_exc())
             self.logger.error(f"Error occurred: {err}")
+            raise err
         else:
 {% for response_code in operation.response_codes %}
             if response.status_code == {{ response_code["code"] }}:
@@ -66,5 +68,5 @@ class {{ safe_class_name(class_name) }}:
                 raise {{ get_exception_by_code(response_code["code"]) }}(message)
 {% endif %}
 {% endfor %}
-        return {{ operation.get_response_str() }}
+            return {{ operation.get_response_str() }}
 {% endfor %}

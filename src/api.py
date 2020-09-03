@@ -63,7 +63,7 @@ class Operation:
         if json_type_convert(self.json_type) not in ("", "None") and self.is_primitive_type:
             return f"{self.type}(response)"
         elif json_type_convert(self.json_type) == "None":
-            return "response"
+            return "response.json()"
         else:
             return f"Model{self.type}.from_dict(response.json())"
 
