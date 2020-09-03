@@ -146,7 +146,9 @@ class TestGenerate(TestCase):
             }
         }
         for api, api_data in self.fetch_response['apis'].items():
-            self.fetch_response['apis'][api] = ApiEndpoint('/test/endpoint', self.fetch_response['apis'][api]['details'])
+            self.fetch_response['apis'][api] = ApiEndpoint(
+                '/test/endpoint', self.fetch_response['apis'][api]['details']
+            )
         fetch_mock.return_value.fetch.return_value = self.fetch_response
         realpath_mock.return_value = REAL_PATH
         Generate("fake-url.com:9999").generate()

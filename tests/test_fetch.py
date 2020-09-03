@@ -157,28 +157,6 @@ class TestFetch(TestCase):
             "apis": [],
             "models": {}
         }
-        side_effects = [
-            {
-                "imports": {"Penguin"},
-                "codes": set({200, 400}),
-                "details": [
-                    {
-                        "operations": [
-                            {"type": "boolean", "responseMessages": [{"code": 200}, {"code": 403}]},
-                            {"type": "Penguin", "responseMessages": [{"code": 300}]},
-                            {"type": "integer", "responseMessages": [{"code": 200}]}
-                        ]
-                    }
-                ]
-            },
-            {"imports": {"Pelican"}, "details": [{
-                "operations": [
-                    {"type": "array"},
-                    {"type": "Pelican"},
-                    {"type": "string"}
-                ]
-            }]},
-        ]
 
         requests_mock.get.return_value.json.return_value = {
             "models": {}

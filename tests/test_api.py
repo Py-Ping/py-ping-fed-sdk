@@ -1,7 +1,6 @@
 """ Tests for api.py """
 
 from unittest import TestCase
-from unittest.mock import patch, MagicMock, call
 from api import ApiEndpoint
 
 
@@ -12,17 +11,30 @@ class TestApi(TestCase):
         api_endpoint = ApiEndpoint('/test/path', [{
             "operations": [
                 {
-                    "type": "boolean", "responseMessages": [{"code": 200, "message": "test"}, {"code": 403, "message": "again"}],
+                    "type": "boolean",
+                    "responseMessages": [
+                        {"code": 200, "message": "test"},
+                        {"code": 403, "message": "again"}
+                    ],
                     "parameters": [{"name": "id", "type": "integer"}],
                     "nickname": "doThis", "summary": "does this", "method": "POST"
                 },
                 {
-                    "type": "Penguin", "responseMessages": [{"code": 200, "message": "one"}, {"code": 422, "message": "two"}],
+                    "type": "Penguin", "responseMessages": [
+                        {"code": 200, "message": "one"},
+                        {"code": 422, "message": "two"}
+                    ],
                     "parameters": [], "nickname": "doThat", "summary": "does that", "method": "GET"
                 },
                 {
-                    "type": "integer", "responseMessages": [{"code": 200, "message": "three"}, {"code": 201, "message": "four"}],
-                    "parameters": [{"name": "id", "type": "integer"}, {"name": "choice", "type": "enum"}],
+                    "type": "integer", "responseMessages": [
+                        {"code": 200, "message": "three"},
+                        {"code": 201, "message": "four"}
+                    ],
+                    "parameters": [
+                        {"name": "id", "type": "integer"},
+                        {"name": "choice", "type": "enum"}
+                    ],
                     "nickname": "doThing", "summary": "does something", "method": "PUT"
                 }
             ],
