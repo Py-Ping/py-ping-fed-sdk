@@ -2,8 +2,9 @@ import json
 import os
 import requests
 import logging
-from helpers import json_type_convert, safe_name
+from helpers import safe_name
 from property import Property
+from api import ApiEndpoint
 
 
 class Fetch():
@@ -80,8 +81,8 @@ class Fetch():
             abs_path = f"{self.project_path}/pingfedsdk/source/apis/{safe_api_path}.json"
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
-                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = self.preprocess_api(
-                    response.get("apis", [])
+                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = ApiEndpoint(
+                    api_path, response.get("apis", [])
                 )
                 self.models.update(response.get("models", {}))
             else:
@@ -92,7 +93,8 @@ class Fetch():
                     self.logger.error(f"Failed to download swagger from: {self.swagger_url}{api_path} with error {err}")
                 else:
                     r_json = response.json()
-                    self.apis[r_json.get("resourcePath", safe_api_path)] = self.preprocess_api(r_json.get("apis", []))
+
+                    self.apis[r_json.get("resourcePath", safe_api_path)] = ApiEndpoint(api_path, r_json.get("apis", []))
                     self.models.update(r_json.get("models", {}))
                     self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
                     if safe_api_path.startswith('_'):
@@ -120,25 +122,6 @@ class Fetch():
             details["imports"] = imports
 
             self.models[model] = details
-
-    def preprocess_api(self, api_data):
-        """
-        Pre-process the API document and determine what needs to be imported
-        to dynamically generate return objects
-        """
-        imports = set()
-        response_codes = set()
-        for data in api_data:
-            for op in data["operations"]:
-                for param in op["parameters"]:
-                    if not json_type_convert(param["type"]) and param["type"] not in imports:
-                        imports.add(param["type"])
-                for response_code in op["responseMessages"]:
-                    if response_code["code"] not in response_codes:
-                        response_codes.add(response_code["code"])
-                if not json_type_convert(op["type"]) and op["type"] not in imports:
-                    imports.add(op["type"])
-        return {"imports": imports, "codes": response_codes, "details": api_data}
 
     def fetch(self):
         self.get_source()
