@@ -22,6 +22,25 @@ class {{ class_name }}(Model):
 
 {% endif %}
 {% endfor %}
+    Referenced in:
+    --------------
+{% for reference in sorted(details.get('api_references')) %}
+        - apis/{{ reference }}.py
+{% endfor %}
+{% if details.get('subTypes', []) %}
+
+    Referenced by:
+    --------------
+{% for subtype in sorted(details.get('subTypes', [])) %}
+        - {{ subtype }}
+{% endfor %}
+{% endif %}
+{% if details.get('extends', '') %}
+
+    Base class:
+    --------------
+        - {{ details.get('extends', '') }}
+{% endif %}
     """
 
     def __init__(self{% for property in details.get('required', []) %}, {{ safe_name(property) }}: {{ details['properties'][property].type }}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}: {{ attributes.type }} = None{% endfor %}) -> None:

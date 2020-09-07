@@ -92,6 +92,7 @@ class TestGenerate(TestCase):
             "enums": {},
             "models": {
                 "PenguinLabeller": {
+                    "api_references": ["penguins"],
                     "description": "Labels penguins.",
                     "id": "PenguinLabeller",
                     "properties": {
@@ -107,6 +108,7 @@ class TestGenerate(TestCase):
                     "imports": {}
                 },
                 "Penguin": {
+                    "api_references": ["penguins"],
                     "description": "The details of a penguin.",
                     "id": "BestPenguin",
                     "properties": {
@@ -130,6 +132,7 @@ class TestGenerate(TestCase):
                     "imports": {}
                 },
                 "Penguins": {
+                    "api_references": ["penguins"],
                     "description": "A collection of penguins.",
                     "id": "Penguins",
                     "properties": {

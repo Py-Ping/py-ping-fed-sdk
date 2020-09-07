@@ -2,7 +2,7 @@ import json
 import os
 import requests
 import logging
-from helpers import safe_name
+from helpers import safe_name, safe_module_name
 from property import Property
 from api import ApiEndpoint
 
@@ -79,12 +79,18 @@ class Fetch():
             safe_api_path = safe_name(api.get("path"))
             api_path = api.get("path")
             abs_path = f"{self.project_path}/pingfedsdk/source/apis/{safe_api_path}.json"
+            module_name = safe_module_name(api_path)
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
                 self.apis[safe_name(response.get("resourcePath", safe_api_path))] = ApiEndpoint(
                     api_path, response.get("apis", [])
                 )
-                self.models.update(response.get("models", {}))
+                for model_name, model_data in response.get("models", {}).items():
+                    if model_name in self.models:
+                        self.models[model_name]['api_references'].append(module_name)
+                    else:
+                        model_data['api_references'] = [module_name]
+                        self.models[model_name] = model_data
             else:
                 try:
                     self.logger.info(f"Attempting to retrieve {self.swagger_url}{api_path}")
@@ -95,7 +101,12 @@ class Fetch():
                     r_json = response.json()
 
                     self.apis[r_json.get("resourcePath", safe_api_path)] = ApiEndpoint(api_path, r_json.get("apis", []))
-                    self.models.update(r_json.get("models", {}))
+                    for model_name, model_data in r_json.get("models", {}).items():
+                        if model_name in self.models:
+                            self.models[model_name]['api_references'].append(module_name)
+                        else:
+                            model_data['api_references'] = [module_name]
+                            self.models[model_name] = model_data
                     self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
                     if safe_api_path.startswith('_'):
                         safe_api_path = safe_api_path[1:]
@@ -104,6 +115,14 @@ class Fetch():
         self.processed_model = {}
         for model, details in self.models.items():
             imports = {"models": set(), "enums": set()}
+            if 'extends' in details:
+                base_model = details['extends']
+                if base_model in self.models:
+                    if 'subTypes' in self.models[base_model] and model not in self.models[base_model]['subTypes']:
+                        self.models[base_model]['subTypes'].append(model)
+                    elif 'subTypes' not in self.models[base_model]:
+                        self.models[base_model]['subTypes'] = [model]
+
             for prop_name, prop in details.get("properties", {}).items():
                 model_property = Property(prop, model, prop_name)
                 model_import = model_property.get_model_import()
