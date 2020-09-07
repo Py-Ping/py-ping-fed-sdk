@@ -127,7 +127,14 @@ class Fetch():
                 model_property = Property(prop, model, prop_name)
                 model_import = model_property.get_model_import()
                 enum_import = model_property.get_enum_import()
-                if model_import and model_import not in imports["models"]:
+                if model_property.type == "DataStore" or \
+                   model_property.type == "list" and \
+                   model_property.sub_type == "DataStore":
+                    imports["models"].add("JdbcDataStore")
+                    imports["models"].add("CustomDataStore")
+                    imports["models"].add("LdapDataStore")
+                    imports["models"].add("DataStore")
+                elif model_import and model_import not in imports["models"]:
                     imports["models"].add(model_import)
                 if enum_import and enum_import not in imports["enums"]:
                     imports["enums"].add(enum_import)
