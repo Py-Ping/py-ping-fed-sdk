@@ -7,7 +7,7 @@ from unittest.mock import patch, MagicMock
 from generate import Generate
 from pathlib import Path
 from property import Property
-
+from api import ApiEndpoint
 
 REAL_PATH = os.path.realpath(__file__)
 PACKAGE   = "penguinsdk"
@@ -146,6 +146,10 @@ class TestGenerate(TestCase):
                 }
             }
         }
+        for api, api_data in self.fetch_response['apis'].items():
+            self.fetch_response['apis'][api] = ApiEndpoint(
+                '/test/endpoint', self.fetch_response['apis'][api]['details']
+            )
         fetch_mock.return_value.fetch.return_value = self.fetch_response
         realpath_mock.return_value = REAL_PATH
         Generate("fake-url.com:9999", "apis", PACKAGE).generate()
