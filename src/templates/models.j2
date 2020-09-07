@@ -65,7 +65,7 @@ class {{ class_name }}(Model):
         for k, v in python_dict.items():
             if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] and v is not None:
 {% for property, detail in details.get('properties').items() %}                if k == "{{ safe_name(property) }}":
-                    valid_data[k] = {{ detail.get_from_dict_str() }}
+                    {{ detail.get_from_dict_str() }}
 {% endfor %}
 
         return cls(**valid_data)

@@ -22,7 +22,7 @@ from pingfedsdk.apis.idp_sp_connections import IdpSpConnections
 from pingfedsdk.apis.idp_connectors import IdpConnectors
 from pingfedsdk.apis.idp_to_sp_adapter_mapping import IdpToSpAdapterMapping
 from pingfedsdk.apis.authentication_api import AuthenticationApi
-
+from pingfedsdk.apis.data_stores import DataStores
 
 home = os.environ["HOME"]
 ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
@@ -149,3 +149,5 @@ with Container(home, ping_user, ping_key) as container:
         print("User already exists, skipping...")
 
     pprint(admin_accounts.getAccounts().to_dict())
+    data_stores = DataStores(endpoint, session)
+    pprint(data_stores.getDataStores())

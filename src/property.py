@@ -149,8 +149,17 @@ class Property:
         - models
         - primitive types
         """
-
-        if self.type == "dict":
+        if self.type == "DataStore":
+            return """if x["type"] == "JDBC":
+                    valid_data[k] = [JdbcDataStore(**x) for x in v]
+                elif x["type"] == "LDAP":
+                    valid_data[k] = [LdapDataStore(**x) for x in v]
+                elif x["type"] == "CUSTOM":
+                    valid_data[k] = [CustomDataStore(**x) for x in v]
+                else:
+                    valid_data[k] = [DataStore(**x) for x in v]
+            """
+        elif self.type == "dict":
             if json_type_convert(self.json_sub_type[0]) and self.json_sub_type[0] != "void":
                 key_assign = f"{self.sub_type[0]}(x)"
             else:
@@ -159,7 +168,7 @@ class Property:
                 val_assign = f"{self.sub_type[1]}(y)"
             else:
                 val_assign = f"{self.sub_type[1]}(**y)"
-            return f"{{{key_assign}: {val_assign} for x, y in v.items()}}"
+            return f"valid_data[k] = {{{key_assign}: {val_assign} for x, y in v.items()}}"
 
         elif self.type in ("set", "list"):
             if self.type == "set":
@@ -168,23 +177,37 @@ class Property:
             else:
                 start_bracket = "["
                 end_bracket = "]"
-            if self.json_sub_type == "enum":
-                return f'{start_bracket}{self.sub_type}[x] for x in v{end_bracket}'
+
+            if self.sub_type == "DataStore":
+                return """temp_list = []
+                    for x in v:
+                        if x["type"] == "JDBC":
+                            temp_list.append(JdbcDataStore(**x))
+                        elif x["type"] == "LDAP":
+                            temp_list.append(LdapDataStore(**x))
+                        elif x["type"] == "CUSTOM":
+                            temp_list.append(CustomDataStore(**x))
+                        else:
+                            temp_list.append(DataStore(**x))
+                    valid_data[k] = temp_list
+                """
+            elif self.json_sub_type == "enum":
+                return f'valid_data[k] = {start_bracket}{self.sub_type}[x] for x in v{end_bracket}'
             elif json_type_convert(self.json_sub_type):
-                return f"{start_bracket}{self.sub_type}(x) for x in v{end_bracket}"
+                return f"valid_data[k] = {start_bracket}{self.sub_type}(x) for x in v{end_bracket}"
             elif self.json_sub_type == "Object":
-                return "v"
+                return "valid_data[k] = v"
             else:
-                return f"{start_bracket}{self.sub_type}(**x) for x in v{end_bracket}"
+                return f"valid_data[k] = {start_bracket}{self.sub_type}(**x) for x in v{end_bracket}"
 
         elif self.json_type == "enum":
-            return f'{self.type}[v]'
+            return f'valid_data[k] = {self.type}[v]'
 
         elif not json_type_convert(self.json_type):
-            return f"{self.type}(**v)"
+            return f"valid_data[k] = {self.type}(**v)"
 
         elif self.type == "None":
-            return "None"
+            return "valid_data[k] = None"
 
         else:
-            return f"{self.type}(v)"
+            return f"valid_data[k] = {self.type}(v)"

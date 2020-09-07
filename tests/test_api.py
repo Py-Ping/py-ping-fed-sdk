@@ -1,7 +1,6 @@
 """ Tests for api.py """
 
 from unittest import TestCase
-from unittest.mock import patch, MagicMock, call
 from api import ApiEndpoint, Operation, Parameter
 
 
@@ -109,7 +108,7 @@ class TestOperation(TestCase):
         self.assertEqual(self.op_test_none.get_response_str(), 'response.json()')
         self.assertEqual(
             self.op_test_model.get_response_str(),
-            f"ModelTestModel.from_dict(response.json())"
+            "ModelTestModel.from_dict(response.json())"
         )
 
     def test_get_return_type_str(self):
