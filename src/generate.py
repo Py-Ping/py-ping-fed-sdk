@@ -102,7 +102,8 @@ class Generate():
             safe_name=safe_name,
             json_type_convert=json_type_convert,
             get_exception_by_code=get_exception_by_code,
-            has_substitution=has_substitution
+            has_substitution=has_substitution,
+            sorted=sorted
         )
         jinjatemplate = jinjaenvironment.get_template(f"./{template}.j2")
 

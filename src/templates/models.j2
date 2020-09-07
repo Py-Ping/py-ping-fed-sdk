@@ -24,14 +24,14 @@ class {{ class_name }}(Model):
 {% endfor %}
     Referenced in:
     --------------
-{% for reference in details.get('api_references') %}
+{% for reference in sorted(details.get('api_references')) %}
         - apis/{{ reference }}.py
 {% endfor %}
 {% if details.get('subTypes', []) %}
 
     Referenced by:
     --------------
-{% for subtype in details.get('subTypes', []) %}
+{% for subtype in sorted(details.get('subTypes', [])) %}
         - {{ subtype }}
 {% endfor %}
 {% endif %}
