@@ -56,10 +56,6 @@ def exec(container, cmd):
     return container.exec_run(f'/bin/sh -c "{cmd}"', stream=False, demux=False)
 
 
-endpoint = "https://localhost:9999/pf-admin-api/v1"
-session = get_auth_session()
-session.verify = False
-
 with Container(home, ping_user, ping_key) as container:
     demo_package = "pf-Java-integration-kit"
     print(f"Running container {container.id}")

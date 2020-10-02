@@ -16,7 +16,7 @@ class TestApiEndpoint(TestCase):
                         {"code": 200, "message": "test"},
                         {"code": 403, "message": "again"}
                     ],
-                    "parameters": [{"name": "id", "type": "integer"}],
+                    "parameters": [{"name": "id", "type": "integer", "required": "true"}],
                     "nickname": "doThis", "summary": "does this", "method": "POST"
                 },
                 {
@@ -32,8 +32,8 @@ class TestApiEndpoint(TestCase):
                         {"code": 201, "message": "four"}
                     ],
                     "parameters": [
-                        {"name": "id", "type": "integer"},
-                        {"name": "choice", "type": "enum"}
+                        {"name": "id", "type": "integer", "required": "true"},
+                        {"name": "choice", "type": "enum", "required": "false"}
                     ],
                     "nickname": "doThing", "summary": "does something", "method": "PUT"
                 }
@@ -47,12 +47,12 @@ class TestApiEndpoint(TestCase):
 
 class TestParameter(TestCase):
     def test_param(self):
-        test = Parameter({"type": "string", "name": "testparameter"})
+        test = Parameter({"type": "string", "name": "testparameter", "required": "true"})
         self.assertEqual(test.get_parameter_str(), "str")
         self.assertEqual(test.json_type, "string")
         self.assertTrue(test.is_primitive_type)
 
-        test = Parameter({"type": "TestModel", "name": "anothertestparameter"})
+        test = Parameter({"type": "TestModel", "name": "anothertestparameter", "required": "false"})
         self.assertEqual(test.get_parameter_str(), "ModelTestModel")
         self.assertEqual(test.json_type, "TestModel")
         self.assertFalse(test.is_primitive_type)
@@ -62,8 +62,8 @@ class TestOperation(TestCase):
     def setUp(self):
         self.op_test = Operation(
             parameters=[
-                Parameter({"type": "string", "name": "one"}),
-                Parameter({"type": "TestModel", "name": "two"}),
+                Parameter({"type": "string", "name": "one", "required": "true"}),
+                Parameter({"type": "TestModel", "name": "two", "required": "false"}),
             ],
             response_codes=[
                 {"code": 200, "message": "Operation success"},
@@ -77,8 +77,8 @@ class TestOperation(TestCase):
         )
         self.op_test_none = Operation(
             parameters=[
-                Parameter({"type": "bool", "name": "three"}),
-                Parameter({"type": "array", "name": "four"}),
+                Parameter({"type": "bool", "name": "three", "required": "true"}),
+                Parameter({"type": "array", "name": "four", "required": "false"}),
             ],
             response_codes=[
                 {"code": 200, "message": "Operation success"},
