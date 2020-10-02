@@ -80,6 +80,7 @@ class Parameter:
         self._raw_param = param
         self.json_type = self._raw_param["type"]
         self.type = self._raw_param["type"]
+        self.required = self._raw_param["required"]
         if json_type_convert(self._raw_param["type"]):
             self.type = json_type_convert(self._raw_param["type"])
         self.name = self._raw_param["name"]

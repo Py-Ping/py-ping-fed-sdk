@@ -30,7 +30,7 @@ class {{ safe_class_name(class_name) }}:
         return f"{self.endpoint}{path}"
 {% for operation in details.operations %}
 
-    def {{ operation.nickname }}(self{% for parameter in operation.parameters %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }}{% endfor %}) -> {{ operation.get_return_type_str() }}:
+    def {{ operation.nickname }}(self{% for parameter in operation.parameters %}{% if parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }}{% endif %}{% endfor %}{% for parameter in operation.parameters %}{% if not parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }} = None{% endif %}{% endfor %}) -> {{ operation.get_return_type_str() }}:
         """ {{ operation.summary }}
         """
 
