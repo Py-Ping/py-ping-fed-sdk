@@ -103,6 +103,22 @@ class TestOperation(TestCase):
             api_path="/test/code"
         )
 
+        self.op_test_content_type = Operation(
+            parameters=[],
+            response_codes=[
+                {"code": 200, "message": "Success"}
+            ],
+            op_type="void",
+            nickname="TestContentType",
+            summary="Export an application/zip",
+            method="GET",
+            api_path="/test/code",
+            produces=[
+                "application/json",
+                "application/zip"
+            ]
+        )
+
     def test_get_response_str(self):
         self.assertEqual(self.op_test.get_response_str(), 'bool(response)')
         self.assertEqual(self.op_test_none.get_response_str(), 'response.json()')
@@ -110,6 +126,7 @@ class TestOperation(TestCase):
             self.op_test_model.get_response_str(),
             "ModelTestModel.from_dict(response.json())"
         )
+        self.assertEqual(self.op_test_content_type.get_response_str(), 'response')
 
     def test_get_return_type_str(self):
         self.assertEqual(self.op_test.get_return_type_str(), 'bool')
