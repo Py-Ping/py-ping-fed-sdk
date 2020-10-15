@@ -2,7 +2,7 @@ import os
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_class_name, safe_module_name, safe_name, json_type_convert, \
+from helpers import safe_class_name, safe_module_name, safe_name, \
     get_exception_by_code, has_substitution
 
 
@@ -100,7 +100,6 @@ class Generate():
             safe_class_name=safe_class_name,
             safe_module_name=safe_module_name,
             safe_name=safe_name,
-            json_type_convert=json_type_convert,
             get_exception_by_code=get_exception_by_code,
             has_substitution=has_substitution,
             sorted=sorted
