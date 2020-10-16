@@ -80,11 +80,13 @@ class Fetch():
         for api in self.ping_data.get(api_schema_key, {}):
             safe_api_path = safe_name(api.get("path"))
             api_path = api.get("path")
-            abs_path = f"{self.project_path}../pingfedsdk/source/apis/{safe_api_path}.json"
+
+            abs_path = f"{self.project_path}/../pingfedsdk/source/apis/{safe_api_path[1:]}.json"
+            print(abs_path)
             module_name = safe_module_name(api_path)
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
-                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = ApiEndpoint(
+                self.apis[response.get("resourcePath", safe_api_path)] = ApiEndpoint(
                     api_path, response.get("apis", [])
                 )
                 for model_name, model_data in response.get("models", {}).items():
