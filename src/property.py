@@ -208,6 +208,5 @@ class Property:
 
         elif self.type == "None":
             return "valid_data[k] = None"
-
         else:
             return f"valid_data[k] = {self.type}(v)"

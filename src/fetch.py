@@ -8,7 +8,7 @@ from api import ApiEndpoint
 
 
 class Fetch():
-    def __init__(self, swagger_url, api_schema_key="apis"):
+    def __init__(self, swagger_url, api_schema_key="apis", verify=False):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
         )
@@ -17,6 +17,8 @@ class Fetch():
         self.logger.setLevel(
             int(os.environ.get("Logging", logging.INFO))
         )
+        self.session = requests.Session()
+        self.session.verify = verify
         self.api_schema_key = api_schema_key
         self.swagger_url = swagger_url
         self.ping_data = {}
@@ -24,13 +26,13 @@ class Fetch():
         self.apis = {}
         self.enums = {}
 
-    def get_source(self, verify=False):
+    def get_source(self):
         """
             Pull the API JSON from the remote swagger url
         """
 
         try:
-            response = requests.get(self.swagger_url, verify=verify)
+            response = self.session.get(self.swagger_url)
         except Exception as err:
             err_str = f"Failed to download swagger from: {self.swagger_url} with error {err}"
             self.logger.error(err_str)
@@ -78,11 +80,13 @@ class Fetch():
         for api in self.ping_data.get(api_schema_key, {}):
             safe_api_path = safe_name(api.get("path"))
             api_path = api.get("path")
-            abs_path = f"{self.project_path}/pingfedsdk/source/apis/{safe_api_path}.json"
+
+            abs_path = f"{self.project_path}/../pingfedsdk/source/apis/{safe_api_path[1:]}.json"
+            print(abs_path)
             module_name = safe_module_name(api_path)
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
-                self.apis[safe_name(response.get("resourcePath", safe_api_path))] = ApiEndpoint(
+                self.apis[response.get("resourcePath", safe_api_path)] = ApiEndpoint(
                     api_path, response.get("apis", [])
                 )
                 for model_name, model_data in response.get("models", {}).items():
@@ -94,7 +98,7 @@ class Fetch():
             else:
                 try:
                     self.logger.info(f"Attempting to retrieve {self.swagger_url}{api_path}")
-                    response = requests.get(f"{self.swagger_url}{api.get('path')}", verify=verify)
+                    response = self.session.get(f"{self.swagger_url}{api.get('path')}")
                 except Exception as err:
                     self.logger.error(f"Failed to download swagger from: {self.swagger_url}{api_path} with error {err}")
                 else:
