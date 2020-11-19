@@ -13,20 +13,19 @@ class TestFetch(TestCase):
     def setUp(self, logging_mock, os_mock):
         self.logging_mock = logging_mock.getLogger.return_value
         os_mock.path.dirname.return_value = "/dummy/path"
-        self.fetch = Fetch("https://dummy.url/doc")
+        self.session_mock = MagicMock()
+        self.fetch = Fetch("https://dummy.url/doc", session=self.session_mock)
 
     @patch("fetch.Fetch.write_json")
-    @patch("fetch.requests")
-    def test_get_source(self, requests_mock, write_json_mock):
+    def test_get_source(self, write_json_mock):
         self.fetch.get_source()
 
-        requests_mock.get.assert_called_once_with(
-            "https://dummy.url/doc",
-            verify=False
+        self.session_mock.get.assert_called_once_with(
+            "https://dummy.url/doc"
         )
-        requests_mock.get.return_value.json.assert_called_once_with()
+        self.session_mock.get.return_value.json.assert_called_once_with()
         write_json_mock.assert_called_once_with(
-            data=requests_mock.get.return_value.json.return_value,
+            data=self.session_mock.get.return_value.json.return_value,
             name="pf-admin-api", directory="../pingfedsdk/source/",
         )
         self.logging_mock.info.assert_called_once_with(
@@ -34,7 +33,7 @@ class TestFetch(TestCase):
             "https://dummy.url/doc"
         )
 
-        requests_mock.get.side_effect = Exception("test exception")
+        self.session_mock.get.side_effect = Exception("test exception")
         self.assertRaises(ConnectionError, self.fetch.get_source)
         self.logging_mock.error.assert_called_once_with(
             "Failed to download swagger from: "
@@ -123,13 +122,12 @@ class TestFetch(TestCase):
 
     @patch("fetch.ApiEndpoint")
     @patch("fetch.Fetch.write_json")
-    @patch("fetch.requests")
     @patch("fetch.Fetch.read_json")
     @patch("fetch.os")
     @patch("fetch.safe_name")
     def test_api_schema(
         self, safe_name_mock, os_mock, read_json_mock,
-        requests_mock, write_json_mock, api_endpoint_mock
+        write_json_mock, api_endpoint_mock
     ):
 
         self.fetch.ping_data = {}
@@ -158,7 +156,7 @@ class TestFetch(TestCase):
             "models": {}
         }
 
-        requests_mock.get.return_value.json.return_value = {
+        self.session_mock.get.return_value.json.return_value = {
             "models": {}
         }
         self.assertIsNone(self.fetch.get_api_schema())
@@ -168,19 +166,12 @@ class TestFetch(TestCase):
             call("/dummy/path/source/apis/have_a_pelican.json")
         ])
 
-        requests_mock.get.assert_called_once_with(
-            "https://dummy.url/dochave/a/pelican", verify=False
+        self.session_mock.get.assert_called_once_with(
+            "https://dummy.url/dochave/a/pelican"
         )
         self.assertEqual(
             self.fetch.ping_data,
             {"apis": [{"path": "have/a/penguin"}, {"path": "have/a/pelican"}]}
         )
         self.assertEqual(self.fetch.models, {})
-        self.assertEqual(
-            self.fetch.apis,
-            {
-                "have_a_penguin": api_endpoint_mock.return_value,
-                "have_a_pelican": api_endpoint_mock.return_value
-            }
-        )
         self.assertEqual(self.fetch.enums, {})

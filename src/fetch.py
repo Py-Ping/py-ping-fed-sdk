@@ -8,7 +8,7 @@ from api import ApiEndpoint
 
 
 class Fetch():
-    def __init__(self, swagger_url, api_schema_key="apis", verify=False):
+    def __init__(self, swagger_url, api_schema_key="apis", verify=False, session=None):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
         )
@@ -17,7 +17,9 @@ class Fetch():
         self.logger.setLevel(
             int(os.environ.get("Logging", logging.INFO))
         )
-        self.session = requests.Session()
+        self.session = session
+        if not self.session:
+            self.session = requests.Session()
         self.session.verify = verify
         self.api_schema_key = api_schema_key
         self.swagger_url = swagger_url
@@ -82,7 +84,6 @@ class Fetch():
             api_path = api.get("path")
 
             abs_path = f"{self.project_path}/../pingfedsdk/source/apis/{safe_api_path[1:]}.json"
-            print(abs_path)
             module_name = safe_module_name(api_path)
             if os.path.exists(abs_path):
                 response = self.read_json(file=abs_path)
