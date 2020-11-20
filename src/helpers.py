@@ -37,8 +37,8 @@ def safe_class_name(unsafe_string, unsafe_char="/"):
 
 def get_py_type(json_type):
     """
-        Given a JSON type return a corresponding Python type.
-        If no type can be determined, return an empty string.
+    Given a JSON type return a corresponding Python type.
+    If no type can be determined, return an empty string.
     """
 
     if json_type in ("enum", "string", "File"):

@@ -33,7 +33,7 @@ class Fetch():
 
     def get_source(self):
         """
-            Pull the API JSON from the remote swagger url
+        Pull the API JSON from the remote swagger url
         """
 
         try:
@@ -52,7 +52,7 @@ class Fetch():
 
     def write_json(self, data, name, directory=None):
         """
-            given string data write it to file name in folder directory
+        given string data write it to file name in folder directory
         """
         if not directory:
             directory = "./templates/resources/"
@@ -68,8 +68,8 @@ class Fetch():
 
     def read_json(self, file):
         """
-            extract a JSON document from the project path
-            and load into a dict type
+        extract a JSON document from the project path
+        and load into a dict type
         """
         try:
             with open(os.path.join(self.project_path, file), "r") as file:
@@ -118,9 +118,9 @@ class Fetch():
 
     def get_api_schemas(self, api_schema_key="apis", verify=False):
         """
-            Iterate over each API in the schema file pf-admin-api and pull
-            down each paths content. Store in the api and model dictionaries
-            and write to the repository
+        Iterate over each API in the schema file pf-admin-api and pull
+        down each paths content. Store in the api and model dictionaries
+        and write to the repository
         """
         for api in self.ping_data.get(api_schema_key, {}):
             safe_api_name = safe_name(api.get("path"))

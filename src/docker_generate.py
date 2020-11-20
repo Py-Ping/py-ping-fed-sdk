@@ -9,23 +9,23 @@ from helpers import get_auth_session, retry_with_backoff
 from generate import Generate
 from time import sleep
 
-parser = argparse.ArgumentParser(description='PyLogger Generator')
+parser = argparse.ArgumentParser(description="PyLogger Generator")
 
 
 def add_args():
     parser.add_argument(
-        'version', type=str, choices=["9.3.3", "10.0.4", "10.1.0", "edge"],
-        default="edge", help='Ping Federate Version'
+        "version", type=str, choices=["9.3.3", "10.0.4", "10.1.0", "edge"],
+        default="edge", help="Ping Federate Version"
     )
 
 
 class Container:
     """
-        Manager class for the SDK generator, encapsulates the process in a
-        docker container such that there is no external dependency on a
-        live ping federate instance
+    Manager class for the SDK generator, encapsulates the process in a
+    docker container such that there is no external dependency on a
+    live ping federate instance
 
-        TODO: make generic to run any other Ping solution
+    TODO: make generic to run any other Ping solution
     """
 
     def __init__(self, home_path, user, pass_key, version="edge"):
@@ -45,7 +45,7 @@ class Container:
         self.container = None
 
     def run(self):
-        self.logger.info(f'Starting Container: {self.image_name}')
+        self.logger.info(f"Starting Container: {self.image_name}")
         self.container = self.client.containers.run(
             self.image_name,
             environment=[
@@ -66,7 +66,7 @@ class Container:
 
     def terminate(self):
         """
-            Perform post generation cleanup
+        Perform post generation cleanup
         """
         self.container.stop()
         self.container.wait()
@@ -74,7 +74,7 @@ class Container:
 
     def get_by_image_name(self, image_name):
         """
-            Given an image name, return the first available container object.
+        Given an image name, return the first available container object.
         """
         for container in self.client.containers.list():
             if container.image.tags[0] == image_name:
@@ -82,7 +82,7 @@ class Container:
 
     def wait(self):
         """
-            Block execution until the container is paused, exited or running.
+        Block execution until the container is paused, exited or running.
         """
         while self.container.status not in ["running", "exited", "paused"]:
             self.container = self.client.containers.get(self.container.id)
@@ -90,7 +90,7 @@ class Container:
 
     def running(self, image_name):
         """
-            Given an image name, return if currently running
+        Given an image name, return if currently running
         """
         for container in self.client.containers.list():
             if container.image.tags[0] == image_name:
@@ -99,7 +99,7 @@ class Container:
 
     def __enter__(self):
         """
-            Enter method to setup a PingFed container
+        Enter method to setup a PingFed container
         """
         if not self.running(self.image_name):
             self.logger.info("Initialising Ping Federate container...")
@@ -115,7 +115,7 @@ class Container:
 
     def __exit__(self, type, value, traceback):
         """
-            Exit method to cleanup PingFed container when done
+        Exit method to cleanup PingFed container when done
         """
         self.logger.info("Terminating container...")
         self.logger.debug("Terminating container...")

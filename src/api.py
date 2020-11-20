@@ -98,10 +98,10 @@ class Operation:
 
 class Parameter:
     """
-        A parameter is an argument to an operation, which when we generate
-        our modules gets converted to an argument to an API method. This
-        object is used to expose strong typing information in the class
-        methods.
+    A parameter is an argument to an operation, which when we generate
+    our modules gets converted to an argument to an API method. This
+    object is used to expose strong typing information in the class
+    methods.
     """
 
     def __init__(self, param):
