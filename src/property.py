@@ -199,7 +199,7 @@ class Property:
                     valid_data[k] = temp_list
                 """
             elif self.json_sub_type == "enum":
-                return f'valid_data[k] = {start_bracket}{self.sub_type}[x] for x in v{end_bracket}'
+                return f"valid_data[k] = {start_bracket}{self.sub_type}[x] for x in v{end_bracket}"
             elif get_py_type(self.json_sub_type):
                 return f"valid_data[k] = {start_bracket}{self.sub_type}(x) for x in v{end_bracket}"
             elif self.json_sub_type == "Object":
@@ -208,7 +208,7 @@ class Property:
                 return f"valid_data[k] = {start_bracket}{self.sub_type}(**x) for x in v{end_bracket}"
 
         elif self.json_type == "enum":
-            return f'valid_data[k] = {self.type}[v]'
+            return f"valid_data[k] = {self.type}[v]"
 
         elif not get_py_type(self.json_type):
             return f"valid_data[k] = {self.type}(**v)"

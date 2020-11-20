@@ -2,8 +2,7 @@ import os
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_class_name, safe_module_name, safe_name, \
-    get_exception_by_code
+from helpers import safe_class_name, safe_module_name, safe_name
 
 
 class Generate():
@@ -100,7 +99,6 @@ class Generate():
             safe_class_name=safe_class_name,
             safe_module_name=safe_module_name,
             safe_name=safe_name,
-            get_exception_by_code=get_exception_by_code,
             sorted=sorted
         )
         jinjatemplate = jinjaenvironment.get_template(f"./{template}.j2")

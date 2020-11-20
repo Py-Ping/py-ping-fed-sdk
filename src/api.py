@@ -47,6 +47,31 @@ class ApiEndpoint:
                         data["path"], op.get("produces", []))
                 )
 
+    def get_exception_imports(self):
+        exception_import_block = ""
+        for response_code in self.response_codes:
+            if self.get_exception_by_code(response_code) and response_code not in (204, 403):
+                if exception_import_block:
+                    exception_import_block += "\n"
+                exception_type = self.get_exception_by_code(response_code)
+                exception_import_block += f"from pingfedsdk.exceptions import {exception_type}"
+
+        if 'ApiResult' not in self.imports and 422 in self.response_codes:
+            exception_import_block += "\nfrom pingfedsdk.models.api_result import ApiResult as ModelApiResult"
+        return exception_import_block
+
+    def get_exception_by_code(self, http_response_code):
+        if http_response_code == 204:
+            return "ObjectDeleted"
+        elif http_response_code == 400:
+            return "BadRequest"
+        elif http_response_code == 403:
+            return "NotImplementedError"
+        elif http_response_code == 404:
+            return "NotFound"
+        elif http_response_code == 422:
+            return "ValidationError"
+
 
 class Operation:
     """
