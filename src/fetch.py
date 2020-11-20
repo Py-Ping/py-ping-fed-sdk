@@ -19,6 +19,7 @@ class Fetch():
         self.logger.setLevel(
             int(os.environ.get("Logging", logging.INFO))
         )
+        self.base_path = None
         self.session = session
         if not self.session:
             self.session = requests.Session()
@@ -43,6 +44,7 @@ class Fetch():
             raise ConnectionError(err_str)
         self.logger.info(f"Successfully downloaded Ping Swagger document: {self.swagger_url}")
         self.ping_data = response.json()
+        self.base_path = self.ping_data.get('basePath', self.swagger_url)
         self.write_json(data=self.ping_data, name="pf-admin-api", directory="../pingfedsdk/source/")
         self.logger.debug(
             json.dumps(self.ping_data, default=str, sort_keys=True, indent=4, separators=(",", ": "))

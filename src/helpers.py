@@ -28,7 +28,7 @@ def safe_module_name(unsafe_string, sub_char="_"):
 
 
 def safe_class_name(unsafe_string, unsafe_char="/"):
-    safe_class_name = ''
+    safe_class_name = ""
     for substr in unsafe_string.split(unsafe_char):
         if substr:
             safe_class_name += substr[0].capitalize() + substr[1:]
@@ -83,9 +83,9 @@ def retry_with_backoff(func, retries=5, backoff=5):
             func()
         except Exception as ex:
             print(
-                f'{ex}, attempting retry'
-                f'{total_retries - (retries + 1)}/{total_retries},'
-                f'wait {backoff} seconds...'
+                f"{ex}, attempting retry"
+                f"{total_retries - (retries + 1)}/{total_retries},"
+                f"wait {backoff} seconds..."
             )
             retries -= 1
             sleep(backoff)
@@ -108,12 +108,3 @@ def get_exception_by_code(http_response_code):
     elif http_response_code == 422:
         return "ValidationError"
 
-
-def has_substitution(check_string):
-    """
-    Return True if the string needs to be converted to an f-string
-    because it has {} for substitution
-    """
-    l_paren = check_string.find("{") + 1
-    r_paren = check_string.find("}") + 1
-    return l_paren and r_paren and l_paren < r_paren

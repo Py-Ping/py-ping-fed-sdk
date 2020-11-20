@@ -88,6 +88,13 @@ class Operation:
             return "dict"
         return f"Model{self.json_type}"
 
+    def get_api_path(self):
+        l_paren = self.api_path.find("{") + 1
+        r_paren = self.api_path.find("}") + 1
+        if l_paren and r_paren and l_paren < r_paren:
+            return f'f"{self.api_path}"'
+        return f'"{self.api_path}"'
+
 
 class Parameter:
     """

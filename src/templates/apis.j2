@@ -41,7 +41,7 @@ class {{ safe_class_name(class_name) }}:
 {% if operation.method == 'POST' %}{% for parameter in operation.parameters %}{% if parameter.json_type == 'File' %}
                 files={'file': open({{ parameter.name }}, "rb")},
 {% endif %}{% endfor %}{% endif %}
-                url=self._build_uri({% if has_substitution(operation.api_path) %}f{% endif %}"{{ operation.api_path }}"),
+                url=self._build_uri({{ operation.get_api_path() }}),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:

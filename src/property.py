@@ -2,6 +2,16 @@ from helpers import get_py_type
 
 
 class Property:
+    """
+    A Property of a model object.
+
+    Each property section of a model defines details of the variable it represents, including:
+     - it's type
+     - if it is a data structure, what subtypes it has
+     - if the type is another model which model it is
+     - if it is an enum what domain does it have
+    """
+
     def __init__(self, raw_property: dict, model_name=None, property_name=None):
         self.raw_property_dict = raw_property
         self.sub_type = None
@@ -16,12 +26,6 @@ class Property:
 
     def _process(self):
         """
-        Each property section of a model defines details of the variable it represents, including:
-         - it's type
-         - if it is a data structure, what subtypes it has
-         - if the type is another model which model it is
-         - if it is an enum what domain does it have
-
          This method loads all values from the dictionary into the class so type information can
          be queried when we generate the package. This includes:
           - determing what models to import
@@ -133,6 +137,9 @@ class Property:
             return None
 
     def get_enums(self):
+        """
+        If this property references an enum, return the name and enum domain.
+        """
         enum_name = self.get_enum_import()
         if not enum_name:
             return None

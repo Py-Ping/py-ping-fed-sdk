@@ -11,12 +11,14 @@ class IncorrectVersion(Exception):
 
 
 class Override:
-    def __init__(self, file_path, current_version):
-        # 1. read the json file
-        # 2. construct dictionary representing the delta
-        # 3. track applicable version
-        # 4. track applicable file
+    """
+    1. read the json file
+    2. construct dictionary representing the delta
+    3. track applicable version
+    4. track applicable file
+    """
 
+    def __init__(self, file_path, current_version):
         self.current_version = current_version
         self.override_patch = json.loads(open(file_path).read())
         self.file = file_path.split("/")[-1].split(".")[0]
