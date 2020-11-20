@@ -2,9 +2,11 @@ import json
 import os
 import requests
 import logging
+import glob
 from helpers import safe_name, safe_module_name
 from property import Property
 from api import ApiEndpoint
+from overrides import Override
 
 
 class Fetch():
@@ -73,61 +75,67 @@ class Fetch():
         except IOError:
             return False
 
-    def get_api_schema(self, api_schema_key="apis", verify=False):
+    def apply_override_patch(self, api_name, api_version, api_data):
+        override_path = f"src/overrides/{api_name}"
+        if api_version and os.path.exists(f"{override_path}.{api_version}.delta"):
+            override_path = f"{override_path}.{api_version}.delta"
+            override = Override(override_path, api_version)
+            return override.apply_patch(api_data)
+        elif os.path.exists(f"{override_path}.all.delta"):
+            override = Override(f"{override_path}.all.delta", api_version)
+            return override.apply_patch(api_data)
+        return api_data
+
+    def get_api_schema(self, api_path, api_name, verify=False):
+        safe_api_name = safe_name(api_name)
+        print(api_path)
+        if os.path.exists(api_path):
+            response = self.read_json(file=api_path)
+            response = self.apply_override_patch(safe_api_name[1:], response["apiVersion"], response)
+            if api_name != "/overrides":
+                self.apis[response.get("resourcePath", safe_api_name)] = ApiEndpoint(
+                    api_name, response.get("apis", [])
+                )
+            self.models.update(response.get("models", {}))
+        else:
+            try:
+                self.logger.info(f"Attempting to retrieve {self.base_path}{api_name}")
+                response = self.session.get(f"{self.base_path}{api_name}")
+            except Exception as err:
+                self.logger.error(f"Failed to download swagger from: {self.base_path}{api_name} with error {err}")
+            else:
+                r_json = response.json()
+                r_json = self.apply_override_patch(safe_api_name[1:], r_json["apiVersion"], r_json)
+
+                self.apis[r_json.get("resourcePath", safe_api_name)] = ApiEndpoint(api_name, r_json.get("apis", []))
+                self.models.update(r_json.get("models", {}))
+                self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.base_path}{api_name}")
+                if safe_api_name.startswith("_"):
+                    safe_api_name = safe_api_name[1:]
+                self.write_json(data=r_json, name=safe_api_name, directory="../pingfedsdk/source/apis/")
+
+    def get_api_schemas(self, api_schema_key="apis", verify=False):
         """
             Iterate over each API in the schema file pf-admin-api and pull
             down each paths content. Store in the api and model dictionaries
             and write to the repository
         """
         for api in self.ping_data.get(api_schema_key, {}):
-            safe_api_path = safe_name(api.get("path"))
-            api_path = api.get("path")
+            safe_api_name = safe_name(api.get("path"))
+            if safe_api_name.startswith("_"):
+                safe_api_name = safe_api_name[1:]
+            api_path = f"{self.project_path}/../pingfedsdk/source/apis/{safe_api_name}.json"
+            self.get_api_schema(api_path, api.get("path"), verify=False)
 
-            abs_path = f"{self.project_path}/../pingfedsdk/source/apis/{safe_api_path[1:]}.json"
-            module_name = safe_module_name(api_path)
-            if os.path.exists(abs_path):
-                response = self.read_json(file=abs_path)
-                self.apis[response.get("resourcePath", safe_api_path)] = ApiEndpoint(
-                    api_path, response.get("apis", [])
-                )
-                for model_name, model_data in response.get("models", {}).items():
-                    if model_name in self.models:
-                        self.models[model_name]['api_references'].append(module_name)
-                    else:
-                        model_data['api_references'] = [module_name]
-                        self.models[model_name] = model_data
-            else:
-                try:
-                    self.logger.info(f"Attempting to retrieve {self.swagger_url}{api_path}")
-                    response = self.session.get(f"{self.swagger_url}{api.get('path')}")
-                except Exception as err:
-                    self.logger.error(f"Failed to download swagger from: {self.swagger_url}{api_path} with error {err}")
-                else:
-                    r_json = response.json()
-
-                    self.apis[r_json.get("resourcePath", safe_api_path)] = ApiEndpoint(api_path, r_json.get("apis", []))
-                    for model_name, model_data in r_json.get("models", {}).items():
-                        if model_name in self.models:
-                            self.models[model_name]['api_references'].append(module_name)
-                        else:
-                            model_data['api_references'] = [module_name]
-                            self.models[model_name] = model_data
-                    self.logger.debug(f"Successfully downloaded Ping Swagger document: {self.swagger_url}{api_path}")
-                    if safe_api_path.startswith('_'):
-                        safe_api_path = safe_api_path[1:]
-                    self.write_json(data=r_json, name=safe_api_path, directory="../pingfedsdk/source/apis/")
+        api_path = f"{self.project_path}/overrides/*.json"
+        for file_path in glob.glob(api_path):
+            file_name = file_path.split("/")[-1].split(".")[0]
+            # set the overridden definitions
+            self.get_api_schema(file_path, f'/{file_name}', verify=False)
 
         self.processed_model = {}
         for model, details in self.models.items():
             imports = {"models": set(), "enums": set()}
-            if 'extends' in details:
-                base_model = details['extends']
-                if base_model in self.models:
-                    if 'subTypes' in self.models[base_model] and model not in self.models[base_model]['subTypes']:
-                        self.models[base_model]['subTypes'].append(model)
-                    elif 'subTypes' not in self.models[base_model]:
-                        self.models[base_model]['subTypes'] = [model]
-
             for prop_name, prop in details.get("properties", {}).items():
                 model_property = Property(prop, model, prop_name)
                 model_import = model_property.get_model_import()
@@ -139,7 +147,7 @@ class Fetch():
                     imports["models"].add("CustomDataStore")
                     imports["models"].add("LdapDataStore")
                     imports["models"].add("DataStore")
-                elif model_import and model_import not in imports["models"]:
+                if model_import and model_import not in imports["models"]:
                     imports["models"].add(model_import)
                 if enum_import and enum_import not in imports["enums"]:
                     imports["enums"].add(enum_import)
@@ -156,14 +164,13 @@ class Fetch():
 
     def fetch(self):
         self.get_source()
-        self.get_api_schema()
+        self.get_api_schemas()
 
         return {
             "models": self.models,
             "apis": self.apis,
             "enums": self.enums
         }
-
 
 if __name__ == "__main__":
     Fetch("https://localhost:9999/pf-admin-api/v1/api-docs").fetch()

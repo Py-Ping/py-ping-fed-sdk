@@ -35,7 +35,12 @@ def safe_class_name(unsafe_string, unsafe_char="/"):
     return safe_class_name
 
 
-def json_type_convert(json_type):
+def get_py_type(json_type):
+    """
+        Given a JSON type return a corresponding Python type.
+        If no type can be determined, return an empty string.
+    """
+
     if json_type in ("enum", "string", "File"):
         return "str"
     elif json_type == "boolean":

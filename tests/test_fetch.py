@@ -41,8 +41,8 @@ class TestFetch(TestCase):
         )
 
     @patch("fetch.Fetch.get_source")
-    @patch("fetch.Fetch.get_api_schema")
-    def test_fetch(self, get_source_mock, get_api_schema_mock):
+    @patch("fetch.Fetch.get_api_schemas")
+    def test_fetch(self, get_source_mock, get_api_schemas_mock):
 
         self.assertEqual(
             self.fetch.fetch(),
@@ -54,7 +54,7 @@ class TestFetch(TestCase):
         )
 
         get_source_mock.assert_called_once_with()
-        get_api_schema_mock.assert_called_once_with()
+        get_api_schemas_mock.assert_called_once_with()
 
     @patch("fetch.json")
     @patch("fetch.os")
@@ -120,6 +120,8 @@ class TestFetch(TestCase):
             self.fetch.read_json("another_file_name.test")
         )
 
+    @patch("fetch.glob.glob")
+    @patch("fetch.Fetch.get_api_schema")
     @patch("fetch.ApiEndpoint")
     @patch("fetch.Fetch.write_json")
     @patch("fetch.Fetch.read_json")
@@ -127,11 +129,12 @@ class TestFetch(TestCase):
     @patch("fetch.safe_name")
     def test_api_schema(
         self, safe_name_mock, os_mock, read_json_mock,
-        write_json_mock, api_endpoint_mock
+        write_json_mock, api_endpoint_mock, get_api_schema_mock, glob_mock
     ):
 
+        glob_mock.return_value = []
         self.fetch.ping_data = {}
-        self.assertIsNone(self.fetch.get_api_schema())
+        self.assertIsNone(self.fetch.get_api_schemas())
         self.assertEqual(self.fetch.ping_data, {})
         self.assertEqual(self.fetch.models, {})
         self.assertEqual(self.fetch.apis, {})
@@ -156,19 +159,16 @@ class TestFetch(TestCase):
             "models": {}
         }
 
-        self.session_mock.get.return_value.json.return_value = {
+        get_api_schema_mock.return_value.json.return_value = {
             "models": {}
         }
-        self.assertIsNone(self.fetch.get_api_schema())
+        self.assertIsNone(self.fetch.get_api_schemas())
 
         os_mock.path.exists.has_calls([
             call("/dummy/path/source/apis/have_a_penguin.json"),
             call("/dummy/path/source/apis/have_a_pelican.json")
         ])
 
-        self.session_mock.get.assert_called_once_with(
-            "https://dummy.url/dochave/a/pelican"
-        )
         self.assertEqual(
             self.fetch.ping_data,
             {"apis": [{"path": "have/a/penguin"}, {"path": "have/a/pelican"}]}

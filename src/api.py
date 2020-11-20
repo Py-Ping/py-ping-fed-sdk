@@ -1,10 +1,11 @@
 
-from helpers import json_type_convert, safe_name
+from helpers import get_py_type, safe_name
 
 
 class ApiEndpoint:
     """
-    Manages data and logic for working with an Api class
+    Manages data and logic for working with an API class.
+
     This was created to take out as much logic as possible from
     the Jinja template and make it compatible with Python native
     Dynamic classes.
@@ -36,7 +37,7 @@ class ApiEndpoint:
                     if response_code["code"] not in self.response_codes:
                         self.response_codes.add(response_code["code"])
 
-                if not json_type_convert(op["type"]) and op["type"] not in self.imports:
+                if not get_py_type(op["type"]) and op["type"] not in self.imports:
                     self.imports.add(op["type"])
 
                 self.operations.append(
@@ -48,14 +49,21 @@ class ApiEndpoint:
 
 
 class Operation:
+    """
+    An operation contains all metadata for an API classes method.
+    For example if the API endpoint defines a POST an Operation will track
+    parameters it requires, response codes to expect, the method name,
+    the type of return value etc.
+    """
+
     def __init__(self, parameters=[], response_codes=[], op_type=None, nickname='', summary='', method='', api_path='', produces=[]):
         self.parameters = parameters
         self.response_codes = response_codes
         self.json_type = op_type
         self.type = op_type
-        if json_type_convert(op_type):
-            self.type = json_type_convert(op_type)
-        self.is_primitive_type = bool(json_type_convert(op_type))
+        if get_py_type(op_type):
+            self.type = get_py_type(op_type)
+        self.is_primitive_type = bool(get_py_type(op_type))
         self.nickname = nickname
         self.summary = summary
         self.method = method
@@ -63,9 +71,9 @@ class Operation:
         self.produces = produces
 
     def get_response_str(self):
-        if json_type_convert(self.json_type) not in ("", "None") and self.is_primitive_type:
+        if get_py_type(self.json_type) not in ("", "None") and self.is_primitive_type:
             return f"{self.type}(response)"
-        elif json_type_convert(self.json_type) == "None":
+        elif get_py_type(self.json_type) == "None":
             if "application/zip" in self.produces:
                 return "response"
             else:
@@ -82,16 +90,23 @@ class Operation:
 
 
 class Parameter:
+    """
+        A parameter is an argument to an operation, which when we generate
+        our modules gets converted to an argument to an API method. This
+        object is used to expose strong typing information in the class
+        methods.
+    """
+
     def __init__(self, param):
         self._raw_param = param
         self.json_type = self._raw_param["type"]
         self.type = self._raw_param["type"]
         self.required = self._raw_param["required"]
-        if json_type_convert(self._raw_param["type"]):
-            self.type = json_type_convert(self._raw_param["type"])
+        if get_py_type(self._raw_param["type"]):
+            self.type = get_py_type(self._raw_param["type"])
         self.name = self._raw_param["name"]
         self.safe_name = safe_name(self._raw_param["name"])
-        self.is_primitive_type = bool(json_type_convert(self._raw_param["type"]))
+        self.is_primitive_type = bool(get_py_type(self._raw_param["type"]))
 
     def get_parameter_str(self):
         if self.is_primitive_type:

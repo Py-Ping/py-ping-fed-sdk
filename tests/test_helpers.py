@@ -2,7 +2,7 @@
 from unittest import TestCase
 from unittest.mock import patch, MagicMock, call
 from helpers import safe_class_name, safe_name, safe_module_name, \
-    json_type_convert, get_auth_session, retry_with_backoff
+    get_py_type, get_auth_session, retry_with_backoff
 
 
 class TestHelpers(TestCase):
@@ -40,33 +40,33 @@ class TestHelpers(TestCase):
             "OauthResourceOwnerCredentialsMappings"
         )
 
-    def test_json_type_convert(self):
+    def test_get_py_type(self):
         self.assertEqual(
-            json_type_convert("enum"),
+            get_py_type("enum"),
             "str"
         )
         self.assertEqual(
-            json_type_convert("string"),
+            get_py_type("string"),
             "str"
         )
         self.assertEqual(
-            json_type_convert("boolean"),
+            get_py_type("boolean"),
             "bool"
         )
         self.assertEqual(
-            json_type_convert("array"),
+            get_py_type("array"),
             "list"
         )
         self.assertEqual(
-            json_type_convert("integer"),
+            get_py_type("integer"),
             "int"
         )
         self.assertEqual(
-            json_type_convert("number"),
+            get_py_type("number"),
             "float"
         )
         self.assertEqual(
-            json_type_convert("notatype"),
+            get_py_type("notatype"),
             ""
         )
 
