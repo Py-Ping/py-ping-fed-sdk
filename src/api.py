@@ -1,10 +1,11 @@
 
-from helpers import json_type_convert, safe_name
+from helpers import get_py_type, safe_name
 
 
 class ApiEndpoint:
     """
-    Manages data and logic for working with an Api class
+    Manages data and logic for working with an API class.
+
     This was created to take out as much logic as possible from
     the Jinja template and make it compatible with Python native
     Dynamic classes.
@@ -36,7 +37,7 @@ class ApiEndpoint:
                     if response_code["code"] not in self.response_codes:
                         self.response_codes.add(response_code["code"])
 
-                if not json_type_convert(op["type"]) and op["type"] not in self.imports:
+                if not get_py_type(op["type"]) and op["type"] not in self.imports:
                     self.imports.add(op["type"])
 
                 self.operations.append(
@@ -46,16 +47,48 @@ class ApiEndpoint:
                         data["path"], op.get("produces", []))
                 )
 
+    def get_exception_imports(self):
+        exception_import_block = ""
+        for response_code in self.response_codes:
+            if self.get_exception_by_code(response_code) and response_code not in (204, 403):
+                if exception_import_block:
+                    exception_import_block += "\n"
+                exception_type = self.get_exception_by_code(response_code)
+                exception_import_block += f"from pingfedsdk.exceptions import {exception_type}"
+
+        if 'ApiResult' not in self.imports and 422 in self.response_codes:
+            exception_import_block += "\nfrom pingfedsdk.models.api_result import ApiResult as ModelApiResult"
+        return exception_import_block
+
+    def get_exception_by_code(self, http_response_code):
+        if http_response_code == 204:
+            return "ObjectDeleted"
+        elif http_response_code == 400:
+            return "BadRequest"
+        elif http_response_code == 403:
+            return "NotImplementedError"
+        elif http_response_code == 404:
+            return "NotFound"
+        elif http_response_code == 422:
+            return "ValidationError"
+
 
 class Operation:
+    """
+    An operation contains all metadata for an API classes method.
+    For example if the API endpoint defines a POST an Operation will track
+    parameters it requires, response codes to expect, the method name,
+    the type of return value etc.
+    """
+
     def __init__(self, parameters=[], response_codes=[], op_type=None, nickname='', summary='', method='', api_path='', produces=[]):
         self.parameters = parameters
         self.response_codes = response_codes
         self.json_type = op_type
         self.type = op_type
-        if json_type_convert(op_type):
-            self.type = json_type_convert(op_type)
-        self.is_primitive_type = bool(json_type_convert(op_type))
+        if get_py_type(op_type):
+            self.type = get_py_type(op_type)
+        self.is_primitive_type = bool(get_py_type(op_type))
         self.nickname = nickname
         self.summary = summary
         self.method = method
@@ -63,9 +96,9 @@ class Operation:
         self.produces = produces
 
     def get_response_str(self):
-        if json_type_convert(self.json_type) not in ("", "None") and self.is_primitive_type:
+        if get_py_type(self.json_type) not in ("", "None") and self.is_primitive_type:
             return f"{self.type}(response)"
-        elif json_type_convert(self.json_type) == "None":
+        elif get_py_type(self.json_type) == "None":
             if "application/zip" in self.produces:
                 return "response"
             else:
@@ -80,18 +113,32 @@ class Operation:
             return "dict"
         return f"Model{self.json_type}"
 
+    def get_api_path(self):
+        l_paren = self.api_path.find("{") + 1
+        r_paren = self.api_path.find("}") + 1
+        if l_paren and r_paren and l_paren < r_paren:
+            return f'f"{self.api_path}"'
+        return f'"{self.api_path}"'
+
 
 class Parameter:
+    """
+    A parameter is an argument to an operation, which when we generate
+    our modules gets converted to an argument to an API method. This
+    object is used to expose strong typing information in the class
+    methods.
+    """
+
     def __init__(self, param):
         self._raw_param = param
         self.json_type = self._raw_param["type"]
         self.type = self._raw_param["type"]
         self.required = self._raw_param["required"]
-        if json_type_convert(self._raw_param["type"]):
-            self.type = json_type_convert(self._raw_param["type"])
+        if get_py_type(self._raw_param["type"]):
+            self.type = get_py_type(self._raw_param["type"])
         self.name = self._raw_param["name"]
         self.safe_name = safe_name(self._raw_param["name"])
-        self.is_primitive_type = bool(json_type_convert(self._raw_param["type"]))
+        self.is_primitive_type = bool(get_py_type(self._raw_param["type"]))
 
     def get_parameter_str(self):
         if self.is_primitive_type:

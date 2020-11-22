@@ -5,14 +5,7 @@ import traceback
 from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-{% for response_code in details.response_codes %}
-{% if get_exception_by_code(response_code) and response_code not in (204, 403) %}
-from pingfedsdk.exceptions import {{ get_exception_by_code(response_code) }}
-{% endif %}
-{% endfor %}
-{% if 'ApiResult' not in details.imports and 422 in details.response_codes %}
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-{% endif %}
+{{ details.get_exception_imports() }}
 {% for imp in details.imports %}
 from pingfedsdk.models.{{ safe_module_name(imp) }} import {{ imp }} as Model{{ imp }}
 {% endfor %}
@@ -41,7 +34,7 @@ class {{ safe_class_name(class_name) }}:
 {% if operation.method == 'POST' %}{% for parameter in operation.parameters %}{% if parameter.json_type == 'File' %}
                 files={'file': open({{ parameter.name }}, "rb")},
 {% endif %}{% endfor %}{% endif %}
-                url=self._build_uri({% if has_substitution(operation.api_path) %}f{% endif %}"{{ operation.api_path }}"),
+                url=self._build_uri({{ operation.get_api_path() }}),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
@@ -62,10 +55,10 @@ class {{ safe_class_name(class_name) }}:
 {% elif response_code["code"] == 204 %}
                 self.logger.info("{{ response_code["message"] }}")
                 return ModelApiResult(message="{{ response_code["message"] }}", validationErrors=[])
-{% elif get_exception_by_code(response_code["code"]) %}
+{% elif details.get_exception_by_code(response_code["code"]) %}
                 message = "({{ response_code["code"] }}) {{ response_code["message"] }}"
                 self.logger.info(message)
-                raise {{ get_exception_by_code(response_code["code"]) }}(message)
+                raise {{ details.get_exception_by_code(response_code["code"]) }}(message)
 {% endif %}
 {% endfor %}
             return {{ operation.get_response_str() }}

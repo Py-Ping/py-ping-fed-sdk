@@ -1,4 +1,5 @@
 from pingfedsdk.model import Model
+from enum import Enum
 {% for folder, imports in details.get('imports').items() %}
 {% for imp in imports %}
 {% if folder == 'models' %}
@@ -22,25 +23,6 @@ class {{ class_name }}(Model):
 
 {% endif %}
 {% endfor %}
-    Referenced in:
-    --------------
-{% for reference in sorted(details.get('api_references')) %}
-        - apis/{{ reference }}.py
-{% endfor %}
-{% if details.get('subTypes', []) %}
-
-    Referenced by:
-    --------------
-{% for subtype in sorted(details.get('subTypes', [])) %}
-        - {{ subtype }}
-{% endfor %}
-{% endif %}
-{% if details.get('extends', '') %}
-
-    Base class:
-    --------------
-        - {{ details.get('extends', '') }}
-{% endif %}
     """
 
     def __init__(self{% for property in details.get('required', []) %}, {{ safe_name(property) }}: {{ details['properties'][property].type }}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}: {{ attributes.type }} = None{% endfor %}) -> None:
@@ -65,12 +47,12 @@ class {{ class_name }}(Model):
         for k, v in python_dict.items():
             if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] and v is not None:
 {% for property, detail in details.get('properties').items() %}                if k == "{{ safe_name(property) }}":
-                    {{ detail.get_from_dict_str() }}
+                    valid_data[k] = {{ detail.get_from_dict_str() }}
 {% endfor %}
 
         return cls(**valid_data)
 
-    def to_dict(self):
+    def to_dict(self, remove_nonetypes=False):
         """
         Naive dictionary serialiser. Recursively handles most types in this
         module. If you make your own class you need to inherit from model
@@ -80,32 +62,34 @@ class {{ class_name }}(Model):
         for k, v in self.__dict__.items():
             if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}]:
                 if isinstance(v, Model):
-                    body[k] = v.to_dict()
+                    body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):
                     vals = []
                     for x in v:
                         if isinstance(x, Model):
-                            vals.append(x.to_dict())
-                        else:
+                            vals.append(x.to_dict(remove_nonetypes))
+                        elif not remove_nonetypes or (remove_nonetypes and x is not None):
                             vals.append(x)
                     body[k] = vals
                 elif isinstance(v, dict):
                     vals = {}
                     for x, y in v.items():
                         if isinstance(y, Model):
-                            vals[x] = y.to_dict()
-                        else:
+                            vals[x] = y.to_dict(remove_nonetypes)
+                        elif not remove_nonetypes or (remove_nonetypes and y is not None):
                             vals[x] = y
                     body[k] = vals
                 elif isinstance(v, set):
                     vals = []
                     for x in v:
                         if isinstance(x, Model):
-                            vals.append(x.to_dict())
-                        else:
+                            vals.append(x.to_dict(remove_nonetypes))
+                        elif not remove_nonetypes or (remove_nonetypes and x is not None):
                             vals.append(x)
                     body[k] = vals
-                else:
+                elif isinstance(v, Enum):
+                    body[k] = str(v).split('.')[-1]
+                elif not remove_nonetypes or (remove_nonetypes and v is not None):
                     body[k] = v
         return body
 

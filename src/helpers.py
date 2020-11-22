@@ -28,14 +28,19 @@ def safe_module_name(unsafe_string, sub_char="_"):
 
 
 def safe_class_name(unsafe_string, unsafe_char="/"):
-    safe_class_name = ''
+    safe_class_name = ""
     for substr in unsafe_string.split(unsafe_char):
         if substr:
             safe_class_name += substr[0].capitalize() + substr[1:]
     return safe_class_name
 
 
-def json_type_convert(json_type):
+def get_py_type(json_type):
+    """
+    Given a JSON type return a corresponding Python type.
+    If no type can be determined, return an empty string.
+    """
+
     if json_type in ("enum", "string", "File"):
         return "str"
     elif json_type == "boolean":
@@ -78,9 +83,9 @@ def retry_with_backoff(func, retries=5, backoff=5):
             func()
         except Exception as ex:
             print(
-                f'{ex}, attempting retry'
-                f'{total_retries - (retries + 1)}/{total_retries},'
-                f'wait {backoff} seconds...'
+                f"{ex}, attempting retry"
+                f"{total_retries - (retries + 1)}/{total_retries},"
+                f"wait {backoff} seconds..."
             )
             retries -= 1
             sleep(backoff)
@@ -89,26 +94,3 @@ def retry_with_backoff(func, retries=5, backoff=5):
         return True
     if not retries:
         return False
-
-
-def get_exception_by_code(http_response_code):
-    if http_response_code == 204:
-        return "ObjectDeleted"
-    elif http_response_code == 400:
-        return "BadRequest"
-    elif http_response_code == 403:
-        return "NotImplementedError"
-    elif http_response_code == 404:
-        return "NotFound"
-    elif http_response_code == 422:
-        return "ValidationError"
-
-
-def has_substitution(check_string):
-    """
-    Return True if the string needs to be converted to an f-string
-    because it has {} for substitution
-    """
-    l_paren = check_string.find("{") + 1
-    r_paren = check_string.find("}") + 1
-    return l_paren and r_paren and l_paren < r_paren

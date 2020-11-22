@@ -2,8 +2,7 @@ import os
 import logging
 from jinja2 import Environment, FileSystemLoader
 from fetch import Fetch
-from helpers import safe_class_name, safe_module_name, safe_name, \
-    get_exception_by_code, has_substitution
+from helpers import safe_class_name, safe_module_name, safe_name
 
 
 class Generate():
@@ -85,10 +84,10 @@ class Generate():
 
     def render_file(self, template, name, details, template_directory="templates"):
         """
-            Given the name of the jinja2 template to work from, the name of the
-            class being generated inside of the file, the data to fill in to the
-            file with the template and the directory where the template resides
-            render the code file and return the result as a string.
+        Given the name of the jinja2 template to work from, the name of the
+        class being generated inside of the file, the data to fill in to the
+        file with the template and the directory where the template resides
+        render the code file and return the result as a string.
         """
         currentdirectory = os.path.dirname(__file__)
         templatedirectory = os.path.join(currentdirectory, template_directory)
@@ -100,8 +99,6 @@ class Generate():
             safe_class_name=safe_class_name,
             safe_module_name=safe_module_name,
             safe_name=safe_name,
-            get_exception_by_code=get_exception_by_code,
-            has_substitution=has_substitution,
             sorted=sorted
         )
         jinjatemplate = jinjaenvironment.get_template(f"./{template}.j2")
