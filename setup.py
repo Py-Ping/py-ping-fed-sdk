@@ -7,6 +7,10 @@ def read_contents(name):
     with open(name, "r") as fh:
         return fh.read()
 
+requires = [
+    'requests==2.25.0'
+]
+
 setup(
     name=f"pingfedsdk-{read_contents('PINGVERSION')}",
     version=read_contents("VERSION"),
@@ -29,5 +33,6 @@ setup(
     url="https://github.com/Versent/py-ping-fed-sdk",
     py_modules=["pingfedsdk"],
     package_dir={"": "pingfedsdk"},
+    install_requires=requires,
     zip_safe=False,
 )
