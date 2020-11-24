@@ -13,6 +13,7 @@ Jinja2 = "*"
 flake8 = "*"
 pipenv-setup = "*"
 twine = "*"
+docker = "*"
 
 [packages]
 python-decouple = "*"
