@@ -16,16 +16,16 @@ class TestFetch(TestCase):
         self.session_mock = MagicMock()
         self.fetch = Fetch("https://dummy.url/doc", session=self.session_mock)
 
-    @patch("fetch.logging")
     @patch("fetch.Fetch.write_json")
-    @patch("fetch.requests.Session")
-    def test_get_source(self, requests_mock, write_json_mock, logging_mock):
-        self.logging_mock = logging_mock.getLogger.return_value
-        self.fetch = Fetch("https://dummy.url/doc")
+    def test_get_source(self, write_json_mock):
         self.fetch.get_source()
 
+        self.session_mock.get.assert_called_once_with(
+            "https://dummy.url/doc"
+        )
+        self.session_mock.get.return_value.json.assert_called_once_with()
         write_json_mock.assert_called_once_with(
-            data=self.fetch.session.get.return_value.json.return_value,
+            data=self.session_mock.get.return_value.json.return_value,
             name="pf-admin-api", directory="../pingfedsdk/source/",
         )
         self.logging_mock.info.assert_called_once_with(
@@ -33,12 +33,12 @@ class TestFetch(TestCase):
             "https://dummy.url/doc"
         )
 
-    @patch("fetch.Fetch.write_json")
-    @patch("fetch.requests")
-    def test_get_source_exception(self, requests_mock, write_json_mock):
-        requests_mock.get.side_effect = Exception("HTTPSConnectionPoolError")
+        self.session_mock.get.side_effect = Exception("test exception")
         self.assertRaises(ConnectionError, self.fetch.get_source)
-        self.logging_mock.error.assert_called_once()
+        self.logging_mock.error.assert_called_once_with(
+            "Failed to download swagger from: "
+            "https://dummy.url/doc with error test exception"
+        )
 
     @patch("fetch.Fetch.get_source")
     @patch("fetch.Fetch.get_api_schemas")
@@ -174,4 +174,8 @@ class TestFetch(TestCase):
             {"apis": [{"path": "have/a/penguin"}, {"path": "have/a/pelican"}]}
         )
         self.assertEqual(self.fetch.models, {})
+<<<<<<< HEAD
         self.assertEqual(self.fetch.enums, {})
+=======
+        self.assertEqual(self.fetch.enums, {})
+>>>>>>> 3ac2cc2 (Rebase test from master)
