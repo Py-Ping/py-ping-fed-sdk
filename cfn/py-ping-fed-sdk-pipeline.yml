@@ -1,0 +1,265 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Ping Federate SDK Pipeline'
+
+Parameters:
+  GitHubRepo:
+    Type: String
+    Description: GitHub repository
+  GitHubBranch:
+    Type: String
+    Description: Branch name
+    Default: master
+  GitHubOrg:
+    Type: String
+    Description: GitHub Org
+  ProjectId:
+    Type: String
+    Description: Ping Project
+  PingS3Bucket:
+    Type: String
+    Description: Ping S3 Bucket
+  AccountId:
+    Type: String
+    Description: Account ID
+  PingIdentityDevopsUser:
+    Type: String
+    Description: Ping DevOps User
+  PingIdentityDevopsKey:
+    Type: String
+    Description: Ping DevOps Key
+  OAuthSecret:
+    Description: Secret ARN for Github OAuth Key
+    Type: String
+    Default: arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN
+  CodeArtifactDomain:
+    Description: CodeArtifact Domain
+    Type: String
+    Default: internal-tools-versent
+
+Resources:
+
+  ArtifactBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Sub '${AWS::Region}.${AWS::AccountId}.${ProjectId}.pipeline'
+      Tags:
+        - Key: Name
+          Value: !Sub '${ProjectId} S3Bucket'
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              KMSMasterKeyID: !GetAtt KMSKey.Arn
+              SSEAlgorithm: 'aws:kms'
+
+  KMSKey:
+    Type: 'AWS::KMS::Key'
+    Properties:
+      Description: !Sub 'Used by in Build Pipeline for ${ProjectId}'
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: 2012-10-17
+        Id: !Sub '${ProjectId}-Pipeline'
+        Statement:
+          - Sid: Allows admin of the key
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Action:
+              - 'kms:Create*'
+              - 'kms:Describe*'
+              - 'kms:Enable*'
+              - 'kms:List*'
+              - 'kms:Put*'
+              - 'kms:Update*'
+              - 'kms:Revoke*'
+              - 'kms:Disable*'
+              - 'kms:Get*'
+              - 'kms:Delete*'
+              - 'kms:ScheduleKeyDeletion'
+              - 'kms:CancelKeyDeletion'
+              - 'kms:Encrypt'
+              - 'kms:Decrypt'
+              - 'kms:ReEncrypt*'
+              - 'kms:GenerateDataKey*'
+              - 'kms:DescribeKey'
+            Resource: '*'
+
+  KMSAlias:
+    Type: 'AWS::KMS::Alias'
+    Properties:
+      AliasName: !Sub 'alias/${ProjectId}'
+      TargetKeyId: !Ref KMSKey
+  
+  CodeBuildServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "codebuild.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      Policies:
+        - PolicyName: !Sub iam-${GitHubBranch}-CodeBuildPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: '*'
+                Resource: '*'
+
+  SDKPipeline: 
+    Type: AWS::CodePipeline::Pipeline
+    Properties: 
+      RoleArn: !GetAtt CodeBuildRole.Arn
+      Stages: 
+        - Name: Source
+          Actions: 
+            - 
+              Name: ApplicationSource
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: 1
+                Provider: GitHub
+              Configuration:
+                Owner: !Ref GitHubOrg
+                Repo: !Ref GitHubRepo
+                Branch: !Ref GitHubBranch
+                OAuthToken: !Sub "{{resolve:secretsmanager:${OAuthSecret}:SecretString:OAuthKey}}"
+              OutputArtifacts:
+                - Name: SourceArtifact
+        - Name: Build
+          Actions:
+            - Name: BuildArtifact
+              InputArtifacts:
+                - Name: SourceArtifact
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              Configuration:
+                ProjectName: !Ref BuildArtifact
+              RunOrder: 1
+      ArtifactStore:
+        Type: S3
+        Location:
+          Ref: ArtifactBucket
+        EncryptionKey:
+          Id: !GetAtt KMSKey.Arn
+          Type: KMS
+
+  BuildArtifact:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub ${ProjectId}-artifact-build
+      Description: Build Task for build
+      Artifacts:
+        Type: CODEPIPELINE
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: buildspec/base.yaml
+      Environment:
+        ComputeType: BUILD_GENERAL1_MEDIUM
+        Image: aws/codebuild/standard:3.0
+        Type: LINUX_CONTAINER
+        PrivilegedMode: True
+        EnvironmentVariables:
+          - Name: PROJECT_ID
+            Value: !Ref ProjectId
+          - Name: S3_BUCKET
+            Value: !Ref PingS3Bucket
+          - Name: ACCOUNT_ID
+            Value: !Ref AccountId
+          - Name: PING_IDENTITY_DEVOPS_USER
+            Value: !Ref PingIdentityDevopsUser
+          - Name: PING_IDENTITY_DEVOPS_KEY
+            Value: !Ref PingIdentityDevopsKey
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+
+  CodeBuildRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+                - codedeploy.amazonaws.com
+                - codepipeline.amazonaws.com
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess'
+        - 'arn:aws:iam::aws:policy/AWSCodeDeployFullAccess'
+        - 'arn:aws:iam::aws:policy/AWSCodePipelineFullAccess'
+      Path: /
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - 's3:PutObject'
+                  - 's3:GetObject'
+                  - 's3:GetObjectVersion'
+                Effect: Allow
+                Resource: '*'
+              - Action:
+                  - 'kms:GenerateDataKey*'
+                  - 'kms:Encrypt'
+                  - 'kms:Decrypt'
+                Effect: Allow
+                Resource: '*'
+              - Action:
+                  - 'sts:AssumeRole'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ProjectId}*'
+              - Action:
+                  - 'iam:PassRole'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ProjectId}*'
+              - Action:
+                  - 'sts:GetServiceBearerToken'
+                Effect: Allow
+                Resource: '*'
+              - Action:
+                  - 'codeartifact:DescribeRepository'
+                  - 'codeartifact:GetAuthorizationToken'
+                  - 'codeartifact:GetRepositoryEndpoint'
+                  - 'codeartifact:ListPackageVersionAssets'
+                  - 'codeartifact:ListPackageVersionDependencies'
+                  - 'codeartifact:ListPackageVersions'
+                  - 'codeartifact:ListPackages'
+                  - 'codeartifact:ListRepositories'
+                  - 'codeartifact:ListRepositoriesInDomain'
+                  - 'codeartifact:PublishPackageVersion'
+                  - 'codeartifact:PutPackageMetadata'
+                  - 'codeartifact:ReadFromRepository'
+                  - 'codeartifact:UpdatePackageVersionsStatus'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:domain/internal-tools-versent'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:package/internal-tools-versent/${ProjectId}/*'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/${ProjectId}'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/${ProjectId}/*'
+          PolicyName: CodeBuildPolicy
+      RoleName: !Sub '${ProjectId}-CodeBuildRole'
+
+  CodeArtifactRepository:
+    Type: AWS::CodeArtifact::Repository
+    Properties:
+      RepositoryName: !Ref ProjectId
+      DomainName: !Ref CodeArtifactDomain
+      Description: !Sub Repository to manage ${ProjectId}

@@ -13,6 +13,8 @@ REGION = ap-southeast-2
 ACCOUNTID = 012345678901
 REGISTRY = $(ACCOUNTID).dkr.ecr.$(REGION).amazonaws.com
 
+include ./settings/defaults.conf
+
 genReqs:
 	pipenv lock -r > requirements.txt
 .PHONY: genReqs
@@ -86,3 +88,21 @@ example:
 map-dependencies:
 	PYTHONPATH=$(shell pwd)/src:$(shell pwd) python3 scripts/map_dependencies.py
 .PHONY: example
+
+deploy-pipeline:   ## Deploy Ping Fed SDK Pipeline
+	@aws cloudformation deploy \
+		--template-file cfn/py-ping-fed-sdk-pipeline.yml \
+		--stack-name py-ping-fed-sdk-pipeline \
+		--capabilities CAPABILITY_NAMED_IAM \
+		--no-fail-on-empty-changeset \
+		--parameter-overrides \
+			GitHubOrg=$(GIT_ORG) \
+			GitHubToken=$(GIT_TOKEN) \
+			GitHubRepo=$(GIT_REPO) \
+			ProjectId=$(PROJECT_ID) \
+			PingS3Bucket=$(PING_S3_BUCKET) \
+			AccountId=$(ACCOUNT_ID) \
+			PingIdentityDevopsUser=$(PING_IDENTITY_DEVOPS_USER) \
+			PingIdentityDevopsKey=$(PING_IDENTITY_DEVOPS_KEY) \
+		--tags Name='Ping Federate SDK Pipeline'
+.PHONY: deploy-pipeline
