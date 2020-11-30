@@ -97,12 +97,9 @@ deploy-pipeline:   ## Deploy Ping Fed SDK Pipeline
 		--no-fail-on-empty-changeset \
 		--parameter-overrides \
 			GitHubOrg=$(GIT_ORG) \
-			GitHubToken=$(GIT_TOKEN) \
 			GitHubRepo=$(GIT_REPO) \
 			ProjectId=$(PROJECT_ID) \
-			PingS3Bucket=$(PING_S3_BUCKET) \
-			AccountId=$(ACCOUNT_ID) \
-			PingIdentityDevopsUser=$(PING_IDENTITY_DEVOPS_USER) \
-			PingIdentityDevopsKey=$(PING_IDENTITY_DEVOPS_KEY) \
+			PingDevopsUser=$(PING_IDENTITY_DEVOPS_USER) \
+			PingDevopsKey=$(PING_IDENTITY_DEVOPS_KEY) \
 		--tags Name='Ping Federate SDK Pipeline'
 .PHONY: deploy-pipeline

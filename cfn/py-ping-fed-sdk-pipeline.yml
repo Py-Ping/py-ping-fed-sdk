@@ -15,16 +15,13 @@ Parameters:
   ProjectId:
     Type: String
     Description: Ping Project
-  PingS3Bucket:
-    Type: String
-    Description: Ping S3 Bucket
   AccountId:
     Type: String
     Description: Account ID
-  PingIdentityDevopsUser:
+  PingDevopsUser:
     Type: String
     Description: Ping DevOps User
-  PingIdentityDevopsKey:
+  PingDevopsKey:
     Type: String
     Description: Ping DevOps Key
   OAuthSecret:
@@ -179,13 +176,15 @@ Resources:
           - Name: PROJECT_ID
             Value: !Ref ProjectId
           - Name: S3_BUCKET
-            Value: !Ref PingS3Bucket
+            Value: !Ref ArtifactBucket
           - Name: ACCOUNT_ID
-            Value: !Ref AccountId
+            Value: !Ref AWS::AccountId
           - Name: PING_IDENTITY_DEVOPS_USER
-            Value: !Ref PingIdentityDevopsUser
+            Value: !Ref PingDevopsUser
+            Type: SECRETS_MANAGER
           - Name: PING_IDENTITY_DEVOPS_KEY
-            Value: !Ref PingIdentityDevopsKey
+            Value: !Ref PingDevopsKey
+            Type: SECRETS_MANAGER
       ServiceRole: !GetAtt CodeBuildRole.Arn
 
   CodeBuildRole:
@@ -235,6 +234,17 @@ Resources:
                 Effect: Allow
                 Resource: '*'
               - Action:
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:logs:ap-southeast-2:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectId}-artifact-build:log-stream:*'
+              - Action:
+                  - 'secretsmanager:GetSecretValue'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:secretsmanager:ap-southeast-2:${AWS::AccountId}:secret:*'
+              - Action:
                   - 'codeartifact:DescribeRepository'
                   - 'codeartifact:GetAuthorizationToken'
                   - 'codeartifact:GetRepositoryEndpoint'
@@ -251,9 +261,9 @@ Resources:
                 Effect: Allow
                 Resource:
                   - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:domain/internal-tools-versent'
-                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:package/internal-tools-versent/${ProjectId}/*'
-                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/${ProjectId}'
-                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/${ProjectId}/*'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:package/internal-tools-versent/${CodeArtifactRepository.Name}/*'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/${CodeArtifactRepository.Name}'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/${CodeArtifactRepository.Name}/*'
           PolicyName: CodeBuildPolicy
       RoleName: !Sub '${ProjectId}-CodeBuildRole'
 
