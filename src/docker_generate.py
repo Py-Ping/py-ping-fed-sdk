@@ -126,8 +126,8 @@ if __name__ == "__main__":
     add_args()
     args = parser.parse_args()
     home = os.environ["HOME"]
-    ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
-    ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"]
+    ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"].split('"')[3]
+    ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"].split('"')[3]
     print(ping_user)
     print(ping_key)
     endpoint = "https://localhost:9999/pf-admin-api/v1"
