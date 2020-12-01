@@ -15,9 +15,6 @@ Parameters:
   ProjectId:
     Type: String
     Description: Ping Project
-  AccountId:
-    Type: String
-    Description: Account ID
   PingDevopsUser:
     Type: String
     Description: Ping DevOps User
