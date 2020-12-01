@@ -76,7 +76,7 @@ def get_auth_session():
     return session
 
 
-def retry_with_backoff(func, retries=5, backoff=5):
+def retry_with_backoff(func, retries=10, backoff=5):
     total_retries = retries
     while retries:
         try:
