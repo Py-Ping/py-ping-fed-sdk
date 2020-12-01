@@ -174,8 +174,4 @@ class TestFetch(TestCase):
             {"apis": [{"path": "have/a/penguin"}, {"path": "have/a/pelican"}]}
         )
         self.assertEqual(self.fetch.models, {})
-<<<<<<< HEAD
         self.assertEqual(self.fetch.enums, {})
-=======
-        self.assertEqual(self.fetch.enums, {})
->>>>>>> 3ac2cc2 (Rebase test from master)
