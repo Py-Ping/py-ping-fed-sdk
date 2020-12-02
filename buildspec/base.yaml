@@ -7,7 +7,9 @@ env:
     VAR_OAuthSecret: arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN
     VAR_DomainOwner: 264748061542
     VAR_Domain: internal-tools-versent
-
+  secrets-manager:
+    PING_IDENTITY_DEVOPS_USER: Ping/DevOpsUser:PING_IDENTITY_DEVOPS_USER
+    PING_IDENTITY_DEVOPS_KEY: Ping/DevOpsKey:PING_IDENTITY_DEVOPS_KEY
 phases:
   install:
     runtime-versions:
