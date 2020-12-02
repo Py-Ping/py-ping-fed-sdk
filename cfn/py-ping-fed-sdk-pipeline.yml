@@ -176,12 +176,6 @@ Resources:
             Value: !Ref ArtifactBucket
           - Name: ACCOUNT_ID
             Value: !Ref AWS::AccountId
-          - Name: PING_IDENTITY_DEVOPS_USER
-            Value: !Ref PingDevopsUser
-            Type: SECRETS_MANAGER
-          - Name: PING_IDENTITY_DEVOPS_KEY
-            Value: !Ref PingDevopsKey
-            Type: SECRETS_MANAGER
       ServiceRole: !GetAtt CodeBuildRole.Arn
 
   CodeBuildRole:

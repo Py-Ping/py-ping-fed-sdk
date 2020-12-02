@@ -15,7 +15,6 @@ docs/source/models/models.rst
 tests/apis/*
 tests/models/*
 tests/enums.py
-PINGVERSION
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
