@@ -8,8 +8,8 @@ env:
     VAR_DomainOwner: 264748061542
     VAR_Domain: internal-tools-versent
   secrets-manager:
-    PING_IDENTITY_DEVOPS_USER: Ping/DevOpsUser:PING_IDENTITY_DEVOPS_USER
-    PING_IDENTITY_DEVOPS_KEY: Ping/DevOpsKey:PING_IDENTITY_DEVOPS_KEY
+    PING_IDENTITY_DEVOPS_USER_TEST: Ping/DevOpsUser:PING_IDENTITY_DEVOPS_USER
+    PING_IDENTITY_DEVOPS_KEY_TEST: Ping/DevOpsKey:PING_IDENTITY_DEVOPS_KEY
 phases:
   install:
     runtime-versions:

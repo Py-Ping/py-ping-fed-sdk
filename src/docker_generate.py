@@ -128,6 +128,10 @@ if __name__ == "__main__":
     home = os.environ["HOME"]
     ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
     ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"]
+    print(ping_user)
+    print(ping_key)
+    print(os.environ["PING_IDENTITY_DEVOPS_USER_TEST"])
+    print(os.environ["PING_IDENTITY_DEVOPS_KEY_TEST"])
     endpoint = "https://localhost:9999/pf-admin-api/v1"
     swagger_url = f"{endpoint}/api-docs"
     session = get_auth_session()
