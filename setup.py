@@ -15,7 +15,7 @@ requires = [
 
 
 setup(
-    name=f"pingfedsdk-{os.environ["VERSION"]}",
+    name=f"pingfedsdk-{os.environ['VERSION']}",
     version=read_contents("VERSION"),
     description=read_contents("DESCRIPTION"),
     classifiers=[
