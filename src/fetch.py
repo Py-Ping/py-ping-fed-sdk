@@ -3,7 +3,7 @@ import os
 import requests
 import logging
 import glob
-from helpers import safe_name, safe_module_name
+from helpers import safe_name
 from property import Property
 from api import ApiEndpoint
 from overrides import Override
@@ -173,6 +173,7 @@ class Fetch():
             "apis": self.apis,
             "enums": self.enums
         }
+
 
 if __name__ == "__main__":
     Fetch("https://localhost:9999/pf-admin-api/v1/api-docs").fetch()
