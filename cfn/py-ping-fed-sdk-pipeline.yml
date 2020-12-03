@@ -21,6 +21,10 @@ Parameters:
   PingDevopsKey:
     Type: String
     Description: Ping DevOps Key
+  PingVersion:
+    Type: String
+    Description: Ping version
+    Default: edge
   OAuthSecret:
     Description: Secret ARN for Github OAuth Key
     Type: String
@@ -176,6 +180,8 @@ Resources:
             Value: !Ref ArtifactBucket
           - Name: ACCOUNT_ID
             Value: !Ref AWS::AccountId
+          - Name: VERSION
+            Value: !Ref PingVersion
       ServiceRole: !GetAtt CodeBuildRole.Arn
 
   CodeBuildRole:

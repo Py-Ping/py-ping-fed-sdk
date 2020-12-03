@@ -44,7 +44,7 @@ phases:
   
   build:
     commands:
-      - PYTHONPATH=$(pwd) python src/docker_generate.py $(cat PINGVERSION)
+      - PYTHONPATH=$(pwd) python src/docker_generate.py $VERSION
   
   post_build:
     commands:

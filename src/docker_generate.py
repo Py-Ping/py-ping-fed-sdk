@@ -14,7 +14,16 @@ parser = argparse.ArgumentParser(description="PyLogger Generator")
 
 def add_args():
     parser.add_argument(
-        "version", type=str, choices=["9.3.3", "10.0.4", "10.1.0", "edge"],
+        "version", type=str, choices=[
+            "9.3.3",
+            "10.0.4",
+            "10.0.5",
+            "10.0.6",
+            "10.1.0",
+            "10.1.1",
+            "10.1.2",
+            "edge"
+        ],
         default="edge", help="Ping Federate Version"
     )
 
@@ -41,6 +50,7 @@ class Container:
         self.home = home_path
         self.ping_user = user
         self.ping_key = pass_key
+        self.version = version
 
         self.container = None
 
@@ -54,7 +64,7 @@ class Container:
                 f"PING_IDENTITY_DEVOPS_KEY={self.ping_key}",
                 f"PING_IDENTITY_DEVOPS_HOME={self.home}/projects/devops",
                 "PING_IDENTITY_DEVOPS_REGISTRY=docker.io/pingidentity",
-                "PING_IDENTITY_DEVOPS_TAG=edge",
+                f"PING_IDENTITY_DEVOPS_TAG={self.version}",
                 "SERVER_PROFILE_URL=https://github.com/"
                 "pingidentity/pingidentity-server-profiles.git",
                 "SERVER_PROFILE_PATH=getting-started/pingfederate"

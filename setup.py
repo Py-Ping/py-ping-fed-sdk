@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup
+import os
 
 
 def read_contents(name):
@@ -14,7 +15,7 @@ requires = [
 
 
 setup(
-    name=f"pingfedsdk-{read_contents('PINGVERSION')}",
+    name=f"pingfedsdk-{os.environ["VERSION"]}",
     version=read_contents("VERSION"),
     description=read_contents("DESCRIPTION"),
     classifiers=[
