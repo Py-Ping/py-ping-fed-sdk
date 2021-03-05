@@ -1,6 +1,6 @@
 # Makefile for building publishing container
 PROJECT = pingfedsdk
-VERSION = edge
+VERSION = latest
 #AUTH = $(shell aws --profile build --region ap-southeast-2 secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN | jq -r '.SecretString | fromjson | .OAuthKey')
 PWD = $(shell pwd)
 GITSHORTHASH = $(shell git rev-parse HEAD | cut -c 1-7)
@@ -67,7 +67,7 @@ module-load-test:
 .PHONY: module-load-test
 
 coverage:
-	PYTHONPATH=$(shell pwd)/src/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*,pingfedsdk/*
+	PYTHONPATH=$(shell pwd)/src/ coverage run --branch -m unittest discover -s tests/ && coverage report --omit=/usr/lib/python3/dist-packages/*,tests/*,pingfedsdk/*,*/site-packages/*
 .PHONY: coverage
 
 lint:

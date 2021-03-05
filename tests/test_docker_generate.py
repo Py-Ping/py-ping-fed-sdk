@@ -16,7 +16,7 @@ class TestContainer(TestCase):
         self.container = Container("/home", "test-user", "test-pass")
         self.container.run()
         self.container.client.containers.run.assert_called_once_with(
-            'pingidentity/pingfederate:edge',
+            image='pingidentity/pingfederate:edge',
             environment=[
                 'PING_IDENTITY_ACCEPT_EULA=YES',
                 'PING_IDENTITY_DEVOPS_USER=test-user',
@@ -39,7 +39,9 @@ class TestContainer(TestCase):
         self.container.container.wait.assert_called_once_with()
         self.container.container.remove.assert_called_once_with()
 
-    def test_get_by_image_name(self):
+    @patch("docker_generate.os.path.isfile")
+    def test_get_by_image_name(self, isfile_mock):
+        isfile_mock.return_value = False
         container_a = MagicMock()
         container_a.image.tags = ["penguin"]
         container_b = MagicMock()

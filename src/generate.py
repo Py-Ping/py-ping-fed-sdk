@@ -44,7 +44,8 @@ class Generate():
         exception_types = (
             "BadRequest",
             "NotFound",
-            "ValidationError"
+            "ValidationError",
+            "ServerError"
         )
         except_template = self.render_file(
             "exceptions", name="exceptions", details=exception_types

@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(description="PyLogger Generator")
 
 def add_args():
     parser.add_argument(
-        "version", type=str, choices=["9.3.3", "10.0.4", "10.1.0", "edge"],
+        "version", type=str, choices=["9.3.3", "10.0.4", "10.1.0", "10.2.1", "latest", "edge"],
         default="edge", help="Ping Federate Version"
     )
 
@@ -28,7 +28,7 @@ class Container:
     TODO: make generic to run any other Ping solution
     """
 
-    def __init__(self, home_path, user, pass_key, version="edge"):
+    def __init__(self, home_path, user, pass_key, version="latest"):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
             datefmt="%m/%d/%Y %I:%M:%S %p"
@@ -45,10 +45,11 @@ class Container:
         self.container = None
 
     def run(self):
-        self.logger.info(f"Starting Container: {self.image_name}")
-        self.container = self.client.containers.run(
-            self.image_name,
-            environment=[
+        license_path = f"{os.path.dirname(os.path.realpath(__file__))}/../pingfederate.lic"
+
+        run_args = {
+            "image": self.image_name,
+            "environment": [
                 "PING_IDENTITY_ACCEPT_EULA=YES",
                 f"PING_IDENTITY_DEVOPS_USER={self.ping_user}",
                 f"PING_IDENTITY_DEVOPS_KEY={self.ping_key}",
@@ -59,10 +60,22 @@ class Container:
                 "pingidentity/pingidentity-server-profiles.git",
                 "SERVER_PROFILE_PATH=getting-started/pingfederate"
             ],
-            name="pingfederate",
-            ports={"9031/tcp": 9031, "9999/tcp": 9999},
-            detach=True
-        )
+            "name": "pingfederate",
+            "ports": {"9031/tcp": 9031, "9999/tcp": 9999},
+            "detach": True
+        }
+
+        if os.path.isfile(license_path):
+            self.logger.info("Found product license, using pingfederate.lic")
+            run_args["volumes"] = {
+                license_path: {
+                    "bind": "/opt/in/instance/server/default/conf/pingfederate.lic",
+                    "mode": "rw"
+                }
+            }
+
+        self.logger.info(f"Starting Container: {self.image_name}")
+        self.container = self.client.containers.run(**run_args)
 
     def terminate(self):
         """
