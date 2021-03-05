@@ -1,13 +1,12 @@
 """ Tests for property.py """
 
 from unittest import TestCase
-from unittest.mock import patch, MagicMock, call
 from property import Property
 
 
 class TestProperty(TestCase):
     """ Tests for the Property class """
-    
+
     def setUp(self):
         self.array_example = Property({
             "description": "A list of penguins.",
@@ -90,9 +89,9 @@ class TestProperty(TestCase):
             self.array_example.get_model_import(),
             "Penguin"
         )
-        
+
         self.assertIsNone(self.array_example.get_enum_import())
-        
+
         self.assertIsNone(self.str_example.get_model_import())
         self.assertIsNone(self.str_example.get_enum_import())
 
