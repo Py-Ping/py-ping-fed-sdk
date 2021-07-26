@@ -1,0 +1,16 @@
+from enum import Enum, auto
+
+
+class AutoName(Enum):
+    def _generate_next_value_(name, start, count, last_values):
+        return name
+
+
+{% for enum_name, enum_list in details.items() %}class {{ enum_name }}(AutoName):
+{% for enum_item in enum_list %}
+    {{ enum_item }} = auto()
+{% endfor %}
+{% if not loop.last %}
+
+
+{% else %}{% endif %}{% endfor %}

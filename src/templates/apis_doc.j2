@@ -1,0 +1,21 @@
+pingfedsdk APIs
+===================
+
+.. toctree::
+  :maxdepth: 2
+  :glob:
+
+{% for api, detail in details.items() %}
+
+{{ safe_name(api) }}
+{{'-'*safe_name(api)|length}}
+
+.. automodule:: pingfedsdk.apis.{{ safe_name(api) }}
+    :members:
+    :private-members:
+    :special-members:
+    :undoc-members:
+    :inherited-members:
+    :show-inheritance:
+
+{% endfor %}

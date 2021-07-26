@@ -1,0 +1,65 @@
+import os
+import logging
+import traceback
+
+from json import dumps
+from requests import Session
+from requests.exceptions import HTTPError
+{{ details.get_exception_imports() }}
+{% for imp in details.imports %}
+from pingfedsdk.models.{{ safe_module_name(imp) }} import {{ imp }} as Model{{ imp }}
+{% endfor %}
+
+
+class {{ safe_class_name(class_name) }}:
+    def __init__(self, endpoint: str, session: Session) -> None:
+        logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p")
+        self.logger = logging.getLogger("PingSDK.{{ safe_class_name(class_name) }}")
+        self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
+        self.endpoint = endpoint
+        self.session = session
+
+    def _build_uri(self, path: str):
+        return f"{self.endpoint}{path}"
+{% for operation in details.operations %}
+
+    def {{ operation.nickname }}(self{% for parameter in operation.parameters %}{% if parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }}{% endif %}{% endfor %}{% for parameter in operation.parameters %}{% if not parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }} = None{% endif %}{% endfor %}) -> {{ operation.get_return_type_str() }}:
+        """ {{ operation.summary }}
+        """
+
+        try:
+            response = self.session.{{ operation.method.lower() }}(
+{% if operation.method in ['POST', 'PUT'] %}{% for parameter in operation.parameters %}{% if parameter.name == 'body' %}                data=dumps({% raw %}{{% endraw %}x: y for x, y in body.to_dict().items() if y is not None{% raw %}}{% endraw %}),
+{% endif %}{% endfor %}{% endif %}
+{% if operation.method == 'POST' %}{% for parameter in operation.parameters %}{% if parameter.json_type == 'File' %}
+                files={'file': open({{ parameter.name }}, "rb")},
+{% endif %}{% endfor %}{% endif %}
+                url=self._build_uri({{ operation.get_api_path() }}),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+{% for response_code in operation.response_codes %}
+            if response.status_code == {{ response_code["code"] }}:
+{% if response_code["code"] == 422 %}
+                raise ValidationError(ModelApiResult.from_dict(response.json()).to_dict())
+{% elif response_code["code"] in (200, 201) %}
+                self.logger.info("{{ response_code["message"] }}")
+{% elif response_code["code"] == 204 %}
+                self.logger.info("{{ response_code["message"] }}")
+                return ModelApiResult(message="{{ response_code["message"] }}", validationErrors=[])
+{% elif details.get_exception_by_code(response_code["code"]) %}
+                message = "({{ response_code["code"] }}) {{ response_code["message"] }}"
+                self.logger.info(message)
+                raise {{ details.get_exception_by_code(response_code["code"]) }}(message)
+{% endif %}
+{% endfor %}
+            return {{ operation.get_response_str() }}
+{% endfor %}

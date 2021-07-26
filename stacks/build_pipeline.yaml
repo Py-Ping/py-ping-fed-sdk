@@ -1,0 +1,309 @@
+AWSTemplateFormatVersion: 2010-09-09
+Conditions: {}
+Description: Python Ping Federation SDK
+Metadata: {}
+Parameters:
+  AppName:
+    Description: Name of the application.
+    MaxLength: 100
+    MinLength: 1
+    Type: String
+  ProjectId:
+    AllowedPattern: '^[a-z]([a-z0-9-])+$'
+    ConstraintDescription: >-
+      Project IDs must be between 2 and 15 characters, begin with a letter, and
+      only contain lowercase letters, numbers, and hyphens (-).
+    Description: Project ID.
+    MaxLength: 15
+    MinLength: 2
+    Type: String
+  BuildImage:
+    Description: Build Docker Image
+    Default: 'aws/codebuild/standard:2.0'
+    Type: String
+  OAuthSecret:
+    Description: Secret ARN for Github OAuth Key
+    Type: String
+    Default: arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN
+  PingDevOpsUser:
+    Description: Secret ARN for Dev Ops User
+    Type: String
+    Default: arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:Ping/DevOpsUser-yaFhJq
+  PingDevOpsKey:
+    Description: Secret ARN for Dev Ops Key
+    Type: String
+    Default: arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:Ping/DevOpsKey-UpGuc6
+  GitHubRepo:
+    Description: GitHub Repo for the Source
+    Type: String
+    Default: py-ping-fed-sdk
+  GitHubRepoOwner:
+    Description: GitHub Repo Owner
+    Type: String
+    Default: Versent
+Resources:
+  CodePipeline:
+    Type: 'AWS::CodePipeline::Pipeline'
+    Properties:
+      ArtifactStore:
+        Location: !Ref S3Bucket
+        EncryptionKey:
+          Id: !GetAtt KMSKey.Arn
+          Type: KMS
+        Type: S3
+      Name: !Sub '${ProjectId}-Pipeline'
+      RestartExecutionOnUpdate: 'False'
+      RoleArn: !GetAtt 
+        - CodeBuildRole
+        - Arn
+      Stages:
+        - Actions:
+            - InputArtifacts: []
+              Configuration:
+                Branch: master
+                OAuthToken: !Sub "{{resolve:secretsmanager:${OAuthSecret}:SecretString:OAuthKey}}"
+                Owner: !Ref GitHubRepoOwner
+                PollForSourceChanges: 'true'
+                Repo: !Ref GitHubRepo
+              RunOrder: 1
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Provider: GitHub
+                Version: '1'
+              Name: ApplicationSource
+              OutputArtifacts:
+                - Name: !Sub '${ProjectId}-SourceArtifact'
+          Name: Source
+        - Actions:
+            - InputArtifacts:
+                - Name: !Sub '${ProjectId}-SourceArtifact'
+              ActionTypeId:
+                Provider: CodeBuild
+                Version: '1'
+                Category: Build
+                Owner: AWS
+              Configuration:
+                ProjectName: !Sub '${ProjectId}-build'
+              Name: buildBuildArtifact
+              OutputArtifacts:
+                - Name: !Sub '${ProjectId}-BuildArtifact'
+              RoleArn: !GetAtt 
+                - CodeBuildRole
+                - Arn
+              RunOrder: 1
+          Name: Build
+  buildCodeBuildProject:
+    Type: 'AWS::CodeBuild::Project'
+    Properties:
+      Name: !Sub '${ProjectId}-build'
+      Description: Build Task for build
+      ServiceRole: !Ref CodeBuildRole
+      Artifacts:
+        Type: CODEPIPELINE
+        Packaging: ZIP
+      Environment:
+        Type: LINUX_CONTAINER
+        PrivilegedMode: true
+        Certificate: !Ref 'AWS::NoValue'
+        ComputeType: !Sub BUILD_GENERAL1_MEDIUM
+        Image: !Sub 'aws/codebuild/standard:3.0'
+        ImagePullCredentialsType: CODEBUILD
+        EnvironmentVariables:
+          - Name: PROJECT_ID
+            Value: !Ref ProjectId
+          - Name: S3_BUCKET
+            Value: !Ref S3Bucket
+          - Name: ACCOUNT_ID
+            Value: !Ref 'AWS::AccountId'
+          - Name: PING_IDENTITY_DEVOPS_USER
+            Value: !Sub "{{resolve:secretsmanager:${PingDevOpsUser}:SecretString:PING_IDENTITY_DEVOPS_USER}}"
+          - Name: PING_IDENTITY_DEVOPS_KEY
+            Value: !Sub "{{resolve:secretsmanager:${PingDevOpsKey}:SecretString:PING_IDENTITY_DEVOPS_KEY}}"
+      Source:
+        BuildSpec: buildspec/base.yaml
+        Type: CODEPIPELINE
+  S3ArtifactBucketPolicy:
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Id: SSEAndSSLPolicy
+        Statement:
+          - Action:
+              - 's3:GetObject'
+              - 's3:GetObjectVersion'
+              - 's3:GetBucketVersioning'
+            Condition:
+              Bool:
+                'aws:SecureTransport': false
+            Effect: Allow
+            Principal:
+              AWS:
+                - !GetAtt 
+                  - CodeBuildRole
+                  - Arn
+            Resource:
+              - !Sub 'arn:aws:s3:::${S3Bucket}'
+              - !Sub 'arn:aws:s3:::${S3Bucket}/*'
+            Sid: WhitelistedGet
+          - Action:
+              - 's3:PutObject'
+            Effect: Allow
+            Principal:
+              AWS:
+                - !GetAtt 
+                  - CodeBuildRole
+                  - Arn
+            Resource:
+              - !Sub 'arn:aws:s3:::${S3Bucket}'
+              - !Sub 'arn:aws:s3:::${S3Bucket}/*'
+            Sid: WhitelistedPut
+    Type: 'AWS::S3::BucketPolicy'
+  S3Bucket:
+    Properties:
+      BucketName: !Sub '${AWS::Region}.${AWS::AccountId}.${ProjectId}.pipeline'
+      Tags:
+        - Key: Name
+          Value: !Sub '${ProjectId} S3Bucket'
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              KMSMasterKeyID: !GetAtt KMSKey.Arn
+              SSEAlgorithm: 'aws:kms'
+    Type: 'AWS::S3::Bucket'
+  KMSKey:
+    Type: 'AWS::KMS::Key'
+    Properties:
+      Description: !Sub 'Used by in Build Pipeline for ${ProjectId}'
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: 2012-10-17
+        Id: !Sub '${ProjectId}-Pipeline'
+        Statement:
+          - Sid: Allows admin of the key
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Action:
+              - 'kms:Create*'
+              - 'kms:Describe*'
+              - 'kms:Enable*'
+              - 'kms:List*'
+              - 'kms:Put*'
+              - 'kms:Update*'
+              - 'kms:Revoke*'
+              - 'kms:Disable*'
+              - 'kms:Get*'
+              - 'kms:Delete*'
+              - 'kms:ScheduleKeyDeletion'
+              - 'kms:CancelKeyDeletion'
+              - 'kms:Encrypt'
+              - 'kms:Decrypt'
+              - 'kms:ReEncrypt*'
+              - 'kms:GenerateDataKey*'
+              - 'kms:DescribeKey'
+            Resource: '*'
+  KMSAlias:
+    Type: 'AWS::KMS::Alias'
+    Properties:
+      AliasName: !Sub 'alias/${ProjectId}-Pipeline'
+      TargetKeyId: !Ref KMSKey
+  CodeBuildRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+                - codedeploy.amazonaws.com
+                - codepipeline.amazonaws.com
+                - elasticbeanstalk.amazonaws.com
+                - events.amazonaws.com
+                - lambda.amazonaws.com
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/AWSCodeCommitFullAccess'
+        - 'arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess'
+        - 'arn:aws:iam::aws:policy/AWSCodeDeployFullAccess'
+        - 'arn:aws:iam::aws:policy/AWSCodePipelineFullAccess'
+        - 'arn:aws:iam::aws:policy/AWSElasticBeanstalkFullAccess'
+        - 'arn:aws:iam::aws:policy/AWSLambdaFullAccess'
+        - 'arn:aws:iam::aws:policy/CloudWatchEventsFullAccess'
+      Path: /
+      Policies:
+        - PolicyDocument:
+            Statement:
+              - Action:
+                  - 's3:PutObject'
+                  - 's3:GetObject'
+                  - 's3:GetObjectVersion'
+                Effect: Allow
+                Resource: '*'
+              - Action:
+                  - 'kms:GenerateDataKey*'
+                  - 'kms:Encrypt'
+                  - 'kms:Decrypt'
+                Effect: Allow
+                Resource: '*'
+              - Action:
+                  - 'sts:AssumeRole'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ProjectId}*'
+              - Action:
+                  - 'iam:PassRole'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${ProjectId}*'
+              - Action:
+                  - 'sts:GetServiceBearerToken'
+                Effect: Allow
+                Resource: '*'
+              - Action:
+                  - 'codeartifact:DescribeRepository'
+                  - 'codeartifact:GetAuthorizationToken'
+                  - 'codeartifact:GetRepositoryEndpoint'
+                  - 'codeartifact:ListPackageVersionAssets'
+                  - 'codeartifact:ListPackageVersionDependencies'
+                  - 'codeartifact:ListPackageVersions'
+                  - 'codeartifact:ListPackages'
+                  - 'codeartifact:ListRepositories'
+                  - 'codeartifact:ListRepositoriesInDomain'
+                  - 'codeartifact:PublishPackageVersion'
+                  - 'codeartifact:PutPackageMetadata'
+                  - 'codeartifact:ReadFromRepository'
+                  - 'codeartifact:UpdatePackageVersionsStatus'
+                Effect: Allow
+                Resource:
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:domain/internal-tools-versent'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:package/internal-tools-versent/pypingfedsdk/*'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/pypingfedsdk'
+                  - !Sub 'arn:aws:codeartifact:ap-southeast-2:${AWS::AccountId}:repository/internal-tools-versent/pypingfedsdk/*'
+          PolicyName: CodeBuildPolicy
+      RoleName: !Sub '${ProjectId}-CodeBuildRole'
+Outputs:
+  CodePipeline:
+    Value: !Ref CodePipeline
+    Export:
+      Name: !Sub '${AWS::StackName}-CodePipeline'
+  S3Bucket:
+    Value: !GetAtt 
+      - S3Bucket
+      - Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-S3-Arn'
+  S3BucketDomainName:
+    Value: !GetAtt 
+      - S3Bucket
+      - DualStackDomainName
+    Export:
+      Name: !Sub '${AWS::StackName}-S3-DomainName'

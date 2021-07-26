@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-html = "*"
+hypothesis = "*"
+requests = "*"
+Jinja2 = "*"
+flake8 = "*"
+pipenv-setup = "*"
+twine = "*"
+
+[packages]
+python-decouple = "*"
+PyYAML = "*"
+Jinja2 = "*"
+requests = "*"
+sphinx = "*"
+guzzle-sphinx-theme = "*"
+tox = "*"
+json-delta = "*"
+
+[requires]
+python_version = "3.7"

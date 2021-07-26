@@ -1,0 +1,18 @@
+pingfedsdk models
+===================
+
+.. toctree::
+  :maxdepth: 2
+  :glob:
+
+{% for model, detail in details.items() %}
+
+{{ model }}
+{{'-'*model|length}}
+
+.. automodule:: pingfedsdk.models.{{ model }}
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+{% endfor %}

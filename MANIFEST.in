@@ -1,0 +1,6 @@
+include README.MD
+include VERSION
+include DESCRIPTION
+include requirements.txt
+include *.py
+recursive-include pingfedsdk/templates *

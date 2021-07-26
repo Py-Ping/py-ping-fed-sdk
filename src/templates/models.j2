@@ -1,0 +1,95 @@
+from pingfedsdk.model import Model
+from enum import Enum
+{% for folder, imports in details.get('imports').items() %}
+{% for imp in imports %}
+{% if folder == 'models' %}
+from pingfedsdk.{{ folder }}.{{ safe_module_name(imp) }} import {{ imp }}
+{% endif %}
+{% if folder == 'enums' %}
+from pingfedsdk.{{ folder }} import {{ imp }}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+
+class {{ class_name }}(Model):
+    """{{details.get('description', '').replace("\n","").strip()}}
+
+    Attributes
+    ----------
+{% for property, prop_details in details.get('properties').items() %}
+    {{ property }}: {{ prop_details.type }}
+{% if prop_details.description %}        {{ prop_details.description }}
+
+{% endif %}
+{% endfor %}
+    """
+
+    def __init__(self{% for property in details.get('required', []) %}, {{ safe_name(property) }}: {{ details['properties'][property].type }}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}: {{ attributes.type }} = None{% endfor %}) -> None:
+{% for property in details.get('properties') %}
+        self.{{ safe_name(property) }} = {{ safe_name(property) }}
+{% endfor %}
+
+    def _validate(self) -> bool:
+        return any(x for x in [{% for property in details.get('required', []) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] if self.__dict__[x] is not None)
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, {{ class_name }}):
+            return self.__dict__ == other.__dict__
+        return NotImplemented
+
+    def __hash__(self) -> int:
+        return hash(frozenset([{% for property in details.get('properties') %}self.{{ property }}{% if not loop.last %}, {% endif %}{% endfor %}]))
+
+    @classmethod
+    def from_dict(cls, python_dict: dict):
+        valid_data = {}
+        for k, v in python_dict.items():
+            if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] and v is not None:
+{% for property, detail in details.get('properties').items() %}                if k == "{{ safe_name(property) }}":
+                    {{ detail.get_from_dict_str() }}
+{% endfor %}
+
+        return cls(**valid_data)
+
+    def to_dict(self, remove_nonetypes=False):
+        """
+        Naive dictionary serialiser. Recursively handles most types in this
+        module. If you make your own class you need to inherit from model
+        and implement to_dict.
+        """
+        body = {}
+        for k, v in self.__dict__.items():
+            if k in [{% for property in details.get('properties', {}) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}]:
+                if isinstance(v, Model):
+                    body[k] = v.to_dict(remove_nonetypes)
+                elif isinstance(v, list):
+                    vals = []
+                    for x in v:
+                        if isinstance(x, Model):
+                            vals.append(x.to_dict(remove_nonetypes))
+                        elif not remove_nonetypes or (remove_nonetypes and x is not None):
+                            vals.append(x)
+                    body[k] = vals
+                elif isinstance(v, dict):
+                    vals = {}
+                    for x, y in v.items():
+                        if isinstance(y, Model):
+                            vals[x] = y.to_dict(remove_nonetypes)
+                        elif not remove_nonetypes or (remove_nonetypes and y is not None):
+                            vals[x] = y
+                    body[k] = vals
+                elif isinstance(v, set):
+                    vals = []
+                    for x in v:
+                        if isinstance(x, Model):
+                            vals.append(x.to_dict(remove_nonetypes))
+                        elif not remove_nonetypes or (remove_nonetypes and x is not None):
+                            vals.append(x)
+                    body[k] = vals
+                elif isinstance(v, Enum):
+                    body[k] = str(v).split('.')[-1]
+                elif not remove_nonetypes or (remove_nonetypes and v is not None):
+                    body[k] = v
+        return body
+
