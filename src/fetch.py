@@ -3,17 +3,18 @@ import os
 import requests
 import logging
 import glob
-from helpers import safe_name
+from helpers import safe_name, get_auth_session
 from property import Property
 from api import ApiEndpoint
 from overrides import Override
 
 
 class Fetch():
-    def __init__(self, swagger_url, api_schema_key="apis", verify=False, session=None):
+    def __init__(self, swagger_url, api_schema_key="apis", verify=False, session=None, swagger_version="1.2"):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
         )
+        self.swagger_version = swagger_version
         self.project_path = os.path.dirname(os.path.realpath(__file__))
         self.logger = logging.getLogger("PingSDK.Fetch")
         self.logger.setLevel(
@@ -21,8 +22,10 @@ class Fetch():
         )
         self.base_path = None
         self.session = session
-        if not self.session:
-            self.session = requests.Session()
+        if session is None and self.swagger_version == "2.0":
+            self.session = get_auth_session()
+        elif session is None:
+            self.session = request.Session()
         self.session.verify = verify
         self.api_schema_key = api_schema_key
         self.swagger_url = swagger_url
@@ -88,7 +91,7 @@ class Fetch():
             return override.apply_patch(api_data)
         return api_data
 
-    def get_api_schema(self, api_path, api_name, verify=False):
+    def get_api_schema(self, api_path, api_name):
         safe_api_name = safe_name(api_name)
         print(api_path)
         if os.path.exists(api_path):
@@ -116,30 +119,41 @@ class Fetch():
                     safe_api_name = safe_api_name[1:]
                 self.write_json(data=r_json, name=safe_api_name, directory="../pingfedsdk/source/apis/")
 
-    def get_api_schemas(self, api_schema_key="apis", verify=False):
+    def get_api_schemas(self, api_schema_key="apis"):
         """
         Iterate over each API in the schema file pf-admin-api and pull
         down each paths content. Store in the api and model dictionaries
         and write to the repository
         """
+
         for api in self.ping_data.get(api_schema_key, {}):
             safe_api_name = safe_name(api.get("path"))
             if safe_api_name.startswith("_"):
                 safe_api_name = safe_api_name[1:]
             api_path = f"{self.project_path}/../pingfedsdk/source/apis/{safe_api_name}.json"
-            self.get_api_schema(api_path, api.get("path"), verify=False)
+            self.get_api_schema(api_path, api.get("path"))
 
         api_path = f"{self.project_path}/overrides/*.json"
         for file_path in glob.glob(api_path):
             file_name = file_path.split("/")[-1].split(".")[0]
             # set the overridden definitions
-            self.get_api_schema(file_path, f'/{file_name}', verify=False)
+            self.get_api_schema(file_path, f'/{file_name}')
 
-        self.processed_model = {}
-        for model, details in self.models.items():
+    def get_v11_plus_schemas():
+        """
+        Versions of Ping Federate greater than v11 use Swagger 2.0 and a cleaner
+        implementation exists.
+        """
+        for api in self.ping_data.get("paths", {}):
+            safe_api_name = safe_name(api, rem_leading_char=True)
+            self.apis[safe_api_name] = ApiEndpoint(api_name, self.ping_data[api], v11=True)
+        self.models = self.ping_data.get("definitions", {})
+
+    def get_enums_and_imports(self):
+        for model_name, details in self.models.items():
             imports = {"models": set(), "enums": set()}
             for prop_name, prop in details.get("properties", {}).items():
-                model_property = Property(prop, model, prop_name)
+                model_property = Property(prop, model_name, prop_name)
                 model_import = model_property.get_model_import()
                 enum_import = model_property.get_enum_import()
                 if model_property.type == "DataStore" or \
@@ -162,11 +176,15 @@ class Fetch():
                 details["properties"][prop_name] = model_property
             details["imports"] = imports
 
-            self.models[model] = details
+            self.models[model_name] = details
 
     def fetch(self):
         self.get_source()
-        self.get_api_schemas()
+        if self.swagger_version == "1.2":
+            self.get_api_schemas()
+        elif self.swagger_version == "2.0":
+            self.get_v11_plus_schemas()
+        self.get_enums_and_imports()
 
         return {
             "models": self.models,

@@ -1,6 +1,12 @@
 from helpers import get_py_type
 
 
+def strip_ref(ref_str):
+    if "#/definitions/" in ref_str:
+        return ref_str.split("/")[-1]
+    return ref_str
+
+
 class Property:
     """
     A Property of a model object.
@@ -33,7 +39,8 @@ class Property:
           - generating the type marshalling string for the `from_dict` method
           - providing more type hint details
         """
-        type_class = self.raw_property_dict.get("$ref")
+        type_class = strip_ref(self.raw_property_dict.get("$ref", ""))
+
         self.description = self.raw_property_dict.get(
             "description", ""
         ).replace("\n", "").replace("<br>", "\n        ").replace(" \n", "\n").strip()
@@ -50,12 +57,12 @@ class Property:
             items = self.raw_property_dict["items"]
             if "enum" in items:
                 self.json_sub_type = "enum"
-                self.enum_domain = items["$ref"]
-                self.sub_type = items["$ref"]
+                self.enum_domain = strip_ref(items["$ref"])
+                self.sub_type = strip_ref(items["$ref"])
                 self.enum_domain = items["enum"]
             elif "$ref" in items and not get_py_type(items["$ref"]):
-                self.json_sub_type = items["$ref"]
-                self.sub_type = items["$ref"]
+                self.json_sub_type = strip_ref(items["$ref"])
+                self.sub_type = strip_ref(items["$ref"])
             else:
                 self.json_sub_type = items["type"]
                 self.sub_type = get_py_type(items["type"])
@@ -83,14 +90,14 @@ class Property:
             self.json_type = "Set"
             if "enum" in items:
                 self.json_sub_type = "enum"
-                self.sub_type = items["$ref"]
+                self.sub_type = strip_ref(items["$ref"])
                 self.enum_domain = items["enum"]
             elif "$ref" in items and get_py_type(items["$ref"]):
                 self.sub_type = get_py_type(items["$ref"])
                 self.json_sub_type = items["$ref"]
             elif "$ref" in items:
-                self.sub_type = items["$ref"]
-                self.json_sub_type = items["$ref"]
+                self.sub_type = strip_ref(items["$ref"])
+                self.json_sub_type = strip_ref(items["$ref"])
             elif "type" in items:
                 self.sub_type = get_py_type(items["type"])
                 self.json_sub_type = items["type"]
@@ -102,8 +109,8 @@ class Property:
                 self.type = get_py_type(self.raw_property_dict["type"])
 
         elif "$ref" in self.raw_property_dict and not get_py_type(self.raw_property_dict["$ref"]):
-            self.json_type = self.raw_property_dict["$ref"]
-            self.type = self.raw_property_dict["$ref"]
+            self.json_type = strip_ref(self.raw_property_dict["$ref"])
+            self.type = strip_ref(self.raw_property_dict["$ref"])
 
     def get_model_import(self):
         """

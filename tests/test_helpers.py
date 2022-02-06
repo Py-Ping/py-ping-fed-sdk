@@ -90,7 +90,7 @@ class TestHelpers(TestCase):
             requests_mock.Session.return_value.headers,
             {
                 "Accept": "application/json",
-                "X-Xsrf-Header": "PingFederate"
+                "X-XSRF-Header": "PingFederate"
             }
         )
 

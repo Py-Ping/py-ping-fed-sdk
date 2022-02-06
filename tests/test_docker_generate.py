@@ -16,14 +16,14 @@ class TestContainer(TestCase):
         self.container = Container("/home", "test-user", "test-pass")
         self.container.run()
         self.container.client.containers.run.assert_called_once_with(
-            image='pingidentity/pingfederate:edge',
+            image='pingidentity/pingfederate:latest',
             environment=[
                 'PING_IDENTITY_ACCEPT_EULA=YES',
                 'PING_IDENTITY_DEVOPS_USER=test-user',
                 'PING_IDENTITY_DEVOPS_KEY=test-pass',
                 'PING_IDENTITY_DEVOPS_HOME=/home/projects/devops',
                 'PING_IDENTITY_DEVOPS_REGISTRY=docker.io/pingidentity',
-                'PING_IDENTITY_DEVOPS_TAG=edge',
+                'PING_IDENTITY_DEVOPS_TAG=latest',
                 'SERVER_PROFILE_URL=https://github.com/'
                 'pingidentity/pingidentity-server-profiles.git',
                 'SERVER_PROFILE_PATH=getting-started/pingfederate'

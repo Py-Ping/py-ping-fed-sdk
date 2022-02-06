@@ -23,7 +23,7 @@ class {{ safe_class_name(class_name) }}:
         return f"{self.endpoint}{path}"
 {% for operation in details.operations %}
 
-    def {{ operation.nickname }}(self{% for parameter in operation.parameters %}{% if parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }}{% endif %}{% endfor %}{% for parameter in operation.parameters %}{% if not parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }} = None{% endif %}{% endfor %}) -> {{ operation.get_return_type_str() }}:
+    def {{ operation.nickname }}(self{% for parameter in operation.parameters %}{% if parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }}{% endif %}{% endfor %}{% for parameter in operation.parameters %}{% if not parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }} = None{% endif %}{% endfor %}):
         """ {{ operation.summary }}
         """
 
@@ -52,6 +52,7 @@ class {{ safe_class_name(class_name) }}:
                 raise ValidationError(ModelApiResult.from_dict(response.json()).to_dict())
 {% elif response_code["code"] in (200, 201) %}
                 self.logger.info("{{ response_code["message"] }}")
+            return {{ operation.get_response_str(response_code["code"]) }}
 {% elif response_code["code"] == 204 %}
                 self.logger.info("{{ response_code["message"] }}")
                 return ModelApiResult(message="{{ response_code["message"] }}", validationErrors=[])
@@ -59,7 +60,8 @@ class {{ safe_class_name(class_name) }}:
                 message = "({{ response_code["code"] }}) {{ response_code["message"] }}"
                 self.logger.info(message)
                 raise {{ details.get_exception_by_code(response_code["code"]) }}(message)
+{% else %}
+            return {{ operation.get_response_str(response_code["code"]) }}
 {% endif %}
 {% endfor %}
-            return {{ operation.get_response_str() }}
 {% endfor %}
