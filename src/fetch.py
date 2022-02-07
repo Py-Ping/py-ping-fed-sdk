@@ -3,6 +3,7 @@ import os
 import requests
 import logging
 import glob
+from copy import deepcopy
 from helpers import safe_name, get_auth_session, strip_ref
 from property import Property
 from api import ApiEndpoint
@@ -144,10 +145,7 @@ class Fetch():
         Versions of Ping Federate greater than v11 use Swagger 2.0 and a cleaner
         implementation exists.
         """
-        from pprint import pprint
-        pprint(self.ping_data)
         for api in self.ping_data.get("paths", {}):
-            print(api)
             safe_api_name = safe_name(api, rem_leading_char=True)
             self.apis[safe_api_name] = ApiEndpoint(api, self.ping_data["paths"][api], v11=True)
         self.models = self.ping_data.get("definitions", {})
@@ -162,41 +160,46 @@ class Fetch():
                         inherit_model = strip_ref(inherit_data["$ref"])
                     if "type" in inherit_data:
                         special_details = inherit_data
-                ground_model_data = self.models[inherit_model]
+                ground_model_data = deepcopy(self.models[inherit_model])
                 for attr, attr_value in special_details.items():
-                    if attr == "properties" and special_details["properties"] != {} and "properties" in ground_model_data:
-                        ground_model_data["properties"].update(special_details["properties"])
-                    elif attr == "properties" and special_details["properties"] != {} and "properties" not in ground_model_data:
-                        ground_model_data["properties"] = special_details["properties"]
-                    else:
-                        ground_model_data[attr] = special_details[attr]
+                    if attr == "properties":
+                        continue
+                    ground_model_data[attr] = special_details[attr]
+
+                for prop, prop_data in special_details["properties"].items():
+                    ground_model_data["properties"][prop] = prop_data
+
                 self.models[model_name] = ground_model_data
 
     def get_enums_and_imports(self):
         for model_name, details in self.models.items():
             imports = {"models": set(), "enums": set()}
+            model_props = {}
             for prop_name, prop in details.get("properties", {}).items():
-                model_property = Property(prop, model_name, prop_name)
-                model_import = model_property.get_model_import()
-                enum_import = model_property.get_enum_import()
-                if model_property.type == "DataStore" or \
-                   model_property.type == "list" and \
-                   model_property.sub_type == "DataStore":
-                    imports["models"].add("JdbcDataStore")
-                    imports["models"].add("CustomDataStore")
-                    imports["models"].add("LdapDataStore")
-                    imports["models"].add("DataStore")
-                if model_import and model_import not in imports["models"]:
-                    imports["models"].add(model_import)
-                if enum_import and enum_import not in imports["enums"]:
-                    imports["enums"].add(enum_import)
+                if type(prop) == dict:
+                    model_property = Property(prop, model_name, prop_name)
+                    model_import = model_property.get_model_import()
+                    enum_import = model_property.get_enum_import()
+                    if model_property.type == "DataStore" or \
+                       model_property.type == "list" and \
+                       model_property.sub_type == "DataStore":
+                        imports["models"].add("JdbcDataStore")
+                        imports["models"].add("CustomDataStore")
+                        imports["models"].add("LdapDataStore")
+                        imports["models"].add("DataStore")
+                    if model_import and model_import not in imports["models"]:
+                        imports["models"].add(model_import)
+                    if enum_import and enum_import not in imports["enums"]:
+                        imports["enums"].add(enum_import)
 
-                enums = model_property.get_enums()
-                if enums:
-                    enum_name, enum_domain = enums
-                    self.enums[enum_name] = enum_domain
+                    enums = model_property.get_enums()
+                    if enums:
+                        enum_name, enum_domain = enums
+                        self.enums[enum_name] = enum_domain
 
-                details["properties"][prop_name] = model_property
+                model_props[prop_name] = model_property
+
+            details["properties"] = model_props
             details["imports"] = imports
 
             self.models[model_name] = details

@@ -61,7 +61,7 @@ class {{ safe_class_name(class_name) }}:
                 self.logger.info(message)
                 raise {{ details.get_exception_by_code(response_code["code"]) }}(message)
 {% else %}
-            return {{ operation.get_response_str(response_code["code"]) }}
+                return {{ operation.get_response_str(response_code["code"]) }}
 {% endif %}
 {% endfor %}
 {% endfor %}
