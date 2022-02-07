@@ -36,6 +36,7 @@ class ApiEndpoint:
         4. build out the operation object
         """
         for rest_method, rest_data in self.api_data.items():
+            params = []
             for param in rest_data["parameters"]:
                 param_obj = Parameter(param)
                 params.append(param_obj)
@@ -48,10 +49,10 @@ class ApiEndpoint:
                 if "schema" in response_data and "$ref" in response_data["schema"]:
                     op_code["type"] = response_data["schema"]["$ref"].split("/")[-1]
                 op_response_codes.append(op_code)
-                if response_code["code"] not in self.response_codes:
-                    self.response_codes.add(response_code["code"])
+                if response_code not in self.response_codes:
+                    self.response_codes.add(response_code)
 
-                if not get_py_type(op_code["type"]) and op_code["type"] not in self.imports:
+                if "type" in op_code and not get_py_type(op_code["type"]) and op_code["type"] not in self.imports:
                     self.imports.add(op_code["type"])
 
             self.operations.append(

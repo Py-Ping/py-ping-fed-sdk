@@ -13,7 +13,7 @@ class Generate():
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
         self.api_schema_key = api_schema_key
         self.swagger_version=swagger_version
-        self.fetch_data = Fetch(swagger_url).fetch()
+        self.fetch_data = Fetch(swagger_url, swagger_version=swagger_version).fetch()
 
     def generate(self):
         for model, details in self.fetch_data.get("models").items():

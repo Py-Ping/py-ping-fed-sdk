@@ -3,7 +3,7 @@ import os
 import requests
 import logging
 import glob
-from helpers import safe_name, get_auth_session
+from helpers import safe_name, get_auth_session, strip_ref
 from property import Property
 from api import ApiEndpoint
 from overrides import Override
@@ -25,7 +25,7 @@ class Fetch():
         if session is None and self.swagger_version == "2.0":
             self.session = get_auth_session()
         elif session is None:
-            self.session = request.Session()
+            self.session = requests.Session()
         self.session.verify = verify
         self.api_schema_key = api_schema_key
         self.swagger_url = swagger_url
@@ -139,15 +139,38 @@ class Fetch():
             # set the overridden definitions
             self.get_api_schema(file_path, f'/{file_name}')
 
-    def get_v11_plus_schemas():
+    def get_v11_plus_schemas(self):
         """
         Versions of Ping Federate greater than v11 use Swagger 2.0 and a cleaner
         implementation exists.
         """
+        from pprint import pprint
+        pprint(self.ping_data)
         for api in self.ping_data.get("paths", {}):
+            print(api)
             safe_api_name = safe_name(api, rem_leading_char=True)
-            self.apis[safe_api_name] = ApiEndpoint(api_name, self.ping_data[api], v11=True)
+            self.apis[safe_api_name] = ApiEndpoint(api, self.ping_data["paths"][api], v11=True)
         self.models = self.ping_data.get("definitions", {})
+
+        for model_name, model_data in self.models.items():
+            model_ref = None
+            if "allOf" in model_data:
+                inherit_model = None
+                special_details = None
+                for inherit_data in model_data["allOf"]:
+                    if "$ref" in inherit_data:
+                        inherit_model = strip_ref(inherit_data["$ref"])
+                    if "type" in inherit_data:
+                        special_details = inherit_data
+                ground_model_data = self.models[inherit_model]
+                for attr, attr_value in special_details.items():
+                    if attr == "properties" and special_details["properties"] != {} and "properties" in ground_model_data:
+                        ground_model_data["properties"].update(special_details["properties"])
+                    elif attr == "properties" and special_details["properties"] != {} and "properties" not in ground_model_data:
+                        ground_model_data["properties"] = special_details["properties"]
+                    else:
+                        ground_model_data[attr] = special_details[attr]
+                self.models[model_name] = ground_model_data
 
     def get_enums_and_imports(self):
         for model_name, details in self.models.items():

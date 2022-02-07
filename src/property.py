@@ -1,10 +1,4 @@
-from helpers import get_py_type
-
-
-def strip_ref(ref_str):
-    if "#/definitions/" in ref_str:
-        return ref_str.split("/")[-1]
-    return ref_str
+from helpers import get_py_type, strip_ref
 
 
 class Property:
@@ -57,8 +51,12 @@ class Property:
             items = self.raw_property_dict["items"]
             if "enum" in items:
                 self.json_sub_type = "enum"
-                self.enum_domain = strip_ref(items["$ref"])
-                self.sub_type = strip_ref(items["$ref"])
+                if "type" in items:
+                    self.enum_domain = strip_ref(items["type"])
+                    self.sub_type = strip_ref(items["type"])
+                else:
+                    self.enum_domain = strip_ref(items["$ref"])
+                    self.sub_type = strip_ref(items["$ref"])
                 self.enum_domain = items["enum"]
             elif "$ref" in items and not get_py_type(items["$ref"]):
                 self.json_sub_type = strip_ref(items["$ref"])

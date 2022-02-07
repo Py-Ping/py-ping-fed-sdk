@@ -122,3 +122,9 @@ def retry_with_backoff(func, retries=5, backoff=5):
         return True
     if not retries:
         return False
+
+
+def strip_ref(ref_str):
+    if "#/definitions/" in ref_str:
+        return ref_str.split("/")[-1]
+    return ref_str
