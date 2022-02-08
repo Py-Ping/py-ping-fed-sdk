@@ -26,6 +26,8 @@ class {{ class_name }}(Model):
     """
 
     def __init__(self{% for property in details.get('required', []) %}, {{ safe_name(property) }}: {{ details['properties'][property].type }}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}: {{ attributes.type }} = None{% endfor %}) -> None:
+{% if not details["properties"] %}        pass
+{% endif %}
 {% for property in details.get('properties') %}
         self.{{ safe_name(property) }} = {{ safe_name(property) }}
 {% endfor %}
@@ -41,6 +43,7 @@ class {{ class_name }}(Model):
     def __hash__(self) -> int:
         return hash(frozenset([{% for property in details.get('properties') %}self.{{ property }}{% if not loop.last %}, {% endif %}{% endfor %}]))
 
+{% if details["properties"] %}
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
@@ -51,6 +54,11 @@ class {{ class_name }}(Model):
 {% endfor %}
 
         return cls(**valid_data)
+{% else %}
+    @classmethod
+    def from_dict(cls, python_dict: dict):
+        return cls()
+{% endif %}
 
     def to_dict(self, remove_nonetypes=False):
         """

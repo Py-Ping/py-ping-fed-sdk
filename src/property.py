@@ -207,7 +207,7 @@ class Property:
                 return f"valid_data[k] = {start_bracket}{self.sub_type}[x] for x in v{end_bracket}"
             elif get_py_type(self.json_sub_type):
                 return f"valid_data[k] = {start_bracket}{self.sub_type}(x) for x in v{end_bracket}"
-            elif self.json_sub_type == "Object":
+            elif self.json_sub_type == "Object" or self.json_sub_type == "object":
                 return "valid_data[k] = v"
             else:
                 return f"valid_data[k] = {start_bracket}{self.sub_type}(**x) for x in v{end_bracket}"

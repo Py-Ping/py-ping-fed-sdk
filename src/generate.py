@@ -58,7 +58,7 @@ class Generate():
 
         for api, details in self.fetch_data.get("apis").items():
             template = self.render_file(
-                "apis", name=safe_class_name(api), details=details
+                "apis", name=safe_class_name(safe_class_name(api), unsafe_char="_"), details=details
             )
             self.write_template(
                 content=template,
