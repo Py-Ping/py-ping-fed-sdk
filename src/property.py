@@ -116,6 +116,8 @@ class Property:
         """
         if self.type == self.model_name or self.json_sub_type == self.model_name:
             return None
+        elif self.type == "object":
+            return None
         elif self.type == "dict":
             if not get_py_type(self.json_sub_type[1]) and \
                self.json_sub_type[1] != self.model_name and \

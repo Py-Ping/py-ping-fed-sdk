@@ -22,6 +22,7 @@ def is_post_version_11(version_str):
         return major_ver >= 11
     return False
 
+
 def safe_name(unsafe_string, unsafe_char="/", sub_char="_", rem_leading_char=True):
     safe_string_list = [
         x if x not in unsafe_char else sub_char for x in unsafe_string
@@ -70,7 +71,7 @@ def get_py_type(json_type):
     If no type can be determined, return an empty string.
     """
 
-    if json_type in ("enum", "string", "File"):
+    if json_type in ("enum", "string", "File", "file"):
         return "str"
     elif json_type == "boolean":
         return "bool"
