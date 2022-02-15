@@ -44,6 +44,85 @@ class TestApiEndpoint(TestCase):
         self.assertEqual(api_endpoint.imports, {"Penguin"})
         self.assertEqual(api_endpoint.response_codes, {200, 403, 422, 201})
 
+class TestApiEndpointV11(TestCase):
+    """ Tests for the Fetch class using v11"""
+
+    def test_api_endpoint(self):
+        api_endpoint = ApiEndpoint('/test/path', {
+            "get": {
+                "description": "",
+                "operationId": "getAccounts",
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success.",
+                        "schema": {
+                            "$ref": "#/definitions/AdministrativeAccounts"
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error(s) occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResult"
+                        }
+                    }
+                },
+                "summary": "Get all the PingFederate native Administrative Accounts.",
+                "tags": [
+                    "/administrativeAccounts"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "description": "",
+                "operationId": "addAccount",
+                "parameters": [
+                    {
+                        "description": "Administrative account information.",
+                        "in": "body",
+                        "name": "body",
+                        "required": True,
+                        "schema": {
+                            "$ref": "#/definitions/AdministrativeAccount"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Administrative Account created.",
+                        "schema": {
+                            "$ref": "#/definitions/AdministrativeAccount"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found.",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResult"
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error(s) occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResult"
+                        }
+                    }
+                },
+                "summary": "Add a new PingFederate native Administrative Account.",
+                "tags": [
+                    "/administrativeAccounts"
+                ]
+            }}, v11=True)
+
+        self.assertEqual(api_endpoint.imports, {"AdministrativeAccount","ApiResult","AdministrativeAccounts"})
+        self.assertEqual(api_endpoint.response_codes, {'422', '404', '200'})
 
 class TestParameter(TestCase):
     def test_param(self):
