@@ -36,6 +36,7 @@ class ApiEndpoint:
         4. build out the operation object
         """
         for rest_method, rest_data in self.api_data.items():
+            safe_rest_method = rest_method.split("-")[1]
             params = []
             for param in rest_data["parameters"]:
                 param_obj = Parameter(param)
@@ -58,7 +59,7 @@ class ApiEndpoint:
             self.operations.append(
                 Operation(
                     params, op_response_codes, None,
-                    rest_data["operationId"], rest_data["summary"], rest_method,
+                    rest_data["operationId"], rest_data["summary"], safe_rest_method,
                     self.path, rest_data.get("produces", []))
             )
 

@@ -140,14 +140,24 @@ class Fetch():
             # set the overridden definitions
             self.get_api_schema(file_path, f'/{file_name}')
 
+    def update_v11_schema(self):
+        self.ping_data_v11 = {}
+        for api in self.ping_data.get("paths", {}):
+            action = list(self.ping_data["paths"][api].keys())[0]
+            action_tag = self.ping_data["paths"][api][action]["tags"][0]
+            if action_tag not in self.ping_data_v11:
+                self.ping_data_v11[action_tag] = {}
+            for action in self.ping_data["paths"][api]:
+                self.ping_data_v11[action_tag].update({ f'{api}-{action}': self.ping_data["paths"][api][action]})
+
     def get_v11_plus_schemas(self):
         """
         Versions of Ping Federate greater than v11 use Swagger 2.0 and a cleaner
         implementation exists.
         """
-        for api in self.ping_data.get("paths", {}):
+        for api in self.ping_data_v11:
             safe_api_name = safe_name(api, rem_leading_char=True)
-            self.apis[safe_api_name] = ApiEndpoint(api, self.ping_data["paths"][api], v11=True)
+            self.apis[safe_api_name] = ApiEndpoint(api, self.ping_data_v11[api], v11=True)
         self.models = self.ping_data.get("definitions", {})
 
         for model_name, model_data in self.models.items():
@@ -209,6 +219,7 @@ class Fetch():
         if self.swagger_version == "1.2":
             self.get_api_schemas()
         elif self.swagger_version == "2.0":
+            self.update_v11_schema()
             self.get_v11_plus_schemas()
         self.get_enums_and_imports()
 
