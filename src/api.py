@@ -49,6 +49,10 @@ class ApiEndpoint:
                 op_code = {"code": response_code, "message": response_data["description"]}
                 if "schema" in response_data and "$ref" in response_data["schema"]:
                     op_code["type"] = response_data["schema"]["$ref"].split("/")[-1]
+                elif "schema" in response_data and "type" in response_data["schema"]:
+                    op_code["type"] = response_data["schema"]["type"]
+                else:
+                    op_code["type"] = "void"
                 op_response_codes.append(op_code)
                 if response_code not in self.response_codes:
                     self.response_codes.add(response_code)
@@ -58,7 +62,7 @@ class ApiEndpoint:
 
             self.operations.append(
                 Operation(
-                    params, op_response_codes, None,
+                    params, op_response_codes, op_code["type"],
                     rest_data["operationId"], rest_data["summary"], safe_rest_method,
                     self.path, rest_data.get("produces", []))
             )
@@ -104,6 +108,7 @@ class ApiEndpoint:
         return exception_import_block
 
     def get_exception_by_code(self, http_response_code):
+        http_response_code = int(http_response_code)
         if http_response_code == 204:
             return "ObjectDeleted"
         elif http_response_code == 400:

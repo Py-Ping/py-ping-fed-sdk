@@ -49,7 +49,7 @@ class TestApiEndpointV11(TestCase):
 
     def test_api_endpoint(self):
         api_endpoint = ApiEndpoint('/test/path', {
-            "get": {
+            "test-path-get": {
                 "description": "",
                 "operationId": "getAccounts",
                 "parameters": [],
@@ -75,7 +75,7 @@ class TestApiEndpointV11(TestCase):
                     "/administrativeAccounts"
                 ]
             },
-            "post": {
+            "test-path-post": {
                 "consumes": [
                     "application/json"
                 ],
