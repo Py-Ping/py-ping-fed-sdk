@@ -7,7 +7,6 @@ from docker_generate import Container
 
 from pingfedsdk.models.license_agreement_info import LicenseAgreementInfo
 from pingfedsdk.models.administrative_account import AdministrativeAccount
-from pingfedsdk.models.idp_connection import IdpConnection
 from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.apis.idp_adapters import IdpAdapters
 from pingfedsdk.apis.idp_default_urls import IdpDefaultUrls
@@ -16,10 +15,8 @@ from pingfedsdk.apis.license import License
 from pingfedsdk.apis.administrative_accounts import AdministrativeAccounts
 from pingfedsdk.apis.sp_idp_connections import SpIdpConnections
 from pingfedsdk.apis.sp_adapters import SpAdapters
-from pingfedsdk.apis.sp_target_url_mappings import SpTargetUrlMappings
 from pingfedsdk.apis.sp_default_urls import SpDefaultUrls
 from pingfedsdk.apis.idp_sp_connections import IdpSpConnections
-from pingfedsdk.apis.idp_connectors import IdpConnectors
 from pingfedsdk.apis.idp_to_sp_adapter_mapping import IdpToSpAdapterMapping
 from pingfedsdk.apis.authentication_api import AuthenticationApi
 from pingfedsdk.apis.data_stores import DataStores

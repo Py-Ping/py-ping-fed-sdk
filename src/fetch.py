@@ -148,7 +148,7 @@ class Fetch():
             if action_tag not in self.ping_data_v11:
                 self.ping_data_v11[action_tag] = {}
             for action in self.ping_data["paths"][api]:
-                self.ping_data_v11[action_tag].update({ f'{api}-{action}': self.ping_data["paths"][api][action]})
+                self.ping_data_v11[action_tag].update({f'{api}-{action}': self.ping_data["paths"][api][action]})
 
     def get_v11_plus_schemas(self):
         """
@@ -161,7 +161,6 @@ class Fetch():
         self.models = self.ping_data.get("definitions", {})
 
         for model_name, model_data in self.models.items():
-            model_ref = None
             if "allOf" in model_data:
                 inherit_model = None
                 special_details = None

@@ -44,6 +44,7 @@ class TestApiEndpoint(TestCase):
         self.assertEqual(api_endpoint.imports, {"Penguin"})
         self.assertEqual(api_endpoint.response_codes, {200, 403, 422, 201})
 
+
 class TestApiEndpointV11(TestCase):
     """ Tests for the Fetch class using v11"""
 
@@ -121,8 +122,9 @@ class TestApiEndpointV11(TestCase):
                 ]
             }}, v11=True)
 
-        self.assertEqual(api_endpoint.imports, {"AdministrativeAccount","ApiResult","AdministrativeAccounts"})
+        self.assertEqual(api_endpoint.imports, {"AdministrativeAccount", "ApiResult", "AdministrativeAccounts"})
         self.assertEqual(api_endpoint.response_codes, {'422', '404', '200'})
+
 
 class TestParameter(TestCase):
     def test_param(self):
