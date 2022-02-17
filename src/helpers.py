@@ -4,7 +4,26 @@ from time import sleep
 from requests.auth import HTTPBasicAuth
 
 
-def safe_name(unsafe_string, unsafe_char="/", sub_char="_"):
+def is_post_version_11(version_str):
+    """
+    Ping Federate v11 on uses Swagger 2.0 conventions.
+    Return true if the version can be identified as v11 or greater
+    """
+    version_list = version_str.split(".")
+    # no dot, likely latest or edge, which is greater than v11
+    if len(version_list) == 1:
+        return True
+    elif len(version_list) > 1:
+        try:
+            major_ver = int(version_list[0])
+        except ValueError:
+            # bad formatting, raise an error with a warning.
+            raise Exception("Unknown version format.")
+        return major_ver >= 11
+    return False
+
+
+def safe_name(unsafe_string, unsafe_char="/", sub_char="_", rem_leading_char=True):
     safe_string_list = [
         x if x not in unsafe_char else sub_char for x in unsafe_string
     ]
@@ -12,10 +31,21 @@ def safe_name(unsafe_string, unsafe_char="/", sub_char="_"):
         x if x not in "{}-" else "" for x in safe_string_list
     ]
 
-    return "".join(safe_string_list)
+    safe_string = "".join(safe_string_list)
+    if len(safe_string) and rem_leading_char and safe_string.startswith(sub_char):
+        return safe_string[1:]
+    return safe_string
 
 
 def safe_module_name(unsafe_string, sub_char="_"):
+    """
+    Creates a safe module name. If an upper case character is found in the module name,
+    replace it with its lower case character and put the separator character "sub_char"
+    before it.
+
+    e.g. idp/ThisIsAModule -> idp_this_is_a_module
+
+    """
     safe_string = safe_name(unsafe_string)
     safe_module_name_list = [
         x if x.islower() or x == sub_char else f"{sub_char}{x.lower()}" for x in safe_string
@@ -41,7 +71,7 @@ def get_py_type(json_type):
     If no type can be determined, return an empty string.
     """
 
-    if json_type in ("enum", "string", "File"):
+    if json_type in ("enum", "string", "File", "file"):
         return "str"
     elif json_type == "boolean":
         return "bool"
@@ -70,9 +100,8 @@ def get_auth_session():
     session.auth = HTTPBasicAuth(ping_user, ping_pass)
     session.headers = {
         "Accept": "application/json",
-        "X-Xsrf-Header": "PingFederate"
+        "X-XSRF-Header": "PingFederate"
     }
-
     return session
 
 
@@ -94,3 +123,9 @@ def retry_with_backoff(func, retries=5, backoff=5):
         return True
     if not retries:
         return False
+
+
+def strip_ref(ref_str):
+    if "#/definitions/" in ref_str:
+        return ref_str.split("/")[-1]
+    return ref_str

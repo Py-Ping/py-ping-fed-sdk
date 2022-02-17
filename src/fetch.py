@@ -3,17 +3,19 @@ import os
 import requests
 import logging
 import glob
-from helpers import safe_name
+from copy import deepcopy
+from helpers import safe_name, get_auth_session, strip_ref
 from property import Property
 from api import ApiEndpoint
 from overrides import Override
 
 
 class Fetch():
-    def __init__(self, swagger_url, api_schema_key="apis", verify=False, session=None):
+    def __init__(self, swagger_url, api_schema_key="apis", verify=False, session=None, swagger_version="1.2"):
         logging.basicConfig(
             format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s", datefmt="%m/%d/%Y %I:%M:%S %p"
         )
+        self.swagger_version = swagger_version
         self.project_path = os.path.dirname(os.path.realpath(__file__))
         self.logger = logging.getLogger("PingSDK.Fetch")
         self.logger.setLevel(
@@ -21,7 +23,9 @@ class Fetch():
         )
         self.base_path = None
         self.session = session
-        if not self.session:
+        if session is None and self.swagger_version == "2.0":
+            self.session = get_auth_session()
+        elif session is None:
             self.session = requests.Session()
         self.session.verify = verify
         self.api_schema_key = api_schema_key
@@ -88,7 +92,7 @@ class Fetch():
             return override.apply_patch(api_data)
         return api_data
 
-    def get_api_schema(self, api_path, api_name, verify=False):
+    def get_api_schema(self, api_path, api_name):
         safe_api_name = safe_name(api_name)
         print(api_path)
         if os.path.exists(api_path):
@@ -116,57 +120,108 @@ class Fetch():
                     safe_api_name = safe_api_name[1:]
                 self.write_json(data=r_json, name=safe_api_name, directory="../pingfedsdk/source/apis/")
 
-    def get_api_schemas(self, api_schema_key="apis", verify=False):
+    def get_api_schemas(self, api_schema_key="apis"):
         """
         Iterate over each API in the schema file pf-admin-api and pull
         down each paths content. Store in the api and model dictionaries
         and write to the repository
         """
+
         for api in self.ping_data.get(api_schema_key, {}):
             safe_api_name = safe_name(api.get("path"))
             if safe_api_name.startswith("_"):
                 safe_api_name = safe_api_name[1:]
             api_path = f"{self.project_path}/../pingfedsdk/source/apis/{safe_api_name}.json"
-            self.get_api_schema(api_path, api.get("path"), verify=False)
+            self.get_api_schema(api_path, api.get("path"))
 
         api_path = f"{self.project_path}/overrides/*.json"
         for file_path in glob.glob(api_path):
             file_name = file_path.split("/")[-1].split(".")[0]
             # set the overridden definitions
-            self.get_api_schema(file_path, f'/{file_name}', verify=False)
+            self.get_api_schema(file_path, f'/{file_name}')
 
-        self.processed_model = {}
-        for model, details in self.models.items():
+    def update_v11_schema(self):
+        self.ping_data_v11 = {}
+        for api in self.ping_data.get("paths", {}):
+            action = list(self.ping_data["paths"][api].keys())[0]
+            action_tag = self.ping_data["paths"][api][action]["tags"][0]
+            if action_tag not in self.ping_data_v11:
+                self.ping_data_v11[action_tag] = {}
+            for action in self.ping_data["paths"][api]:
+                self.ping_data_v11[action_tag].update({ f'{api}-{action}': self.ping_data["paths"][api][action]})
+
+    def get_v11_plus_schemas(self):
+        """
+        Versions of Ping Federate greater than v11 use Swagger 2.0 and a cleaner
+        implementation exists.
+        """
+        for api in self.ping_data_v11:
+            safe_api_name = safe_name(api, rem_leading_char=True)
+            self.apis[safe_api_name] = ApiEndpoint(api, self.ping_data_v11[api], v11=True)
+        self.models = self.ping_data.get("definitions", {})
+
+        for model_name, model_data in self.models.items():
+            model_ref = None
+            if "allOf" in model_data:
+                inherit_model = None
+                special_details = None
+                for inherit_data in model_data["allOf"]:
+                    if "$ref" in inherit_data:
+                        inherit_model = strip_ref(inherit_data["$ref"])
+                    if "type" in inherit_data:
+                        special_details = inherit_data
+                ground_model_data = deepcopy(self.models[inherit_model])
+                for attr, attr_value in special_details.items():
+                    if attr == "properties":
+                        continue
+                    ground_model_data[attr] = special_details[attr]
+
+                for prop, prop_data in special_details["properties"].items():
+                    ground_model_data["properties"][prop] = prop_data
+
+                self.models[model_name] = ground_model_data
+
+    def get_enums_and_imports(self):
+        for model_name, details in self.models.items():
             imports = {"models": set(), "enums": set()}
+            model_props = {}
             for prop_name, prop in details.get("properties", {}).items():
-                model_property = Property(prop, model, prop_name)
-                model_import = model_property.get_model_import()
-                enum_import = model_property.get_enum_import()
-                if model_property.type == "DataStore" or \
-                   model_property.type == "list" and \
-                   model_property.sub_type == "DataStore":
-                    imports["models"].add("JdbcDataStore")
-                    imports["models"].add("CustomDataStore")
-                    imports["models"].add("LdapDataStore")
-                    imports["models"].add("DataStore")
-                if model_import and model_import not in imports["models"]:
-                    imports["models"].add(model_import)
-                if enum_import and enum_import not in imports["enums"]:
-                    imports["enums"].add(enum_import)
+                if type(prop) == dict:
+                    model_property = Property(prop, model_name, prop_name)
+                    model_import = model_property.get_model_import()
+                    enum_import = model_property.get_enum_import()
+                    if model_property.type == "DataStore" or \
+                       model_property.type == "list" and \
+                       model_property.sub_type == "DataStore":
+                        imports["models"].add("JdbcDataStore")
+                        imports["models"].add("CustomDataStore")
+                        imports["models"].add("LdapDataStore")
+                        imports["models"].add("DataStore")
+                    if model_import and model_import not in imports["models"]:
+                        imports["models"].add(model_import)
+                    if enum_import and enum_import not in imports["enums"]:
+                        imports["enums"].add(enum_import)
 
-                enums = model_property.get_enums()
-                if enums:
-                    enum_name, enum_domain = enums
-                    self.enums[enum_name] = enum_domain
+                    enums = model_property.get_enums()
+                    if enums:
+                        enum_name, enum_domain = enums
+                        self.enums[enum_name] = enum_domain
 
-                details["properties"][prop_name] = model_property
+                model_props[prop_name] = model_property
+
+            details["properties"] = model_props
             details["imports"] = imports
 
-            self.models[model] = details
+            self.models[model_name] = details
 
     def fetch(self):
         self.get_source()
-        self.get_api_schemas()
+        if self.swagger_version == "1.2":
+            self.get_api_schemas()
+        elif self.swagger_version == "2.0":
+            self.update_v11_schema()
+            self.get_v11_plus_schemas()
+        self.get_enums_and_imports()
 
         return {
             "models": self.models,

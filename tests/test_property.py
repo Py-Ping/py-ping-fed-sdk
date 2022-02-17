@@ -84,6 +84,22 @@ class TestProperty(TestCase):
             ]
         })
 
+        self.v11_enum_example = Property({
+            "description": "The penguins that are enabled for browser-based SSO.",
+            "items": {
+                "enum": [
+                    "IDP_INITIATED_SSO",
+                    "SP_INITIATED_SSO",
+                    "IDP_INITIATED_SLO",
+                    "SP_INITIATED_SLO"
+                ],
+                "type": "string"
+            },
+            "position": 20,
+            "type": "array",
+            "uniqueItems": True
+        })
+
     def test_process(self):
         self.assertEqual(
             self.array_example.get_model_import(),
@@ -147,3 +163,10 @@ class TestProperty(TestCase):
 
         self.assertIsNone(self.array_primitive_example.get_enum_import())
         self.assertIsNone(self.array_primitive_example.get_model_import())
+
+        self.assertIsNone(
+            self.v11_enum_example.get_model_import()
+        )
+        self.assertIsNone(
+            self.v11_enum_example.get_enum_import()
+        )

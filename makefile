@@ -82,6 +82,10 @@ example:
 	PYTHONPATH=$(shell pwd)/src:$(shell pwd) python3 scripts/example.py
 .PHONY: example
 
+example-v11:
+	PYTHONPATH=$(shell pwd)/src:$(shell pwd) python3 scripts/example_v11.py
+.PHONY: example
+
 # Track dependencies between inheriting models
 map-dependencies:
 	PYTHONPATH=$(shell pwd)/src:$(shell pwd) python3 scripts/map_dependencies.py

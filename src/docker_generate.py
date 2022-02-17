@@ -5,7 +5,7 @@ import os
 import logging
 import argparse
 
-from helpers import get_auth_session, retry_with_backoff
+from helpers import get_auth_session, retry_with_backoff, is_post_version_11
 from generate import Generate
 from time import sleep
 
@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(description="PyLogger Generator")
 
 def add_args():
     parser.add_argument(
-        "version", type=str, choices=["9.3.3", "10.0.4", "10.1.0", "10.2.1", "latest", "edge"],
+        "version", type=str, choices=["9.3.3", "10.0.4", "10.1.0", "10.2.1", "11.0.0-edge", "latest", "edge"],
         default="edge", help="Ping Federate Version"
     )
 
@@ -37,6 +37,7 @@ class Container:
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
 
         self.client = docker.from_env()
+        self.version = version
         self.image_name = f"pingidentity/pingfederate:{version}"
         self.home = home_path
         self.ping_user = user
@@ -55,7 +56,7 @@ class Container:
                 f"PING_IDENTITY_DEVOPS_KEY={self.ping_key}",
                 f"PING_IDENTITY_DEVOPS_HOME={self.home}/projects/devops",
                 "PING_IDENTITY_DEVOPS_REGISTRY=docker.io/pingidentity",
-                "PING_IDENTITY_DEVOPS_TAG=edge",
+                f"PING_IDENTITY_DEVOPS_TAG={self.version}",
                 "SERVER_PROFILE_URL=https://github.com/"
                 "pingidentity/pingidentity-server-profiles.git",
                 "SERVER_PROFILE_PATH=getting-started/pingfederate"
@@ -142,13 +143,20 @@ if __name__ == "__main__":
     ping_user = os.environ["PING_IDENTITY_DEVOPS_USER"]
     ping_key = os.environ["PING_IDENTITY_DEVOPS_KEY"]
     endpoint = "https://localhost:9999/pf-admin-api/v1"
-    swagger_url = f"{endpoint}/api-docs"
+    if is_post_version_11(args.version):
+        # v11+ uses swagger 2.0
+        swagger_url = f"{endpoint}/swagger.json"
+        swagger_version = "2.0"
+    else:
+        # <v11 uses swagger 1.2
+        swagger_url = f"{endpoint}/api-docs"
+        swagger_version = "1.2"
     session = get_auth_session()
     session.verify = False
 
     with Container(home, ping_user, ping_key, args.version) as container:
         print(f'Running container {container.id}')
-        if not retry_with_backoff(Generate(swagger_url).generate):
+        if not retry_with_backoff(Generate(swagger_url, swagger_version=swagger_version).generate):
             print("Container service didn't stabilise, exiting...")
             exit(1)
         try:
