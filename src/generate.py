@@ -6,13 +6,14 @@ from helpers import safe_class_name, safe_module_name, safe_name
 
 
 class Generate():
-    def __init__(self, swagger_url, api_schema_key="apis"):
+    def __init__(self, swagger_url, api_schema_key="apis", swagger_version="1.2"):
         logging.basicConfig(format="%(asctime)s [%(levelname)s] (%(funcName)s) %(message)s",
                             datefmt="%m/%d/%Y %I:%M:%S %p")
         self.logger = logging.getLogger("PingSDK.Generate")
         self.logger.setLevel(int(os.environ.get("Logging", logging.DEBUG)))
         self.api_schema_key = api_schema_key
-        self.fetch_data = Fetch(swagger_url).fetch()
+        self.swagger_version=swagger_version
+        self.fetch_data = Fetch(swagger_url, swagger_version=swagger_version).fetch()
 
     def generate(self):
         for model, details in self.fetch_data.get("models").items():
@@ -44,6 +45,8 @@ class Generate():
         exception_types = (
             "BadRequest",
             "NotFound",
+            "NotImplementedError",
+            "ObjectDeleted",
             "ValidationError",
             "ServerError"
         )
@@ -57,7 +60,7 @@ class Generate():
 
         for api, details in self.fetch_data.get("apis").items():
             template = self.render_file(
-                "apis", name=safe_class_name(api), details=details
+                "apis", name=safe_class_name(safe_class_name(api), unsafe_char="_"), details=details
             )
             self.write_template(
                 content=template,

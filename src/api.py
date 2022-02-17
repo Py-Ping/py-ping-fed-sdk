@@ -9,16 +9,63 @@ class ApiEndpoint:
     This was created to take out as much logic as possible from
     the Jinja template and make it compatible with Python native
     Dynamic classes.
+
+    - v11 boolean: If this is true the dictionary will be parsed
+        following a swagger 2.0 format. Response codes can have
+        different return types.
     """
 
-    def __init__(self, api_path, api_data):
+    def __init__(self, api_path, api_data, v11=False):
         self.api_data = api_data
         self.safe_api_path = safe_name(api_path)
         self.path = api_path
         self.response_codes = set()
         self.imports = set()
         self.operations = []
-        self._process()
+        if v11:
+            self._process_v11()
+        else:
+            self._process()
+
+    def _process_v11(self):
+        """
+        Process for how to interpret an API endpoint in Ping Fed v11+
+        1. get the dict and read the rest method/method data
+        2. extract method input parameters and determine if their type will need to be imported
+        3. construct the method response types by HTTP response code (responses may have different schemas)
+        4. build out the operation object
+        """
+        for rest_method, rest_data in self.api_data.items():
+            safe_rest_method = rest_method.split("-")[1]
+            params = []
+            for param in rest_data["parameters"]:
+                param_obj = Parameter(param)
+                params.append(param_obj)
+                if not param_obj.is_primitive_type and param_obj.type not in self.imports:
+                    self.imports.add(param_obj.type)
+
+            op_response_codes = []
+            for response_code, response_data in rest_data["responses"].items():
+                op_code = {"code": response_code, "message": response_data["description"]}
+                if "schema" in response_data and "$ref" in response_data["schema"]:
+                    op_code["type"] = response_data["schema"]["$ref"].split("/")[-1]
+                elif "schema" in response_data and "type" in response_data["schema"]:
+                    op_code["type"] = response_data["schema"]["type"]
+                else:
+                    op_code["type"] = "void"
+                op_response_codes.append(op_code)
+                if response_code not in self.response_codes:
+                    self.response_codes.add(response_code)
+
+                if "type" in op_code and not get_py_type(op_code["type"]) and op_code["type"] not in self.imports:
+                    self.imports.add(op_code["type"])
+
+            self.operations.append(
+                Operation(
+                    params, op_response_codes, op_code["type"],
+                    rest_data["operationId"], rest_data["summary"], safe_rest_method,
+                    self.path, rest_data.get("produces", []))
+            )
 
     def _process(self):
         for data in self.api_data:
@@ -61,6 +108,7 @@ class ApiEndpoint:
         return exception_import_block
 
     def get_exception_by_code(self, http_response_code):
+        http_response_code = int(http_response_code)
         if http_response_code == 204:
             return "ObjectDeleted"
         elif http_response_code == 400:
@@ -89,18 +137,29 @@ class Operation:
         self.response_codes = response_codes
         self.json_type = op_type
         self.type = op_type
+
         if get_py_type(op_type):
             self.type = get_py_type(op_type)
         self.is_primitive_type = bool(get_py_type(op_type))
+
         self.nickname = nickname
         self.summary = summary
         self.method = method
         self.api_path = api_path
         self.produces = produces
 
-    def get_response_str(self):
+    def get_response_str(self, code=None):
+
+        # case to handle v11 Ping Fed, operations can return different response objects
+        # dependent on the HTTP response code
+        if code is not None and self.json_type is None:
+            for response_code in self.response_codes:
+                if response_code["code"] == code and "type" in response_code:
+                    return f"Model{response_code['type']}.from_dict(response.json())"
+
         if get_py_type(self.json_type) not in ("", "None") and self.is_primitive_type:
             return f"{self.type}(response)"
+
         elif get_py_type(self.json_type) == "None":
             if "application/zip" in self.produces:
                 return "response"
@@ -134,14 +193,21 @@ class Parameter:
 
     def __init__(self, param):
         self._raw_param = param
-        self.json_type = self._raw_param["type"]
-        self.type = self._raw_param["type"]
+        if "schema" in self._raw_param:
+            self.json_type = self._raw_param["schema"]["$ref"].split("/")[-1]
+            self.type = self.json_type
+            self.is_primitive_type = False
+        elif "type" in self._raw_param:
+            self.json_type = self._raw_param["type"]
+            self.type = self._raw_param["type"]
+            self.is_primitive_type = bool(get_py_type(self._raw_param["type"]))
+
+        if get_py_type(self.type):
+            self.type = get_py_type(self.type)
+
         self.required = self._raw_param["required"]
-        if get_py_type(self._raw_param["type"]):
-            self.type = get_py_type(self._raw_param["type"])
         self.name = self._raw_param["name"]
         self.safe_name = safe_name(self._raw_param["name"])
-        self.is_primitive_type = bool(get_py_type(self._raw_param["type"]))
 
     def get_parameter_str(self):
         if self.is_primitive_type:
