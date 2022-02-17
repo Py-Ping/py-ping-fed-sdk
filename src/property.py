@@ -52,8 +52,17 @@ class Property:
             if "enum" in items:
                 self.json_sub_type = "enum"
                 if "type" in items:
-                    self.enum_domain = strip_ref(items["type"])
-                    self.sub_type = strip_ref(items["type"])
+                    if items["type"] == "string":
+                        self.json_type = self.raw_property_dict["type"]
+                        self.type = self.raw_property_dict["type"]
+                        if get_py_type(self.raw_property_dict["type"]):
+                            self.type = get_py_type(self.raw_property_dict["type"])
+                        if "type" in items:
+                            self.sub_type = get_py_type(items["type"])
+                            self.json_sub_type = items["type"]
+                    else:
+                        self.enum_domain = strip_ref(items["type"])
+                        self.sub_type = strip_ref(items["type"])
                 else:
                     self.enum_domain = strip_ref(items["$ref"])
                     self.sub_type = strip_ref(items["$ref"])
