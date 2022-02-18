@@ -19,12 +19,17 @@ PING_IDENTITY_DEVOPS_TAG
 
 2. If you have a license for the product put it in the root of the project directory with the name `pingfederate.lic`. This will then be mounted into the container used for SDK generation and will allow the product to be worked with.
 
+# Pre-reqs (workspace setup, packages etc.)
+
+ - `echo edge > PINGVERSION`
+
+If running on alpine linux:
+ - `apk add build-base libffi-dev`
+
 # Installation
 
 ```bash
-# git clone this repo - something you've probably already done
-pip install .
-# OR python setup.py install
+pipenv install
 ```
 
 # Regenerate SDK
