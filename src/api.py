@@ -37,6 +37,7 @@ class ApiEndpoint:
         """
         for rest_method, rest_data in self.api_data.items():
             safe_rest_method = rest_method.split("-")[1]
+            safe_api_path = rest_method.split("-")[0]
             params = []
             for param in rest_data["parameters"]:
                 param_obj = Parameter(param)
@@ -64,7 +65,7 @@ class ApiEndpoint:
                 Operation(
                     params, op_response_codes, op_code["type"],
                     rest_data["operationId"], rest_data["summary"], safe_rest_method,
-                    self.path, rest_data.get("produces", []))
+                    safe_api_path, rest_data.get("produces", []))
             )
 
     def _process(self):
