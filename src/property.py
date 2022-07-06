@@ -44,6 +44,11 @@ class Property:
             self.json_type = "enum"
             self.type = type_class
 
+        elif "type" in self.raw_property_dict and "enum" in self.raw_property_dict:
+            self.enum_domain = self.raw_property_dict["enum"]
+            self.json_type = "enum"
+            self.type = self.get_enums_class(self.model_name, self.name)
+
         elif "type" in self.raw_property_dict and self.raw_property_dict["type"] == "array":
             self.json_type = "array"
             self.type = "list"
@@ -160,6 +165,48 @@ class Property:
         if not enum_name:
             return None
         return enum_name, self.enum_domain
+
+    def get_enums_class(self, model_name, type):
+        """
+        As of V11, the construct of Enums has changed.
+        This class updates the Enum type in order
+        to generate generic classes as found in
+        pingfedsdk/enums.py
+        """
+        if 'BackChannelAuth' in model_name:
+            return 'BackChannelAuthType'
+        elif 'Connection' in model_name and type == 'type':
+            return 'ConnectionType'
+        elif ('DataStore' in model_name and type != 'ldapType') or ('AttributeSource' in model_name and type == 'type'):
+            return 'DataStoreType'
+        elif 'DisplayUnit' in type or 'TimeUnit' in type or 'persistentGrantLifetimeUnit' in type:
+            return 'TimeUnit'
+        elif 'FieldDescriptor' in model_name:
+            return 'FieldDescriptor'
+        elif 'IdentityField' in model_name:
+            return 'LocalIdentityFieldType'
+        elif 'PolicyAction' in model_name:
+            return 'AuthenticationPolicySelectionActionType'
+        elif 'ObjectSigningAlgorithm' in type or 'AuthSigningAlgorithm' in type:
+            return 'ObjectSigningAlgorithm'
+        elif type == 'idTokenSigningAlgorithm' or type == 'requestSigningAlgorithm' or type == 'authenticationSigningAlgorithm':
+            return 'SigningAlgorithm'
+        elif type == 'idTokenEncryptionAlgorithm':
+            return 'EncryptionAlgorithm'
+        elif type == 'idTokenContentEncryptionAlgorithm':
+            return 'ContentEncryptionAlgorithm'
+        elif type == 'persistentGrantExpirationType' or type == 'persistentGrantIdleTimeoutType':
+            return 'PersistentGrantLifetimeType'
+        elif type == 'refreshTokenRollingIntervalType' or type == 'persistentGrantReuseType' or type == 'deviceFlowSettingType':
+            return 'DeviceFlowSettingType'
+        elif type == 'type':
+            return f"{model_name}Type"
+        elif model_name == 'IncomingProxySettings':
+            return 'ForwardedHeaderIndex'
+        elif 'Resource' in model_name:
+            return 'ResourceCategory'
+        else:
+            return f"{type[0].upper()}{type[1:]}"
 
     def get_from_dict_str(self):
         """
