@@ -14,7 +14,12 @@ parser = argparse.ArgumentParser(description="PyLogger Generator")
 
 def add_args():
     parser.add_argument(
-        "version", type=str, choices=["9.3.3", "10.0.4", "10.1.0", "10.2.1", "11.0.0-edge", "latest", "edge"],
+        "version", type=str, choices=[
+            "9.3.3",
+            "10.0.4", "10.1.0", "10.3.5-edge", "10.3.7-edge",
+            "11.0.0-edge", "11.0.3-edge", "11.1.0-edge",
+            "latest", "edge"
+        ],
         default="edge", help="Ping Federate Version"
     )
 
