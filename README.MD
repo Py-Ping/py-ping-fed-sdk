@@ -37,6 +37,9 @@ pipenv install
 To regenerate the APIs and models of the SDK
 
 ```bash
+export <swagger_url>
+export <swagger_version>
+cd src
 make generate
 ```
 
