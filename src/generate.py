@@ -131,4 +131,10 @@ class Generate():
 
 
 if __name__ == "__main__":
-    Generate("https://localhost:9999/pf-admin-api/v1/api-docs").generate()
+    swagger_url = os.environ.get(
+        "PING_IDENTITY_SWAGGER_URL", "https://localhost:9999/pf-admin-api/v1/api-docs"
+    )
+    swagger_version = os.environ.get(
+        "PING_IDENTITY_SWAGGER_VERSION", "1.2"
+    )
+    Generate(swagger_url=swagger_url, swagger_version=swagger_version).generate()
