@@ -50,7 +50,7 @@ buildRequirements:
 
 generate: ## run the SDK generator
 	$(info [+] Running SDK package generator...)
-	python3 pingfedsdk/generate.py
+	python3 src/generate.py
 .PHONY: generate
 
 docker-generate: ## run the SDK generator

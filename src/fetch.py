@@ -42,6 +42,9 @@ class Fetch():
 
         try:
             response = self.session.get(self.swagger_url)
+            if response.status_code == 401 or response.status_code == 404:
+                raise Exception("Invalid swagger url or credentials, this can be as set as an environment variable, "
+                                "see documentation.")
         except Exception as err:
             err_str = f"Failed to download swagger from: {self.swagger_url} with error {err}"
             self.logger.error(err_str)
