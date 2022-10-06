@@ -37,9 +37,8 @@ pipenv install
 To regenerate the APIs and models of the SDK
 
 ```bash
-export <swagger_url>
-export <swagger_version>
-cd src
+export PING_IDENTITY_SWAGGER_URL= https://<pf_hostname>:<pf_admin_port>/pf-admin-api/v1/swagger.json
+export PING_IDENTITY_SWAGGER_VERSION=<1.2/2.0>
 make generate
 ```
 
