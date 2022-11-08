@@ -157,3 +157,8 @@ dmypy.json
 .pytype/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+
+.idea/
+pingfedsdk/
+py-ping-fed-sdk.iml
+src/__pycache__/

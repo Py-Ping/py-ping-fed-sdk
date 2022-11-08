@@ -61,6 +61,9 @@ class ApiEndpoint:
                 if "type" in op_code and not get_py_type(op_code["type"]) and op_code["type"] not in self.imports:
                     self.imports.add(op_code["type"])
 
+            if "summary" not in rest_data:
+                rest_data['summary'] = ''
+
             self.operations.append(
                 Operation(
                     params, op_response_codes, op_code["type"],
