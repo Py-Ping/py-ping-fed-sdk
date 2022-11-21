@@ -26,8 +26,16 @@ PING_IDENTITY_DEVOPS_TAG
 If running on alpine linux:
  - `apk add build-base libffi-dev`
 
+If running on MacOS:
+ - `brew install sphinx-doc`
+
 # Installation
 
+If pipenv module isn't installed yet:
+```bash
+pip3 install pipenv
+```
+Once pipenv has been installed and added to the PATH:
 ```bash
 pipenv install
 ```
@@ -44,7 +52,7 @@ make generate
 
 This requires an available Ping Federate admin server instance with a set of credentials for access.
 
-For a controlled generation of the Federate SDK we recommend using the dockerised version of the service. To do this install docker on your local host, update the `VERSION` variable in the makefile to the desired Federate version for the SDK and execute:
+For a controlled generation of the Federate SDK we recommend using the dockerised version of the service. To do this install docker on your local host, update the content of the `PINGVERSION` file to the desired Federate version for the SDK and execute:
 
 ```bash
 make docker-generate
