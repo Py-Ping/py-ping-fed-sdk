@@ -1,6 +1,6 @@
 # Makefile for building publishing container
 PROJECT = pingfedsdk
-VERSION = latest
+VERSION = $(shell cat PINGVERSION)
 #AUTH = $(shell aws --profile build --region ap-southeast-2 secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-southeast-2:264748061542:secret:github/versent-builder-foTpJN | jq -r '.SecretString | fromjson | .OAuthKey')
 PWD = $(shell pwd)
 GITSHORTHASH = $(shell git rev-parse HEAD | cut -c 1-7)
