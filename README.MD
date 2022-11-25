@@ -114,5 +114,6 @@ To regenerate the documents, after the generation of the SDK has been performed 
 
 ```bash
 cd docs
-make html
+pipenv run sphinx-apidoc -f --implicit-namespaces -o ./source ./../pingfedsdk
+pipenv run make html
 ```
