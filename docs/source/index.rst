@@ -10,20 +10,27 @@ Welcome to pingfedsdk's documentation!
    :maxdepth: 2
    :caption: Table of Contents:
 
+PyPing SDK
+~~~~~~
+.. toctree::
+   :maxdepth: 2
+
+   pingfedsdk
+   pingfedsdk.pingfedsdk
+
 APIs
 ~~~~
 .. toctree::
    :maxdepth: 2
 
-   apis/apis
+   pingfedsdk.apis
 
 Models
 ~~~~~~
 .. toctree::
    :maxdepth: 2
 
-   models/models
-
+   pingfedsdk.models
 
 Indices and tables
 ==================
