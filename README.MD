@@ -117,3 +117,4 @@ cd docs
 pipenv run sphinx-apidoc -f --implicit-namespaces -o ./source ./../pingfedsdk
 pipenv run make html
 ```
+**You will not be able to generate the documents until AFTER you have generated the sdk**
