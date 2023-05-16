@@ -149,7 +149,7 @@ class Operation:
         self.api_path = api_path
         self.produces = produces
 
-    def get_response_str(self, code=None):
+    def get_response_str(self, code=None, response_list=False):
 
         # case to handle v11 Ping Fed, operations can return different response objects
         # dependent on the HTTP response code
@@ -157,6 +157,9 @@ class Operation:
             for response_code in self.response_codes:
                 if response_code["code"] == code and "type" in response_code:
                     return f"Model{response_code['type']}.from_dict(response.json())"
+
+        if response_list:
+            return f"Model{self.type}.from_dict(response_dict)"
 
         if get_py_type(self.json_type) not in ("", "None") and self.is_primitive_type:
             return f"{self.type}(response)"
