@@ -1,0 +1,500 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getOauthOidcKeysSettings",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Retrieve OAuth/OpenID Connect key settings.",
+                    "type": "OAuthOidcKeysSettings"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateOAuthOidcKeysSettings",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "OAuth and OpenID Connect static key settings",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "OAuthOidcKeysSettings"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "OAuth/Open ID Connect key settings updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred."
+                        }
+                    ],
+                    "summary": "Update OAuth/OpenID Connect key settings.",
+                    "type": "OAuthOidcKeysSettings"
+                }
+            ],
+            "path": "/keyPairs/oauthOpenIdConnect"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getKeySets",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Retrieve OAuth/OpenID Connect additional signing key sets.",
+                    "type": "AdditionalKeySets"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "createKeySet",
+                    "notes": "Create a new OAuth/OpenID Connect additional signing key set.  If not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for a new signing key set.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "AdditionalKeySet"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "OAuth/OpenID Connect key set created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new OAuth/OpenID Connect additional signing key set.",
+                    "type": "AdditionalKeySet"
+                }
+            ],
+            "path": "/keyPairs/oauthOpenIdConnect/additionalKeySets"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getKeySet",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of an OAuth/OpenID Connect additional signing key set to update.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Retrieve an OAuth/OpenID Connect additional signing key set.",
+                    "type": "AdditionalKeySet"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateKeySet",
+                    "notes": "Update an existing OAuth/OpenID Connect additional signing key set.  If not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of an OAuth/OpenID Connect additional signing key set to update.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for updated OAuth/OpenID Connect additional signing key set.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "AdditionalKeySet"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "OAuth/OpenID Connect key set updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update an existing OAuth/OpenID Connect additional signing key set.",
+                    "type": "AdditionalKeySet"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteKeySet",
+                    "notes": "Delete an existing OAuth/OpenID Connect additional signing key set. ",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of an additional key set to be deleted.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "OAuth/OpenID Connect key set deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Delete an existing OAuth/OpenID Connect additional signing key set.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/keyPairs/oauthOpenIdConnect/additionalKeySets/{id}"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "AdditionalKeySet": {
+            "description": "The attributes used to configure an OAuth/OpenID Connect additional signing key set with virtual issuers.",
+            "id": "AdditionalKeySet",
+            "properties": {
+                "description": {
+                    "description": "A description of the key set.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "The unique ID for the key set. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.",
+                    "type": "string"
+                },
+                "issuers": {
+                    "description": "A list of virtual issuers that will use the current key set. Once assigned to a key set, the same virtual issuer cannot be assigned to another key set instance.",
+                    "items": {
+                        "$ref": "ResourceLink"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "The key set name.",
+                    "type": "string"
+                },
+                "signingKeys": {
+                    "$ref": "SigningKeys",
+                    "description": "A set of references to the keys."
+                }
+            },
+            "required": [
+                "name",
+                "signingKeys",
+                "issuers"
+            ]
+        },
+        "AdditionalKeySets": {
+            "description": "A collection of OAuth/OpenID Connect additional signing key sets.",
+            "id": "AdditionalKeySets",
+            "properties": {
+                "items": {
+                    "description": "The actual list of signing key sets.",
+                    "items": {
+                        "$ref": "AdditionalKeySet"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "OAuthOidcKeysSettings": {
+            "description": "Setting for OAuth/OpenID Connect signing and decryption key settings.",
+            "id": "OAuthOidcKeysSettings",
+            "properties": {
+                "p256ActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-256 key currently active."
+                },
+                "p256DecryptionActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-256 decryption key currently active."
+                },
+                "p256DecryptionPreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-256 decryption key previously active."
+                },
+                "p256DecryptionPublishX5cParameter": {
+                    "description": "Enable publishing of the P-256 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "p256PreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-256 key previously active."
+                },
+                "p256PublishX5cParameter": {
+                    "description": "Enable publishing of the P-256 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "p384ActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-384 key currently active."
+                },
+                "p384DecryptionActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-384 decryption key currently active."
+                },
+                "p384DecryptionPreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-384 decryption key previously active."
+                },
+                "p384DecryptionPublishX5cParameter": {
+                    "description": "Enable publishing of the P-384 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "p384PreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-384 key previously active."
+                },
+                "p384PublishX5cParameter": {
+                    "description": "Enable publishing of the P-384 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "p521ActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-521 key currently active."
+                },
+                "p521DecryptionActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-521 decryption key currently active."
+                },
+                "p521DecryptionPreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-521 decryption key previously active."
+                },
+                "p521DecryptionPublishX5cParameter": {
+                    "description": "Enable publishing of the P-521 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "p521PreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-521 key previously active."
+                },
+                "p521PublishX5cParameter": {
+                    "description": "Enable publishing of the P-521 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "rsaActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the RSA key currently active."
+                },
+                "rsaDecryptionActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the RSA decryption key currently active."
+                },
+                "rsaDecryptionPreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the RSA decryption key previously active."
+                },
+                "rsaDecryptionPublishX5cParameter": {
+                    "description": "Enable publishing of the RSA certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "rsaPreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the RSA key previously active."
+                },
+                "rsaPublishX5cParameter": {
+                    "description": "Enable publishing of the RSA certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "staticJwksEnabled": {
+                    "description": "Enable static keys.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "staticJwksEnabled"
+            ]
+        },
+        "ResourceLink": {
+            "description": "A reference to a resource.",
+            "id": "ResourceLink",
+            "properties": {
+                "id": {
+                    "description": "The ID of the resource.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "SigningKeys": {
+            "description": "Setting for a OAuth/OpenID Connect signing key set while using multiple virtual issuers.",
+            "id": "SigningKeys",
+            "properties": {
+                "p256ActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-256 key currently active."
+                },
+                "p256PreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-256 key previously active."
+                },
+                "p256PublishX5cParameter": {
+                    "description": "Enable publishing of the P-256 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "p384ActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-384 key currently active."
+                },
+                "p384PreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-384 key previously active."
+                },
+                "p384PublishX5cParameter": {
+                    "description": "Enable publishing of the P-384 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "p521ActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-521 key currently active."
+                },
+                "p521PreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the P-521 key previously active."
+                },
+                "p521PublishX5cParameter": {
+                    "description": "Enable publishing of the P-521 certificate chain associated with the active key.",
+                    "type": "boolean"
+                },
+                "rsaActiveCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the RSA key currently active."
+                },
+                "rsaPreviousCertRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the RSA key previously active."
+                },
+                "rsaPublishX5cParameter": {
+                    "description": "Enable publishing of the RSA certificate chain associated with the active key.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/keyPairs/oauthOpenIdConnect",
+    "swaggerVersion": "1.2"
+}

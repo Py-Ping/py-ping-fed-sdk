@@ -1,0 +1,42 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getVersion",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Gets the server version.",
+                    "type": "Version"
+                }
+            ],
+            "path": "/version"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "Version": {
+            "description": "Server version.",
+            "id": "Version",
+            "properties": {
+                "version": {
+                    "description": "Server version.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/version",
+    "swaggerVersion": "1.2"
+}

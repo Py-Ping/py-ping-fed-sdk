@@ -1,0 +1,1041 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getAuthorizationServerSettings",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the Authorization Server Settings.",
+                    "type": "AuthorizationServerSettings"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateAuthorizationServerSettings",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for updated server settings.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "AuthorizationServerSettings"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Authorization Server Settings updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update the Authorization Server Settings.",
+                    "type": "AuthorizationServerSettings"
+                }
+            ],
+            "path": "/oauth/authServerSettings"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "addCommonScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "The scope definition.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Common Scope added."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Add a new common scope.",
+                    "type": "ScopeEntry"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/commonScopes"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "GET",
+                    "nickname": "getCommonScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the common scope.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get an existing common scope.",
+                    "type": "ScopeEntry"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateCommonScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the common scope.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "The scope definition",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Common Scope updated."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update an existing common scope.",
+                    "type": "ScopeEntry"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "removeCommonScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the common scope.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Common Scope deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Remove an existing common scope.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/commonScopes/{name}"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "addCommonScopeGroup",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "The scope group definition",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeGroupEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Common Scope Group created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new common scope group.",
+                    "type": "ScopeGroupEntry"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/commonScopeGroups"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "GET",
+                    "nickname": "getCommonScopeGroup",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the common scope group.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get an existing common scope group.",
+                    "type": "ScopeGroupEntry"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateCommonScopeGroup",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the common scope group.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "The scope group definition.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeGroupEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Common Scope Group updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update an existing common scope group.",
+                    "type": "ScopeGroupEntry"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "removeCommonScopeGroup",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the common scope group.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Common Scope Group deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Remove an existing common scope group.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/commonScopeGroups/{name}"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "addExclusiveScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "A new exclusive scope",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Exclusive Scope added."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Add a new exclusive scope.",
+                    "type": "ScopeEntry"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/exclusiveScopes"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "GET",
+                    "nickname": "getExclusiveScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the exclusive scope.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get an existing exclusive scope.",
+                    "type": "ScopeEntry"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateExclusiveScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the exclusive scope.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "The scope definition.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Exclusive Scope updated."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update an existing exclusive scope.",
+                    "type": "ScopeEntry"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "removeExclusiveScope",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the exclusive scope.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Exclusive Scope deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Remove an existing exclusive scope.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/exclusiveScopes/{name}"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "addExclusiveScopeGroup",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "The scope group definition",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeGroupEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Exclusive Scope Group created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new exclusive scope group.",
+                    "type": "ScopeGroupEntry"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/exclusiveScopeGroups"
+        },
+        {
+            "operations": [
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "GET",
+                    "nickname": "getExclusiveScopeGroup",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the exclusive scope group.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get an existing exclusive scope group.",
+                    "type": "ScopeGroupEntry"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateExclusiveScopeGroups",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the exclusive scope group.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "The scope group definition",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "ScopeGroupEntry"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Exclusive Scope Group updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update an existing exclusive scope group.",
+                    "type": "ScopeGroupEntry"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "removeExclusiveScopeGroup",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Name of the exclusive scope group.",
+                            "name": "name",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Exclusive Scope Group deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Remove an existing exclusive scope group.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/oauth/authServerSettings/scopes/exclusiveScopeGroups/{name}"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "AuthorizationServerSettings": {
+            "description": "Authorization Server Settings attributes.",
+            "id": "AuthorizationServerSettings",
+            "properties": {
+                "adminWebServicePcvRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The password credential validator reference that is used for authenticating access to the OAuth Administrative Web Service."
+                },
+                "allowUnidentifiedClientExtensionGrants": {
+                    "description": "Allow unidentified clients to request extension grants. The default value is false.",
+                    "type": "boolean"
+                },
+                "allowUnidentifiedClientROCreds": {
+                    "description": "Allow unidentified clients to request resource owner password credentials grants. The default value is false.",
+                    "type": "boolean"
+                },
+                "allowedOrigins": {
+                    "description": "The list of allowed origins.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "approvedScopesAttribute": {
+                    "description": "Attribute from the external consent adapter's contract, intended for storing approved scopes returned by the external consent page.",
+                    "type": "string"
+                },
+                "atmIdForOAuthGrantManagement": {
+                    "description": "The ID of the Access Token Manager used for OAuth enabled grant management.",
+                    "type": "string"
+                },
+                "authorizationCodeEntropy": {
+                    "description": "The authorization code entropy, in bytes.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "authorizationCodeTimeout": {
+                    "description": "The authorization code timeout, in seconds.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "bypassActivationCodeConfirmation": {
+                    "description": "Indicates if the Activation Code Confirmation page should be bypassed if 'verification_url_complete' is used by the end user to authorize a device.",
+                    "type": "boolean"
+                },
+                "bypassAuthorizationForApprovedGrants": {
+                    "description": "Bypass authorization for previously approved persistent grants. The default value is false.",
+                    "type": "boolean"
+                },
+                "defaultScopeDescription": {
+                    "description": "The default scope description.",
+                    "type": "string"
+                },
+                "devicePollingInterval": {
+                    "description": "The amount of time client should wait between polling requests, in seconds.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "disallowPlainPKCE": {
+                    "description": "Determines whether PKCE's 'plain' code challenge method will be disallowed. The default value is false.",
+                    "type": "boolean"
+                },
+                "exclusiveScopeGroups": {
+                    "description": "The list of exclusive scope groups.",
+                    "items": {
+                        "$ref": "ScopeGroupEntry"
+                    },
+                    "type": "array"
+                },
+                "exclusiveScopes": {
+                    "description": "The list of exclusive scopes.",
+                    "items": {
+                        "$ref": "ScopeEntry"
+                    },
+                    "type": "array"
+                },
+                "parReferenceLength": {
+                    "description": "The entropy of pushed authorization request references, in bytes. The default value is 24.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "parReferenceTimeout": {
+                    "description": "The timeout, in seconds, of the pushed authorization request reference. The default value is 60.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "parStatus": {
+                    "$ref": "Status",
+                    "description": "The status of pushed authorization request support. The default value is ENABLED.",
+                    "enum": [
+                        "DISABLED",
+                        "ENABLED",
+                        "REQUIRED"
+                    ]
+                },
+                "pendingAuthorizationTimeout": {
+                    "description": "The 'device_code' and 'user_code' timeout, in seconds.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "persistentGrantContract": {
+                    "$ref": "PersistentGrantContract",
+                    "description": "The persistent grant contract defines attributes that are associated with OAuth persistent grants."
+                },
+                "persistentGrantIdleTimeout": {
+                    "description": "The persistent grant idle timeout. The default value is 30 (days). -1 indicates an indefinite amount of time.",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "persistentGrantIdleTimeoutTimeUnit": {
+                    "$ref": "PersistentGrantLifetimeUnit",
+                    "description": "The persistent grant idle timeout time unit.",
+                    "enum": [
+                        "MINUTES",
+                        "DAYS",
+                        "HOURS"
+                    ]
+                },
+                "persistentGrantLifetime": {
+                    "description": "The persistent grant lifetime. The default value is indefinite. -1 indicates an indefinite amount of time.",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "persistentGrantLifetimeUnit": {
+                    "$ref": "PersistentGrantLifetimeUnit",
+                    "description": "The persistent grant lifetime unit.",
+                    "enum": [
+                        "MINUTES",
+                        "DAYS",
+                        "HOURS"
+                    ]
+                },
+                "persistentGrantReuseGrantTypes": {
+                    "description": "The grant types that the OAuth AS can reuse rather than creating a new grant for each request.",
+                    "items": {
+                        "$ref": "GrantType",
+                        "enum": [
+                            "IMPLICIT",
+                            "AUTHORIZATION_CODE",
+                            "RESOURCE_OWNER_CREDENTIALS",
+                            "CLIENT_CREDENTIALS",
+                            "REFRESH_TOKEN",
+                            "EXTENSION",
+                            "DEVICE_CODE",
+                            "ACCESS_TOKEN_VALIDATION",
+                            "CIBA",
+                            "TOKEN_EXCHANGE"
+                        ]
+                    },
+                    "type": "array"
+                },
+                "refreshRollingInterval": {
+                    "description": "The minimum interval to roll refresh tokens, in hours.",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "refreshTokenLength": {
+                    "description": "The refresh token length in number of characters.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "registeredAuthorizationPath": {
+                    "description": "The Registered Authorization Path is concatenated to PingFederate base URL to generate 'verification_url' and 'verification_url_complete' values in a Device Authorization request. PingFederate listens to this path if specified",
+                    "type": "string"
+                },
+                "rollRefreshTokenValues": {
+                    "description": "The roll refresh token values default policy. The default value is true.",
+                    "type": "boolean"
+                },
+                "scopeForOAuthGrantManagement": {
+                    "description": "The OAuth scope to validate when accessing grant management service.",
+                    "type": "string"
+                },
+                "scopeGroups": {
+                    "description": "The list of common scope groups.",
+                    "items": {
+                        "$ref": "ScopeGroupEntry"
+                    },
+                    "type": "array"
+                },
+                "scopes": {
+                    "description": "The list of common scopes.",
+                    "items": {
+                        "$ref": "ScopeEntry"
+                    },
+                    "type": "array"
+                },
+                "tokenEndpointBaseUrl": {
+                    "description": "The token endpoint base URL used to validate the 'aud' claim during Private Key JWT Client Authentication.",
+                    "type": "string"
+                },
+                "trackUserSessionsForLogout": {
+                    "description": "Determines whether user sessions are tracked for logout. If this property is not provided on a PUT, the setting is left unchanged.",
+                    "type": "boolean"
+                },
+                "userAuthorizationConsentAdapter": {
+                    "description": "Adapter ID of the external consent adapter to be used for the consent page user interface.",
+                    "type": "string"
+                },
+                "userAuthorizationConsentPageSetting": {
+                    "$ref": "UserAuthorizationConsentPageSetting",
+                    "description": "User Authorization Consent Page setting to use PingFederate's internal consent page or an external system",
+                    "enum": [
+                        "INTERNAL",
+                        "ADAPTER"
+                    ]
+                },
+                "userAuthorizationUrl": {
+                    "description": "The URL used to generate 'verification_url' and 'verification_url_complete' values in a Device Authorization request",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "defaultScopeDescription",
+                "authorizationCodeTimeout",
+                "authorizationCodeEntropy",
+                "refreshTokenLength",
+                "refreshRollingInterval",
+                "registeredAuthorizationPath",
+                "pendingAuthorizationTimeout",
+                "devicePollingInterval",
+                "bypassActivationCodeConfirmation"
+            ]
+        },
+        "PersistentGrantAttribute": {
+            "description": "A persistent grant contract attribute.",
+            "id": "PersistentGrantAttribute",
+            "properties": {
+                "name": {
+                    "description": "The name of this attribute.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "PersistentGrantContract": {
+            "id": "PersistentGrantContract",
+            "properties": {
+                "coreAttributes": {
+                    "description": "This is a read-only list of persistent grant attributes and includes USER_KEY and USER_NAME. Changes to this field will be ignored.",
+                    "items": {
+                        "$ref": "PersistentGrantAttribute"
+                    },
+                    "type": "array"
+                },
+                "extendedAttributes": {
+                    "description": "A list of additional attributes for the persistent grant contract.",
+                    "items": {
+                        "$ref": "PersistentGrantAttribute"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "coreAttributes"
+            ]
+        },
+        "ResourceLink": {
+            "description": "A reference to a resource.",
+            "id": "ResourceLink",
+            "properties": {
+                "id": {
+                    "description": "The ID of the resource.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "ScopeEntry": {
+            "description": "A scope name and its description.",
+            "id": "ScopeEntry",
+            "properties": {
+                "description": {
+                    "description": "The description of the scope that appears when the user is prompted for authorization.",
+                    "type": "string"
+                },
+                "dynamic": {
+                    "description": "True if the scope is dynamic. (Defaults to false)",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The name of the scope.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "description"
+            ]
+        },
+        "ScopeGroupEntry": {
+            "description": "A scope group name and its description.",
+            "id": "ScopeGroupEntry",
+            "properties": {
+                "description": {
+                    "description": "The description of the scope group.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the scope group.",
+                    "type": "string"
+                },
+                "scopes": {
+                    "$ref": "Set",
+                    "description": "The set of scopes for this scope group.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "description",
+                "scopes"
+            ]
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/oauth/authServerSettings",
+    "swaggerVersion": "1.2"
+}

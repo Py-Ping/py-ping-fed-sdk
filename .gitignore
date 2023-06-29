@@ -1,13 +1,6 @@
 
 source/*.json
 source/*/*.json
-pingfedsdk/apis/*
-pingfedsdk/models/*
-pingfedsdk/source/*
-pingfedsdk/enums.py
-pingfedsdk/exceptions.py
-pingfedsdk/model.py
-pingfedsdk/.coverage
 docs/build/*
 requirements.txt
 docs/source/apis/apis.rst
@@ -15,7 +8,6 @@ docs/source/models/models.rst
 tests/apis/*
 tests/models/*
 tests/enums.py
-PINGVERSION
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
@@ -159,6 +151,5 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/python
 
 .idea/
-pingfedsdk/
 py-ping-fed-sdk.iml
 src/__pycache__/

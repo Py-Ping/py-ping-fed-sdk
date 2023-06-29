@@ -1,0 +1,208 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "path": "/idp/tokenProcessors"
+        },
+        {
+            "path": "/protocolMetadata"
+        },
+        {
+            "path": "/idp/adapters"
+        },
+        {
+            "path": "/incomingProxySettings"
+        },
+        {
+            "path": "/serviceAuthentication"
+        },
+        {
+            "path": "/license"
+        },
+        {
+            "path": "/administrativeAccounts"
+        },
+        {
+            "path": "/sp/tokenGenerators"
+        },
+        {
+            "path": "/pingOneForEnterprise"
+        },
+        {
+            "path": "/pingOneConnections"
+        },
+        {
+            "path": "/configStore"
+        },
+        {
+            "path": "/certificates/revocation"
+        },
+        {
+            "path": "/idp/connectors"
+        },
+        {
+            "path": "/oauth/issuers"
+        },
+        {
+            "path": "/idpToSpAdapterMapping"
+        },
+        {
+            "path": "/sp/adapters"
+        },
+        {
+            "path": "/sp/targetUrlMappings"
+        },
+        {
+            "path": "/idp/defaultUrls"
+        },
+        {
+            "path": "/idp/stsRequestParametersContracts"
+        },
+        {
+            "path": "/idp/spConnections"
+        },
+        {
+            "path": "/sp/defaultUrls"
+        },
+        {
+            "path": "/sp/idpConnections"
+        },
+        {
+            "path": "/sp/authenticationPolicyContractMappings"
+        },
+        {
+            "path": "/extendedProperties"
+        },
+        {
+            "path": "/bulk"
+        },
+        {
+            "path": "/authenticationPolicies"
+        },
+        {
+            "path": "/oauth/tokenExchange/generator"
+        },
+        {
+            "path": "/oauth/tokenExchange/processor"
+        },
+        {
+            "path": "/authenticationSelectors"
+        },
+        {
+            "path": "/dataStores"
+        },
+        {
+            "path": "/localIdentity/identityProfiles"
+        },
+        {
+            "path": "/oauth/cibaServerPolicy"
+        },
+        {
+            "path": "/passwordCredentialValidators"
+        },
+        {
+            "path": "/kerberos/realms"
+        },
+        {
+            "path": "/authenticationApi"
+        },
+        {
+            "path": "/authenticationPolicyContracts"
+        },
+        {
+            "path": "/session"
+        },
+        {
+            "path": "/keyPairs"
+        },
+        {
+            "path": "/oauth/outOfBandAuthPlugins"
+        },
+        {
+            "path": "/keyPairs/signing"
+        },
+        {
+            "path": "/keyPairs/sslServer"
+        },
+        {
+            "path": "/keyPairs/sslClient"
+        },
+        {
+            "path": "/certificates/ca"
+        },
+        {
+            "path": "/certificates/groups"
+        },
+        {
+            "path": "/oauth/authServerSettings"
+        },
+        {
+            "path": "/keyPairs/oauthOpenIdConnect"
+        },
+        {
+            "path": "/oauth/accessTokenManagers"
+        },
+        {
+            "path": "/oauth/openIdConnect"
+        },
+        {
+            "path": "/oauth/clients"
+        },
+        {
+            "path": "/oauth/clientSettings"
+        },
+        {
+            "path": "/oauth/clientRegistrationPolicies"
+        },
+        {
+            "path": "/oauth/resourceOwnerCredentialsMappings"
+        },
+        {
+            "path": "/oauth/authenticationPolicyContractMappings"
+        },
+        {
+            "path": "/oauth/idpAdapterMappings"
+        },
+        {
+            "path": "/oauth/accessTokenMappings"
+        },
+        {
+            "path": "/notificationPublishers"
+        },
+        {
+            "path": "/tokenProcessorToTokenGeneratorMappings"
+        },
+        {
+            "path": "/oauth/tokenExchange/tokenGeneratorMappings"
+        },
+        {
+            "path": "/serverSettings"
+        },
+        {
+            "path": "/redirectValidation"
+        },
+        {
+            "path": "/cluster"
+        },
+        {
+            "path": "/virtualHostNames"
+        },
+        {
+            "path": "/configArchive"
+        },
+        {
+            "path": "/connectionMetadata"
+        },
+        {
+            "path": "/metadataUrls"
+        },
+        {
+            "path": "/version"
+        }
+    ],
+    "info": {
+        "description": "The PingFederate Administrative API is a REST-based interface that provides a programmatic way to make configuration changes to PingFederate as an alternative to using the administrative console.<br/><br/>Expand the resources below to display implementation details on that resource such as the available endpoints, the parameter and response models for the operation, and the model structure of the resources themselves. Each resource operation comes with the ability to interact with the API. You are prompted for proper administration credentials when you try to perform an API operation.",
+        "title": "Administrative API Documentation"
+    },
+    "swaggerVersion": "1.2"
+}

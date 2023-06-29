@@ -1,0 +1,1150 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getTokenProcessorDescriptors",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the list of available token processors.",
+                    "type": "TokenProcessorDescriptors"
+                }
+            ],
+            "path": "/idp/tokenProcessors/descriptors"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getTokenProcessorDescriptorsById",
+                    "notes": "Get the description of a token processor plugin by ID. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of a token processor descriptor to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get the description of a token processor plugin by ID.",
+                    "type": "TokenProcessorDescriptor"
+                }
+            ],
+            "path": "/idp/tokenProcessors/descriptors/{id}"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getTokenProcessors",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the list of token processor instances.",
+                    "type": "TokenProcessors"
+                },
+                {
+                    "method": "POST",
+                    "nickname": "createTokenProcessor",
+                    "notes": "Create a new token processor instance. If the token processor is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for a token processor instance.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "TokenProcessor"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Token processor created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new token processor instance.",
+                    "type": "TokenProcessor"
+                }
+            ],
+            "path": "/idp/tokenProcessors"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getTokenProcessor",
+                    "notes": "Get the configured token processor instance with the specified ID. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the token processor instance to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Find a token processor instance by ID.",
+                    "type": "TokenProcessor"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updateTokenProcessor",
+                    "notes": "Update a token processor instance. If the token processor is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of token processor instance.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for updated token processor instance.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "TokenProcessor"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Token Processor updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update a token processor instance.",
+                    "type": "TokenProcessor"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteTokenProcessor",
+                    "notes": "Delete a token processor instance with the specified ID. A 404 status code is returned for nonexistent IDs. Note: Only token processors not in use can be deleted. If the request succeeds, the response body is empty. If the request fails, an ApiResult is returned with details of the error.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the token processor instance to delete.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Token processor deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Resource is in use and cannot be deleted.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Delete a token processor instance.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/idp/tokenProcessors/{id}"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ActionDescriptor": {
+            "description": "Describes an arbitrary action that is available for a plugin.",
+            "id": "ActionDescriptor",
+            "properties": {
+                "description": {
+                    "description": "The description of this action",
+                    "type": "string"
+                },
+                "download": {
+                    "description": "Whether this action will trigger a download or invoke an internal action that will return a string result.",
+                    "type": "boolean"
+                },
+                "downloadContentType": {
+                    "description": "If this is a download, this is the Content-Type of the downloaded file. Otherwise, this is null.",
+                    "type": "string"
+                },
+                "downloadFileName": {
+                    "description": "If this is a download, this is the suggested file name of the downloaded file. Otherwise, this is null.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of this action",
+                    "type": "string"
+                }
+            }
+        },
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "BaseSelectionFieldDescriptor": {
+            "description": "Holds fields that are shared by all selection-type field descriptors.",
+            "extends": "FieldDescriptor",
+            "id": "BaseSelectionFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            },
+            "subTypes": [
+                "RadioGroupFieldDescriptor",
+                "SelectFieldDescriptor"
+            ]
+        },
+        "CheckBoxFieldDescriptor": {
+            "description": "A boolean field typically rendered as a checkbox in a configuration UI.",
+            "extends": "FieldDescriptor",
+            "id": "CheckBoxFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "ConfigField": {
+            "description": "A plugin configuration field value.",
+            "id": "ConfigField",
+            "properties": {
+                "encryptedValue": {
+                    "description": "For encrypted or hashed fields, this attribute contains the encrypted representation of the field's value, if a value is defined. If you do not want to update the stored value, this attribute should be passed back unchanged.",
+                    "type": "string"
+                },
+                "inherited": {
+                    "description": "Whether this field is inherited from its parent instance. If true, the value/encrypted value properties become read-only. The default value is false.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The name of the configuration field.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The value for the configuration field. For encrypted or hashed fields, GETs will not return this attribute. To update an encrypted or hashed field, specify the new value in this attribute.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "ConfigRow": {
+            "description": "A row of configuration values for a plugin configuration table.",
+            "id": "ConfigRow",
+            "properties": {
+                "defaultRow": {
+                    "description": "Whether this row is the default.",
+                    "type": "boolean"
+                },
+                "fields": {
+                    "description": "The configuration fields in the row.",
+                    "items": {
+                        "$ref": "ConfigField"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "fields"
+            ]
+        },
+        "ConfigTable": {
+            "description": "A plugin configuration table populated with values.",
+            "id": "ConfigTable",
+            "properties": {
+                "inherited": {
+                    "description": "Whether this table is inherited from its parent instance. If true, the rows become read-only. The default value is false.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The name of the table.",
+                    "type": "string"
+                },
+                "rows": {
+                    "description": "List of table rows.",
+                    "items": {
+                        "$ref": "ConfigRow"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "FieldDescriptor": {
+            "description": "Describes a plugin configuration field.",
+            "discriminator": "type",
+            "id": "FieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            },
+            "subTypes": [
+                "RadioGroupFieldDescriptor",
+                "SelectFieldDescriptor",
+                "CheckBoxFieldDescriptor",
+                "UploadFileFieldDescriptor",
+                "TextAreaFieldDescriptor",
+                "TextFieldDescriptor",
+                "HashedTextFieldDescriptor"
+            ]
+        },
+        "HashedTextFieldDescriptor": {
+            "description": "A text field that will contain a secure salted hash.",
+            "extends": "FieldDescriptor",
+            "id": "HashedTextFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "size": {
+                    "description": "The size of the text field.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "OptionValue": {
+            "description": "An option name and value associated with a selection field.",
+            "id": "OptionValue",
+            "properties": {
+                "name": {
+                    "description": "The name of the option.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The value associated with this option.",
+                    "type": "string"
+                }
+            }
+        },
+        "PluginConfigDescriptor": {
+            "description": "Defines the configuration fields available for a plugin.",
+            "id": "PluginConfigDescriptor",
+            "properties": {
+                "actionDescriptors": {
+                    "description": "The available actions for this plugin.",
+                    "items": {
+                        "$ref": "ActionDescriptor"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "The description of this plugin.",
+                    "type": "string"
+                },
+                "fields": {
+                    "description": "The configuration fields available for this plugin.",
+                    "items": {
+                        "$ref": "FieldDescriptor"
+                    },
+                    "type": "array"
+                },
+                "tables": {
+                    "description": "Configuration tables available for this plugin.",
+                    "items": {
+                        "$ref": "TableDescriptor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "PluginConfiguration": {
+            "description": "Configuration settings for a plugin instance.",
+            "id": "PluginConfiguration",
+            "properties": {
+                "fields": {
+                    "description": "List of configuration fields.",
+                    "items": {
+                        "$ref": "ConfigField"
+                    },
+                    "type": "array"
+                },
+                "tables": {
+                    "description": "List of configuration tables.",
+                    "items": {
+                        "$ref": "ConfigTable"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "PluginDescriptor": {
+            "description": "Defines a plugin type, including available configuration parameters.",
+            "id": "PluginDescriptor",
+            "properties": {
+                "attributeContract": {
+                    "description": "The attribute contract for this plugin.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "className": {
+                    "description": "Full class name of the class that implements this plugin.",
+                    "type": "string"
+                },
+                "configDescriptor": {
+                    "$ref": "PluginConfigDescriptor",
+                    "description": "The descriptor which defines the configuration fields available for this plugin."
+                },
+                "id": {
+                    "description": "Unique ID of the plugin.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Friendly name for the plugin.",
+                    "type": "string"
+                },
+                "supportsExtendedContract": {
+                    "description": "Determines whether this plugin supports extending the attribute contract.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "PluginInstance": {
+            "description": "A plugin instance.",
+            "id": "PluginInstance",
+            "properties": {
+                "configuration": {
+                    "$ref": "PluginConfiguration",
+                    "description": "Plugin instance configuration."
+                },
+                "id": {
+                    "description": "The ID of the plugin instance. The ID cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The plugin instance name. The name cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "parentRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The reference to this plugin's parent instance. The parent reference is only accepted if the plugin type supports parent instances.<br>Note: This parent reference is required if this plugin instance is used as an overriding plugin (e.g. connection adapter overrides)"
+                },
+                "pluginDescriptorRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the plugin descriptor for this instance. The plugin descriptor cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override."
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "pluginDescriptorRef",
+                "configuration"
+            ]
+        },
+        "RadioGroupFieldDescriptor": {
+            "description": "A selection-type field intended to be rendered as a group of radio buttons in a UI.",
+            "extends": "BaseSelectionFieldDescriptor",
+            "id": "RadioGroupFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "ResourceLink": {
+            "description": "A reference to a resource.",
+            "id": "ResourceLink",
+            "properties": {
+                "id": {
+                    "description": "The ID of the resource.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "SelectFieldDescriptor": {
+            "description": "A selection field that is intended to be rendered as a dropdown list of options.",
+            "extends": "BaseSelectionFieldDescriptor",
+            "id": "SelectFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "TableDescriptor": {
+            "description": "Defines a plugin configuration table.",
+            "id": "TableDescriptor",
+            "properties": {
+                "columns": {
+                    "description": "Get the columns in the table.",
+                    "items": {
+                        "$ref": "FieldDescriptor"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "Description for the table.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label for the table to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the table.",
+                    "type": "string"
+                },
+                "requireDefaultRow": {
+                    "description": "Configure whether this table requires default row to be set.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "TextAreaFieldDescriptor": {
+            "description": "A field intended to be rendered as a text box in a UI.",
+            "extends": "FieldDescriptor",
+            "id": "TextAreaFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "columns": {
+                    "description": "The number of columns for the text box.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "rows": {
+                    "description": "The number of rows for the text box.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "TextFieldDescriptor": {
+            "description": "A text field.",
+            "extends": "FieldDescriptor",
+            "id": "TextFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "encrypted": {
+                    "description": "Determines whether the field value should be masked in the UI and encrypted on disk.",
+                    "type": "boolean"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "size": {
+                    "description": "The size of the text field.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "TokenProcessor": {
+            "description": "A token processor instance.",
+            "extends": "PluginInstance",
+            "id": "TokenProcessor",
+            "properties": {
+                "attributeContract": {
+                    "$ref": "TokenProcessorAttributeContract",
+                    "description": "The list of attributes that the token processor provides."
+                },
+                "configuration": {
+                    "$ref": "PluginConfiguration",
+                    "description": "Plugin instance configuration."
+                },
+                "id": {
+                    "description": "The ID of the plugin instance. The ID cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The plugin instance name. The name cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "parentRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The reference to this plugin's parent instance. The parent reference is only accepted if the plugin type supports parent instances.<br>Note: This parent reference is required if this plugin instance is used as an overriding plugin (e.g. connection adapter overrides)"
+                },
+                "pluginDescriptorRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the plugin descriptor for this instance. The plugin descriptor cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override."
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "pluginDescriptorRef",
+                "configuration"
+            ]
+        },
+        "TokenProcessorAttribute": {
+            "description": "An attribute for the token processor attribute contract.",
+            "id": "TokenProcessorAttribute",
+            "properties": {
+                "masked": {
+                    "description": "Specifies whether this attribute is masked in PingFederate logs. Defaults to false.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The name of this attribute.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "TokenProcessorAttributeContract": {
+            "description": "A set of attributes exposed by a token processor.",
+            "id": "TokenProcessorAttributeContract",
+            "properties": {
+                "coreAttributes": {
+                    "description": "A list of token processor attributes that correspond to the attributes exposed by the token processor type.",
+                    "items": {
+                        "$ref": "TokenProcessorAttribute"
+                    },
+                    "type": "array"
+                },
+                "extendedAttributes": {
+                    "description": "A list of additional attributes that can be returned by the token processor. The extended attributes are only used if the token processor supports them.",
+                    "items": {
+                        "$ref": "TokenProcessorAttribute"
+                    },
+                    "type": "array"
+                },
+                "inherited": {
+                    "description": "Whether this attribute contract is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.",
+                    "type": "boolean"
+                },
+                "maskOgnlValues": {
+                    "description": "Whether or not all OGNL expressions used to fulfill an outgoing assertion contract should be masked in the logs. Defaults to false.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "coreAttributes"
+            ]
+        },
+        "TokenProcessorDescriptor": {
+            "description": "A token processor descriptor.",
+            "extends": "PluginDescriptor",
+            "id": "TokenProcessorDescriptor",
+            "properties": {
+                "attributeContract": {
+                    "description": "The attribute contract for this plugin.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "className": {
+                    "description": "Full class name of the class that implements this plugin.",
+                    "type": "string"
+                },
+                "configDescriptor": {
+                    "$ref": "PluginConfigDescriptor",
+                    "description": "The descriptor which defines the configuration fields available for this plugin."
+                },
+                "id": {
+                    "description": "Unique ID of the plugin.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Friendly name for the plugin.",
+                    "type": "string"
+                },
+                "supportsExtendedContract": {
+                    "description": "Determines whether this plugin supports extending the attribute contract.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "TokenProcessorDescriptors": {
+            "description": "A collection of token processor descriptors.",
+            "id": "TokenProcessorDescriptors",
+            "properties": {
+                "items": {
+                    "description": "The list of token processor descriptors.",
+                    "items": {
+                        "$ref": "TokenProcessorDescriptor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "TokenProcessors": {
+            "description": "A collection of token processors.",
+            "id": "TokenProcessors",
+            "properties": {
+                "items": {
+                    "description": "The actual list of token processors.",
+                    "items": {
+                        "$ref": "TokenProcessor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "UploadFileFieldDescriptor": {
+            "description": "A field which allows the user to upload a file.",
+            "extends": "FieldDescriptor",
+            "id": "UploadFileFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/idp/tokenProcessors",
+    "swaggerVersion": "1.2"
+}
