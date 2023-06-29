@@ -14,7 +14,7 @@ requires = [
 
 
 setup(
-    name=f"pingfedsdk-{read_contents('PINGVERSION')}",
+    name=f"pingfedsdk-11",
     version=read_contents("VERSION"),
     description=read_contents("DESCRIPTION"),
     classifiers=[
@@ -34,7 +34,6 @@ setup(
     license="proprietary",
     url="https://github.com/Versent/py-ping-fed-sdk",
     py_modules=["pingfedsdk"],
-    package_dir={"": "pingfedsdk"},
-    install_requires=requires,
+    packages=["pingfedsdk", "pingfedsdk/apis", "pingfedsdk/models"],
     zip_safe=False,
 )
