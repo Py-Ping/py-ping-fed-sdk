@@ -23,6 +23,9 @@ sphinx = "*"
 guzzle-sphinx-theme = "*"
 tox = "*"
 json-delta = "*"
+docker = "*"
+pytest-cov = "*"
+twine = "*"
 
 [requires]
-python_version = "3"
+python_version = "3.7"

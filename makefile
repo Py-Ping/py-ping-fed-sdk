@@ -55,7 +55,7 @@ generate: ## run the SDK generator
 
 docker-generate: ## run the SDK generator
 	$(info [+] Running Dockerised SDK package generator...)
-	PYTHONPATH=$(shell pwd) python3 src/docker_generate.py $(VERSION)
+	PYTHONPATH=$(shell pwd) python3 src/docker_generate.py 10.3.7-edge
 .PHONY: docker-generate
 
 unittest:

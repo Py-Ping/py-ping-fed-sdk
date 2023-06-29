@@ -1,0 +1,256 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getStsRequestParamContracts",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the list of STS Request Parameters Contracts.",
+                    "type": "StsRequestParametersContracts"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "createStsRequestParamContract",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Details for the STS Request Parameters Contract.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "StsRequestParametersContract"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "STS Request Parameters Contract created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new STS Request Parameters Contract.",
+                    "type": "StsRequestParametersContract"
+                }
+            ],
+            "path": "/idp/stsRequestParametersContracts"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getStsRequestParamContractById",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of STS Request Parameters Contract to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get a STS Request Parameters Contract.",
+                    "type": "StsRequestParametersContract"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updateStsRequestParamContractById",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of STS Request Parameters Contract to update.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Details for updated STS Request Parameters Contract.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "StsRequestParametersContract"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "STS Request Parameters Contract updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update a STS Request Parameters Contract.",
+                    "type": "StsRequestParametersContract"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteStsRequestParamContractById",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of STS Request Parameters Contract to delete.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "STS Request Parameters Contract deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Delete a STS Request Parameters Contract.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/idp/stsRequestParametersContracts/{id}"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "StsRequestParametersContract": {
+            "description": "A Security Token Service request parameter contract.",
+            "id": "StsRequestParametersContract",
+            "properties": {
+                "id": {
+                    "description": "The ID of the Security Token Service request parameter contract.<br>Note: Ignored for PUT requests.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the Security Token Service request parameter contract.<br>Note: Ignored for PUT requests.",
+                    "type": "string"
+                },
+                "parameters": {
+                    "description": "The list of parameters within the Security  Token Service request parameter contract.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "parameters"
+            ]
+        },
+        "StsRequestParametersContracts": {
+            "description": "A Collection of STS Request Parameters Contracts",
+            "id": "StsRequestParametersContracts",
+            "properties": {
+                "items": {
+                    "description": "The actual list of STS Request Parameters Contracts.",
+                    "items": {
+                        "$ref": "StsRequestParametersContract"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/idp/stsRequestParametersContracts",
+    "swaggerVersion": "1.2"
+}

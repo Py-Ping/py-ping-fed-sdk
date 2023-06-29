@@ -1,0 +1,1429 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getSpAdapterDescriptors",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the list of available SP adapter descriptors.",
+                    "type": "SpAdapterDescriptors"
+                }
+            ],
+            "path": "/sp/adapters/descriptors"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getSpAdapterDescriptorsById",
+                    "notes": "Get the description of an SP adapter plugin by ID. A 404 status code is returned for nonexistant IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of SP adapter descriptor to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Get the description of an SP adapter plugin by ID.",
+                    "type": "SpAdapterDescriptor"
+                }
+            ],
+            "path": "/sp/adapters/descriptors/{id}"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getSpAdapters",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Page number to retrieve.",
+                            "format": "int32",
+                            "name": "page",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Number of adapters per page.",
+                            "format": "int32",
+                            "name": "numberPerPage",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Filter criteria limits the SP adapters that are returned to only those that match it. The filter criteria is compared to the SP adapter instance name and ID fields. The comparison is a case-insensitive partial match. No additional pattern based matching is supported.",
+                            "name": "filter",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Get the list of configured SP adapter instances.",
+                    "type": "SpAdapters"
+                },
+                {
+                    "method": "POST",
+                    "nickname": "createSpAdapter",
+                    "notes": "Create a new SP adapter instance. If the SP adapter is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for a new SP adapter instance.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "SpAdapter"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Adapter created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new SP adapter instance.",
+                    "type": "SpAdapter"
+                }
+            ],
+            "path": "/sp/adapters"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getSpAdapter",
+                    "notes": "Get the configured SP adapter instance with the specified ID. A 404 status code is returned for nonexistant IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of SP adapter instance to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Find an SP adapter instance by ID.",
+                    "type": "SpAdapter"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updateSpAdapter",
+                    "notes": "Update an SP adapter instance. If the SP adapter is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of SP adapter instance.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for updated SP adapter instance.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "SpAdapter"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Adapter updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update an SP adapter instance.",
+                    "type": "SpAdapter"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteSpAdapter",
+                    "notes": "Delete an SP adapter instance with the specified ID. A 404 status code is returned for nonexistent IDs. Note: Only adapters not in use can be deleted. If the request succeeds, the response body is empty. If the request fails, an ApiResult is returned with details of the error.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of SP adapter instance to delete.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Adapter deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Resource is in use and cannot be deleted.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Delete an SP adapter instance.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/sp/adapters/{id}"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getActions",
+                    "notes": "List the actions for an SP adapter instance. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the SP adapter instance to which these actions belongs to.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "List the actions for an SP adapter instance.",
+                    "type": "Actions"
+                }
+            ],
+            "path": "/sp/adapters/{id}/actions"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getAction",
+                    "notes": "Find an SP adapter instance's action by ID. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the SP adapter instance to which this action belongs to.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the action to get.",
+                            "name": "actionId",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Find an SP adapter instance's action by ID.",
+                    "type": "Action"
+                }
+            ],
+            "path": "/sp/adapters/{id}/actions/{actionId}"
+        },
+        {
+            "operations": [
+                {
+                    "method": "POST",
+                    "nickname": "invokeAction",
+                    "notes": "Invokes an action for an SP adapter instance. A 404 status code is returned for nonexistent IDs. If the action produces a download file, the file will be returned directly in the response. Otherwise an ActionResult will be returned.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the SP adapter instance to which this action belongs to.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the action to invoke.",
+                            "name": "actionId",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Action invoked on adapter."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        }
+                    ],
+                    "summary": "Invokes an action for an SP adapter instance.",
+                    "type": "ActionResult"
+                }
+            ],
+            "path": "/sp/adapters/{id}/actions/{actionId}/invokeAction"
+        },
+        {
+            "operations": [
+                {
+                    "deprecated": "true",
+                    "method": "GET",
+                    "nickname": "getUrlMappings",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "(Deprecated) List the mappings between URLs and adapter instances.",
+                    "type": "SpAdapterUrlMappings"
+                },
+                {
+                    "deprecated": "true",
+                    "method": "PUT",
+                    "nickname": "updateUrlMappings",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "The SP adapter URL mappings to update.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "SpAdapterUrlMappings"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Mapping updated."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "(Deprecated) Update the mappings between URLs and adapters instances.",
+                    "type": "SpAdapterUrlMappings"
+                }
+            ],
+            "path": "/sp/adapters/urlMappings"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "Action": {
+            "description": "A read-only plugin action that either represents a file download or an arbitrary invocation performed by the plugin.",
+            "id": "Action",
+            "properties": {
+                "description": {
+                    "description": "The description of this action.",
+                    "type": "string"
+                },
+                "download": {
+                    "description": "Whether this action will trigger a download or invoke an internal action that will return a string result.",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "The ID of this action.",
+                    "type": "string"
+                },
+                "invocationRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Whether this action will trigger a download or invoke an internal action that will return a string result."
+                },
+                "name": {
+                    "description": "The name of this action.",
+                    "type": "string"
+                }
+            }
+        },
+        "ActionDescriptor": {
+            "description": "Describes an arbitrary action that is available for a plugin.",
+            "id": "ActionDescriptor",
+            "properties": {
+                "description": {
+                    "description": "The description of this action",
+                    "type": "string"
+                },
+                "download": {
+                    "description": "Whether this action will trigger a download or invoke an internal action that will return a string result.",
+                    "type": "boolean"
+                },
+                "downloadContentType": {
+                    "description": "If this is a download, this is the Content-Type of the downloaded file. Otherwise, this is null.",
+                    "type": "string"
+                },
+                "downloadFileName": {
+                    "description": "If this is a download, this is the suggested file name of the downloaded file. Otherwise, this is null.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of this action",
+                    "type": "string"
+                }
+            }
+        },
+        "ActionResult": {
+            "description": "The result for non-download plugin actions.",
+            "id": "ActionResult",
+            "properties": {
+                "message": {
+                    "description": "The message from the completed action.",
+                    "type": "string"
+                }
+            }
+        },
+        "Actions": {
+            "description": "A read-only list of available actions for this plugin instance.",
+            "id": "Actions",
+            "properties": {
+                "items": {
+                    "description": "The list of available actions.",
+                    "items": {
+                        "$ref": "Action"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "BaseSelectionFieldDescriptor": {
+            "description": "Holds fields that are shared by all selection-type field descriptors.",
+            "extends": "FieldDescriptor",
+            "id": "BaseSelectionFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            },
+            "subTypes": [
+                "RadioGroupFieldDescriptor",
+                "SelectFieldDescriptor"
+            ]
+        },
+        "CheckBoxFieldDescriptor": {
+            "description": "A boolean field typically rendered as a checkbox in a configuration UI.",
+            "extends": "FieldDescriptor",
+            "id": "CheckBoxFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "ConfigField": {
+            "description": "A plugin configuration field value.",
+            "id": "ConfigField",
+            "properties": {
+                "encryptedValue": {
+                    "description": "For encrypted or hashed fields, this attribute contains the encrypted representation of the field's value, if a value is defined. If you do not want to update the stored value, this attribute should be passed back unchanged.",
+                    "type": "string"
+                },
+                "inherited": {
+                    "description": "Whether this field is inherited from its parent instance. If true, the value/encrypted value properties become read-only. The default value is false.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The name of the configuration field.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The value for the configuration field. For encrypted or hashed fields, GETs will not return this attribute. To update an encrypted or hashed field, specify the new value in this attribute.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "ConfigRow": {
+            "description": "A row of configuration values for a plugin configuration table.",
+            "id": "ConfigRow",
+            "properties": {
+                "defaultRow": {
+                    "description": "Whether this row is the default.",
+                    "type": "boolean"
+                },
+                "fields": {
+                    "description": "The configuration fields in the row.",
+                    "items": {
+                        "$ref": "ConfigField"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "fields"
+            ]
+        },
+        "ConfigTable": {
+            "description": "A plugin configuration table populated with values.",
+            "id": "ConfigTable",
+            "properties": {
+                "inherited": {
+                    "description": "Whether this table is inherited from its parent instance. If true, the rows become read-only. The default value is false.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The name of the table.",
+                    "type": "string"
+                },
+                "rows": {
+                    "description": "List of table rows.",
+                    "items": {
+                        "$ref": "ConfigRow"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "FieldDescriptor": {
+            "description": "Describes a plugin configuration field.",
+            "discriminator": "type",
+            "id": "FieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            },
+            "subTypes": [
+                "RadioGroupFieldDescriptor",
+                "SelectFieldDescriptor",
+                "CheckBoxFieldDescriptor",
+                "UploadFileFieldDescriptor",
+                "TextAreaFieldDescriptor",
+                "TextFieldDescriptor",
+                "HashedTextFieldDescriptor"
+            ]
+        },
+        "HashedTextFieldDescriptor": {
+            "description": "A text field that will contain a secure salted hash.",
+            "extends": "FieldDescriptor",
+            "id": "HashedTextFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "size": {
+                    "description": "The size of the text field.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "OptionValue": {
+            "description": "An option name and value associated with a selection field.",
+            "id": "OptionValue",
+            "properties": {
+                "name": {
+                    "description": "The name of the option.",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The value associated with this option.",
+                    "type": "string"
+                }
+            }
+        },
+        "PluginConfigDescriptor": {
+            "description": "Defines the configuration fields available for a plugin.",
+            "id": "PluginConfigDescriptor",
+            "properties": {
+                "actionDescriptors": {
+                    "description": "The available actions for this plugin.",
+                    "items": {
+                        "$ref": "ActionDescriptor"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "The description of this plugin.",
+                    "type": "string"
+                },
+                "fields": {
+                    "description": "The configuration fields available for this plugin.",
+                    "items": {
+                        "$ref": "FieldDescriptor"
+                    },
+                    "type": "array"
+                },
+                "tables": {
+                    "description": "Configuration tables available for this plugin.",
+                    "items": {
+                        "$ref": "TableDescriptor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "PluginConfiguration": {
+            "description": "Configuration settings for a plugin instance.",
+            "id": "PluginConfiguration",
+            "properties": {
+                "fields": {
+                    "description": "List of configuration fields.",
+                    "items": {
+                        "$ref": "ConfigField"
+                    },
+                    "type": "array"
+                },
+                "tables": {
+                    "description": "List of configuration tables.",
+                    "items": {
+                        "$ref": "ConfigTable"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "PluginDescriptor": {
+            "description": "Defines a plugin type, including available configuration parameters.",
+            "id": "PluginDescriptor",
+            "properties": {
+                "attributeContract": {
+                    "description": "The attribute contract for this plugin.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "className": {
+                    "description": "Full class name of the class that implements this plugin.",
+                    "type": "string"
+                },
+                "configDescriptor": {
+                    "$ref": "PluginConfigDescriptor",
+                    "description": "The descriptor which defines the configuration fields available for this plugin."
+                },
+                "id": {
+                    "description": "Unique ID of the plugin.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Friendly name for the plugin.",
+                    "type": "string"
+                },
+                "supportsExtendedContract": {
+                    "description": "Determines whether this plugin supports extending the attribute contract.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "PluginInstance": {
+            "description": "A plugin instance.",
+            "id": "PluginInstance",
+            "properties": {
+                "configuration": {
+                    "$ref": "PluginConfiguration",
+                    "description": "Plugin instance configuration."
+                },
+                "id": {
+                    "description": "The ID of the plugin instance. The ID cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The plugin instance name. The name cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "parentRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The reference to this plugin's parent instance. The parent reference is only accepted if the plugin type supports parent instances.<br>Note: This parent reference is required if this plugin instance is used as an overriding plugin (e.g. connection adapter overrides)"
+                },
+                "pluginDescriptorRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the plugin descriptor for this instance. The plugin descriptor cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override."
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "pluginDescriptorRef",
+                "configuration"
+            ]
+        },
+        "RadioGroupFieldDescriptor": {
+            "description": "A selection-type field intended to be rendered as a group of radio buttons in a UI.",
+            "extends": "BaseSelectionFieldDescriptor",
+            "id": "RadioGroupFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "ResourceLink": {
+            "description": "A reference to a resource.",
+            "id": "ResourceLink",
+            "properties": {
+                "id": {
+                    "description": "The ID of the resource.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "SelectFieldDescriptor": {
+            "description": "A selection field that is intended to be rendered as a dropdown list of options.",
+            "extends": "BaseSelectionFieldDescriptor",
+            "id": "SelectFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "optionValues": {
+                    "description": "The list of option values for this selection field.",
+                    "items": {
+                        "$ref": "OptionValue"
+                    },
+                    "type": "array"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "SpAdapter": {
+            "description": "An SP adapter instance.",
+            "extends": "PluginInstance",
+            "id": "SpAdapter",
+            "properties": {
+                "attributeContract": {
+                    "$ref": "SpAdapterAttributeContract",
+                    "description": "The list of attributes that the SP adapter provides."
+                },
+                "configuration": {
+                    "$ref": "PluginConfiguration",
+                    "description": "Plugin instance configuration."
+                },
+                "id": {
+                    "description": "The ID of the plugin instance. The ID cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The plugin instance name. The name cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override.",
+                    "type": "string"
+                },
+                "parentRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The reference to this plugin's parent instance. The parent reference is only accepted if the plugin type supports parent instances.<br>Note: This parent reference is required if this plugin instance is used as an overriding plugin (e.g. connection adapter overrides)"
+                },
+                "pluginDescriptorRef": {
+                    "$ref": "ResourceLink",
+                    "description": "Reference to the plugin descriptor for this instance. The plugin descriptor cannot be modified once the instance is created.<br>Note: Ignored when specifying a connection's adapter override."
+                },
+                "targetApplicationInfo": {
+                    "$ref": "SpAdapterTargetApplicationInfo",
+                    "description": "The target application's name and icon URL"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "pluginDescriptorRef",
+                "configuration"
+            ]
+        },
+        "SpAdapterAttribute": {
+            "description": "An attribute for the SP adapter attribute contract.",
+            "id": "SpAdapterAttribute",
+            "properties": {
+                "name": {
+                    "description": "The name of this attribute.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "SpAdapterAttributeContract": {
+            "description": "A set of attributes exposed by an SP adapter.",
+            "id": "SpAdapterAttributeContract",
+            "properties": {
+                "coreAttributes": {
+                    "description": "A list of read-only attributes that are automatically populated by the SP adapter descriptor.",
+                    "items": {
+                        "$ref": "SpAdapterAttribute"
+                    },
+                    "type": "array"
+                },
+                "extendedAttributes": {
+                    "description": "A list of additional attributes that can be returned by the SP adapter. The extended attributes are only used if the adapter supports them.",
+                    "items": {
+                        "$ref": "SpAdapterAttribute"
+                    },
+                    "type": "array"
+                },
+                "inherited": {
+                    "description": "Whether this attribute contract is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "SpAdapterDescriptor": {
+            "description": "An SP adapter descriptor.",
+            "extends": "PluginDescriptor",
+            "id": "SpAdapterDescriptor",
+            "properties": {
+                "attributeContract": {
+                    "description": "The attribute contract for this plugin.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "className": {
+                    "description": "Full class name of the class that implements this plugin.",
+                    "type": "string"
+                },
+                "configDescriptor": {
+                    "$ref": "PluginConfigDescriptor",
+                    "description": "The descriptor which defines the configuration fields available for this plugin."
+                },
+                "id": {
+                    "description": "Unique ID of the plugin.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Friendly name for the plugin.",
+                    "type": "string"
+                },
+                "supportsExtendedContract": {
+                    "description": "Determines whether this plugin supports extending the attribute contract.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "SpAdapterDescriptors": {
+            "description": "A collection of SP adapter descriptors.",
+            "id": "SpAdapterDescriptors",
+            "properties": {
+                "items": {
+                    "description": "The list of SP adapter descriptors.",
+                    "items": {
+                        "$ref": "SpAdapterDescriptor"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "SpAdapterTargetApplicationInfo": {
+            "description": "Target Application Information exposed by an SP adapter.",
+            "id": "SpAdapterTargetApplicationInfo",
+            "properties": {
+                "applicationIconUrl": {
+                    "description": "The application icon URL.",
+                    "type": "string"
+                },
+                "applicationName": {
+                    "description": "The application name.",
+                    "type": "string"
+                },
+                "inherited": {
+                    "description": "Specifies Whether target application information is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "SpAdapterUrlMapping": {
+            "description": "SP Adapter URL Mapping",
+            "id": "SpAdapterUrlMapping",
+            "properties": {
+                "adapterRef": {
+                    "$ref": "ResourceLink",
+                    "description": "The adapter instance mapped for this URL."
+                },
+                "url": {
+                    "description": "The URL that will be compared against the target URL. Use a wildcard (*) to match multiple URLs to the same adapter instance.",
+                    "type": "string"
+                }
+            }
+        },
+        "SpAdapterUrlMappings": {
+            "id": "SpAdapterUrlMappings",
+            "properties": {
+                "items": {
+                    "description": "The actual list of SP adapter URL mappings.",
+                    "items": {
+                        "$ref": "SpAdapterUrlMapping"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "SpAdapters": {
+            "description": "A collection of SP adapters.",
+            "id": "SpAdapters",
+            "properties": {
+                "items": {
+                    "description": "The actual list of SP adapters.",
+                    "items": {
+                        "$ref": "SpAdapter"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "TableDescriptor": {
+            "description": "Defines a plugin configuration table.",
+            "id": "TableDescriptor",
+            "properties": {
+                "columns": {
+                    "description": "Get the columns in the table.",
+                    "items": {
+                        "$ref": "FieldDescriptor"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "Description for the table.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label for the table to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the table.",
+                    "type": "string"
+                },
+                "requireDefaultRow": {
+                    "description": "Configure whether this table requires default row to be set.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "TextAreaFieldDescriptor": {
+            "description": "A field intended to be rendered as a text box in a UI.",
+            "extends": "FieldDescriptor",
+            "id": "TextAreaFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "columns": {
+                    "description": "The number of columns for the text box.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "rows": {
+                    "description": "The number of rows for the text box.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "TextFieldDescriptor": {
+            "description": "A text field.",
+            "extends": "FieldDescriptor",
+            "id": "TextFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "encrypted": {
+                    "description": "Determines whether the field value should be masked in the UI and encrypted on disk.",
+                    "type": "boolean"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "size": {
+                    "description": "The size of the text field.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "UploadFileFieldDescriptor": {
+            "description": "A field which allows the user to upload a file.",
+            "extends": "FieldDescriptor",
+            "id": "UploadFileFieldDescriptor",
+            "properties": {
+                "advanced": {
+                    "description": "Whether this is an advanced field or not.",
+                    "type": "boolean"
+                },
+                "defaultValue": {
+                    "description": "Default value of the field.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the field.",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label of the field to be displayed in the administrative console.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the field.",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Whether a value is required for this field or not.",
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "FieldDescriptorType",
+                    "description": "The type of field descriptor.",
+                    "enum": [
+                        "RADIO_GROUP",
+                        "SELECT",
+                        "FILTERABLE_SELECT",
+                        "CHECK_BOX",
+                        "TEXT_AREA",
+                        "TEXT",
+                        "UPLOAD_FILE",
+                        "HASHED_TEXT"
+                    ]
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/sp/adapters",
+    "swaggerVersion": "1.2"
+}

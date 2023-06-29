@@ -1,0 +1,270 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getIssuers",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the list of virtual issuers.",
+                    "type": "Issuers"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "addIssuer",
+                    "notes": "Create a new virtual issuer. If the virtual issuer is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for new virtual issuer.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "Issuer"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Issuer created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new virtual issuer.",
+                    "type": "Issuer"
+                }
+            ],
+            "path": "/oauth/issuers"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getIssuerById",
+                    "notes": "Get a virtual issuer with the specified ID. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the virtual issuer to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Find a virtual issuer by ID.",
+                    "type": "Issuer"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateIssuer",
+                    "notes": "Update a virtual issuer with the matching ID. If the policy is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected. Note: A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the virtual issuer to update.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for updated virtual issuer.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "Issuer"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Issuer updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update a virtual issuer.",
+                    "type": "Issuer"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteIssuer",
+                    "notes": "Delete a virtual issuer with the specified ID. A 404 status code is returned for nonexistent IDs. Note: If the request succeeds, the response body is empty. If the request fails, an ApiResult is returned with details of the error.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the virtual issuer to delete.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Issuer deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Delete a virtual issuer.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/oauth/issuers/{id}"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "Issuer": {
+            "description": "The set of attributes used to configure a virtual issuer.",
+            "id": "Issuer",
+            "properties": {
+                "description": {
+                    "description": "The description of this virtual issuer.",
+                    "type": "string"
+                },
+                "host": {
+                    "description": "The hostname of this virtual issuer.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "The persistent, unique ID for the virtual issuer. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of this virtual issuer with a unique value.",
+                    "type": "string"
+                },
+                "path": {
+                    "description": "The path of this virtual issuer.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "host"
+            ]
+        },
+        "Issuers": {
+            "description": "A collection of virtual issuers.",
+            "id": "Issuers",
+            "properties": {
+                "items": {
+                    "description": "The list of the virtual issuers.",
+                    "items": {
+                        "$ref": "Issuer"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/oauth/issuers",
+    "swaggerVersion": "1.2"
+}

@@ -1,0 +1,156 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getIncomingProxySettings",
+                    "notes": "When PingFederate is deployed behind a proxy server or load balancer, use information in HTTP headers added by the proxy server to construct correct responses.",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get incoming proxy settings.",
+                    "type": "IncomingProxySettings"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateIncomingProxySettings",
+                    "notes": "When PingFederate is deployed behind a proxy server or load balancer, use information in HTTP headers added by the proxy server to construct correct responses.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Incoming proxy settings.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "IncomingProxySettings"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Incoming proxy settings updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update incoming proxy settings.",
+                    "type": "IncomingProxySettings"
+                }
+            ],
+            "path": "/incomingProxySettings"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "IncomingProxySettings": {
+            "description": "Incoming Proxy Settings.",
+            "id": "IncomingProxySettings",
+            "properties": {
+                "clientCertChainSSLHeaderName": {
+                    "description": "While the proxy server is configured to pass client certificates as HTTP request headers, specify the chain header name here.",
+                    "type": "string"
+                },
+                "clientCertSSLHeaderName": {
+                    "description": "While the proxy server is configured to pass client certificates as HTTP request headers, specify the header name here.",
+                    "type": "string"
+                },
+                "forwardedHostHeaderIndex": {
+                    "$ref": "ForwardedHeaderIndex",
+                    "description": "PingFederate combines multiple comma-separated header values into the same order that they are received. Define which hostname you want to use. Default is to use the last hostname.",
+                    "enum": [
+                        "FIRST",
+                        "LAST"
+                    ]
+                },
+                "forwardedHostHeaderName": {
+                    "description": "Globally specify the header name (for example, X-Forwarded-Host) where PingFederate should attempt to retrieve the hostname and port in all HTTP requests.",
+                    "type": "string"
+                },
+                "forwardedIpAddressHeaderIndex": {
+                    "$ref": "ForwardedHeaderIndex",
+                    "description": "PingFederate combines multiple comma-separated header values into the same order that they are received. Define which IP address you want to use. Default is to use the last address.",
+                    "enum": [
+                        "FIRST",
+                        "LAST"
+                    ]
+                },
+                "forwardedIpAddressHeaderName": {
+                    "description": "Globally specify the header name (for example, X-Forwarded-For) where PingFederate should attempt to retrieve the client IP address in all HTTP requests.",
+                    "type": "string"
+                },
+                "proxyTerminatesHttpsConns": {
+                    "description": "Allows you to globally specify that connections to the reverse proxy are made over HTTPS even when HTTP is used between the reverse proxy and PingFederate.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/incomingProxySettings",
+    "swaggerVersion": "1.2"
+}
