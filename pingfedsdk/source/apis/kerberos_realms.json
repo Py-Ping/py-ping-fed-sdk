@@ -1,0 +1,357 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getKerberosRealmSettings",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Gets the Kerberos Realms Settings.",
+                    "type": "KerberosRealmsSettings"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "PUT",
+                    "nickname": "updateSettings",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Kerberos Realms Settings.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "KerberosRealmsSettings"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Settings updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Set/Update the Kerberos Realms Settings.",
+                    "type": "KerberosRealmsSettings"
+                }
+            ],
+            "path": "/kerberos/realms/settings"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getKerberosRealms",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Gets the Kerberos Realms.",
+                    "type": "KerberosRealms"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "createKerberosRealm",
+                    "notes": "Create a new Kerberos Realm. If the Kerberos Realm is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for new policy.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "KerberosRealm"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Kerberos realm created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new Kerberos Realm.",
+                    "type": "KerberosRealm"
+                }
+            ],
+            "path": "/kerberos/realms"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getKerberosRealm",
+                    "notes": "Get a Kerberos Realm with the specified ID. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the Kerberos Realm to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Find a Kerberos Realm by ID.",
+                    "type": "KerberosRealm"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updateKerberosRealm",
+                    "notes": "Update a Kerberos Realm with the specified ID. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the Kerberos Realm to update.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for updated Domain/Realm.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "KerberosRealm"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Kerberos realm updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update a Kerberos Realm by ID.",
+                    "type": "KerberosRealm"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteKerberosRealm",
+                    "notes": "Delete a Kerberos Realm with the specified ID. A 404 status code is returned for nonexistent IDs. Note: If the request succeeds, the response body is empty. If the request fails, an ApiResult is returned with details of the error.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of Kerberos Realm to delete.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Kerberos realm deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Delete a Kerberos Realm.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/kerberos/realms/{id}"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "KerberosRealm": {
+            "id": "KerberosRealm",
+            "properties": {
+                "id": {
+                    "description": "The persistent, unique ID for the Kerberos Realm. It can be any combination of [a-z0-9._-]. This property is system-assigned if not specified.",
+                    "type": "string"
+                },
+                "kerberosEncryptedPassword": {
+                    "description": "For GET requests, this field contains the encrypted Domain/Realm password, if one exists. For POST and PUT requests, if you wish to reuse the existing password, this field should be passed back unchanged.",
+                    "type": "string"
+                },
+                "kerberosPassword": {
+                    "description": "The Domain/Realm password. GETs will not return this attribute. To update this field, specify the new value in this attribute.",
+                    "type": "string"
+                },
+                "kerberosRealmName": {
+                    "description": "The Domain/Realm name used for display in UI screens.",
+                    "type": "string"
+                },
+                "kerberosUsername": {
+                    "description": "The Domain/Realm username.",
+                    "type": "string"
+                },
+                "keyDistributionCenters": {
+                    "description": "The Domain Controller/Key Distribution Center Host Action Names.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "suppressDomainNameConcatenation": {
+                    "description": "Controls whether the KDC hostnames and the realm name are concatenated in the auto-generated krb5.conf file. Default is false.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "kerberosRealmName",
+                "kerberosUsername"
+            ]
+        },
+        "KerberosRealms": {
+            "description": "A collection of Kerberos Realms.",
+            "id": "KerberosRealms",
+            "properties": {
+                "items": {
+                    "description": "The actual list of kerberos realms.",
+                    "items": {
+                        "$ref": "KerberosRealm"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "KerberosRealmsSettings": {
+            "description": "Settings for all of the Kerberos Realms.",
+            "id": "KerberosRealmsSettings",
+            "properties": {
+                "debugLogOutput": {
+                    "description": "Reference to the default logging.",
+                    "type": "boolean"
+                },
+                "forceTcp": {
+                    "description": "Reference to the default security.",
+                    "type": "boolean"
+                },
+                "kdcRetries": {
+                    "description": "Reference to the default Key Distribution Center Retries.",
+                    "type": "string"
+                },
+                "kdcTimeout": {
+                    "description": "Reference to the default Key Distribution Center Timeout (in seconds).",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kdcRetries",
+                "kdcTimeout"
+            ]
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/kerberos/realms",
+    "swaggerVersion": "1.2"
+}

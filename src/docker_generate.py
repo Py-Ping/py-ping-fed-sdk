@@ -161,6 +161,7 @@ if __name__ == "__main__":
 
     with Container(home, ping_user, ping_key, args.version) as container:
         print(f'Running container {container.id}')
+        sleep(600)
         if not retry_with_backoff(Generate(swagger_url, swagger_version=swagger_version).generate):
             print("Container service didn't stabilise, exiting...")
             exit(1)

@@ -1,0 +1,310 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getAuthenticationPolicyContracts",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Page number to retrieve.",
+                            "format": "int32",
+                            "name": "page",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Number of contracts per page.",
+                            "format": "int32",
+                            "name": "numberPerPage",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Filter criteria limits the authentication policy contracts that are returned to only those that match it. The filter criteria is compared to the authentication policy contract name and ID fields. The comparison is a case-insensitive partial match. No additional pattern based matching is supported.",
+                            "name": "filter",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Gets the Authentication Policy Contracts.",
+                    "type": "AuthenticationPolicyContracts"
+                },
+                {
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "method": "POST",
+                    "nickname": "createAuthenticationPolicyContract",
+                    "notes": "Create a new Authentication Policy Contract. If the Authentication Policy Contract is not properly configured, a 422 status code is returned along with a list of validation errors that must be corrected.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for a new contract.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "AuthenticationPolicyContract"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "Authentication policy contract created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Create a new Authentication Policy Contract.",
+                    "type": "AuthenticationPolicyContract"
+                }
+            ],
+            "path": "/authenticationPolicyContracts"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getAuthenticationPolicyContract",
+                    "notes": "Get an Authentication Policy Contract with the specified ID. A 404 status code is returned for nonexistent IDs",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of contract to fetch",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Gets the Authentication Policy Contract by ID.",
+                    "type": "AuthenticationPolicyContract"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updateAuthenticationPolicyContract",
+                    "notes": "Update an Authentication Policy Contract with the specified ID. A 404 status code is returned for nonexistent IDs.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the Authentication Policy Contract to update.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for updated Authentication Policy Contract.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "AuthenticationPolicyContract"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Authentication policy contract updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update an Authentication Policy Contract by ID.",
+                    "type": "AuthenticationPolicyContract"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deleteAuthenticationPolicyContract",
+                    "notes": "Delete an Authentication Policy Contract with the specified ID. A 404 status code is returned for nonexistent IDs. Note: If the request succeeds, the response body is empty. If the request fails, an ApiResult is returned with details of the error.",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of Authentication Policy Contract to delete.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "Authentication policy contract deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Resource is in use and cannot be deleted.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Delete an Authentication Policy Contract.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/authenticationPolicyContracts/{id}"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "AuthenticationPolicyContract": {
+            "description": "Authentication Policy Contracts carry user attributes from the identity provider to the service provider.",
+            "id": "AuthenticationPolicyContract",
+            "properties": {
+                "coreAttributes": {
+                    "description": "A list of read-only assertion attributes (for example, subject) that are automatically populated by PingFederate.",
+                    "items": {
+                        "$ref": "AuthenticationPolicyContractAttribute"
+                    },
+                    "type": "array"
+                },
+                "extendedAttributes": {
+                    "description": "A list of additional attributes as needed.",
+                    "items": {
+                        "$ref": "AuthenticationPolicyContractAttribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "The persistent, unique ID for the authentication policy contract. It can be any combination of [a-zA-Z0-9._-]. This property is system-assigned if not specified.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The Authentication Policy Contract Name. Name is unique.",
+                    "type": "string"
+                }
+            }
+        },
+        "AuthenticationPolicyContractAttribute": {
+            "description": "An attribute for the Authentication Policy Contract.",
+            "id": "AuthenticationPolicyContractAttribute",
+            "properties": {
+                "name": {
+                    "description": "The name of this attribute.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "AuthenticationPolicyContracts": {
+            "description": "A collection of Authentication Policy Contracts",
+            "id": "AuthenticationPolicyContracts",
+            "properties": {
+                "items": {
+                    "description": "The actual list of Authentication Policy Contracts.",
+                    "items": {
+                        "$ref": "AuthenticationPolicyContract"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/authenticationPolicyContracts",
+    "swaggerVersion": "1.2"
+}

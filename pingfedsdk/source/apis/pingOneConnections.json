@@ -1,0 +1,666 @@
+{
+    "apiVersion": "v1",
+    "apis": [
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getPingOneConnections",
+                    "notes": "",
+                    "parameters": [],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        }
+                    ],
+                    "summary": "Get the list of all PingOne connections.",
+                    "type": "PingOneConnections"
+                },
+                {
+                    "method": "POST",
+                    "nickname": "createPingOneConnection",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for the new PingOne connection.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "PingOneConnection"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "defaultValue": "false",
+                            "description": "External validation will be bypassed when set to true. Default to false.",
+                            "name": "X-BypassExternalValidation",
+                            "paramType": "header",
+                            "required": false,
+                            "type": "boolean"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 201,
+                            "message": "PingOne connection created."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred."
+                        }
+                    ],
+                    "summary": "Create a new PingOne connection.",
+                    "type": "PingOneConnection"
+                }
+            ],
+            "path": "/pingOneConnections"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getPingOneConnection",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the connection to fetch.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Get a PingOne connection with the specified ID.",
+                    "type": "PingOneConnection"
+                },
+                {
+                    "method": "PUT",
+                    "nickname": "updatePingOneConnection",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the PingOne connection to update.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Configuration for the updated connection.",
+                            "name": "body",
+                            "paramType": "body",
+                            "required": true,
+                            "type": "PingOneConnection"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "defaultValue": "false",
+                            "description": "External validation will be bypassed when set to true. Default to false.",
+                            "name": "X-BypassExternalValidation",
+                            "paramType": "header",
+                            "required": false,
+                            "type": "boolean"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "PingOne connection updated."
+                        },
+                        {
+                            "code": 400,
+                            "message": "The request was improperly formatted or contained invalid fields."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Update a PingOne connection.",
+                    "type": "PingOneConnection"
+                },
+                {
+                    "method": "DELETE",
+                    "nickname": "deletePingOneConnection",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the PingOne connection to delete.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 204,
+                            "message": "PingOne connection deleted."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found."
+                        },
+                        {
+                            "code": 422,
+                            "message": "Validation error(s) occurred."
+                        }
+                    ],
+                    "summary": "Delete a PingOne connection.",
+                    "type": "ApiResult"
+                }
+            ],
+            "path": "/pingOneConnections/{id}"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getCredentialStatus",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the PingOne connection.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Get the status of the credential associated with the PingOne connection",
+                    "type": "PingOneCredentialStatus"
+                }
+            ],
+            "path": "/pingOneConnections/{id}/credentialStatus"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getPingOneConnectionEnvironments",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the PingOne connection.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Page number to retrieve.",
+                            "format": "int32",
+                            "name": "page",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Number of environments per page.",
+                            "format": "int32",
+                            "name": "numberPerPage",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "integer"
+                        },
+                        {
+                            "allowMultiple": false,
+                            "description": "Filter criteria limits the environments that are returned to only those that match it. The filter criteria is compared to the environment name and ID fields. The comparison is a case-insensitive partial match. No additional pattern based matching is supported.",
+                            "name": "filter",
+                            "paramType": "query",
+                            "required": false,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        },
+                        {
+                            "code": 500,
+                            "message": "Error connecting to PingOne"
+                        }
+                    ],
+                    "summary": "Get the list of environments that the PingOne connection has access to.",
+                    "type": "PingOneEnvironments"
+                }
+            ],
+            "path": "/pingOneConnections/{id}/environments"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getPingOneConnectionUsages",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the PingOne connection.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Get the list of resources that reference this PingOne connection.",
+                    "type": "ResourceUsages"
+                }
+            ],
+            "path": "/pingOneConnections/{id}/usage"
+        },
+        {
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "getPingOneConnectionAssociations",
+                    "notes": "",
+                    "parameters": [
+                        {
+                            "allowMultiple": false,
+                            "description": "ID of the PingOne connection.",
+                            "name": "id",
+                            "paramType": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 200,
+                            "message": "Success."
+                        },
+                        {
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "responseModel": "ApiResult"
+                        }
+                    ],
+                    "summary": "Get information about components using this connection to access PingOne services.",
+                    "type": "ServiceAssociations"
+                }
+            ],
+            "path": "/pingOneConnections/{id}/serviceAssociations"
+        }
+    ],
+    "basePath": "https://localhost:9999/pf-admin-api/v1",
+    "models": {
+        "ApiResult": {
+            "description": "Details on the result of the operation.",
+            "id": "ApiResult",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Success or error message.",
+                    "type": "string"
+                },
+                "resultId": {
+                    "description": "Result identifier.",
+                    "type": "string"
+                },
+                "validationErrors": {
+                    "description": "List of validation errors, if any.",
+                    "items": {
+                        "$ref": "ValidationError"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "PingOneConnection": {
+            "description": "PingOne connection.",
+            "id": "PingOneConnection",
+            "properties": {
+                "active": {
+                    "description": "Whether or not this connection is active. Defaults to true.",
+                    "type": "boolean"
+                },
+                "creationDate": {
+                    "description": "The creation date of the PingOne connection. This field is read only.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "credential": {
+                    "description": "The credential for the PingOne connection. To update the credential, specify the plaintext value of the credential in this field. This field will not be populated for GET requests.",
+                    "type": "string"
+                },
+                "credentialId": {
+                    "description": "The ID of the PingOne credential. This field is read only.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A description for the PingOne connection.",
+                    "type": "string"
+                },
+                "encryptedCredential": {
+                    "description": "The encrypted credential for the PingOne connection. For POST and PUT requests, if you wish to keep the existing credential, this field should be passed back unchanged.",
+                    "type": "string"
+                },
+                "environmentId": {
+                    "description": "The ID of the environment of the PingOne credential. This field is read only.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "The persistent, unique ID of the connection. This property is system-assigned if not specified.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the PingOne connection.",
+                    "type": "string"
+                },
+                "organizationName": {
+                    "description": "The name of the organization associated with this PingOne connection. This field is read only.",
+                    "type": "string"
+                },
+                "pingOneAuthenticationApiEndpoint": {
+                    "description": "The PingOne authentication API endpoint. This field is read only.",
+                    "type": "string"
+                },
+                "pingOneConnectionId": {
+                    "description": "The ID of the PingOne connection. This field is read only.",
+                    "type": "string"
+                },
+                "pingOneManagementApiEndpoint": {
+                    "description": "The PingOne management API endpoint. This field is read only.",
+                    "type": "string"
+                },
+                "region": {
+                    "description": "The region of the PingOne connection. This field is read only.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "PingOneConnections": {
+            "description": "A collection of PingOne connections.",
+            "id": "PingOneConnections",
+            "properties": {
+                "items": {
+                    "description": "The list of PingOne connections.",
+                    "items": {
+                        "$ref": "PingOneConnection"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "PingOneCredentialStatus": {
+            "description": "PingOne credential Status",
+            "id": "PingOneCredentialStatus",
+            "properties": {
+                "pingOneCredentialStatus": {
+                    "$ref": "CredentialStatus",
+                    "description": "The status of the PingOne connection credential.",
+                    "enum": [
+                        "VALID",
+                        "INVALID",
+                        "UNKNOWN"
+                    ]
+                }
+            }
+        },
+        "PingOneEnvironment": {
+            "id": "PingOneEnvironment",
+            "properties": {
+                "id": {
+                    "description": "The ID of the environment",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the environment",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the environment",
+                    "type": "string"
+                }
+            }
+        },
+        "PingOneEnvironments": {
+            "description": "A collection of PingOne Environments.",
+            "id": "PingOneEnvironments",
+            "properties": {
+                "items": {
+                    "description": "The list of PingOne environments.",
+                    "items": {
+                        "$ref": "PingOneEnvironment"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ResourceCategoryInfo": {
+            "description": "A model containing information on a category of resource in the administrative API.",
+            "id": "ResourceCategoryInfo",
+            "properties": {
+                "id": {
+                    "$ref": "ResourceCategory",
+                    "description": "The ID of the resource category.",
+                    "enum": [
+                        "IDP_CONNECTION",
+                        "SP_CONNECTION",
+                        "PASSWORD_CREDENTIAL_VALIDATOR",
+                        "AUTHENTICATION_SELECTOR",
+                        "IDP_ADAPTER",
+                        "SP_ADAPTER",
+                        "ACCESS_TOKEN_MGMT_PLUGIN",
+                        "TOKEN_PROCESSOR",
+                        "TOKEN_GENERATOR",
+                        "NOTIFICATION_PUBLISHER",
+                        "OOB_AUTH_PLUGIN",
+                        "DATA_STORE",
+                        "DYNAMIC_CLIENT_REGISTRATION_PLUGIN",
+                        "IDENTITY_STORE_PROVISIONER"
+                    ]
+                },
+                "name": {
+                    "description": "The name of the resource category.",
+                    "type": "string"
+                }
+            }
+        },
+        "ResourceLink": {
+            "description": "A reference to a resource.",
+            "id": "ResourceLink",
+            "properties": {
+                "id": {
+                    "description": "The ID of the resource.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "ResourceUsage": {
+            "description": "An API model representing a reference to an API resource.",
+            "id": "ResourceUsage",
+            "properties": {
+                "categoryId": {
+                    "$ref": "ResourceCategory",
+                    "description": "The category of the referencing resource.",
+                    "enum": [
+                        "IDP_CONNECTION",
+                        "SP_CONNECTION",
+                        "PASSWORD_CREDENTIAL_VALIDATOR",
+                        "AUTHENTICATION_SELECTOR",
+                        "IDP_ADAPTER",
+                        "SP_ADAPTER",
+                        "ACCESS_TOKEN_MGMT_PLUGIN",
+                        "TOKEN_PROCESSOR",
+                        "TOKEN_GENERATOR",
+                        "NOTIFICATION_PUBLISHER",
+                        "OOB_AUTH_PLUGIN",
+                        "DATA_STORE",
+                        "DYNAMIC_CLIENT_REGISTRATION_PLUGIN",
+                        "IDENTITY_STORE_PROVISIONER"
+                    ]
+                },
+                "id": {
+                    "description": "The ID of the referencing resource.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the referencing resource.",
+                    "type": "string"
+                },
+                "ref": {
+                    "$ref": "ResourceLink",
+                    "description": "A link to the referencing resource."
+                },
+                "type": {
+                    "description": "The type of the referencing resource. In the case of plugins, this is the plugin type. Otherwise, it is usually the same as the name of the category.",
+                    "type": "string"
+                }
+            }
+        },
+        "ResourceUsages": {
+            "description": "A collection of resource usages.",
+            "id": "ResourceUsages",
+            "properties": {
+                "categories": {
+                    "description": "The static list of available resource categories.",
+                    "items": {
+                        "$ref": "ResourceCategoryInfo"
+                    },
+                    "type": "array"
+                },
+                "items": {
+                    "description": "The actual list of resource usages.",
+                    "items": {
+                        "$ref": "ResourceUsage"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ServiceAssociation": {
+            "description": "A model representing an association between a PingFederate component (typically a plugin) and a list of PingOne services.",
+            "id": "ServiceAssociation",
+            "properties": {
+                "componentName": {
+                    "description": "The display name for the component.",
+                    "type": "string"
+                },
+                "configured": {
+                    "description": "Indicates whether one or more instances of the plugin are configured for a given PingOne connection.",
+                    "type": "boolean"
+                },
+                "serviceNames": {
+                    "description": "The list of PingOne services consumed by the plugin. The first service represents the primary service consumed by the plugin.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ServiceAssociations": {
+            "description": "A list of installed components that consume PingOne services.",
+            "id": "ServiceAssociations",
+            "properties": {
+                "items": {
+                    "description": "The actual list of component-to-service associations.",
+                    "items": {
+                        "$ref": "ServiceAssociation"
+                    },
+                    "type": "array"
+                }
+            }
+        },
+        "ValidationError": {
+            "description": "A data input validation error.",
+            "id": "ValidationError",
+            "properties": {
+                "developerMessage": {
+                    "description": "Developer-oriented error message, if available.",
+                    "type": "string"
+                },
+                "errorId": {
+                    "description": "Error identifier.",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "description": "The path to the model field to which the error relates, if one exists.",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "User-friendly error description.",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "resourcePath": "/pingOneConnections",
+    "swaggerVersion": "1.2"
+}
