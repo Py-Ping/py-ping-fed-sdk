@@ -3,6 +3,7 @@ from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.open_id_connect_attribute_contract import OpenIdConnectAttributeContract
 from pingfedsdk.models.attribute_mapping import AttributeMapping
+from pingfedsdk.models.parameter_values import ParameterValues
 
 
 class OpenIdConnectPolicy(Model):
@@ -31,6 +32,12 @@ class OpenIdConnectPolicy(Model):
     includeSHashInIdToken: bool
         Determines whether the State Hash should be included in the ID token.
 
+    includeX5tInIdToken: bool
+        Determines whether the X.509 thumbprint header should be included in the ID Token.
+
+    idTokenTypHeaderValue: str
+        ID Token Type (typ) Header Value.
+
     returnIdTokenOnRefreshGrant: bool
         Determines whether an ID Token should be returned when refresh grant is requested or not.
 
@@ -48,7 +55,7 @@ class OpenIdConnectPolicy(Model):
 
     """
 
-    def __init__(self, accessTokenManagerRef: ResourceLink, attributeContract: OpenIdConnectAttributeContract, attributeMapping: AttributeMapping, id: str, name: str, idTokenLifetime: int = None, includeSriInIdToken: bool = None, includeUserInfoInIdToken: bool = None, includeSHashInIdToken: bool = None, returnIdTokenOnRefreshGrant: bool = None, reissueIdTokenInHybridFlow: bool = None, scopeAttributeMappings: object = None) -> None:
+    def __init__(self, accessTokenManagerRef: ResourceLink, attributeContract: OpenIdConnectAttributeContract, attributeMapping: AttributeMapping, id: str, name: str, idTokenLifetime: int = None, includeSriInIdToken: bool = None, includeUserInfoInIdToken: bool = None, includeSHashInIdToken: bool = None, includeX5tInIdToken: bool = None, idTokenTypHeaderValue: str = None, returnIdTokenOnRefreshGrant: bool = None, reissueIdTokenInHybridFlow: bool = None, scopeAttributeMappings: object = None) -> None:
         self.id = id
         self.name = name
         self.accessTokenManagerRef = accessTokenManagerRef
@@ -56,6 +63,8 @@ class OpenIdConnectPolicy(Model):
         self.includeSriInIdToken = includeSriInIdToken
         self.includeUserInfoInIdToken = includeUserInfoInIdToken
         self.includeSHashInIdToken = includeSHashInIdToken
+        self.includeX5tInIdToken = includeX5tInIdToken
+        self.idTokenTypHeaderValue = idTokenTypHeaderValue
         self.returnIdTokenOnRefreshGrant = returnIdTokenOnRefreshGrant
         self.reissueIdTokenInHybridFlow = reissueIdTokenInHybridFlow
         self.attributeContract = attributeContract
@@ -71,13 +80,13 @@ class OpenIdConnectPolicy(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.id, self.name, self.accessTokenManagerRef, self.idTokenLifetime, self.includeSriInIdToken, self.includeUserInfoInIdToken, self.includeSHashInIdToken, self.returnIdTokenOnRefreshGrant, self.reissueIdTokenInHybridFlow, self.attributeContract, self.attributeMapping, self.scopeAttributeMappings]))
+        return hash(frozenset([self.id, self.name, self.accessTokenManagerRef, self.idTokenLifetime, self.includeSriInIdToken, self.includeUserInfoInIdToken, self.includeSHashInIdToken, self.includeX5tInIdToken, self.idTokenTypHeaderValue, self.returnIdTokenOnRefreshGrant, self.reissueIdTokenInHybridFlow, self.attributeContract, self.attributeMapping, self.scopeAttributeMappings]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["id", "name", "accessTokenManagerRef", "idTokenLifetime", "includeSriInIdToken", "includeUserInfoInIdToken", "includeSHashInIdToken", "returnIdTokenOnRefreshGrant", "reissueIdTokenInHybridFlow", "attributeContract", "attributeMapping", "scopeAttributeMappings"] and v is not None:
+            if k in ["id", "name", "accessTokenManagerRef", "idTokenLifetime", "includeSriInIdToken", "includeUserInfoInIdToken", "includeSHashInIdToken", "includeX5tInIdToken", "idTokenTypHeaderValue", "returnIdTokenOnRefreshGrant", "reissueIdTokenInHybridFlow", "attributeContract", "attributeMapping", "scopeAttributeMappings"] and v is not None:
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "name":
@@ -92,6 +101,10 @@ class OpenIdConnectPolicy(Model):
                     valid_data[k] = bool(v)
                 if k == "includeSHashInIdToken":
                     valid_data[k] = bool(v)
+                if k == "includeX5tInIdToken":
+                    valid_data[k] = bool(v)
+                if k == "idTokenTypHeaderValue":
+                    valid_data[k] = str(v)
                 if k == "returnIdTokenOnRefreshGrant":
                     valid_data[k] = bool(v)
                 if k == "reissueIdTokenInHybridFlow":
@@ -101,7 +114,9 @@ class OpenIdConnectPolicy(Model):
                 if k == "attributeMapping":
                     valid_data[k] = AttributeMapping(**v)
                 if k == "scopeAttributeMappings":
-                    valid_data[k] = object(**v)
+                    for x in v:
+                        v[x] = ParameterValues(v[x]['values'])
+                    valid_data[k] = v
 
         return cls(**valid_data)
 
@@ -113,7 +128,7 @@ class OpenIdConnectPolicy(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["id", "name", "accessTokenManagerRef", "idTokenLifetime", "includeSriInIdToken", "includeUserInfoInIdToken", "includeSHashInIdToken", "returnIdTokenOnRefreshGrant", "reissueIdTokenInHybridFlow", "attributeContract", "attributeMapping", "scopeAttributeMappings"]:
+            if k in ["id", "name", "accessTokenManagerRef", "idTokenLifetime", "includeSriInIdToken", "includeUserInfoInIdToken", "includeSHashInIdToken", "includeX5tInIdToken", "idTokenTypHeaderValue", "returnIdTokenOnRefreshGrant", "reissueIdTokenInHybridFlow", "attributeContract", "attributeMapping", "scopeAttributeMappings"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):

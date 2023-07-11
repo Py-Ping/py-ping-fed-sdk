@@ -70,6 +70,10 @@ class SourceTypeIdKeyType(AutoName):
     FRAGMENT = auto()
     INPUTS = auto()
     ATTRIBUTE_QUERY = auto()
+    IDENTITY_STORE_USER = auto()
+    IDENTITY_STORE_GROUP = auto()
+    SCIM_USER = auto()
+    SCIM_GROUP = auto()
 
 
 class FieldDescriptor(AutoName):
@@ -179,6 +183,7 @@ class ConfigStoreSettingType(AutoName):
 class ConnectionType(AutoName):
     DIRECT = auto()
     LDAP_GATEWAY = auto()
+    SP = auto()
 
 
 class AccountStatusAlgorithm(AutoName):
@@ -214,6 +219,11 @@ class CertTrustStatus(AutoName):
     NOT_TRUSTED = auto()
 
 
+class IdentityStoreInboundProvisioningUserRepositoryType(AutoName):
+    LDAP = auto()
+    IDENTITY_STORE = auto()
+
+
 class Protocol(AutoName):
     SAML20 = auto()
     WSFED = auto()
@@ -228,11 +238,21 @@ class IdpIdentityMapping(AutoName):
     NONE = auto()
 
 
+class ActionOnDelete(AutoName):
+    DISABLE_USER = auto()
+    PERMANENTLY_DELETE_USER = auto()
+
+
 class Binding(AutoName):
     ARTIFACT = auto()
     POST = auto()
     REDIRECT = auto()
     SOAP = auto()
+
+
+class InboundProvisioningUserRepositoryType(AutoName):
+    LDAP = auto()
+    IDENTITY_STORE = auto()
 
 
 class EventTrigger(AutoName):
@@ -245,6 +265,11 @@ class ErrorHandling(AutoName):
     ABORT_SSO = auto()
 
 
+class LdapInboundProvisioningUserRepositoryType(AutoName):
+    LDAP = auto()
+    IDENTITY_STORE = auto()
+
+
 class LoginType(AutoName):
     CODE = auto()
     POST = auto()
@@ -255,6 +280,7 @@ class AuthenticationScheme(AutoName):
     BASIC = auto()
     POST = auto()
     PRIVATE_KEY_JWT = auto()
+    CLIENT_SECRET_JWT = auto()
 
 
 class SigningAlgorithm(AutoName):
@@ -390,6 +416,9 @@ class ObjectSigningAlgorithm(AutoName):
     PS256 = auto()
     PS384 = auto()
     PS512 = auto()
+    HS256 = auto()
+    HS384 = auto()
+    HS512 = auto()
 
 
 class CibaDeliveryMode(AutoName):
@@ -492,6 +521,7 @@ class ClientAuthType(AutoName):
     SECRET = auto()
     CERTIFICATE = auto()
     PRIVATE_KEY_JWT = auto()
+    CLIENT_SECRET_JWT = auto()
 
 
 class EncryptionAlgorithm(AutoName):
@@ -517,6 +547,12 @@ class ContentEncryptionAlgorithm(AutoName):
     AES_128_GCM = auto()
     AES_192_GCM = auto()
     AES_256_GCM = auto()
+
+
+class LogoutMode(AutoName):
+    NONE = auto()
+    PING_FRONT_CHANNEL = auto()
+    OIDC_BACK_CHANNEL = auto()
 
 
 class ClientCertIssuerType(AutoName):
@@ -546,6 +582,11 @@ class ResourceCategory(AutoName):
     DATA_STORE = auto()
     DYNAMIC_CLIENT_REGISTRATION_PLUGIN = auto()
     IDENTITY_STORE_PROVISIONER = auto()
+
+
+class NotificationMode(AutoName):
+    NOTIFICATION_PUBLISHER = auto()
+    LOGGING_ONLY = auto()
 
 
 class IdpConnectionTransactionLoggingOverride(AutoName):

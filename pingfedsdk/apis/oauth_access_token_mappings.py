@@ -44,10 +44,9 @@ class OauthAccessTokenMappings:
             raise err
         else:
             if response.status_code == 200:
-                print(type(response.json()))
                 if type(response.json()) == list:
                     response_dict = {'items': response.json()}
-                return ModelAccessTokenMappings.from_dict(response_dict)
+                    return ModelAccessTokenMappings.from_dict(response_dict)
 
     def createMapping(self, body: ModelAccessTokenMapping, XBypassExternalValidation: bool = None):
         """ Create a new Access Token Mapping.
@@ -98,8 +97,7 @@ class OauthAccessTokenMappings:
             raise err
         else:
             if response.status_code == 200:
-                # return ModelApiResult.from_dict(response.json())
-                return self.init_access_token_mapping(response.json())
+                return ModelAccessTokenMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

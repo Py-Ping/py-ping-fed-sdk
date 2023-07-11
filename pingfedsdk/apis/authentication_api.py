@@ -45,7 +45,7 @@ class AuthenticationApi:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthnApiSettings.from_dict(response.json())
             if response.status_code == 422:
                 message = "(422) Validation error(s) occurred."
                 self.logger.info(message)
@@ -100,7 +100,7 @@ class AuthenticationApi:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthnApiApplications.from_dict(response.json())
             if response.status_code == 422:
                 message = "(422) Validation error(s) occurred."
                 self.logger.info(message)
@@ -155,7 +155,7 @@ class AuthenticationApi:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthnApiApplication.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

@@ -55,6 +55,9 @@ class SpBrowserSso(Model):
     alwaysSignArtifactResponse: bool
         Specify to always sign the SAML ArtifactResponse.
 
+    ssoApplicationEndpoint: str
+        Application endpoint that can be used to invoke single sign-on (SSO) for the connection. This is a read-only parameter.
+
     ssoServiceEndpoints: list
         A list of possible endpoints to send assertions to.
 
@@ -90,7 +93,8 @@ class SpBrowserSso(Model):
 
     """
 
-    def __init__(self, adapterMappings: list, assertionLifetime: AssertionLifetime, attributeContract: SpBrowserSsoAttributeContract, encryptionPolicy: EncryptionPolicy, protocol: Protocol, ssoServiceEndpoints: list, wsFedTokenType: WsFedTokenType = None, wsTrustVersion: WsTrustVersion = None, enabledProfiles: list = None, incomingBindings: list = None, messageCustomizations: list = None, urlWhitelistEntries: list = None, artifact: ArtifactSettings = None, sloServiceEndpoints: list = None, defaultTargetUrl: str = None, alwaysSignArtifactResponse: bool = None, spSamlIdentityMapping: SpSamlIdentityMapping = None, spWsFedIdentityMapping: SpWsFedIdentityMapping = None, signResponseAsRequired: bool = None, signAssertions: bool = None, requireSignedAuthnRequests: bool = None, authenticationPolicyContractAssertionMappings: list = None) -> None:
+    def __init__(self, adapterMappings: list, assertionLifetime: AssertionLifetime, attributeContract: SpBrowserSsoAttributeContract, encryptionPolicy: EncryptionPolicy, protocol: Protocol, ssoServiceEndpoints: list, wsFedTokenType: WsFedTokenType = None, wsTrustVersion: WsTrustVersion = None, enabledProfiles: list = None, incomingBindings: list = None, messageCustomizations: list = None, urlWhitelistEntries: list = None, artifact: ArtifactSettings = None, sloServiceEndpoints: list = None, defaultTargetUrl: str = None, alwaysSignArtifactResponse: bool = None, ssoApplicationEndpoint: str = None, spSamlIdentityMapping: SpSamlIdentityMapping = None, spWsFedIdentityMapping: SpWsFedIdentityMapping = None, signResponseAsRequired: bool = None, signAssertions: bool = None, requireSignedAuthnRequests: bool = None, authenticationPolicyContractAssertionMappings: list = None
+        ) -> None:
         self.protocol = protocol
         self.wsFedTokenType = wsFedTokenType
         self.wsTrustVersion = wsTrustVersion
@@ -102,6 +106,7 @@ class SpBrowserSso(Model):
         self.sloServiceEndpoints = sloServiceEndpoints
         self.defaultTargetUrl = defaultTargetUrl
         self.alwaysSignArtifactResponse = alwaysSignArtifactResponse
+        self.ssoApplicationEndpoint = ssoApplicationEndpoint
         self.ssoServiceEndpoints = ssoServiceEndpoints
         self.spSamlIdentityMapping = spSamlIdentityMapping
         self.spWsFedIdentityMapping = spWsFedIdentityMapping
@@ -123,13 +128,13 @@ class SpBrowserSso(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.protocol, self.wsFedTokenType, self.wsTrustVersion, self.enabledProfiles, self.incomingBindings, self.messageCustomizations, self.urlWhitelistEntries, self.artifact, self.sloServiceEndpoints, self.defaultTargetUrl, self.alwaysSignArtifactResponse, self.ssoServiceEndpoints, self.spSamlIdentityMapping, self.spWsFedIdentityMapping, self.signResponseAsRequired, self.signAssertions, self.requireSignedAuthnRequests, self.encryptionPolicy, self.attributeContract, self.adapterMappings, self.authenticationPolicyContractAssertionMappings, self.assertionLifetime]))
+        return hash(frozenset([self.protocol, self.wsFedTokenType, self.wsTrustVersion, self.enabledProfiles, self.incomingBindings, self.messageCustomizations, self.urlWhitelistEntries, self.artifact, self.sloServiceEndpoints, self.defaultTargetUrl, self.alwaysSignArtifactResponse, self.ssoApplicationEndpoint, self.ssoServiceEndpoints, self.spSamlIdentityMapping, self.spWsFedIdentityMapping, self.signResponseAsRequired, self.signAssertions, self.requireSignedAuthnRequests, self.encryptionPolicy, self.attributeContract, self.adapterMappings, self.authenticationPolicyContractAssertionMappings, self.assertionLifetime]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["protocol", "wsFedTokenType", "wsTrustVersion", "enabledProfiles", "incomingBindings", "messageCustomizations", "urlWhitelistEntries", "artifact", "sloServiceEndpoints", "defaultTargetUrl", "alwaysSignArtifactResponse", "ssoServiceEndpoints", "spSamlIdentityMapping", "spWsFedIdentityMapping", "signResponseAsRequired", "signAssertions", "requireSignedAuthnRequests", "encryptionPolicy", "attributeContract", "adapterMappings", "authenticationPolicyContractAssertionMappings", "assertionLifetime"] and v is not None:
+            if k in ["protocol", "wsFedTokenType", "wsTrustVersion", "enabledProfiles", "incomingBindings", "messageCustomizations", "urlWhitelistEntries", "artifact", "sloServiceEndpoints", "defaultTargetUrl", "alwaysSignArtifactResponse", "ssoApplicationEndpoint", "ssoServiceEndpoints", "spSamlIdentityMapping", "spWsFedIdentityMapping", "signResponseAsRequired", "signAssertions", "requireSignedAuthnRequests", "encryptionPolicy", "attributeContract", "adapterMappings", "authenticationPolicyContractAssertionMappings", "assertionLifetime"] and v is not None:
                 if k == "protocol":
                     valid_data[k] = Protocol[v]
                 if k == "wsFedTokenType":
@@ -152,6 +157,8 @@ class SpBrowserSso(Model):
                     valid_data[k] = str(v)
                 if k == "alwaysSignArtifactResponse":
                     valid_data[k] = bool(v)
+                if k == "ssoApplicationEndpoint":
+                    valid_data[k] = str(v)
                 if k == "ssoServiceEndpoints":
                     valid_data[k] = [SpSsoServiceEndpoint(**x) for x in v]
                 if k == "spSamlIdentityMapping":
@@ -185,7 +192,7 @@ class SpBrowserSso(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["protocol", "wsFedTokenType", "wsTrustVersion", "enabledProfiles", "incomingBindings", "messageCustomizations", "urlWhitelistEntries", "artifact", "sloServiceEndpoints", "defaultTargetUrl", "alwaysSignArtifactResponse", "ssoServiceEndpoints", "spSamlIdentityMapping", "spWsFedIdentityMapping", "signResponseAsRequired", "signAssertions", "requireSignedAuthnRequests", "encryptionPolicy", "attributeContract", "adapterMappings", "authenticationPolicyContractAssertionMappings", "assertionLifetime"]:
+            if k in ["protocol", "wsFedTokenType", "wsTrustVersion", "enabledProfiles", "incomingBindings", "messageCustomizations", "urlWhitelistEntries", "artifact", "sloServiceEndpoints", "defaultTargetUrl", "alwaysSignArtifactResponse", "ssoApplicationEndpoint", "ssoServiceEndpoints", "spSamlIdentityMapping", "spWsFedIdentityMapping", "signResponseAsRequired", "signAssertions", "requireSignedAuthnRequests", "encryptionPolicy", "attributeContract", "adapterMappings", "authenticationPolicyContractAssertionMappings", "assertionLifetime"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):
