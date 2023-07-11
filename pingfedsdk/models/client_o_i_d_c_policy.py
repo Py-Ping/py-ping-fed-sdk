@@ -4,6 +4,7 @@ from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.enums import EncryptionAlgorithm
 from pingfedsdk.enums import SigningAlgorithm
 from pingfedsdk.enums import ContentEncryptionAlgorithm
+from pingfedsdk.enums import LogoutMode
 
 
 class ClientOIDCPolicy(Model):
@@ -63,11 +64,17 @@ class ClientOIDCPolicy(Model):
     grantAccessSessionSessionManagementApi: bool
         Determines whether this client is allowed to access the Session Management API.
 
+    logoutMode: LogoutMode
+        The logout mode for this client. The default is 'NONE'.
+
     pingAccessLogoutCapable: bool
         Set this value to true if you wish to enable client application logout, and the client is PingAccess, or its logout endpoints follow the PingAccess path convention.
 
     logoutUris: list
-        A list of client logout URI's which will be invoked when a user logs out through one of PingFederate's SLO endpoints.
+        A list of front-channel logout URIs for this client.
+
+    backChannelLogoutUri: str
+        The back-channel logout URI for this client.
 
     pairwiseIdentifierUserType: bool
         Determines whether the subject identifier type is pairwise.
@@ -77,15 +84,17 @@ class ClientOIDCPolicy(Model):
 
     """
 
-    def __init__(self, idTokenSigningAlgorithm: SigningAlgorithm = None, idTokenEncryptionAlgorithm: EncryptionAlgorithm = None, idTokenContentEncryptionAlgorithm: ContentEncryptionAlgorithm = None, policyGroup: ResourceLink = None, grantAccessSessionRevocationApi: bool = None, grantAccessSessionSessionManagementApi: bool = None, pingAccessLogoutCapable: bool = None, logoutUris: list = None, pairwiseIdentifierUserType: bool = None, sectorIdentifierUri: str = None) -> None:
+    def __init__(self, idTokenSigningAlgorithm: SigningAlgorithm = None, idTokenEncryptionAlgorithm: EncryptionAlgorithm = None, idTokenContentEncryptionAlgorithm: ContentEncryptionAlgorithm = None, policyGroup: ResourceLink = None, grantAccessSessionRevocationApi: bool = None, grantAccessSessionSessionManagementApi: bool = None, logoutMode: LogoutMode = None, pingAccessLogoutCapable: bool = None, logoutUris: list = None, backChannelLogoutUri: str = None, pairwiseIdentifierUserType: bool = None, sectorIdentifierUri: str = None) -> None:
         self.idTokenSigningAlgorithm = idTokenSigningAlgorithm
         self.idTokenEncryptionAlgorithm = idTokenEncryptionAlgorithm
         self.idTokenContentEncryptionAlgorithm = idTokenContentEncryptionAlgorithm
         self.policyGroup = policyGroup
         self.grantAccessSessionRevocationApi = grantAccessSessionRevocationApi
         self.grantAccessSessionSessionManagementApi = grantAccessSessionSessionManagementApi
+        self.logoutMode = logoutMode
         self.pingAccessLogoutCapable = pingAccessLogoutCapable
         self.logoutUris = logoutUris
+        self.backChannelLogoutUri = backChannelLogoutUri
         self.pairwiseIdentifierUserType = pairwiseIdentifierUserType
         self.sectorIdentifierUri = sectorIdentifierUri
 
@@ -98,13 +107,13 @@ class ClientOIDCPolicy(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.idTokenSigningAlgorithm, self.idTokenEncryptionAlgorithm, self.idTokenContentEncryptionAlgorithm, self.policyGroup, self.grantAccessSessionRevocationApi, self.grantAccessSessionSessionManagementApi, self.pingAccessLogoutCapable, self.logoutUris, self.pairwiseIdentifierUserType, self.sectorIdentifierUri]))
+        return hash(frozenset([self.idTokenSigningAlgorithm, self.idTokenEncryptionAlgorithm, self.idTokenContentEncryptionAlgorithm, self.policyGroup, self.grantAccessSessionRevocationApi, self.grantAccessSessionSessionManagementApi, self.logoutMode, self.pingAccessLogoutCapable, self.logoutUris, self.backChannelLogoutUri, self.pairwiseIdentifierUserType, self.sectorIdentifierUri]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["idTokenSigningAlgorithm", "idTokenEncryptionAlgorithm", "idTokenContentEncryptionAlgorithm", "policyGroup", "grantAccessSessionRevocationApi", "grantAccessSessionSessionManagementApi", "pingAccessLogoutCapable", "logoutUris", "pairwiseIdentifierUserType", "sectorIdentifierUri"] and v is not None:
+            if k in ["idTokenSigningAlgorithm", "idTokenEncryptionAlgorithm", "idTokenContentEncryptionAlgorithm", "policyGroup", "grantAccessSessionRevocationApi", "grantAccessSessionSessionManagementApi", "logoutMode", "pingAccessLogoutCapable", "logoutUris", "backChannelLogoutUri", "pairwiseIdentifierUserType", "sectorIdentifierUri"] and v is not None:
                 if k == "idTokenSigningAlgorithm":
                     valid_data[k] = SigningAlgorithm[v]
                 if k == "idTokenEncryptionAlgorithm":
@@ -117,10 +126,14 @@ class ClientOIDCPolicy(Model):
                     valid_data[k] = bool(v)
                 if k == "grantAccessSessionSessionManagementApi":
                     valid_data[k] = bool(v)
+                if k == "logoutMode":
+                    valid_data[k] = LogoutMode[v]
                 if k == "pingAccessLogoutCapable":
                     valid_data[k] = bool(v)
                 if k == "logoutUris":
                     valid_data[k] = [str(x) for x in v]
+                if k == "backChannelLogoutUri":
+                    valid_data[k] = str(v)
                 if k == "pairwiseIdentifierUserType":
                     valid_data[k] = bool(v)
                 if k == "sectorIdentifierUri":
@@ -136,7 +149,7 @@ class ClientOIDCPolicy(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["idTokenSigningAlgorithm", "idTokenEncryptionAlgorithm", "idTokenContentEncryptionAlgorithm", "policyGroup", "grantAccessSessionRevocationApi", "grantAccessSessionSessionManagementApi", "pingAccessLogoutCapable", "logoutUris", "pairwiseIdentifierUserType", "sectorIdentifierUri"]:
+            if k in ["idTokenSigningAlgorithm", "idTokenEncryptionAlgorithm", "idTokenContentEncryptionAlgorithm", "policyGroup", "grantAccessSessionRevocationApi", "grantAccessSessionSessionManagementApi", "logoutMode", "pingAccessLogoutCapable", "logoutUris", "backChannelLogoutUri", "pairwiseIdentifierUserType", "sectorIdentifierUri"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):

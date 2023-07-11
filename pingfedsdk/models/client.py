@@ -43,6 +43,12 @@ class Client(Model):
     description: str
         A description of what the client application does. This description appears when the user is prompted for authorization.
 
+    modificationDate: str
+        The time at which the client was last changed. This property is read only and is ignored on PUT and POST requests.
+
+    creationDate: str
+        The time at which the client was created. This property is read only and is ignored on PUT and POST requests.
+
     logoUrl: str
         The location of the logo used on user-facing OAuth grant authorization and revocation pages.
 
@@ -102,6 +108,9 @@ class Client(Model):
 
     exclusiveScopes: list
         The exclusive scopes available for this client.
+
+    authorizationDetailTypes: list
+        The authorization detail types available for this client.
 
     restrictedResponseTypes: list
         The response types allowed for this client. If omitted all response types are available to the client.
@@ -291,15 +300,21 @@ class Client(Model):
         AES_192_GCM - AES-GCM-192
         AES_256_GCM - AES-GCM-256
 
+    requireDpop: bool
+        Determines whether Demonstrating Proof-of-Possession (DPoP) is required for this client.
+
     """
 
-    def __init__(self, clientId: str, grantTypes: list, name: str, enabled: bool = None, redirectUris: list = None, description: str = None, logoUrl: str = None, defaultAccessTokenManagerRef: ResourceLink = None, restrictToDefaultAccessTokenManager: bool = None, validateUsingAllEligibleAtms: bool = None, refreshRolling: RefreshRolling = None, refreshTokenRollingIntervalType: DeviceFlowSettingType = None, refreshTokenRollingInterval: int = None, persistentGrantExpirationType: PersistentGrantLifetimeType = None, persistentGrantExpirationTime: int = None, persistentGrantExpirationTimeUnit: TimeUnit = None, persistentGrantIdleTimeoutType: PersistentGrantLifetimeType = None, persistentGrantIdleTimeout: int = None, persistentGrantIdleTimeoutTimeUnit: TimeUnit = None, persistentGrantReuseType: DeviceFlowSettingType = None, persistentGrantReuseGrantTypes: list = None, allowAuthenticationApiInit: bool = None, bypassApprovalPage: bool = None, restrictScopes: bool = None, restrictedScopes: list = None, exclusiveScopes: list = None, restrictedResponseTypes: list = None, requirePushedAuthorizationRequests: bool = None, requireJwtSecuredAuthorizationResponseMode: bool = None, requireSignedRequests: bool = None, requestObjectSigningAlgorithm: ObjectSigningAlgorithm = None, oidcPolicy: ClientOIDCPolicy = None, clientAuth: ClientAuth = None, jwksSettings: JwksSettings = None, extendedParameters: object = None, deviceFlowSettingType: DeviceFlowSettingType = None, userAuthorizationUrlOverride: str = None, pendingAuthorizationTimeoutOverride: int = None, devicePollingIntervalOverride: int = None, bypassActivationCodeConfirmationOverride: bool = None, requireProofKeyForCodeExchange: bool = None, cibaDeliveryMode: CibaDeliveryMode = None, cibaNotificationEndpoint: str = None, cibaPollingInterval: int = None, cibaRequireSignedRequests: bool = None, cibaRequestObjectSigningAlgorithm: ObjectSigningAlgorithm = None, cibaUserCodeSupported: bool = None, requestPolicyRef: ResourceLink = None, tokenExchangeProcessorPolicyRef: ResourceLink = None, refreshTokenRollingGracePeriodType: RefreshTokenRollingGracePeriodType = None, refreshTokenRollingGracePeriod: int = None, clientSecretRetentionPeriodType: ClientSecretRetentionPeriodType = None, clientSecretRetentionPeriod: int = None, clientSecretChangedTime: str = None, tokenIntrospectionSigningAlgorithm: TokenIntrospectionSigningAlgorithm = None, tokenIntrospectionEncryptionAlgorithm: TokenIntrospectionEncryptionAlgorithm = None, tokenIntrospectionContentEncryptionAlgorithm: TokenIntrospectionContentEncryptionAlgorithm = None, jwtSecuredAuthorizationResponseModeSigningAlgorithm: JwtSecuredAuthorizationResponseModeSigningAlgorithm = None, jwtSecuredAuthorizationResponseModeEncryptionAlgorithm: JwtSecuredAuthorizationResponseModeEncryptionAlgorithm = None, jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm: JwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm = None) -> None:
+    def __init__(self, clientId: str, grantTypes: list, name: str, enabled: bool = None, redirectUris: list = None, description: str = None, modificationDate: str = None, creationDate: str = None, logoUrl: str = None, defaultAccessTokenManagerRef: ResourceLink = None, restrictToDefaultAccessTokenManager: bool = None, validateUsingAllEligibleAtms: bool = None, refreshRolling: RefreshRolling = None, refreshTokenRollingIntervalType: DeviceFlowSettingType = None, refreshTokenRollingInterval: int = None, persistentGrantExpirationType: PersistentGrantLifetimeType = None, persistentGrantExpirationTime: int = None, persistentGrantExpirationTimeUnit: TimeUnit = None, persistentGrantIdleTimeoutType: PersistentGrantLifetimeType = None, persistentGrantIdleTimeout: int = None, persistentGrantIdleTimeoutTimeUnit: TimeUnit = None, persistentGrantReuseType: DeviceFlowSettingType = None, persistentGrantReuseGrantTypes: list = None, allowAuthenticationApiInit: bool = None, bypassApprovalPage: bool = None, restrictScopes: bool = None, restrictedScopes: list = None, exclusiveScopes: list = None, authorizationDetailTypes: list = None, restrictedResponseTypes: list = None, requirePushedAuthorizationRequests: bool = None, requireJwtSecuredAuthorizationResponseMode: bool = None, requireSignedRequests: bool = None, requestObjectSigningAlgorithm: ObjectSigningAlgorithm = None, oidcPolicy: ClientOIDCPolicy = None, clientAuth: ClientAuth = None, jwksSettings: JwksSettings = None, extendedParameters: object = None, deviceFlowSettingType: DeviceFlowSettingType = None, userAuthorizationUrlOverride: str = None, pendingAuthorizationTimeoutOverride: int = None, devicePollingIntervalOverride: int = None, bypassActivationCodeConfirmationOverride: bool = None, requireProofKeyForCodeExchange: bool = None, cibaDeliveryMode: CibaDeliveryMode = None, cibaNotificationEndpoint: str = None, cibaPollingInterval: int = None, cibaRequireSignedRequests: bool = None, cibaRequestObjectSigningAlgorithm: ObjectSigningAlgorithm = None, cibaUserCodeSupported: bool = None, requestPolicyRef: ResourceLink = None, tokenExchangeProcessorPolicyRef: ResourceLink = None, refreshTokenRollingGracePeriodType: RefreshTokenRollingGracePeriodType = None, refreshTokenRollingGracePeriod: int = None, clientSecretRetentionPeriodType: ClientSecretRetentionPeriodType = None, clientSecretRetentionPeriod: int = None, clientSecretChangedTime: str = None, tokenIntrospectionSigningAlgorithm: TokenIntrospectionSigningAlgorithm = None, tokenIntrospectionEncryptionAlgorithm: TokenIntrospectionEncryptionAlgorithm = None, tokenIntrospectionContentEncryptionAlgorithm: TokenIntrospectionContentEncryptionAlgorithm = None, jwtSecuredAuthorizationResponseModeSigningAlgorithm: JwtSecuredAuthorizationResponseModeSigningAlgorithm = None, jwtSecuredAuthorizationResponseModeEncryptionAlgorithm: JwtSecuredAuthorizationResponseModeEncryptionAlgorithm = None, jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm: JwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm = None, requireDpop: bool = None
+        ) -> None:
         self.clientId = clientId
         self.enabled = enabled
         self.redirectUris = redirectUris
         self.grantTypes = grantTypes
         self.name = name
         self.description = description
+        self.modificationDate = modificationDate
+        self.creationDate = creationDate
         self.logoUrl = logoUrl
         self.defaultAccessTokenManagerRef = defaultAccessTokenManagerRef
         self.restrictToDefaultAccessTokenManager = restrictToDefaultAccessTokenManager
@@ -320,6 +335,7 @@ class Client(Model):
         self.restrictScopes = restrictScopes
         self.restrictedScopes = restrictedScopes
         self.exclusiveScopes = exclusiveScopes
+        self.authorizationDetailTypes = authorizationDetailTypes
         self.restrictedResponseTypes = restrictedResponseTypes
         self.requirePushedAuthorizationRequests = requirePushedAuthorizationRequests
         self.requireJwtSecuredAuthorizationResponseMode = requireJwtSecuredAuthorizationResponseMode
@@ -354,6 +370,7 @@ class Client(Model):
         self.jwtSecuredAuthorizationResponseModeSigningAlgorithm = jwtSecuredAuthorizationResponseModeSigningAlgorithm
         self.jwtSecuredAuthorizationResponseModeEncryptionAlgorithm = jwtSecuredAuthorizationResponseModeEncryptionAlgorithm
         self.jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm = jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm
+        self.requireDpop = requireDpop
 
     def _validate(self) -> bool:
         return any(x for x in ["clientId", "grantTypes", "name"] if self.__dict__[x] is not None)
@@ -364,13 +381,13 @@ class Client(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.clientId, self.enabled, self.redirectUris, self.grantTypes, self.name, self.description, self.logoUrl, self.defaultAccessTokenManagerRef, self.restrictToDefaultAccessTokenManager, self.validateUsingAllEligibleAtms, self.refreshRolling, self.refreshTokenRollingIntervalType, self.refreshTokenRollingInterval, self.persistentGrantExpirationType, self.persistentGrantExpirationTime, self.persistentGrantExpirationTimeUnit, self.persistentGrantIdleTimeoutType, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantReuseType, self.persistentGrantReuseGrantTypes, self.allowAuthenticationApiInit, self.bypassApprovalPage, self.restrictScopes, self.restrictedScopes, self.exclusiveScopes, self.restrictedResponseTypes, self.requirePushedAuthorizationRequests, self.requireJwtSecuredAuthorizationResponseMode, self.requireSignedRequests, self.requestObjectSigningAlgorithm, self.oidcPolicy, self.clientAuth, self.jwksSettings, self.extendedParameters, self.deviceFlowSettingType, self.userAuthorizationUrlOverride, self.pendingAuthorizationTimeoutOverride, self.devicePollingIntervalOverride, self.bypassActivationCodeConfirmationOverride, self.requireProofKeyForCodeExchange, self.cibaDeliveryMode, self.cibaNotificationEndpoint, self.cibaPollingInterval, self.cibaRequireSignedRequests, self.cibaRequestObjectSigningAlgorithm, self.cibaUserCodeSupported, self.requestPolicyRef, self.tokenExchangeProcessorPolicyRef, self.refreshTokenRollingGracePeriodType, self.refreshTokenRollingGracePeriod, self.clientSecretRetentionPeriodType, self.clientSecretRetentionPeriod, self.clientSecretChangedTime, self.tokenIntrospectionSigningAlgorithm, self.tokenIntrospectionEncryptionAlgorithm, self.tokenIntrospectionContentEncryptionAlgorithm, self.jwtSecuredAuthorizationResponseModeSigningAlgorithm, self.jwtSecuredAuthorizationResponseModeEncryptionAlgorithm, self.jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm]))
+        return hash(frozenset([self.clientId, self.enabled, self.redirectUris, self.grantTypes, self.name, self.description, self.modificationDate, self.creationDate, self.logoUrl, self.defaultAccessTokenManagerRef, self.restrictToDefaultAccessTokenManager, self.validateUsingAllEligibleAtms, self.refreshRolling, self.refreshTokenRollingIntervalType, self.refreshTokenRollingInterval, self.persistentGrantExpirationType, self.persistentGrantExpirationTime, self.persistentGrantExpirationTimeUnit, self.persistentGrantIdleTimeoutType, self.persistentGrantIdleTimeout, self.persistentGrantIdleTimeoutTimeUnit, self.persistentGrantReuseType, self.persistentGrantReuseGrantTypes, self.allowAuthenticationApiInit, self.bypassApprovalPage, self.restrictScopes, self.restrictedScopes, self.exclusiveScopes, self.authorizationDetailTypes, self.restrictedResponseTypes, self.requirePushedAuthorizationRequests, self.requireJwtSecuredAuthorizationResponseMode, self.requireSignedRequests, self.requestObjectSigningAlgorithm, self.oidcPolicy, self.clientAuth, self.jwksSettings, self.extendedParameters, self.deviceFlowSettingType, self.userAuthorizationUrlOverride, self.pendingAuthorizationTimeoutOverride, self.devicePollingIntervalOverride, self.bypassActivationCodeConfirmationOverride, self.requireProofKeyForCodeExchange, self.cibaDeliveryMode, self.cibaNotificationEndpoint, self.cibaPollingInterval, self.cibaRequireSignedRequests, self.cibaRequestObjectSigningAlgorithm, self.cibaUserCodeSupported, self.requestPolicyRef, self.tokenExchangeProcessorPolicyRef, self.refreshTokenRollingGracePeriodType, self.refreshTokenRollingGracePeriod, self.clientSecretRetentionPeriodType, self.clientSecretRetentionPeriod, self.clientSecretChangedTime, self.tokenIntrospectionSigningAlgorithm, self.tokenIntrospectionEncryptionAlgorithm, self.tokenIntrospectionContentEncryptionAlgorithm, self.jwtSecuredAuthorizationResponseModeSigningAlgorithm, self.jwtSecuredAuthorizationResponseModeEncryptionAlgorithm, self.jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm, self.requireDpop]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["clientId", "enabled", "redirectUris", "grantTypes", "name", "description", "logoUrl", "defaultAccessTokenManagerRef", "restrictToDefaultAccessTokenManager", "validateUsingAllEligibleAtms", "refreshRolling", "refreshTokenRollingIntervalType", "refreshTokenRollingInterval", "persistentGrantExpirationType", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantIdleTimeoutType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantReuseType", "persistentGrantReuseGrantTypes", "allowAuthenticationApiInit", "bypassApprovalPage", "restrictScopes", "restrictedScopes", "exclusiveScopes", "restrictedResponseTypes", "requirePushedAuthorizationRequests", "requireJwtSecuredAuthorizationResponseMode", "requireSignedRequests", "requestObjectSigningAlgorithm", "oidcPolicy", "clientAuth", "jwksSettings", "extendedParameters", "deviceFlowSettingType", "userAuthorizationUrlOverride", "pendingAuthorizationTimeoutOverride", "devicePollingIntervalOverride", "bypassActivationCodeConfirmationOverride", "requireProofKeyForCodeExchange", "cibaDeliveryMode", "cibaNotificationEndpoint", "cibaPollingInterval", "cibaRequireSignedRequests", "cibaRequestObjectSigningAlgorithm", "cibaUserCodeSupported", "requestPolicyRef", "tokenExchangeProcessorPolicyRef", "refreshTokenRollingGracePeriodType", "refreshTokenRollingGracePeriod", "clientSecretRetentionPeriodType", "clientSecretRetentionPeriod", "clientSecretChangedTime", "tokenIntrospectionSigningAlgorithm", "tokenIntrospectionEncryptionAlgorithm", "tokenIntrospectionContentEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeSigningAlgorithm", "jwtSecuredAuthorizationResponseModeEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm"] and v is not None:
+            if k in ["clientId", "enabled", "redirectUris", "grantTypes", "name", "description", "modificationDate", "creationDate", "logoUrl", "defaultAccessTokenManagerRef", "restrictToDefaultAccessTokenManager", "validateUsingAllEligibleAtms", "refreshRolling", "refreshTokenRollingIntervalType", "refreshTokenRollingInterval", "persistentGrantExpirationType", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantIdleTimeoutType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantReuseType", "persistentGrantReuseGrantTypes", "allowAuthenticationApiInit", "bypassApprovalPage", "restrictScopes", "restrictedScopes", "exclusiveScopes", "authorizationDetailTypes", "restrictedResponseTypes", "requirePushedAuthorizationRequests", "requireJwtSecuredAuthorizationResponseMode", "requireSignedRequests", "requestObjectSigningAlgorithm", "oidcPolicy", "clientAuth", "jwksSettings", "extendedParameters", "deviceFlowSettingType", "userAuthorizationUrlOverride", "pendingAuthorizationTimeoutOverride", "devicePollingIntervalOverride", "bypassActivationCodeConfirmationOverride", "requireProofKeyForCodeExchange", "cibaDeliveryMode", "cibaNotificationEndpoint", "cibaPollingInterval", "cibaRequireSignedRequests", "cibaRequestObjectSigningAlgorithm", "cibaUserCodeSupported", "requestPolicyRef", "tokenExchangeProcessorPolicyRef", "refreshTokenRollingGracePeriodType", "refreshTokenRollingGracePeriod", "clientSecretRetentionPeriodType", "clientSecretRetentionPeriod", "clientSecretChangedTime", "tokenIntrospectionSigningAlgorithm", "tokenIntrospectionEncryptionAlgorithm", "tokenIntrospectionContentEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeSigningAlgorithm", "jwtSecuredAuthorizationResponseModeEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm", "requireDpop"] and v is not None:
                 if k == "clientId":
                     valid_data[k] = str(v)
                 if k == "enabled":
@@ -382,6 +399,10 @@ class Client(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "description":
+                    valid_data[k] = str(v)
+                if k == "modificationDate":
+                    valid_data[k] = str(v)
+                if k == "creationDate":
                     valid_data[k] = str(v)
                 if k == "logoUrl":
                     valid_data[k] = str(v)
@@ -422,6 +443,8 @@ class Client(Model):
                 if k == "restrictedScopes":
                     valid_data[k] = [str(x) for x in v]
                 if k == "exclusiveScopes":
+                    valid_data[k] = [str(x) for x in v]
+                if k == "authorizationDetailTypes":
                     valid_data[k] = [str(x) for x in v]
                 if k == "restrictedResponseTypes":
                     valid_data[k] = [str(x) for x in v]
@@ -491,6 +514,8 @@ class Client(Model):
                     valid_data[k] = JwtSecuredAuthorizationResponseModeEncryptionAlgorithm[v]
                 if k == "jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm":
                     valid_data[k] = JwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm[v]
+                if k == "requireDpop":
+                    valid_data[k] = bool(v)
 
         return cls(**valid_data)
 
@@ -502,7 +527,7 @@ class Client(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["clientId", "enabled", "redirectUris", "grantTypes", "name", "description", "logoUrl", "defaultAccessTokenManagerRef", "restrictToDefaultAccessTokenManager", "validateUsingAllEligibleAtms", "refreshRolling", "refreshTokenRollingIntervalType", "refreshTokenRollingInterval", "persistentGrantExpirationType", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantIdleTimeoutType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantReuseType", "persistentGrantReuseGrantTypes", "allowAuthenticationApiInit", "bypassApprovalPage", "restrictScopes", "restrictedScopes", "exclusiveScopes", "restrictedResponseTypes", "requirePushedAuthorizationRequests", "requireJwtSecuredAuthorizationResponseMode", "requireSignedRequests", "requestObjectSigningAlgorithm", "oidcPolicy", "clientAuth", "jwksSettings", "extendedParameters", "deviceFlowSettingType", "userAuthorizationUrlOverride", "pendingAuthorizationTimeoutOverride", "devicePollingIntervalOverride", "bypassActivationCodeConfirmationOverride", "requireProofKeyForCodeExchange", "cibaDeliveryMode", "cibaNotificationEndpoint", "cibaPollingInterval", "cibaRequireSignedRequests", "cibaRequestObjectSigningAlgorithm", "cibaUserCodeSupported", "requestPolicyRef", "tokenExchangeProcessorPolicyRef", "refreshTokenRollingGracePeriodType", "refreshTokenRollingGracePeriod", "clientSecretRetentionPeriodType", "clientSecretRetentionPeriod", "clientSecretChangedTime", "tokenIntrospectionSigningAlgorithm", "tokenIntrospectionEncryptionAlgorithm", "tokenIntrospectionContentEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeSigningAlgorithm", "jwtSecuredAuthorizationResponseModeEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm"]:
+            if k in ["clientId", "enabled", "redirectUris", "grantTypes", "name", "description", "modificationDate", "creationDate", "logoUrl", "defaultAccessTokenManagerRef", "restrictToDefaultAccessTokenManager", "validateUsingAllEligibleAtms", "refreshRolling", "refreshTokenRollingIntervalType", "refreshTokenRollingInterval", "persistentGrantExpirationType", "persistentGrantExpirationTime", "persistentGrantExpirationTimeUnit", "persistentGrantIdleTimeoutType", "persistentGrantIdleTimeout", "persistentGrantIdleTimeoutTimeUnit", "persistentGrantReuseType", "persistentGrantReuseGrantTypes", "allowAuthenticationApiInit", "bypassApprovalPage", "restrictScopes", "restrictedScopes", "exclusiveScopes", "authorizationDetailTypes", "restrictedResponseTypes", "requirePushedAuthorizationRequests", "requireJwtSecuredAuthorizationResponseMode", "requireSignedRequests", "requestObjectSigningAlgorithm", "oidcPolicy", "clientAuth", "jwksSettings", "extendedParameters", "deviceFlowSettingType", "userAuthorizationUrlOverride", "pendingAuthorizationTimeoutOverride", "devicePollingIntervalOverride", "bypassActivationCodeConfirmationOverride", "requireProofKeyForCodeExchange", "cibaDeliveryMode", "cibaNotificationEndpoint", "cibaPollingInterval", "cibaRequireSignedRequests", "cibaRequestObjectSigningAlgorithm", "cibaUserCodeSupported", "requestPolicyRef", "tokenExchangeProcessorPolicyRef", "refreshTokenRollingGracePeriodType", "refreshTokenRollingGracePeriod", "clientSecretRetentionPeriodType", "clientSecretRetentionPeriod", "clientSecretChangedTime", "tokenIntrospectionSigningAlgorithm", "tokenIntrospectionEncryptionAlgorithm", "tokenIntrospectionContentEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeSigningAlgorithm", "jwtSecuredAuthorizationResponseModeEncryptionAlgorithm", "jwtSecuredAuthorizationResponseModeContentEncryptionAlgorithm", "requireDpop"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):

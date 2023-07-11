@@ -107,7 +107,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConnectionCerts.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -200,7 +200,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelDecryptionKeys.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -259,7 +259,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSpConnection.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

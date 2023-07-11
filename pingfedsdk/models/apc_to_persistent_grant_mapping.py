@@ -3,6 +3,7 @@ from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 
 
 class ApcToPersistentGrantMapping(Model):
@@ -57,7 +58,9 @@ class ApcToPersistentGrantMapping(Model):
                 if k == "attributeSources":
                     valid_data[k] = [AttributeSource(**x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    for x in v:
+                        v[x] = AttributeFulfillmentValue(v[x]['source'], v[x]['value'])
+                    valid_data[k] = v
                 if k == "issuanceCriteria":
                     valid_data[k] = IssuanceCriteria(**v)
 

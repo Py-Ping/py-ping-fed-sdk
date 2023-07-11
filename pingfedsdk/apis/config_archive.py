@@ -26,8 +26,9 @@ class ConfigArchive:
 
         try:
             response = self.session.post(
+                files={'file': open(file, "rb")},
                 url=self._build_uri("/configArchive/import"),
-                headers={"Content-Type": "application/json"}
+                headers={"Accept": "application/json"}
             )
         except HTTPError as http_err:
             print(traceback.format_exc())

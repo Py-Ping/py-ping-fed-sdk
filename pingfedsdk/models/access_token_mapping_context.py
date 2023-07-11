@@ -17,7 +17,7 @@ class AccessTokenMappingContext(Model):
 
     """
 
-    def __init__(self, contextRef: ResourceLink, type: AccessTokenMappingContextType) -> None:
+    def __init__(self, type: AccessTokenMappingContextType, contextRef: ResourceLink = None) -> None:
         self.type = type
         self.contextRef = contextRef
 
@@ -44,7 +44,7 @@ class AccessTokenMappingContext(Model):
 
         return cls(**valid_data)
 
-    def to_dict(self, remove_nonetypes=False):
+    def to_dict(self, remove_nonetypes=True):
         """
         Naive dictionary serialiser. Recursively handles most types in this
         module. If you make your own class you need to inherit from model
