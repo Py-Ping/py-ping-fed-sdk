@@ -26,7 +26,6 @@ class ConfigArchive:
 
         try:
             response = self.session.post(
-                files={'file': open(file, "rb")},
                 url=self._build_uri("/configArchive/import"),
                 headers={"Accept": "application/json"}
             )
