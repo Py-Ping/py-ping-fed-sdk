@@ -41,6 +41,10 @@ class ConfigArchive:
         else:
             if response.status_code == 200:
                 return ModelApiResult.from_dict(response.json())
+            if response.status_code == 415:
+                message = "(415) Validation error(s) occurred."
+                self.logger.info(message)
+                raise ValidationError(message)
             if response.status_code == 422:
                 message = "(422) Validation error(s) occurred."
                 self.logger.info(message)
