@@ -7,6 +7,7 @@ from requests import Session
 from requests.exceptions import HTTPError
 from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from tempfile import SpooledTemporaryFile
 
 
 class ConfigArchive:
@@ -20,13 +21,13 @@ class ConfigArchive:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def importConfigArchive(self, file: str = None, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
+    def importConfigArchive(self, file: SpooledTemporaryFile, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
         """ Import a configuration archive.
         """
 
         try:
             response = self.session.post(
-                files={'file': open(file, "rb")},
+                files={'file': file},
                 url=self._build_uri("/configArchive/import"),
                 headers={"Accept": "application/json"}
             )
@@ -46,9 +47,9 @@ class ConfigArchive:
                 self.logger.info(message)
                 raise ValidationError(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                self.logger.info(response.json())
+                validation_errors = response.json()['validationErrors'][0]['message']
+                raise ValidationError(validation_errors)
 
     def exportConfigArchive(self):
         """ Export a configuration archive.
