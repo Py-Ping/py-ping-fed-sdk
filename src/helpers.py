@@ -89,12 +89,21 @@ def get_py_type(json_type):
 
 
 def get_auth_session():
-    ping_user = os.environ.get(
-        "PING_IDENTITY_DEVOPS_ADMINISTRATOR", "administrator"
-    )
-    ping_pass = os.environ.get(
-        "PING_IDENTITY_DEVOPS_PASSWORD", "2FederateM0re"
-    )
+
+    if 'PING_IDENTITY_USER' in os.environ and 'PING_IDENTITY_SECRET' in os.environ:
+        ping_user = os.environ.get(
+            "PING_IDENTITY_USER", "Administrator"
+        )
+        ping_pass = os.environ.get(
+            "PING_IDENTITY_SECRET", "2Federate"
+        )
+    else:
+        ping_user = os.environ.get(
+            "PING_IDENTITY_DEVOPS_ADMINISTRATOR", "administrator"
+        )
+        ping_pass = os.environ.get(
+            "PING_IDENTITY_DEVOPS_PASSWORD", "2FederateM0re"
+        )
 
     session = requests.Session()
     session.auth = HTTPBasicAuth(ping_user, ping_pass)
