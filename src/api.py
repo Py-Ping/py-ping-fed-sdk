@@ -1,4 +1,3 @@
-
 from helpers import get_py_type, safe_name
 
 
@@ -46,6 +45,7 @@ class ApiEndpoint:
                     self.imports.add(param_obj.type)
 
             op_response_codes = []
+            op_type = None
             for response_code, response_data in rest_data["responses"].items():
                 op_code = {"code": response_code, "message": response_data["description"]}
                 if "schema" in response_data and "$ref" in response_data["schema"]:
@@ -54,6 +54,10 @@ class ApiEndpoint:
                     op_code["type"] = response_data["schema"]["type"]
                 else:
                     op_code["type"] = "void"
+
+                if op_code['type'] != "ApiResult" and op_code['type'] != "void":
+                    op_type = op_code['type']
+
                 op_response_codes.append(op_code)
                 if response_code not in self.response_codes:
                     self.response_codes.add(response_code)
@@ -66,7 +70,7 @@ class ApiEndpoint:
 
             self.operations.append(
                 Operation(
-                    params, op_response_codes, op_code["type"],
+                    params, op_response_codes, op_type,
                     rest_data["operationId"], rest_data["summary"], safe_rest_method,
                     safe_api_path, rest_data.get("produces", []))
             )
