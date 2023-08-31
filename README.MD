@@ -78,7 +78,7 @@ export PING_IDENTITY_SWAGGER_VERSION=<1.2/2.0>
 
 # Regenerate the Ping Federate SDK
 
-To generate the APIs and models of the Ping Federate SDK you can a `ping-devops` container if you set up using that 
+To generate the APIs and models of the Ping Federate SDK you can use a `ping-devops` container if you set up using that 
 method or use an existing instance of Ping Federate.  
 
 ### Generate an SDK using Ping Federate deployed using `ping-devops`
@@ -96,8 +96,8 @@ Ping Federate service running and then the SDK will be generated against that se
 
 ### Generate an SDK using an existing instance of Ping Federate
 
-A pre-existing Ping Federate instance allows you to generate an SDK against your target instance. To generate the SDK 
-against your target instance of Ping Federate follow the 
+A pre-existing Ping Federate instance allows you to generate an SDK against your own target instance. To generate the 
+SDK against your target instance of Ping Federate follow the 
 [setup steps for a pre-existing](#setup-using-an-existing-instance-of-ping-federate) Ping Federate instance and do the 
 following:
 

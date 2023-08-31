@@ -23,6 +23,7 @@ sphinx = "*"
 guzzle-sphinx-theme = "*"
 tox = "*"
 json-delta = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3"

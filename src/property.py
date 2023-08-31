@@ -175,8 +175,12 @@ class Property:
         """
         if 'BackChannelAuth' in model_name:
             return 'BackChannelAuthType'
-        elif 'Connection' in model_name and type == 'type':
+        elif 'Connection' == model_name and type == 'type':
             return 'ConnectionType'
+        elif 'IdpConnection' == model_name and type == 'type':
+            return 'IdpConnection'
+        elif 'SpConnection' == model_name and type == 'type':
+            return 'SpConnection'
         elif ('DataStore' in model_name and type != 'ldapType') or ('AttributeSource' in model_name and type == 'type'):
             return 'DataStoreType'
         elif 'DisplayUnit' in type or 'TimeUnit' in type or 'persistentGrantLifetimeUnit' in type:
@@ -189,7 +193,8 @@ class Property:
             return 'AuthenticationPolicySelectionActionType'
         elif 'ObjectSigningAlgorithm' in type or 'AuthSigningAlgorithm' in type:
             return 'ObjectSigningAlgorithm'
-        elif type == 'idTokenSigningAlgorithm' or type == 'requestSigningAlgorithm' or type == 'authenticationSigningAlgorithm':
+        elif type == 'idTokenSigningAlgorithm' or type == 'requestSigningAlgorithm' \
+                or type == 'authenticationSigningAlgorithm':
             return 'SigningAlgorithm'
         elif type == 'idTokenEncryptionAlgorithm':
             return 'EncryptionAlgorithm'
@@ -197,7 +202,8 @@ class Property:
             return 'ContentEncryptionAlgorithm'
         elif type == 'persistentGrantExpirationType' or type == 'persistentGrantIdleTimeoutType':
             return 'PersistentGrantLifetimeType'
-        elif type == 'refreshTokenRollingIntervalType' or type == 'persistentGrantReuseType' or type == 'deviceFlowSettingType':
+        elif type == 'refreshTokenRollingIntervalType' or type == 'persistentGrantReuseType' \
+                or type == 'deviceFlowSettingType':
             return 'DeviceFlowSettingType'
         elif type == 'type':
             return f"{model_name}Type"

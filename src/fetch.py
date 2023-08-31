@@ -193,7 +193,7 @@ class Fetch():
             imports = {"models": set(), "enums": set()}
             model_props = {}
             for prop_name, prop in details.get("properties", {}).items():
-                if type(prop) == dict:
+                if isinstance(prop, dict):
                     model_property = Property(prop, model_name, prop_name)
                     model_import = model_property.get_model_import()
                     enum_import = model_property.get_enum_import()
