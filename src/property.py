@@ -173,7 +173,7 @@ class Property:
         to generate generic classes as found in
         pingfedsdk/enums.py
         """
-        if 'BackChannelAuth' in model_name:
+        if 'BackChannelAuth' == model_name:
             return 'BackChannelAuthType'
         elif 'Connection' == model_name and type == 'type':
             return 'ConnectionType'
@@ -181,17 +181,17 @@ class Property:
             return 'IdpConnection'
         elif 'SpConnection' == model_name and type == 'type':
             return 'SpConnection'
-        elif ('DataStore' in model_name and type != 'ldapType') or ('AttributeSource' in model_name and type == 'type'):
+        elif ('DataStore' == model_name and type != 'ldapType') or ('AttributeSource' == model_name and type == 'type'):
             return 'DataStoreType'
-        elif 'DisplayUnit' in type or 'TimeUnit' in type or 'persistentGrantLifetimeUnit' in type:
+        elif 'DisplayUnit' == type or 'TimeUnit' in type or 'persistentGrantLifetimeUnit' == type:
             return 'TimeUnit'
-        elif 'FieldDescriptor' in model_name:
+        elif 'FieldDescriptor' == model_name:
             return 'FieldDescriptor'
-        elif 'IdentityField' in model_name:
+        elif 'IdentityField' == model_name:
             return 'LocalIdentityFieldType'
-        elif 'PolicyAction' in model_name:
+        elif 'PolicyAction' == model_name:
             return 'AuthenticationPolicySelectionActionType'
-        elif 'ObjectSigningAlgorithm' in type or 'AuthSigningAlgorithm' in type:
+        elif 'ObjectSigningAlgorithm' == type or 'AuthSigningAlgorithm' == type:
             return 'ObjectSigningAlgorithm'
         elif type == 'idTokenSigningAlgorithm' or type == 'requestSigningAlgorithm' \
                 or type == 'authenticationSigningAlgorithm':
