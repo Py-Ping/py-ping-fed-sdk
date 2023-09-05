@@ -3,6 +3,8 @@ import os
 import requests
 import logging
 import glob
+import urllib3
+
 from copy import deepcopy
 from helpers import safe_name, get_auth_session, strip_ref
 from property import Property
@@ -35,6 +37,8 @@ class Fetch():
         self.apis = {}
         self.enums = {}
 
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
     def get_source(self):
         """
         Pull the API JSON from the remote swagger url
@@ -52,6 +56,7 @@ class Fetch():
         self.logger.info(f"Successfully downloaded Ping Swagger document: {self.swagger_url}")
         self.ping_data = response.json()
         self.base_path = self.ping_data.get('basePath', self.swagger_url)
+        self.logger.info("Writing source data to pingfedsdk/source/pf-admin-api.json")
         self.write_json(data=self.ping_data, name="pf-admin-api", directory="../pingfedsdk/source/")
         self.logger.debug(
             json.dumps(self.ping_data, default=str, sort_keys=True, indent=4, separators=(",", ": "))
@@ -188,7 +193,7 @@ class Fetch():
             imports = {"models": set(), "enums": set()}
             model_props = {}
             for prop_name, prop in details.get("properties", {}).items():
-                if type(prop) == dict:
+                if isinstance(prop, dict):
                     model_property = Property(prop, model_name, prop_name)
                     model_import = model_property.get_model_import()
                     enum_import = model_property.get_enum_import()
@@ -219,10 +224,13 @@ class Fetch():
     def fetch(self):
         self.get_source()
         if self.swagger_version == "1.2":
+            self.logger.info("Getting API schemas for swagger version 1.2")
             self.get_api_schemas()
         elif self.swagger_version == "2.0":
+            self.logger.info("Getting API schemas for swagger version 2.0")
             self.update_v11_schema()
             self.get_v11_plus_schemas()
+        self.logger.info("Getting Enums and Imports")
         self.get_enums_and_imports()
 
         return {
