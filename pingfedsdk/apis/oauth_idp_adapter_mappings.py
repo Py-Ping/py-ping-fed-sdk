@@ -10,8 +10,8 @@ from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
 from pingfedsdk.models.idp_adapter_mapping import IdpAdapterMapping as ModelIdpAdapterMapping
-from pingfedsdk.models.idp_adapter_mappings import IdpAdapterMappings as ModelIdpAdapterMappings
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.idp_adapter_mappings import IdpAdapterMappings as ModelIdpAdapterMappings
 
 
 class OauthIdpAdapterMappings:
@@ -66,15 +66,13 @@ class OauthIdpAdapterMappings:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getIdpAdapterMapping(self, id: str):
         """ Find the IdP adapter mapping by the ID.
@@ -95,7 +93,7 @@ class OauthIdpAdapterMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdpAdapterMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -121,7 +119,7 @@ class OauthIdpAdapterMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +129,7 @@ class OauthIdpAdapterMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteIdpAdapterMapping(self, id: str):
         """ Delete an IdP adapter mapping.

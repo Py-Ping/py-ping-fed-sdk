@@ -9,9 +9,9 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.resource_owner_credentials_mappings import ResourceOwnerCredentialsMappings as ModelResourceOwnerCredentialsMappings
 from pingfedsdk.models.resource_owner_credentials_mapping import ResourceOwnerCredentialsMapping as ModelResourceOwnerCredentialsMapping
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.resource_owner_credentials_mappings import ResourceOwnerCredentialsMappings as ModelResourceOwnerCredentialsMappings
 
 
 class OauthResourceOwnerCredentialsMappings:
@@ -66,15 +66,13 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelResourceOwnerCredentialsMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getResourceOwnerCredentialsMapping(self, id: str):
         """ Find the Resource Owner Credentials mapping by the ID.
@@ -95,7 +93,7 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelResourceOwnerCredentialsMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -121,7 +119,7 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelResourceOwnerCredentialsMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +129,7 @@ class OauthResourceOwnerCredentialsMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteResourceOwnerCredentialsMapping(self, id: str):
         """ Delete a Resource Owner Credentials mapping.

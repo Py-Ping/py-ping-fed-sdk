@@ -6,13 +6,13 @@ from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
 from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.models.config_store_setting import ConfigStoreSetting as ModelConfigStoreSetting
-from pingfedsdk.models.config_store_bundle import ConfigStoreBundle as ModelConfigStoreBundle
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.config_store_bundle import ConfigStoreBundle as ModelConfigStoreBundle
 
 
 class ConfigStore:
@@ -45,7 +45,7 @@ class ConfigStore:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConfigStoreSetting.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) The specified configuration bundle is unavailable."
                 self.logger.info(message)
@@ -75,7 +75,7 @@ class ConfigStore:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConfigStoreSetting.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -85,9 +85,7 @@ class ConfigStore:
                 self.logger.info(message)
                 raise NotImplementedError(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteSetting(self, bundle: str, id: str):
         """ Delete a setting.
@@ -139,7 +137,7 @@ class ConfigStore:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConfigStoreBundle.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) The specified configuration bundle is unavailable."
                 self.logger.info(message)

@@ -1,10 +1,10 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.change_detection_settings import ChangeDetectionSettings
 from pingfedsdk.models.channel_source_location import ChannelSourceLocation
-from pingfedsdk.models.account_management_settings import AccountManagementSettings
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.group_membership_detection import GroupMembershipDetection
+from pingfedsdk.models.account_management_settings import AccountManagementSettings
 
 
 class ChannelSource(Model):

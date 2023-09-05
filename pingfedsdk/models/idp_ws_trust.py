@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.sp_token_generator_mapping import SpTokenGeneratorMapping
 from pingfedsdk.models.idp_ws_trust_attribute_contract import IdpWsTrustAttributeContract
+from pingfedsdk.models.sp_token_generator_mapping import SpTokenGeneratorMapping
 
 
 class IdpWsTrust(Model):

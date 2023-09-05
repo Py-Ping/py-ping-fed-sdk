@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.alternative_login_hint_token_issuer import AlternativeLoginHintTokenIssuer
-from pingfedsdk.models.attribute_mapping import AttributeMapping
 from pingfedsdk.models.identity_hint_contract import IdentityHintContract
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.attribute_mapping import AttributeMapping
+from pingfedsdk.models.alternative_login_hint_token_issuer import AlternativeLoginHintTokenIssuer
 
 
 class RequestPolicy(Model):

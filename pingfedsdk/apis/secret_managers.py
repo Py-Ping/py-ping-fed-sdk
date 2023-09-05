@@ -6,19 +6,19 @@ from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
 from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.exceptions import NotImplementedError
+from pingfedsdk.models.actions import Actions as ModelActions
+from pingfedsdk.models.secret_manager_descriptor import SecretManagerDescriptor as ModelSecretManagerDescriptor
 from pingfedsdk.models.secret_manager_descriptors import SecretManagerDescriptors as ModelSecretManagerDescriptors
+from pingfedsdk.models.action_result import ActionResult as ModelActionResult
+from pingfedsdk.models.action import Action as ModelAction
 from pingfedsdk.models.action_options import ActionOptions as ModelActionOptions
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.secret_managers import SecretManagers as ModelSecretManagers
 from pingfedsdk.models.secret_manager import SecretManager as ModelSecretManager
-from pingfedsdk.models.action import Action as ModelAction
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-from pingfedsdk.models.actions import Actions as ModelActions
-from pingfedsdk.models.action_result import ActionResult as ModelActionResult
-from pingfedsdk.models.secret_manager_descriptor import SecretManagerDescriptor as ModelSecretManagerDescriptor
 
 
 class SecretManagers:
@@ -31,6 +31,52 @@ class SecretManagers:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
+
+    def getSecretManagerPluginDescriptors(self):
+        """ Get a list of available secret manager plugin descriptors.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/secretManagers/descriptors"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelSecretManagerDescriptors.from_dict(response.json())
+
+    def getSecretManagerPluginDescriptor(self, id: str):
+        """ Get a secret manager plugin descriptor.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/secretManagers/descriptors/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelSecretManagerDescriptor.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
 
     def getSecretManagers(self):
         """ Get a list of secret manager plugin instances.
@@ -73,61 +119,13 @@ class SecretManagers:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSecretManager.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
-
-    def getSecretManagerPluginDescriptors(self):
-        """ Get a list of available secret manager plugin descriptors.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/secretManagers/descriptors"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelSecretManagerDescriptors.from_dict(response.json())
-
-    def getSecretManagerPluginDescriptor(self, id: str):
-        """ Get a secret manager plugin descriptor.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/secretManagers/descriptors/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
+                raise ValidationError(response.json())
 
     def getSecretManager(self, id: str):
         """ Get a specific secret manager plugin instance.
@@ -148,7 +146,7 @@ class SecretManagers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSecretManager.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -174,7 +172,7 @@ class SecretManagers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSecretManager.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -184,9 +182,7 @@ class SecretManagers:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteSecretManager(self, id: str):
         """ Delete a secret manager plugin instance.
@@ -239,7 +235,7 @@ class SecretManagers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -264,7 +260,7 @@ class SecretManagers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -289,7 +285,7 @@ class SecretManagers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

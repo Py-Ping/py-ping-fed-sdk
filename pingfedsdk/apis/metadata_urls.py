@@ -9,9 +9,9 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.metadata_urls import MetadataUrls as ModelMetadataUrls
 from pingfedsdk.models.metadata_url import MetadataUrl as ModelMetadataUrl
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.metadata_urls import MetadataUrls as ModelMetadataUrls
 
 
 class MetadataUrls:
@@ -66,15 +66,13 @@ class MetadataUrls:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelMetadataUrl.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getMetadataUrl(self, id: str):
         """ Get a Metadata URL by ID.
@@ -95,7 +93,7 @@ class MetadataUrls:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelMetadataUrl.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -121,7 +119,7 @@ class MetadataUrls:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelMetadataUrl.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +129,7 @@ class MetadataUrls:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteMetadataUrl(self, id: str):
         """ Delete a Metadata URL by ID.
@@ -162,6 +158,4 @@ class MetadataUrls:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

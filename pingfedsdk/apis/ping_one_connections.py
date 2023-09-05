@@ -5,18 +5,18 @@ import traceback
 from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ServerError
 from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.exceptions import ServerError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.ping_one_connection import PingOneConnection as ModelPingOneConnection
-from pingfedsdk.models.ping_one_connections import PingOneConnections as ModelPingOneConnections
-from pingfedsdk.models.ping_one_environments import PingOneEnvironments as ModelPingOneEnvironments
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.service_associations import ServiceAssociations as ModelServiceAssociations
 from pingfedsdk.models.ping_one_credential_status import PingOneCredentialStatus as ModelPingOneCredentialStatus
+from pingfedsdk.models.ping_one_connections import PingOneConnections as ModelPingOneConnections
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.ping_one_environments import PingOneEnvironments as ModelPingOneEnvironments
 from pingfedsdk.models.resource_usages import ResourceUsages as ModelResourceUsages
+from pingfedsdk.models.ping_one_connection import PingOneConnection as ModelPingOneConnection
 
 
 class PingOneConnections:
@@ -71,15 +71,13 @@ class PingOneConnections:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelPingOneConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getCredentialStatus(self, id: str):
         """ Get the status of the credential associated with the PingOne connection
@@ -100,7 +98,7 @@ class PingOneConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelPingOneCredentialStatus.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -125,7 +123,7 @@ class PingOneConnections:
             raise err
         else:
             if response.status_code == 200:
-                return response.json()
+                return ModelPingOneEnvironments.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -154,7 +152,7 @@ class PingOneConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelResourceUsages.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -179,7 +177,7 @@ class PingOneConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelServiceAssociations.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -230,7 +228,7 @@ class PingOneConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelPingOneConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -240,9 +238,7 @@ class PingOneConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deletePingOneConnection(self, id: str):
         """ Delete a PingOne connection.
@@ -271,6 +267,4 @@ class PingOneConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

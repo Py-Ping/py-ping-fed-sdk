@@ -11,8 +11,8 @@ from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
 from pingfedsdk.models.password_credential_validator_descriptors import PasswordCredentialValidatorDescriptors as ModelPasswordCredentialValidatorDescriptors
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-from pingfedsdk.models.password_credential_validator import PasswordCredentialValidator as ModelPasswordCredentialValidator
 from pingfedsdk.models.password_credential_validator_descriptor import PasswordCredentialValidatorDescriptor as ModelPasswordCredentialValidatorDescriptor
+from pingfedsdk.models.password_credential_validator import PasswordCredentialValidator as ModelPasswordCredentialValidator
 from pingfedsdk.models.password_credential_validators import PasswordCredentialValidators as ModelPasswordCredentialValidators
 
 
@@ -67,7 +67,7 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelPasswordCredentialValidatorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -114,15 +114,13 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelPasswordCredentialValidator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getPasswordCredentialValidator(self, id: str):
         """ Find a password credential validator by ID.
@@ -169,7 +167,7 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelPasswordCredentialValidator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -179,9 +177,7 @@ class PasswordCredentialValidators:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deletePasswordCredentialValidator(self, id: str):
         """ Delete a password credential validator instance.
@@ -210,6 +206,4 @@ class PasswordCredentialValidators:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

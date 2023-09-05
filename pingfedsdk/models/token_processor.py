@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.plugin_configuration import PluginConfiguration
 from pingfedsdk.models.token_processor_attribute_contract import TokenProcessorAttributeContract
+from pingfedsdk.models.plugin_configuration import PluginConfiguration
 
 
 class TokenProcessor(Model):

@@ -9,9 +9,9 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.access_token_mappings import AccessTokenMappings as ModelAccessTokenMappings
-from pingfedsdk.models.access_token_mapping import AccessTokenMapping as ModelAccessTokenMapping
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.access_token_mapping import AccessTokenMapping as ModelAccessTokenMapping
+from pingfedsdk.models.access_token_mappings import AccessTokenMappings as ModelAccessTokenMappings
 
 
 class OauthAccessTokenMappings:
@@ -24,59 +24,6 @@ class OauthAccessTokenMappings:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
-
-    def getMappings(self):
-        """ Get the list of Access Token Mappings.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/oauth/accessTokenMappings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                if type(response.json()) == list:
-                    response_dict = {'items': response.json()}
-                    return ModelAccessTokenMappings.from_dict(response_dict)
-
-    def createMapping(self, body: ModelAccessTokenMapping, XBypassExternalValidation: bool = None):
-        """ Create a new Access Token Mapping.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/oauth/accessTokenMappings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
 
     def getMapping(self, id: str):
         """ Find the Access Token Mapping by its ID.
@@ -123,7 +70,7 @@ class OauthAccessTokenMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAccessTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -133,9 +80,7 @@ class OauthAccessTokenMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteMapping(self, id: str):
         """ Delete an Access Token Mapping.
@@ -163,3 +108,52 @@ class OauthAccessTokenMappings:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
+
+    def getMappings(self):
+        """ Get the list of Access Token Mappings.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/oauth/accessTokenMappings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelAccessTokenMappings.from_dict(response.json())
+
+    def createMapping(self, body: ModelAccessTokenMapping, XBypassExternalValidation: bool = None):
+        """ Create a new Access Token Mapping.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/oauth/accessTokenMappings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 201:
+                return ModelAccessTokenMapping.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())

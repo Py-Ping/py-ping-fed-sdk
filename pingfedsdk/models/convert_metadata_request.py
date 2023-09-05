@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.connection import Connection
-from pingfedsdk.enums import ConnectionType
 from pingfedsdk.enums import ExpectedProtocol
+from pingfedsdk.enums import ConnectionType
 
 
 class ConvertMetadataRequest(Model):

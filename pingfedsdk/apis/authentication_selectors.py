@@ -9,11 +9,11 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.authentication_selector_descriptors import AuthenticationSelectorDescriptors as ModelAuthenticationSelectorDescriptors
-from pingfedsdk.models.authentication_selector import AuthenticationSelector as ModelAuthenticationSelector
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.authentication_selectors import AuthenticationSelectors as ModelAuthenticationSelectors
 from pingfedsdk.models.authentication_selector_descriptor import AuthenticationSelectorDescriptor as ModelAuthenticationSelectorDescriptor
+from pingfedsdk.models.authentication_selector import AuthenticationSelector as ModelAuthenticationSelector
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.authentication_selector_descriptors import AuthenticationSelectorDescriptors as ModelAuthenticationSelectorDescriptors
 
 
 class AuthenticationSelectors:
@@ -67,7 +67,7 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthenticationSelectorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -94,9 +94,7 @@ class AuthenticationSelectors:
             if response.status_code == 200:
                 return ModelAuthenticationSelectors.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def createAuthenticationSelector(self, body: ModelAuthenticationSelector):
         """ Create a new authentication selector instance.
@@ -118,15 +116,13 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getAuthenticationSelector(self, id: str):
         """ Get an Authentication Selector instance by ID.
@@ -173,7 +169,7 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -183,9 +179,7 @@ class AuthenticationSelectors:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteAuthenticationSelector(self, id: str):
         """ Delete an Authentication Selector instance.
@@ -214,6 +208,4 @@ class AuthenticationSelectors:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

@@ -6,20 +6,20 @@ from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
 from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.exceptions import NotImplementedError
-from pingfedsdk.models.notification_publishers import NotificationPublishers as ModelNotificationPublishers
-from pingfedsdk.models.action_options import ActionOptions as ModelActionOptions
-from pingfedsdk.models.action import Action as ModelAction
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-from pingfedsdk.models.notification_publisher_descriptors import NotificationPublisherDescriptors as ModelNotificationPublisherDescriptors
-from pingfedsdk.models.actions import Actions as ModelActions
-from pingfedsdk.models.notification_publisher_descriptor import NotificationPublisherDescriptor as ModelNotificationPublisherDescriptor
-from pingfedsdk.models.notification_publishers_settings import NotificationPublishersSettings as ModelNotificationPublishersSettings
-from pingfedsdk.models.action_result import ActionResult as ModelActionResult
 from pingfedsdk.models.notification_publisher import NotificationPublisher as ModelNotificationPublisher
+from pingfedsdk.models.actions import Actions as ModelActions
+from pingfedsdk.models.notification_publishers import NotificationPublishers as ModelNotificationPublishers
+from pingfedsdk.models.notification_publisher_descriptor import NotificationPublisherDescriptor as ModelNotificationPublisherDescriptor
+from pingfedsdk.models.action_result import ActionResult as ModelActionResult
+from pingfedsdk.models.action import Action as ModelAction
+from pingfedsdk.models.action_options import ActionOptions as ModelActionOptions
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.notification_publishers_settings import NotificationPublishersSettings as ModelNotificationPublishersSettings
+from pingfedsdk.models.notification_publisher_descriptors import NotificationPublisherDescriptors as ModelNotificationPublisherDescriptors
 
 
 class NotificationPublishers:
@@ -73,7 +73,7 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelNotificationPublisherDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -120,15 +120,13 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelNotificationPublishersSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getNotificationPublishers(self):
         """ Get a list of notification publisher plugin instances.
@@ -171,15 +169,13 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelNotificationPublisher.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getNotificationPublisher(self, id: str):
         """ Get a specific notification publisher plugin instance.
@@ -200,7 +196,7 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelNotificationPublisher.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -226,7 +222,7 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelNotificationPublisher.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -236,9 +232,7 @@ class NotificationPublishers:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteNotificationPublisher(self, id: str):
         """ Delete a notification publisher plugin instance.
@@ -291,7 +285,7 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -316,7 +310,7 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -341,7 +335,7 @@ class NotificationPublishers:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

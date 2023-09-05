@@ -1,6 +1,6 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import FieldDescriptor
+from pingfedsdk.enums import HashedTextFieldDescriptorType
 
 
 class HashedTextFieldDescriptor(Model):
@@ -8,7 +8,7 @@ class HashedTextFieldDescriptor(Model):
 
     Attributes
     ----------
-    type: FieldDescriptor
+    type: HashedTextFieldDescriptorType
         The type of field descriptor.
 
     name: str
@@ -34,7 +34,7 @@ class HashedTextFieldDescriptor(Model):
 
     """
 
-    def __init__(self, type: FieldDescriptor = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, size: int = None) -> None:
+    def __init__(self, type: HashedTextFieldDescriptorType = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, size: int = None) -> None:
         self.type = type
         self.name = name
         self.description = description
@@ -61,7 +61,7 @@ class HashedTextFieldDescriptor(Model):
         for k, v in python_dict.items():
             if k in ["type", "name", "description", "defaultValue", "advanced", "required", "label", "size"] and v is not None:
                 if k == "type":
-                    valid_data[k] = FieldDescriptor[v]
+                    valid_data[k] = HashedTextFieldDescriptorType[v]
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "description":

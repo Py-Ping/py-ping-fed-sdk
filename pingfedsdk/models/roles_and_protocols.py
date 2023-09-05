@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.o_auth_role import OAuthRole
 from pingfedsdk.models.idp_role import IdpRole
+from pingfedsdk.models.o_auth_role import OAuthRole
 from pingfedsdk.models.sp_role import SpRole
 
 

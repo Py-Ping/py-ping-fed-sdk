@@ -2,8 +2,8 @@ from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.o_i_d_c_request_parameter import OIDCRequestParameter
 from pingfedsdk.enums import AuthenticationScheme
-from pingfedsdk.enums import LoginType
 from pingfedsdk.enums import SigningAlgorithm
+from pingfedsdk.enums import LoginType
 
 
 class OIDCProviderSettings(Model):

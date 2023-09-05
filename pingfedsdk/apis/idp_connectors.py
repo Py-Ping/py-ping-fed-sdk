@@ -6,8 +6,8 @@ from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
 
-from pingfedsdk.models.saas_plugin_descriptor import SaasPluginDescriptor as ModelSaasPluginDescriptor
 from pingfedsdk.models.saas_plugin_descriptors import SaasPluginDescriptors as ModelSaasPluginDescriptors
+from pingfedsdk.models.saas_plugin_descriptor import SaasPluginDescriptor as ModelSaasPluginDescriptor
 
 
 class IdpConnectors:

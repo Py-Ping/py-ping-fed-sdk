@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import CharacterCase
 from pingfedsdk.enums import Parser
+from pingfedsdk.enums import CharacterCase
 
 
 class SaasFieldConfiguration(Model):

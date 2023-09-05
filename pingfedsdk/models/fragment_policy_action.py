@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
+from pingfedsdk.models.attribute_mapping import AttributeMapping
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.attribute_rules import AttributeRules
-from pingfedsdk.models.attribute_mapping import AttributeMapping
-from pingfedsdk.enums import AuthenticationPolicySelectionActionType
+from pingfedsdk.enums import FragmentPolicyActionType
 
 
 class FragmentPolicyAction(Model):
@@ -11,7 +11,7 @@ class FragmentPolicyAction(Model):
 
     Attributes
     ----------
-    type: AuthenticationPolicySelectionActionType
+    type: FragmentPolicyActionType
         The authentication selection type.
 
     context: str
@@ -28,7 +28,7 @@ class FragmentPolicyAction(Model):
 
     """
 
-    def __init__(self, fragment: ResourceLink, type: AuthenticationPolicySelectionActionType = None, context: str = None, attributeRules: AttributeRules = None, fragmentMapping: AttributeMapping = None) -> None:
+    def __init__(self, fragment: ResourceLink, type: FragmentPolicyActionType = None, context: str = None, attributeRules: AttributeRules = None, fragmentMapping: AttributeMapping = None) -> None:
         self.type = type
         self.context = context
         self.attributeRules = attributeRules
@@ -52,7 +52,7 @@ class FragmentPolicyAction(Model):
         for k, v in python_dict.items():
             if k in ["type", "context", "attributeRules", "fragment", "fragmentMapping"] and v is not None:
                 if k == "type":
-                    valid_data[k] = AuthenticationPolicySelectionActionType[v]
+                    valid_data[k] = FragmentPolicyActionType[v]
                 if k == "context":
                     valid_data[k] = str(v)
                 if k == "attributeRules":

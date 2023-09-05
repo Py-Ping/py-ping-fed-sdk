@@ -5,8 +5,8 @@ import traceback
 from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.idp_default_url import IdpDefaultUrl as ModelIdpDefaultUrl
 
@@ -63,12 +63,10 @@ class IdpDefaultUrls:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdpDefaultUrl.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

@@ -9,10 +9,10 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.token_exchange_generator_settings import TokenExchangeGeneratorSettings as ModelTokenExchangeGeneratorSettings
 from pingfedsdk.models.token_exchange_generator_groups import TokenExchangeGeneratorGroups as ModelTokenExchangeGeneratorGroups
 from pingfedsdk.models.token_exchange_generator_group import TokenExchangeGeneratorGroup as ModelTokenExchangeGeneratorGroup
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.token_exchange_generator_settings import TokenExchangeGeneratorSettings as ModelTokenExchangeGeneratorSettings
 
 
 class OauthTokenExchangeGenerator:
@@ -45,7 +45,7 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -71,7 +71,7 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -81,9 +81,7 @@ class OauthTokenExchangeGenerator:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteGroup(self, id: str):
         """ Delete an OAuth 2.0 Token Exchange Generator group.
@@ -112,9 +110,7 @@ class OauthTokenExchangeGenerator:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getSettings(self):
         """ Get general OAuth 2.0 Token Exchange Generator settings.
@@ -157,15 +153,13 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenExchangeGeneratorSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getGroups(self):
         """ Get list of OAuth 2.0 Token Exchange Generator groups.
@@ -208,12 +202,10 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

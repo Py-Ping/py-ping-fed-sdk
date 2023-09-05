@@ -9,19 +9,19 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.api_response import ApiResponse as ModelApiResponse
-from pingfedsdk.models.system_keys import SystemKeys as ModelSystemKeys
-from pingfedsdk.models.notification_settings import NotificationSettings as ModelNotificationSettings
 from pingfedsdk.models.ws_trust_sts_settings import WsTrustStsSettings as ModelWsTrustStsSettings
-from pingfedsdk.models.x_5_0_9_file import X509File as ModelX509File
+from pingfedsdk.models.api_response import ApiResponse as ModelApiResponse
 from pingfedsdk.models.server_settings import ServerSettings as ModelServerSettings
+from pingfedsdk.models.outbound_provision_database import OutboundProvisionDatabase as ModelOutboundProvisionDatabase
+from pingfedsdk.models.general_settings import GeneralSettings as ModelGeneralSettings
 from pingfedsdk.models.issuer_cert import IssuerCert as ModelIssuerCert
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.email_server_settings import EmailServerSettings as ModelEmailServerSettings
 from pingfedsdk.models.issuer_certs import IssuerCerts as ModelIssuerCerts
-from pingfedsdk.models.general_settings import GeneralSettings as ModelGeneralSettings
-from pingfedsdk.models.outbound_provision_database import OutboundProvisionDatabase as ModelOutboundProvisionDatabase
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.x_5_0_9_file import X509File as ModelX509File
+from pingfedsdk.models.notification_settings import NotificationSettings as ModelNotificationSettings
 from pingfedsdk.models.captcha_settings import CaptchaSettings as ModelCaptchaSettings
+from pingfedsdk.models.system_keys import SystemKeys as ModelSystemKeys
 
 
 class ServerSettings:
@@ -34,61 +34,6 @@ class ServerSettings:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
-
-    def getServerSettings(self):
-        """ Gets the server settings
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/serverSettings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelServerSettings.from_dict(response.json())
-
-    def updateServerSettings(self, body: ModelServerSettings):
-        """ Update the server settings.
-        """
-
-        try:
-            response = self.session.put(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/serverSettings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
 
     def getNotificationSettings(self):
         """ Gets the notification settings
@@ -131,15 +76,66 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelNotificationSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
+                raise ValidationError(response.json())
+
+    def getServerSettings(self):
+        """ Gets the server settings
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/serverSettings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelServerSettings.from_dict(response.json())
+
+    def updateServerSettings(self, body: ModelServerSettings):
+        """ Update the server settings.
+        """
+
+        try:
+            response = self.session.put(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/serverSettings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelServerSettings.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
-                raise ValidationError(message)
+                raise BadRequest(message)
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
 
     def getEmailServerSettings(self):
         """ (Deprecated) Gets the email server settings
@@ -160,7 +156,7 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelEmailServerSettings.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -186,7 +182,7 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelEmailServerSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -196,9 +192,7 @@ class ServerSettings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getCaptchaSettings(self):
         """ Gets the CAPTCHA settings.
@@ -241,15 +235,13 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelCaptchaSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getOutBoundProvisioningSettings(self):
         """ Get database used for outbound provisioning
@@ -292,11 +284,58 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelOutboundProvisionDatabase.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
+                raise ValidationError(response.json())
+
+    def getWsTrustStsSettings(self):
+        """ Get the current WS-Trust STS Settings.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/serverSettings/wsTrustStsSettings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelWsTrustStsSettings.from_dict(response.json())
+
+    def updateWsTrustStsSettings(self, body: ModelWsTrustStsSettings):
+        """ Update WS-Trust STS Settings.
+        """
+
+        try:
+            response = self.session.put(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/serverSettings/wsTrustStsSettings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelWsTrustStsSettings.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
-                raise ValidationError(message)
+                raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
 
     def getSystemKeys(self):
         """ Get the system keys.
@@ -339,15 +378,13 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSystemKeys.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def rotateSystemKeys(self):
         """ Rotate the system keys.
@@ -368,17 +405,15 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSystemKeys.from_dict(response.json())
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSystemKeys.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getCerts(self):
         """ Get the list of certificates for WS-Trust STS Settings.
@@ -427,9 +462,7 @@ class ServerSettings:
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getCert(self, id: str):
         """ Retrieve details of a certificate.
@@ -483,9 +516,7 @@ class ServerSettings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getGeneralSettings(self):
         """ Gets the general settings.
@@ -528,63 +559,10 @@ class ServerSettings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelGeneralSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
-
-    def getWsTrustStsSettings(self):
-        """ Get the current WS-Trust STS Settings.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/serverSettings/wsTrustStsSettings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelWsTrustStsSettings.from_dict(response.json())
-
-    def updateWsTrustStsSettings(self, body: ModelWsTrustStsSettings):
-        """ Update WS-Trust STS Settings.
-        """
-
-        try:
-            response = self.session.put(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/serverSettings/wsTrustStsSettings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

@@ -6,14 +6,14 @@ from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
 from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.models.client_registration_policy_descriptor import ClientRegistrationPolicyDescriptor as ModelClientRegistrationPolicyDescriptor
-from pingfedsdk.models.client_registration_policy import ClientRegistrationPolicy as ModelClientRegistrationPolicy
 from pingfedsdk.models.client_registration_policies import ClientRegistrationPolicies as ModelClientRegistrationPolicies
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.client_registration_policy import ClientRegistrationPolicy as ModelClientRegistrationPolicy
 from pingfedsdk.models.client_registration_policy_descriptors import ClientRegistrationPolicyDescriptors as ModelClientRegistrationPolicyDescriptors
 
 
@@ -68,7 +68,7 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientRegistrationPolicyDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -115,15 +115,13 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getDynamicClientRegistrationPolicy(self, id: str):
         """ Get a specific client registration policy plugin instance.
@@ -144,7 +142,7 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -170,7 +168,7 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -180,9 +178,7 @@ class OauthClientRegistrationPolicies:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteDynamicClientRegistrationPolicy(self, id: str):
         """ Delete a client registration policy plugin instance.

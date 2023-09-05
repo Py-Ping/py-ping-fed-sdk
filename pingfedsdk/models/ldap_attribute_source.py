@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.enums import LdapAttributeSourceType
 from pingfedsdk.enums import SearchScope
 
 
@@ -10,7 +10,7 @@ class LdapAttributeSource(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: LdapAttributeSourceType
         The data store type of this attribute source.
 
     dataStoreRef: ResourceLink
@@ -47,7 +47,7 @@ class LdapAttributeSource(Model):
 
     """
 
-    def __init__(self, searchFilter: str, searchScope: SearchScope, type: DataStoreType = None, dataStoreRef: ResourceLink = None, id: str = None, description: str = None, attributeContractFulfillment: object = None, baseDn: str = None, searchAttributes: list = None, binaryAttributeSettings: object = None, memberOfNestedGroup: bool = None) -> None:
+    def __init__(self, searchFilter: str, searchScope: SearchScope, type: LdapAttributeSourceType = None, dataStoreRef: ResourceLink = None, id: str = None, description: str = None, attributeContractFulfillment: object = None, baseDn: str = None, searchAttributes: list = None, binaryAttributeSettings: object = None, memberOfNestedGroup: bool = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -77,7 +77,7 @@ class LdapAttributeSource(Model):
         for k, v in python_dict.items():
             if k in ["type", "dataStoreRef", "id", "description", "attributeContractFulfillment", "baseDn", "searchScope", "searchFilter", "searchAttributes", "binaryAttributeSettings", "memberOfNestedGroup"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = LdapAttributeSourceType[v]
                 if k == "dataStoreRef":
                     valid_data[k] = ResourceLink(**v)
                 if k == "id":

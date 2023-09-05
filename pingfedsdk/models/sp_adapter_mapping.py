@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.sp_adapter import SpAdapter
+from pingfedsdk.models.attribute_source import AttributeSource
 
 
 class SpAdapterMapping(Model):

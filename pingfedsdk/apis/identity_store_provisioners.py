@@ -9,11 +9,11 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.models.identity_store_provisioner_descriptor import IdentityStoreProvisionerDescriptor as ModelIdentityStoreProvisionerDescriptor
+from pingfedsdk.models.identity_store_provisioners import IdentityStoreProvisioners as ModelIdentityStoreProvisioners
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.identity_store_provisioner_descriptors import IdentityStoreProvisionerDescriptors as ModelIdentityStoreProvisionerDescriptors
 from pingfedsdk.models.identity_store_provisioner import IdentityStoreProvisioner as ModelIdentityStoreProvisioner
-from pingfedsdk.models.identity_store_provisioner_descriptor import IdentityStoreProvisionerDescriptor as ModelIdentityStoreProvisionerDescriptor
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-from pingfedsdk.models.identity_store_provisioners import IdentityStoreProvisioners as ModelIdentityStoreProvisioners
 
 
 class IdentityStoreProvisioners:
@@ -68,17 +68,15 @@ class IdentityStoreProvisioners:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getIdentityStoreProvisioner(self, id: str):
         """ Get an identity store provisioner by ID.
@@ -99,7 +97,7 @@ class IdentityStoreProvisioners:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -125,7 +123,7 @@ class IdentityStoreProvisioners:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -135,9 +133,7 @@ class IdentityStoreProvisioners:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteIdentityStoreProvisioner(self, id: str):
         """ Delete an identity store provisioner instance
@@ -166,9 +162,7 @@ class IdentityStoreProvisioners:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getIdentityStoreProvisionerDescriptors(self):
         """ Get the list of available identity store provisioner descriptors.
@@ -210,7 +204,7 @@ class IdentityStoreProvisioners:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelIdentityStoreProvisionerDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

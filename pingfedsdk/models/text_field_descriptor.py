@@ -1,6 +1,6 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import FieldDescriptor
+from pingfedsdk.enums import TextFieldDescriptorType
 
 
 class TextFieldDescriptor(Model):
@@ -8,7 +8,7 @@ class TextFieldDescriptor(Model):
 
     Attributes
     ----------
-    type: FieldDescriptor
+    type: TextFieldDescriptorType
         The type of field descriptor.
 
     name: str
@@ -37,7 +37,7 @@ class TextFieldDescriptor(Model):
 
     """
 
-    def __init__(self, type: FieldDescriptor = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, encrypted: bool = None, size: int = None) -> None:
+    def __init__(self, type: TextFieldDescriptorType = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, encrypted: bool = None, size: int = None) -> None:
         self.type = type
         self.name = name
         self.description = description
@@ -65,7 +65,7 @@ class TextFieldDescriptor(Model):
         for k, v in python_dict.items():
             if k in ["type", "name", "description", "defaultValue", "advanced", "required", "label", "encrypted", "size"] and v is not None:
                 if k == "type":
-                    valid_data[k] = FieldDescriptor[v]
+                    valid_data[k] = TextFieldDescriptorType[v]
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "description":

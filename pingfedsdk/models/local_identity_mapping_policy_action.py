@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.attribute_mapping import AttributeMapping
-from pingfedsdk.enums import AuthenticationPolicySelectionActionType
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.enums import LocalIdentityMappingPolicyActionType
 
 
 class LocalIdentityMappingPolicyAction(Model):
@@ -10,7 +10,7 @@ class LocalIdentityMappingPolicyAction(Model):
 
     Attributes
     ----------
-    type: AuthenticationPolicySelectionActionType
+    type: LocalIdentityMappingPolicyActionType
         The authentication selection type.
 
     context: str
@@ -27,7 +27,7 @@ class LocalIdentityMappingPolicyAction(Model):
 
     """
 
-    def __init__(self, localIdentityRef: ResourceLink, outboundAttributeMapping: AttributeMapping, type: AuthenticationPolicySelectionActionType = None, context: str = None, inboundMapping: AttributeMapping = None) -> None:
+    def __init__(self, localIdentityRef: ResourceLink, outboundAttributeMapping: AttributeMapping, type: LocalIdentityMappingPolicyActionType = None, context: str = None, inboundMapping: AttributeMapping = None) -> None:
         self.type = type
         self.context = context
         self.localIdentityRef = localIdentityRef
@@ -51,7 +51,7 @@ class LocalIdentityMappingPolicyAction(Model):
         for k, v in python_dict.items():
             if k in ["type", "context", "localIdentityRef", "inboundMapping", "outboundAttributeMapping"] and v is not None:
                 if k == "type":
-                    valid_data[k] = AuthenticationPolicySelectionActionType[v]
+                    valid_data[k] = LocalIdentityMappingPolicyActionType[v]
                 if k == "context":
                     valid_data[k] = str(v)
                 if k == "localIdentityRef":

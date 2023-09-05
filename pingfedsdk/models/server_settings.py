@@ -1,11 +1,11 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.notification_settings import NotificationSettings
-from pingfedsdk.models.roles_and_protocols import RolesAndProtocols
 from pingfedsdk.models.contact_info import ContactInfo
 from pingfedsdk.models.email_server_settings import EmailServerSettings
 from pingfedsdk.models.captcha_settings import CaptchaSettings
 from pingfedsdk.models.federation_info import FederationInfo
+from pingfedsdk.models.notification_settings import NotificationSettings
+from pingfedsdk.models.roles_and_protocols import RolesAndProtocols
 
 
 class ServerSettings(Model):

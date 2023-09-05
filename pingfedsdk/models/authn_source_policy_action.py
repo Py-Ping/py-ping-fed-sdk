@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.attribute_rules import AttributeRules
 from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
+from pingfedsdk.models.attribute_rules import AttributeRules
 from pingfedsdk.models.authentication_source import AuthenticationSource
-from pingfedsdk.enums import AuthenticationPolicySelectionActionType
+from pingfedsdk.enums import AuthnSourcePolicyActionType
 
 
 class AuthnSourcePolicyAction(Model):
@@ -11,7 +11,7 @@ class AuthnSourcePolicyAction(Model):
 
     Attributes
     ----------
-    type: AuthenticationPolicySelectionActionType
+    type: AuthnSourcePolicyActionType
         The authentication selection type.
 
     context: str
@@ -31,7 +31,7 @@ class AuthnSourcePolicyAction(Model):
 
     """
 
-    def __init__(self, authenticationSource: AuthenticationSource, type: AuthenticationPolicySelectionActionType = None, context: str = None, attributeRules: AttributeRules = None, inputUserIdMapping: AttributeFulfillmentValue = None, userIdAuthenticated: bool = None) -> None:
+    def __init__(self, authenticationSource: AuthenticationSource, type: AuthnSourcePolicyActionType = None, context: str = None, attributeRules: AttributeRules = None, inputUserIdMapping: AttributeFulfillmentValue = None, userIdAuthenticated: bool = None) -> None:
         self.type = type
         self.context = context
         self.attributeRules = attributeRules
@@ -56,7 +56,7 @@ class AuthnSourcePolicyAction(Model):
         for k, v in python_dict.items():
             if k in ["type", "context", "attributeRules", "authenticationSource", "inputUserIdMapping", "userIdAuthenticated"] and v is not None:
                 if k == "type":
-                    valid_data[k] = AuthenticationPolicySelectionActionType[v]
+                    valid_data[k] = AuthnSourcePolicyActionType[v]
                 if k == "context":
                     valid_data[k] = str(v)
                 if k == "attributeRules":

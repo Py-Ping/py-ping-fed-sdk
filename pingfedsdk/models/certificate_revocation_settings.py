@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.crl_settings import CrlSettings
 from pingfedsdk.models.ocsp_settings import OcspSettings
+from pingfedsdk.models.crl_settings import CrlSettings
 from pingfedsdk.models.proxy_settings import ProxySettings
 
 

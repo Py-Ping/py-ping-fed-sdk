@@ -2,7 +2,7 @@ from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.enums import CustomDataStoreType
 
 
 class CustomDataStore(Model):
@@ -10,7 +10,7 @@ class CustomDataStore(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: CustomDataStoreType
         The data store type.
 
     id: str
@@ -35,7 +35,7 @@ class CustomDataStore(Model):
 
     """
 
-    def __init__(self, configuration: PluginConfiguration, name: str, pluginDescriptorRef: ResourceLink, type: DataStoreType, id: str = None, maskAttributeValues: bool = None, parentRef: ResourceLink = None) -> None:
+    def __init__(self, configuration: PluginConfiguration, name: str, pluginDescriptorRef: ResourceLink, type: CustomDataStoreType, id: str = None, maskAttributeValues: bool = None, parentRef: ResourceLink = None) -> None:
         self.type = type
         self.id = id
         self.maskAttributeValues = maskAttributeValues
@@ -61,7 +61,7 @@ class CustomDataStore(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "maskAttributeValues", "name", "pluginDescriptorRef", "parentRef", "configuration"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = CustomDataStoreType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "maskAttributeValues":

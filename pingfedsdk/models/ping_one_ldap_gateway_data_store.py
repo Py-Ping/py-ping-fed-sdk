@@ -2,7 +2,7 @@ from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.enums import LdapType
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.enums import PingOneLdapGatewayDataStoreType
 
 
 class PingOneLdapGatewayDataStore(Model):
@@ -10,7 +10,7 @@ class PingOneLdapGatewayDataStore(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: PingOneLdapGatewayDataStoreType
         The data store type.
 
     id: str
@@ -42,7 +42,7 @@ class PingOneLdapGatewayDataStore(Model):
 
     """
 
-    def __init__(self, ldapType: LdapType, pingOneConnectionRef: ResourceLink, pingOneEnvironmentId: str, pingOneLdapGatewayId: str, type: DataStoreType = None, id: str = None, maskAttributeValues: bool = None, name: str = None, useSsl: bool = None, binaryAttributes: list = None) -> None:
+    def __init__(self, ldapType: LdapType, pingOneConnectionRef: ResourceLink, pingOneEnvironmentId: str, pingOneLdapGatewayId: str, type: PingOneLdapGatewayDataStoreType = None, id: str = None, maskAttributeValues: bool = None, name: str = None, useSsl: bool = None, binaryAttributes: list = None) -> None:
         self.type = type
         self.id = id
         self.maskAttributeValues = maskAttributeValues
@@ -71,7 +71,7 @@ class PingOneLdapGatewayDataStore(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "maskAttributeValues", "name", "ldapType", "pingOneConnectionRef", "pingOneEnvironmentId", "pingOneLdapGatewayId", "useSsl", "binaryAttributes"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = PingOneLdapGatewayDataStoreType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "maskAttributeValues":

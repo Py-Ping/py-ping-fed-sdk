@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.kerberos_key_set import KerberosKeySet
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.enums import ConnectionType
 
 

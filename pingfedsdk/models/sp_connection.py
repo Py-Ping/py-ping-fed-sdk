@@ -1,15 +1,15 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.connection_credentials import ConnectionCredentials
-from pingfedsdk.models.contact_info import ContactInfo
-from pingfedsdk.models.connection_metadata_url import ConnectionMetadataUrl
-from pingfedsdk.models.sp_attribute_query import SpAttributeQuery
-from pingfedsdk.models.outbound_provision import OutboundProvision
-from pingfedsdk.models.sp_browser_sso import SpBrowserSso
-from pingfedsdk.models.sp_ws_trust import SpWsTrust
 from pingfedsdk.models.additional_allowed_entities_configuration import AdditionalAllowedEntitiesConfiguration
-from pingfedsdk.enums import ConnectionType
+from pingfedsdk.models.contact_info import ContactInfo
+from pingfedsdk.models.sp_ws_trust import SpWsTrust
+from pingfedsdk.models.sp_attribute_query import SpAttributeQuery
+from pingfedsdk.models.connection_metadata_url import ConnectionMetadataUrl
+from pingfedsdk.models.sp_browser_sso import SpBrowserSso
+from pingfedsdk.models.outbound_provision import OutboundProvision
+from pingfedsdk.models.connection_credentials import ConnectionCredentials
 from pingfedsdk.enums import ConnectionTargetType
+from pingfedsdk.enums import SpConnection as EnumSpConnection
 from pingfedsdk.enums import LoggingMode
 
 
@@ -18,7 +18,7 @@ class SpConnection(Model):
 
     Attributes
     ----------
-    type: ConnectionType
+    type: SpConnection
         The type of this connection. Default is 'IDP'.
 
     id: str
@@ -29,12 +29,6 @@ class SpConnection(Model):
 
     name: str
         The connection name.
-
-    modificationDate: str
-        The time at which the connection was last changed. This property is read only and is ignored on PUT and POST requests.
-
-    creationDate: str
-        The time at which the connection was created. This property is read only and is ignored on PUT and POST requests.
 
     active: bool
         Specifies whether the connection is active and ready to process incoming requests. The default value is false.
@@ -92,13 +86,11 @@ class SpConnection(Model):
 
     """
 
-    def __init__(self, entityId: str, name: str, type: ConnectionType = None , id: str = None , modificationDate: str = None , creationDate: str = None , active: bool = None , baseUrl: str = None , defaultVirtualEntityId: str = None , virtualEntityIds: list = None , metadataReloadSettings: ConnectionMetadataUrl = None , credentials: ConnectionCredentials = None , contactInfo: ContactInfo = None , licenseConnectionGroup: str = None , loggingMode: LoggingMode = None , additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None , extendedProperties: object = None , spBrowserSso: SpBrowserSso = None , attributeQuery: SpAttributeQuery = None , wsTrust: SpWsTrust = None , applicationName: str = None , applicationIconUrl: str = None , outboundProvision: OutboundProvision = None , connectionTargetType: ConnectionTargetType = None ) -> None:
+    def __init__(self, entityId: str, name: str, type: EnumSpConnection = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, virtualEntityIds: list = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: object = None, spBrowserSso: SpBrowserSso = None, attributeQuery: SpAttributeQuery = None, wsTrust: SpWsTrust = None, applicationName: str = None, applicationIconUrl: str = None, outboundProvision: OutboundProvision = None, connectionTargetType: ConnectionTargetType = None) -> None:
         self.type = type
         self.id = id
         self.entityId = entityId
         self.name = name
-        self.modificationDate = modificationDate
-        self.creationDate = creationDate
         self.active = active
         self.baseUrl = baseUrl
         self.defaultVirtualEntityId = defaultVirtualEntityId
@@ -127,24 +119,22 @@ class SpConnection(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.type, self.id, self.entityId, self.name, self.modificationDate, self.creationDate, self.active, self.baseUrl, self.defaultVirtualEntityId, self.virtualEntityIds, self.metadataReloadSettings, self.credentials, self.contactInfo, self.licenseConnectionGroup, self.loggingMode, self.additionalAllowedEntitiesConfiguration, self.extendedProperties, self.spBrowserSso, self.attributeQuery, self.wsTrust, self.applicationName, self.applicationIconUrl, self.outboundProvision, self.connectionTargetType]))
+        return hash(frozenset([self.type, self.id, self.entityId, self.name, self.active, self.baseUrl, self.defaultVirtualEntityId, self.virtualEntityIds, self.metadataReloadSettings, self.credentials, self.contactInfo, self.licenseConnectionGroup, self.loggingMode, self.additionalAllowedEntitiesConfiguration, self.extendedProperties, self.spBrowserSso, self.attributeQuery, self.wsTrust, self.applicationName, self.applicationIconUrl, self.outboundProvision, self.connectionTargetType]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["type", "id", "entityId", "name", "modificationDate", "creationDate", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "spBrowserSso", "attributeQuery", "wsTrust", "applicationName", "applicationIconUrl", "outboundProvision", "connectionTargetType"] and v is not None:
+            if k in ["type", "id", "entityId", "name", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "spBrowserSso", "attributeQuery", "wsTrust", "applicationName", "applicationIconUrl", "outboundProvision", "connectionTargetType"] and v is not None:
                 if k == "type":
-                    valid_data[k] = ConnectionType[v]
+                    print(k)
+                    print(v)
+                    valid_data[k] = EnumSpConnection[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "entityId":
                     valid_data[k] = str(v)
                 if k == "name":
-                    valid_data[k] = str(v)
-                if k == "modificationDate":
-                    valid_data[k] = str(v)
-                if k == "creationDate":
                     valid_data[k] = str(v)
                 if k == "active":
                     valid_data[k] = bool(v)
@@ -193,7 +183,7 @@ class SpConnection(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["type", "id", "entityId", "name", "modificationDate", "creationDate", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "spBrowserSso", "attributeQuery", "wsTrust", "applicationName", "applicationIconUrl", "outboundProvision", "connectionTargetType"]:
+            if k in ["type", "id", "entityId", "name", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "spBrowserSso", "attributeQuery", "wsTrust", "applicationName", "applicationIconUrl", "outboundProvision", "connectionTargetType"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):

@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.action_descriptor import ActionDescriptor
-from pingfedsdk.models.field_descriptor import FieldDescriptor
 from pingfedsdk.models.table_descriptor import TableDescriptor
+from pingfedsdk.models.field_descriptor import FieldDescriptor
 
 
 class PluginConfigDescriptor(Model):

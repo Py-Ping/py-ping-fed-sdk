@@ -10,9 +10,9 @@ from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
 from pingfedsdk.models.authn_api_application import AuthnApiApplication as ModelAuthnApiApplication
-from pingfedsdk.models.authn_api_applications import AuthnApiApplications as ModelAuthnApiApplications
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.authn_api_settings import AuthnApiSettings as ModelAuthnApiSettings
+from pingfedsdk.models.authn_api_applications import AuthnApiApplications as ModelAuthnApiApplications
 
 
 class AuthenticationApi:
@@ -47,9 +47,7 @@ class AuthenticationApi:
             if response.status_code == 200:
                 return ModelAuthnApiSettings.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def updateAuthenticationApiSettings(self, body: ModelAuthnApiSettings):
         """ Set the Authentication API settings.
@@ -71,15 +69,13 @@ class AuthenticationApi:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthnApiSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getAuthenticationApiApplications(self):
         """ Get the collection of Authentication API Applications.
@@ -102,9 +98,7 @@ class AuthenticationApi:
             if response.status_code == 200:
                 return ModelAuthnApiApplications.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def createApplication(self, body: ModelAuthnApiApplication):
         """ Create a new Authentication API Application.
@@ -126,15 +120,13 @@ class AuthenticationApi:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthnApiApplication.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getApplication(self, id: str):
         """ Find Authentication API Application by ID.
@@ -181,7 +173,7 @@ class AuthenticationApi:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthnApiApplication.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -191,9 +183,7 @@ class AuthenticationApi:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteApplication(self, id: str):
         """ Delete an Authentication API Application.
@@ -222,6 +212,4 @@ class AuthenticationApi:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

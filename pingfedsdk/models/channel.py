@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.channel_source import ChannelSource
 from pingfedsdk.models.saas_attribute_mapping import SaasAttributeMapping
+from pingfedsdk.models.channel_source import ChannelSource
 
 
 class Channel(Model):

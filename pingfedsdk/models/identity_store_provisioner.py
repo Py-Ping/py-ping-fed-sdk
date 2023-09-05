@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.identity_store_provisioner_attribute_contract import IdentityStoreProvisionerAttributeContract
-from pingfedsdk.models.plugin_configuration import PluginConfiguration
 from pingfedsdk.models.identity_store_provisioner_group_attribute_contract import IdentityStoreProvisionerGroupAttributeContract
+from pingfedsdk.models.identity_store_provisioner_attribute_contract import IdentityStoreProvisionerAttributeContract
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.plugin_configuration import PluginConfiguration
 
 
 class IdentityStoreProvisioner(Model):

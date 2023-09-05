@@ -1,11 +1,11 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.atm_selection_settings import AtmSelectionSettings
-from pingfedsdk.models.session_validation_settings import SessionValidationSettings
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.plugin_configuration import PluginConfiguration
-from pingfedsdk.models.access_token_attribute_contract import AccessTokenAttributeContract
 from pingfedsdk.models.atm_access_control_settings import AtmAccessControlSettings
+from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.atm_selection_settings import AtmSelectionSettings
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.access_token_attribute_contract import AccessTokenAttributeContract
+from pingfedsdk.models.session_validation_settings import SessionValidationSettings
 
 
 class AccessTokenManager(Model):

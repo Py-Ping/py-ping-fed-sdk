@@ -1,13 +1,13 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.client_registration_o_i_d_c_policy import ClientRegistrationOIDCPolicy
-from pingfedsdk.enums import RefreshTokenRollingGracePeriodType
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.enums import RefreshRolling
-from pingfedsdk.enums import PersistentGrantLifetimeType
-from pingfedsdk.enums import TimeUnit
-from pingfedsdk.enums import ClientCertIssuerType
 from pingfedsdk.enums import DeviceFlowSettingType
+from pingfedsdk.enums import PersistentGrantLifetimeType
+from pingfedsdk.enums import ClientCertIssuerType
+from pingfedsdk.enums import TimeUnit
+from pingfedsdk.enums import RefreshTokenRollingGracePeriodType
 
 
 class DynamicClientRegistration(Model):

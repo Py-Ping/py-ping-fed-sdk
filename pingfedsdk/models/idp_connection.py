@@ -1,15 +1,16 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.idp_browser_sso import IdpBrowserSso
-from pingfedsdk.models.o_i_d_c_client_credentials import OIDCClientCredentials
+from pingfedsdk.models.additional_allowed_entities_configuration import AdditionalAllowedEntitiesConfiguration
 from pingfedsdk.models.contact_info import ContactInfo
+from pingfedsdk.models.idp_inbound_provisioning import IdpInboundProvisioning
+from pingfedsdk.models.o_i_d_c_client_credentials import OIDCClientCredentials
 from pingfedsdk.models.idp_attribute_query import IdpAttributeQuery
 from pingfedsdk.models.connection_metadata_url import ConnectionMetadataUrl
 from pingfedsdk.models.idp_ws_trust import IdpWsTrust
-from pingfedsdk.models.additional_allowed_entities_configuration import AdditionalAllowedEntitiesConfiguration
-from pingfedsdk.models.connection_credentials import ConnectionCredentials
 from pingfedsdk.models.idp_o_auth_grant_attribute_mapping import IdpOAuthGrantAttributeMapping
-from pingfedsdk.enums import ConnectionType
+from pingfedsdk.models.connection_credentials import ConnectionCredentials
+from pingfedsdk.models.idp_browser_sso import IdpBrowserSso
+from pingfedsdk.enums import IdpConnection
 from pingfedsdk.enums import LoggingMode
 
 
@@ -18,7 +19,7 @@ class IdpConnection(Model):
 
     Attributes
     ----------
-    type: ConnectionType
+    type: IdpConnection
         The type of this connection. Default is 'IDP'.
 
     id: str
@@ -78,12 +79,15 @@ class IdpConnection(Model):
     wsTrust: IdpWsTrust
         The Ws-Trust settings.
 
+    inboundProvisioning: IdpInboundProvisioning
+        The Inbound Provisioning settings used to provision user accounts and groups.
+
     errorPageMsgId: str
         Identifier that specifies the message displayed on a user-facing error page.
 
     """
 
-    def __init__(self, entityId: str, name: str, type: ConnectionType = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, virtualEntityIds: list = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: object = None, oidcClientCredentials: OIDCClientCredentials = None, idpBrowserSso: IdpBrowserSso = None, attributeQuery: IdpAttributeQuery = None, idpOAuthGrantAttributeMapping: IdpOAuthGrantAttributeMapping = None, wsTrust: IdpWsTrust = None, errorPageMsgId: str = None) -> None:
+    def __init__(self, entityId: str, name: str, type: IdpConnection = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, virtualEntityIds: list = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: object = None, oidcClientCredentials: OIDCClientCredentials = None, idpBrowserSso: IdpBrowserSso = None, attributeQuery: IdpAttributeQuery = None, idpOAuthGrantAttributeMapping: IdpOAuthGrantAttributeMapping = None, wsTrust: IdpWsTrust = None, inboundProvisioning: IdpInboundProvisioning = None, errorPageMsgId: str = None) -> None:
         self.type = type
         self.id = id
         self.entityId = entityId
@@ -104,6 +108,7 @@ class IdpConnection(Model):
         self.attributeQuery = attributeQuery
         self.idpOAuthGrantAttributeMapping = idpOAuthGrantAttributeMapping
         self.wsTrust = wsTrust
+        self.inboundProvisioning = inboundProvisioning
         self.errorPageMsgId = errorPageMsgId
 
     def _validate(self) -> bool:
@@ -115,15 +120,15 @@ class IdpConnection(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.type, self.id, self.entityId, self.name, self.active, self.baseUrl, self.defaultVirtualEntityId, self.virtualEntityIds, self.metadataReloadSettings, self.credentials, self.contactInfo, self.licenseConnectionGroup, self.loggingMode, self.additionalAllowedEntitiesConfiguration, self.extendedProperties, self.oidcClientCredentials, self.idpBrowserSso, self.attributeQuery, self.idpOAuthGrantAttributeMapping, self.wsTrust, self.errorPageMsgId]))
+        return hash(frozenset([self.type, self.id, self.entityId, self.name, self.active, self.baseUrl, self.defaultVirtualEntityId, self.virtualEntityIds, self.metadataReloadSettings, self.credentials, self.contactInfo, self.licenseConnectionGroup, self.loggingMode, self.additionalAllowedEntitiesConfiguration, self.extendedProperties, self.oidcClientCredentials, self.idpBrowserSso, self.attributeQuery, self.idpOAuthGrantAttributeMapping, self.wsTrust, self.inboundProvisioning, self.errorPageMsgId]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["type", "id", "entityId", "name", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "oidcClientCredentials", "idpBrowserSso", "attributeQuery", "idpOAuthGrantAttributeMapping", "wsTrust", "errorPageMsgId"] and v is not None:
+            if k in ["type", "id", "entityId", "name", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "oidcClientCredentials", "idpBrowserSso", "attributeQuery", "idpOAuthGrantAttributeMapping", "wsTrust", "inboundProvisioning", "errorPageMsgId"] and v is not None:
                 if k == "type":
-                    valid_data[k] = ConnectionType[v]
+                    valid_data[k] = IdpConnection[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "entityId":
@@ -162,6 +167,8 @@ class IdpConnection(Model):
                     valid_data[k] = IdpOAuthGrantAttributeMapping(**v)
                 if k == "wsTrust":
                     valid_data[k] = IdpWsTrust(**v)
+                if k == "inboundProvisioning":
+                    valid_data[k] = IdpInboundProvisioning(**v)
                 if k == "errorPageMsgId":
                     valid_data[k] = str(v)
 
@@ -175,7 +182,7 @@ class IdpConnection(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["type", "id", "entityId", "name", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "oidcClientCredentials", "idpBrowserSso", "attributeQuery", "idpOAuthGrantAttributeMapping", "wsTrust", "errorPageMsgId"]:
+            if k in ["type", "id", "entityId", "name", "active", "baseUrl", "defaultVirtualEntityId", "virtualEntityIds", "metadataReloadSettings", "credentials", "contactInfo", "licenseConnectionGroup", "loggingMode", "additionalAllowedEntitiesConfiguration", "extendedProperties", "oidcClientCredentials", "idpBrowserSso", "attributeQuery", "idpOAuthGrantAttributeMapping", "wsTrust", "inboundProvisioning", "errorPageMsgId"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):

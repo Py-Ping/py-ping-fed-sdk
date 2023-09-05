@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.redirect_validation_partner_settings import RedirectValidationPartnerSettings
 from pingfedsdk.models.redirect_validation_local_settings import RedirectValidationLocalSettings
+from pingfedsdk.models.redirect_validation_partner_settings import RedirectValidationPartnerSettings
 
 
 class RedirectValidationSettings(Model):

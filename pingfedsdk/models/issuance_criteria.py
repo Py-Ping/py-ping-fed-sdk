@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.conditional_issuance_criteria_entry import ConditionalIssuanceCriteriaEntry
 from pingfedsdk.models.expression_issuance_criteria_entry import ExpressionIssuanceCriteriaEntry
+from pingfedsdk.models.conditional_issuance_criteria_entry import ConditionalIssuanceCriteriaEntry
 
 
 class IssuanceCriteria(Model):

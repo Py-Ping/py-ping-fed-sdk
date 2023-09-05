@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.x_5_0_9_file import X509File
 from pingfedsdk.models.cert_view import CertView
+from pingfedsdk.models.x_5_0_9_file import X509File
 
 
 class IssuerCert(Model):

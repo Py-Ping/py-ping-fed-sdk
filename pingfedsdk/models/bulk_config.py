@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.config_operation import ConfigOperation
 from pingfedsdk.models.bulk_config_metadata import BulkConfigMetadata
+from pingfedsdk.models.config_operation import ConfigOperation
 
 
 class BulkConfig(Model):

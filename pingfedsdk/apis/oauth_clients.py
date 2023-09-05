@@ -10,9 +10,9 @@ from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
 from pingfedsdk.models.client import Client as ModelClient
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.clients import Clients as ModelClients
 from pingfedsdk.models.client_secret import ClientSecret as ModelClientSecret
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 
 
 class OauthClients:
@@ -45,7 +45,7 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientSecret.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -55,9 +55,7 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def updateClientSecret(self, id: str, body: ModelClientSecret):
         """ Update the client secret of an existing OAuth client.
@@ -79,7 +77,7 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientSecret.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -89,9 +87,7 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getClients(self, page: int = None, numberPerPage: int = None, filter: str = None):
         """ Get the list of OAuth clients.
@@ -114,9 +110,7 @@ class OauthClients:
             if response.status_code == 200:
                 return ModelClients.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def createClient(self, body: ModelClient):
         """ Create a new OAuth client.
@@ -138,15 +132,13 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClient.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getClient(self, id: str):
         """ Find the OAuth client by ID.
@@ -167,8 +159,7 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                # return ModelApiResult.from_dict(response.json())
-                return self.init_client(response.json())
+                return ModelClient.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -194,7 +185,7 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClient.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -204,9 +195,7 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteClient(self, id: str):
         """ Delete an OAuth client.
@@ -235,6 +224,4 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

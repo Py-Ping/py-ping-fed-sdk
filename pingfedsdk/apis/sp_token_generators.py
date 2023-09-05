@@ -12,8 +12,8 @@ from pingfedsdk.exceptions import NotFound
 from pingfedsdk.models.token_generator_descriptors import TokenGeneratorDescriptors as ModelTokenGeneratorDescriptors
 from pingfedsdk.models.token_generator_descriptor import TokenGeneratorDescriptor as ModelTokenGeneratorDescriptor
 from pingfedsdk.models.token_generator import TokenGenerator as ModelTokenGenerator
-from pingfedsdk.models.token_generators import TokenGenerators as ModelTokenGenerators
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.token_generators import TokenGenerators as ModelTokenGenerators
 
 
 class SpTokenGenerators:
@@ -67,7 +67,7 @@ class SpTokenGenerators:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenGeneratorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -114,15 +114,13 @@ class SpTokenGenerators:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenGenerator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getTokenGenerator(self, id: str):
         """ Find a token generator instance by ID.
@@ -143,7 +141,7 @@ class SpTokenGenerators:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenGenerator.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -169,7 +167,7 @@ class SpTokenGenerators:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenGenerator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -179,9 +177,7 @@ class SpTokenGenerators:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteTokenGenerator(self, id: str):
         """ Delete a token generator instance.
@@ -210,6 +206,4 @@ class SpTokenGenerators:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

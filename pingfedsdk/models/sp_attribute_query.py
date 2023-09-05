@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
-from pingfedsdk.models.sp_attribute_query_policy import SpAttributeQueryPolicy
 from pingfedsdk.models.attribute_source import AttributeSource
+from pingfedsdk.models.sp_attribute_query_policy import SpAttributeQueryPolicy
 
 
 class SpAttributeQuery(Model):

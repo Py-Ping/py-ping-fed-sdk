@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.authentication_policy_tree_node import AuthenticationPolicyTreeNode
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class AuthenticationPolicyTree(Model):

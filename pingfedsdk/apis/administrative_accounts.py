@@ -5,13 +5,13 @@ import traceback
 from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.user_credentials import UserCredentials as ModelUserCredentials
-from pingfedsdk.models.administrative_account import AdministrativeAccount as ModelAdministrativeAccount
 from pingfedsdk.models.administrative_accounts import AdministrativeAccounts as ModelAdministrativeAccounts
+from pingfedsdk.models.user_credentials import UserCredentials as ModelUserCredentials
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.administrative_account import AdministrativeAccount as ModelAdministrativeAccount
 
 
 class AdministrativeAccounts:
@@ -44,11 +44,9 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAdministrativeAccounts.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def addAccount(self, body: ModelAdministrativeAccount):
         """ Add a new PingFederate native Administrative Account.
@@ -70,15 +68,13 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getAccount(self, username: str):
         """ Get a PingFederate native Administrative Account.
@@ -99,7 +95,7 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -125,15 +121,13 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteAccount(self, username: str):
         """ Delete a PingFederate native Administrative Account information.
@@ -162,9 +156,7 @@ class AdministrativeAccounts:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def resetPassword(self, username: str, body: ModelUserCredentials):
         """ Reset the Password of an existing PingFederate native Administrative Account.
@@ -186,15 +178,13 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelUserCredentials.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def changePassword(self, body: ModelUserCredentials):
         """ Change the Password of current PingFederate native Account.
@@ -216,8 +206,6 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelUserCredentials.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

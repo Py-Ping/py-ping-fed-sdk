@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.channel import Channel
-from pingfedsdk.models.config_field import ConfigField
 from pingfedsdk.models.schema import Schema
+from pingfedsdk.models.config_field import ConfigField
 
 
 class OutboundProvision(Model):

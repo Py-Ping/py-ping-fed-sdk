@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
+from pingfedsdk.models.out_of_band_auth_attribute_contract import OutOfBandAuthAttributeContract
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
-from pingfedsdk.models.out_of_band_auth_attribute_contract import OutOfBandAuthAttributeContract
 
 
 class OutOfBandAuthenticator(Model):

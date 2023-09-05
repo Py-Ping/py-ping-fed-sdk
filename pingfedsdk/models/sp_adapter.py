@@ -2,8 +2,8 @@ from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.sp_adapter_target_application_info import SpAdapterTargetApplicationInfo
-from pingfedsdk.models.sp_adapter_attribute_contract import SpAdapterAttributeContract
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.sp_adapter_attribute_contract import SpAdapterAttributeContract
 
 
 class SpAdapter(Model):

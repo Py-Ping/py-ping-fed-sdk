@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.enums import DataStoreRepositoryType
 
 
 class DataStoreRepository(Model):
@@ -9,7 +9,7 @@ class DataStoreRepository(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: DataStoreRepositoryType
         The data store repository type.
 
     dataStoreRef: ResourceLink
@@ -20,7 +20,7 @@ class DataStoreRepository(Model):
 
     """
 
-    def __init__(self, dataStoreRef: ResourceLink, jitRepositoryAttributeMapping: object, type: DataStoreType) -> None:
+    def __init__(self, dataStoreRef: ResourceLink, jitRepositoryAttributeMapping: object, type: DataStoreRepositoryType) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.jitRepositoryAttributeMapping = jitRepositoryAttributeMapping
@@ -42,7 +42,7 @@ class DataStoreRepository(Model):
         for k, v in python_dict.items():
             if k in ["type", "dataStoreRef", "jitRepositoryAttributeMapping"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = DataStoreRepositoryType[v]
                 if k == "dataStoreRef":
                     valid_data[k] = ResourceLink(**v)
                 if k == "jitRepositoryAttributeMapping":

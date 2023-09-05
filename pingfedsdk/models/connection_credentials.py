@@ -1,10 +1,10 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.connection_cert import ConnectionCert
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.inbound_back_channel_auth import InboundBackChannelAuth
-from pingfedsdk.models.signing_settings import SigningSettings
+from pingfedsdk.models.connection_cert import ConnectionCert
 from pingfedsdk.models.outbound_back_channel_auth import OutboundBackChannelAuth
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.signing_settings import SigningSettings
 
 
 class ConnectionCredentials(Model):

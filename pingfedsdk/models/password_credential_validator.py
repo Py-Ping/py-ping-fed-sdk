@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.password_credential_validator_attribute_contract import PasswordCredentialValidatorAttributeContract
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
 
 

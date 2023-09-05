@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.field_entry import FieldEntry
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.enums import CustomAttributeSourceType
 
 
 class CustomAttributeSource(Model):
@@ -10,7 +10,7 @@ class CustomAttributeSource(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: CustomAttributeSourceType
         The data store type of this attribute source.
 
     dataStoreRef: ResourceLink
@@ -32,7 +32,7 @@ class CustomAttributeSource(Model):
 
     """
 
-    def __init__(self, dataStoreRef: ResourceLink, type: DataStoreType, id: str = None, description: str = None, attributeContractFulfillment: object = None, filterFields: list = None) -> None:
+    def __init__(self, dataStoreRef: ResourceLink, type: CustomAttributeSourceType, id: str = None, description: str = None, attributeContractFulfillment: object = None, filterFields: list = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -57,7 +57,7 @@ class CustomAttributeSource(Model):
         for k, v in python_dict.items():
             if k in ["type", "dataStoreRef", "id", "description", "attributeContractFulfillment", "filterFields"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = CustomAttributeSourceType[v]
                 if k == "dataStoreRef":
                     valid_data[k] = ResourceLink(**v)
                 if k == "id":

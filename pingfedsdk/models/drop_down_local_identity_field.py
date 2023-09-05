@@ -1,6 +1,6 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import LocalIdentityFieldType
+from pingfedsdk.enums import DropDownLocalIdentityFieldType
 
 
 class DropDownLocalIdentityField(Model):
@@ -8,7 +8,7 @@ class DropDownLocalIdentityField(Model):
 
     Attributes
     ----------
-    type: LocalIdentityFieldType
+    type: DropDownLocalIdentityFieldType
         The type of the local identity field.
 
     id: str
@@ -34,7 +34,7 @@ class DropDownLocalIdentityField(Model):
 
     """
 
-    def __init__(self, options: list, type: LocalIdentityFieldType = None, id: str = None, label: str = None, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None, defaultValue: str = None) -> None:
+    def __init__(self, options: list, type: DropDownLocalIdentityFieldType = None, id: str = None, label: str = None, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None, defaultValue: str = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -61,7 +61,7 @@ class DropDownLocalIdentityField(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "label", "registrationPageField", "profilePageField", "attributes", "options", "defaultValue"] and v is not None:
                 if k == "type":
-                    valid_data[k] = LocalIdentityFieldType[v]
+                    valid_data[k] = DropDownLocalIdentityFieldType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "label":

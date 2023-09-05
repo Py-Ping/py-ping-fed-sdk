@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.idp_adapter_attribute_contract import IdpAdapterAttributeContract
-from pingfedsdk.models.plugin_configuration import PluginConfiguration
 from pingfedsdk.models.idp_adapter_contract_mapping import IdpAdapterContractMapping
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.idp_adapter_attribute_contract import IdpAdapterAttributeContract
 
 
 class IdpAdapter(Model):

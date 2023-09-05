@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import EncryptionAlgorithm
-from pingfedsdk.enums import SigningAlgorithm
 from pingfedsdk.enums import ContentEncryptionAlgorithm
+from pingfedsdk.enums import SigningAlgorithm
+from pingfedsdk.enums import EncryptionAlgorithm
 
 
 class ClientRegistrationOIDCPolicy(Model):

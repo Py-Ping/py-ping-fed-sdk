@@ -1,13 +1,13 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.persistent_grant_contract import PersistentGrantContract
-from pingfedsdk.models.scope_entry import ScopeEntry
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.scope_group_entry import ScopeGroupEntry
-from pingfedsdk.enums import TimeUnit
+from pingfedsdk.models.scope_entry import ScopeEntry
 from pingfedsdk.enums import ParStatus
 from pingfedsdk.enums import UserAuthorizationConsentPageSetting
 from pingfedsdk.enums import ActivationCodeCheckMode
+from pingfedsdk.enums import TimeUnit
 
 
 class AuthorizationServerSettings(Model):

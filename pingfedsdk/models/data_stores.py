@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.custom_data_store import CustomDataStore
 from pingfedsdk.models.data_store import DataStore
-from pingfedsdk.models.ldap_data_store import LdapDataStore
+from pingfedsdk.models.custom_data_store import CustomDataStore
 from pingfedsdk.models.jdbc_data_store import JdbcDataStore
+from pingfedsdk.models.ldap_data_store import LdapDataStore
 
 
 class DataStores(Model):

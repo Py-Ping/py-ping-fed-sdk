@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.data_store_repository import DataStoreRepository
 from pingfedsdk.models.jit_provisioning_user_attributes import JitProvisioningUserAttributes
-from pingfedsdk.enums import ErrorHandling
+from pingfedsdk.models.data_store_repository import DataStoreRepository
 from pingfedsdk.enums import EventTrigger
+from pingfedsdk.enums import ErrorHandling
 
 
 class JitProvisioning(Model):

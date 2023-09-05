@@ -1,6 +1,6 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import LocalIdentityFieldType
+from pingfedsdk.enums import CheckboxGroupLocalIdentityFieldType
 
 
 class CheckboxGroupLocalIdentityField(Model):
@@ -8,7 +8,7 @@ class CheckboxGroupLocalIdentityField(Model):
 
     Attributes
     ----------
-    type: LocalIdentityFieldType
+    type: CheckboxGroupLocalIdentityFieldType
         The type of the local identity field.
 
     id: str
@@ -31,7 +31,7 @@ class CheckboxGroupLocalIdentityField(Model):
 
     """
 
-    def __init__(self, options: list, type: LocalIdentityFieldType = None, id: str = None, label: str = None, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None) -> None:
+    def __init__(self, options: list, type: CheckboxGroupLocalIdentityFieldType = None, id: str = None, label: str = None, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -57,7 +57,7 @@ class CheckboxGroupLocalIdentityField(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "label", "registrationPageField", "profilePageField", "attributes", "options"] and v is not None:
                 if k == "type":
-                    valid_data[k] = LocalIdentityFieldType[v]
+                    valid_data[k] = CheckboxGroupLocalIdentityFieldType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "label":

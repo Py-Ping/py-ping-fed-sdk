@@ -66,15 +66,13 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getTokenToTokenMappingById(self, id: str):
         """ Get a Token Processor to Token Generator Mapping.
@@ -95,7 +93,7 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -121,7 +119,7 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +129,7 @@ class TokenProcessorToTokenGeneratorMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteTokenToTokenMappingById(self, id: str):
         """ Delete a Token Processor to Token Generator Mapping.

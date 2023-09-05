@@ -1,11 +1,11 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.connection_credentials import ConnectionCredentials
 from pingfedsdk.models.contact_info import ContactInfo
-from pingfedsdk.models.additional_allowed_entities_configuration import AdditionalAllowedEntitiesConfiguration
+from pingfedsdk.models.connection_credentials import ConnectionCredentials
 from pingfedsdk.models.connection_metadata_url import ConnectionMetadataUrl
-from pingfedsdk.enums import ConnectionType
+from pingfedsdk.models.additional_allowed_entities_configuration import AdditionalAllowedEntitiesConfiguration
 from pingfedsdk.enums import LoggingMode
+from pingfedsdk.enums import ConnectionType
 
 
 class Connection(Model):

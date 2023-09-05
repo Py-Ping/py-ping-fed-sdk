@@ -5,12 +5,12 @@ import traceback
 from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.models.convert_metadata_request import ConvertMetadataRequest as ModelConvertMetadataRequest
+from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.models.convert_metadata_response import ConvertMetadataResponse as ModelConvertMetadataResponse
 from pingfedsdk.models.export_metadata_request import ExportMetadataRequest as ModelExportMetadataRequest
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.convert_metadata_request import ConvertMetadataRequest as ModelConvertMetadataRequest
 
 
 class ConnectionMetadata:
@@ -44,15 +44,13 @@ class ConnectionMetadata:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return str(response)
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def convert(self, body: ModelConvertMetadataRequest):
         """ Convert a partner's SAML metadata into a JSON representation.
@@ -74,12 +72,10 @@ class ConnectionMetadata:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConvertMetadataResponse.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

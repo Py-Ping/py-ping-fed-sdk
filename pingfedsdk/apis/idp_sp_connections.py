@@ -9,13 +9,13 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.connection_cert import ConnectionCert as ModelConnectionCert
 from pingfedsdk.models.sp_connection import SpConnection as ModelSpConnection
-from pingfedsdk.models.signing_settings import SigningSettings as ModelSigningSettings
 from pingfedsdk.models.sp_connections import SpConnections as ModelSpConnections
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-from pingfedsdk.models.decryption_keys import DecryptionKeys as ModelDecryptionKeys
+from pingfedsdk.models.connection_cert import ConnectionCert as ModelConnectionCert
 from pingfedsdk.models.connection_certs import ConnectionCerts as ModelConnectionCerts
+from pingfedsdk.models.decryption_keys import DecryptionKeys as ModelDecryptionKeys
+from pingfedsdk.models.signing_settings import SigningSettings as ModelSigningSettings
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 
 
 class IdpSpConnections:
@@ -48,7 +48,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSigningSettings.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -74,7 +74,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSigningSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -84,9 +84,7 @@ class IdpSpConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getConnectionCerts(self, id: str):
         """ Get the SP connection's certificates.
@@ -133,7 +131,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConnectionCert.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -143,9 +141,7 @@ class IdpSpConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def updateConnectionCerts(self, id: str, body: ModelConnectionCerts):
         """ Update the SP connection's certificates.
@@ -167,7 +163,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConnectionCerts.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -177,9 +173,7 @@ class IdpSpConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getDecryptionKeys(self, id: str):
         """ Get the decryption keys of an SP connection.
@@ -226,7 +220,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelDecryptionKeys.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -236,9 +230,7 @@ class IdpSpConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getConnection(self, id: str):
         """ Find SP connection by ID.
@@ -285,7 +277,7 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSpConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -295,9 +287,7 @@ class IdpSpConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteConnection(self, id: str):
         """ Delete an SP connection.
@@ -326,9 +316,7 @@ class IdpSpConnections:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getConnections(self, entityId: str = None, page: int = None, numberPerPage: int = None, filter: str = None):
         """ Get list of SP connections.
@@ -351,9 +339,7 @@ class IdpSpConnections:
             if response.status_code == 200:
                 return ModelSpConnections.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def createConnection(self, body: ModelSpConnection, XBypassExternalValidation: bool = None):
         """ Create a new SP connection.
@@ -375,12 +361,10 @@ class IdpSpConnections:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelSpConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

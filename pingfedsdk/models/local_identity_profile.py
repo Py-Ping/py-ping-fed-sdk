@@ -1,13 +1,13 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.data_store_config import DataStoreConfig
-from pingfedsdk.models.email_verification_config import EmailVerificationConfig
 from pingfedsdk.models.local_identity_auth_source_update_policy import LocalIdentityAuthSourceUpdatePolicy
 from pingfedsdk.models.registration_config import RegistrationConfig
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.email_verification_config import EmailVerificationConfig
+from pingfedsdk.models.profile_config import ProfileConfig
+from pingfedsdk.models.data_store_config import DataStoreConfig
 from pingfedsdk.models.local_identity_auth_source import LocalIdentityAuthSource
 from pingfedsdk.models.field_config import FieldConfig
-from pingfedsdk.models.profile_config import ProfileConfig
 
 
 class LocalIdentityProfile(Model):

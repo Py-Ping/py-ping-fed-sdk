@@ -1,9 +1,9 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.protocol_message_customization import ProtocolMessageCustomization
-from pingfedsdk.models.sp_ws_trust_attribute_contract import SpWsTrustAttributeContract
 from pingfedsdk.models.idp_token_processor_mapping import IdpTokenProcessorMapping
+from pingfedsdk.models.sp_ws_trust_attribute_contract import SpWsTrustAttributeContract
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.enums import DefaultTokenType
 
 

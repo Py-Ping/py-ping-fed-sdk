@@ -9,9 +9,9 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.models.apc_to_persistent_grant_mapping import ApcToPersistentGrantMapping as ModelApcToPersistentGrantMapping
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.apc_to_persistent_grant_mappings import ApcToPersistentGrantMappings as ModelApcToPersistentGrantMappings
-from pingfedsdk.models.apc_to_persistent_grant_mapping import ApcToPersistentGrantMapping as ModelApcToPersistentGrantMapping
 
 
 class OauthAuthenticationPolicyContractMappings:
@@ -66,15 +66,13 @@ class OauthAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelApcToPersistentGrantMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getApcMapping(self, id: str):
         """ Find the authentication policy contract to persistent grant mapping by ID.
@@ -95,7 +93,7 @@ class OauthAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelApcToPersistentGrantMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -121,7 +119,7 @@ class OauthAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelApcToPersistentGrantMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +129,7 @@ class OauthAuthenticationPolicyContractMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteApcMapping(self, id: str):
         """ Delete an authentication policy contract to persistent grant mapping.

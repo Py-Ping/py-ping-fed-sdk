@@ -2,7 +2,7 @@ from pingfedsdk.model import Model
 from enum import Enum
 from pingfedsdk.models.connection_cert import ConnectionCert
 from pingfedsdk.models.username_password_credentials import UsernamePasswordCredentials
-from pingfedsdk.enums import BackChannelAuthType
+from pingfedsdk.enums import InboundBackChannelAuthType
 
 
 class InboundBackChannelAuth(Model):
@@ -10,7 +10,7 @@ class InboundBackChannelAuth(Model):
 
     Attributes
     ----------
-    type: BackChannelAuthType
+    type: InboundBackChannelAuthType
         The back channel authentication type.
 
     httpBasicCredentials: UsernamePasswordCredentials
@@ -33,7 +33,7 @@ class InboundBackChannelAuth(Model):
 
     """
 
-    def __init__(self, type: BackChannelAuthType, httpBasicCredentials: UsernamePasswordCredentials = None, digitalSignature: bool = None, verificationSubjectDN: str = None, verificationIssuerDN: str = None, certs: list = None, requireSsl: bool = None) -> None:
+    def __init__(self, type: InboundBackChannelAuthType, httpBasicCredentials: UsernamePasswordCredentials = None, digitalSignature: bool = None, verificationSubjectDN: str = None, verificationIssuerDN: str = None, certs: list = None, requireSsl: bool = None) -> None:
         self.type = type
         self.httpBasicCredentials = httpBasicCredentials
         self.digitalSignature = digitalSignature
@@ -59,7 +59,7 @@ class InboundBackChannelAuth(Model):
         for k, v in python_dict.items():
             if k in ["type", "httpBasicCredentials", "digitalSignature", "verificationSubjectDN", "verificationIssuerDN", "certs", "requireSsl"] and v is not None:
                 if k == "type":
-                    valid_data[k] = BackChannelAuthType[v]
+                    valid_data[k] = InboundBackChannelAuthType[v]
                 if k == "httpBasicCredentials":
                     valid_data[k] = UsernamePasswordCredentials(**v)
                 if k == "digitalSignature":

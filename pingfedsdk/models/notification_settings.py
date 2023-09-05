@@ -1,8 +1,8 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.license_event_notification_settings import LicenseEventNotificationSettings
 from pingfedsdk.models.metadata_event_notification_settings import MetadataEventNotificationSettings
 from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.license_event_notification_settings import LicenseEventNotificationSettings
 from pingfedsdk.models.certificate_expiration_notification_settings import CertificateExpirationNotificationSettings
 
 

@@ -1,7 +1,7 @@
 from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.access_token_manager_mapping import AccessTokenManagerMapping
 from pingfedsdk.models.idp_o_auth_attribute_contract import IdpOAuthAttributeContract
+from pingfedsdk.models.access_token_manager_mapping import AccessTokenManagerMapping
 
 
 class IdpOAuthGrantAttributeMapping(Model):

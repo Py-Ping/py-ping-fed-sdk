@@ -9,9 +9,9 @@ from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.exceptions import ObjectDeleted
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.models.local_identity_profile import LocalIdentityProfile as ModelLocalIdentityProfile
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.local_identity_profiles import LocalIdentityProfiles as ModelLocalIdentityProfiles
-from pingfedsdk.models.local_identity_profile import LocalIdentityProfile as ModelLocalIdentityProfile
 
 
 class LocalIdentityIdentityProfiles:
@@ -44,7 +44,7 @@ class LocalIdentityIdentityProfiles:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelLocalIdentityProfile.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -70,7 +70,7 @@ class LocalIdentityIdentityProfiles:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelLocalIdentityProfile.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -80,9 +80,7 @@ class LocalIdentityIdentityProfiles:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteIdentityProfile(self, id: str):
         """ Delete the local identity profile by ID.
@@ -111,9 +109,7 @@ class LocalIdentityIdentityProfiles:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getIdentityProfiles(self, page: int = None, numberPerPage: int = None, filter: str = None, apcId: str = None):
         """ Get the list of configured local identity profiles.
@@ -134,11 +130,9 @@ class LocalIdentityIdentityProfiles:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelLocalIdentityProfiles.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def createIdentityProfile(self, body: ModelLocalIdentityProfile, XBypassExternalValidation: bool = None):
         """ Create a new local identity profile.
@@ -160,12 +154,10 @@ class LocalIdentityIdentityProfiles:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelLocalIdentityProfile.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
