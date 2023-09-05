@@ -1,36 +1,30 @@
 # Python Ping Fed SDK
 
-Python based SDK generator for the Ping Federation API. This repository contains the scripts to build a Python module that can interface with the Ping Federate service API using the Python scripting language. Given a `VERSION` value the package can generate a version of the SDK that works with that version of Ping Federate. Currently this repository supports the following versions of Ping Federate 9.3.3, 10.0.4, 10.1.0, 10.2.1 and 11.0.0. The SDK generator can be tested with edge and latest versions of Ping Federate but no warranty is provided to guarantee this will work.
+Python based SDK generator for the Ping Federation API. This repository contains the scripts to build a Python module 
+that can interface with the Ping Federate service API using the Python scripting language. 
 
-# Setup
+Currently, this repository supports the following versions of Ping Federate 
+  - 9.3.3
+  - 10.0.4
+  - 10.1.0
+  - 10.2.1
+  - 11.0.0. 
+ 
+The SDK generator can be tested with edge and latest versions of Ping Federate but no warranty is provided to guarantee 
+this will work.
 
-To work with the SDK generator there are two ways you can work with the licensed Ping product:
+# Installing the SDK Generator
 
-1. This module is built off of the back of the `ping-devops` tool made available [here](https://devops.pingidentity.com/get-started/getStarted/). To run your own local development version of the Federate server follow all the steps from the prior link. On completion you will have the following environment variables which should be present in your local profile:
+### Install pre-requisites
 
-```
-PING_IDENTITY_DEVOPS_USER
-PING_IDENTITY_DEVOPS_KEY
-PING_IDENTITY_DEVOPS_REGISTRY
-PING_IDENTITY_DEVOPS_TAG
-```
-
-`PING_IDENTITY_DEVOPS_USER` and `PING_IDENTITY_DEVOPS_KEY` are available upon request [here](https://bit.ly/ping-devops-request).
-
-2. If you have a license for the product put it in the root of the project directory with the name `pingfederate.lic`. This will then be mounted into the container used for SDK generation and will allow the product to be worked with.
-3. If you use the PingFederate image docker older than three months, you must provide a valid license file.
-
-# Pre-reqs (workspace setup, packages etc.)
-
- - `echo edge > PINGVERSION`
+If using the `ping-devops` version described [below](#setup-using-ping-devops-docker-containers)
+- `echo edge > PINGVERSION`
 
 If running on alpine linux:
- - `apk add build-base libffi-dev`
+- `apk add build-base libffi-dev`
 
 If running on MacOS:
- - `brew install sphinx-doc`
-
-# Installation
+- `brew install sphinx-doc`
 
 If pipenv module isn't installed yet:
 ```bash
@@ -41,39 +35,104 @@ Once pipenv has been installed and added to the PATH:
 pipenv install
 ```
 
-# Regenerate SDK
+# Setup
+The SDK generator can be setup to work in two ways;
+- using the `ping-devops` docker containers by providing a `VERSION` value. The `py-ping-fed-sdk` can generate a 
+version of the SDK that works with that version of Ping Federate.
+- using a target instance of Ping Federate specified by the user. The `py-ping-fed-sdk` will generate an SDK for the 
+version of Ping Federate that the user specified.
 
-To regenerate the APIs and models of the SDK
+### Setup using  `ping-devops` docker containers
 
-```bash
-export PING_IDENTITY_SWAGGER_URL= https://<pf_hostname>:<pf_admin_port>/pf-admin-api/v1/swagger.json
-export PING_IDENTITY_SWAGGER_VERSION=<1.2/2.0>
-make generate
+1. Run your own local development version of the Ping Federate server by following the steps outlined in the Ping Devops 
+Program [Getting Started Guide](https://devops.pingidentity.com/get-started/introduction/). Once complete you will have 
+the following environment variables present in your local profile:
+
+```
+PING_IDENTITY_DEVOPS_USER
+PING_IDENTITY_DEVOPS_KEY
+PING_IDENTITY_DEVOPS_REGISTRY
+PING_IDENTITY_DEVOPS_TAG
 ```
 
-This requires an available Ping Federate admin server instance with a set of credentials for access.
+`PING_IDENTITY_DEVOPS_USER` and `PING_IDENTITY_DEVOPS_KEY` are available upon request 
+[here](https://bit.ly/ping-devops-request).
 
-For a controlled generation of the Federate SDK we recommend using the dockerised version of the service. To do this install docker on your local host, update the content of the `PINGVERSION` file to the desired Federate version for the SDK and execute:
+2. If you have a license for the product put it in the root of the project directory with the name `pingfederate.lic`. 
+The license file will then be mounted into the container and used for SDK generation.
+3. The Ping Federate Docker image licenses are valid for three months. If you use an older image you will need to 
+provide a valid license file, this is relevant when generating an SDK for older version of the SDK.
+
+### Setup using an existing instance of Ping Federate
+
+Set the hostname and port of the target Ping Federate instance as an environment variables. If not set defaults to 
+`localhost:9999`.
+```bash
+export PING_IDENTITY_HOST_NAME_PORT=<pf_hostname>:<pf_admin_port>
+```
+The target Ping Federates Swagger version may vary with the target instances version. Set the Swagger version as an 
+environment variable. If not set default to `1.2`.
+```bash
+export PING_IDENTITY_SWAGGER_VERSION=<1.2/2.0>
+```
+
+# Regenerate the Ping Federate SDK
+
+To generate the APIs and models of the Ping Federate SDK you can use a `ping-devops` container if you set up using that 
+method or use an existing instance of Ping Federate.  
+
+### Generate an SDK using Ping Federate deployed using `ping-devops`
+
+The dockerised version of Ping Federate provides a controlled generation of the Ping Federate SDK. To do this, install 
+docker on your local host, follow the [ping-devops](#setup-using-ping-devops-docker-containers) setup steps, update the 
+content of the `PINGVERSION` file to the desired Federate version for the SDK and execute:
 
 ```bash
 make docker-generate
 ```
 
-This will download the Federate docker image from dockerhub, create a controlled running container with the Federate service running and then the SDK will be generated against that service host.
+This will download the target Ping Federate docker image from dockerhub, create a controlled running container with the 
+Ping Federate service running and then the SDK will be generated against that service host.
+
+### Generate an SDK using an existing instance of Ping Federate
+
+A pre-existing Ping Federate instance allows you to generate an SDK against your own target instance. To generate the 
+SDK against your target instance of Ping Federate follow the 
+[setup steps for a pre-existing](#setup-using-an-existing-instance-of-ping-federate) Ping Federate instance and do the 
+following:
+
+Older versions of Ping Federate might need the administration user credentials to download the swagger document for the 
+target Ping Federate instance. In required, set these as environment variable. These default to 
+`Administrator : 2Federate` when not set.
+
+```bash
+export PING_IDENTITY_USER=Administrator
+export PING_IDENTITY_SECRET=2Federate
+```
+
+Once the administration credentials are set the SDK can be generated by executing
+```bash
+make generate
+```
 
 # Testing
 
-A set of testing commands are available to assert that the generated SDK hasn't had any obvious issues in the generation process. If the version you wish to test is not supported by the generator but you'd like to test generation of the new version to add to the supported list modify the argument choices at the top of `docker_generate.py` and go through the testing steps to verify it's possible to be supported for generation.
+A set of testing commands are available to assert that the generated SDK hasn't had any obvious issues in the generation 
+process. If the version you wish to test is not supported by the generator but you'd like to test generation of the new 
+version to add to the supported list modify the argument choices at the top of `docker_generate.py` and go through the 
+testing steps to verify it's possible to be supported for generation.
 
-To verify the version of the Fed SDK generated built successfully the following steps can shake out errors in a controlled fashion.
+To verify the version of the Ping Federate SDK generated built successfully the following steps can shake out errors in
+a controlled fashion.
 
 To run the unit tests use
-
 ```bash
 make unittest
 ```
 
-The unit tests will indicate any obvious issues in the generator itself. Make sure the `pingfedsdk` package folder is deleted otherwise this can have unexpected consequences to the unit test run session. If errors are discovered raise an issue in the github project.
+The unit tests will indicate any obvious issues in the generator itself. Make sure the `pingfedsdk` package folder is 
+deleted otherwise this can have unexpected consequences for the unit test run session. If errors are discovered raise an 
+issue in the [GitHub Project](https://github.com/Py-Ping/py-ping-fed-sdk/issues).
 
 To check the code coverage for the unit tests
 
@@ -93,7 +152,8 @@ To lint the generated code and confirm it still follows PEP8 standards
 make lint-generated
 ```
 
-This command will also indicate if there were any errors in the generation process against a version and is worthwhile for debugging generation.
+This command will also indicate if there were any errors in the generation process against a version and is worthwhile 
+for debugging generation.
 
 To confirm the modules generated can be dynamically loaded into memory without syntax or dependency issues
 
@@ -107,7 +167,7 @@ To load the Java integration kit and run some sample SDK commands to exercise th
 make example_<version>
 ```
 
-Each version will have it's own example file which demonstrates SDK execution for the version of Ping Federate.
+Each version will have its own example file which demonstrates SDK execution for the version of Ping Federate.
 
 # Regenerate Documents
 

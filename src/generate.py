@@ -16,6 +16,7 @@ class Generate():
         self.fetch_data = Fetch(swagger_url, swagger_version=swagger_version).fetch()
 
     def generate(self):
+        self.logger.info("Generating models")
         for model, details in self.fetch_data.get("models").items():
             template = self.render_file("models", name=model, details=details)
             self.write_template(
@@ -34,6 +35,7 @@ class Generate():
             folder="../docs/source/models"
         )
 
+        self.logger.info("Generating enums")
         enum_template = self.render_file(
             "enums", name="enums", details=self.fetch_data.get("enums")
         )
@@ -50,6 +52,8 @@ class Generate():
             "ValidationError",
             "ServerError"
         )
+
+        self.logger.info("Generating execeptions")
         except_template = self.render_file(
             "exceptions", name="exceptions", details=exception_types
         )
@@ -58,6 +62,7 @@ class Generate():
             folder="../pingfedsdk/"
         )
 
+        self.logger.info("Generating APIs")
         for api, details in self.fetch_data.get("apis").items():
             template = self.render_file(
                 "apis", name=safe_class_name(safe_class_name(api), unsafe_char="_"), details=details
@@ -131,9 +136,10 @@ class Generate():
 
 
 if __name__ == "__main__":
-    swagger_url = os.environ.get(
-        "PING_IDENTITY_SWAGGER_URL", "https://localhost:9999/pf-admin-api/v1/api-docs"
+    host_name_port = os.environ.get(
+        "PING_IDENTITY_HOST_NAME_PORT", "localhost:9999"
     )
+    swagger_url = f"https://{host_name_port}/pf-admin-api/v1/swagger.json"
     swagger_version = os.environ.get(
         "PING_IDENTITY_SWAGGER_VERSION", "1.2"
     )

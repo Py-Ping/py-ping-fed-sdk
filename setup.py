@@ -9,7 +9,7 @@ def read_contents(name):
 
 
 requires = [
-    'requests>=2.23.0,<2.24.0'
+    'requests>=2.31.0'
 ]
 
 
