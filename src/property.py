@@ -12,6 +12,14 @@ class Property:
      - if it is an enum what domain does it have
     """
 
+    # Sometimes enums have the same name as a model and if the enum is imported
+    # by the model there would be a name conflict whereby the imported enum is
+    # overshadowed by the model class. In such cases we import the enum under a
+    # different name (in the scope of the model class) by appending the suffix
+    # given by $CONFLICT_SUFFIX to the enum name, thereby making it different
+    # from the model name.
+    CONFLICT_SUFFIX = 'Enum'
+
     def __init__(self, raw_property: dict, model_name=None, property_name=None):
         self.raw_property_dict = raw_property
         self.sub_type = None
@@ -277,7 +285,10 @@ class Property:
                 return f"valid_data[k] = {start_bracket}{self.sub_type}(**x) for x in v{end_bracket}"
 
         elif self.json_type == "enum":
-            return f"valid_data[k] = {self.type}[v]"
+            if self.type == self.model_name:
+                return f"valid_data[k] = {self.type}{self.CONFLICT_SUFFIX}[v]"
+            else:
+                return f"valid_data[k] = {self.type}[v]"
 
         elif not get_py_type(self.json_type):
             return f"valid_data[k] = {self.type}(**v)"

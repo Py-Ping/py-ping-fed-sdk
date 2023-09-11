@@ -89,23 +89,33 @@ class TestGenerate(TestCase):
                     }]
                 }
             },
-            "enums": {},
+            "enums": {
+                "PenguinLabeller": ["SHORT", "MEDIUM", "TALL"],
+            },
             "models": {
                 "PenguinLabeller": {
                     "api_references": ["penguins"],
                     "description": "Labels penguins.",
                     "id": "PenguinLabeller",
                     "properties": {
-                        "PenguinNames": Property({
+                        "penguinNames": Property({
                             "description":
                             "List of great names for a pet penguin.",
                             "items": {
                                 "type": "string"
                             },
                             "type": "array"
-                        }, property_name="PenguinNames")
+                        }, property_name="penguinNames", model_name="PenguinLabeller"),
+                        "penguinLabeller": Property({
+                            "description": "Label for the pet penguin.",
+                            "enum": ["SHORT", "MEDIUM", "TALL"],
+                            "type": "string",
+                        }, property_name="penguinLabeller", model_name="PenguinLabeller"),
                     },
-                    "imports": {}
+                    "imports": {
+                        "enums": [("PenguinLabeller", ' as PenguinLabellerEnum')],
+                    },
+                    "conflict_suffix": Property.CONFLICT_SUFFIX,
                 },
                 "Penguin": {
                     "api_references": ["penguins"],
@@ -115,21 +125,22 @@ class TestGenerate(TestCase):
                         "firstName": Property({
                             "description": "The penguins first name.",
                             "type": "string"
-                        }, property_name="firstName"),
+                        }, property_name="firstName", model_name="Penguin"),
                         "lastName": Property({
                             "description": "The penguins last name.",
                             "type": "string"
-                        }, property_name="lastName"),
+                        }, property_name="lastName", model_name="Penguin"),
                         "height": Property({
                             "description": "Height of the penguin.",
                             "type": "string"
-                        }, property_name="height"),
+                        }, property_name="height", model_name="Penguin"),
                         "soundMade": Property({
                             "description": "List of sounds made.",
                             "type": "string"
-                        }, property_name="soundMade")
+                        }, property_name="soundMade", model_name="Penguin")
                     },
-                    "imports": {}
+                    "imports": {},
+                    "conflict_suffix": Property.CONFLICT_SUFFIX,
                 },
                 "Penguins": {
                     "api_references": ["penguins"],
@@ -144,7 +155,8 @@ class TestGenerate(TestCase):
                             "type": "array"
                         }, property_name="items")
                     },
-                    "imports": {}
+                    "imports": {},
+                    "conflict_suffix": Property.CONFLICT_SUFFIX,
                 }
             }
         }
@@ -161,6 +173,10 @@ class TestGenerate(TestCase):
             "height": "1.42",
             "soundMade": "honk"
         }
+        test_files = f"{os.path.dirname(__file__)}/../pingfedsdk"
+        with open(f'{test_files}/__init__.py', 'w') as init_py:
+            # Ensure pingfedsdk is a python package that can be imported
+            pass
 
     def test_model(self):
         """
@@ -192,6 +208,18 @@ class TestGenerate(TestCase):
             hash(penguin.Penguin(**self.penguin_dict)),
             hash(frozenset(["terrence", "mcflappy", "1.42", "honk"]))
         )
+
+    def test_import_with_conflicting_name(self):
+        """
+        Dynamically import a created model module which internally imports an
+        enum with the same name as the model class and verify that the enum is
+        imported under a different name.
+        """
+        labeller = __import__("pingfedsdk.models.penguin_labeller", fromlist=[""])
+        enums = __import__("pingfedsdk.enums", fromlist=[""])
+        self.assertIs(labeller.PenguinLabellerEnum, enums.PenguinLabeller)
+        model = __import__("pingfedsdk.model", fromlist=[""])
+        self.assertTrue(labeller.PenguinLabeller, model.Model)
 
     @patch("pingfedsdk.apis.penguins.ModelPenguin")
     @patch("pingfedsdk.apis.penguins.logging")

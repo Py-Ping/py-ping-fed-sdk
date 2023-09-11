@@ -197,6 +197,10 @@ class Fetch():
                     model_property = Property(prop, model_name, prop_name)
                     model_import = model_property.get_model_import()
                     enum_import = model_property.get_enum_import()
+                    if enum_import == model_name:
+                        import_suffix = f' as {enum_import}Enum'
+                    else:
+                        import_suffix = ''
                     if model_property.type == "DataStore" or \
                        model_property.type == "list" and \
                        model_property.sub_type == "DataStore":
@@ -204,10 +208,10 @@ class Fetch():
                         imports["models"].add("CustomDataStore")
                         imports["models"].add("LdapDataStore")
                         imports["models"].add("DataStore")
-                    if model_import and model_import not in imports["models"]:
+                    if model_import:
                         imports["models"].add(model_import)
-                    if enum_import and enum_import not in imports["enums"]:
-                        imports["enums"].add(enum_import)
+                    if enum_import:
+                        imports["enums"].add((enum_import, import_suffix))
 
                     enums = model_property.get_enums()
                     if enums:
@@ -218,6 +222,7 @@ class Fetch():
 
             details["properties"] = model_props
             details["imports"] = imports
+            details["conflict_suffix"] = Property.CONFLICT_SUFFIX
 
             self.models[model_name] = details
 

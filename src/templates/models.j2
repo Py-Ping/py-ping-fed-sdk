@@ -1,15 +1,44 @@
+{#
+ # Ensure an object name does not clash with the model class name. If it does,
+ # then the clash can only be with an Enum class (since model classes will
+ # necessarily have unique names in the swagger definition) and therefore we
+ # append the specified suffix to the clashing enum class within the scope of
+ # this module
+ #}
+{% macro local_name(obj_name) %}
+{%   if obj_name == class_name %}{{ obj_name }}{{ details['conflict_suffix'] }}{% else %}{{ obj_name }}{% endif %}
+{% endmacro -%}
+
 from pingfedsdk.model import Model
 from enum import Enum
 {% for folder, imports in details.get('imports').items() %}
-{% for imp in imports %}
-{% if folder == 'models' %}
+{%   for imp in imports %}
+{%     if folder == 'models' %}
 from pingfedsdk.{{ folder }}.{{ safe_module_name(imp) }} import {{ imp }}
-{% endif %}
-{% if folder == 'enums' %}
-from pingfedsdk.{{ folder }} import {{ imp }}
-{% endif %}
+{%     endif %}
+{%     if folder == 'enums' %}
+{%       set enum_name = imp[0] %}
+{%       set suffix = imp[1] %}
+from pingfedsdk.{{ folder }} import {{ enum_name }}{{ suffix }}
+{%     endif %}
+{%   endfor %}
 {% endfor %}
+
+
+{# Build parameter declaration lists for the __init__ method #}
+{% set required = details.get('required', []) %}
+{% set params = namespace(required=[], optional=[], all=['self']) %}
+{% for property, attributes in details.get('properties', {}).items() %}
+{%   set pname = safe_name(property) %}
+{%   set ptype = local_name(attributes.type) %}
+{%   if property in required %}
+{%     set _ = params.required.append('%s: %s' | format(pname, ptype)) %}
+{%   else %}
+{%     set _ = params.optional.append('%s: %s = None' | format(pname, ptype)) %}
+{%   endif %}
 {% endfor %}
+{% set _ = params.all.extend(params.required) %}
+{% set _ = params.all.extend(params.optional) -%}
 
 
 class {{ class_name }}(Model):
@@ -24,8 +53,7 @@ class {{ class_name }}(Model):
 {% endif %}
 {% endfor %}
     """
-
-    def __init__(self{% for property in details.get('required', []) %}, {{ safe_name(property) }}: {{ details['properties'][property].type }}{% endfor %}{% for property, attributes in details.get('properties', {}).items() if property not in details.get('required', []) %}, {{ property }}: {{ attributes.type }} = None{% endfor %}) -> None:
+    def __init__({{ params.all | join(', ') }}) -> None:
 {% if not details["properties"] %}        pass
 {% endif %}
 {% for property in details.get('properties') %}
@@ -33,7 +61,7 @@ class {{ class_name }}(Model):
 {% endfor %}
 
     def _validate(self) -> bool:
-        return any(x for x in [{% for property in details.get('required', []) %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] if self.__dict__[x] is not None)
+        return any(x for x in [{% for property in required %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, {{ class_name }}):
