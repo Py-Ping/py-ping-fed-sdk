@@ -1,11 +1,14 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-{{ details.get_exception_imports() }}
+
+{% for imp in details.exception_imports %}
+from pingfedsdk.exceptions import {{ imp }}
+{% endfor %}
 {% for imp in details.imports %}
 from pingfedsdk.models.{{ safe_module_name(imp) }} import {{ imp }} as Model{{ imp }}
 {% endfor %}
@@ -23,7 +26,18 @@ class {{ safe_class_name(class_name) }}:
         return f"{self.endpoint}{path}"
 {% for operation in details.operations %}
 
-    def {{ operation.nickname }}(self{% for parameter in operation.parameters %}{% if parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }}{% endif %}{% endfor %}{% for parameter in operation.parameters %}{% if not parameter.required %}, {{ parameter.safe_name }}: {{ parameter.get_parameter_str() }} = None{% endif %}{% endfor %}):
+{% set params = namespace(all=['self']) %}
+{% for parameter in operation.required_params %}
+{%   set pname = parameter.safe_name %}
+{%   set ptype = parameter.get_parameter_str() %}
+{%   set _ = params.all.append('%s: %s' | format(pname, ptype)) %}
+{% endfor %}
+{% for parameter in operation.optional_params %}
+{%   set pname = parameter.safe_name %}
+{%   set ptype = parameter.get_parameter_str() %}
+{%   set _ = params.all.append('%s: %s = None' | format(pname, ptype)) %}
+{% endfor %}
+    def {{ operation.nickname }}({{ params.all | join(', ')}}):
         """ {{ operation.summary }}
         """
 

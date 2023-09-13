@@ -28,11 +28,13 @@ class TestFetch(TestCase):
             data=self.session_mock.get.return_value.json.return_value,
             name="pf-admin-api", directory="../pingfedsdk/source/",
         )
-        self.logging_mock.info.assert_called_once_with(
-            "Successfully downloaded Ping Swagger document: "
-            "https://dummy.url/doc"
-        )
-
+        expected_log_calls = [
+            call("Successfully downloaded Ping Swagger document: "
+                 "https://dummy.url/doc"),
+            call("Writing source data to pingfedsdk/source/pf-admin-api.json"),
+        ]
+        self.assertEqual(self.logging_mock.info.call_args_list,
+                         expected_log_calls)
         self.session_mock.get.side_effect = Exception("test exception")
         self.assertRaises(ConnectionError, self.fetch.get_source)
         self.logging_mock.error.assert_called_once_with(

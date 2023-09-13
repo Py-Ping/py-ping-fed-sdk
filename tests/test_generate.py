@@ -114,8 +114,10 @@ class TestGenerate(TestCase):
                     },
                     "imports": {
                         "enums": [("PenguinLabeller", ' as PenguinLabellerEnum')],
+                        "model": ["Model"],
                     },
                     "conflict_suffix": Property.CONFLICT_SUFFIX,
+                    "sorted_required": [],
                 },
                 "Penguin": {
                     "api_references": ["penguins"],
@@ -139,8 +141,9 @@ class TestGenerate(TestCase):
                             "type": "string"
                         }, property_name="soundMade", model_name="Penguin")
                     },
-                    "imports": {},
+                    "imports": {"model": ["Model"]},
                     "conflict_suffix": Property.CONFLICT_SUFFIX,
+                    "sorted_required": [],
                 },
                 "Penguins": {
                     "api_references": ["penguins"],
@@ -155,11 +158,15 @@ class TestGenerate(TestCase):
                             "type": "array"
                         }, property_name="items")
                     },
-                    "imports": {},
+                    "imports": {"models": ["Model"]},
                     "conflict_suffix": Property.CONFLICT_SUFFIX,
+                    "sorted_required": [],
                 }
             }
         }
+        for model in self.fetch_response['models'].values():
+            model['sorted_optional'] = sorted(model['properties'].values(),
+                                              key=lambda p: p.name)
         for api, api_data in self.fetch_response['apis'].items():
             self.fetch_response['apis'][api] = ApiEndpoint(
                 '/test/endpoint', self.fetch_response['apis'][api]['details']

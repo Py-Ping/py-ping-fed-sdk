@@ -20,6 +20,15 @@ class Property:
     # from the model name.
     CONFLICT_SUFFIX = 'Enum'
 
+    # Default position of parameter in parent model's property list. The
+    # property definition may contain a 'position' attribute that specifies its
+    # position relative to other properties of the model. Note that this
+    # position value does not always make sense (for example there are optional
+    # properties that have positions smaller than mandatory properties) and are
+    # not always unique. In case a property does not define its 'position'
+    # attribute we use this value instead.
+    DEFAULT_POSITION = 99999
+
     def __init__(self, raw_property: dict, model_name=None, property_name=None):
         self.raw_property_dict = raw_property
         self.sub_type = None
@@ -30,6 +39,7 @@ class Property:
         self.model_name = model_name
         self.name = property_name
         self.description = None
+        self.position = None
         self._process()
 
     def _process(self):
@@ -41,6 +51,7 @@ class Property:
           - generating the type marshalling string for the `from_dict` method
           - providing more type hint details
         """
+        self.position = self.raw_property_dict.get('position', self.DEFAULT_POSITION)
         type_class = strip_ref(self.raw_property_dict.get("$ref", ""))
 
         self.description = self.raw_property_dict.get(
@@ -251,7 +262,7 @@ class Property:
             if get_py_type(self.json_sub_type[1]) and self.json_sub_type[1] != "void":
                 val_assign = f"{self.sub_type[1]}(y)"
             else:
-                val_assign = f"{self.sub_type[1]}(**y)"
+                val_assign = f"{self.sub_type[1]}.from_dict(y)"
             return f"valid_data[k] = {{{key_assign}: {val_assign} for x, y in v.items()}}"
 
         elif self.type in ("set", "list"):
@@ -282,7 +293,7 @@ class Property:
             elif self.json_sub_type == "Object" or self.json_sub_type == "object":
                 return "valid_data[k] = v"
             else:
-                return f"valid_data[k] = {start_bracket}{self.sub_type}(**x) for x in v{end_bracket}"
+                return f"valid_data[k] = {start_bracket}{self.sub_type}.from_dict(x) for x in v{end_bracket}"
 
         elif self.json_type == "enum":
             if self.type == self.model_name:
@@ -291,7 +302,7 @@ class Property:
                 return f"valid_data[k] = {self.type}[v]"
 
         elif not get_py_type(self.json_type):
-            return f"valid_data[k] = {self.type}(**v)"
+            return f"valid_data[k] = {self.type}.from_dict(v)"
 
         elif self.type == "None":
             return "valid_data[k] = None"

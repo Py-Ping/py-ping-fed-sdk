@@ -188,10 +188,33 @@ class Fetch():
 
                 self.models[model_name] = ground_model_data
 
+    @staticmethod
+    def sort_properties(property_list):
+        # First sort by position
+        by_position = sorted(property_list, key=lambda p: p.position)
+        # Sort properties with same position values alphabetically
+        sorted_props = []
+        curr_group = []
+        curr_position = None
+        for prop in by_position:
+            if prop.position != curr_position:
+                # New group of properties - sort the previous batch
+                sorted_props.extend(sorted(curr_group, key=lambda p: p.name))
+                curr_group = [prop]
+            else:
+                curr_group.append(prop)
+        else:
+            sorted_props.extend(sorted(curr_group, key=lambda p: p.name))
+        return sorted_props
+
     def get_enums_and_imports(self):
         for model_name, details in self.models.items():
-            imports = {"models": set(), "enums": set()}
+            import_models = set()
+            import_enums = set()
             model_props = {}
+            required_props = []
+            optional_props = []
+            required = details.get('required', [])
             for prop_name, prop in details.get("properties", {}).items():
                 if isinstance(prop, dict):
                     model_property = Property(prop, model_name, prop_name)
@@ -204,25 +227,40 @@ class Fetch():
                     if model_property.type == "DataStore" or \
                        model_property.type == "list" and \
                        model_property.sub_type == "DataStore":
-                        imports["models"].add("JdbcDataStore")
-                        imports["models"].add("CustomDataStore")
-                        imports["models"].add("LdapDataStore")
-                        imports["models"].add("DataStore")
+                        import_models.add("JdbcDataStore")
+                        import_models.add("CustomDataStore")
+                        import_models.add("LdapDataStore")
+                        import_models.add("DataStore")
                     if model_import:
-                        imports["models"].add(model_import)
+                        import_models.add(model_import)
                     if enum_import:
-                        imports["enums"].add((enum_import, import_suffix))
+                        import_enums.add((enum_import, import_suffix))
 
                     enums = model_property.get_enums()
                     if enums:
                         enum_name, enum_domain = enums
                         self.enums[enum_name] = enum_domain
 
-                model_props[prop_name] = model_property
-
+                    model_props[prop_name] = model_property
+                else:
+                    # TODO: Should define custom exceptions!
+                    raise Exception(f"Invalid property definition "
+                                    f"for:{prop_name}: {prop}")
+                if prop_name in required:
+                    required_props.append(model_property)
+                else:
+                    optional_props.append(model_property)
             details["properties"] = model_props
-            details["imports"] = imports
+            details["imports"] = {
+                # keep keys in sorted order so that the imports are generated
+                # in alphabetical order
+                "enums": sorted(list(import_enums)),
+                "model": ["Model"],  # always import the pingfed.model.Model
+                "models": sorted(list(import_models)),
+            }
             details["conflict_suffix"] = Property.CONFLICT_SUFFIX
+            details["sorted_required"] = self.sort_properties(required_props)
+            details["sorted_optional"] = self.sort_properties(optional_props)
 
             self.models[model_name] = details
 

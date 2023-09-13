@@ -6,39 +6,42 @@
  # this module
  #}
 {% macro local_name(obj_name) %}
-{%   if obj_name == class_name %}{{ obj_name }}{{ details['conflict_suffix'] }}{% else %}{{ obj_name }}{% endif %}
+{%   if obj_name == class_name %}{{ obj_name }}{{ details.conflict_suffix }}{% else %}{{ obj_name }}{% endif %}
 {% endmacro -%}
 
-from pingfedsdk.model import Model
 from enum import Enum
+
 {% for folder, imports in details.get('imports').items() %}
-{%   for imp in imports %}
-{%     if folder == 'models' %}
-from pingfedsdk.{{ folder }}.{{ safe_module_name(imp) }} import {{ imp }}
-{%     endif %}
-{%     if folder == 'enums' %}
+{%   if folder == 'enums' %}
+{%     for imp in imports %}
 {%       set enum_name = imp[0] %}
 {%       set suffix = imp[1] %}
 from pingfedsdk.{{ folder }} import {{ enum_name }}{{ suffix }}
-{%     endif %}
-{%   endfor %}
+{%     endfor %}
+{%   elif folder == 'models' %}
+{%     for imp in imports %}
+from pingfedsdk.{{ folder }}.{{ safe_module_name(imp) }} import {{ imp }}
+{%     endfor %}
+{%   else %}
+{%     for imp in imports %}
+from pingfedsdk.{{ folder }} import {{ imp }}
+{%     endfor %}
+{%   endif %}
 {% endfor %}
 
 
 {# Build parameter declaration lists for the __init__ method #}
-{% set required = details.get('required', []) %}
-{% set params = namespace(required=[], optional=[], all=['self']) %}
-{% for property, attributes in details.get('properties', {}).items() %}
-{%   set pname = safe_name(property) %}
-{%   set ptype = local_name(attributes.type) %}
-{%   if property in required %}
-{%     set _ = params.required.append('%s: %s' | format(pname, ptype)) %}
-{%   else %}
-{%     set _ = params.optional.append('%s: %s = None' | format(pname, ptype)) %}
-{%   endif %}
+{% set params = namespace(all=['self']) %}
+{% for property in details.sorted_required %}
+{%   set pname = safe_name(property.name) %}
+{%   set ptype = local_name(property.type) %}
+{%   set _ = params.all.append('%s: %s' | format(pname, ptype)) %}
 {% endfor %}
-{% set _ = params.all.extend(params.required) %}
-{% set _ = params.all.extend(params.optional) -%}
+{% for property in details.sorted_optional %}
+{%   set pname = safe_name(property.name) %}
+{%   set ptype = local_name(property.type) %}
+{%   set _ = params.all.append('%s: %s = None' | format(pname, ptype)) %}
+{% endfor -%}
 
 
 class {{ class_name }}(Model):
@@ -61,7 +64,7 @@ class {{ class_name }}(Model):
 {% endfor %}
 
     def _validate(self) -> bool:
-        return any(x for x in [{% for property in required %}"{{ property }}"{% if not loop.last %}, {% endif %}{% endfor %}] if self.__dict__[x] is not None)
+        return any(x for x in [{{ details.get('required', []) | map('tojson') | join(', ') }}] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, {{ class_name }}):

@@ -19,7 +19,7 @@ class ApiEndpoint:
         self.safe_api_path = safe_name(api_path)
         self.path = api_path
         self.response_codes = set()
-        self.imports = set()
+        self._imports = set()
         self.operations = []
         if v11:
             self._process_v11()
@@ -41,8 +41,8 @@ class ApiEndpoint:
             for param in rest_data["parameters"]:
                 param_obj = Parameter(param)
                 params.append(param_obj)
-                if not param_obj.is_primitive_type and param_obj.type not in self.imports:
-                    self.imports.add(param_obj.type)
+                if not param_obj.is_primitive_type:
+                    self._imports.add(param_obj.type)
 
             op_response_codes = []
             op_type = None
@@ -62,8 +62,8 @@ class ApiEndpoint:
                 if response_code not in self.response_codes:
                     self.response_codes.add(response_code)
 
-                if "type" in op_code and not get_py_type(op_code["type"]) and op_code["type"] not in self.imports:
-                    self.imports.add(op_code["type"])
+                if "type" in op_code and not get_py_type(op_code["type"]):
+                    self._imports.add(op_code["type"])
 
             if "summary" not in rest_data:
                 rest_data['summary'] = ''
@@ -82,8 +82,8 @@ class ApiEndpoint:
                 for param in op["parameters"]:
                     param_obj = Parameter(param)
                     params.append(param_obj)
-                    if not param_obj.is_primitive_type and param_obj.type not in self.imports:
-                        self.imports.add(param_obj.type)
+                    if not param_obj.is_primitive_type:
+                        self._imports.add(param_obj.type)
 
                 op_response_codes = []
                 for response_code in op["responseMessages"]:
@@ -92,8 +92,8 @@ class ApiEndpoint:
                     if response_code["code"] not in self.response_codes:
                         self.response_codes.add(response_code["code"])
 
-                if not get_py_type(op["type"]) and op["type"] not in self.imports:
-                    self.imports.add(op["type"])
+                if not get_py_type(op["type"]):
+                    self._imports.add(op["type"])
 
                 self.operations.append(
                     Operation(
@@ -102,18 +102,20 @@ class ApiEndpoint:
                         data["path"], op.get("produces", []))
                 )
 
-    def get_exception_imports(self):
-        exception_import_block = ""
+    @property
+    def imports(self):
+        return sorted(list(self._imports))
+
+    @property
+    def exception_imports(self):
+        exception_types = set()
         for response_code in self.response_codes:
             if self.get_exception_by_code(response_code) and response_code not in (204, 403):
-                if exception_import_block:
-                    exception_import_block += "\n"
                 exception_type = self.get_exception_by_code(response_code)
-                exception_import_block += f"from pingfedsdk.exceptions import {exception_type}"
-
+                exception_types.add(exception_type)
         if 'ApiResult' not in self.imports and 422 in self.response_codes:
-            exception_import_block += "\nfrom pingfedsdk.models.api_result import ApiResult as ModelApiResult"
-        return exception_import_block
+            self._imports.add('ApiResult')
+        return sorted(list(exception_types))
 
     def get_exception_by_code(self, http_response_code):
         http_response_code = int(http_response_code)
@@ -139,6 +141,10 @@ class Operation:
     the type of return value etc.
     """
 
+    @staticmethod
+    def sort_params(param_list):
+        return sorted(param_list, key=lambda p: p.safe_name)
+
     def __init__(self, parameters=[], response_codes=[], op_type=None, nickname='',
                  summary='', method='', api_path='', produces=[]):
         self.parameters = parameters
@@ -155,6 +161,8 @@ class Operation:
         self.method = method
         self.api_path = api_path
         self.produces = produces
+        self.required_params = self.sort_params([p for p in parameters if p.required])
+        self.optional_params = self.sort_params([p for p in parameters if not p.required])
 
     def get_response_str(self, code=None):
 
