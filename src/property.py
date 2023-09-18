@@ -134,10 +134,29 @@ class Property:
                 self.json_sub_type = items["type"]
 
         elif "type" in self.raw_property_dict:
-            self.json_type = self.raw_property_dict["type"]
-            self.type = self.raw_property_dict["type"]
-            if get_py_type(self.raw_property_dict["type"]):
-                self.type = get_py_type(self.raw_property_dict["type"])
+            if self.raw_property_dict['type'] == 'object':
+                # Swagger 2.0 does not have a "Map" type anymore. Instead it
+                # defines maps to be of type "object" and assumes the keys of
+                # the object can only be strings. The type of the values is
+                # given by the "additionalProperties" attribute of the property
+                # definition.
+                self.json_type = "object"
+                self.type = "dict"
+                key_label = get_py_type("string")
+                value_props = self.raw_property_dict['additionalProperties']
+                try:
+                    value_label = strip_ref(value_props['$ref'])
+                except KeyError:
+                    value_label = value_props['type']
+                self.json_sub_type = ("string", value_label)
+                if get_py_type(value_label):
+                    value_label = get_py_type(value_label)
+                self.sub_type = key_label, value_label
+            else:
+                self.json_type = self.raw_property_dict["type"]
+                self.type = self.raw_property_dict["type"]
+                if get_py_type(self.raw_property_dict["type"]):
+                    self.type = get_py_type(self.raw_property_dict["type"])
 
         elif "$ref" in self.raw_property_dict and not get_py_type(self.raw_property_dict["$ref"]):
             self.json_type = strip_ref(self.raw_property_dict["$ref"])
