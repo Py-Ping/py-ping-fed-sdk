@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -39,7 +40,6 @@ class OcspSettings(Model):
         Action on unsuccessful response. This value defaults to  "FAIL".
 
     """
-
     def __init__(self, requesterAddNonce: bool = None, responderUrl: str = None, responderCertReference: ResourceLink = None, currentUpdateGracePeriod: int = None, nextUpdateGracePeriod: int = None, responseCachePeriod: int = None, responderTimeout: int = None, actionOnResponderUnavailable: str = None, actionOnStatusUnknown: str = None, actionOnUnsuccessfulResponse: str = None) -> None:
         self.requesterAddNonce = requesterAddNonce
         self.responderUrl = responderUrl
@@ -73,7 +73,7 @@ class OcspSettings(Model):
                 if k == "responderUrl":
                     valid_data[k] = str(v)
                 if k == "responderCertReference":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "currentUpdateGracePeriod":
                     valid_data[k] = int(v)
                 if k == "nextUpdateGracePeriod":

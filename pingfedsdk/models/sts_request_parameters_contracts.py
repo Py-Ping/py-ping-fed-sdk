@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.sts_request_parameters_contract import StsRequestParametersContract
 
 
@@ -12,7 +13,6 @@ class StsRequestParametersContracts(Model):
         The actual list of STS Request Parameters Contracts.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class StsRequestParametersContracts(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [StsRequestParametersContract(**x) for x in v]
+                    valid_data[k] = [StsRequestParametersContract.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

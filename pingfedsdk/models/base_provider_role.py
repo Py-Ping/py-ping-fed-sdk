@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class BaseProviderRole(Model):
@@ -21,8 +22,7 @@ class BaseProviderRole(Model):
         Enable WS Trust.
 
     """
-
-    def __init__(self, enable: bool = None, enableSaml11: bool = None, enableSaml10: bool = None, enableWsFed: bool = None, enableWsTrust: bool = None) -> None:
+    def __init__(self, enableSaml11: bool = None, enableSaml10: bool = None, enableWsFed: bool = None, enableWsTrust: bool = None, enable: bool = None) -> None:
         self.enable = enable
         self.enableSaml11 = enableSaml11
         self.enableSaml10 = enableSaml10

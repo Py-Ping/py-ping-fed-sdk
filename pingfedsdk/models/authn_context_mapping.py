@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AuthnContextMapping(Model):
@@ -14,7 +15,6 @@ class AuthnContextMapping(Model):
         The remote authentication context value.
 
     """
-
     def __init__(self, local: str = None, remote: str = None) -> None:
         self.local = local
         self.remote = remote

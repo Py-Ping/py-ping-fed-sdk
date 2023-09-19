@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class Entity(Model):
@@ -14,7 +15,6 @@ class Entity(Model):
         Entity description.
 
     """
-
     def __init__(self, entityId: str = None, entityDescription: str = None) -> None:
         self.entityId = entityId
         self.entityDescription = entityDescription

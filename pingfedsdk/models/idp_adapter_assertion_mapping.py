@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_source import AttributeSource
-from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 from pingfedsdk.models.idp_adapter import IdpAdapter
+from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class IdpAdapterAssertionMapping(Model):
@@ -37,8 +38,7 @@ class IdpAdapterAssertionMapping(Model):
         The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
 
     """
-
-    def __init__(self, attributeContractFulfillment: object, idpAdapterRef: ResourceLink, restrictVirtualEntityIds: bool = None, restrictedVirtualEntityIds: list = None, adapterOverrideSettings: IdpAdapter = None, abortSsoTransactionAsFailSafe: bool = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
+    def __init__(self, idpAdapterRef: ResourceLink, attributeContractFulfillment: object, restrictVirtualEntityIds: bool = None, restrictedVirtualEntityIds: list = None, adapterOverrideSettings: IdpAdapter = None, abortSsoTransactionAsFailSafe: bool = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
         self.idpAdapterRef = idpAdapterRef
         self.restrictVirtualEntityIds = restrictVirtualEntityIds
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
@@ -65,21 +65,21 @@ class IdpAdapterAssertionMapping(Model):
         for k, v in python_dict.items():
             if k in ["idpAdapterRef", "restrictVirtualEntityIds", "restrictedVirtualEntityIds", "adapterOverrideSettings", "abortSsoTransactionAsFailSafe", "attributeSources", "attributeContractFulfillment", "issuanceCriteria"] and v is not None:
                 if k == "idpAdapterRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "restrictVirtualEntityIds":
                     valid_data[k] = bool(v)
                 if k == "restrictedVirtualEntityIds":
                     valid_data[k] = [str(x) for x in v]
                 if k == "adapterOverrideSettings":
-                    valid_data[k] = IdpAdapter(**v)
+                    valid_data[k] = IdpAdapter.from_dict(v)
                 if k == "abortSsoTransactionAsFailSafe":
                     valid_data[k] = bool(v)
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
 
         return cls(**valid_data)
 

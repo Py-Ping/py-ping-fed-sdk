@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.config_table import ConfigTable
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.config_field import ConfigField
+from pingfedsdk.models.config_table import ConfigTable
 
 
 class PluginConfiguration(Model):
@@ -16,7 +17,6 @@ class PluginConfiguration(Model):
         List of configuration fields.
 
     """
-
     def __init__(self, tables: list = None, fields: list = None) -> None:
         self.tables = tables
         self.fields = fields
@@ -38,9 +38,9 @@ class PluginConfiguration(Model):
         for k, v in python_dict.items():
             if k in ["tables", "fields"] and v is not None:
                 if k == "tables":
-                    valid_data[k] = [ConfigTable(**x) for x in v]
+                    valid_data[k] = [ConfigTable.from_dict(x) for x in v]
                 if k == "fields":
-                    valid_data[k] = [ConfigField(**x) for x in v]
+                    valid_data[k] = [ConfigField.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

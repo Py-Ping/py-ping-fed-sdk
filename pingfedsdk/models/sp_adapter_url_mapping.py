@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -15,7 +16,6 @@ class SpAdapterUrlMapping(Model):
         The adapter instance mapped for this URL.
 
     """
-
     def __init__(self, url: str = None, adapterRef: ResourceLink = None) -> None:
         self.url = url
         self.adapterRef = adapterRef
@@ -39,7 +39,7 @@ class SpAdapterUrlMapping(Model):
                 if k == "url":
                     valid_data[k] = str(v)
                 if k == "adapterRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

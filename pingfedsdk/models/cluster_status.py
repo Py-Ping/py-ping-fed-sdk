@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.cluster_node import ClusterNode
 
 
@@ -24,7 +25,6 @@ class ClusterStatus(Model):
         Indicates whether there is more than one version of PingFederate in the cluster.
 
     """
-
     def __init__(self, nodes: list = None, lastConfigUpdateTime: str = None, lastReplicationTime: str = None, replicationRequired: bool = None, mixedMode: bool = None) -> None:
         self.nodes = nodes
         self.lastConfigUpdateTime = lastConfigUpdateTime
@@ -49,7 +49,7 @@ class ClusterStatus(Model):
         for k, v in python_dict.items():
             if k in ["nodes", "lastConfigUpdateTime", "lastReplicationTime", "replicationRequired", "mixedMode"] and v is not None:
                 if k == "nodes":
-                    valid_data[k] = [ClusterNode(**x) for x in v]
+                    valid_data[k] = [ClusterNode.from_dict(x) for x in v]
                 if k == "lastConfigUpdateTime":
                     valid_data[k] = str(v)
                 if k == "lastReplicationTime":

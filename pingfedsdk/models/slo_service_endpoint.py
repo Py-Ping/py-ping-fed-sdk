@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import Binding
+from pingfedsdk.model import Model
 
 
 class SloServiceEndpoint(Model):
@@ -18,7 +19,6 @@ class SloServiceEndpoint(Model):
         The absolute or relative URL to which logout responses are sent. A relative URL can be specified if a base URL for the connection has been defined.
 
     """
-
     def __init__(self, binding: Binding, url: str, responseUrl: str = None) -> None:
         self.binding = binding
         self.url = url

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SpBrowserSsoAttribute(Model):
@@ -14,7 +15,6 @@ class SpBrowserSsoAttribute(Model):
         The SAML Name Format for the attribute.
 
     """
-
     def __init__(self, name: str, nameFormat: str) -> None:
         self.name = name
         self.nameFormat = nameFormat

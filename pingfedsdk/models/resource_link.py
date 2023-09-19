@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ResourceLink(Model):
@@ -14,7 +15,6 @@ class ResourceLink(Model):
         A read-only URL that references the resource. If the resource is not currently URL-accessible, this property will be null.
 
     """
-
     def __init__(self, id: str, location: str = None) -> None:
         self.id = id
         self.location = location

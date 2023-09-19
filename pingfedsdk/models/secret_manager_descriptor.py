@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.plugin_config_descriptor import PluginConfigDescriptor
 
 
@@ -27,7 +28,6 @@ class SecretManagerDescriptor(Model):
         The descriptor which defines the configuration fields available for this plugin.
 
     """
-
     def __init__(self, id: str = None, name: str = None, className: str = None, attributeContract: list = None, supportsExtendedContract: bool = None, configDescriptor: PluginConfigDescriptor = None) -> None:
         self.id = id
         self.name = name
@@ -63,7 +63,7 @@ class SecretManagerDescriptor(Model):
                 if k == "supportsExtendedContract":
                     valid_data[k] = bool(v)
                 if k == "configDescriptor":
-                    valid_data[k] = PluginConfigDescriptor(**v)
+                    valid_data[k] = PluginConfigDescriptor.from_dict(v)
 
         return cls(**valid_data)
 

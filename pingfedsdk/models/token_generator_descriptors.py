@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.token_generator_descriptor import TokenGeneratorDescriptor
 
 
@@ -12,7 +13,6 @@ class TokenGeneratorDescriptors(Model):
         The list of token generator descriptors.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class TokenGeneratorDescriptors(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [TokenGeneratorDescriptor(**x) for x in v]
+                    valid_data[k] = [TokenGeneratorDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

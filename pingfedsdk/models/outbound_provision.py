@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.channel import Channel
 from pingfedsdk.models.config_field import ConfigField
 from pingfedsdk.models.schema import Schema
@@ -23,8 +24,7 @@ class OutboundProvision(Model):
         Includes settings of a source data store, managing provisioning threads and mapping of attributes.
 
     """
-
-    def __init__(self, channels: list, targetSettings: list, type: str, customSchema: Schema = None) -> None:
+    def __init__(self, type: str, targetSettings: list, channels: list, customSchema: Schema = None) -> None:
         self.type = type
         self.targetSettings = targetSettings
         self.customSchema = customSchema
@@ -49,11 +49,11 @@ class OutboundProvision(Model):
                 if k == "type":
                     valid_data[k] = str(v)
                 if k == "targetSettings":
-                    valid_data[k] = [ConfigField(**x) for x in v]
+                    valid_data[k] = [ConfigField.from_dict(x) for x in v]
                 if k == "customSchema":
-                    valid_data[k] = Schema(**v)
+                    valid_data[k] = Schema.from_dict(v)
                 if k == "channels":
-                    valid_data[k] = [Channel(**x) for x in v]
+                    valid_data[k] = [Channel.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

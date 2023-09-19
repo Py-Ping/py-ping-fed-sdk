@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class IdpDefaultUrl(Model):
@@ -17,7 +18,6 @@ class IdpDefaultUrl(Model):
         Provide the error text displayed in a user's browser when an SSO operation fails.
 
     """
-
     def __init__(self, idpErrorMsg: str, confirmIdpSlo: bool = None, idpSloSuccessUrl: str = None) -> None:
         self.confirmIdpSlo = confirmIdpSlo
         self.idpSloSuccessUrl = idpSloSuccessUrl

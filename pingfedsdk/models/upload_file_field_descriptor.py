@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import FieldDescriptor
+
+from pingfedsdk.enums import UploadFileFieldDescriptorType
+from pingfedsdk.model import Model
 
 
 class UploadFileFieldDescriptor(Model):
@@ -8,7 +9,7 @@ class UploadFileFieldDescriptor(Model):
 
     Attributes
     ----------
-    type: FieldDescriptor
+    type: UploadFileFieldDescriptorType
         The type of field descriptor.
 
     name: str
@@ -30,8 +31,7 @@ class UploadFileFieldDescriptor(Model):
         Label of the field to be displayed in the administrative console.
 
     """
-
-    def __init__(self, type: FieldDescriptor = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None) -> None:
+    def __init__(self, type: UploadFileFieldDescriptorType = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None) -> None:
         self.type = type
         self.name = name
         self.description = description
@@ -57,7 +57,7 @@ class UploadFileFieldDescriptor(Model):
         for k, v in python_dict.items():
             if k in ["type", "name", "description", "defaultValue", "advanced", "required", "label"] and v is not None:
                 if k == "type":
-                    valid_data[k] = FieldDescriptor[v]
+                    valid_data[k] = UploadFileFieldDescriptorType[v]
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "description":

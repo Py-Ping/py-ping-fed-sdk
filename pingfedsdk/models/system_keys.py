@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.system_key import SystemKey
 
 
@@ -18,7 +19,6 @@ class SystemKeys(Model):
         The next secret.
 
     """
-
     def __init__(self, current: SystemKey, pending: SystemKey, previous: SystemKey = None) -> None:
         self.current = current
         self.previous = previous
@@ -41,11 +41,11 @@ class SystemKeys(Model):
         for k, v in python_dict.items():
             if k in ["current", "previous", "pending"] and v is not None:
                 if k == "current":
-                    valid_data[k] = SystemKey(**v)
+                    valid_data[k] = SystemKey.from_dict(v)
                 if k == "previous":
-                    valid_data[k] = SystemKey(**v)
+                    valid_data[k] = SystemKey.from_dict(v)
                 if k == "pending":
-                    valid_data[k] = SystemKey(**v)
+                    valid_data[k] = SystemKey.from_dict(v)
 
         return cls(**valid_data)
 

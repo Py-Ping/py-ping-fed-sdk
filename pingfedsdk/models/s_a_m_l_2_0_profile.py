@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SAML20Profile(Model):
@@ -14,7 +15,6 @@ class SAML20Profile(Model):
         This property has been deprecated and no longer used
 
     """
-
     def __init__(self, enable: bool = None, enableAutoConnect: bool = None) -> None:
         self.enable = enable
         self.enableAutoConnect = enableAutoConnect

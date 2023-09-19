@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SchemaAttribute(Model):
@@ -20,7 +21,6 @@ class SchemaAttribute(Model):
         List of sub-attributes for an attribute.
 
     """
-
     def __init__(self, name: str = None, multiValued: bool = None, types: list = None, subAttributes: list = None) -> None:
         self.name = name
         self.multiValued = multiValued

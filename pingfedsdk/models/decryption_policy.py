@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class DecryptionPolicy(Model):
@@ -23,7 +24,6 @@ class DecryptionPolicy(Model):
         Allow encrypted Subject Name ID in SLO messages from the IdP.
 
     """
-
     def __init__(self, assertionEncrypted: bool = None, attributesEncrypted: bool = None, subjectNameIdEncrypted: bool = None, sloEncryptSubjectNameID: bool = None, sloSubjectNameIDEncrypted: bool = None) -> None:
         self.assertionEncrypted = assertionEncrypted
         self.attributesEncrypted = attributesEncrypted

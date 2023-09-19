@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.token_processor_attribute import TokenProcessorAttribute
 
 
@@ -21,7 +22,6 @@ class TokenProcessorAttributeContract(Model):
         Whether this attribute contract is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
 
     """
-
     def __init__(self, coreAttributes: list, extendedAttributes: list = None, maskOgnlValues: bool = None, inherited: bool = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -45,9 +45,9 @@ class TokenProcessorAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes", "maskOgnlValues", "inherited"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [TokenProcessorAttribute(**x) for x in v]
+                    valid_data[k] = [TokenProcessorAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [TokenProcessorAttribute(**x) for x in v]
+                    valid_data[k] = [TokenProcessorAttribute.from_dict(x) for x in v]
                 if k == "maskOgnlValues":
                     valid_data[k] = bool(v)
                 if k == "inherited":

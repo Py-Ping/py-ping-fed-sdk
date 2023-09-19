@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SaasPluginFieldOption(Model):
@@ -14,7 +15,6 @@ class SaasPluginFieldOption(Model):
         The label for the field.
 
     """
-
     def __init__(self, code: str, label: str) -> None:
         self.code = code
         self.label = label

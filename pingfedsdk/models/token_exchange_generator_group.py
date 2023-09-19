@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.token_exchange_generator_mapping import TokenExchangeGeneratorMapping
 
 
@@ -21,8 +22,7 @@ class TokenExchangeGeneratorGroup(Model):
         A list of Token Generator mapping into an OAuth 2.0 Token Exchange requested token type.
 
     """
-
-    def __init__(self, generatorMappings: list, id: str, name: str, resourceUris: list = None) -> None:
+    def __init__(self, id: str, name: str, generatorMappings: list, resourceUris: list = None) -> None:
         self.id = id
         self.name = name
         self.resourceUris = resourceUris
@@ -51,7 +51,7 @@ class TokenExchangeGeneratorGroup(Model):
                 if k == "resourceUris":
                     valid_data[k] = [str(x) for x in v]
                 if k == "generatorMappings":
-                    valid_data[k] = [TokenExchangeGeneratorMapping(**x) for x in v]
+                    valid_data[k] = [TokenExchangeGeneratorMapping.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

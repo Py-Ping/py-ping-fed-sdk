@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.connection import Connection
+
 from pingfedsdk.enums import CertTrustStatus
 from pingfedsdk.enums import SignatureStatus
+from pingfedsdk.model import Model
+from pingfedsdk.models.connection import Connection
 
 
 class ConvertMetadataResponse(Model):
@@ -29,7 +30,6 @@ class ConvertMetadataResponse(Model):
         The converted API connection.
 
     """
-
     def __init__(self, signatureStatus: SignatureStatus = None, certTrustStatus: CertTrustStatus = None, certSubjectDn: str = None, certSerialNumber: str = None, certExpiration: str = None, connection: Connection = None) -> None:
         self.signatureStatus = signatureStatus
         self.certTrustStatus = certTrustStatus
@@ -65,7 +65,7 @@ class ConvertMetadataResponse(Model):
                 if k == "certExpiration":
                     valid_data[k] = str(v)
                 if k == "connection":
-                    valid_data[k] = Connection(**v)
+                    valid_data[k] = Connection.from_dict(v)
 
         return cls(**valid_data)
 

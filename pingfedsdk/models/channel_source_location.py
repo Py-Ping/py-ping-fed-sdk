@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ChannelSourceLocation(Model):
@@ -17,7 +18,6 @@ class ChannelSourceLocation(Model):
         Indicates whether the search is nested.
 
     """
-
     def __init__(self, groupDN: str = None, filter: str = None, nestedSearch: bool = None) -> None:
         self.groupDN = groupDN
         self.filter = filter

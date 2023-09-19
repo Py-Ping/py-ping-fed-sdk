@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ClientMetadata(Model):
@@ -17,7 +18,6 @@ class ClientMetadata(Model):
         If the field should allow multiple values.
 
     """
-
     def __init__(self, parameter: str = None, description: str = None, multiValued: bool = None) -> None:
         self.parameter = parameter
         self.description = description

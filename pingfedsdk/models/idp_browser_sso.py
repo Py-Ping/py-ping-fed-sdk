@@ -1,21 +1,22 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.authn_context_mapping import AuthnContextMapping
-from pingfedsdk.models.idp_sso_service_endpoint import IdpSsoServiceEndpoint
-from pingfedsdk.models.sso_o_auth_mapping import SsoOAuthMapping
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.idp_browser_sso_attribute_contract import IdpBrowserSsoAttributeContract
-from pingfedsdk.models.authentication_policy_contract_mapping import AuthenticationPolicyContractMapping
-from pingfedsdk.models.o_i_d_c_provider_settings import OIDCProviderSettings
-from pingfedsdk.models.artifact_settings import ArtifactSettings
-from pingfedsdk.models.jit_provisioning import JitProvisioning
-from pingfedsdk.models.protocol_message_customization import ProtocolMessageCustomization
-from pingfedsdk.models.sp_adapter_mapping import SpAdapterMapping
-from pingfedsdk.models.slo_service_endpoint import SloServiceEndpoint
-from pingfedsdk.models.url_whitelist_entry import UrlWhitelistEntry
-from pingfedsdk.models.decryption_policy import DecryptionPolicy
-from pingfedsdk.enums import Protocol
+
 from pingfedsdk.enums import IdpIdentityMapping
+from pingfedsdk.enums import Protocol
+from pingfedsdk.model import Model
+from pingfedsdk.models.artifact_settings import ArtifactSettings
+from pingfedsdk.models.authentication_policy_contract_mapping import AuthenticationPolicyContractMapping
+from pingfedsdk.models.authn_context_mapping import AuthnContextMapping
+from pingfedsdk.models.decryption_policy import DecryptionPolicy
+from pingfedsdk.models.idp_browser_sso_attribute_contract import IdpBrowserSsoAttributeContract
+from pingfedsdk.models.idp_sso_service_endpoint import IdpSsoServiceEndpoint
+from pingfedsdk.models.jit_provisioning import JitProvisioning
+from pingfedsdk.models.o_i_d_c_provider_settings import OIDCProviderSettings
+from pingfedsdk.models.protocol_message_customization import ProtocolMessageCustomization
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.slo_service_endpoint import SloServiceEndpoint
+from pingfedsdk.models.sp_adapter_mapping import SpAdapterMapping
+from pingfedsdk.models.sso_o_auth_mapping import SsoOAuthMapping
+from pingfedsdk.models.url_whitelist_entry import UrlWhitelistEntry
 
 
 class IdpBrowserSso(Model):
@@ -90,8 +91,7 @@ class IdpBrowserSso(Model):
         JIT Provisioning of user accounts.
 
     """
-
-    def __init__(self, idpIdentityMapping: IdpIdentityMapping, protocol: Protocol, oidcProviderSettings: OIDCProviderSettings = None, enabledProfiles: list = None, incomingBindings: list = None, messageCustomizations: list = None, urlWhitelistEntries: list = None, artifact: ArtifactSettings = None, sloServiceEndpoints: list = None, alwaysSignArtifactResponse: bool = None, ssoServiceEndpoints: list = None, defaultTargetUrl: str = None, authnContextMappings: list = None, assertionsSigned: bool = None, signAuthnRequests: bool = None, decryptionPolicy: DecryptionPolicy = None, attributeContract: IdpBrowserSsoAttributeContract = None, adapterMappings: list = None, authenticationPolicyContractMappings: list = None, ssoOAuthMapping: SsoOAuthMapping = None, oauthAuthenticationPolicyContractRef: ResourceLink = None, jitProvisioning: JitProvisioning = None) -> None:
+    def __init__(self, protocol: Protocol, idpIdentityMapping: IdpIdentityMapping, oidcProviderSettings: OIDCProviderSettings = None, enabledProfiles: list = None, incomingBindings: list = None, messageCustomizations: list = None, urlWhitelistEntries: list = None, artifact: ArtifactSettings = None, sloServiceEndpoints: list = None, alwaysSignArtifactResponse: bool = None, ssoServiceEndpoints: list = None, defaultTargetUrl: str = None, authnContextMappings: list = None, assertionsSigned: bool = None, signAuthnRequests: bool = None, decryptionPolicy: DecryptionPolicy = None, attributeContract: IdpBrowserSsoAttributeContract = None, adapterMappings: list = None, authenticationPolicyContractMappings: list = None, ssoOAuthMapping: SsoOAuthMapping = None, oauthAuthenticationPolicyContractRef: ResourceLink = None, jitProvisioning: JitProvisioning = None) -> None:
         self.protocol = protocol
         self.oidcProviderSettings = oidcProviderSettings
         self.enabledProfiles = enabledProfiles
@@ -134,47 +134,47 @@ class IdpBrowserSso(Model):
                 if k == "protocol":
                     valid_data[k] = Protocol[v]
                 if k == "oidcProviderSettings":
-                    valid_data[k] = OIDCProviderSettings(**v)
+                    valid_data[k] = OIDCProviderSettings.from_dict(v)
                 if k == "enabledProfiles":
                     valid_data[k] = [str(x) for x in v]
                 if k == "incomingBindings":
                     valid_data[k] = [str(x) for x in v]
                 if k == "messageCustomizations":
-                    valid_data[k] = [ProtocolMessageCustomization(**x) for x in v]
+                    valid_data[k] = [ProtocolMessageCustomization.from_dict(x) for x in v]
                 if k == "urlWhitelistEntries":
-                    valid_data[k] = [UrlWhitelistEntry(**x) for x in v]
+                    valid_data[k] = [UrlWhitelistEntry.from_dict(x) for x in v]
                 if k == "artifact":
-                    valid_data[k] = ArtifactSettings(**v)
+                    valid_data[k] = ArtifactSettings.from_dict(v)
                 if k == "sloServiceEndpoints":
-                    valid_data[k] = [SloServiceEndpoint(**x) for x in v]
+                    valid_data[k] = [SloServiceEndpoint.from_dict(x) for x in v]
                 if k == "alwaysSignArtifactResponse":
                     valid_data[k] = bool(v)
                 if k == "ssoServiceEndpoints":
-                    valid_data[k] = [IdpSsoServiceEndpoint(**x) for x in v]
+                    valid_data[k] = [IdpSsoServiceEndpoint.from_dict(x) for x in v]
                 if k == "defaultTargetUrl":
                     valid_data[k] = str(v)
                 if k == "authnContextMappings":
-                    valid_data[k] = [AuthnContextMapping(**x) for x in v]
+                    valid_data[k] = [AuthnContextMapping.from_dict(x) for x in v]
                 if k == "assertionsSigned":
                     valid_data[k] = bool(v)
                 if k == "signAuthnRequests":
                     valid_data[k] = bool(v)
                 if k == "decryptionPolicy":
-                    valid_data[k] = DecryptionPolicy(**v)
+                    valid_data[k] = DecryptionPolicy.from_dict(v)
                 if k == "idpIdentityMapping":
                     valid_data[k] = IdpIdentityMapping[v]
                 if k == "attributeContract":
-                    valid_data[k] = IdpBrowserSsoAttributeContract(**v)
+                    valid_data[k] = IdpBrowserSsoAttributeContract.from_dict(v)
                 if k == "adapterMappings":
-                    valid_data[k] = [SpAdapterMapping(**x) for x in v]
+                    valid_data[k] = [SpAdapterMapping.from_dict(x) for x in v]
                 if k == "authenticationPolicyContractMappings":
-                    valid_data[k] = [AuthenticationPolicyContractMapping(**x) for x in v]
+                    valid_data[k] = [AuthenticationPolicyContractMapping.from_dict(x) for x in v]
                 if k == "ssoOAuthMapping":
-                    valid_data[k] = SsoOAuthMapping(**v)
+                    valid_data[k] = SsoOAuthMapping.from_dict(v)
                 if k == "oauthAuthenticationPolicyContractRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "jitProvisioning":
-                    valid_data[k] = JitProvisioning(**v)
+                    valid_data[k] = JitProvisioning.from_dict(v)
 
         return cls(**valid_data)
 

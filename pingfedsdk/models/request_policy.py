@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.alternative_login_hint_token_issuer import AlternativeLoginHintTokenIssuer
 from pingfedsdk.models.attribute_mapping import AttributeMapping
 from pingfedsdk.models.identity_hint_contract import IdentityHintContract
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class RequestPolicy(Model):
@@ -45,8 +46,7 @@ class RequestPolicy(Model):
         Identity hint contract to request policy mapping.
 
     """
-
-    def __init__(self, authenticatorRef: ResourceLink, id: str, identityHintContract: IdentityHintContract, name: str, userCodePcvRef: ResourceLink = None, transactionLifetime: int = None, allowUnsignedLoginHintToken: bool = None, requireTokenForIdentityHint: bool = None, alternativeLoginHintTokenIssuers: list = None, identityHintContractFulfillment: AttributeMapping = None, identityHintMapping: AttributeMapping = None) -> None:
+    def __init__(self, id: str, name: str, authenticatorRef: ResourceLink, identityHintContract: IdentityHintContract, userCodePcvRef: ResourceLink = None, transactionLifetime: int = None, allowUnsignedLoginHintToken: bool = None, requireTokenForIdentityHint: bool = None, alternativeLoginHintTokenIssuers: list = None, identityHintContractFulfillment: AttributeMapping = None, identityHintMapping: AttributeMapping = None) -> None:
         self.id = id
         self.name = name
         self.authenticatorRef = authenticatorRef
@@ -80,9 +80,9 @@ class RequestPolicy(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "authenticatorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "userCodePcvRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "transactionLifetime":
                     valid_data[k] = int(v)
                 if k == "allowUnsignedLoginHintToken":
@@ -90,13 +90,13 @@ class RequestPolicy(Model):
                 if k == "requireTokenForIdentityHint":
                     valid_data[k] = bool(v)
                 if k == "alternativeLoginHintTokenIssuers":
-                    valid_data[k] = [AlternativeLoginHintTokenIssuer(**x) for x in v]
+                    valid_data[k] = [AlternativeLoginHintTokenIssuer.from_dict(x) for x in v]
                 if k == "identityHintContract":
-                    valid_data[k] = IdentityHintContract(**v)
+                    valid_data[k] = IdentityHintContract.from_dict(v)
                 if k == "identityHintContractFulfillment":
-                    valid_data[k] = AttributeMapping(**v)
+                    valid_data[k] = AttributeMapping.from_dict(v)
                 if k == "identityHintMapping":
-                    valid_data[k] = AttributeMapping(**v)
+                    valid_data[k] = AttributeMapping.from_dict(v)
 
         return cls(**valid_data)
 

@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.base_signing_settings import BaseSigningSettings
+
 from pingfedsdk.enums import ConnectionType
+from pingfedsdk.model import Model
+from pingfedsdk.models.base_signing_settings import BaseSigningSettings
 
 
 class ExportMetadataRequest(Model):
@@ -28,8 +29,7 @@ class ExportMetadataRequest(Model):
         The virtual host name to be used as the base url.
 
     """
-
-    def __init__(self, connectionId: str, connectionType: ConnectionType, virtualServerId: str = None, signingSettings: BaseSigningSettings = None, useSecondaryPortForSoap: bool = None, virtualHostName: str = None) -> None:
+    def __init__(self, connectionType: ConnectionType, connectionId: str, virtualServerId: str = None, signingSettings: BaseSigningSettings = None, useSecondaryPortForSoap: bool = None, virtualHostName: str = None) -> None:
         self.connectionType = connectionType
         self.connectionId = connectionId
         self.virtualServerId = virtualServerId
@@ -60,7 +60,7 @@ class ExportMetadataRequest(Model):
                 if k == "virtualServerId":
                     valid_data[k] = str(v)
                 if k == "signingSettings":
-                    valid_data[k] = BaseSigningSettings(**v)
+                    valid_data[k] = BaseSigningSettings.from_dict(v)
                 if k == "useSecondaryPortForSoap":
                     valid_data[k] = bool(v)
                 if k == "virtualHostName":

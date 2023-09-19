@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.saas_field_configuration import SaasFieldConfiguration
 
 
@@ -15,7 +16,6 @@ class SaasAttributeMapping(Model):
         The settings that represent how attribute values from source data store will be mapped into Fields specified by the service provider.
 
     """
-
     def __init__(self, fieldName: str, saasFieldInfo: SaasFieldConfiguration) -> None:
         self.fieldName = fieldName
         self.saasFieldInfo = saasFieldInfo
@@ -39,7 +39,7 @@ class SaasAttributeMapping(Model):
                 if k == "fieldName":
                     valid_data[k] = str(v)
                 if k == "saasFieldInfo":
-                    valid_data[k] = SaasFieldConfiguration(**v)
+                    valid_data[k] = SaasFieldConfiguration.from_dict(v)
 
         return cls(**valid_data)
 

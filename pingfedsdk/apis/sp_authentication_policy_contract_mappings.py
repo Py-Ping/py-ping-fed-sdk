@@ -1,14 +1,15 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.apc_to_sp_adapter_mapping import ApcToSpAdapterMapping as ModelApcToSpAdapterMapping
 from pingfedsdk.models.apc_to_sp_adapter_mappings import ApcToSpAdapterMappings as ModelApcToSpAdapterMappings
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
@@ -66,15 +67,13 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelApcToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getApcToSpAdapterMappingById(self, id: str):
         """ Get an APC-to-SP Adapter Mapping.
@@ -95,13 +94,13 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelApcToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateApcToSpAdapterMappingById(self, id: str, body: ModelApcToSpAdapterMapping, XBypassExternalValidation: bool = None):
+    def updateApcToSpAdapterMappingById(self, body: ModelApcToSpAdapterMapping, id: str, XBypassExternalValidation: bool = None):
         """ Update an APC-to-SP Adapter Mapping.
         """
 
@@ -121,7 +120,7 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelApcToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +130,7 @@ class SpAuthenticationPolicyContractMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteApcToSpAdapterMappingById(self, id: str):
         """ Delete an APC-to-SP Adapter Mapping.

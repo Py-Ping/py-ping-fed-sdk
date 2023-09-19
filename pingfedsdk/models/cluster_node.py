@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import Mode
 from pingfedsdk.enums import ReplicationStatus
+from pingfedsdk.model import Model
 
 
 class ClusterNode(Model):
@@ -34,7 +35,6 @@ class ClusterNode(Model):
         The replication status of the node.
 
     """
-
     def __init__(self, address: str = None, index: int = None, mode: Mode = None, nodeGroup: str = None, version: str = None, nodeTags: str = None, configurationTimestamp: str = None, replicationStatus: ReplicationStatus = None) -> None:
         self.address = address
         self.index = index

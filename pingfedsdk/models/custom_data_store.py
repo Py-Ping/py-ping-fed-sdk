@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.enums import CustomDataStoreType
+from pingfedsdk.model import Model
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class CustomDataStore(Model):
@@ -10,7 +11,7 @@ class CustomDataStore(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: CustomDataStoreType
         The data store type.
 
     id: str
@@ -34,8 +35,7 @@ class CustomDataStore(Model):
         Plugin instance configuration.
 
     """
-
-    def __init__(self, configuration: PluginConfiguration, name: str, pluginDescriptorRef: ResourceLink, type: DataStoreType, id: str = None, maskAttributeValues: bool = None, parentRef: ResourceLink = None) -> None:
+    def __init__(self, type: CustomDataStoreType, name: str, pluginDescriptorRef: ResourceLink, configuration: PluginConfiguration, id: str = None, maskAttributeValues: bool = None, parentRef: ResourceLink = None) -> None:
         self.type = type
         self.id = id
         self.maskAttributeValues = maskAttributeValues
@@ -61,7 +61,7 @@ class CustomDataStore(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "maskAttributeValues", "name", "pluginDescriptorRef", "parentRef", "configuration"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = CustomDataStoreType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "maskAttributeValues":
@@ -69,11 +69,11 @@ class CustomDataStore(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "pluginDescriptorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "parentRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "configuration":
-                    valid_data[k] = PluginConfiguration(**v)
+                    valid_data[k] = PluginConfiguration.from_dict(v)
 
         return cls(**valid_data)
 

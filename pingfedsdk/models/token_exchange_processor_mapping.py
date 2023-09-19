@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_source import AttributeSource
+from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -32,8 +33,7 @@ class TokenExchangeProcessorMapping(Model):
         The Token processor used to process the actor token
 
     """
-
-    def __init__(self, attributeContractFulfillment: object, subjectTokenProcessor: ResourceLink, subjectTokenType: str, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None, actorTokenType: str = None, actorTokenProcessor: ResourceLink = None) -> None:
+    def __init__(self, attributeContractFulfillment: object, subjectTokenType: str, subjectTokenProcessor: ResourceLink, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None, actorTokenType: str = None, actorTokenProcessor: ResourceLink = None) -> None:
         self.attributeSources = attributeSources
         self.attributeContractFulfillment = attributeContractFulfillment
         self.issuanceCriteria = issuanceCriteria
@@ -59,19 +59,19 @@ class TokenExchangeProcessorMapping(Model):
         for k, v in python_dict.items():
             if k in ["attributeSources", "attributeContractFulfillment", "issuanceCriteria", "subjectTokenType", "subjectTokenProcessor", "actorTokenType", "actorTokenProcessor"] and v is not None:
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
                 if k == "subjectTokenType":
                     valid_data[k] = str(v)
                 if k == "subjectTokenProcessor":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "actorTokenType":
                     valid_data[k] = str(v)
                 if k == "actorTokenProcessor":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

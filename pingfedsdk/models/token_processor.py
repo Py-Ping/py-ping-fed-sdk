@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.token_processor_attribute_contract import TokenProcessorAttributeContract
 
 
@@ -33,8 +34,7 @@ class TokenProcessor(Model):
         The list of attributes that the token processor provides.
 
     """
-
-    def __init__(self, configuration: PluginConfiguration, id: str, name: str, pluginDescriptorRef: ResourceLink, parentRef: ResourceLink = None, attributeContract: TokenProcessorAttributeContract = None) -> None:
+    def __init__(self, id: str, name: str, pluginDescriptorRef: ResourceLink, configuration: PluginConfiguration, attributeContract: TokenProcessorAttributeContract = None, parentRef: ResourceLink = None) -> None:
         self.id = id
         self.name = name
         self.pluginDescriptorRef = pluginDescriptorRef
@@ -63,13 +63,13 @@ class TokenProcessor(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "pluginDescriptorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "parentRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "configuration":
-                    valid_data[k] = PluginConfiguration(**v)
+                    valid_data[k] = PluginConfiguration.from_dict(v)
                 if k == "attributeContract":
-                    valid_data[k] = TokenProcessorAttributeContract(**v)
+                    valid_data[k] = TokenProcessorAttributeContract.from_dict(v)
 
         return cls(**valid_data)
 

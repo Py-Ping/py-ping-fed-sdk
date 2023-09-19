@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.saas_plugin_field_option import SaasPluginFieldOption
 
 
@@ -51,7 +52,6 @@ class SaasPluginFieldInfoDescriptor(Model):
         Indicates whether this field belongs to group of attribute such as multivalued or sub-type custom attributes.
 
     """
-
     def __init__(self, code: str, label: str, required: bool = None, unique: bool = None, multiValue: bool = None, options: list = None, minLength: int = None, maxLength: int = None, pattern: str = None, notes: list = None, defaultValue: str = None, dsLdapMap: bool = None, persistForMembership: bool = None, attributeGroup: bool = None) -> None:
         self.code = code
         self.label = label
@@ -95,7 +95,7 @@ class SaasPluginFieldInfoDescriptor(Model):
                 if k == "multiValue":
                     valid_data[k] = bool(v)
                 if k == "options":
-                    valid_data[k] = [SaasPluginFieldOption(**x) for x in v]
+                    valid_data[k] = [SaasPluginFieldOption.from_dict(x) for x in v]
                 if k == "minLength":
                     valid_data[k] = int(v)
                 if k == "maxLength":

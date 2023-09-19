@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import CryptoProvider
+from pingfedsdk.model import Model
 
 
 class X509File(Model):
@@ -18,7 +19,6 @@ class X509File(Model):
         Cryptographic Provider. This is only applicable if Hybrid HSM mode is true.
 
     """
-
     def __init__(self, fileData: str, id: str = None, cryptoProvider: CryptoProvider = None) -> None:
         self.id = id
         self.fileData = fileData

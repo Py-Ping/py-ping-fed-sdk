@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class OpenIdConnectAttribute(Model):
@@ -20,7 +21,6 @@ class OpenIdConnectAttribute(Model):
         Indicates whether attribute value is always returned as an array.
 
     """
-
     def __init__(self, name: str, includeInIdToken: bool = None, includeInUserInfo: bool = None, multiValued: bool = None) -> None:
         self.name = name
         self.includeInIdToken = includeInIdToken

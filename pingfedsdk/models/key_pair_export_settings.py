@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class KeyPairExportSettings(Model):
@@ -11,7 +12,6 @@ class KeyPairExportSettings(Model):
         The password for the key pair file that is created.
 
     """
-
     def __init__(self, password: str) -> None:
         self.password = password
 

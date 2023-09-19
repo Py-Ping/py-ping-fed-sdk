@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AtmSelectionSettings(Model):
@@ -14,7 +15,6 @@ class AtmSelectionSettings(Model):
         The list of base resource URI's which map to this token manager. A resource URI, specified via the 'aud' parameter, can be used to select a specific token manager for an OAuth request.
 
     """
-
     def __init__(self, inherited: bool = None, resourceUris: list = None) -> None:
         self.inherited = inherited
         self.resourceUris = resourceUris

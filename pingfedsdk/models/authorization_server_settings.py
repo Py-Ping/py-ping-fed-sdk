@@ -1,13 +1,14 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.enums import ActivationCodeCheckMode
+from pingfedsdk.enums import ParStatus
+from pingfedsdk.enums import TimeUnit
+from pingfedsdk.enums import UserAuthorizationConsentPageSetting
+from pingfedsdk.model import Model
 from pingfedsdk.models.persistent_grant_contract import PersistentGrantContract
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.scope_entry import ScopeEntry
 from pingfedsdk.models.scope_group_entry import ScopeGroupEntry
-from pingfedsdk.enums import TimeUnit
-from pingfedsdk.enums import ParStatus
-from pingfedsdk.enums import UserAuthorizationConsentPageSetting
-from pingfedsdk.enums import ActivationCodeCheckMode
 
 
 class AuthorizationServerSettings(Model):
@@ -142,8 +143,7 @@ class AuthorizationServerSettings(Model):
         The lifetime, in seconds, of the JWT Secured authorization response. The default value is 600.
 
     """
-
-    def __init__(self, authorizationCodeEntropy: int, authorizationCodeTimeout: int, bypassActivationCodeConfirmation: bool, defaultScopeDescription: str, devicePollingInterval: int, pendingAuthorizationTimeout: int, refreshRollingInterval: int, refreshTokenLength: int, registeredAuthorizationPath: str, scopes: list = None, scopeGroups: list = None, exclusiveScopes: list = None, exclusiveScopeGroups: list = None, disallowPlainPKCE: bool = None, includeIssuerInAuthorizationResponse: bool = None, trackUserSessionsForLogout: bool = None, tokenEndpointBaseUrl: str = None, persistentGrantLifetime: int = None, persistentGrantLifetimeUnit: TimeUnit = None, persistentGrantIdleTimeout: int = None, persistentGrantIdleTimeoutTimeUnit: TimeUnit = None, rollRefreshTokenValues: bool = None, refreshTokenRollingGracePeriod: int = None, persistentGrantReuseGrantTypes: list = None, persistentGrantContract: PersistentGrantContract = None, bypassAuthorizationForApprovedGrants: bool = None, allowUnidentifiedClientROCreds: bool = None, allowUnidentifiedClientExtensionGrants: bool = None, adminWebServicePcvRef: ResourceLink = None, atmIdForOAuthGrantManagement: str = None, scopeForOAuthGrantManagement: str = None, allowedOrigins: list = None, userAuthorizationUrl: str = None, activationCodeCheckMode: ActivationCodeCheckMode = None, userAuthorizationConsentPageSetting: UserAuthorizationConsentPageSetting = None, userAuthorizationConsentAdapter: str = None, approvedScopesAttribute: str = None, parReferenceTimeout: int = None, parReferenceLength: int = None, parStatus: ParStatus = None, clientSecretRetentionPeriod: int = None, jwtSecuredAuthorizationResponseModeLifetime: int = None) -> None:
+    def __init__(self, defaultScopeDescription: str, authorizationCodeTimeout: int, authorizationCodeEntropy: int, refreshTokenLength: int, refreshRollingInterval: int, registeredAuthorizationPath: str, pendingAuthorizationTimeout: int, devicePollingInterval: int, bypassActivationCodeConfirmation: bool, scopes: list = None, scopeGroups: list = None, exclusiveScopes: list = None, exclusiveScopeGroups: list = None, disallowPlainPKCE: bool = None, includeIssuerInAuthorizationResponse: bool = None, trackUserSessionsForLogout: bool = None, tokenEndpointBaseUrl: str = None, persistentGrantLifetime: int = None, persistentGrantLifetimeUnit: TimeUnit = None, persistentGrantIdleTimeout: int = None, persistentGrantIdleTimeoutTimeUnit: TimeUnit = None, rollRefreshTokenValues: bool = None, refreshTokenRollingGracePeriod: int = None, persistentGrantReuseGrantTypes: list = None, persistentGrantContract: PersistentGrantContract = None, bypassAuthorizationForApprovedGrants: bool = None, allowUnidentifiedClientROCreds: bool = None, allowUnidentifiedClientExtensionGrants: bool = None, adminWebServicePcvRef: ResourceLink = None, atmIdForOAuthGrantManagement: str = None, scopeForOAuthGrantManagement: str = None, allowedOrigins: list = None, userAuthorizationUrl: str = None, activationCodeCheckMode: ActivationCodeCheckMode = None, userAuthorizationConsentPageSetting: UserAuthorizationConsentPageSetting = None, userAuthorizationConsentAdapter: str = None, approvedScopesAttribute: str = None, parReferenceTimeout: int = None, parReferenceLength: int = None, parStatus: ParStatus = None, clientSecretRetentionPeriod: int = None, jwtSecuredAuthorizationResponseModeLifetime: int = None) -> None:
         self.defaultScopeDescription = defaultScopeDescription
         self.scopes = scopes
         self.scopeGroups = scopeGroups
@@ -206,13 +206,13 @@ class AuthorizationServerSettings(Model):
                 if k == "defaultScopeDescription":
                     valid_data[k] = str(v)
                 if k == "scopes":
-                    valid_data[k] = [ScopeEntry(**x) for x in v]
+                    valid_data[k] = [ScopeEntry.from_dict(x) for x in v]
                 if k == "scopeGroups":
-                    valid_data[k] = [ScopeGroupEntry(**x) for x in v]
+                    valid_data[k] = [ScopeGroupEntry.from_dict(x) for x in v]
                 if k == "exclusiveScopes":
-                    valid_data[k] = [ScopeEntry(**x) for x in v]
+                    valid_data[k] = [ScopeEntry.from_dict(x) for x in v]
                 if k == "exclusiveScopeGroups":
-                    valid_data[k] = [ScopeGroupEntry(**x) for x in v]
+                    valid_data[k] = [ScopeGroupEntry.from_dict(x) for x in v]
                 if k == "authorizationCodeTimeout":
                     valid_data[k] = int(v)
                 if k == "authorizationCodeEntropy":
@@ -244,7 +244,7 @@ class AuthorizationServerSettings(Model):
                 if k == "persistentGrantReuseGrantTypes":
                     valid_data[k] = [str(x) for x in v]
                 if k == "persistentGrantContract":
-                    valid_data[k] = PersistentGrantContract(**v)
+                    valid_data[k] = PersistentGrantContract.from_dict(v)
                 if k == "bypassAuthorizationForApprovedGrants":
                     valid_data[k] = bool(v)
                 if k == "allowUnidentifiedClientROCreds":
@@ -252,7 +252,7 @@ class AuthorizationServerSettings(Model):
                 if k == "allowUnidentifiedClientExtensionGrants":
                     valid_data[k] = bool(v)
                 if k == "adminWebServicePcvRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "atmIdForOAuthGrantManagement":
                     valid_data[k] = str(v)
                 if k == "scopeForOAuthGrantManagement":

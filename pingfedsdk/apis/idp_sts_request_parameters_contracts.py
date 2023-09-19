@@ -1,17 +1,18 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.sts_request_parameters_contract import StsRequestParametersContract as ModelStsRequestParametersContract
 from pingfedsdk.models.sts_request_parameters_contracts import StsRequestParametersContracts as ModelStsRequestParametersContracts
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 
 
 class IdpStsRequestParametersContracts:
@@ -66,15 +67,13 @@ class IdpStsRequestParametersContracts:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelStsRequestParametersContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getStsRequestParamContractById(self, id: str):
         """ Get a STS Request Parameters Contract.
@@ -95,13 +94,13 @@ class IdpStsRequestParametersContracts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelStsRequestParametersContract.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateStsRequestParamContractById(self, id: str, body: ModelStsRequestParametersContract):
+    def updateStsRequestParamContractById(self, body: ModelStsRequestParametersContract, id: str):
         """ Update a STS Request Parameters Contract.
         """
 
@@ -121,7 +120,7 @@ class IdpStsRequestParametersContracts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelStsRequestParametersContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +130,7 @@ class IdpStsRequestParametersContracts:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteStsRequestParamContractById(self, id: str):
         """ Delete a STS Request Parameters Contract.

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SpDefaultUrls(Model):
@@ -17,7 +18,6 @@ class SpDefaultUrls(Model):
         Provide the default URL you would like to send the user to when Single Logout (SLO) has succeeded.
 
     """
-
     def __init__(self, ssoSuccessUrl: str = None, confirmSlo: bool = None, sloSuccessUrl: str = None) -> None:
         self.ssoSuccessUrl = ssoSuccessUrl
         self.confirmSlo = confirmSlo

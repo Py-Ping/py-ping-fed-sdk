@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.field_descriptor import FieldDescriptor
 
 
@@ -27,7 +28,6 @@ class ActionDescriptor(Model):
         List of parameters for this action.
 
     """
-
     def __init__(self, name: str = None, description: str = None, download: bool = None, downloadContentType: str = None, downloadFileName: str = None, parameters: list = None) -> None:
         self.name = name
         self.description = description
@@ -63,7 +63,7 @@ class ActionDescriptor(Model):
                 if k == "downloadFileName":
                     valid_data[k] = str(v)
                 if k == "parameters":
-                    valid_data[k] = [FieldDescriptor(**x) for x in v]
+                    valid_data[k] = [FieldDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.o_i_d_c_session_settings import OIDCSessionSettings
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class OpenIdConnectSettings(Model):
@@ -16,7 +17,6 @@ class OpenIdConnectSettings(Model):
         Settings relating to OpenID Connect session management.
 
     """
-
     def __init__(self, defaultPolicyRef: ResourceLink = None, sessionSettings: OIDCSessionSettings = None) -> None:
         self.defaultPolicyRef = defaultPolicyRef
         self.sessionSettings = sessionSettings
@@ -38,9 +38,9 @@ class OpenIdConnectSettings(Model):
         for k, v in python_dict.items():
             if k in ["defaultPolicyRef", "sessionSettings"] and v is not None:
                 if k == "defaultPolicyRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "sessionSettings":
-                    valid_data[k] = OIDCSessionSettings(**v)
+                    valid_data[k] = OIDCSessionSettings.from_dict(v)
 
         return cls(**valid_data)
 

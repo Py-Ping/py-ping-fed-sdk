@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.password_credential_validator import PasswordCredentialValidator
 
 
@@ -12,7 +13,6 @@ class PasswordCredentialValidators(Model):
         The actual list of password credential validators.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class PasswordCredentialValidators(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [PasswordCredentialValidator(**x) for x in v]
+                    valid_data[k] = [PasswordCredentialValidator.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

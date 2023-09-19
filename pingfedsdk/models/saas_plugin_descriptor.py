@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.plugin_config_descriptor import PluginConfigDescriptor
 from pingfedsdk.models.saas_plugin_field_info_descriptor import SaasPluginFieldInfoDescriptor
 
@@ -22,7 +23,6 @@ class SaasPluginDescriptor(Model):
         The SaaS plugin attribute list for mapping from the local data store into Fields specified by the service provide.
 
     """
-
     def __init__(self, id: str = None, description: str = None, configDescriptor: PluginConfigDescriptor = None, saasPluginFieldInfoDescriptors: list = None) -> None:
         self.id = id
         self.description = description
@@ -50,9 +50,9 @@ class SaasPluginDescriptor(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "configDescriptor":
-                    valid_data[k] = PluginConfigDescriptor(**v)
+                    valid_data[k] = PluginConfigDescriptor.from_dict(v)
                 if k == "saasPluginFieldInfoDescriptors":
-                    valid_data[k] = [SaasPluginFieldInfoDescriptor(**x) for x in v]
+                    valid_data[k] = [SaasPluginFieldInfoDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

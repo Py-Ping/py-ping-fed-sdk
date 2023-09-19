@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.redirect_validation_settings_whitelist_entry import RedirectValidationSettingsWhitelistEntry
 
 
@@ -24,7 +25,6 @@ class RedirectValidationLocalSettings(Model):
         List of URLs that are designated as valid target resources.
 
     """
-
     def __init__(self, enableTargetResourceValidationForSSO: bool = None, enableTargetResourceValidationForSLO: bool = None, enableTargetResourceValidationForIdpDiscovery: bool = None, enableInErrorResourceValidation: bool = None, whiteList: list = None) -> None:
         self.enableTargetResourceValidationForSSO = enableTargetResourceValidationForSSO
         self.enableTargetResourceValidationForSLO = enableTargetResourceValidationForSLO
@@ -57,7 +57,7 @@ class RedirectValidationLocalSettings(Model):
                 if k == "enableInErrorResourceValidation":
                     valid_data[k] = bool(v)
                 if k == "whiteList":
-                    valid_data[k] = [RedirectValidationSettingsWhitelistEntry(**x) for x in v]
+                    valid_data[k] = [RedirectValidationSettingsWhitelistEntry.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ApiResponse(Model):
@@ -8,7 +9,6 @@ class ApiResponse(Model):
     Attributes
     ----------
     """
-
     def __init__(self) -> None:
         pass
 

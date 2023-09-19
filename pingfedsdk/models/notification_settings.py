@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
+from pingfedsdk.models.certificate_expiration_notification_settings import CertificateExpirationNotificationSettings
 from pingfedsdk.models.license_event_notification_settings import LicenseEventNotificationSettings
 from pingfedsdk.models.metadata_event_notification_settings import MetadataEventNotificationSettings
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.certificate_expiration_notification_settings import CertificateExpirationNotificationSettings
 
 
 class NotificationSettings(Model):
@@ -27,7 +28,6 @@ class NotificationSettings(Model):
         Settings for metadata update event notifications.
 
     """
-
     def __init__(self, licenseEvents: LicenseEventNotificationSettings = None, certificateExpirations: CertificateExpirationNotificationSettings = None, notifyAdminUserPasswordChanges: bool = None, accountChangesNotificationPublisherRef: ResourceLink = None, metadataNotificationSettings: MetadataEventNotificationSettings = None) -> None:
         self.licenseEvents = licenseEvents
         self.certificateExpirations = certificateExpirations
@@ -52,15 +52,15 @@ class NotificationSettings(Model):
         for k, v in python_dict.items():
             if k in ["licenseEvents", "certificateExpirations", "notifyAdminUserPasswordChanges", "accountChangesNotificationPublisherRef", "metadataNotificationSettings"] and v is not None:
                 if k == "licenseEvents":
-                    valid_data[k] = LicenseEventNotificationSettings(**v)
+                    valid_data[k] = LicenseEventNotificationSettings.from_dict(v)
                 if k == "certificateExpirations":
-                    valid_data[k] = CertificateExpirationNotificationSettings(**v)
+                    valid_data[k] = CertificateExpirationNotificationSettings.from_dict(v)
                 if k == "notifyAdminUserPasswordChanges":
                     valid_data[k] = bool(v)
                 if k == "accountChangesNotificationPublisherRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "metadataNotificationSettings":
-                    valid_data[k] = MetadataEventNotificationSettings(**v)
+                    valid_data[k] = MetadataEventNotificationSettings.from_dict(v)
 
         return cls(**valid_data)
 

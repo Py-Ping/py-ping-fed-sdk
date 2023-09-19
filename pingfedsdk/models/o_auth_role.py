@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class OAuthRole(Model):
@@ -14,7 +15,6 @@ class OAuthRole(Model):
         Enable Open ID Connect.
 
     """
-
     def __init__(self, enableOauth: bool = None, enableOpenIdConnect: bool = None) -> None:
         self.enableOauth = enableOauth
         self.enableOpenIdConnect = enableOpenIdConnect

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class UsernamePasswordCredentials(Model):
@@ -17,7 +18,6 @@ class UsernamePasswordCredentials(Model):
         For GET requests, this field contains the encrypted password, if one exists.  For POST and PUT requests, if you wish to reuse the existing password, this field should be passed back unchanged.
 
     """
-
     def __init__(self, username: str = None, password: str = None, encryptedPassword: str = None) -> None:
         self.username = username
         self.password = password

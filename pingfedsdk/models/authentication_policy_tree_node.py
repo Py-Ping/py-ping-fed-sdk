@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.policy_action import PolicyAction
 
 
@@ -15,7 +16,6 @@ class AuthenticationPolicyTreeNode(Model):
         The nodes inside the authentication policy tree node of type AuthenticationPolicyTreeNode.
 
     """
-
     def __init__(self, action: PolicyAction, children: list = None) -> None:
         self.action = action
         self.children = children
@@ -37,9 +37,9 @@ class AuthenticationPolicyTreeNode(Model):
         for k, v in python_dict.items():
             if k in ["action", "children"] and v is not None:
                 if k == "action":
-                    valid_data[k] = PolicyAction(**v)
+                    valid_data[k] = PolicyAction.from_dict(v)
                 if k == "children":
-                    valid_data[k] = [AuthenticationPolicyTreeNode(**x) for x in v]
+                    valid_data[k] = [AuthenticationPolicyTreeNode.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

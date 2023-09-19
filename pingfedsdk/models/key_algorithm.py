@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class KeyAlgorithm(Model):
@@ -23,7 +24,6 @@ class KeyAlgorithm(Model):
         Default signature algorithm for this key algorithm.
 
     """
-
     def __init__(self, name: str = None, keySizes: list = None, defaultKeySize: int = None, signatureAlgorithms: list = None, defaultSignatureAlgorithm: str = None) -> None:
         self.name = name
         self.keySizes = keySizes

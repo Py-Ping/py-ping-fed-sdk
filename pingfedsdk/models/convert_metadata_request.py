@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.connection import Connection
+
 from pingfedsdk.enums import ConnectionType
 from pingfedsdk.enums import ExpectedProtocol
+from pingfedsdk.model import Model
+from pingfedsdk.models.connection import Connection
 
 
 class ConvertMetadataRequest(Model):
@@ -29,7 +30,6 @@ class ConvertMetadataRequest(Model):
         The template connection to overlay the metadata on.
 
     """
-
     def __init__(self, connectionType: ConnectionType, expectedProtocol: ExpectedProtocol, samlMetadata: str, expectedEntityId: str = None, verificationCertificate: str = None, templateConnection: Connection = None) -> None:
         self.connectionType = connectionType
         self.expectedProtocol = expectedProtocol
@@ -65,7 +65,7 @@ class ConvertMetadataRequest(Model):
                 if k == "verificationCertificate":
                     valid_data[k] = str(v)
                 if k == "templateConnection":
-                    valid_data[k] = Connection(**v)
+                    valid_data[k] = Connection.from_dict(v)
 
         return cls(**valid_data)
 

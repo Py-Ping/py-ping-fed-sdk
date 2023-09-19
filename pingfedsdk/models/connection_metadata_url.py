@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -15,7 +16,6 @@ class ConnectionMetadataUrl(Model):
         Specifies whether the metadata of the connection will be automatically reloaded. The default value is true.
 
     """
-
     def __init__(self, metadataUrlRef: ResourceLink, enableAutoMetadataUpdate: bool = None) -> None:
         self.metadataUrlRef = metadataUrlRef
         self.enableAutoMetadataUpdate = enableAutoMetadataUpdate
@@ -37,7 +37,7 @@ class ConnectionMetadataUrl(Model):
         for k, v in python_dict.items():
             if k in ["metadataUrlRef", "enableAutoMetadataUpdate"] and v is not None:
                 if k == "metadataUrlRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "enableAutoMetadataUpdate":
                     valid_data[k] = bool(v)
 

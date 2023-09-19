@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.redirect_validation_partner_settings import RedirectValidationPartnerSettings
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.redirect_validation_local_settings import RedirectValidationLocalSettings
+from pingfedsdk.models.redirect_validation_partner_settings import RedirectValidationPartnerSettings
 
 
 class RedirectValidationSettings(Model):
@@ -16,7 +17,6 @@ class RedirectValidationSettings(Model):
         Settings for redirection at a partner site.
 
     """
-
     def __init__(self, redirectValidationLocalSettings: RedirectValidationLocalSettings = None, redirectValidationPartnerSettings: RedirectValidationPartnerSettings = None) -> None:
         self.redirectValidationLocalSettings = redirectValidationLocalSettings
         self.redirectValidationPartnerSettings = redirectValidationPartnerSettings
@@ -38,9 +38,9 @@ class RedirectValidationSettings(Model):
         for k, v in python_dict.items():
             if k in ["redirectValidationLocalSettings", "redirectValidationPartnerSettings"] and v is not None:
                 if k == "redirectValidationLocalSettings":
-                    valid_data[k] = RedirectValidationLocalSettings(**v)
+                    valid_data[k] = RedirectValidationLocalSettings.from_dict(v)
                 if k == "redirectValidationPartnerSettings":
-                    valid_data[k] = RedirectValidationPartnerSettings(**v)
+                    valid_data[k] = RedirectValidationPartnerSettings.from_dict(v)
 
         return cls(**valid_data)
 

@@ -1,10 +1,11 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.connection_cert import ConnectionCert
-from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.inbound_back_channel_auth import InboundBackChannelAuth
-from pingfedsdk.models.signing_settings import SigningSettings
 from pingfedsdk.models.outbound_back_channel_auth import OutboundBackChannelAuth
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.signing_settings import SigningSettings
 
 
 class ConnectionCredentials(Model):
@@ -43,7 +44,6 @@ class ConnectionCredentials(Model):
         The SOAP authentication method(s) to use when you receive a message using SOAP back channel.
 
     """
-
     def __init__(self, verificationSubjectDN: str = None, verificationIssuerDN: str = None, certs: list = None, blockEncryptionAlgorithm: str = None, keyTransportAlgorithm: str = None, signingSettings: SigningSettings = None, decryptionKeyPairRef: ResourceLink = None, secondaryDecryptionKeyPairRef: ResourceLink = None, outboundBackChannelAuth: OutboundBackChannelAuth = None, inboundBackChannelAuth: InboundBackChannelAuth = None) -> None:
         self.verificationSubjectDN = verificationSubjectDN
         self.verificationIssuerDN = verificationIssuerDN
@@ -77,21 +77,21 @@ class ConnectionCredentials(Model):
                 if k == "verificationIssuerDN":
                     valid_data[k] = str(v)
                 if k == "certs":
-                    valid_data[k] = [ConnectionCert(**x) for x in v]
+                    valid_data[k] = [ConnectionCert.from_dict(x) for x in v]
                 if k == "blockEncryptionAlgorithm":
                     valid_data[k] = str(v)
                 if k == "keyTransportAlgorithm":
                     valid_data[k] = str(v)
                 if k == "signingSettings":
-                    valid_data[k] = SigningSettings(**v)
+                    valid_data[k] = SigningSettings.from_dict(v)
                 if k == "decryptionKeyPairRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "secondaryDecryptionKeyPairRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "outboundBackChannelAuth":
-                    valid_data[k] = OutboundBackChannelAuth(**v)
+                    valid_data[k] = OutboundBackChannelAuth.from_dict(v)
                 if k == "inboundBackChannelAuth":
-                    valid_data[k] = InboundBackChannelAuth(**v)
+                    valid_data[k] = InboundBackChannelAuth.from_dict(v)
 
         return cls(**valid_data)
 

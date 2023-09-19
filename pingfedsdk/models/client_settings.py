@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.dynamic_client_registration import DynamicClientRegistration
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.client_metadata import ClientMetadata
+from pingfedsdk.models.dynamic_client_registration import DynamicClientRegistration
 
 
 class ClientSettings(Model):
@@ -16,7 +17,6 @@ class ClientSettings(Model):
         Dynamic client registration settings.
 
     """
-
     def __init__(self, clientMetadata: list = None, dynamicClientRegistration: DynamicClientRegistration = None) -> None:
         self.clientMetadata = clientMetadata
         self.dynamicClientRegistration = dynamicClientRegistration
@@ -38,9 +38,9 @@ class ClientSettings(Model):
         for k, v in python_dict.items():
             if k in ["clientMetadata", "dynamicClientRegistration"] and v is not None:
                 if k == "clientMetadata":
-                    valid_data[k] = [ClientMetadata(**x) for x in v]
+                    valid_data[k] = [ClientMetadata.from_dict(x) for x in v]
                 if k == "dynamicClientRegistration":
-                    valid_data[k] = DynamicClientRegistration(**v)
+                    valid_data[k] = DynamicClientRegistration.from_dict(v)
 
         return cls(**valid_data)
 

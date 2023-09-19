@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.artifact_resolver_location import ArtifactResolverLocation
 
 
@@ -18,7 +19,6 @@ class ArtifactSettings(Model):
         Source ID for SAML1.x connections
 
     """
-
     def __init__(self, lifetime: int, resolverLocations: list, sourceId: str = None) -> None:
         self.lifetime = lifetime
         self.resolverLocations = resolverLocations
@@ -43,7 +43,7 @@ class ArtifactSettings(Model):
                 if k == "lifetime":
                     valid_data[k] = int(v)
                 if k == "resolverLocations":
-                    valid_data[k] = [ArtifactResolverLocation(**x) for x in v]
+                    valid_data[k] = [ArtifactResolverLocation.from_dict(x) for x in v]
                 if k == "sourceId":
                     valid_data[k] = str(v)
 

@@ -1,10 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.access_token_mapping_context import AccessTokenMappingContext
 from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 
 
 class AccessTokenMapping(Model):
@@ -31,8 +31,7 @@ class AccessTokenMapping(Model):
         The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
 
     """
-
-    def __init__(self, accessTokenManagerRef: ResourceLink, attributeContractFulfillment: object, context: AccessTokenMappingContext, id: str, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
+    def __init__(self, id: str, context: AccessTokenMappingContext, accessTokenManagerRef: ResourceLink, attributeContractFulfillment: object, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
         self.id = id
         self.context = context
         self.accessTokenManagerRef = accessTokenManagerRef
@@ -59,17 +58,15 @@ class AccessTokenMapping(Model):
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "context":
-                    valid_data[k] = AccessTokenMappingContext(v['type'], v.get('contextRef', None))
+                    valid_data[k] = AccessTokenMappingContext.from_dict(v)
                 if k == "accessTokenManagerRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    for x in v:
-                        v[x] = AttributeFulfillmentValue(v[x]['source'], v[x]['value'])
-                    valid_data[k] = v
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
 
         return cls(**valid_data)
 

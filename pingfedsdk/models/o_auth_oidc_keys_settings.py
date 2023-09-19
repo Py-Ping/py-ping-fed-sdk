@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -84,7 +85,6 @@ class OAuthOidcKeysSettings(Model):
         Enable publishing of the RSA certificate chain associated with the active key.
 
     """
-
     def __init__(self, staticJwksEnabled: bool, p256ActiveCertRef: ResourceLink = None, p256PreviousCertRef: ResourceLink = None, p256PublishX5cParameter: bool = None, p384ActiveCertRef: ResourceLink = None, p384PreviousCertRef: ResourceLink = None, p384PublishX5cParameter: bool = None, p521ActiveCertRef: ResourceLink = None, p521PreviousCertRef: ResourceLink = None, p521PublishX5cParameter: bool = None, rsaActiveCertRef: ResourceLink = None, rsaPreviousCertRef: ResourceLink = None, rsaPublishX5cParameter: bool = None, p256DecryptionActiveCertRef: ResourceLink = None, p256DecryptionPreviousCertRef: ResourceLink = None, p256DecryptionPublishX5cParameter: bool = None, p384DecryptionActiveCertRef: ResourceLink = None, p384DecryptionPreviousCertRef: ResourceLink = None, p384DecryptionPublishX5cParameter: bool = None, p521DecryptionActiveCertRef: ResourceLink = None, p521DecryptionPreviousCertRef: ResourceLink = None, p521DecryptionPublishX5cParameter: bool = None, rsaDecryptionActiveCertRef: ResourceLink = None, rsaDecryptionPreviousCertRef: ResourceLink = None, rsaDecryptionPublishX5cParameter: bool = None) -> None:
         self.staticJwksEnabled = staticJwksEnabled
         self.p256ActiveCertRef = p256ActiveCertRef
@@ -131,51 +131,51 @@ class OAuthOidcKeysSettings(Model):
                 if k == "staticJwksEnabled":
                     valid_data[k] = bool(v)
                 if k == "p256ActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p256PreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p256PublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "p384ActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p384PreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p384PublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "p521ActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p521PreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p521PublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "rsaActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "rsaPreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "rsaPublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "p256DecryptionActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p256DecryptionPreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p256DecryptionPublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "p384DecryptionActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p384DecryptionPreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p384DecryptionPublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "p521DecryptionActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p521DecryptionPreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p521DecryptionPublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "rsaDecryptionActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "rsaDecryptionPreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "rsaDecryptionPublishX5cParameter":
                     valid_data[k] = bool(v)
 

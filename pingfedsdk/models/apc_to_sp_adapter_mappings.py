@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.apc_to_sp_adapter_mapping import ApcToSpAdapterMapping
 
 
@@ -12,7 +13,6 @@ class ApcToSpAdapterMappings(Model):
         The actual list of mappings.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class ApcToSpAdapterMappings(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [ApcToSpAdapterMapping(**x) for x in v]
+                    valid_data[k] = [ApcToSpAdapterMapping.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.token_exchange_processor_policy import TokenExchangeProcessorPolicy
 
 
@@ -12,7 +13,6 @@ class TokenExchangeProcessorPolicies(Model):
         The list of OAuth 2.0 Token Exchange Processor policies.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class TokenExchangeProcessorPolicies(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [TokenExchangeProcessorPolicy(**x) for x in v]
+                    valid_data[k] = [TokenExchangeProcessorPolicy.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

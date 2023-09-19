@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.client import Client
 
 
@@ -12,7 +13,6 @@ class Clients(Model):
         The actual list of OAuth clients.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class Clients(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [Client(**x) for x in v]
+                    valid_data[k] = [Client.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

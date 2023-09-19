@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.key_pair_rotation_settings import KeyPairRotationSettings
+
 from pingfedsdk.enums import CryptoProvider
 from pingfedsdk.enums import Status
+from pingfedsdk.model import Model
+from pingfedsdk.models.key_pair_rotation_settings import KeyPairRotationSettings
 
 
 class KeyPairView(Model):
@@ -59,7 +60,6 @@ class KeyPairView(Model):
         Key pair rotation settings. Only applicable to self-signed signing key pairs. Automatic key rotation is not currently available for SSL client or SSL server key pairs.
 
     """
-
     def __init__(self, id: str = None, serialNumber: str = None, subjectDN: str = None, subjectAlternativeNames: list = None, issuerDN: str = None, validFrom: str = None, expires: str = None, keyAlgorithm: str = None, keySize: int = None, signatureAlgorithm: str = None, version: int = None, sha1Fingerprint: str = None, sha256Fingerprint: str = None, status: Status = None, cryptoProvider: CryptoProvider = None, rotationSettings: KeyPairRotationSettings = None) -> None:
         self.id = id
         self.serialNumber = serialNumber
@@ -125,7 +125,7 @@ class KeyPairView(Model):
                 if k == "cryptoProvider":
                     valid_data[k] = CryptoProvider[v]
                 if k == "rotationSettings":
-                    valid_data[k] = KeyPairRotationSettings(**v)
+                    valid_data[k] = KeyPairRotationSettings.from_dict(v)
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.crl_settings import CrlSettings
 from pingfedsdk.models.ocsp_settings import OcspSettings
 from pingfedsdk.models.proxy_settings import ProxySettings
@@ -20,7 +21,6 @@ class CertificateRevocationSettings(Model):
         If OCSP messaging is routed through a proxy server, specify the server's host (DNS name or IP address) and the port number. The same proxy information applies to CRL checking, when CRL is enabled for failover.
 
     """
-
     def __init__(self, ocspSettings: OcspSettings = None, crlSettings: CrlSettings = None, proxySettings: ProxySettings = None) -> None:
         self.ocspSettings = ocspSettings
         self.crlSettings = crlSettings
@@ -43,11 +43,11 @@ class CertificateRevocationSettings(Model):
         for k, v in python_dict.items():
             if k in ["ocspSettings", "crlSettings", "proxySettings"] and v is not None:
                 if k == "ocspSettings":
-                    valid_data[k] = OcspSettings(**v)
+                    valid_data[k] = OcspSettings.from_dict(v)
                 if k == "crlSettings":
-                    valid_data[k] = CrlSettings(**v)
+                    valid_data[k] = CrlSettings.from_dict(v)
                 if k == "proxySettings":
-                    valid_data[k] = ProxySettings(**v)
+                    valid_data[k] = ProxySettings.from_dict(v)
 
         return cls(**valid_data)
 

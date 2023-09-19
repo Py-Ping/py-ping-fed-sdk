@@ -1,10 +1,11 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.exceptions import ValidationError
@@ -42,13 +43,13 @@ class Bulk:
             raise err
         else:
             if response.status_code == 200:
-                return response.json()
+                return ModelBulkConfig.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) The current configuration cannot be bulk exported."
                 self.logger.info(message)
                 raise NotImplementedError(message)
 
-    def importConfiguration(self, body: ModelBulkConfig, failFast: bool = None, XBypassExternalValidation: bool = None):
+    def importConfiguration(self, body: ModelBulkConfig, XBypassExternalValidation: bool = None, failFast: bool = None):
         """ Import configuration for a PingFederate deployment from a JSON file.
         """
 
@@ -68,12 +69,10 @@ class Bulk:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return Modelvoid.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

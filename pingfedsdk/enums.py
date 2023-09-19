@@ -34,6 +34,27 @@ class Condition(AutoName):
     MULTIVALUE_DOES_NOT_CONTAIN_DN = auto()
 
 
+class CustomAttributeSourceType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class JdbcAttributeSourceType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class LdapAttributeSourceType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
 class SearchScope(AutoName):
     OBJECT = auto()
     ONE_LEVEL = auto()
@@ -76,7 +97,95 @@ class SourceTypeIdKeyType(AutoName):
     SCIM_GROUP = auto()
 
 
+class BaseSelectionFieldDescriptorType(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
+class CheckBoxFieldDescriptorType(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
 class FieldDescriptor(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
+class HashedTextFieldDescriptorType(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
+class RadioGroupFieldDescriptorType(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
+class SelectFieldDescriptorType(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
+class TextAreaFieldDescriptorType(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
+class TextFieldDescriptorType(AutoName):
+    RADIO_GROUP = auto()
+    SELECT = auto()
+    FILTERABLE_SELECT = auto()
+    CHECK_BOX = auto()
+    TEXT_AREA = auto()
+    TEXT = auto()
+    UPLOAD_FILE = auto()
+    HASHED_TEXT = auto()
+
+
+class UploadFileFieldDescriptorType(AutoName):
     RADIO_GROUP = auto()
     SELECT = auto()
     FILTERABLE_SELECT = auto()
@@ -97,14 +206,7 @@ class AccessTokenMappingContextType(AutoName):
     TOKEN_EXCHANGE_PROCESSOR_POLICY = auto()
 
 
-class Location(AutoName):
-    START = auto()
-    END = auto()
-    BEFORE = auto()
-    AFTER = auto()
-
-
-class AuthenticationPolicySelectionActionType(AutoName):
+class ApcMappingPolicyActionType(AutoName):
     APC_MAPPING = auto()
     LOCAL_IDENTITY_MAPPING = auto()
     AUTHN_SELECTOR = auto()
@@ -118,6 +220,119 @@ class AuthenticationPolicySelectionActionType(AutoName):
 class AuthenticationSourceType(AutoName):
     IDP_ADAPTER = auto()
     IDP_CONNECTION = auto()
+
+
+class AuthnSelectorPolicyActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class AuthnSourcePolicyActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class ContinuePolicyActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class DonePolicyActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class FragmentPolicyActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class LocalIdentityMappingPolicyActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class AuthenticationPolicySelectionActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class RestartPolicyActionType(AutoName):
+    APC_MAPPING = auto()
+    LOCAL_IDENTITY_MAPPING = auto()
+    AUTHN_SELECTOR = auto()
+    AUTHN_SOURCE = auto()
+    DONE = auto()
+    CONTINUE = auto()
+    RESTART = auto()
+    FRAGMENT = auto()
+
+
+class Location(AutoName):
+    START = auto()
+    END = auto()
+    BEFORE = auto()
+    AFTER = auto()
+
+
+class IdleTimeoutDisplayUnit(AutoName):
+    MINUTES = auto()
+    HOURS = auto()
+    DAYS = auto()
+
+
+class MaxTimeoutDisplayUnit(AutoName):
+    MINUTES = auto()
+    HOURS = auto()
+    DAYS = auto()
+
+
+class TimeoutDisplayUnit(AutoName):
+    MINUTES = auto()
+    HOURS = auto()
+    DAYS = auto()
 
 
 class TimeUnit(AutoName):
@@ -183,7 +398,6 @@ class ConfigStoreSettingType(AutoName):
 class ConnectionType(AutoName):
     DIRECT = auto()
     LDAP_GATEWAY = auto()
-    SP = auto()
 
 
 class AccountStatusAlgorithm(AutoName):
@@ -219,6 +433,11 @@ class CertTrustStatus(AutoName):
     NOT_TRUSTED = auto()
 
 
+class DataStoreRepositoryType(AutoName):
+    LDAP = auto()
+    JDBC = auto()
+
+
 class IdentityStoreInboundProvisioningUserRepositoryType(AutoName):
     LDAP = auto()
     IDENTITY_STORE = auto()
@@ -238,6 +457,11 @@ class IdpIdentityMapping(AutoName):
     NONE = auto()
 
 
+class IdpConnection(AutoName):
+    IDP = auto()
+    SP = auto()
+
+
 class ActionOnDelete(AutoName):
     DISABLE_USER = auto()
     PERMANENTLY_DELETE_USER = auto()
@@ -250,9 +474,19 @@ class Binding(AutoName):
     SOAP = auto()
 
 
+class InboundBackChannelAuthType(AutoName):
+    INBOUND = auto()
+    OUTBOUND = auto()
+
+
 class InboundProvisioningUserRepositoryType(AutoName):
     LDAP = auto()
     IDENTITY_STORE = auto()
+
+
+class JdbcDataStoreRepositoryType(AutoName):
+    LDAP = auto()
+    JDBC = auto()
 
 
 class EventTrigger(AutoName):
@@ -263,6 +497,11 @@ class EventTrigger(AutoName):
 class ErrorHandling(AutoName):
     CONTINUE_SSO = auto()
     ABORT_SSO = auto()
+
+
+class LdapDataStoreRepositoryType(AutoName):
+    LDAP = auto()
+    JDBC = auto()
 
 
 class LdapInboundProvisioningUserRepositoryType(AutoName):
@@ -280,7 +519,6 @@ class AuthenticationScheme(AutoName):
     BASIC = auto()
     POST = auto()
     PRIVATE_KEY_JWT = auto()
-    CLIENT_SECRET_JWT = auto()
 
 
 class SigningAlgorithm(AutoName):
@@ -297,6 +535,11 @@ class SigningAlgorithm(AutoName):
     PS256 = auto()
     PS384 = auto()
     PS512 = auto()
+
+
+class OutboundBackChannelAuthType(AutoName):
+    INBOUND = auto()
+    OUTBOUND = auto()
 
 
 class CharacterCase(AutoName):
@@ -334,6 +577,11 @@ class SpWsFedIdentityMapping(AutoName):
     COMMON_NAME = auto()
 
 
+class SpConnection(AutoName):
+    IDP = auto()
+    SP = auto()
+
+
 class ConnectionTargetType(AutoName):
     STANDARD = auto()
     SALESFORCE = auto()
@@ -354,6 +602,27 @@ class ExpectedProtocol(AutoName):
     SAML10 = auto()
 
 
+class CustomDataStoreType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class JdbcDataStoreType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class LdapDataStoreType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
 class LdapType(AutoName):
     ACTIVE_DIRECTORY = auto()
     ORACLE_DIRECTORY_SERVER = auto()
@@ -363,12 +632,99 @@ class LdapType(AutoName):
     GENERIC = auto()
 
 
+class PingOneLdapGatewayDataStoreType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
 class ForwardedHeaderIndex(AutoName):
     FIRST = auto()
     LAST = auto()
 
 
-class LocalIdentityFieldType(AutoName):
+class BaseDefaultValueLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class BaseSelectionLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class CheckboxGroupLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class CheckboxLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class DataStoreAttributeType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class DataStoreConfigType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class DateLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class DropDownLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class EmailLocalIdentityFieldType(AutoName):
     CHECKBOX = auto()
     CHECKBOX_GROUP = auto()
     DATE = auto()
@@ -384,9 +740,67 @@ class EmailVerificationType(AutoName):
     OTL = auto()
 
 
+class HiddenLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class LdapDataStoreAttributeType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class LdapDataStoreConfigType(AutoName):
+    LDAP = auto()
+    PING_ONE_LDAP_GATEWAY = auto()
+    JDBC = auto()
+    CUSTOM = auto()
+
+
+class LocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
+class PhoneLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
+
+
 class ExecuteWorkflow(AutoName):
     BEFORE_ACCOUNT_CREATION = auto()
     AFTER_ACCOUNT_CREATION = auto()
+
+
+class TextLocalIdentityFieldType(AutoName):
+    CHECKBOX = auto()
+    CHECKBOX_GROUP = auto()
+    DATE = auto()
+    DROP_DOWN = auto()
+    EMAIL = auto()
+    PHONE = auto()
+    TEXT = auto()
+    HIDDEN = auto()
 
 
 class RefreshRolling(AutoName):
@@ -406,7 +820,7 @@ class PersistentGrantLifetimeType(AutoName):
     OVERRIDE_SERVER_DEFAULT = auto()
 
 
-class ObjectSigningAlgorithm(AutoName):
+class RequestObjectSigningAlgorithm(AutoName):
     RS256 = auto()
     RS384 = auto()
     RS512 = auto()
@@ -416,14 +830,23 @@ class ObjectSigningAlgorithm(AutoName):
     PS256 = auto()
     PS384 = auto()
     PS512 = auto()
-    HS256 = auto()
-    HS384 = auto()
-    HS512 = auto()
 
 
 class CibaDeliveryMode(AutoName):
     POLL = auto()
     PING = auto()
+
+
+class CibaRequestObjectSigningAlgorithm(AutoName):
+    RS256 = auto()
+    RS384 = auto()
+    RS512 = auto()
+    ES256 = auto()
+    ES384 = auto()
+    ES512 = auto()
+    PS256 = auto()
+    PS384 = auto()
+    PS512 = auto()
 
 
 class RefreshTokenRollingGracePeriodType(AutoName):
@@ -521,7 +944,18 @@ class ClientAuthType(AutoName):
     SECRET = auto()
     CERTIFICATE = auto()
     PRIVATE_KEY_JWT = auto()
-    CLIENT_SECRET_JWT = auto()
+
+
+class TokenEndpointAuthSigningAlgorithm(AutoName):
+    RS256 = auto()
+    RS384 = auto()
+    RS512 = auto()
+    ES256 = auto()
+    ES384 = auto()
+    ES512 = auto()
+    PS256 = auto()
+    PS384 = auto()
+    PS512 = auto()
 
 
 class EncryptionAlgorithm(AutoName):
@@ -547,12 +981,6 @@ class ContentEncryptionAlgorithm(AutoName):
     AES_128_GCM = auto()
     AES_192_GCM = auto()
     AES_256_GCM = auto()
-
-
-class LogoutMode(AutoName):
-    NONE = auto()
-    PING_FRONT_CHANNEL = auto()
-    OIDC_BACK_CHANNEL = auto()
 
 
 class ClientCertIssuerType(AutoName):
@@ -582,11 +1010,6 @@ class ResourceCategory(AutoName):
     DATA_STORE = auto()
     DYNAMIC_CLIENT_REGISTRATION_PLUGIN = auto()
     IDENTITY_STORE_PROVISIONER = auto()
-
-
-class NotificationMode(AutoName):
-    NOTIFICATION_PUBLISHER = auto()
-    LOGGING_ONLY = auto()
 
 
 class IdpConnectionTransactionLoggingOverride(AutoName):

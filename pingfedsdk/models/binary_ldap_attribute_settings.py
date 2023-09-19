@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import BinaryEncoding
+from pingfedsdk.model import Model
 
 
 class BinaryLdapAttributeSettings(Model):
@@ -12,7 +13,6 @@ class BinaryLdapAttributeSettings(Model):
         Get the encoding type for this attribute. If not specified, the default is BASE64.
 
     """
-
     def __init__(self, binaryEncoding: BinaryEncoding = None) -> None:
         self.binaryEncoding = binaryEncoding
 

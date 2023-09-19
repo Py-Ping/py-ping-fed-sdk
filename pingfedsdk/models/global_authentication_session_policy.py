@@ -1,6 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import TimeUnit
+
+from pingfedsdk.enums import IdleTimeoutDisplayUnit
+from pingfedsdk.enums import MaxTimeoutDisplayUnit
+from pingfedsdk.model import Model
 
 
 class GlobalAuthenticationSessionPolicy(Model):
@@ -20,18 +22,17 @@ class GlobalAuthenticationSessionPolicy(Model):
     idleTimeoutMins: int
         The idle timeout period, in minutes. If set to -1, the idle timeout will be set to the maximum timeout. The default is 60.
 
-    idleTimeoutDisplayUnit: TimeUnit
+    idleTimeoutDisplayUnit: IdleTimeoutDisplayUnit
         The display unit for the idle timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.
 
     maxTimeoutMins: int
         The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.
 
-    maxTimeoutDisplayUnit: TimeUnit
+    maxTimeoutDisplayUnit: MaxTimeoutDisplayUnit
         The display unit for the maximum timeout period in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout value in minutes must correspond to a whole number value for the specified unit.
 
     """
-
-    def __init__(self, enableSessions: bool, persistentSessions: bool = None, hashUniqueUserKeyAttribute: bool = None, idleTimeoutMins: int = None, idleTimeoutDisplayUnit: TimeUnit = None, maxTimeoutMins: int = None, maxTimeoutDisplayUnit: TimeUnit = None) -> None:
+    def __init__(self, enableSessions: bool, persistentSessions: bool = None, hashUniqueUserKeyAttribute: bool = None, idleTimeoutMins: int = None, idleTimeoutDisplayUnit: IdleTimeoutDisplayUnit = None, maxTimeoutMins: int = None, maxTimeoutDisplayUnit: MaxTimeoutDisplayUnit = None) -> None:
         self.enableSessions = enableSessions
         self.persistentSessions = persistentSessions
         self.hashUniqueUserKeyAttribute = hashUniqueUserKeyAttribute
@@ -65,11 +66,11 @@ class GlobalAuthenticationSessionPolicy(Model):
                 if k == "idleTimeoutMins":
                     valid_data[k] = int(v)
                 if k == "idleTimeoutDisplayUnit":
-                    valid_data[k] = TimeUnit[v]
+                    valid_data[k] = IdleTimeoutDisplayUnit[v]
                 if k == "maxTimeoutMins":
                     valid_data[k] = int(v)
                 if k == "maxTimeoutDisplayUnit":
-                    valid_data[k] = TimeUnit[v]
+                    valid_data[k] = MaxTimeoutDisplayUnit[v]
 
         return cls(**valid_data)
 

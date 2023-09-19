@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.enums import CustomAttributeSourceType
+from pingfedsdk.model import Model
 from pingfedsdk.models.field_entry import FieldEntry
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class CustomAttributeSource(Model):
@@ -10,7 +11,7 @@ class CustomAttributeSource(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: CustomAttributeSourceType
         The data store type of this attribute source.
 
     dataStoreRef: ResourceLink
@@ -31,8 +32,7 @@ class CustomAttributeSource(Model):
         The list of fields that can be used to filter a request to the custom data store.
 
     """
-
-    def __init__(self, dataStoreRef: ResourceLink, type: DataStoreType, id: str = None, description: str = None, attributeContractFulfillment: object = None, filterFields: list = None) -> None:
+    def __init__(self, type: CustomAttributeSourceType, dataStoreRef: ResourceLink, id: str = None, description: str = None, attributeContractFulfillment: object = None, filterFields: list = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -57,17 +57,17 @@ class CustomAttributeSource(Model):
         for k, v in python_dict.items():
             if k in ["type", "dataStoreRef", "id", "description", "attributeContractFulfillment", "filterFields"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = CustomAttributeSourceType[v]
                 if k == "dataStoreRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "filterFields":
-                    valid_data[k] = [FieldEntry(**x) for x in v]
+                    valid_data[k] = [FieldEntry.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -33,7 +34,6 @@ class PingOneForEnterpriseSettings(Model):
         A read-only field indicating whether changes were made in the current PingFederate configuration that might affect your connection with PingOne for Enterprise. For example, if you modified the attribute contract of your SSO configuration. Update the identity repository to keep your PingFederate and PingOne for Enterprise settings synchronized.
 
     """
-
     def __init__(self, connectedToPingOneForEnterprise: bool = None, pingOneSsoConnection: ResourceLink = None, companyName: str = None, enableAdminConsoleSso: bool = None, enableMonitoring: bool = None, currentAuthnKeyCreationTime: str = None, previousAuthnKeyCreationTime: str = None, identityRepositoryUpdateRequired: bool = None) -> None:
         self.connectedToPingOneForEnterprise = connectedToPingOneForEnterprise
         self.pingOneSsoConnection = pingOneSsoConnection
@@ -63,7 +63,7 @@ class PingOneForEnterpriseSettings(Model):
                 if k == "connectedToPingOneForEnterprise":
                     valid_data[k] = bool(v)
                 if k == "pingOneSsoConnection":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "companyName":
                     valid_data[k] = str(v)
                 if k == "enableAdminConsoleSso":

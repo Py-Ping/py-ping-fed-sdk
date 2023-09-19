@@ -1,10 +1,11 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.protocol_message_customization import ProtocolMessageCustomization
-from pingfedsdk.models.sp_ws_trust_attribute_contract import SpWsTrustAttributeContract
-from pingfedsdk.models.idp_token_processor_mapping import IdpTokenProcessorMapping
+
 from pingfedsdk.enums import DefaultTokenType
+from pingfedsdk.model import Model
+from pingfedsdk.models.idp_token_processor_mapping import IdpTokenProcessorMapping
+from pingfedsdk.models.protocol_message_customization import ProtocolMessageCustomization
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.sp_ws_trust_attribute_contract import SpWsTrustAttributeContract
 
 
 class SpWsTrust(Model):
@@ -49,8 +50,7 @@ class SpWsTrust(Model):
         The message customizations for WS-Trust. Depending on server settings, connection type, and protocol this may or may not be supported.
 
     """
-
-    def __init__(self, attributeContract: SpWsTrustAttributeContract, partnerServiceIds: list, tokenProcessorMappings: list, oAuthAssertionProfiles: bool = None, defaultTokenType: DefaultTokenType = None, generateKey: bool = None, encryptSaml2Assertion: bool = None, minutesBefore: int = None, minutesAfter: int = None, abortIfNotFulfilledFromRequest: bool = None, requestContractRef: ResourceLink = None, messageCustomizations: list = None) -> None:
+    def __init__(self, partnerServiceIds: list, attributeContract: SpWsTrustAttributeContract, tokenProcessorMappings: list, oAuthAssertionProfiles: bool = None, defaultTokenType: DefaultTokenType = None, generateKey: bool = None, encryptSaml2Assertion: bool = None, minutesBefore: int = None, minutesAfter: int = None, abortIfNotFulfilledFromRequest: bool = None, requestContractRef: ResourceLink = None, messageCustomizations: list = None) -> None:
         self.partnerServiceIds = partnerServiceIds
         self.oAuthAssertionProfiles = oAuthAssertionProfiles
         self.defaultTokenType = defaultTokenType
@@ -95,15 +95,15 @@ class SpWsTrust(Model):
                 if k == "minutesAfter":
                     valid_data[k] = int(v)
                 if k == "attributeContract":
-                    valid_data[k] = SpWsTrustAttributeContract(**v)
+                    valid_data[k] = SpWsTrustAttributeContract.from_dict(v)
                 if k == "tokenProcessorMappings":
-                    valid_data[k] = [IdpTokenProcessorMapping(**x) for x in v]
+                    valid_data[k] = [IdpTokenProcessorMapping.from_dict(x) for x in v]
                 if k == "abortIfNotFulfilledFromRequest":
                     valid_data[k] = bool(v)
                 if k == "requestContractRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "messageCustomizations":
-                    valid_data[k] = [ProtocolMessageCustomization(**x) for x in v]
+                    valid_data[k] = [ProtocolMessageCustomization.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

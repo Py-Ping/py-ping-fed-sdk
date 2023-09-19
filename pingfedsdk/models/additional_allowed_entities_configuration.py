@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.entity import Entity
 
 
@@ -18,7 +19,6 @@ class AdditionalAllowedEntitiesConfiguration(Model):
         An array of additional allowed entities or issuers to be accepted during entity or issuer validation.
 
     """
-
     def __init__(self, allowAdditionalEntities: bool = None, allowAllEntities: bool = None, additionalAllowedEntities: list = None) -> None:
         self.allowAdditionalEntities = allowAdditionalEntities
         self.allowAllEntities = allowAllEntities
@@ -45,7 +45,7 @@ class AdditionalAllowedEntitiesConfiguration(Model):
                 if k == "allowAllEntities":
                     valid_data[k] = bool(v)
                 if k == "additionalAllowedEntities":
-                    valid_data[k] = [Entity(**x) for x in v]
+                    valid_data[k] = [Entity.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

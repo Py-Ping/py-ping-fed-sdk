@@ -1,44 +1,44 @@
-from pingfedsdk.model import Model
 from enum import Enum
 
+from pingfedsdk.model import Model
 
-class DataSourceTag(Model):
-    """
+
+class IdpInboundProvisioningAttribute(Model):
+    """An attribute for the IdP Inbound Provisioning attribute contract.
 
     Attributes
     ----------
-    tagsHashSet: set
-    defaultSource: bool
-    tags: str
-    """
+    name: str
+        The name of this attribute.
 
-    def __init__(self, tagsHashSet: set = None, defaultSource: bool = None, tags: str = None) -> None:
-        self.tagsHashSet = tagsHashSet
-        self.defaultSource = defaultSource
-        self.tags = tags
+    masked: bool
+        Specifies whether this attribute is masked in PingFederate logs. Defaults to false.
+
+    """
+    def __init__(self, name: str, masked: bool = None) -> None:
+        self.name = name
+        self.masked = masked
 
     def _validate(self) -> bool:
-        return any(x for x in [] if self.__dict__[x] is not None)
+        return any(x for x in ["name"] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, DataSourceTag):
+        if isinstance(other, IdpInboundProvisioningAttribute):
             return self.__dict__ == other.__dict__
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.tagsHashSet, self.defaultSource, self.tags]))
+        return hash(frozenset([self.name, self.masked]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["tagsHashSet", "defaultSource", "tags"] and v is not None:
-                if k == "tagsHashSet":
-                    valid_data[k] = set({str(x) for x in v})
-                if k == "defaultSource":
-                    valid_data[k] = bool(v)
-                if k == "tags":
+            if k in ["name", "masked"] and v is not None:
+                if k == "name":
                     valid_data[k] = str(v)
+                if k == "masked":
+                    valid_data[k] = bool(v)
 
         return cls(**valid_data)
 
@@ -50,7 +50,7 @@ class DataSourceTag(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["tagsHashSet", "defaultSource", "tags"]:
+            if k in ["name", "masked"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):

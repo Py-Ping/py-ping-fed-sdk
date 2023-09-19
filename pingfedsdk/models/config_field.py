@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ConfigField(Model):
@@ -20,7 +21,6 @@ class ConfigField(Model):
         Whether this field is inherited from its parent instance. If true, the value/encrypted value properties become read-only. The default value is false.
 
     """
-
     def __init__(self, name: str, value: str = None, encryptedValue: str = None, inherited: bool = None) -> None:
         self.name = name
         self.value = value

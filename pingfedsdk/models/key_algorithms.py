@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.key_algorithm import KeyAlgorithm
 
 
@@ -12,7 +13,6 @@ class KeyAlgorithms(Model):
         The actual list of key algorithms.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class KeyAlgorithms(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [KeyAlgorithm(**x) for x in v]
+                    valid_data[k] = [KeyAlgorithm.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

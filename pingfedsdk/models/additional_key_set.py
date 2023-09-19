@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.signing_keys import SigningKeys
 
@@ -25,8 +26,7 @@ class AdditionalKeySet(Model):
         A list of virtual issuers that will use the current key set. Once assigned to a key set, the same virtual issuer cannot be assigned to another key set instance.
 
     """
-
-    def __init__(self, issuers: list, name: str, signingKeys: SigningKeys, id: str = None, description: str = None) -> None:
+    def __init__(self, name: str, signingKeys: SigningKeys, issuers: list, id: str = None, description: str = None) -> None:
         self.id = id
         self.name = name
         self.description = description
@@ -56,9 +56,9 @@ class AdditionalKeySet(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "signingKeys":
-                    valid_data[k] = SigningKeys(**v)
+                    valid_data[k] = SigningKeys.from_dict(v)
                 if k == "issuers":
-                    valid_data[k] = [ResourceLink(**x) for x in v]
+                    valid_data[k] = [ResourceLink.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

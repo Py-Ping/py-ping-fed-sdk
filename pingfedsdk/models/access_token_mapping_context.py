@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
 from pingfedsdk.enums import AccessTokenMappingContextType
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class AccessTokenMappingContext(Model):
@@ -16,8 +17,7 @@ class AccessTokenMappingContext(Model):
         Reference to the associated Access Token Mapping Context instance.
 
     """
-
-    def __init__(self, type: AccessTokenMappingContextType, contextRef: ResourceLink = None) -> None:
+    def __init__(self, type: AccessTokenMappingContextType, contextRef: ResourceLink) -> None:
         self.type = type
         self.contextRef = contextRef
 
@@ -40,11 +40,11 @@ class AccessTokenMappingContext(Model):
                 if k == "type":
                     valid_data[k] = AccessTokenMappingContextType[v]
                 if k == "contextRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 
-    def to_dict(self, remove_nonetypes=True):
+    def to_dict(self, remove_nonetypes=False):
         """
         Naive dictionary serialiser. Recursively handles most types in this
         module. If you make your own class you need to inherit from model

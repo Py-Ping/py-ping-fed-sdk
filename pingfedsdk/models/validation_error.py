@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ValidationError(Model):
@@ -20,7 +21,6 @@ class ValidationError(Model):
         The path to the model field to which the error relates, if one exists.
 
     """
-
     def __init__(self, errorId: str = None, message: str = None, developerMessage: str = None, fieldPath: str = None) -> None:
         self.errorId = errorId
         self.message = message

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_rule import AttributeRule
 
 
@@ -15,7 +16,6 @@ class AttributeRules(Model):
         The actual list of attribute rules.
 
     """
-
     def __init__(self, fallbackToSuccess: bool = None, items: list = None) -> None:
         self.fallbackToSuccess = fallbackToSuccess
         self.items = items
@@ -39,7 +39,7 @@ class AttributeRules(Model):
                 if k == "fallbackToSuccess":
                     valid_data[k] = bool(v)
                 if k == "items":
-                    valid_data[k] = [AttributeRule(**x) for x in v]
+                    valid_data[k] = [AttributeRule.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

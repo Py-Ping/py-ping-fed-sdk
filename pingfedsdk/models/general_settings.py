@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import IdpConnectionTransactionLoggingOverride
 from pingfedsdk.enums import SpConnectionTransactionLoggingOverride
+from pingfedsdk.model import Model
 
 
 class GeneralSettings(Model):
@@ -25,7 +26,6 @@ class GeneralSettings(Model):
         HTTP request header for retrieving correlation ID.
 
     """
-
     def __init__(self, disableAutomaticConnectionValidation: bool = None, idpConnectionTransactionLoggingOverride: IdpConnectionTransactionLoggingOverride = None, spConnectionTransactionLoggingOverride: SpConnectionTransactionLoggingOverride = None, datastoreValidationIntervalSecs: int = None, requestHeaderForCorrelationId: str = None) -> None:
         self.disableAutomaticConnectionValidation = disableAutomaticConnectionValidation
         self.idpConnectionTransactionLoggingOverride = idpConnectionTransactionLoggingOverride

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.p_1_4_e_key_pair_view import P14EKeyPairView
 
 
@@ -12,7 +13,6 @@ class P14EKeysView(Model):
         The key pairs used to authenticate to PingOne for Enterprise
 
     """
-
     def __init__(self, keyPairs: list = None) -> None:
         self.keyPairs = keyPairs
 
@@ -33,7 +33,7 @@ class P14EKeysView(Model):
         for k, v in python_dict.items():
             if k in ["keyPairs"] and v is not None:
                 if k == "keyPairs":
-                    valid_data[k] = [P14EKeyPairView(**x) for x in v]
+                    valid_data[k] = [P14EKeyPairView.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

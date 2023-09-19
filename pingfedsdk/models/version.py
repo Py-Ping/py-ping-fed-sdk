@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class Version(Model):
@@ -11,7 +12,6 @@ class Version(Model):
         Server version.
 
     """
-
     def __init__(self, version: str = None) -> None:
         self.version = version
 

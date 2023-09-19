@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import ResourceCategory
+from pingfedsdk.model import Model
 
 
 class ResourceCategoryInfo(Model):
@@ -15,7 +16,6 @@ class ResourceCategoryInfo(Model):
         The name of the resource category.
 
     """
-
     def __init__(self, id: ResourceCategory = None, name: str = None) -> None:
         self.id = id
         self.name = name

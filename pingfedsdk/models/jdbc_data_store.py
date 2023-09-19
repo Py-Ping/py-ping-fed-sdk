@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.enums import JdbcDataStoreType
+from pingfedsdk.model import Model
 from pingfedsdk.models.jdbc_tag_config import JdbcTagConfig
-from pingfedsdk.enums import DataStoreType
 
 
 class JdbcDataStore(Model):
@@ -9,7 +10,7 @@ class JdbcDataStore(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: JdbcDataStoreType
         The data store type.
 
     id: str
@@ -58,8 +59,7 @@ class JdbcDataStore(Model):
         The length of time in minutes the connection can be idle in the pool before it is closed. Omitting this attribute will set the value to the connection pool default.
 
     """
-
-    def __init__(self, driverClass: str, userName: str, type: DataStoreType = None, id: str = None, maskAttributeValues: bool = None, connectionUrlTags: list = None, connectionUrl: str = None, name: str = None, password: str = None, encryptedPassword: str = None, validateConnectionSql: str = None, allowMultiValueAttributes: bool = None, minPoolSize: int = None, maxPoolSize: int = None, blockingTimeout: int = None, idleTimeout: int = None) -> None:
+    def __init__(self, driverClass: str, userName: str, type: JdbcDataStoreType = None, id: str = None, maskAttributeValues: bool = None, connectionUrlTags: list = None, connectionUrl: str = None, name: str = None, password: str = None, encryptedPassword: str = None, validateConnectionSql: str = None, allowMultiValueAttributes: bool = None, minPoolSize: int = None, maxPoolSize: int = None, blockingTimeout: int = None, idleTimeout: int = None) -> None:
         self.type = type
         self.id = id
         self.maskAttributeValues = maskAttributeValues
@@ -94,13 +94,13 @@ class JdbcDataStore(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "maskAttributeValues", "connectionUrlTags", "connectionUrl", "name", "driverClass", "userName", "password", "encryptedPassword", "validateConnectionSql", "allowMultiValueAttributes", "minPoolSize", "maxPoolSize", "blockingTimeout", "idleTimeout"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = JdbcDataStoreType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "maskAttributeValues":
                     valid_data[k] = bool(v)
                 if k == "connectionUrlTags":
-                    valid_data[k] = [JdbcTagConfig(**x) for x in v]
+                    valid_data[k] = [JdbcTagConfig.from_dict(x) for x in v]
                 if k == "connectionUrl":
                     valid_data[k] = str(v)
                 if k == "name":

@@ -1,14 +1,15 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.token_to_token_mapping import TokenToTokenMapping as ModelTokenToTokenMapping
 from pingfedsdk.models.token_to_token_mappings import TokenToTokenMappings as ModelTokenToTokenMappings
@@ -66,15 +67,13 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getTokenToTokenMappingById(self, id: str):
         """ Get a Token Processor to Token Generator Mapping.
@@ -95,13 +94,13 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateTokenToTokenMappingById(self, id: str, body: ModelTokenToTokenMapping, XBypassExternalValidation: bool = None):
+    def updateTokenToTokenMappingById(self, body: ModelTokenToTokenMapping, id: str, XBypassExternalValidation: bool = None):
         """ Update a Token Processor to Token Generator Mapping.
         """
 
@@ -121,7 +120,7 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +130,7 @@ class TokenProcessorToTokenGeneratorMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteTokenToTokenMappingById(self, id: str):
         """ Delete a Token Processor to Token Generator Mapping.

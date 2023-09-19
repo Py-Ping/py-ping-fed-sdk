@@ -1,18 +1,19 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
 from pingfedsdk.exceptions import NotImplementedError
-from pingfedsdk.models.config_store_setting import ConfigStoreSetting as ModelConfigStoreSetting
-from pingfedsdk.models.config_store_bundle import ConfigStoreBundle as ModelConfigStoreBundle
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.config_store_bundle import ConfigStoreBundle as ModelConfigStoreBundle
+from pingfedsdk.models.config_store_setting import ConfigStoreSetting as ModelConfigStoreSetting
 
 
 class ConfigStore:
@@ -25,6 +26,35 @@ class ConfigStore:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
+
+    def getSettings(self, bundle: str):
+        """ Get all settings from a bundle.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/configStore/{bundle}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelConfigStoreBundle.from_dict(response.json())
+            if response.status_code == 403:
+                message = "(403) The specified configuration bundle is unavailable."
+                self.logger.info(message)
+                raise NotImplementedError(message)
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
 
     def getSetting(self, bundle: str, id: str):
         """ Get a single setting from a bundle.
@@ -45,7 +75,7 @@ class ConfigStore:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConfigStoreSetting.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) The specified configuration bundle is unavailable."
                 self.logger.info(message)
@@ -55,7 +85,7 @@ class ConfigStore:
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateSetting(self, bundle: str, id: str, body: ModelConfigStoreSetting):
+    def updateSetting(self, body: ModelConfigStoreSetting, bundle: str, id: str):
         """ Create or update a setting/bundle.
         """
 
@@ -75,7 +105,7 @@ class ConfigStore:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelConfigStoreSetting.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -85,9 +115,7 @@ class ConfigStore:
                 self.logger.info(message)
                 raise NotImplementedError(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteSetting(self, bundle: str, id: str):
         """ Delete a setting.
@@ -111,35 +139,6 @@ class ConfigStore:
                 message = "(204) Configuration setting deleted."
                 self.logger.info(message)
                 raise ObjectDeleted(message)
-            if response.status_code == 403:
-                message = "(403) The specified configuration bundle is unavailable."
-                self.logger.info(message)
-                raise NotImplementedError(message)
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def getSettings(self, bundle: str):
-        """ Get all settings from a bundle.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/configStore/{bundle}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) The specified configuration bundle is unavailable."
                 self.logger.info(message)

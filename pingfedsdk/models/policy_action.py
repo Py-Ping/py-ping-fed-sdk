@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import AuthenticationPolicySelectionActionType
+from pingfedsdk.model import Model
 
 
 class PolicyAction(Model):
@@ -15,7 +16,6 @@ class PolicyAction(Model):
         The result context.
 
     """
-
     def __init__(self, type: AuthenticationPolicySelectionActionType, context: str = None) -> None:
         self.type = type
         self.context = context

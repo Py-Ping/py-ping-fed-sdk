@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import CryptoProvider
 from pingfedsdk.enums import Status
+from pingfedsdk.model import Model
 
 
 class CertView(Model):
@@ -55,7 +56,6 @@ class CertView(Model):
         Cryptographic Provider. This is only applicable if Hybrid HSM mode is true.
 
     """
-
     def __init__(self, id: str = None, serialNumber: str = None, subjectDN: str = None, subjectAlternativeNames: list = None, issuerDN: str = None, validFrom: str = None, expires: str = None, keyAlgorithm: str = None, keySize: int = None, signatureAlgorithm: str = None, version: int = None, sha1Fingerprint: str = None, sha256Fingerprint: str = None, status: Status = None, cryptoProvider: CryptoProvider = None) -> None:
         self.id = id
         self.serialNumber = serialNumber

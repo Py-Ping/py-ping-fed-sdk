@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AdministrativeAccount(Model):
@@ -42,7 +43,6 @@ class AdministrativeAccount(Model):
         EXPRESSION_ADMINISTRATOR - Can add and update OGNL expressions.
 
     """
-
     def __init__(self, username: str, password: str = None, encryptedPassword: str = None, active: bool = None, description: str = None, auditor: bool = None, phoneNumber: str = None, emailAddress: str = None, department: str = None, roles: list = None) -> None:
         self.username = username
         self.password = password

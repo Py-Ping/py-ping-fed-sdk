@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import ForwardedHeaderIndex
+from pingfedsdk.model import Model
 
 
 class IncomingProxySettings(Model):
@@ -30,7 +31,6 @@ class IncomingProxySettings(Model):
         Allows you to globally specify that connections to the reverse proxy are made over HTTPS even when HTTP is used between the reverse proxy and PingFederate.
 
     """
-
     def __init__(self, forwardedIpAddressHeaderName: str = None, forwardedIpAddressHeaderIndex: ForwardedHeaderIndex = None, forwardedHostHeaderName: str = None, forwardedHostHeaderIndex: ForwardedHeaderIndex = None, clientCertSSLHeaderName: str = None, clientCertChainSSLHeaderName: str = None, proxyTerminatesHttpsConns: bool = None) -> None:
         self.forwardedIpAddressHeaderName = forwardedIpAddressHeaderName
         self.forwardedIpAddressHeaderIndex = forwardedIpAddressHeaderIndex

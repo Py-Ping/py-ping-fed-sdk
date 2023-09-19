@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.username_password_credentials import UsernamePasswordCredentials
+
 from pingfedsdk.enums import BackChannelAuthType
+from pingfedsdk.model import Model
+from pingfedsdk.models.username_password_credentials import UsernamePasswordCredentials
 
 
 class BackChannelAuth(Model):
@@ -19,7 +20,6 @@ class BackChannelAuth(Model):
         If incoming or outgoing messages must be signed.
 
     """
-
     def __init__(self, type: BackChannelAuthType, httpBasicCredentials: UsernamePasswordCredentials = None, digitalSignature: bool = None) -> None:
         self.type = type
         self.httpBasicCredentials = httpBasicCredentials
@@ -44,7 +44,7 @@ class BackChannelAuth(Model):
                 if k == "type":
                     valid_data[k] = BackChannelAuthType[v]
                 if k == "httpBasicCredentials":
-                    valid_data[k] = UsernamePasswordCredentials(**v)
+                    valid_data[k] = UsernamePasswordCredentials.from_dict(v)
                 if k == "digitalSignature":
                     valid_data[k] = bool(v)
 

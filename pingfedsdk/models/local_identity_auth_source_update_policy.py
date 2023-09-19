@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class LocalIdentityAuthSourceUpdatePolicy(Model):
@@ -20,7 +21,6 @@ class LocalIdentityAuthSourceUpdatePolicy(Model):
         The minimum number of days between updates.
 
     """
-
     def __init__(self, storeAttributes: bool = None, retainAttributes: bool = None, updateAttributes: bool = None, updateInterval: float = None) -> None:
         self.storeAttributes = storeAttributes
         self.retainAttributes = retainAttributes

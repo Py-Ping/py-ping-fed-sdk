@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.action_parameter import ActionParameter
 
 
@@ -12,7 +13,6 @@ class ActionOptions(Model):
         List of action parameters.
 
     """
-
     def __init__(self, parameters: list) -> None:
         self.parameters = parameters
 
@@ -33,7 +33,7 @@ class ActionOptions(Model):
         for k, v in python_dict.items():
             if k in ["parameters"] and v is not None:
                 if k == "parameters":
-                    valid_data[k] = [ActionParameter(**x) for x in v]
+                    valid_data[k] = [ActionParameter.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

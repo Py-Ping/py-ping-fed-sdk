@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class PingOneEnvironment(Model):
@@ -17,7 +18,6 @@ class PingOneEnvironment(Model):
         The type of the environment
 
     """
-
     def __init__(self, name: str = None, id: str = None, type: str = None) -> None:
         self.name = name
         self.id = id

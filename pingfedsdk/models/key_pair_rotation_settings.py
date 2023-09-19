@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class KeyPairRotationSettings(Model):
@@ -27,8 +28,7 @@ class KeyPairRotationSettings(Model):
         Required if the original key pair used SHA1 algorithm. If this property is unset, the default signature algorithm of the original key pair will be used. Supported signature algorithms are available through the /keyPairs/keyAlgorithms endpoint.
 
     """
-
-    def __init__(self, activationBufferDays: int, creationBufferDays: int, id: str = None, validDays: int = None, keyAlgorithm: str = None, keySize: int = None, signatureAlgorithm: str = None) -> None:
+    def __init__(self, creationBufferDays: int, activationBufferDays: int, validDays: int = None, keyAlgorithm: str = None, keySize: int = None, signatureAlgorithm: str = None, id: str = None) -> None:
         self.id = id
         self.creationBufferDays = creationBufferDays
         self.activationBufferDays = activationBufferDays

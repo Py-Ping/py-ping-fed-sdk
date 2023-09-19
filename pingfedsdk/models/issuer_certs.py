@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.issuer_cert import IssuerCert
 
 
@@ -12,7 +13,6 @@ class IssuerCerts(Model):
         The actual list of certificates.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class IssuerCerts(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [IssuerCert(**x) for x in v]
+                    valid_data[k] = [IssuerCert.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

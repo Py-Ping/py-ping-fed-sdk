@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.token_processor_descriptor import TokenProcessorDescriptor
 
 
@@ -12,7 +13,6 @@ class TokenProcessorDescriptors(Model):
         The list of token processor descriptors.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class TokenProcessorDescriptors(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [TokenProcessorDescriptor(**x) for x in v]
+                    valid_data[k] = [TokenProcessorDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

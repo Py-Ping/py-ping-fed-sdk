@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_policy_tree_node import AuthenticationPolicyTreeNode
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class AuthenticationPolicyFragment(Model):
@@ -28,7 +29,6 @@ class AuthenticationPolicyFragment(Model):
         The reference to the authentication policy contract to use as the attribute outputs for this authentication policy fragment.
 
     """
-
     def __init__(self, id: str = None, name: str = None, description: str = None, rootNode: AuthenticationPolicyTreeNode = None, inputs: ResourceLink = None, outputs: ResourceLink = None) -> None:
         self.id = id
         self.name = name
@@ -60,11 +60,11 @@ class AuthenticationPolicyFragment(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "rootNode":
-                    valid_data[k] = AuthenticationPolicyTreeNode(**v)
+                    valid_data[k] = AuthenticationPolicyTreeNode.from_dict(v)
                 if k == "inputs":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "outputs":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

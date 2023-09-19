@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ContactInfo(Model):
@@ -23,7 +24,6 @@ class ContactInfo(Model):
         Contact phone number.
 
     """
-
     def __init__(self, company: str = None, email: str = None, firstName: str = None, lastName: str = None, phone: str = None) -> None:
         self.company = company
         self.email = email

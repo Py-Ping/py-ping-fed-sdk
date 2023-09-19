@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class OIDCClientCredentials(Model):
@@ -17,7 +18,6 @@ class OIDCClientCredentials(Model):
         For GET requests, this field contains the encrypted client secret, if one exists.  For POST and PUT requests, if you wish to reuse the existing secret, this field should be passed back unchanged.
 
     """
-
     def __init__(self, clientId: str, clientSecret: str = None, encryptedSecret: str = None) -> None:
         self.clientId = clientId
         self.clientSecret = clientSecret

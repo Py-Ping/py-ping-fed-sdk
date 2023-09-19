@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.enums import TimeoutDisplayUnit
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_source import AuthenticationSource
-from pingfedsdk.enums import TimeUnit
 
 
 class AuthenticationSessionPolicy(Model):
@@ -27,15 +28,14 @@ class AuthenticationSessionPolicy(Model):
     maxTimeoutMins: int
         The maximum timeout period, in minutes. If omitted, the value from the global authentication session policy will be used. If set to -1, sessions do not expire. If a value is provided for this property, a value must also be provided for idleTimeoutMins.
 
-    timeoutDisplayUnit: TimeUnit
+    timeoutDisplayUnit: TimeoutDisplayUnit
         The display unit for session timeout periods in the PingFederate administrative console. When the display unit is HOURS or DAYS, the timeout values in minutes must correspond to a whole number value for the specified unit.
 
     authnContextSensitive: bool
         Determines whether the requested authentication context is considered when deciding whether an existing session is valid for a given request. The default is false.
 
     """
-
-    def __init__(self, authenticationSource: AuthenticationSource, enableSessions: bool, id: str = None, persistent: bool = None, idleTimeoutMins: int = None, maxTimeoutMins: int = None, timeoutDisplayUnit: TimeUnit = None, authnContextSensitive: bool = None) -> None:
+    def __init__(self, authenticationSource: AuthenticationSource, enableSessions: bool, id: str = None, persistent: bool = None, idleTimeoutMins: int = None, maxTimeoutMins: int = None, timeoutDisplayUnit: TimeoutDisplayUnit = None, authnContextSensitive: bool = None) -> None:
         self.id = id
         self.authenticationSource = authenticationSource
         self.enableSessions = enableSessions
@@ -64,7 +64,7 @@ class AuthenticationSessionPolicy(Model):
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "authenticationSource":
-                    valid_data[k] = AuthenticationSource(**v)
+                    valid_data[k] = AuthenticationSource.from_dict(v)
                 if k == "enableSessions":
                     valid_data[k] = bool(v)
                 if k == "persistent":
@@ -74,7 +74,7 @@ class AuthenticationSessionPolicy(Model):
                 if k == "maxTimeoutMins":
                     valid_data[k] = int(v)
                 if k == "timeoutDisplayUnit":
-                    valid_data[k] = TimeUnit[v]
+                    valid_data[k] = TimeoutDisplayUnit[v]
                 if k == "authnContextSensitive":
                     valid_data[k] = bool(v)
 

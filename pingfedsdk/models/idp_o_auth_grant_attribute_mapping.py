@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.access_token_manager_mapping import AccessTokenManagerMapping
 from pingfedsdk.models.idp_o_auth_attribute_contract import IdpOAuthAttributeContract
 
@@ -16,7 +17,6 @@ class IdpOAuthGrantAttributeMapping(Model):
         A set of user attributes that the IdP sends in the OAuth Assertion Grant.
 
     """
-
     def __init__(self, accessTokenManagerMappings: list = None, idpOAuthAttributeContract: IdpOAuthAttributeContract = None) -> None:
         self.accessTokenManagerMappings = accessTokenManagerMappings
         self.idpOAuthAttributeContract = idpOAuthAttributeContract
@@ -38,9 +38,9 @@ class IdpOAuthGrantAttributeMapping(Model):
         for k, v in python_dict.items():
             if k in ["accessTokenManagerMappings", "idpOAuthAttributeContract"] and v is not None:
                 if k == "accessTokenManagerMappings":
-                    valid_data[k] = [AccessTokenManagerMapping(**x) for x in v]
+                    valid_data[k] = [AccessTokenManagerMapping.from_dict(x) for x in v]
                 if k == "idpOAuthAttributeContract":
-                    valid_data[k] = IdpOAuthAttributeContract(**v)
+                    valid_data[k] = IdpOAuthAttributeContract.from_dict(v)
 
         return cls(**valid_data)
 

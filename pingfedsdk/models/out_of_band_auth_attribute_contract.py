@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.out_of_band_auth_attribute import OutOfBandAuthAttribute
 
 
@@ -15,7 +16,6 @@ class OutOfBandAuthAttributeContract(Model):
         A list of additional attributes that can be returned by the out of band authenticator plugin instance. The extended attributes are only used if the plugin supports them.
 
     """
-
     def __init__(self, coreAttributes: list, extendedAttributes: list = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -37,9 +37,9 @@ class OutOfBandAuthAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [OutOfBandAuthAttribute(**x) for x in v]
+                    valid_data[k] = [OutOfBandAuthAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [OutOfBandAuthAttribute(**x) for x in v]
+                    valid_data[k] = [OutOfBandAuthAttribute.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

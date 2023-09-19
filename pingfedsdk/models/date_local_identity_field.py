@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import LocalIdentityFieldType
+
+from pingfedsdk.enums import DateLocalIdentityFieldType
+from pingfedsdk.model import Model
 
 
 class DateLocalIdentityField(Model):
@@ -8,7 +9,7 @@ class DateLocalIdentityField(Model):
 
     Attributes
     ----------
-    type: LocalIdentityFieldType
+    type: DateLocalIdentityFieldType
         The type of the local identity field.
 
     id: str
@@ -30,8 +31,7 @@ class DateLocalIdentityField(Model):
         The default value for this field.
 
     """
-
-    def __init__(self, id: str, label: str, type: LocalIdentityFieldType, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None, defaultValue: str = None) -> None:
+    def __init__(self, type: DateLocalIdentityFieldType, id: str, label: str, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None, defaultValue: str = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -57,7 +57,7 @@ class DateLocalIdentityField(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "label", "registrationPageField", "profilePageField", "attributes", "defaultValue"] and v is not None:
                 if k == "type":
-                    valid_data[k] = LocalIdentityFieldType[v]
+                    valid_data[k] = DateLocalIdentityFieldType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "label":
@@ -67,7 +67,7 @@ class DateLocalIdentityField(Model):
                 if k == "profilePageField":
                     valid_data[k] = bool(v)
                 if k == "attributes":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "defaultValue":
                     valid_data[k] = str(v)
 

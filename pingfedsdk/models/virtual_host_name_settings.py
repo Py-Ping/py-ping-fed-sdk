@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class VirtualHostNameSettings(Model):
@@ -11,7 +12,6 @@ class VirtualHostNameSettings(Model):
         List of virtual host names.
 
     """
-
     def __init__(self, virtualHostNames: list = None) -> None:
         self.virtualHostNames = virtualHostNames
 

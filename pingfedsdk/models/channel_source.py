@@ -1,10 +1,11 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
+from pingfedsdk.models.account_management_settings import AccountManagementSettings
 from pingfedsdk.models.change_detection_settings import ChangeDetectionSettings
 from pingfedsdk.models.channel_source_location import ChannelSourceLocation
-from pingfedsdk.models.account_management_settings import AccountManagementSettings
 from pingfedsdk.models.group_membership_detection import GroupMembershipDetection
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class ChannelSource(Model):
@@ -40,8 +41,7 @@ class ChannelSource(Model):
         The group provisioning source location settings.
 
     """
-
-    def __init__(self, accountManagementSettings: AccountManagementSettings, baseDn: str, changeDetectionSettings: ChangeDetectionSettings, dataSource: ResourceLink, groupMembershipDetection: GroupMembershipDetection, guidAttributeName: str, guidBinary: bool, userSourceLocation: ChannelSourceLocation, groupSourceLocation: ChannelSourceLocation = None) -> None:
+    def __init__(self, dataSource: ResourceLink, guidAttributeName: str, guidBinary: bool, changeDetectionSettings: ChangeDetectionSettings, groupMembershipDetection: GroupMembershipDetection, accountManagementSettings: AccountManagementSettings, baseDn: str, userSourceLocation: ChannelSourceLocation, groupSourceLocation: ChannelSourceLocation = None) -> None:
         self.dataSource = dataSource
         self.guidAttributeName = guidAttributeName
         self.guidBinary = guidBinary
@@ -69,23 +69,23 @@ class ChannelSource(Model):
         for k, v in python_dict.items():
             if k in ["dataSource", "guidAttributeName", "guidBinary", "changeDetectionSettings", "groupMembershipDetection", "accountManagementSettings", "baseDn", "userSourceLocation", "groupSourceLocation"] and v is not None:
                 if k == "dataSource":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "guidAttributeName":
                     valid_data[k] = str(v)
                 if k == "guidBinary":
                     valid_data[k] = bool(v)
                 if k == "changeDetectionSettings":
-                    valid_data[k] = ChangeDetectionSettings(**v)
+                    valid_data[k] = ChangeDetectionSettings.from_dict(v)
                 if k == "groupMembershipDetection":
-                    valid_data[k] = GroupMembershipDetection(**v)
+                    valid_data[k] = GroupMembershipDetection.from_dict(v)
                 if k == "accountManagementSettings":
-                    valid_data[k] = AccountManagementSettings(**v)
+                    valid_data[k] = AccountManagementSettings.from_dict(v)
                 if k == "baseDn":
                     valid_data[k] = str(v)
                 if k == "userSourceLocation":
-                    valid_data[k] = ChannelSourceLocation(**v)
+                    valid_data[k] = ChannelSourceLocation.from_dict(v)
                 if k == "groupSourceLocation":
-                    valid_data[k] = ChannelSourceLocation(**v)
+                    valid_data[k] = ChannelSourceLocation.from_dict(v)
 
         return cls(**valid_data)
 

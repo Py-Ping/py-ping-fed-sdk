@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.config_operation import ConfigOperation
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.bulk_config_metadata import BulkConfigMetadata
+from pingfedsdk.models.config_operation import ConfigOperation
 
 
 class BulkConfig(Model):
@@ -16,7 +17,6 @@ class BulkConfig(Model):
         A list of configuration operations.
 
     """
-
     def __init__(self, metadata: BulkConfigMetadata, operations: list) -> None:
         self.metadata = metadata
         self.operations = operations
@@ -38,9 +38,9 @@ class BulkConfig(Model):
         for k, v in python_dict.items():
             if k in ["metadata", "operations"] and v is not None:
                 if k == "metadata":
-                    valid_data[k] = BulkConfigMetadata(**v)
+                    valid_data[k] = BulkConfigMetadata.from_dict(v)
                 if k == "operations":
-                    valid_data[k] = [ConfigOperation(**x) for x in v]
+                    valid_data[k] = [ConfigOperation.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

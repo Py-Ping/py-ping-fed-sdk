@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class OutOfBandAuthAttribute(Model):
@@ -11,7 +12,6 @@ class OutOfBandAuthAttribute(Model):
         The name of this attribute.
 
     """
-
     def __init__(self, name: str) -> None:
         self.name = name
 

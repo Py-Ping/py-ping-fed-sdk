@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AlternativeLoginHintTokenIssuer(Model):
@@ -17,7 +18,6 @@ class AlternativeLoginHintTokenIssuer(Model):
         The JWKS.
 
     """
-
     def __init__(self, issuer: str, jwksURL: str = None, jwks: str = None) -> None:
         self.issuer = issuer
         self.jwksURL = jwksURL

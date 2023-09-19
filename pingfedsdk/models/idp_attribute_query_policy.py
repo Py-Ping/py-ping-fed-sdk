@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class IdpAttributeQueryPolicy(Model):
@@ -26,7 +27,6 @@ class IdpAttributeQueryPolicy(Model):
         Mask attributes in log files.
 
     """
-
     def __init__(self, requireSignedResponse: bool = None, requireSignedAssertion: bool = None, requireEncryptedAssertion: bool = None, signAttributeQuery: bool = None, encryptNameId: bool = None, maskAttributeValues: bool = None) -> None:
         self.requireSignedResponse = requireSignedResponse
         self.requireSignedAssertion = requireSignedAssertion

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -15,7 +16,6 @@ class OutboundProvisionDatabase(Model):
         The synchronization frequency in seconds. The default value is 60.
 
     """
-
     def __init__(self, dataStoreRef: ResourceLink, synchronizationFrequency: int = None) -> None:
         self.dataStoreRef = dataStoreRef
         self.synchronizationFrequency = synchronizationFrequency
@@ -37,7 +37,7 @@ class OutboundProvisionDatabase(Model):
         for k, v in python_dict.items():
             if k in ["dataStoreRef", "synchronizationFrequency"] and v is not None:
                 if k == "dataStoreRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "synchronizationFrequency":
                     valid_data[k] = int(v)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.local_identity_field import LocalIdentityField
 
 
@@ -15,7 +16,6 @@ class FieldConfig(Model):
         Strip leading/trailing spaces from unique ID field. Default is true.
 
     """
-
     def __init__(self, fields: list = None, stripSpaceFromUniqueField: bool = None) -> None:
         self.fields = fields
         self.stripSpaceFromUniqueField = stripSpaceFromUniqueField
@@ -37,7 +37,7 @@ class FieldConfig(Model):
         for k, v in python_dict.items():
             if k in ["fields", "stripSpaceFromUniqueField"] and v is not None:
                 if k == "fields":
-                    valid_data[k] = [LocalIdentityField(**x) for x in v]
+                    valid_data[k] = [LocalIdentityField.from_dict(x) for x in v]
                 if k == "stripSpaceFromUniqueField":
                     valid_data[k] = bool(v)
 

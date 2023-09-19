@@ -1,15 +1,16 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.models.metadata_signing_settings import MetadataSigningSettings as ModelMetadataSigningSettings
-from pingfedsdk.models.metadata_lifetime_settings import MetadataLifetimeSettings as ModelMetadataLifetimeSettings
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.metadata_lifetime_settings import MetadataLifetimeSettings as ModelMetadataLifetimeSettings
+from pingfedsdk.models.metadata_signing_settings import MetadataSigningSettings as ModelMetadataSigningSettings
 
 
 class ProtocolMetadata:
@@ -22,57 +23,6 @@ class ProtocolMetadata:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
-
-    def getSigningSettings(self):
-        """ Get the certificate ID and algorithm used for metadata signing.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/protocolMetadata/signingSettings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelMetadataSigningSettings.from_dict(response.json())
-
-    def updateSigningSettings(self, body: ModelMetadataSigningSettings = None):
-        """ Update the certificate and algorithm for metadata signing.
-        """
-
-        try:
-            response = self.session.put(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/protocolMetadata/signingSettings"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
 
     def getLifetimeSettings(self):
         """ Get metadata cache duration and reload delay for automated reloading.
@@ -115,12 +65,59 @@ class ProtocolMetadata:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelMetadataLifetimeSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
+                raise ValidationError(response.json())
+
+    def getSigningSettings(self):
+        """ Get the certificate ID and algorithm used for metadata signing.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/protocolMetadata/signingSettings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelMetadataSigningSettings.from_dict(response.json())
+
+    def updateSigningSettings(self, body: ModelMetadataSigningSettings = None):
+        """ Update the certificate and algorithm for metadata signing.
+        """
+
+        try:
+            response = self.session.put(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/protocolMetadata/signingSettings"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelMetadataSigningSettings.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
-                raise ValidationError(message)
+                raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())

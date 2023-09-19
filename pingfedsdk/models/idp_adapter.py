@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.idp_adapter_attribute_contract import IdpAdapterAttributeContract
-from pingfedsdk.models.plugin_configuration import PluginConfiguration
 from pingfedsdk.models.idp_adapter_contract_mapping import IdpAdapterContractMapping
+from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class IdpAdapter(Model):
@@ -40,8 +41,7 @@ class IdpAdapter(Model):
         The list of attributes that the IdP adapter provides.
 
     """
-
-    def __init__(self, configuration: PluginConfiguration, id: str, name: str, pluginDescriptorRef: ResourceLink, parentRef: ResourceLink = None, authnCtxClassRef: str = None, attributeMapping: IdpAdapterContractMapping = None, attributeContract: IdpAdapterAttributeContract = None) -> None:
+    def __init__(self, id: str, name: str, pluginDescriptorRef: ResourceLink, configuration: PluginConfiguration, parentRef: ResourceLink = None, authnCtxClassRef: str = None, attributeMapping: IdpAdapterContractMapping = None, attributeContract: IdpAdapterAttributeContract = None) -> None:
         self.id = id
         self.name = name
         self.pluginDescriptorRef = pluginDescriptorRef
@@ -72,17 +72,17 @@ class IdpAdapter(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "pluginDescriptorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "parentRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "configuration":
-                    valid_data[k] = PluginConfiguration(**v)
+                    valid_data[k] = PluginConfiguration.from_dict(v)
                 if k == "authnCtxClassRef":
                     valid_data[k] = str(v)
                 if k == "attributeMapping":
-                    valid_data[k] = IdpAdapterContractMapping(**v)
+                    valid_data[k] = IdpAdapterContractMapping.from_dict(v)
                 if k == "attributeContract":
-                    valid_data[k] = IdpAdapterAttributeContract(**v)
+                    valid_data[k] = IdpAdapterAttributeContract.from_dict(v)
 
         return cls(**valid_data)
 

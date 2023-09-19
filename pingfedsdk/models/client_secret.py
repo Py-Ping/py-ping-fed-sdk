@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.secondary_secret import SecondarySecret
 
 
@@ -18,7 +19,6 @@ class ClientSecret(Model):
         The list of secondary client secrets that are temporarily retained.
 
     """
-
     def __init__(self, secret: str = None, encryptedSecret: str = None, secondarySecrets: list = None) -> None:
         self.secret = secret
         self.encryptedSecret = encryptedSecret
@@ -45,7 +45,7 @@ class ClientSecret(Model):
                 if k == "encryptedSecret":
                     valid_data[k] = str(v)
                 if k == "secondarySecrets":
-                    valid_data[k] = [SecondarySecret(**x) for x in v]
+                    valid_data[k] = [SecondarySecret.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

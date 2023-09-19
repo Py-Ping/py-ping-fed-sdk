@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.custom_data_store import CustomDataStore
 from pingfedsdk.models.data_store import DataStore
-from pingfedsdk.models.ldap_data_store import LdapDataStore
 from pingfedsdk.models.jdbc_data_store import JdbcDataStore
+from pingfedsdk.models.ldap_data_store import LdapDataStore
 
 
 class DataStores(Model):
@@ -15,7 +16,6 @@ class DataStores(Model):
         The actual list of data stores.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 

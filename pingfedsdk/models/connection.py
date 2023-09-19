@@ -1,11 +1,12 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.connection_credentials import ConnectionCredentials
-from pingfedsdk.models.contact_info import ContactInfo
-from pingfedsdk.models.additional_allowed_entities_configuration import AdditionalAllowedEntitiesConfiguration
-from pingfedsdk.models.connection_metadata_url import ConnectionMetadataUrl
+
 from pingfedsdk.enums import ConnectionType
 from pingfedsdk.enums import LoggingMode
+from pingfedsdk.model import Model
+from pingfedsdk.models.additional_allowed_entities_configuration import AdditionalAllowedEntitiesConfiguration
+from pingfedsdk.models.connection_credentials import ConnectionCredentials
+from pingfedsdk.models.connection_metadata_url import ConnectionMetadataUrl
+from pingfedsdk.models.contact_info import ContactInfo
 
 
 class Connection(Model):
@@ -59,7 +60,6 @@ class Connection(Model):
         Extended Properties allows to store additional information for IdP/SP Connections. The names of these extended properties should be defined in /extendedProperties.
 
     """
-
     def __init__(self, entityId: str, name: str, type: ConnectionType = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, virtualEntityIds: list = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: object = None) -> None:
         self.type = type
         self.id = id
@@ -110,19 +110,19 @@ class Connection(Model):
                 if k == "virtualEntityIds":
                     valid_data[k] = [str(x) for x in v]
                 if k == "metadataReloadSettings":
-                    valid_data[k] = ConnectionMetadataUrl(**v)
+                    valid_data[k] = ConnectionMetadataUrl.from_dict(v)
                 if k == "credentials":
-                    valid_data[k] = ConnectionCredentials(**v)
+                    valid_data[k] = ConnectionCredentials.from_dict(v)
                 if k == "contactInfo":
-                    valid_data[k] = ContactInfo(**v)
+                    valid_data[k] = ContactInfo.from_dict(v)
                 if k == "licenseConnectionGroup":
                     valid_data[k] = str(v)
                 if k == "loggingMode":
                     valid_data[k] = LoggingMode[v]
                 if k == "additionalAllowedEntitiesConfiguration":
-                    valid_data[k] = AdditionalAllowedEntitiesConfiguration(**v)
+                    valid_data[k] = AdditionalAllowedEntitiesConfiguration.from_dict(v)
                 if k == "extendedProperties":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
 
         return cls(**valid_data)
 

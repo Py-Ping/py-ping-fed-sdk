@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.key_pair_view import KeyPairView
 
 
@@ -12,7 +13,6 @@ class KeyPairViews(Model):
         The actual list of KeyPairView instances.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class KeyPairViews(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [KeyPairView(**x) for x in v]
+                    valid_data[k] = [KeyPairView.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

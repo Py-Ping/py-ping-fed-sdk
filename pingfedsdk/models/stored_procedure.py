@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class StoredProcedure(Model):
@@ -14,7 +15,6 @@ class StoredProcedure(Model):
         The name of the database stored procedure.
 
     """
-
     def __init__(self, schema: str, storedProcedure: str) -> None:
         self.schema = schema
         self.storedProcedure = storedProcedure

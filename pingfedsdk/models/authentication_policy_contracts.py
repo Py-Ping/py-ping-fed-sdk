@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_policy_contract import AuthenticationPolicyContract
 
 
@@ -12,7 +13,6 @@ class AuthenticationPolicyContracts(Model):
         The actual list of Authentication Policy Contracts.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class AuthenticationPolicyContracts(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [AuthenticationPolicyContract(**x) for x in v]
+                    valid_data[k] = [AuthenticationPolicyContract.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

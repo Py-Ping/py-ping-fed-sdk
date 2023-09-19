@@ -1,9 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.ldap_tag_config import LdapTagConfig
+
+from pingfedsdk.enums import LdapDataStoreType
 from pingfedsdk.enums import LdapType
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import DataStoreType
+from pingfedsdk.model import Model
+from pingfedsdk.models.ldap_tag_config import LdapTagConfig
 
 
 class LdapDataStore(Model):
@@ -11,7 +11,7 @@ class LdapDataStore(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: LdapDataStoreType
         The data store type.
 
     id: str
@@ -21,10 +21,10 @@ class LdapDataStore(Model):
         Whether attribute values should be masked in the log.
 
     hostnamesTags: list
-        The set of host names and associated tags for this LDAP data store. This is required if 'hostnames' is not provided.
+        The set of host names and associated tags for this LDAP data store.
 
     hostnames: list
-        The default LDAP host names. This field is required if no mapping for host names and tags is specified. Failover can be configured by providing multiple host names.
+        The default LDAP host names. This field is required if no mapping for host names and tags are specified.
 
     name: str
         The data store name with a unique value across all data sources. Omitting this attribute will set the value to a combination of the hostname(s) and the principal.
@@ -33,19 +33,16 @@ class LdapDataStore(Model):
         A type that allows PingFederate to configure many provisioning settings automatically. The 'UNBOUNDID_DS' type has been deprecated, please use the 'PING_DIRECTORY' type instead.
 
     bindAnonymously: bool
-        Whether username and password are required. If true, no other authentication fields should be provided. The default value is false.
+        Whether username and password are required. The default value is false.
 
     userDN: str
-        The username credential required to access the data store. If specified, no other authentication fields should be provided.
+        The username credential required to access the data store.
 
     password: str
         The password credential required to access the data store. GETs will not return this attribute. To update this field, specify the new value in this attribute.
 
     encryptedPassword: str
         The encrypted password credential required to access the data store.  If you do not want to update the stored value, this attribute should be passed back unchanged. Secret Reference may be provided in this field with format 'OBF:MGR:{secretManagerId}:{secretId}'.
-
-    clientTlsCertificateRef: ResourceLink
-        The client TLS certificate used to access the data store. If specified, authentication to the data store will be done using mutual TLS and no other authentication fields should be provided. See '/keyPairs/sslClient' to manage certificates.
 
     useSsl: bool
         Connects to the LDAP data store using secure SSL/TLS encryption (LDAPS). The default value is false.
@@ -55,9 +52,6 @@ class LdapDataStore(Model):
 
     followLDAPReferrals: bool
         Follow LDAP Referrals in the domain tree. The default value is false. This property does not apply to PingDirectory as this functionality is configured in PingDirectory.
-
-    retryFailedOperations: bool
-        Indicates whether failed operations should be retried. The default is false.
 
     testOnBorrow: bool
         Indicates whether objects are validated before being borrowed from the pool.
@@ -102,8 +96,7 @@ class LdapDataStore(Model):
         The list of LDAP attributes to be handled as binary data.
 
     """
-
-    def __init__(self, ldapType: LdapType, type: DataStoreType = None, id: str = None, maskAttributeValues: bool = None, hostnamesTags: list = None, hostnames: list = None, name: str = None, bindAnonymously: bool = None, userDN: str = None, password: str = None, encryptedPassword: str = None, clientTlsCertificateRef: ResourceLink = None, useSsl: bool = None, useDnsSrvRecords: bool = None, followLDAPReferrals: bool = None, retryFailedOperations: bool = None, testOnBorrow: bool = None, testOnReturn: bool = None, createIfNecessary: bool = None, verifyHost: bool = None, minConnections: int = None, maxConnections: int = None, maxWait: int = None, timeBetweenEvictions: int = None, readTimeout: int = None, connectionTimeout: int = None, dnsTtl: int = None, ldapDnsSrvPrefix: str = None, ldapsDnsSrvPrefix: str = None, binaryAttributes: list = None) -> None:
+    def __init__(self, ldapType: LdapType, type: LdapDataStoreType = None, id: str = None, maskAttributeValues: bool = None, hostnamesTags: list = None, hostnames: list = None, name: str = None, bindAnonymously: bool = None, userDN: str = None, password: str = None, encryptedPassword: str = None, useSsl: bool = None, useDnsSrvRecords: bool = None, followLDAPReferrals: bool = None, testOnBorrow: bool = None, testOnReturn: bool = None, createIfNecessary: bool = None, verifyHost: bool = None, minConnections: int = None, maxConnections: int = None, maxWait: int = None, timeBetweenEvictions: int = None, readTimeout: int = None, connectionTimeout: int = None, dnsTtl: int = None, ldapDnsSrvPrefix: str = None, ldapsDnsSrvPrefix: str = None, binaryAttributes: list = None) -> None:
         self.type = type
         self.id = id
         self.maskAttributeValues = maskAttributeValues
@@ -115,11 +108,9 @@ class LdapDataStore(Model):
         self.userDN = userDN
         self.password = password
         self.encryptedPassword = encryptedPassword
-        self.clientTlsCertificateRef = clientTlsCertificateRef
         self.useSsl = useSsl
         self.useDnsSrvRecords = useDnsSrvRecords
         self.followLDAPReferrals = followLDAPReferrals
-        self.retryFailedOperations = retryFailedOperations
         self.testOnBorrow = testOnBorrow
         self.testOnReturn = testOnReturn
         self.createIfNecessary = createIfNecessary
@@ -144,21 +135,21 @@ class LdapDataStore(Model):
         return NotImplemented
 
     def __hash__(self) -> int:
-        return hash(frozenset([self.type, self.id, self.maskAttributeValues, self.hostnamesTags, self.hostnames, self.name, self.ldapType, self.bindAnonymously, self.userDN, self.password, self.encryptedPassword, self.clientTlsCertificateRef, self.useSsl, self.useDnsSrvRecords, self.followLDAPReferrals, self.retryFailedOperations, self.testOnBorrow, self.testOnReturn, self.createIfNecessary, self.verifyHost, self.minConnections, self.maxConnections, self.maxWait, self.timeBetweenEvictions, self.readTimeout, self.connectionTimeout, self.dnsTtl, self.ldapDnsSrvPrefix, self.ldapsDnsSrvPrefix, self.binaryAttributes]))
+        return hash(frozenset([self.type, self.id, self.maskAttributeValues, self.hostnamesTags, self.hostnames, self.name, self.ldapType, self.bindAnonymously, self.userDN, self.password, self.encryptedPassword, self.useSsl, self.useDnsSrvRecords, self.followLDAPReferrals, self.testOnBorrow, self.testOnReturn, self.createIfNecessary, self.verifyHost, self.minConnections, self.maxConnections, self.maxWait, self.timeBetweenEvictions, self.readTimeout, self.connectionTimeout, self.dnsTtl, self.ldapDnsSrvPrefix, self.ldapsDnsSrvPrefix, self.binaryAttributes]))
 
     @classmethod
     def from_dict(cls, python_dict: dict):
         valid_data = {}
         for k, v in python_dict.items():
-            if k in ["type", "id", "maskAttributeValues", "hostnamesTags", "hostnames", "name", "ldapType", "bindAnonymously", "userDN", "password", "encryptedPassword", "clientTlsCertificateRef", "useSsl", "useDnsSrvRecords", "followLDAPReferrals", "retryFailedOperations", "testOnBorrow", "testOnReturn", "createIfNecessary", "verifyHost", "minConnections", "maxConnections", "maxWait", "timeBetweenEvictions", "readTimeout", "connectionTimeout", "dnsTtl", "ldapDnsSrvPrefix", "ldapsDnsSrvPrefix", "binaryAttributes"] and v is not None:
+            if k in ["type", "id", "maskAttributeValues", "hostnamesTags", "hostnames", "name", "ldapType", "bindAnonymously", "userDN", "password", "encryptedPassword", "useSsl", "useDnsSrvRecords", "followLDAPReferrals", "testOnBorrow", "testOnReturn", "createIfNecessary", "verifyHost", "minConnections", "maxConnections", "maxWait", "timeBetweenEvictions", "readTimeout", "connectionTimeout", "dnsTtl", "ldapDnsSrvPrefix", "ldapsDnsSrvPrefix", "binaryAttributes"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = LdapDataStoreType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "maskAttributeValues":
                     valid_data[k] = bool(v)
                 if k == "hostnamesTags":
-                    valid_data[k] = [LdapTagConfig(**x) for x in v]
+                    valid_data[k] = [LdapTagConfig.from_dict(x) for x in v]
                 if k == "hostnames":
                     valid_data[k] = [str(x) for x in v]
                 if k == "name":
@@ -173,15 +164,11 @@ class LdapDataStore(Model):
                     valid_data[k] = str(v)
                 if k == "encryptedPassword":
                     valid_data[k] = str(v)
-                if k == "clientTlsCertificateRef":
-                    valid_data[k] = ResourceLink(**v)
                 if k == "useSsl":
                     valid_data[k] = bool(v)
                 if k == "useDnsSrvRecords":
                     valid_data[k] = bool(v)
                 if k == "followLDAPReferrals":
-                    valid_data[k] = bool(v)
-                if k == "retryFailedOperations":
                     valid_data[k] = bool(v)
                 if k == "testOnBorrow":
                     valid_data[k] = bool(v)
@@ -222,7 +209,7 @@ class LdapDataStore(Model):
         """
         body = {}
         for k, v in self.__dict__.items():
-            if k in ["type", "id", "maskAttributeValues", "hostnamesTags", "hostnames", "name", "ldapType", "bindAnonymously", "userDN", "password", "encryptedPassword", "clientTlsCertificateRef", "useSsl", "useDnsSrvRecords", "followLDAPReferrals", "retryFailedOperations", "testOnBorrow", "testOnReturn", "createIfNecessary", "verifyHost", "minConnections", "maxConnections", "maxWait", "timeBetweenEvictions", "readTimeout", "connectionTimeout", "dnsTtl", "ldapDnsSrvPrefix", "ldapsDnsSrvPrefix", "binaryAttributes"]:
+            if k in ["type", "id", "maskAttributeValues", "hostnamesTags", "hostnames", "name", "ldapType", "bindAnonymously", "userDN", "password", "encryptedPassword", "useSsl", "useDnsSrvRecords", "followLDAPReferrals", "testOnBorrow", "testOnReturn", "createIfNecessary", "verifyHost", "minConnections", "maxConnections", "maxWait", "timeBetweenEvictions", "readTimeout", "connectionTimeout", "dnsTtl", "ldapDnsSrvPrefix", "ldapsDnsSrvPrefix", "binaryAttributes"]:
                 if isinstance(v, Model):
                     body[k] = v.to_dict(remove_nonetypes)
                 elif isinstance(v, list):

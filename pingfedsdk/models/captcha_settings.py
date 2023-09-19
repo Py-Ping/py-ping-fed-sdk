@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class CaptchaSettings(Model):
@@ -17,7 +18,6 @@ class CaptchaSettings(Model):
         The encrypted secret key for reCAPTCHA. If you do not want to update the stored value, this attribute should be passed back unchanged.
 
     """
-
     def __init__(self, siteKey: str = None, secretKey: str = None, encryptedSecretKey: str = None) -> None:
         self.siteKey = siteKey
         self.secretKey = secretKey

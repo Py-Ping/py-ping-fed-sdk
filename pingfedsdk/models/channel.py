@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.channel_source import ChannelSource
 from pingfedsdk.models.saas_attribute_mapping import SaasAttributeMapping
 
@@ -28,8 +29,7 @@ class Channel(Model):
         Timeout is the number of seconds that can be adjusted if more time is needed for provisioning a large amount of data. It is applicable when the number of processing thread is more than 1. The default value is 60.
 
     """
-
-    def __init__(self, active: bool, attributeMapping: list, channelSource: ChannelSource, maxThreads: int, name: str, timeout: int) -> None:
+    def __init__(self, active: bool, channelSource: ChannelSource, attributeMapping: list, name: str, maxThreads: int, timeout: int) -> None:
         self.active = active
         self.channelSource = channelSource
         self.attributeMapping = attributeMapping
@@ -56,9 +56,9 @@ class Channel(Model):
                 if k == "active":
                     valid_data[k] = bool(v)
                 if k == "channelSource":
-                    valid_data[k] = ChannelSource(**v)
+                    valid_data[k] = ChannelSource.from_dict(v)
                 if k == "attributeMapping":
-                    valid_data[k] = [SaasAttributeMapping(**x) for x in v]
+                    valid_data[k] = [SaasAttributeMapping.from_dict(x) for x in v]
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "maxThreads":

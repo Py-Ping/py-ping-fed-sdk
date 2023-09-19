@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class LicenseFeatureView(Model):
@@ -14,7 +15,6 @@ class LicenseFeatureView(Model):
         The value of the license feature.
 
     """
-
     def __init__(self, name: str = None, value: str = None) -> None:
         self.name = name
         self.value = value

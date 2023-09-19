@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class IdpWsTrustAttribute(Model):
@@ -14,7 +15,6 @@ class IdpWsTrustAttribute(Model):
         Specifies whether this attribute is masked in PingFederate logs. Defaults to false.
 
     """
-
     def __init__(self, name: str, masked: bool = None) -> None:
         self.name = name
         self.masked = masked

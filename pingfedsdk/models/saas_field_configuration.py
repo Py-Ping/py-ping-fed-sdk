@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import CharacterCase
 from pingfedsdk.enums import Parser
+from pingfedsdk.model import Model
 
 
 class SaasFieldConfiguration(Model):
@@ -34,7 +35,6 @@ class SaasFieldConfiguration(Model):
         Indicates whether the attribute should be masked in server logs.
 
     """
-
     def __init__(self, attributeNames: list = None, defaultValue: str = None, expression: str = None, createOnly: bool = None, trim: bool = None, characterCase: CharacterCase = None, parser: Parser = None, masked: bool = None) -> None:
         self.attributeNames = attributeNames
         self.defaultValue = defaultValue

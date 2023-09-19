@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SessionSettings(Model):
@@ -17,7 +18,6 @@ class SessionSettings(Model):
         How long a session revocation is tracked and stored, in minutes. If this property is not provided on a PUT, the setting is left unchanged.
 
     """
-
     def __init__(self, trackAdapterSessionsForLogout: bool = None, revokeUserSessionOnLogout: bool = None, sessionRevocationLifetime: int = None) -> None:
         self.trackAdapterSessionsForLogout = trackAdapterSessionsForLogout
         self.revokeUserSessionOnLogout = revokeUserSessionOnLogout

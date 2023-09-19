@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.kerberos_key_set import KerberosKeySet
+
 from pingfedsdk.enums import ConnectionType
+from pingfedsdk.model import Model
+from pingfedsdk.models.kerberos_key_set import KerberosKeySet
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class KerberosRealm(Model):
@@ -44,7 +45,6 @@ class KerberosRealm(Model):
         The LDAP gateway used by PingFederate to communicate with the Active Directory. Only required when 'connectionType' is "LDAP_GATEWAY".
 
     """
-
     def __init__(self, kerberosRealmName: str, id: str = None, connectionType: ConnectionType = None, keyDistributionCenters: list = None, kerberosUsername: str = None, kerberosPassword: str = None, kerberosEncryptedPassword: str = None, keySets: list = None, retainPreviousKeysOnPasswordChange: bool = None, suppressDomainNameConcatenation: bool = None, ldapGatewayDataStoreRef: ResourceLink = None) -> None:
         self.id = id
         self.kerberosRealmName = kerberosRealmName
@@ -89,13 +89,13 @@ class KerberosRealm(Model):
                 if k == "kerberosEncryptedPassword":
                     valid_data[k] = str(v)
                 if k == "keySets":
-                    valid_data[k] = [KerberosKeySet(**x) for x in v]
+                    valid_data[k] = [KerberosKeySet.from_dict(x) for x in v]
                 if k == "retainPreviousKeysOnPasswordChange":
                     valid_data[k] = bool(v)
                 if k == "suppressDomainNameConcatenation":
                     valid_data[k] = bool(v)
                 if k == "ldapGatewayDataStoreRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.client_registration_policy_descriptor import ClientRegistrationPolicyDescriptor
 
 
@@ -12,7 +13,6 @@ class ClientRegistrationPolicyDescriptors(Model):
         The list of client registration policy plugin descriptors.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class ClientRegistrationPolicyDescriptors(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [ClientRegistrationPolicyDescriptor(**x) for x in v]
+                    valid_data[k] = [ClientRegistrationPolicyDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

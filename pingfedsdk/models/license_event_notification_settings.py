@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -15,7 +16,6 @@ class LicenseEventNotificationSettings(Model):
         Reference to the associated notification publisher.
 
     """
-
     def __init__(self, emailAddress: str, notificationPublisherRef: ResourceLink = None) -> None:
         self.emailAddress = emailAddress
         self.notificationPublisherRef = notificationPublisherRef
@@ -39,7 +39,7 @@ class LicenseEventNotificationSettings(Model):
                 if k == "emailAddress":
                     valid_data[k] = str(v)
                 if k == "notificationPublisherRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

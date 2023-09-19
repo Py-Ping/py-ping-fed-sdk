@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ConfigurationEncryptionKey(Model):
@@ -14,7 +15,6 @@ class ConfigurationEncryptionKey(Model):
         The creation date of the key.
 
     """
-
     def __init__(self, keyId: str = None, creationDate: str = None) -> None:
         self.keyId = keyId
         self.creationDate = creationDate

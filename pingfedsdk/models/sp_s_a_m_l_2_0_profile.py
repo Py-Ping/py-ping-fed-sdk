@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SpSAML20Profile(Model):
@@ -17,8 +18,7 @@ class SpSAML20Profile(Model):
         Enable Attribute Requester Mapping for X.509 Attribute Sharing Profile (XASP)
 
     """
-
-    def __init__(self, enable: bool = None, enableAutoConnect: bool = None, enableXASP: bool = None) -> None:
+    def __init__(self, enable: bool = None, enableXASP: bool = None, enableAutoConnect: bool = None) -> None:
         self.enable = enable
         self.enableAutoConnect = enableAutoConnect
         self.enableXASP = enableXASP

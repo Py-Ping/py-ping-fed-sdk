@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import FieldDescriptor
+
+from pingfedsdk.enums import TextAreaFieldDescriptorType
+from pingfedsdk.model import Model
 
 
 class TextAreaFieldDescriptor(Model):
@@ -8,7 +9,7 @@ class TextAreaFieldDescriptor(Model):
 
     Attributes
     ----------
-    type: FieldDescriptor
+    type: TextAreaFieldDescriptorType
         The type of field descriptor.
 
     name: str
@@ -36,8 +37,7 @@ class TextAreaFieldDescriptor(Model):
         The number of columns for the text box.
 
     """
-
-    def __init__(self, type: FieldDescriptor = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, rows: int = None, columns: int = None) -> None:
+    def __init__(self, type: TextAreaFieldDescriptorType = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, rows: int = None, columns: int = None) -> None:
         self.type = type
         self.name = name
         self.description = description
@@ -65,7 +65,7 @@ class TextAreaFieldDescriptor(Model):
         for k, v in python_dict.items():
             if k in ["type", "name", "description", "defaultValue", "advanced", "required", "label", "rows", "columns"] and v is not None:
                 if k == "type":
-                    valid_data[k] = FieldDescriptor[v]
+                    valid_data[k] = TextAreaFieldDescriptorType[v]
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "description":

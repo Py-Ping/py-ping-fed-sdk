@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SpAttributeQueryPolicy(Model):
@@ -23,7 +24,6 @@ class SpAttributeQueryPolicy(Model):
         Require an encrypted name identifier.
 
     """
-
     def __init__(self, signResponse: bool = None, signAssertion: bool = None, encryptAssertion: bool = None, requireSignedAttributeQuery: bool = None, requireEncryptedNameId: bool = None) -> None:
         self.signResponse = signResponse
         self.signAssertion = signAssertion

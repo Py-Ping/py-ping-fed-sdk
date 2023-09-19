@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.enums import AuthnSelectorPolicyActionType
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import AuthenticationPolicySelectionActionType
 
 
 class AuthnSelectorPolicyAction(Model):
@@ -9,7 +10,7 @@ class AuthnSelectorPolicyAction(Model):
 
     Attributes
     ----------
-    type: AuthenticationPolicySelectionActionType
+    type: AuthnSelectorPolicyActionType
         The authentication selection type.
 
     context: str
@@ -19,8 +20,7 @@ class AuthnSelectorPolicyAction(Model):
         Reference to the associated authentication selector.
 
     """
-
-    def __init__(self, authenticationSelectorRef: ResourceLink, type: AuthenticationPolicySelectionActionType = None, context: str = None) -> None:
+    def __init__(self, authenticationSelectorRef: ResourceLink, type: AuthnSelectorPolicyActionType = None, context: str = None) -> None:
         self.type = type
         self.context = context
         self.authenticationSelectorRef = authenticationSelectorRef
@@ -42,11 +42,11 @@ class AuthnSelectorPolicyAction(Model):
         for k, v in python_dict.items():
             if k in ["type", "context", "authenticationSelectorRef"] and v is not None:
                 if k == "type":
-                    valid_data[k] = AuthenticationPolicySelectionActionType[v]
+                    valid_data[k] = AuthnSelectorPolicyActionType[v]
                 if k == "context":
                     valid_data[k] = str(v)
                 if k == "authenticationSelectorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

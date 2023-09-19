@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -15,7 +16,6 @@ class DecryptionKeys(Model):
         The ID of the secondary key pair used to decrypt message content received from the partner.
 
     """
-
     def __init__(self, primaryKeyRef: ResourceLink = None, secondaryKeyPairRef: ResourceLink = None) -> None:
         self.primaryKeyRef = primaryKeyRef
         self.secondaryKeyPairRef = secondaryKeyPairRef
@@ -37,9 +37,9 @@ class DecryptionKeys(Model):
         for k, v in python_dict.items():
             if k in ["primaryKeyRef", "secondaryKeyPairRef"] and v is not None:
                 if k == "primaryKeyRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "secondaryKeyPairRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.attribute_rules import AttributeRules
+
+from pingfedsdk.enums import AuthnSourcePolicyActionType
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
+from pingfedsdk.models.attribute_rules import AttributeRules
 from pingfedsdk.models.authentication_source import AuthenticationSource
-from pingfedsdk.enums import AuthenticationPolicySelectionActionType
 
 
 class AuthnSourcePolicyAction(Model):
@@ -11,7 +12,7 @@ class AuthnSourcePolicyAction(Model):
 
     Attributes
     ----------
-    type: AuthenticationPolicySelectionActionType
+    type: AuthnSourcePolicyActionType
         The authentication selection type.
 
     context: str
@@ -30,8 +31,7 @@ class AuthnSourcePolicyAction(Model):
         Indicates whether the user ID obtained by the user ID mapping is authenticated.
 
     """
-
-    def __init__(self, authenticationSource: AuthenticationSource, type: AuthenticationPolicySelectionActionType = None, context: str = None, attributeRules: AttributeRules = None, inputUserIdMapping: AttributeFulfillmentValue = None, userIdAuthenticated: bool = None) -> None:
+    def __init__(self, authenticationSource: AuthenticationSource, type: AuthnSourcePolicyActionType = None, context: str = None, inputUserIdMapping: AttributeFulfillmentValue = None, userIdAuthenticated: bool = None, attributeRules: AttributeRules = None) -> None:
         self.type = type
         self.context = context
         self.attributeRules = attributeRules
@@ -56,15 +56,15 @@ class AuthnSourcePolicyAction(Model):
         for k, v in python_dict.items():
             if k in ["type", "context", "attributeRules", "authenticationSource", "inputUserIdMapping", "userIdAuthenticated"] and v is not None:
                 if k == "type":
-                    valid_data[k] = AuthenticationPolicySelectionActionType[v]
+                    valid_data[k] = AuthnSourcePolicyActionType[v]
                 if k == "context":
                     valid_data[k] = str(v)
                 if k == "attributeRules":
-                    valid_data[k] = AttributeRules(**v)
+                    valid_data[k] = AttributeRules.from_dict(v)
                 if k == "authenticationSource":
-                    valid_data[k] = AuthenticationSource(**v)
+                    valid_data[k] = AuthenticationSource.from_dict(v)
                 if k == "inputUserIdMapping":
-                    valid_data[k] = AttributeFulfillmentValue(**v)
+                    valid_data[k] = AttributeFulfillmentValue.from_dict(v)
                 if k == "userIdAuthenticated":
                     valid_data[k] = bool(v)
 

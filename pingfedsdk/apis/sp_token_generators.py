@@ -1,19 +1,20 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.token_generator_descriptors import TokenGeneratorDescriptors as ModelTokenGeneratorDescriptors
-from pingfedsdk.models.token_generator_descriptor import TokenGeneratorDescriptor as ModelTokenGeneratorDescriptor
-from pingfedsdk.models.token_generator import TokenGenerator as ModelTokenGenerator
-from pingfedsdk.models.token_generators import TokenGenerators as ModelTokenGenerators
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.token_generator import TokenGenerator as ModelTokenGenerator
+from pingfedsdk.models.token_generator_descriptor import TokenGeneratorDescriptor as ModelTokenGeneratorDescriptor
+from pingfedsdk.models.token_generator_descriptors import TokenGeneratorDescriptors as ModelTokenGeneratorDescriptors
+from pingfedsdk.models.token_generators import TokenGenerators as ModelTokenGenerators
 
 
 class SpTokenGenerators:
@@ -26,6 +27,92 @@ class SpTokenGenerators:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
+
+    def getTokenGenerator(self, id: str):
+        """ Find a token generator instance by ID.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/sp/tokenGenerators/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelTokenGenerator.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
+    def updateTokenGenerator(self, body: ModelTokenGenerator, id: str):
+        """ Update a token generator instance.
+        """
+
+        try:
+            response = self.session.put(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri(f"/sp/tokenGenerators/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelTokenGenerator.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def deleteTokenGenerator(self, id: str):
+        """ Delete a token generator instance.
+        """
+
+        try:
+            response = self.session.delete(
+                url=self._build_uri(f"/sp/tokenGenerators/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 204:
+                message = "(204) Token generator deleted."
+                self.logger.info(message)
+                raise ObjectDeleted(message)
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
 
     def getTokenGeneratorDescriptors(self):
         """ Get the list of available token generators.
@@ -67,7 +154,7 @@ class SpTokenGenerators:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenGeneratorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -114,102 +201,10 @@ class SpTokenGenerators:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelTokenGenerator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
-
-    def getTokenGenerator(self, id: str):
-        """ Find a token generator instance by ID.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/sp/tokenGenerators/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def updateTokenGenerator(self, id: str, body: ModelTokenGenerator):
-        """ Update a token generator instance.
-        """
-
-        try:
-            response = self.session.put(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri(f"/sp/tokenGenerators/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
-
-    def deleteTokenGenerator(self, id: str):
-        """ Delete a token generator instance.
-        """
-
-        try:
-            response = self.session.delete(
-                url=self._build_uri(f"/sp/tokenGenerators/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 204:
-                message = "(204) Token generator deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

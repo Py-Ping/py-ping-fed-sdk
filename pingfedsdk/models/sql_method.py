@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.table import Table
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.stored_procedure import StoredProcedure
+from pingfedsdk.models.table import Table
 
 
 class SqlMethod(Model):
@@ -16,7 +17,6 @@ class SqlMethod(Model):
         The Stored Procedure SQL method. The procedure is always called for all SSO tokens and "eventTrigger" will always be 'ALL_SAML_ASSERTIONS'.
 
     """
-
     def __init__(self, table: Table = None, storedProcedure: StoredProcedure = None) -> None:
         self.table = table
         self.storedProcedure = storedProcedure
@@ -38,9 +38,9 @@ class SqlMethod(Model):
         for k, v in python_dict.items():
             if k in ["table", "storedProcedure"] and v is not None:
                 if k == "table":
-                    valid_data[k] = Table(**v)
+                    valid_data[k] = Table.from_dict(v)
                 if k == "storedProcedure":
-                    valid_data[k] = StoredProcedure(**v)
+                    valid_data[k] = StoredProcedure.from_dict(v)
 
         return cls(**valid_data)
 

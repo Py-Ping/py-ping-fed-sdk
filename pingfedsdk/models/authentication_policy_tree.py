@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_policy_tree_node import AuthenticationPolicyTreeNode
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class AuthenticationPolicyTree(Model):
@@ -31,7 +32,6 @@ class AuthenticationPolicyTree(Model):
         If a policy ends in failure keep the user local.
 
     """
-
     def __init__(self, id: str = None, name: str = None, description: str = None, authenticationApiApplicationRef: ResourceLink = None, enabled: bool = None, rootNode: AuthenticationPolicyTreeNode = None, handleFailuresLocally: bool = None) -> None:
         self.id = id
         self.name = name
@@ -64,11 +64,11 @@ class AuthenticationPolicyTree(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "authenticationApiApplicationRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "enabled":
                     valid_data[k] = bool(v)
                 if k == "rootNode":
-                    valid_data[k] = AuthenticationPolicyTreeNode(**v)
+                    valid_data[k] = AuthenticationPolicyTreeNode.from_dict(v)
                 if k == "handleFailuresLocally":
                     valid_data[k] = bool(v)
 

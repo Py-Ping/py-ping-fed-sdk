@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SessionValidationSettings(Model):
@@ -23,7 +24,6 @@ class SessionValidationSettings(Model):
         Update authentication session activity when validating the access token.
 
     """
-
     def __init__(self, inherited: bool = None, includeSessionId: bool = None, checkValidAuthnSession: bool = None, checkSessionRevocationStatus: bool = None, updateAuthnSessionActivity: bool = None) -> None:
         self.inherited = inherited
         self.includeSessionId = includeSessionId

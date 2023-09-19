@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class BulkConfigMetadata(Model):
@@ -11,7 +12,6 @@ class BulkConfigMetadata(Model):
         The version of PingFederate this config was generated from.
 
     """
-
     def __init__(self, pfVersion: str) -> None:
         self.pfVersion = pfVersion
 

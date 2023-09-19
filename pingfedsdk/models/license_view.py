@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.connection_group_license_view import ConnectionGroupLicenseView
 from pingfedsdk.models.license_feature_view import LicenseFeatureView
 
@@ -71,7 +72,6 @@ class LicenseView(Model):
         Other licence features, if applicable.
 
     """
-
     def __init__(self, name: str = None, id: str = None, maxConnections: int = None, usedConnections: int = None, tier: str = None, issueDate: str = None, expirationDate: str = None, enforcementType: str = None, version: str = None, product: str = None, organization: str = None, gracePeriod: int = None, nodeLimit: int = None, licenseGroups: list = None, oauthEnabled: bool = None, wsTrustEnabled: bool = None, provisioningEnabled: bool = None, bridgeMode: bool = None, features: list = None) -> None:
         self.name = name
         self.id = id
@@ -136,7 +136,7 @@ class LicenseView(Model):
                 if k == "nodeLimit":
                     valid_data[k] = int(v)
                 if k == "licenseGroups":
-                    valid_data[k] = [ConnectionGroupLicenseView(**x) for x in v]
+                    valid_data[k] = [ConnectionGroupLicenseView.from_dict(x) for x in v]
                 if k == "oauthEnabled":
                     valid_data[k] = bool(v)
                 if k == "wsTrustEnabled":
@@ -146,7 +146,7 @@ class LicenseView(Model):
                 if k == "bridgeMode":
                     valid_data[k] = bool(v)
                 if k == "features":
-                    valid_data[k] = [LicenseFeatureView(**x) for x in v]
+                    valid_data[k] = [LicenseFeatureView.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

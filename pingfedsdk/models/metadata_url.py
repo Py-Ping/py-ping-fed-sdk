@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.x_5_0_9_file import X509File
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.cert_view import CertView
+from pingfedsdk.models.x_5_0_9_file import X509File
 
 
 class MetadataUrl(Model):
@@ -28,7 +29,6 @@ class MetadataUrl(Model):
         Perform Metadata Signature Validation. The default value is TRUE.
 
     """
-
     def __init__(self, name: str, url: str, id: str = None, certView: CertView = None, x509File: X509File = None, validateSignature: bool = None) -> None:
         self.id = id
         self.name = name
@@ -60,9 +60,9 @@ class MetadataUrl(Model):
                 if k == "url":
                     valid_data[k] = str(v)
                 if k == "certView":
-                    valid_data[k] = CertView(**v)
+                    valid_data[k] = CertView.from_dict(v)
                 if k == "x509File":
-                    valid_data[k] = X509File(**v)
+                    valid_data[k] = X509File.from_dict(v)
                 if k == "validateSignature":
                     valid_data[k] = bool(v)
 

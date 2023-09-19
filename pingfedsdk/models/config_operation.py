@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import OperationType
+from pingfedsdk.model import Model
 
 
 class ConfigOperation(Model):
@@ -24,8 +25,7 @@ class ConfigOperation(Model):
         The item ID's for the operation. This field only applies to the DELETE operation type.
 
     """
-
-    def __init__(self, operationType: OperationType, resourceType: str, subResource: str = None, items: list = None, itemIds: list = None) -> None:
+    def __init__(self, resourceType: str, operationType: OperationType, subResource: str = None, items: list = None, itemIds: list = None) -> None:
         self.resourceType = resourceType
         self.subResource = subResource
         self.operationType = operationType

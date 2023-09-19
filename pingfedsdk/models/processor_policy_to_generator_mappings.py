@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.processor_policy_to_generator_mapping import ProcessorPolicyToGeneratorMapping
 
 
@@ -12,7 +13,6 @@ class ProcessorPolicyToGeneratorMappings(Model):
         The list of Token Exchange Processor policy to Token Generator mappings.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class ProcessorPolicyToGeneratorMappings(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [ProcessorPolicyToGeneratorMapping(**x) for x in v]
+                    valid_data[k] = [ProcessorPolicyToGeneratorMapping.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

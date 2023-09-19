@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_policy_contract_attribute import AuthenticationPolicyContractAttribute
 
 
@@ -21,7 +22,6 @@ class AuthenticationPolicyContract(Model):
         A list of additional attributes as needed.
 
     """
-
     def __init__(self, id: str = None, name: str = None, coreAttributes: list = None, extendedAttributes: list = None) -> None:
         self.id = id
         self.name = name
@@ -49,9 +49,9 @@ class AuthenticationPolicyContract(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "coreAttributes":
-                    valid_data[k] = [AuthenticationPolicyContractAttribute(**x) for x in v]
+                    valid_data[k] = [AuthenticationPolicyContractAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [AuthenticationPolicyContractAttribute(**x) for x in v]
+                    valid_data[k] = [AuthenticationPolicyContractAttribute.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

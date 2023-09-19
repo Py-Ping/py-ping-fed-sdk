@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.service_model import ServiceModel
 
 
@@ -21,7 +22,6 @@ class ServiceAuthentication(Model):
         (Deprecated) SSO directory service. Remove the JSON field to deactivate the SSO Directory service.
 
     """
-
     def __init__(self, attributeQuery: ServiceModel = None, jmx: ServiceModel = None, connectionManagement: ServiceModel = None, ssoDirectoryService: ServiceModel = None) -> None:
         self.attributeQuery = attributeQuery
         self.jmx = jmx
@@ -45,13 +45,13 @@ class ServiceAuthentication(Model):
         for k, v in python_dict.items():
             if k in ["attributeQuery", "jmx", "connectionManagement", "ssoDirectoryService"] and v is not None:
                 if k == "attributeQuery":
-                    valid_data[k] = ServiceModel(**v)
+                    valid_data[k] = ServiceModel.from_dict(v)
                 if k == "jmx":
-                    valid_data[k] = ServiceModel(**v)
+                    valid_data[k] = ServiceModel.from_dict(v)
                 if k == "connectionManagement":
-                    valid_data[k] = ServiceModel(**v)
+                    valid_data[k] = ServiceModel.from_dict(v)
                 if k == "ssoDirectoryService":
-                    valid_data[k] = ServiceModel(**v)
+                    valid_data[k] = ServiceModel.from_dict(v)
 
         return cls(**valid_data)
 

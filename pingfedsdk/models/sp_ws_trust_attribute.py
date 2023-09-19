@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SpWsTrustAttribute(Model):
@@ -14,7 +15,6 @@ class SpWsTrustAttribute(Model):
         The attribute namespace.  This is required when the Default Token Type is SAML2.0 or SAML1.1 or SAML1.1 for Office 365.
 
     """
-
     def __init__(self, name: str, namespace: str) -> None:
         self.name = name
         self.namespace = namespace

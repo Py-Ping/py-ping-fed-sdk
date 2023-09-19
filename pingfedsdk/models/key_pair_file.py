@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import CryptoProvider
 from pingfedsdk.enums import Format
+from pingfedsdk.model import Model
 
 
 class KeyPairFile(Model):
@@ -28,7 +29,6 @@ class KeyPairFile(Model):
         Cryptographic Provider. This is only applicable if Hybrid HSM mode is true.
 
     """
-
     def __init__(self, fileData: str, password: str, id: str = None, format: Format = None, encryptedPassword: str = None, cryptoProvider: CryptoProvider = None) -> None:
         self.id = id
         self.fileData = fileData

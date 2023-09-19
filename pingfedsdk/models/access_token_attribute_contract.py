@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.access_token_attribute import AccessTokenAttribute
 
 
@@ -21,7 +22,6 @@ class AccessTokenAttributeContract(Model):
         Default subject attribute to use for audit logging when validating the access token. Blank value means to use USER_KEY attribute value after grant lookup.
 
     """
-
     def __init__(self, coreAttributes: list = None, extendedAttributes: list = None, inherited: bool = None, defaultSubjectAttribute: str = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -45,9 +45,9 @@ class AccessTokenAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes", "inherited", "defaultSubjectAttribute"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [AccessTokenAttribute(**x) for x in v]
+                    valid_data[k] = [AccessTokenAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [AccessTokenAttribute(**x) for x in v]
+                    valid_data[k] = [AccessTokenAttribute.from_dict(x) for x in v]
                 if k == "inherited":
                     valid_data[k] = bool(v)
                 if k == "defaultSubjectAttribute":

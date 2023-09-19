@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.data_store_repository import DataStoreRepository
-from pingfedsdk.models.jit_provisioning_user_attributes import JitProvisioningUserAttributes
+
 from pingfedsdk.enums import ErrorHandling
 from pingfedsdk.enums import EventTrigger
+from pingfedsdk.model import Model
+from pingfedsdk.models.data_store_repository import DataStoreRepository
+from pingfedsdk.models.jit_provisioning_user_attributes import JitProvisioningUserAttributes
 
 
 class JitProvisioning(Model):
@@ -24,7 +25,6 @@ class JitProvisioning(Model):
         Specify behavior when provisioning request fails. The default is 'CONTINUE_SSO'.
 
     """
-
     def __init__(self, userAttributes: JitProvisioningUserAttributes, userRepository: DataStoreRepository, eventTrigger: EventTrigger = None, errorHandling: ErrorHandling = None) -> None:
         self.userAttributes = userAttributes
         self.userRepository = userRepository
@@ -48,9 +48,9 @@ class JitProvisioning(Model):
         for k, v in python_dict.items():
             if k in ["userAttributes", "userRepository", "eventTrigger", "errorHandling"] and v is not None:
                 if k == "userAttributes":
-                    valid_data[k] = JitProvisioningUserAttributes(**v)
+                    valid_data[k] = JitProvisioningUserAttributes.from_dict(v)
                 if k == "userRepository":
-                    valid_data[k] = DataStoreRepository(**v)
+                    valid_data[k] = DataStoreRepository.from_dict(v)
                 if k == "eventTrigger":
                     valid_data[k] = EventTrigger[v]
                 if k == "errorHandling":

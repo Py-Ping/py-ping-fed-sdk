@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_query_name_mapping import AttributeQueryNameMapping
 from pingfedsdk.models.idp_attribute_query_policy import IdpAttributeQueryPolicy
 
@@ -19,7 +20,6 @@ class IdpAttributeQuery(Model):
         The attribute query profile's security policy.
 
     """
-
     def __init__(self, url: str, nameMappings: list = None, policy: IdpAttributeQueryPolicy = None) -> None:
         self.url = url
         self.nameMappings = nameMappings
@@ -44,9 +44,9 @@ class IdpAttributeQuery(Model):
                 if k == "url":
                     valid_data[k] = str(v)
                 if k == "nameMappings":
-                    valid_data[k] = [AttributeQueryNameMapping(**x) for x in v]
+                    valid_data[k] = [AttributeQueryNameMapping.from_dict(x) for x in v]
                 if k == "policy":
-                    valid_data[k] = IdpAttributeQueryPolicy(**v)
+                    valid_data[k] = IdpAttributeQueryPolicy.from_dict(v)
 
         return cls(**valid_data)
 

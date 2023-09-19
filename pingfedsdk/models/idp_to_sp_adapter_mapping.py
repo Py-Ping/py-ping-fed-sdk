@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_source import AttributeSource
+from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 
 
 class IdpToSpAdapterMapping(Model):
@@ -40,7 +41,6 @@ class IdpToSpAdapterMapping(Model):
         The application icon URL.
 
     """
-
     def __init__(self, attributeContractFulfillment: object, sourceId: str, targetId: str, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None, id: str = None, defaultTargetResource: str = None, licenseConnectionGroupAssignment: str = None, applicationName: str = None, applicationIconUrl: str = None) -> None:
         self.attributeSources = attributeSources
         self.attributeContractFulfillment = attributeContractFulfillment
@@ -70,11 +70,11 @@ class IdpToSpAdapterMapping(Model):
         for k, v in python_dict.items():
             if k in ["attributeSources", "attributeContractFulfillment", "issuanceCriteria", "sourceId", "targetId", "id", "defaultTargetResource", "licenseConnectionGroupAssignment", "applicationName", "applicationIconUrl"] and v is not None:
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
                 if k == "sourceId":
                     valid_data[k] = str(v)
                 if k == "targetId":

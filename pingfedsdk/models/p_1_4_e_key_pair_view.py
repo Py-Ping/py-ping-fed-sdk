@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.cert_view import CertView
 
 
@@ -21,7 +22,6 @@ class P14EKeyPairView(Model):
         The creation time of the key.
 
     """
-
     def __init__(self, currentAuthenticationKey: bool = None, previousAuthenticationKey: bool = None, keyPairView: CertView = None, creationTime: str = None) -> None:
         self.currentAuthenticationKey = currentAuthenticationKey
         self.previousAuthenticationKey = previousAuthenticationKey
@@ -49,7 +49,7 @@ class P14EKeyPairView(Model):
                 if k == "previousAuthenticationKey":
                     valid_data[k] = bool(v)
                 if k == "keyPairView":
-                    valid_data[k] = CertView(**v)
+                    valid_data[k] = CertView.from_dict(v)
                 if k == "creationTime":
                     valid_data[k] = str(v)
 

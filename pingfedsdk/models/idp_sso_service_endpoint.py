@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import Binding
+from pingfedsdk.model import Model
 
 
 class IdpSsoServiceEndpoint(Model):
@@ -15,7 +16,6 @@ class IdpSsoServiceEndpoint(Model):
         The absolute or relative URL of the endpoint. A relative URL can be specified if a base URL for the connection has been defined.
 
     """
-
     def __init__(self, binding: Binding, url: str) -> None:
         self.binding = binding
         self.url = url

@@ -1,17 +1,18 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.processor_policy_to_generator_mapping import ProcessorPolicyToGeneratorMapping as ModelProcessorPolicyToGeneratorMapping
 from pingfedsdk.models.processor_policy_to_generator_mappings import ProcessorPolicyToGeneratorMappings as ModelProcessorPolicyToGeneratorMappings
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 
 
 class OauthTokenExchangeTokenGeneratorMappings:
@@ -66,15 +67,13 @@ class OauthTokenExchangeTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getTokenGeneratorMappingById(self, id: str):
         """ Get a Token Exchange Processor policy to Token Generator Mapping.
@@ -95,13 +94,13 @@ class OauthTokenExchangeTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateTokenGeneratorMappingById(self, id: str, body: ModelProcessorPolicyToGeneratorMapping, XBypassExternalValidation: bool = None):
+    def updateTokenGeneratorMappingById(self, body: ModelProcessorPolicyToGeneratorMapping, id: str, XBypassExternalValidation: bool = None):
         """ Update a Token Exchange Processor policy to Token Generator Mapping.
         """
 
@@ -121,7 +120,7 @@ class OauthTokenExchangeTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -131,9 +130,7 @@ class OauthTokenExchangeTokenGeneratorMappings:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteTokenGeneratorMappingById(self, id: str):
         """ Delete a Token Exchange Processor policy to Token Generator Mapping.

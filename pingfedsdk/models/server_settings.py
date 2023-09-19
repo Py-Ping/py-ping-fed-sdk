@@ -1,11 +1,12 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.notification_settings import NotificationSettings
-from pingfedsdk.models.roles_and_protocols import RolesAndProtocols
+
+from pingfedsdk.model import Model
+from pingfedsdk.models.captcha_settings import CaptchaSettings
 from pingfedsdk.models.contact_info import ContactInfo
 from pingfedsdk.models.email_server_settings import EmailServerSettings
-from pingfedsdk.models.captcha_settings import CaptchaSettings
 from pingfedsdk.models.federation_info import FederationInfo
+from pingfedsdk.models.notification_settings import NotificationSettings
+from pingfedsdk.models.roles_and_protocols import RolesAndProtocols
 
 
 class ServerSettings(Model):
@@ -32,7 +33,6 @@ class ServerSettings(Model):
         Captcha Settings.
 
     """
-
     def __init__(self, contactInfo: ContactInfo = None, notifications: NotificationSettings = None, rolesAndProtocols: RolesAndProtocols = None, federationInfo: FederationInfo = None, emailServer: EmailServerSettings = None, captchaSettings: CaptchaSettings = None) -> None:
         self.contactInfo = contactInfo
         self.notifications = notifications
@@ -58,17 +58,17 @@ class ServerSettings(Model):
         for k, v in python_dict.items():
             if k in ["contactInfo", "notifications", "rolesAndProtocols", "federationInfo", "emailServer", "captchaSettings"] and v is not None:
                 if k == "contactInfo":
-                    valid_data[k] = ContactInfo(**v)
+                    valid_data[k] = ContactInfo.from_dict(v)
                 if k == "notifications":
-                    valid_data[k] = NotificationSettings(**v)
+                    valid_data[k] = NotificationSettings.from_dict(v)
                 if k == "rolesAndProtocols":
-                    valid_data[k] = RolesAndProtocols(**v)
+                    valid_data[k] = RolesAndProtocols.from_dict(v)
                 if k == "federationInfo":
-                    valid_data[k] = FederationInfo(**v)
+                    valid_data[k] = FederationInfo.from_dict(v)
                 if k == "emailServer":
-                    valid_data[k] = EmailServerSettings(**v)
+                    valid_data[k] = EmailServerSettings.from_dict(v)
                 if k == "captchaSettings":
-                    valid_data[k] = CaptchaSettings(**v)
+                    valid_data[k] = CaptchaSettings.from_dict(v)
 
         return cls(**valid_data)
 

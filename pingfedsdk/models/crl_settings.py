@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class CrlSettings(Model):
@@ -20,7 +21,6 @@ class CrlSettings(Model):
         Next retry on next update expiration in minutes. This value defaults to "60".
 
     """
-
     def __init__(self, treatNonRetrievableCrlAsRevoked: bool = None, verifyCrlSignature: bool = None, nextRetryMinsWhenResolveFailed: int = None, nextRetryMinsWhenNextUpdateInPast: int = None) -> None:
         self.treatNonRetrievableCrlAsRevoked = treatNonRetrievableCrlAsRevoked
         self.verifyCrlSignature = verifyCrlSignature

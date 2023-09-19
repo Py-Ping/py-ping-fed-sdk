@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ScopeGroupEntry(Model):
@@ -17,8 +18,7 @@ class ScopeGroupEntry(Model):
         The set of scopes for this scope group.
 
     """
-
-    def __init__(self, description: str, name: str, scopes: list) -> None:
+    def __init__(self, name: str, description: str, scopes: list) -> None:
         self.name = name
         self.description = description
         self.scopes = scopes

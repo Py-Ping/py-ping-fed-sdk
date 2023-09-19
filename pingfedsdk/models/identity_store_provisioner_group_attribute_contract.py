@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.group_attribute import GroupAttribute
 
 
@@ -18,7 +19,6 @@ class IdentityStoreProvisionerGroupAttributeContract(Model):
         Whether this group attribute contract is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
 
     """
-
     def __init__(self, coreAttributes: list, extendedAttributes: list = None, inherited: bool = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -41,9 +41,9 @@ class IdentityStoreProvisionerGroupAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes", "inherited"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [GroupAttribute(**x) for x in v]
+                    valid_data[k] = [GroupAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [GroupAttribute(**x) for x in v]
+                    valid_data[k] = [GroupAttribute.from_dict(x) for x in v]
                 if k == "inherited":
                     valid_data[k] = bool(v)
 

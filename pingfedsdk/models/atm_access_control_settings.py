@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -18,7 +19,6 @@ class AtmAccessControlSettings(Model):
         If 'restrictClients' is true, this field defines the list of OAuth clients that are allowed to access the token manager.
 
     """
-
     def __init__(self, inherited: bool = None, restrictClients: bool = None, allowedClients: list = None) -> None:
         self.inherited = inherited
         self.restrictClients = restrictClients
@@ -45,7 +45,7 @@ class AtmAccessControlSettings(Model):
                 if k == "restrictClients":
                     valid_data[k] = bool(v)
                 if k == "allowedClients":
-                    valid_data[k] = [ResourceLink(**x) for x in v]
+                    valid_data[k] = [ResourceLink.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

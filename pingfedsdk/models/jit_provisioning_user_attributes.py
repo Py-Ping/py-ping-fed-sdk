@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.idp_browser_sso_attribute import IdpBrowserSsoAttribute
 
 
@@ -15,7 +16,6 @@ class JitProvisioningUserAttributes(Model):
         Specify whether to use only attributes from the SAML Assertion or retrieve additional attributes from the IdP. The default is false.
 
     """
-
     def __init__(self, attributeContract: list = None, doAttributeQuery: bool = None) -> None:
         self.attributeContract = attributeContract
         self.doAttributeQuery = doAttributeQuery
@@ -37,7 +37,7 @@ class JitProvisioningUserAttributes(Model):
         for k, v in python_dict.items():
             if k in ["attributeContract", "doAttributeQuery"] and v is not None:
                 if k == "attributeContract":
-                    valid_data[k] = [IdpBrowserSsoAttribute(**x) for x in v]
+                    valid_data[k] = [IdpBrowserSsoAttribute.from_dict(x) for x in v]
                 if k == "doAttributeQuery":
                     valid_data[k] = bool(v)
 

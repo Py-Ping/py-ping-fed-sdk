@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ConnectionGroupLicenseView(Model):
@@ -20,7 +21,6 @@ class ConnectionGroupLicenseView(Model):
         End date for the group.
 
     """
-
     def __init__(self, name: str = None, connectionCount: int = None, startDate: str = None, endDate: str = None) -> None:
         self.name = name
         self.connectionCount = connectionCount

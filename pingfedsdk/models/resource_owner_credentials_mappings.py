@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_owner_credentials_mapping import ResourceOwnerCredentialsMapping
 
 
@@ -12,7 +13,6 @@ class ResourceOwnerCredentialsMappings(Model):
         The actual list of OAuth Resource Owner Credentials Grant Mapping.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class ResourceOwnerCredentialsMappings(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [ResourceOwnerCredentialsMapping(**x) for x in v]
+                    valid_data[k] = [ResourceOwnerCredentialsMapping.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

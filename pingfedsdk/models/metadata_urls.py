@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.metadata_url import MetadataUrl
 
 
@@ -12,7 +13,6 @@ class MetadataUrls(Model):
         The list of Metadata URL items.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class MetadataUrls(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [MetadataUrl(**x) for x in v]
+                    valid_data[k] = [MetadataUrl.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

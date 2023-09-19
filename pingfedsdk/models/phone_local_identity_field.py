@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import LocalIdentityFieldType
+
+from pingfedsdk.enums import PhoneLocalIdentityFieldType
+from pingfedsdk.model import Model
 
 
 class PhoneLocalIdentityField(Model):
@@ -8,7 +9,7 @@ class PhoneLocalIdentityField(Model):
 
     Attributes
     ----------
-    type: LocalIdentityFieldType
+    type: PhoneLocalIdentityFieldType
         The type of the local identity field.
 
     id: str
@@ -27,8 +28,7 @@ class PhoneLocalIdentityField(Model):
         Attributes of the local identity field.
 
     """
-
-    def __init__(self, id: str, label: str, type: LocalIdentityFieldType, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None) -> None:
+    def __init__(self, type: PhoneLocalIdentityFieldType, id: str, label: str, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -53,7 +53,7 @@ class PhoneLocalIdentityField(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "label", "registrationPageField", "profilePageField", "attributes"] and v is not None:
                 if k == "type":
-                    valid_data[k] = LocalIdentityFieldType[v]
+                    valid_data[k] = PhoneLocalIdentityFieldType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "label":
@@ -63,7 +63,7 @@ class PhoneLocalIdentityField(Model):
                 if k == "profilePageField":
                     valid_data[k] = bool(v)
                 if k == "attributes":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
 
         return cls(**valid_data)
 

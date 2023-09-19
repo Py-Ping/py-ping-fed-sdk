@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.enums import ApcMappingPolicyActionType
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_mapping import AttributeMapping
-from pingfedsdk.enums import AuthenticationPolicySelectionActionType
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class ApcMappingPolicyAction(Model):
@@ -10,7 +11,7 @@ class ApcMappingPolicyAction(Model):
 
     Attributes
     ----------
-    type: AuthenticationPolicySelectionActionType
+    type: ApcMappingPolicyActionType
         The authentication selection type.
 
     context: str
@@ -23,8 +24,7 @@ class ApcMappingPolicyAction(Model):
         Contract fulfillment with the authentication policy contract's default values, and additional attributes retrieved from local data stores.
 
     """
-
-    def __init__(self, attributeMapping: AttributeMapping, authenticationPolicyContractRef: ResourceLink, type: AuthenticationPolicySelectionActionType = None, context: str = None) -> None:
+    def __init__(self, authenticationPolicyContractRef: ResourceLink, attributeMapping: AttributeMapping, type: ApcMappingPolicyActionType = None, context: str = None) -> None:
         self.type = type
         self.context = context
         self.authenticationPolicyContractRef = authenticationPolicyContractRef
@@ -47,13 +47,13 @@ class ApcMappingPolicyAction(Model):
         for k, v in python_dict.items():
             if k in ["type", "context", "authenticationPolicyContractRef", "attributeMapping"] and v is not None:
                 if k == "type":
-                    valid_data[k] = AuthenticationPolicySelectionActionType[v]
+                    valid_data[k] = ApcMappingPolicyActionType[v]
                 if k == "context":
                     valid_data[k] = str(v)
                 if k == "authenticationPolicyContractRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "attributeMapping":
-                    valid_data[k] = AttributeMapping(**v)
+                    valid_data[k] = AttributeMapping.from_dict(v)
 
         return cls(**valid_data)
 

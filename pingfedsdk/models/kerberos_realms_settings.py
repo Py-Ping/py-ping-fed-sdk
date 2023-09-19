@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class KerberosRealmsSettings(Model):
@@ -23,8 +24,7 @@ class KerberosRealmsSettings(Model):
         The key set retention period in minutes. When 'retainPreviousKeysOnPasswordChange' is set to true for a realm, this setting determines how long keys will be retained after a password change occurs. If this field is omitted in a PUT request, the default of 610 minutes is applied.
 
     """
-
-    def __init__(self, kdcRetries: str = None, kdcTimeout: str = None, forceTcp: bool = None, debugLogOutput: bool = None, keySetRetentionPeriodMins: int = None) -> None:
+    def __init__(self, kdcRetries: str, kdcTimeout: str, forceTcp: bool = None, debugLogOutput: bool = None, keySetRetentionPeriodMins: int = None) -> None:
         self.forceTcp = forceTcp
         self.kdcRetries = kdcRetries
         self.debugLogOutput = debugLogOutput

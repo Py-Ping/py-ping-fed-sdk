@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.validation_error import ValidationError
 
 
@@ -21,7 +22,6 @@ class ApiResult(Model):
         List of validation errors, if any.
 
     """
-
     def __init__(self, resultId: str = None, message: str = None, developerMessage: str = None, validationErrors: list = None) -> None:
         self.resultId = resultId
         self.message = message
@@ -51,7 +51,7 @@ class ApiResult(Model):
                 if k == "developerMessage":
                     valid_data[k] = str(v)
                 if k == "validationErrors":
-                    valid_data[k] = [ValidationError(**x) for x in v]
+                    valid_data[k] = [ValidationError.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

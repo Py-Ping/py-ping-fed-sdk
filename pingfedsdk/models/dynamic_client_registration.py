@@ -1,13 +1,14 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.client_registration_o_i_d_c_policy import ClientRegistrationOIDCPolicy
-from pingfedsdk.enums import RefreshTokenRollingGracePeriodType
-from pingfedsdk.enums import RefreshRolling
-from pingfedsdk.enums import PersistentGrantLifetimeType
-from pingfedsdk.enums import TimeUnit
+
 from pingfedsdk.enums import ClientCertIssuerType
 from pingfedsdk.enums import DeviceFlowSettingType
+from pingfedsdk.enums import PersistentGrantLifetimeType
+from pingfedsdk.enums import RefreshRolling
+from pingfedsdk.enums import RefreshTokenRollingGracePeriodType
+from pingfedsdk.enums import TimeUnit
+from pingfedsdk.model import Model
+from pingfedsdk.models.client_registration_o_i_d_c_policy import ClientRegistrationOIDCPolicy
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class DynamicClientRegistration(Model):
@@ -139,7 +140,6 @@ class DynamicClientRegistration(Model):
         Determines whether JWT Secured authorization response mode is required when initiating an authorization request. The default is false.
 
     """
-
     def __init__(self, initialAccessTokenScope: str = None, restrictCommonScopes: bool = None, restrictedCommonScopes: list = None, allowedExclusiveScopes: list = None, enforceReplayPrevention: bool = None, requireSignedRequests: bool = None, defaultAccessTokenManagerRef: ResourceLink = None, restrictToDefaultAccessTokenManager: bool = None, persistentGrantExpirationType: PersistentGrantLifetimeType = None, persistentGrantExpirationTime: int = None, persistentGrantExpirationTimeUnit: TimeUnit = None, persistentGrantIdleTimeoutType: PersistentGrantLifetimeType = None, persistentGrantIdleTimeout: int = None, persistentGrantIdleTimeoutTimeUnit: TimeUnit = None, clientCertIssuerType: ClientCertIssuerType = None, clientCertIssuerRef: ResourceLink = None, refreshRolling: RefreshRolling = None, refreshTokenRollingIntervalType: DeviceFlowSettingType = None, refreshTokenRollingInterval: int = None, oidcPolicy: ClientRegistrationOIDCPolicy = None, policyRefs: list = None, deviceFlowSettingType: DeviceFlowSettingType = None, userAuthorizationUrlOverride: str = None, pendingAuthorizationTimeoutOverride: int = None, devicePollingIntervalOverride: int = None, bypassActivationCodeConfirmationOverride: bool = None, requireProofKeyForCodeExchange: bool = None, cibaPollingInterval: int = None, cibaRequireSignedRequests: bool = None, requestPolicyRef: ResourceLink = None, tokenExchangeProcessorPolicyRef: ResourceLink = None, rotateClientSecret: bool = None, rotateRegistrationAccessToken: bool = None, allowClientDelete: bool = None, disableRegistrationAccessTokens: bool = None, refreshTokenRollingGracePeriodType: RefreshTokenRollingGracePeriodType = None, refreshTokenRollingGracePeriod: int = None, retainClientSecret: bool = None, clientSecretRetentionPeriodType: str = None, clientSecretRetentionPeriodOverride: int = None, requireJwtSecuredAuthorizationResponseMode: bool = None) -> None:
         self.initialAccessTokenScope = initialAccessTokenScope
         self.restrictCommonScopes = restrictCommonScopes
@@ -212,7 +212,7 @@ class DynamicClientRegistration(Model):
                 if k == "requireSignedRequests":
                     valid_data[k] = bool(v)
                 if k == "defaultAccessTokenManagerRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "restrictToDefaultAccessTokenManager":
                     valid_data[k] = bool(v)
                 if k == "persistentGrantExpirationType":
@@ -230,7 +230,7 @@ class DynamicClientRegistration(Model):
                 if k == "clientCertIssuerType":
                     valid_data[k] = ClientCertIssuerType[v]
                 if k == "clientCertIssuerRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "refreshRolling":
                     valid_data[k] = RefreshRolling[v]
                 if k == "refreshTokenRollingIntervalType":
@@ -238,9 +238,9 @@ class DynamicClientRegistration(Model):
                 if k == "refreshTokenRollingInterval":
                     valid_data[k] = int(v)
                 if k == "oidcPolicy":
-                    valid_data[k] = ClientRegistrationOIDCPolicy(**v)
+                    valid_data[k] = ClientRegistrationOIDCPolicy.from_dict(v)
                 if k == "policyRefs":
-                    valid_data[k] = [ResourceLink(**x) for x in v]
+                    valid_data[k] = [ResourceLink.from_dict(x) for x in v]
                 if k == "deviceFlowSettingType":
                     valid_data[k] = DeviceFlowSettingType[v]
                 if k == "userAuthorizationUrlOverride":
@@ -258,9 +258,9 @@ class DynamicClientRegistration(Model):
                 if k == "cibaRequireSignedRequests":
                     valid_data[k] = bool(v)
                 if k == "requestPolicyRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "tokenExchangeProcessorPolicyRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "rotateClientSecret":
                     valid_data[k] = bool(v)
                 if k == "rotateRegistrationAccessToken":

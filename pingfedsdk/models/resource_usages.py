@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_category_info import ResourceCategoryInfo
 from pingfedsdk.models.resource_usage import ResourceUsage
 
@@ -16,7 +17,6 @@ class ResourceUsages(Model):
         The actual list of resource usages.
 
     """
-
     def __init__(self, categories: list = None, items: list = None) -> None:
         self.categories = categories
         self.items = items
@@ -38,9 +38,9 @@ class ResourceUsages(Model):
         for k, v in python_dict.items():
             if k in ["categories", "items"] and v is not None:
                 if k == "categories":
-                    valid_data[k] = [ResourceCategoryInfo(**x) for x in v]
+                    valid_data[k] = [ResourceCategoryInfo.from_dict(x) for x in v]
                 if k == "items":
-                    valid_data[k] = [ResourceUsage(**x) for x in v]
+                    valid_data[k] = [ResourceUsage.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

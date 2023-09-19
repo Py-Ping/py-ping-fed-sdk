@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class GroupMembershipDetection(Model):
@@ -14,7 +15,6 @@ class GroupMembershipDetection(Model):
         The name of the attribute that represents group members in a group, also known as group member attribute.
 
     """
-
     def __init__(self, groupMemberAttributeName: str, memberOfGroupAttributeName: str = None) -> None:
         self.memberOfGroupAttributeName = memberOfGroupAttributeName
         self.groupMemberAttributeName = groupMemberAttributeName

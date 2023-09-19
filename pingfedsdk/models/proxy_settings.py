@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ProxySettings(Model):
@@ -14,7 +15,6 @@ class ProxySettings(Model):
         Port number.
 
     """
-
     def __init__(self, host: str = None, port: int = None) -> None:
         self.host = host
         self.port = port

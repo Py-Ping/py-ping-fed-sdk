@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ActionResult(Model):
@@ -11,7 +12,6 @@ class ActionResult(Model):
         The message from the completed action.
 
     """
-
     def __init__(self, message: str = None) -> None:
         self.message = message
 

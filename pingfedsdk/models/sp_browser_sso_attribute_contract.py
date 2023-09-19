@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.sp_browser_sso_attribute import SpBrowserSsoAttribute
 
 
@@ -15,7 +16,6 @@ class SpBrowserSsoAttributeContract(Model):
         A list of additional attributes that are added to the outgoing assertion.
 
     """
-
     def __init__(self, coreAttributes: list = None, extendedAttributes: list = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -37,9 +37,9 @@ class SpBrowserSsoAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [SpBrowserSsoAttribute(**x) for x in v]
+                    valid_data[k] = [SpBrowserSsoAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [SpBrowserSsoAttribute(**x) for x in v]
+                    valid_data[k] = [SpBrowserSsoAttribute.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

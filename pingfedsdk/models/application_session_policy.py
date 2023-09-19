@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ApplicationSessionPolicy(Model):
@@ -14,7 +15,6 @@ class ApplicationSessionPolicy(Model):
         The maximum timeout period, in minutes. If set to -1, sessions do not expire. The default is 480.
 
     """
-
     def __init__(self, idleTimeoutMins: int = None, maxTimeoutMins: int = None) -> None:
         self.idleTimeoutMins = idleTimeoutMins
         self.maxTimeoutMins = maxTimeoutMins

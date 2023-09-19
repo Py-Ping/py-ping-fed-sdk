@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.token_exchange_processor_attribute_contract import TokenExchangeProcessorAttributeContract
 from pingfedsdk.models.token_exchange_processor_mapping import TokenExchangeProcessorMapping
 
@@ -25,8 +26,7 @@ class TokenExchangeProcessorPolicy(Model):
         A list of Token Processor(s) mappings into an OAuth 2.0 Token Exchange Processor policy.
 
     """
-
-    def __init__(self, attributeContract: TokenExchangeProcessorAttributeContract, id: str, name: str, processorMappings: list, actorTokenRequired: bool = None) -> None:
+    def __init__(self, id: str, name: str, attributeContract: TokenExchangeProcessorAttributeContract, processorMappings: list, actorTokenRequired: bool = None) -> None:
         self.id = id
         self.name = name
         self.actorTokenRequired = actorTokenRequired
@@ -56,9 +56,9 @@ class TokenExchangeProcessorPolicy(Model):
                 if k == "actorTokenRequired":
                     valid_data[k] = bool(v)
                 if k == "attributeContract":
-                    valid_data[k] = TokenExchangeProcessorAttributeContract(**v)
+                    valid_data[k] = TokenExchangeProcessorAttributeContract.from_dict(v)
                 if k == "processorMappings":
-                    valid_data[k] = [TokenExchangeProcessorMapping(**x) for x in v]
+                    valid_data[k] = [TokenExchangeProcessorMapping.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

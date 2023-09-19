@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class JwksSettings(Model):
@@ -14,7 +15,6 @@ class JwksSettings(Model):
         JSON Web Key Set (JWKS) document of the OAuth client. Either 'jwks' or 'jwksUrl' must be provided if private key JWT client authentication or signed requests is enabled.  If the client signs its JWTs using an RSASSA-PSS signing algorithm, PingFederate must either use Java 11 or be integrated with a hardware security module (HSM) to process the digital signatures.
 
     """
-
     def __init__(self, jwksUrl: str = None, jwks: str = None) -> None:
         self.jwksUrl = jwksUrl
         self.jwks = jwks

@@ -1,24 +1,25 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
 from pingfedsdk.exceptions import NotImplementedError
-from pingfedsdk.models.out_of_band_authenticators import OutOfBandAuthenticators as ModelOutOfBandAuthenticators
-from pingfedsdk.models.action_options import ActionOptions as ModelActionOptions
-from pingfedsdk.models.out_of_band_authenticator import OutOfBandAuthenticator as ModelOutOfBandAuthenticator
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.action import Action as ModelAction
-from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-from pingfedsdk.models.actions import Actions as ModelActions
+from pingfedsdk.models.action_options import ActionOptions as ModelActionOptions
 from pingfedsdk.models.action_result import ActionResult as ModelActionResult
-from pingfedsdk.models.out_of_band_auth_plugin_descriptors import OutOfBandAuthPluginDescriptors as ModelOutOfBandAuthPluginDescriptors
+from pingfedsdk.models.actions import Actions as ModelActions
+from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.out_of_band_auth_plugin_descriptor import OutOfBandAuthPluginDescriptor as ModelOutOfBandAuthPluginDescriptor
+from pingfedsdk.models.out_of_band_auth_plugin_descriptors import OutOfBandAuthPluginDescriptors as ModelOutOfBandAuthPluginDescriptors
+from pingfedsdk.models.out_of_band_authenticator import OutOfBandAuthenticator as ModelOutOfBandAuthenticator
+from pingfedsdk.models.out_of_band_authenticators import OutOfBandAuthenticators as ModelOutOfBandAuthenticators
 
 
 class OauthOutOfBandAuthPlugins:
@@ -31,6 +32,57 @@ class OauthOutOfBandAuthPlugins:
 
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
+
+    def getAction(self, actionId: str, id: str):
+        """ Find an Out of Band authenticator plugin instance's action by ID.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/{id}/actions/{actionId}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelAction.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
+    def invokeActionWithOptions(self, actionId: str, id: str, body: ModelActionOptions = None):
+        """ Invokes an action for Out of Band authenticator plugin instance.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/{id}/actions/{actionId}/invokeAction"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelActionResult.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
 
     def getOOBAuthPluginDescriptors(self):
         """ Get the list of available Out of Band authenticator plugin descriptors.
@@ -72,7 +124,7 @@ class OauthOutOfBandAuthPlugins:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelOutOfBandAuthPluginDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -119,15 +171,13 @@ class OauthOutOfBandAuthPlugins:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelOutOfBandAuthenticator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getOOBAuthenticator(self, id: str):
         """ Get a specific Out of Band authenticator plugin instance.
@@ -148,13 +198,13 @@ class OauthOutOfBandAuthPlugins:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelOutOfBandAuthenticator.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateOOBAuthenticator(self, id: str, body: ModelOutOfBandAuthenticator):
+    def updateOOBAuthenticator(self, body: ModelOutOfBandAuthenticator, id: str):
         """ Update an Out of Band authenticator plugin instance.
         """
 
@@ -174,7 +224,7 @@ class OauthOutOfBandAuthPlugins:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelOutOfBandAuthenticator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -184,9 +234,7 @@ class OauthOutOfBandAuthPlugins:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteOOBAuthenticator(self, id: str):
         """ Delete an Out of Band authenticator plugin instance.
@@ -219,57 +267,6 @@ class OauthOutOfBandAuthPlugins:
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def invokeActionWithOptions(self, id: str, actionId: str, body: ModelActionOptions = None):
-        """ Invokes an action for Out of Band authenticator plugin instance.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/{id}/actions/{actionId}/invokeAction"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def getAction(self, id: str, actionId: str):
-        """ Find an Out of Band authenticator plugin instance's action by ID.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/{id}/actions/{actionId}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
     def getActions(self, id: str):
         """ List of actions for an Out of Band authenticator plugin instance.
         """
@@ -289,7 +286,7 @@ class OauthOutOfBandAuthPlugins:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

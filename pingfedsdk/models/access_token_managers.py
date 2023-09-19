@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.access_token_manager import AccessTokenManager
 
 
@@ -12,7 +13,6 @@ class AccessTokenManagers(Model):
         The list of OAuth access token management plugin instances.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class AccessTokenManagers(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [AccessTokenManager(**x) for x in v]
+                    valid_data[k] = [AccessTokenManager.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

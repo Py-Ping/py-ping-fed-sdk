@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class RedirectValidationPartnerSettings(Model):
@@ -11,7 +12,6 @@ class RedirectValidationPartnerSettings(Model):
         Enable wreply validation for SLO.
 
     """
-
     def __init__(self, enableWreplyValidationSLO: bool = None) -> None:
         self.enableWreplyValidationSLO = enableWreplyValidationSLO
 

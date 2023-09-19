@@ -1,14 +1,15 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.authentication_policy_contract import AuthenticationPolicyContract as ModelAuthenticationPolicyContract
 from pingfedsdk.models.authentication_policy_contracts import AuthenticationPolicyContracts as ModelAuthenticationPolicyContracts
@@ -25,7 +26,7 @@ class AuthenticationPolicyContracts:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def getAuthenticationPolicyContracts(self, page: int = None, numberPerPage: int = None, filter: str = None):
+    def getAuthenticationPolicyContracts(self, filter: str = None, numberPerPage: int = None, page: int = None):
         """ Gets the Authentication Policy Contracts.
         """
 
@@ -46,9 +47,7 @@ class AuthenticationPolicyContracts:
             if response.status_code == 200:
                 return ModelAuthenticationPolicyContracts.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def createAuthenticationPolicyContract(self, body: ModelAuthenticationPolicyContract):
         """ Create a new Authentication Policy Contract.
@@ -70,15 +69,13 @@ class AuthenticationPolicyContracts:
             raise err
         else:
             if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthenticationPolicyContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getAuthenticationPolicyContract(self, id: str):
         """ Gets the Authentication Policy Contract by ID.
@@ -105,7 +102,7 @@ class AuthenticationPolicyContracts:
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateAuthenticationPolicyContract(self, id: str, body: ModelAuthenticationPolicyContract):
+    def updateAuthenticationPolicyContract(self, body: ModelAuthenticationPolicyContract, id: str):
         """ Update an Authentication Policy Contract by ID.
         """
 
@@ -125,7 +122,7 @@ class AuthenticationPolicyContracts:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelAuthenticationPolicyContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -135,9 +132,7 @@ class AuthenticationPolicyContracts:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteAuthenticationPolicyContract(self, id: str):
         """ Delete an Authentication Policy Contract.
@@ -166,6 +161,4 @@ class AuthenticationPolicyContracts:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

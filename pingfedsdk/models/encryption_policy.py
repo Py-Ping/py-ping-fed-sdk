@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class EncryptionPolicy(Model):
@@ -20,7 +21,6 @@ class EncryptionPolicy(Model):
         Allow the encryption of the name-identifier attribute for inbound SLO messages. This can be set if SP initiated SLO is enabled.
 
     """
-
     def __init__(self, encryptAssertion: bool = None, encryptedAttributes: list = None, encryptSloSubjectNameId: bool = None, sloSubjectNameIDEncrypted: bool = None) -> None:
         self.encryptAssertion = encryptAssertion
         self.encryptedAttributes = encryptedAttributes

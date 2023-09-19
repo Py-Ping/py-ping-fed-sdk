@@ -1,13 +1,14 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.data_store_config import DataStoreConfig
 from pingfedsdk.models.email_verification_config import EmailVerificationConfig
-from pingfedsdk.models.local_identity_auth_source_update_policy import LocalIdentityAuthSourceUpdatePolicy
-from pingfedsdk.models.registration_config import RegistrationConfig
-from pingfedsdk.models.local_identity_auth_source import LocalIdentityAuthSource
 from pingfedsdk.models.field_config import FieldConfig
+from pingfedsdk.models.local_identity_auth_source import LocalIdentityAuthSource
+from pingfedsdk.models.local_identity_auth_source_update_policy import LocalIdentityAuthSourceUpdatePolicy
 from pingfedsdk.models.profile_config import ProfileConfig
+from pingfedsdk.models.registration_config import RegistrationConfig
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class LocalIdentityProfile(Model):
@@ -52,8 +53,7 @@ class LocalIdentityProfile(Model):
         Whether the profile configuration is enabled or not.
 
     """
-
-    def __init__(self, apcId: ResourceLink, name: str, id: str = None, authSources: list = None, authSourceUpdatePolicy: LocalIdentityAuthSourceUpdatePolicy = None, registrationEnabled: bool = None, registrationConfig: RegistrationConfig = None, profileConfig: ProfileConfig = None, fieldConfig: FieldConfig = None, emailVerificationConfig: EmailVerificationConfig = None, dataStoreConfig: DataStoreConfig = None, profileEnabled: bool = None) -> None:
+    def __init__(self, name: str, apcId: ResourceLink, id: str = None, authSources: list = None, authSourceUpdatePolicy: LocalIdentityAuthSourceUpdatePolicy = None, registrationEnabled: bool = None, registrationConfig: RegistrationConfig = None, profileConfig: ProfileConfig = None, fieldConfig: FieldConfig = None, emailVerificationConfig: EmailVerificationConfig = None, dataStoreConfig: DataStoreConfig = None, profileEnabled: bool = None) -> None:
         self.id = id
         self.name = name
         self.apcId = apcId
@@ -88,23 +88,23 @@ class LocalIdentityProfile(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "apcId":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "authSources":
-                    valid_data[k] = [LocalIdentityAuthSource(**x) for x in v]
+                    valid_data[k] = [LocalIdentityAuthSource.from_dict(x) for x in v]
                 if k == "authSourceUpdatePolicy":
-                    valid_data[k] = LocalIdentityAuthSourceUpdatePolicy(**v)
+                    valid_data[k] = LocalIdentityAuthSourceUpdatePolicy.from_dict(v)
                 if k == "registrationEnabled":
                     valid_data[k] = bool(v)
                 if k == "registrationConfig":
-                    valid_data[k] = RegistrationConfig(**v)
+                    valid_data[k] = RegistrationConfig.from_dict(v)
                 if k == "profileConfig":
-                    valid_data[k] = ProfileConfig(**v)
+                    valid_data[k] = ProfileConfig.from_dict(v)
                 if k == "fieldConfig":
-                    valid_data[k] = FieldConfig(**v)
+                    valid_data[k] = FieldConfig.from_dict(v)
                 if k == "emailVerificationConfig":
-                    valid_data[k] = EmailVerificationConfig(**v)
+                    valid_data[k] = EmailVerificationConfig.from_dict(v)
                 if k == "dataStoreConfig":
-                    valid_data[k] = DataStoreConfig(**v)
+                    valid_data[k] = DataStoreConfig.from_dict(v)
                 if k == "profileEnabled":
                     valid_data[k] = bool(v)
 

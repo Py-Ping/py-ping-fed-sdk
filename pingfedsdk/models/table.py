@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class Table(Model):
@@ -17,7 +18,6 @@ class Table(Model):
         The database column that uniquely identifies the provisioned user on the SP side.
 
     """
-
     def __init__(self, schema: str, tableName: str, uniqueIdColumn: str) -> None:
         self.schema = schema
         self.tableName = tableName

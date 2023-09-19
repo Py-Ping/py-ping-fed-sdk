@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -12,7 +13,6 @@ class NotificationPublishersSettings(Model):
         Reference to the default notification publisher, if one is defined.
 
     """
-
     def __init__(self, defaultNotificationPublisherRef: ResourceLink = None) -> None:
         self.defaultNotificationPublisherRef = defaultNotificationPublisherRef
 
@@ -33,7 +33,7 @@ class NotificationPublishersSettings(Model):
         for k, v in python_dict.items():
             if k in ["defaultNotificationPublisherRef"] and v is not None:
                 if k == "defaultNotificationPublisherRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

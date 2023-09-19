@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class UrlWhitelistEntry(Model):
@@ -20,7 +21,6 @@ class UrlWhitelistEntry(Model):
         Require HTTPS
 
     """
-
     def __init__(self, validDomain: str = None, validPath: str = None, allowQueryAndFragment: bool = None, requireHttps: bool = None) -> None:
         self.validDomain = validDomain
         self.validPath = validPath

@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import AccountStatusAlgorithm
+from pingfedsdk.model import Model
 
 
 class AccountManagementSettings(Model):
@@ -24,8 +25,7 @@ class AccountManagementSettings(Model):
         The default status of the account.
 
     """
-
-    def __init__(self, accountStatusAlgorithm: AccountStatusAlgorithm, accountStatusAttributeName: str, flagComparisonValue: str = None, flagComparisonStatus: bool = None, defaultStatus: bool = None) -> None:
+    def __init__(self, accountStatusAttributeName: str, accountStatusAlgorithm: AccountStatusAlgorithm, flagComparisonValue: str = None, flagComparisonStatus: bool = None, defaultStatus: bool = None) -> None:
         self.accountStatusAttributeName = accountStatusAttributeName
         self.accountStatusAlgorithm = accountStatusAlgorithm
         self.flagComparisonValue = flagComparisonValue

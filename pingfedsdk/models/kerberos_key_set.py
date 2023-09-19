@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class KerberosKeySet(Model):
@@ -14,7 +15,6 @@ class KerberosKeySet(Model):
         Time at which the key set was deactivated due to password change. This field is not populated if the key set is active.
 
     """
-
     def __init__(self, encryptedKeySet: str, deactivatedAt: str = None) -> None:
         self.encryptedKeySet = encryptedKeySet
         self.deactivatedAt = deactivatedAt

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -21,7 +22,6 @@ class BaseSigningSettings(Model):
         Determines whether the <KeyValue> element with the raw public key is included in the signature <KeyInfo> element.
 
     """
-
     def __init__(self, signingKeyPairRef: ResourceLink, algorithm: str = None, includeCertInSignature: bool = None, includeRawKeyInSignature: bool = None) -> None:
         self.signingKeyPairRef = signingKeyPairRef
         self.algorithm = algorithm
@@ -45,7 +45,7 @@ class BaseSigningSettings(Model):
         for k, v in python_dict.items():
             if k in ["signingKeyPairRef", "algorithm", "includeCertInSignature", "includeRawKeyInSignature"] and v is not None:
                 if k == "signingKeyPairRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "algorithm":
                     valid_data[k] = str(v)
                 if k == "includeCertInSignature":

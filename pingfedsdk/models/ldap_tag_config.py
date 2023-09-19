@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class LdapTagConfig(Model):
@@ -17,7 +18,6 @@ class LdapTagConfig(Model):
         Whether this is the default connection. Defaults to false if not specified.
 
     """
-
     def __init__(self, hostnames: list, tags: str = None, defaultSource: bool = None) -> None:
         self.hostnames = hostnames
         self.tags = tags

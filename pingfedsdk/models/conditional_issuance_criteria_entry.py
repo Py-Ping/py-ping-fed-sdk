@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.source_type_id_key import SourceTypeIdKey
+
 from pingfedsdk.enums import Condition
+from pingfedsdk.model import Model
+from pingfedsdk.models.source_type_id_key import SourceTypeIdKey
 
 
 class ConditionalIssuanceCriteriaEntry(Model):
@@ -25,8 +26,7 @@ class ConditionalIssuanceCriteriaEntry(Model):
         The error result to return if this issuance criterion fails. This error result will show up in the PingFederate server logs.
 
     """
-
-    def __init__(self, attributeName: str, condition: Condition, source: SourceTypeIdKey, value: str, errorResult: str = None) -> None:
+    def __init__(self, source: SourceTypeIdKey, attributeName: str, condition: Condition, value: str, errorResult: str = None) -> None:
         self.source = source
         self.attributeName = attributeName
         self.condition = condition
@@ -50,7 +50,7 @@ class ConditionalIssuanceCriteriaEntry(Model):
         for k, v in python_dict.items():
             if k in ["source", "attributeName", "condition", "value", "errorResult"] and v is not None:
                 if k == "source":
-                    valid_data[k] = SourceTypeIdKey(**v)
+                    valid_data[k] = SourceTypeIdKey.from_dict(v)
                 if k == "attributeName":
                     valid_data[k] = str(v)
                 if k == "condition":

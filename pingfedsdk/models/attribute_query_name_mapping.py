@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AttributeQueryNameMapping(Model):
@@ -14,7 +15,6 @@ class AttributeQueryNameMapping(Model):
         The remote attribute name as defined by the attribute authority.
 
     """
-
     def __init__(self, localName: str, remoteName: str) -> None:
         self.localName = localName
         self.remoteName = remoteName

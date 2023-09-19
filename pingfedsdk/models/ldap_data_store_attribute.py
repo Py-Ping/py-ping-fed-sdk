@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import DataStoreType
+
+from pingfedsdk.enums import LdapDataStoreAttributeType
+from pingfedsdk.model import Model
 
 
 class LdapDataStoreAttribute(Model):
@@ -8,7 +9,7 @@ class LdapDataStoreAttribute(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: LdapDataStoreAttributeType
         The data store attribute type.
 
     name: str
@@ -18,8 +19,7 @@ class LdapDataStoreAttribute(Model):
         The data store attribute metadata.
 
     """
-
-    def __init__(self, name: str, type: DataStoreType, metadata: object = None) -> None:
+    def __init__(self, type: LdapDataStoreAttributeType, name: str, metadata: object = None) -> None:
         self.type = type
         self.name = name
         self.metadata = metadata
@@ -41,11 +41,11 @@ class LdapDataStoreAttribute(Model):
         for k, v in python_dict.items():
             if k in ["type", "name", "metadata"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = LdapDataStoreAttributeType[v]
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "metadata":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
 
         return cls(**valid_data)
 

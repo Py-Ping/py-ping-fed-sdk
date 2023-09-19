@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ServiceAssociation(Model):
@@ -17,7 +18,6 @@ class ServiceAssociation(Model):
         Indicates whether one or more instances of the plugin are configured for a given PingOne connection.
 
     """
-
     def __init__(self, componentName: str = None, serviceNames: list = None, configured: bool = None) -> None:
         self.componentName = componentName
         self.serviceNames = serviceNames

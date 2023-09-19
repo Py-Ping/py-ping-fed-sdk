@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class LocalIdentityAuthSource(Model):
@@ -14,7 +15,6 @@ class LocalIdentityAuthSource(Model):
         The local identity authentication source. Source is unique.
 
     """
-
     def __init__(self, id: str = None, source: str = None) -> None:
         self.id = id
         self.source = source

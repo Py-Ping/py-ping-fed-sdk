@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.config_row import ConfigRow
 
 
@@ -18,7 +19,6 @@ class ConfigTable(Model):
         Whether this table is inherited from its parent instance. If true, the rows become read-only. The default value is false.
 
     """
-
     def __init__(self, name: str, rows: list = None, inherited: bool = None) -> None:
         self.name = name
         self.rows = rows
@@ -43,7 +43,7 @@ class ConfigTable(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "rows":
-                    valid_data[k] = [ConfigRow(**x) for x in v]
+                    valid_data[k] = [ConfigRow.from_dict(x) for x in v]
                 if k == "inherited":
                     valid_data[k] = bool(v)
 

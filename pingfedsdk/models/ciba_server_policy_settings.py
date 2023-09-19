@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -12,7 +13,6 @@ class CibaServerPolicySettings(Model):
         Reference to the default request policy, if one is defined.
 
     """
-
     def __init__(self, defaultRequestPolicyRef: ResourceLink = None) -> None:
         self.defaultRequestPolicyRef = defaultRequestPolicyRef
 
@@ -33,7 +33,7 @@ class CibaServerPolicySettings(Model):
         for k, v in python_dict.items():
             if k in ["defaultRequestPolicyRef"] and v is not None:
                 if k == "defaultRequestPolicyRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

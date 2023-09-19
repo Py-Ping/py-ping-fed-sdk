@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class FederationInfo(Model):
@@ -26,7 +27,6 @@ class FederationInfo(Model):
         The URI of the realm associated with the PingFederate server. A realm represents a single unit of security administration or trust.
 
     """
-
     def __init__(self, baseUrl: str = None, saml2EntityId: str = None, autoConnectEntityId: str = None, saml1xIssuerId: str = None, saml1xSourceId: str = None, wsfedRealm: str = None) -> None:
         self.baseUrl = baseUrl
         self.saml2EntityId = saml2EntityId

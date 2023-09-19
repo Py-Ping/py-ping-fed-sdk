@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import Condition
+from pingfedsdk.model import Model
 
 
 class AttributeRule(Model):
@@ -21,7 +22,6 @@ class AttributeRule(Model):
         The result of this attribute rule.
 
     """
-
     def __init__(self, attributeName: str, condition: Condition, expectedValue: str, result: str) -> None:
         self.attributeName = attributeName
         self.condition = condition

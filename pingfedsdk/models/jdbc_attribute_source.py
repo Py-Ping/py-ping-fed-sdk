@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.enums import JdbcAttributeSourceType
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import DataStoreType
 
 
 class JdbcAttributeSource(Model):
@@ -9,7 +10,7 @@ class JdbcAttributeSource(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: JdbcAttributeSourceType
         The data store type of this attribute source.
 
     dataStoreRef: ResourceLink
@@ -39,8 +40,7 @@ class JdbcAttributeSource(Model):
         The JDBC WHERE clause used to query your data store to locate a user record.
 
     """
-
-    def __init__(self, filter: str, table: str, type: DataStoreType = None, dataStoreRef: ResourceLink = None, id: str = None, description: str = None, attributeContractFulfillment: object = None, schema: str = None, columnNames: list = None) -> None:
+    def __init__(self, table: str, filter: str, type: JdbcAttributeSourceType = None, dataStoreRef: ResourceLink = None, id: str = None, schema: str = None, description: str = None, attributeContractFulfillment: object = None, columnNames: list = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -68,15 +68,15 @@ class JdbcAttributeSource(Model):
         for k, v in python_dict.items():
             if k in ["type", "dataStoreRef", "id", "description", "attributeContractFulfillment", "schema", "table", "columnNames", "filter"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = JdbcAttributeSourceType[v]
                 if k == "dataStoreRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "schema":
                     valid_data[k] = str(v)
                 if k == "table":

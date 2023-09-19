@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class OIDCSessionSettings(Model):
@@ -17,7 +18,6 @@ class OIDCSessionSettings(Model):
         How long a session revocation is tracked and stored, in minutes. This property is now available under /session/settings and should be accessed through that resource.
 
     """
-
     def __init__(self, trackUserSessionsForLogout: bool = None, revokeUserSessionOnLogout: bool = None, sessionRevocationLifetime: int = None) -> None:
         self.trackUserSessionsForLogout = trackUserSessionsForLogout
         self.revokeUserSessionOnLogout = revokeUserSessionOnLogout

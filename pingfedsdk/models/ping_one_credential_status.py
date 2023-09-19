@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import PingOneCredentialStatus
+
+from pingfedsdk.enums import PingOneCredentialStatus as PingOneCredentialStatusEnum
+from pingfedsdk.model import Model
 
 
 class PingOneCredentialStatus(Model):
@@ -12,8 +13,7 @@ class PingOneCredentialStatus(Model):
         The status of the PingOne connection credential.
 
     """
-
-    def __init__(self, pingOneCredentialStatus: PingOneCredentialStatus = None) -> None:
+    def __init__(self, pingOneCredentialStatus: PingOneCredentialStatusEnum = None) -> None:
         self.pingOneCredentialStatus = pingOneCredentialStatus
 
     def _validate(self) -> bool:
@@ -33,7 +33,7 @@ class PingOneCredentialStatus(Model):
         for k, v in python_dict.items():
             if k in ["pingOneCredentialStatus"] and v is not None:
                 if k == "pingOneCredentialStatus":
-                    valid_data[k] = PingOneCredentialStatus[v]
+                    valid_data[k] = PingOneCredentialStatusEnum[v]
 
         return cls(**valid_data)
 

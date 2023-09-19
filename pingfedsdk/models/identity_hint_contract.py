@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.identity_hint_attribute import IdentityHintAttribute
 
 
@@ -15,7 +16,6 @@ class IdentityHintContract(Model):
         A list of additional identity hint contract attributes.
 
     """
-
     def __init__(self, coreAttributes: list, extendedAttributes: list = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -37,9 +37,9 @@ class IdentityHintContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [IdentityHintAttribute(**x) for x in v]
+                    valid_data[k] = [IdentityHintAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [IdentityHintAttribute(**x) for x in v]
+                    valid_data[k] = [IdentityHintAttribute.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

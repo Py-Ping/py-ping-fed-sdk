@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_policy_tree import AuthenticationPolicyTree
 from pingfedsdk.models.authentication_source import AuthenticationSource
 
@@ -22,7 +23,6 @@ class AuthenticationPolicy(Model):
         The HTTP request parameters to track and make available to authentication sources, selectors, and contract mappings throughout the authentication policy.
 
     """
-
     def __init__(self, failIfNoSelection: bool = None, authnSelectionTrees: list = None, defaultAuthenticationSources: list = None, trackedHttpParameters: list = None) -> None:
         self.failIfNoSelection = failIfNoSelection
         self.authnSelectionTrees = authnSelectionTrees
@@ -48,9 +48,9 @@ class AuthenticationPolicy(Model):
                 if k == "failIfNoSelection":
                     valid_data[k] = bool(v)
                 if k == "authnSelectionTrees":
-                    valid_data[k] = [AuthenticationPolicyTree(**x) for x in v]
+                    valid_data[k] = [AuthenticationPolicyTree.from_dict(x) for x in v]
                 if k == "defaultAuthenticationSources":
-                    valid_data[k] = [AuthenticationSource(**x) for x in v]
+                    valid_data[k] = [AuthenticationSource.from_dict(x) for x in v]
                 if k == "trackedHttpParameters":
                     valid_data[k] = [str(x) for x in v]
 

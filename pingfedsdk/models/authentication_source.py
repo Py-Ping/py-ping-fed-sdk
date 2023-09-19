@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
 from pingfedsdk.enums import AuthenticationSourceType
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class AuthenticationSource(Model):
@@ -16,8 +17,7 @@ class AuthenticationSource(Model):
         A reference to the authentication source.
 
     """
-
-    def __init__(self, sourceRef: ResourceLink, type: AuthenticationSourceType) -> None:
+    def __init__(self, type: AuthenticationSourceType, sourceRef: ResourceLink) -> None:
         self.type = type
         self.sourceRef = sourceRef
 
@@ -40,7 +40,7 @@ class AuthenticationSource(Model):
                 if k == "type":
                     valid_data[k] = AuthenticationSourceType[v]
                 if k == "sourceRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

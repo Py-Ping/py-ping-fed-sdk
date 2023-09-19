@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ProfileConfig(Model):
@@ -14,7 +15,6 @@ class ProfileConfig(Model):
         The template name for end-user profile management.
 
     """
-
     def __init__(self, templateName: str, deleteIdentityEnabled: bool = None) -> None:
         self.deleteIdentityEnabled = deleteIdentityEnabled
         self.templateName = templateName

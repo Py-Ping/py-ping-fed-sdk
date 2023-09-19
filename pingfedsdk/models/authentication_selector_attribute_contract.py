@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_selector_attribute import AuthenticationSelectorAttribute
 
 
@@ -12,7 +13,6 @@ class AuthenticationSelectorAttributeContract(Model):
         A list of additional attributes that can be returned by the Authentication Selector. The extended attributes are only used if the Authentication Selector supports them.
 
     """
-
     def __init__(self, extendedAttributes: list = None) -> None:
         self.extendedAttributes = extendedAttributes
 
@@ -33,7 +33,7 @@ class AuthenticationSelectorAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["extendedAttributes"] and v is not None:
                 if k == "extendedAttributes":
-                    valid_data[k] = [AuthenticationSelectorAttribute(**x) for x in v]
+                    valid_data[k] = [AuthenticationSelectorAttribute.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

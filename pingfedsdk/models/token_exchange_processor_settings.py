@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -12,7 +13,6 @@ class TokenExchangeProcessorSettings(Model):
         Reference to the default Token Exchange Processor policy, if one is defined.
 
     """
-
     def __init__(self, defaultProcessorPolicyRef: ResourceLink = None) -> None:
         self.defaultProcessorPolicyRef = defaultProcessorPolicyRef
 
@@ -33,7 +33,7 @@ class TokenExchangeProcessorSettings(Model):
         for k, v in python_dict.items():
             if k in ["defaultProcessorPolicyRef"] and v is not None:
                 if k == "defaultProcessorPolicyRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

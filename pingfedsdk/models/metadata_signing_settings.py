@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -15,7 +16,6 @@ class MetadataSigningSettings(Model):
         Signature algorithm. If this property is unset, the default signature algorithm for the key algorithm will be used. Supported signature algorithms are available through the /keyPairs/keyAlgorithms endpoint.
 
     """
-
     def __init__(self, signingKeyRef: ResourceLink = None, signatureAlgorithm: str = None) -> None:
         self.signingKeyRef = signingKeyRef
         self.signatureAlgorithm = signatureAlgorithm
@@ -37,7 +37,7 @@ class MetadataSigningSettings(Model):
         for k, v in python_dict.items():
             if k in ["signingKeyRef", "signatureAlgorithm"] and v is not None:
                 if k == "signingKeyRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "signatureAlgorithm":
                     valid_data[k] = str(v)
 

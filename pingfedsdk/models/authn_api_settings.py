@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -24,7 +25,6 @@ class AuthnApiSettings(Model):
         Determines whether the request context parameters are included in response for authentication API. The default value is false.
 
     """
-
     def __init__(self, apiEnabled: bool = None, defaultApplicationRef: ResourceLink = None, enableApiDescriptions: bool = None, restrictAccessToRedirectlessMode: bool = None, includeRequestContext: bool = None) -> None:
         self.apiEnabled = apiEnabled
         self.defaultApplicationRef = defaultApplicationRef
@@ -51,7 +51,7 @@ class AuthnApiSettings(Model):
                 if k == "apiEnabled":
                     valid_data[k] = bool(v)
                 if k == "defaultApplicationRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "enableApiDescriptions":
                     valid_data[k] = bool(v)
                 if k == "restrictAccessToRedirectlessMode":

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.idp_browser_sso_attribute import IdpBrowserSsoAttribute
 
 
@@ -15,7 +16,6 @@ class IdpBrowserSsoAttributeContract(Model):
         A list of additional attributes that are present in the incoming assertion.
 
     """
-
     def __init__(self, coreAttributes: list = None, extendedAttributes: list = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -37,9 +37,9 @@ class IdpBrowserSsoAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [IdpBrowserSsoAttribute(**x) for x in v]
+                    valid_data[k] = [IdpBrowserSsoAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [IdpBrowserSsoAttribute(**x) for x in v]
+                    valid_data[k] = [IdpBrowserSsoAttribute.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,18 +1,19 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
-from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.exceptions import ObjectDeleted
+
 from pingfedsdk.exceptions import BadRequest
 from pingfedsdk.exceptions import NotFound
-from pingfedsdk.models.client import Client as ModelClient
-from pingfedsdk.models.clients import Clients as ModelClients
-from pingfedsdk.models.client_secret import ClientSecret as ModelClientSecret
+from pingfedsdk.exceptions import ObjectDeleted
+from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.client import Client as ModelClient
+from pingfedsdk.models.client_secret import ClientSecret as ModelClientSecret
+from pingfedsdk.models.clients import Clients as ModelClients
 
 
 class OauthClients:
@@ -45,7 +46,7 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientSecret.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -55,11 +56,9 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
-    def updateClientSecret(self, id: str, body: ModelClientSecret):
+    def updateClientSecret(self, body: ModelClientSecret, id: str):
         """ Update the client secret of an existing OAuth client.
         """
 
@@ -79,7 +78,7 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClientSecret.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -89,64 +88,7 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
-
-    def getClients(self, page: int = None, numberPerPage: int = None, filter: str = None):
-        """ Get the list of OAuth clients.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/oauth/clients"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelClients.from_dict(response.json())
-            if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
-
-    def createClient(self, body: ModelClient):
-        """ Create a new OAuth client.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/oauth/clients"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 201:
-                return ModelApiResult.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def getClient(self, id: str):
         """ Find the OAuth client by ID.
@@ -167,14 +109,13 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                # return ModelApiResult.from_dict(response.json())
-                return self.init_client(response.json())
+                return ModelClient.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def updateClient(self, id: str, body: ModelClient):
+    def updateClient(self, body: ModelClient, id: str):
         """ Updates the OAuth client.
         """
 
@@ -194,7 +135,7 @@ class OauthClients:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelClient.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -204,9 +145,7 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())
 
     def deleteClient(self, id: str):
         """ Delete an OAuth client.
@@ -235,6 +174,55 @@ class OauthClients:
                 self.logger.info(message)
                 raise NotFound(message)
             if response.status_code == 422:
-                message = "(422) Resource is in use and cannot be deleted."
+                raise ValidationError(response.json())
+
+    def getClients(self, filter: str = None, numberPerPage: int = None, page: int = None):
+        """ Get the list of OAuth clients.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/oauth/clients"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                return ModelClients.from_dict(response.json())
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def createClient(self, body: ModelClient):
+        """ Create a new OAuth client.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/oauth/clients"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 201:
+                return ModelClient.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
-                raise ValidationError(message)
+                raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())

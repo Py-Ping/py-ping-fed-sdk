@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class IdpAdapterMapping(Model):
@@ -26,8 +27,7 @@ class IdpAdapterMapping(Model):
         The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
 
     """
-
-    def __init__(self, attributeContractFulfillment: object, id: str, idpAdapterRef: ResourceLink = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
+    def __init__(self, id: str, attributeContractFulfillment: object, idpAdapterRef: ResourceLink = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
         self.id = id
         self.idpAdapterRef = idpAdapterRef
         self.attributeSources = attributeSources
@@ -53,13 +53,13 @@ class IdpAdapterMapping(Model):
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "idpAdapterRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
 
         return cls(**valid_data)
 

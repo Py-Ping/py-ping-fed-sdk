@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class MetadataLifetimeSettings(Model):
@@ -14,7 +15,6 @@ class MetadataLifetimeSettings(Model):
         This field adjusts the frequency of automatic reloading of SAML metadata in minutes. The default value is 1440 (1 day).
 
     """
-
     def __init__(self, cacheDuration: int = None, reloadDelay: int = None) -> None:
         self.cacheDuration = cacheDuration
         self.reloadDelay = reloadDelay

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.sp_s_a_m_l_2_0_profile import SpSAML20Profile
 
 
@@ -33,8 +34,7 @@ class SpRole(Model):
         Enable Inbound Provisioning.
 
     """
-
-    def __init__(self, enable: bool = None, enableSaml11: bool = None, enableSaml10: bool = None, enableWsFed: bool = None, enableWsTrust: bool = None, saml20Profile: SpSAML20Profile = None, enableOpenIDConnect: bool = None, enableInboundProvisioning: bool = None) -> None:
+    def __init__(self, enable: bool = None, saml20Profile: SpSAML20Profile = None, enableSaml11: bool = None, enableSaml10: bool = None, enableWsFed: bool = None, enableWsTrust: bool = None, enableOpenIDConnect: bool = None, enableInboundProvisioning: bool = None) -> None:
         self.enable = enable
         self.enableSaml11 = enableSaml11
         self.enableSaml10 = enableSaml10
@@ -71,7 +71,7 @@ class SpRole(Model):
                 if k == "enableWsTrust":
                     valid_data[k] = bool(v)
                 if k == "saml20Profile":
-                    valid_data[k] = SpSAML20Profile(**v)
+                    valid_data[k] = SpSAML20Profile.from_dict(v)
                 if k == "enableOpenIDConnect":
                     valid_data[k] = bool(v)
                 if k == "enableInboundProvisioning":

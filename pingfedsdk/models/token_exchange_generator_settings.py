@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -12,7 +13,6 @@ class TokenExchangeGeneratorSettings(Model):
         Reference to the default Token Exchange Generator group, if one is defined.
 
     """
-
     def __init__(self, defaultGeneratorGroupRef: ResourceLink = None) -> None:
         self.defaultGeneratorGroupRef = defaultGeneratorGroupRef
 
@@ -33,7 +33,7 @@ class TokenExchangeGeneratorSettings(Model):
         for k, v in python_dict.items():
             if k in ["defaultGeneratorGroupRef"] and v is not None:
                 if k == "defaultGeneratorGroupRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

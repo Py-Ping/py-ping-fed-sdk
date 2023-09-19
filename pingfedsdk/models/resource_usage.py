@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
 from pingfedsdk.enums import ResourceCategory
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class ResourceUsage(Model):
@@ -25,7 +26,6 @@ class ResourceUsage(Model):
         A link to the referencing resource.
 
     """
-
     def __init__(self, id: str = None, name: str = None, categoryId: ResourceCategory = None, type: str = None, ref: ResourceLink = None) -> None:
         self.id = id
         self.name = name
@@ -58,7 +58,7 @@ class ResourceUsage(Model):
                 if k == "type":
                     valid_data[k] = str(v)
                 if k == "ref":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

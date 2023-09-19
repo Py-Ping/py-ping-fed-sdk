@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class LicenseFile(Model):
@@ -11,7 +12,6 @@ class LicenseFile(Model):
         The base64-encoded license file.
 
     """
-
     def __init__(self, fileData: str) -> None:
         self.fileData = fileData
 

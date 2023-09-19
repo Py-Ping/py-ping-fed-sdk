@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class GroupAttribute(Model):
@@ -11,7 +12,6 @@ class GroupAttribute(Model):
         The name of this attribute.
 
     """
-
     def __init__(self, name: str) -> None:
         self.name = name
 

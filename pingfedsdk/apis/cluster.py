@@ -1,10 +1,11 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
+
 from pingfedsdk.exceptions import NotImplementedError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
 from pingfedsdk.models.cluster_status import ClusterStatus as ModelClusterStatus
@@ -40,7 +41,7 @@ class Cluster:
             raise err
         else:
             if response.status_code == 200:
-                return response.json()
+                return ModelClusterStatus.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) This PingFederate instance is not deployed in clustered mode."
                 self.logger.info(message)
@@ -65,7 +66,7 @@ class Cluster:
             raise err
         else:
             if response.status_code == 200:
-                return response.json()
+                return ModelApiResult.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) This PingFederate instance is not deployed in clustered mode."
                 self.logger.info(message)

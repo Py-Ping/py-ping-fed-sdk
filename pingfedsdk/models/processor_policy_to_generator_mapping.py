@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_source import AttributeSource
+from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 
 
 class ProcessorPolicyToGeneratorMapping(Model):
@@ -31,7 +32,6 @@ class ProcessorPolicyToGeneratorMapping(Model):
         The license connection group.
 
     """
-
     def __init__(self, attributeContractFulfillment: object, sourceId: str, targetId: str, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None, id: str = None, licenseConnectionGroupAssignment: str = None) -> None:
         self.attributeSources = attributeSources
         self.attributeContractFulfillment = attributeContractFulfillment
@@ -58,11 +58,11 @@ class ProcessorPolicyToGeneratorMapping(Model):
         for k, v in python_dict.items():
             if k in ["attributeSources", "attributeContractFulfillment", "issuanceCriteria", "id", "sourceId", "targetId", "licenseConnectionGroupAssignment"] and v is not None:
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "sourceId":

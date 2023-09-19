@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -18,7 +19,6 @@ class TokenExchangeGeneratorMapping(Model):
         Whether this is the default Token Generator Mapping. Defaults to false if not specified.
 
     """
-
     def __init__(self, requestedTokenType: str, tokenGenerator: ResourceLink, defaultMapping: bool = None) -> None:
         self.requestedTokenType = requestedTokenType
         self.tokenGenerator = tokenGenerator
@@ -43,7 +43,7 @@ class TokenExchangeGeneratorMapping(Model):
                 if k == "requestedTokenType":
                     valid_data[k] = str(v)
                 if k == "tokenGenerator":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "defaultMapping":
                     valid_data[k] = bool(v)
 

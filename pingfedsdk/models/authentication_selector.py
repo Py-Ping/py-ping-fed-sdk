@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.authentication_selector_attribute_contract import AuthenticationSelectorAttributeContract
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class AuthenticationSelector(Model):
@@ -33,8 +34,7 @@ class AuthenticationSelector(Model):
         The list of attributes that the Authentication Selector provides.
 
     """
-
-    def __init__(self, configuration: PluginConfiguration, id: str, name: str, pluginDescriptorRef: ResourceLink, parentRef: ResourceLink = None, attributeContract: AuthenticationSelectorAttributeContract = None) -> None:
+    def __init__(self, id: str, name: str, pluginDescriptorRef: ResourceLink, configuration: PluginConfiguration, parentRef: ResourceLink = None, attributeContract: AuthenticationSelectorAttributeContract = None) -> None:
         self.id = id
         self.name = name
         self.pluginDescriptorRef = pluginDescriptorRef
@@ -63,13 +63,13 @@ class AuthenticationSelector(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "pluginDescriptorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "parentRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "configuration":
-                    valid_data[k] = PluginConfiguration(**v)
+                    valid_data[k] = PluginConfiguration.from_dict(v)
                 if k == "attributeContract":
-                    valid_data[k] = AuthenticationSelectorAttributeContract(**v)
+                    valid_data[k] = AuthenticationSelectorAttributeContract.from_dict(v)
 
         return cls(**valid_data)
 

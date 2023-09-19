@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.o_auth_role import OAuthRole
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.idp_role import IdpRole
+from pingfedsdk.models.o_auth_role import OAuthRole
 from pingfedsdk.models.sp_role import SpRole
 
 
@@ -23,7 +24,6 @@ class RolesAndProtocols(Model):
         Enable IdP Discovery.
 
     """
-
     def __init__(self, oauthRole: OAuthRole = None, idpRole: IdpRole = None, spRole: SpRole = None, enableIdpDiscovery: bool = None) -> None:
         self.oauthRole = oauthRole
         self.idpRole = idpRole
@@ -47,11 +47,11 @@ class RolesAndProtocols(Model):
         for k, v in python_dict.items():
             if k in ["oauthRole", "idpRole", "spRole", "enableIdpDiscovery"] and v is not None:
                 if k == "oauthRole":
-                    valid_data[k] = OAuthRole(**v)
+                    valid_data[k] = OAuthRole.from_dict(v)
                 if k == "idpRole":
-                    valid_data[k] = IdpRole(**v)
+                    valid_data[k] = IdpRole.from_dict(v)
                 if k == "spRole":
-                    valid_data[k] = SpRole(**v)
+                    valid_data[k] = SpRole.from_dict(v)
                 if k == "enableIdpDiscovery":
                     valid_data[k] = bool(v)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class CSRResponse(Model):
@@ -11,7 +12,6 @@ class CSRResponse(Model):
         The CSR response file data in PKCS7 format or as an X.509 certificate. PEM encoding (with or without the header and footer lines) is required. New line characters should be omitted or encoded in this value.
 
     """
-
     def __init__(self, fileData: str) -> None:
         self.fileData = fileData
 

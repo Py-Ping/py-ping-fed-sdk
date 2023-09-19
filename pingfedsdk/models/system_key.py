@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SystemKey(Model):
@@ -17,7 +18,6 @@ class SystemKey(Model):
         The clear text system key base 64 encoded. The system key must be 32 bytes before base 64 encoding.
 
     """
-
     def __init__(self, creationDate: str = None, encryptedKeyData: str = None, keyData: str = None) -> None:
         self.creationDate = creationDate
         self.encryptedKeyData = encryptedKeyData

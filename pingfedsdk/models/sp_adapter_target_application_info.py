@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SpAdapterTargetApplicationInfo(Model):
@@ -17,7 +18,6 @@ class SpAdapterTargetApplicationInfo(Model):
         Specifies Whether target application information is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
 
     """
-
     def __init__(self, applicationName: str = None, applicationIconUrl: str = None, inherited: bool = None) -> None:
         self.applicationName = applicationName
         self.applicationIconUrl = applicationIconUrl

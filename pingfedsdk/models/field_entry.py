@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class FieldEntry(Model):
@@ -14,7 +15,6 @@ class FieldEntry(Model):
         The name of this field.
 
     """
-
     def __init__(self, name: str, value: str = None) -> None:
         self.value = value
         self.name = name

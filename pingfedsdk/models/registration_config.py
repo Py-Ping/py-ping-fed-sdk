@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
 from pingfedsdk.enums import ExecuteWorkflow
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class RegistrationConfig(Model):
@@ -31,7 +32,6 @@ class RegistrationConfig(Model):
         This setting indicates whether PingFederate should execute the workflow before or after account creation. The default is to run the registration workflow after account creation.
 
     """
-
     def __init__(self, templateName: str, captchaEnabled: bool = None, createAuthnSessionAfterRegistration: bool = None, usernameField: str = None, thisIsMyDeviceEnabled: bool = None, registrationWorkflow: ResourceLink = None, executeWorkflow: ExecuteWorkflow = None) -> None:
         self.captchaEnabled = captchaEnabled
         self.templateName = templateName
@@ -68,7 +68,7 @@ class RegistrationConfig(Model):
                 if k == "thisIsMyDeviceEnabled":
                     valid_data[k] = bool(v)
                 if k == "registrationWorkflow":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "executeWorkflow":
                     valid_data[k] = ExecuteWorkflow[v]
 

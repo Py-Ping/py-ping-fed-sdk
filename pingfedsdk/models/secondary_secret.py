@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class SecondarySecret(Model):
@@ -17,7 +18,6 @@ class SecondarySecret(Model):
         The expiry time of the secondary secret.
 
     """
-
     def __init__(self, secret: str = None, encryptedSecret: str = None, expiryTime: str = None) -> None:
         self.secret = secret
         self.encryptedSecret = encryptedSecret

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.conditional_issuance_criteria_entry import ConditionalIssuanceCriteriaEntry
 from pingfedsdk.models.expression_issuance_criteria_entry import ExpressionIssuanceCriteriaEntry
 
@@ -16,7 +17,6 @@ class IssuanceCriteria(Model):
         A list of expression issuance criteria where the OGNL expressions must evaluate to true in order for the transaction to continue.
 
     """
-
     def __init__(self, conditionalCriteria: list = None, expressionCriteria: list = None) -> None:
         self.conditionalCriteria = conditionalCriteria
         self.expressionCriteria = expressionCriteria
@@ -38,9 +38,9 @@ class IssuanceCriteria(Model):
         for k, v in python_dict.items():
             if k in ["conditionalCriteria", "expressionCriteria"] and v is not None:
                 if k == "conditionalCriteria":
-                    valid_data[k] = [ConditionalIssuanceCriteriaEntry(**x) for x in v]
+                    valid_data[k] = [ConditionalIssuanceCriteriaEntry.from_dict(x) for x in v]
                 if k == "expressionCriteria":
-                    valid_data[k] = [ExpressionIssuanceCriteriaEntry(**x) for x in v]
+                    valid_data[k] = [ExpressionIssuanceCriteriaEntry.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ExpressionIssuanceCriteriaEntry(Model):
@@ -14,7 +15,6 @@ class ExpressionIssuanceCriteriaEntry(Model):
         The error result to return if this issuance criterion fails. This error result will show up in the PingFederate server logs.
 
     """
-
     def __init__(self, expression: str, errorResult: str = None) -> None:
         self.expression = expression
         self.errorResult = errorResult

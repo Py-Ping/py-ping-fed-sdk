@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.sp_token_generator_mapping import SpTokenGeneratorMapping
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.idp_ws_trust_attribute_contract import IdpWsTrustAttributeContract
+from pingfedsdk.models.sp_token_generator_mapping import SpTokenGeneratorMapping
 
 
 class IdpWsTrust(Model):
@@ -19,7 +20,6 @@ class IdpWsTrust(Model):
         A list of token generators to generate local tokens. Required if a local token needs to be generated.
 
     """
-
     def __init__(self, attributeContract: IdpWsTrustAttributeContract, generateLocalToken: bool, tokenGeneratorMappings: list = None) -> None:
         self.attributeContract = attributeContract
         self.generateLocalToken = generateLocalToken
@@ -42,11 +42,11 @@ class IdpWsTrust(Model):
         for k, v in python_dict.items():
             if k in ["attributeContract", "generateLocalToken", "tokenGeneratorMappings"] and v is not None:
                 if k == "attributeContract":
-                    valid_data[k] = IdpWsTrustAttributeContract(**v)
+                    valid_data[k] = IdpWsTrustAttributeContract.from_dict(v)
                 if k == "generateLocalToken":
                     valid_data[k] = bool(v)
                 if k == "tokenGeneratorMappings":
-                    valid_data[k] = [SpTokenGeneratorMapping(**x) for x in v]
+                    valid_data[k] = [SpTokenGeneratorMapping.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class UserCredentials(Model):
@@ -14,7 +15,6 @@ class UserCredentials(Model):
         A new password.
 
     """
-
     def __init__(self, newPassword: str, currentPassword: str = None) -> None:
         self.currentPassword = currentPassword
         self.newPassword = newPassword

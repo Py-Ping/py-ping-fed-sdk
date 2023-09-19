@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import DataStoreType
+
+from pingfedsdk.enums import LdapAttributeSourceType
 from pingfedsdk.enums import SearchScope
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class LdapAttributeSource(Model):
@@ -10,7 +11,7 @@ class LdapAttributeSource(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: LdapAttributeSourceType
         The data store type of this attribute source.
 
     dataStoreRef: ResourceLink
@@ -46,8 +47,7 @@ class LdapAttributeSource(Model):
         Set this to true to return transitive group memberships for the 'memberOf' attribute.  This only applies for Active Directory data sources.  All other data sources will be set to false.
 
     """
-
-    def __init__(self, searchFilter: str, searchScope: SearchScope, type: DataStoreType = None, dataStoreRef: ResourceLink = None, id: str = None, description: str = None, attributeContractFulfillment: object = None, baseDn: str = None, searchAttributes: list = None, binaryAttributeSettings: object = None, memberOfNestedGroup: bool = None) -> None:
+    def __init__(self, searchScope: SearchScope, searchFilter: str, type: LdapAttributeSourceType = None, dataStoreRef: ResourceLink = None, id: str = None, baseDn: str = None, description: str = None, attributeContractFulfillment: object = None, searchAttributes: list = None, binaryAttributeSettings: object = None, memberOfNestedGroup: bool = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -77,15 +77,15 @@ class LdapAttributeSource(Model):
         for k, v in python_dict.items():
             if k in ["type", "dataStoreRef", "id", "description", "attributeContractFulfillment", "baseDn", "searchScope", "searchFilter", "searchAttributes", "binaryAttributeSettings", "memberOfNestedGroup"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = LdapAttributeSourceType[v]
                 if k == "dataStoreRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "baseDn":
                     valid_data[k] = str(v)
                 if k == "searchScope":
@@ -95,7 +95,7 @@ class LdapAttributeSource(Model):
                 if k == "searchAttributes":
                     valid_data[k] = [str(x) for x in v]
                 if k == "binaryAttributeSettings":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "memberOfNestedGroup":
                     valid_data[k] = bool(v)
 

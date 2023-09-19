@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -21,8 +22,7 @@ class SslServerSettings(Model):
         The active SSL Server Certificate Key pairs for PF Administrator Console.
 
     """
-
-    def __init__(self, adminConsoleCertRef: ResourceLink, runtimeServerCertRef: ResourceLink, activeRuntimeServerCerts: list = None, activeAdminConsoleCerts: list = None) -> None:
+    def __init__(self, runtimeServerCertRef: ResourceLink, adminConsoleCertRef: ResourceLink, activeRuntimeServerCerts: list = None, activeAdminConsoleCerts: list = None) -> None:
         self.runtimeServerCertRef = runtimeServerCertRef
         self.adminConsoleCertRef = adminConsoleCertRef
         self.activeRuntimeServerCerts = activeRuntimeServerCerts
@@ -45,13 +45,13 @@ class SslServerSettings(Model):
         for k, v in python_dict.items():
             if k in ["runtimeServerCertRef", "adminConsoleCertRef", "activeRuntimeServerCerts", "activeAdminConsoleCerts"] and v is not None:
                 if k == "runtimeServerCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "adminConsoleCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "activeRuntimeServerCerts":
-                    valid_data[k] = [ResourceLink(**x) for x in v]
+                    valid_data[k] = [ResourceLink.from_dict(x) for x in v]
                 if k == "activeAdminConsoleCerts":
-                    valid_data[k] = [ResourceLink(**x) for x in v]
+                    valid_data[k] = [ResourceLink.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

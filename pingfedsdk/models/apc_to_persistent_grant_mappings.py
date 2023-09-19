@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.apc_to_persistent_grant_mapping import ApcToPersistentGrantMapping
 
 
@@ -12,7 +13,6 @@ class ApcToPersistentGrantMappings(Model):
         The actual list of OAuth authentication policy contract to persistent grant mappings.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class ApcToPersistentGrantMappings(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [ApcToPersistentGrantMapping(**x) for x in v]
+                    valid_data[k] = [ApcToPersistentGrantMapping.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

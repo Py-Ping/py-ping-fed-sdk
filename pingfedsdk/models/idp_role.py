@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.s_a_m_l_2_0_profile import SAML20Profile
 
 
@@ -30,8 +31,7 @@ class IdpRole(Model):
         Enable Outbound Provisioning.
 
     """
-
-    def __init__(self, enable: bool = None, enableSaml11: bool = None, enableSaml10: bool = None, enableWsFed: bool = None, enableWsTrust: bool = None, saml20Profile: SAML20Profile = None, enableOutboundProvisioning: bool = None) -> None:
+    def __init__(self, enable: bool = None, saml20Profile: SAML20Profile = None, enableSaml11: bool = None, enableOutboundProvisioning: bool = None, enableSaml10: bool = None, enableWsFed: bool = None, enableWsTrust: bool = None) -> None:
         self.enable = enable
         self.enableSaml11 = enableSaml11
         self.enableSaml10 = enableSaml10
@@ -67,7 +67,7 @@ class IdpRole(Model):
                 if k == "enableWsTrust":
                     valid_data[k] = bool(v)
                 if k == "saml20Profile":
-                    valid_data[k] = SAML20Profile(**v)
+                    valid_data[k] = SAML20Profile.from_dict(v)
                 if k == "enableOutboundProvisioning":
                     valid_data[k] = bool(v)
 

@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import AuthenticationPolicySelectionActionType
+
+from pingfedsdk.enums import DonePolicyActionType
+from pingfedsdk.model import Model
 
 
 class DonePolicyAction(Model):
@@ -8,15 +9,14 @@ class DonePolicyAction(Model):
 
     Attributes
     ----------
-    type: AuthenticationPolicySelectionActionType
+    type: DonePolicyActionType
         The authentication selection type.
 
     context: str
         The result context.
 
     """
-
-    def __init__(self, type: AuthenticationPolicySelectionActionType, context: str = None) -> None:
+    def __init__(self, type: DonePolicyActionType, context: str = None) -> None:
         self.type = type
         self.context = context
 
@@ -37,7 +37,7 @@ class DonePolicyAction(Model):
         for k, v in python_dict.items():
             if k in ["type", "context"] and v is not None:
                 if k == "type":
-                    valid_data[k] = AuthenticationPolicySelectionActionType[v]
+                    valid_data[k] = DonePolicyActionType[v]
                 if k == "context":
                     valid_data[k] = str(v)
 

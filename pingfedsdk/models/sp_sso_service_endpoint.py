@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import Binding
+from pingfedsdk.model import Model
 
 
 class SpSsoServiceEndpoint(Model):
@@ -21,8 +22,7 @@ class SpSsoServiceEndpoint(Model):
         The priority of the endpoint.
 
     """
-
-    def __init__(self, binding: Binding, index: int, url: str, isDefault: bool = None) -> None:
+    def __init__(self, binding: Binding, url: str, index: int, isDefault: bool = None) -> None:
         self.binding = binding
         self.url = url
         self.isDefault = isDefault

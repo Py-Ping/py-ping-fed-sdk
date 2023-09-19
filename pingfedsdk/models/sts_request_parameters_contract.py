@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class StsRequestParametersContract(Model):
@@ -19,7 +20,6 @@ class StsRequestParametersContract(Model):
         The list of parameters within the Security  Token Service request parameter contract.
 
     """
-
     def __init__(self, id: str, name: str, parameters: list) -> None:
         self.id = id
         self.name = name

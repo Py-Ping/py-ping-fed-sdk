@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class PingOneConnection(Model):
@@ -50,7 +51,6 @@ class PingOneConnection(Model):
         The PingOne authentication API endpoint. This field is read only.
 
     """
-
     def __init__(self, name: str, id: str = None, description: str = None, active: bool = None, credential: str = None, encryptedCredential: str = None, credentialId: str = None, pingOneConnectionId: str = None, environmentId: str = None, creationDate: str = None, organizationName: str = None, region: str = None, pingOneManagementApiEndpoint: str = None, pingOneAuthenticationApiEndpoint: str = None) -> None:
         self.id = id
         self.name = name

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.schema_attribute import SchemaAttribute
 
 
@@ -11,7 +12,6 @@ class Schema(Model):
     namespace: str
     attributes: list
     """
-
     def __init__(self, namespace: str = None, attributes: list = None) -> None:
         self.namespace = namespace
         self.attributes = attributes
@@ -35,7 +35,7 @@ class Schema(Model):
                 if k == "namespace":
                     valid_data[k] = str(v)
                 if k == "attributes":
-                    valid_data[k] = [SchemaAttribute(**x) for x in v]
+                    valid_data[k] = [SchemaAttribute.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

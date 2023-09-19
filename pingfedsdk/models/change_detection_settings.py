@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import ChangedUsersAlgorithm
+from pingfedsdk.model import Model
 
 
 class ChangeDetectionSettings(Model):
@@ -24,8 +25,7 @@ class ChangeDetectionSettings(Model):
         The timestamp attribute name.
 
     """
-
-    def __init__(self, changedUsersAlgorithm: ChangedUsersAlgorithm, groupObjectClass: str, timeStampAttributeName: str, userObjectClass: str, usnAttributeName: str = None) -> None:
+    def __init__(self, userObjectClass: str, groupObjectClass: str, changedUsersAlgorithm: ChangedUsersAlgorithm, timeStampAttributeName: str, usnAttributeName: str = None) -> None:
         self.userObjectClass = userObjectClass
         self.groupObjectClass = groupObjectClass
         self.changedUsersAlgorithm = changedUsersAlgorithm

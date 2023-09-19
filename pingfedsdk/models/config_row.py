@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.config_field import ConfigField
 
 
@@ -15,7 +16,6 @@ class ConfigRow(Model):
         Whether this row is the default.
 
     """
-
     def __init__(self, fields: list, defaultRow: bool = None) -> None:
         self.fields = fields
         self.defaultRow = defaultRow
@@ -37,7 +37,7 @@ class ConfigRow(Model):
         for k, v in python_dict.items():
             if k in ["fields", "defaultRow"] and v is not None:
                 if k == "fields":
-                    valid_data[k] = [ConfigField(**x) for x in v]
+                    valid_data[k] = [ConfigField.from_dict(x) for x in v]
                 if k == "defaultRow":
                     valid_data[k] = bool(v)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ServiceModel(Model):
@@ -17,7 +18,6 @@ class ServiceModel(Model):
         Encrypted shared secret for the service.
 
     """
-
     def __init__(self, id: str = None, sharedSecret: str = None, encryptedSharedSecret: str = None) -> None:
         self.id = id
         self.sharedSecret = sharedSecret

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ParameterValues(Model):
@@ -11,7 +12,6 @@ class ParameterValues(Model):
         A List of values
 
     """
-
     def __init__(self, values: list = None) -> None:
         self.values = values
 

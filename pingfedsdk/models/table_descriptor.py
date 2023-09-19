@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.field_descriptor import FieldDescriptor
 
 
@@ -24,7 +25,6 @@ class TableDescriptor(Model):
         Configure whether this table requires default row to be set.
 
     """
-
     def __init__(self, name: str = None, description: str = None, columns: list = None, label: str = None, requireDefaultRow: bool = None) -> None:
         self.name = name
         self.description = description
@@ -53,7 +53,7 @@ class TableDescriptor(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "columns":
-                    valid_data[k] = [FieldDescriptor(**x) for x in v]
+                    valid_data[k] = [FieldDescriptor.from_dict(x) for x in v]
                 if k == "label":
                     valid_data[k] = str(v)
                 if k == "requireDefaultRow":

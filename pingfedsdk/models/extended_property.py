@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ExtendedProperty(Model):
@@ -17,7 +18,6 @@ class ExtendedProperty(Model):
         Indicates whether the property should allow multiple values.
 
     """
-
     def __init__(self, name: str = None, description: str = None, multiValued: bool = None) -> None:
         self.name = name
         self.description = description

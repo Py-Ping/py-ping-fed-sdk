@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class Issuer(Model):
@@ -23,8 +24,7 @@ class Issuer(Model):
         The path of this virtual issuer.
 
     """
-
-    def __init__(self, host: str, name: str, id: str = None, description: str = None, path: str = None) -> None:
+    def __init__(self, name: str, host: str, id: str = None, description: str = None, path: str = None) -> None:
         self.id = id
         self.name = name
         self.description = description

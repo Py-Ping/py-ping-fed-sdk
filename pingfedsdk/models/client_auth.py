@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.secondary_secret import SecondarySecret
-from pingfedsdk.enums import ObjectSigningAlgorithm
+
 from pingfedsdk.enums import ClientAuthType
+from pingfedsdk.enums import TokenEndpointAuthSigningAlgorithm
+from pingfedsdk.model import Model
+from pingfedsdk.models.secondary_secret import SecondarySecret
 
 
 class ClientAuth(Model):
@@ -34,7 +35,7 @@ class ClientAuth(Model):
     enforceReplayPrevention: bool
         Enforce replay prevention on JSON Web Tokens. This field is applicable only for Private Key JWT Client Authentication.
 
-    tokenEndpointAuthSigningAlgorithm: ObjectSigningAlgorithm
+    tokenEndpointAuthSigningAlgorithm: TokenEndpointAuthSigningAlgorithm
         The JSON Web Signature [JWS] algorithm that must be used to sign the JSON Web Tokens. This field is applicable only for Private Key JWT Client Authentication. All signing algorithms are allowed if value is not present
         RS256 - RSA using SHA-256
         RS384 - RSA using SHA-384
@@ -48,8 +49,7 @@ class ClientAuth(Model):
         RSASSA-PSS is only supported with SafeNet Luna, Thales nCipher or Java 11.
 
     """
-
-    def __init__(self, type: ClientAuthType = None, secret: str = None, encryptedSecret: str = None, secondarySecrets: list = None, clientCertIssuerDn: str = None, clientCertSubjectDn: str = None, enforceReplayPrevention: bool = None, tokenEndpointAuthSigningAlgorithm: ObjectSigningAlgorithm = None) -> None:
+    def __init__(self, type: ClientAuthType = None, secret: str = None, encryptedSecret: str = None, secondarySecrets: list = None, clientCertIssuerDn: str = None, clientCertSubjectDn: str = None, enforceReplayPrevention: bool = None, tokenEndpointAuthSigningAlgorithm: TokenEndpointAuthSigningAlgorithm = None) -> None:
         self.type = type
         self.secret = secret
         self.encryptedSecret = encryptedSecret
@@ -82,7 +82,7 @@ class ClientAuth(Model):
                 if k == "encryptedSecret":
                     valid_data[k] = str(v)
                 if k == "secondarySecrets":
-                    valid_data[k] = [SecondarySecret(**x) for x in v]
+                    valid_data[k] = [SecondarySecret.from_dict(x) for x in v]
                 if k == "clientCertIssuerDn":
                     valid_data[k] = str(v)
                 if k == "clientCertSubjectDn":
@@ -90,7 +90,7 @@ class ClientAuth(Model):
                 if k == "enforceReplayPrevention":
                     valid_data[k] = bool(v)
                 if k == "tokenEndpointAuthSigningAlgorithm":
-                    valid_data[k] = ObjectSigningAlgorithm[v]
+                    valid_data[k] = TokenEndpointAuthSigningAlgorithm[v]
 
         return cls(**valid_data)
 

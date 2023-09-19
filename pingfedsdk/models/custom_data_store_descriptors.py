@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.custom_data_store_descriptor import CustomDataStoreDescriptor
 
 
@@ -12,7 +13,6 @@ class CustomDataStoreDescriptors(Model):
         The list of custom data store descriptors.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class CustomDataStoreDescriptors(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [CustomDataStoreDescriptor(**x) for x in v]
+                    valid_data[k] = [CustomDataStoreDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

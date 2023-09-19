@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import ConfigStoreSettingType
+from pingfedsdk.model import Model
 
 
 class ConfigStoreSetting(Model):
@@ -24,7 +25,6 @@ class ConfigStoreSetting(Model):
         The type of configuration setting. This could be a single string, list of strings, or map of string keys and values.
 
     """
-
     def __init__(self, id: str, type: ConfigStoreSettingType, stringValue: str = None, listValue: list = None, mapValue: object = None) -> None:
         self.id = id
         self.stringValue = stringValue
@@ -55,7 +55,7 @@ class ConfigStoreSetting(Model):
                 if k == "listValue":
                     valid_data[k] = [str(x) for x in v]
                 if k == "mapValue":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "type":
                     valid_data[k] = ConfigStoreSettingType[v]
 

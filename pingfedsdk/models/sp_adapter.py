@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.sp_adapter_target_application_info import SpAdapterTargetApplicationInfo
-from pingfedsdk.models.sp_adapter_attribute_contract import SpAdapterAttributeContract
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.sp_adapter_attribute_contract import SpAdapterAttributeContract
+from pingfedsdk.models.sp_adapter_target_application_info import SpAdapterTargetApplicationInfo
 
 
 class SpAdapter(Model):
@@ -37,8 +38,7 @@ class SpAdapter(Model):
         The target application's name and icon URL
 
     """
-
-    def __init__(self, configuration: PluginConfiguration, id: str, name: str, pluginDescriptorRef: ResourceLink, parentRef: ResourceLink = None, attributeContract: SpAdapterAttributeContract = None, targetApplicationInfo: SpAdapterTargetApplicationInfo = None) -> None:
+    def __init__(self, id: str, name: str, pluginDescriptorRef: ResourceLink, configuration: PluginConfiguration, parentRef: ResourceLink = None, attributeContract: SpAdapterAttributeContract = None, targetApplicationInfo: SpAdapterTargetApplicationInfo = None) -> None:
         self.id = id
         self.name = name
         self.pluginDescriptorRef = pluginDescriptorRef
@@ -68,15 +68,15 @@ class SpAdapter(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "pluginDescriptorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "parentRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "configuration":
-                    valid_data[k] = PluginConfiguration(**v)
+                    valid_data[k] = PluginConfiguration.from_dict(v)
                 if k == "attributeContract":
-                    valid_data[k] = SpAdapterAttributeContract(**v)
+                    valid_data[k] = SpAdapterAttributeContract.from_dict(v)
                 if k == "targetApplicationInfo":
-                    valid_data[k] = SpAdapterTargetApplicationInfo(**v)
+                    valid_data[k] = SpAdapterTargetApplicationInfo.from_dict(v)
 
         return cls(**valid_data)
 

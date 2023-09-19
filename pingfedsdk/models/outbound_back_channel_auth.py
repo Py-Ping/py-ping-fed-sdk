@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.enums import OutboundBackChannelAuthType
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.username_password_credentials import UsernamePasswordCredentials
-from pingfedsdk.enums import BackChannelAuthType
 
 
 class OutboundBackChannelAuth(Model):
@@ -10,7 +11,7 @@ class OutboundBackChannelAuth(Model):
 
     Attributes
     ----------
-    type: BackChannelAuthType
+    type: OutboundBackChannelAuthType
         The back channel authentication type.
 
     httpBasicCredentials: UsernamePasswordCredentials
@@ -26,8 +27,7 @@ class OutboundBackChannelAuth(Model):
         Validate the partner server certificate. Default is true.
 
     """
-
-    def __init__(self, type: BackChannelAuthType, httpBasicCredentials: UsernamePasswordCredentials = None, digitalSignature: bool = None, sslAuthKeyPairRef: ResourceLink = None, validatePartnerCert: bool = None) -> None:
+    def __init__(self, type: OutboundBackChannelAuthType, httpBasicCredentials: UsernamePasswordCredentials = None, digitalSignature: bool = None, sslAuthKeyPairRef: ResourceLink = None, validatePartnerCert: bool = None) -> None:
         self.type = type
         self.httpBasicCredentials = httpBasicCredentials
         self.digitalSignature = digitalSignature
@@ -51,13 +51,13 @@ class OutboundBackChannelAuth(Model):
         for k, v in python_dict.items():
             if k in ["type", "httpBasicCredentials", "digitalSignature", "sslAuthKeyPairRef", "validatePartnerCert"] and v is not None:
                 if k == "type":
-                    valid_data[k] = BackChannelAuthType[v]
+                    valid_data[k] = OutboundBackChannelAuthType[v]
                 if k == "httpBasicCredentials":
-                    valid_data[k] = UsernamePasswordCredentials(**v)
+                    valid_data[k] = UsernamePasswordCredentials.from_dict(v)
                 if k == "digitalSignature":
                     valid_data[k] = bool(v)
                 if k == "sslAuthKeyPairRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "validatePartnerCert":
                     valid_data[k] = bool(v)
 

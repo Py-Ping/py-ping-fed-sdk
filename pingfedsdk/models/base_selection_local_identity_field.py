@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.enums import LocalIdentityFieldType
+
+from pingfedsdk.enums import BaseSelectionLocalIdentityFieldType
+from pingfedsdk.model import Model
 
 
 class BaseSelectionLocalIdentityField(Model):
@@ -8,7 +9,7 @@ class BaseSelectionLocalIdentityField(Model):
 
     Attributes
     ----------
-    type: LocalIdentityFieldType
+    type: BaseSelectionLocalIdentityFieldType
         The type of the local identity field.
 
     id: str
@@ -30,8 +31,7 @@ class BaseSelectionLocalIdentityField(Model):
         The list of options for this selection field.
 
     """
-
-    def __init__(self, id: str, label: str, type: LocalIdentityFieldType, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None, options: list = None) -> None:
+    def __init__(self, type: BaseSelectionLocalIdentityFieldType, id: str, label: str, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None, options: list = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -57,7 +57,7 @@ class BaseSelectionLocalIdentityField(Model):
         for k, v in python_dict.items():
             if k in ["type", "id", "label", "registrationPageField", "profilePageField", "attributes", "options"] and v is not None:
                 if k == "type":
-                    valid_data[k] = LocalIdentityFieldType[v]
+                    valid_data[k] = BaseSelectionLocalIdentityFieldType[v]
                 if k == "id":
                     valid_data[k] = str(v)
                 if k == "label":
@@ -67,7 +67,7 @@ class BaseSelectionLocalIdentityField(Model):
                 if k == "profilePageField":
                     valid_data[k] = bool(v)
                 if k == "attributes":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "options":
                     valid_data[k] = [str(x) for x in v]
 

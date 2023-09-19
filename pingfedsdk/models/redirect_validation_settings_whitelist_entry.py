@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class RedirectValidationSettingsWhitelistEntry(Model):
@@ -32,7 +33,6 @@ class RedirectValidationSettingsWhitelistEntry(Model):
         Require HTTPS for accessing this resource.
 
     """
-
     def __init__(self, validDomain: str, targetResourceSSO: bool = None, targetResourceSLO: bool = None, inErrorResource: bool = None, idpDiscovery: bool = None, validPath: str = None, allowQueryAndFragment: bool = None, requireHttps: bool = None) -> None:
         self.targetResourceSSO = targetResourceSSO
         self.targetResourceSLO = targetResourceSLO

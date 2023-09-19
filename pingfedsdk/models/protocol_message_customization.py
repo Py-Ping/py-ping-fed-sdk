@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ProtocolMessageCustomization(Model):
@@ -14,7 +15,6 @@ class ProtocolMessageCustomization(Model):
         The OGNL expression that will be executed. Refer to the Admin Manual for a list of variables provided by PingFederate.
 
     """
-
     def __init__(self, contextName: str = None, messageExpression: str = None) -> None:
         self.contextName = contextName
         self.messageExpression = messageExpression

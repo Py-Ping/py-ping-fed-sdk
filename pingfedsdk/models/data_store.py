@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import DataStoreType
+from pingfedsdk.model import Model
 
 
 class DataStore(Model):
@@ -18,7 +19,6 @@ class DataStore(Model):
         Whether attribute values should be masked in the log.
 
     """
-
     def __init__(self, type: DataStoreType, id: str = None, maskAttributeValues: bool = None) -> None:
         self.type = type
         self.id = id

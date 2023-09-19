@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.field_descriptor import FieldDescriptor
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class Action(Model):
@@ -28,7 +29,6 @@ class Action(Model):
         List of parameters for this action.
 
     """
-
     def __init__(self, id: str = None, name: str = None, description: str = None, download: bool = None, invocationRef: ResourceLink = None, parameters: list = None) -> None:
         self.id = id
         self.name = name
@@ -62,9 +62,9 @@ class Action(Model):
                 if k == "download":
                     valid_data[k] = bool(v)
                 if k == "invocationRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "parameters":
-                    valid_data[k] = [FieldDescriptor(**x) for x in v]
+                    valid_data[k] = [FieldDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

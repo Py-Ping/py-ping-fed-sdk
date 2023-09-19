@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AssertionLifetime(Model):
@@ -14,8 +15,7 @@ class AssertionLifetime(Model):
         Assertion validity in minutes after the assertion issuance.
 
     """
-
-    def __init__(self, minutesAfter: int, minutesBefore: int) -> None:
+    def __init__(self, minutesBefore: int, minutesAfter: int) -> None:
         self.minutesBefore = minutesBefore
         self.minutesAfter = minutesAfter
 

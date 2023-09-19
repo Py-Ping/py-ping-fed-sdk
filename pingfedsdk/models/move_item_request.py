@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import Location
+from pingfedsdk.model import Model
 
 
 class MoveItemRequest(Model):
@@ -15,7 +16,6 @@ class MoveItemRequest(Model):
         When moving an item relative to another, this value indicates the target move-to ID.
 
     """
-
     def __init__(self, location: Location, moveToId: str = None) -> None:
         self.location = location
         self.moveToId = moveToId

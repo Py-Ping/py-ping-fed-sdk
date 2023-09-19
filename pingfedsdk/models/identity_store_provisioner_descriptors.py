@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.identity_store_provisioner_descriptor import IdentityStoreProvisionerDescriptor
 
 
@@ -12,7 +13,6 @@ class IdentityStoreProvisionerDescriptors(Model):
         The list of identity store provisioner descriptors.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class IdentityStoreProvisionerDescriptors(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [IdentityStoreProvisionerDescriptor(**x) for x in v]
+                    valid_data[k] = [IdentityStoreProvisionerDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

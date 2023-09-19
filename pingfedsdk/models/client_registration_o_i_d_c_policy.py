@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.enums import ContentEncryptionAlgorithm
 from pingfedsdk.enums import EncryptionAlgorithm
 from pingfedsdk.enums import SigningAlgorithm
-from pingfedsdk.enums import ContentEncryptionAlgorithm
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class ClientRegistrationOIDCPolicy(Model):
@@ -58,7 +59,6 @@ class ClientRegistrationOIDCPolicy(Model):
         The Open ID Connect policy. A null value will represent the default policy group.
 
     """
-
     def __init__(self, idTokenSigningAlgorithm: SigningAlgorithm = None, idTokenEncryptionAlgorithm: EncryptionAlgorithm = None, idTokenContentEncryptionAlgorithm: ContentEncryptionAlgorithm = None, policyGroup: ResourceLink = None) -> None:
         self.idTokenSigningAlgorithm = idTokenSigningAlgorithm
         self.idTokenEncryptionAlgorithm = idTokenEncryptionAlgorithm
@@ -88,7 +88,7 @@ class ClientRegistrationOIDCPolicy(Model):
                 if k == "idTokenContentEncryptionAlgorithm":
                     valid_data[k] = ContentEncryptionAlgorithm[v]
                 if k == "policyGroup":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_source import AttributeSource
+from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 
 
 class IdpAdapterContractMapping(Model):
@@ -22,7 +23,6 @@ class IdpAdapterContractMapping(Model):
         Whether this attribute mapping is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
 
     """
-
     def __init__(self, attributeContractFulfillment: object, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None, inherited: bool = None) -> None:
         self.attributeSources = attributeSources
         self.attributeContractFulfillment = attributeContractFulfillment
@@ -46,11 +46,11 @@ class IdpAdapterContractMapping(Model):
         for k, v in python_dict.items():
             if k in ["attributeSources", "attributeContractFulfillment", "issuanceCriteria", "inherited"] and v is not None:
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
                 if k == "inherited":
                     valid_data[k] = bool(v)
 

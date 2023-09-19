@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.source_type_id_key import SourceTypeIdKey
 
 
@@ -15,7 +16,6 @@ class AttributeFulfillmentValue(Model):
         The value for this attribute.
 
     """
-
     def __init__(self, source: SourceTypeIdKey, value: str) -> None:
         self.source = source
         self.value = value
@@ -37,7 +37,7 @@ class AttributeFulfillmentValue(Model):
         for k, v in python_dict.items():
             if k in ["source", "value"] and v is not None:
                 if k == "source":
-                    valid_data[k] = SourceTypeIdKey(**v)
+                    valid_data[k] = SourceTypeIdKey.from_dict(v)
                 if k == "value":
                     valid_data[k] = str(v)
 

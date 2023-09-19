@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -21,7 +22,6 @@ class CertificateExpirationNotificationSettings(Model):
         Reference to the associated notification publisher.
 
     """
-
     def __init__(self, emailAddress: str, finalWarningPeriod: int, initialWarningPeriod: int = None, notificationPublisherRef: ResourceLink = None) -> None:
         self.emailAddress = emailAddress
         self.initialWarningPeriod = initialWarningPeriod
@@ -51,7 +51,7 @@ class CertificateExpirationNotificationSettings(Model):
                 if k == "finalWarningPeriod":
                     valid_data[k] = int(v)
                 if k == "notificationPublisherRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

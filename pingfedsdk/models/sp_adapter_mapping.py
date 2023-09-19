@@ -1,8 +1,9 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
+from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.sp_adapter import SpAdapter
 
 
@@ -34,8 +35,7 @@ class SpAdapterMapping(Model):
         The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
 
     """
-
-    def __init__(self, attributeContractFulfillment: object, spAdapterRef: ResourceLink, restrictVirtualEntityIds: bool = None, restrictedVirtualEntityIds: list = None, adapterOverrideSettings: SpAdapter = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
+    def __init__(self, spAdapterRef: ResourceLink, attributeContractFulfillment: object, restrictVirtualEntityIds: bool = None, restrictedVirtualEntityIds: list = None, adapterOverrideSettings: SpAdapter = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
         self.spAdapterRef = spAdapterRef
         self.restrictVirtualEntityIds = restrictVirtualEntityIds
         self.restrictedVirtualEntityIds = restrictedVirtualEntityIds
@@ -61,19 +61,19 @@ class SpAdapterMapping(Model):
         for k, v in python_dict.items():
             if k in ["spAdapterRef", "restrictVirtualEntityIds", "restrictedVirtualEntityIds", "adapterOverrideSettings", "attributeSources", "attributeContractFulfillment", "issuanceCriteria"] and v is not None:
                 if k == "spAdapterRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "restrictVirtualEntityIds":
                     valid_data[k] = bool(v)
                 if k == "restrictedVirtualEntityIds":
                     valid_data[k] = [str(x) for x in v]
                 if k == "adapterOverrideSettings":
-                    valid_data[k] = SpAdapter(**v)
+                    valid_data[k] = SpAdapter.from_dict(v)
                 if k == "attributeSources":
-                    valid_data[k] = [AttributeSource(**x) for x in v]
+                    valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
                 if k == "issuanceCriteria":
-                    valid_data[k] = IssuanceCriteria(**v)
+                    valid_data[k] = IssuanceCriteria.from_dict(v)
 
         return cls(**valid_data)
 

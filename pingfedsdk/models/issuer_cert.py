@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.x_5_0_9_file import X509File
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.cert_view import CertView
+from pingfedsdk.models.x_5_0_9_file import X509File
 
 
 class IssuerCert(Model):
@@ -19,7 +20,6 @@ class IssuerCert(Model):
         Indicates whether this an active certificate or not.
 
     """
-
     def __init__(self, x509File: X509File, certView: CertView = None, active: bool = None) -> None:
         self.certView = certView
         self.x509File = x509File
@@ -42,9 +42,9 @@ class IssuerCert(Model):
         for k, v in python_dict.items():
             if k in ["certView", "x509File", "active"] and v is not None:
                 if k == "certView":
-                    valid_data[k] = CertView(**v)
+                    valid_data[k] = CertView.from_dict(v)
                 if k == "x509File":
-                    valid_data[k] = X509File(**v)
+                    valid_data[k] = X509File.from_dict(v)
                 if k == "active":
                     valid_data[k] = bool(v)
 

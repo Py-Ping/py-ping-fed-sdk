@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class EmailServerSettings(Model):
@@ -53,8 +54,7 @@ class EmailServerSettings(Model):
         For GET requests, this field contains the encrypted password, if one exists.  For POST and PUT requests, if you wish to reuse the existing password, this field should be passed back unchanged.
 
     """
-
-    def __init__(self, emailServer: str, port: int, sourceAddr: str, sslPort: int = None, timeout: int = None, retryAttempts: int = None, retryDelay: int = None, useSSL: bool = None, useTLS: bool = None, verifyHostname: bool = None, enableUtf8MessageHeaders: bool = None, useDebugging: bool = None, username: str = None, password: str = None, encryptedPassword: str = None) -> None:
+    def __init__(self, sourceAddr: str, emailServer: str, port: int, sslPort: int = None, timeout: int = None, retryAttempts: int = None, retryDelay: int = None, useSSL: bool = None, useTLS: bool = None, verifyHostname: bool = None, enableUtf8MessageHeaders: bool = None, useDebugging: bool = None, username: str = None, password: str = None, encryptedPassword: str = None) -> None:
         self.sourceAddr = sourceAddr
         self.emailServer = emailServer
         self.port = port

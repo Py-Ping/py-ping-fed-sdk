@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 
 
@@ -21,8 +22,7 @@ class OIDCRequestParameter(Model):
         Indicates whether the parameter value can be overridden by an Application Endpoint parameter
 
     """
-
-    def __init__(self, applicationEndpointOverride: bool, attributeValue: AttributeFulfillmentValue, name: str, value: str = None) -> None:
+    def __init__(self, name: str, attributeValue: AttributeFulfillmentValue, applicationEndpointOverride: bool, value: str = None) -> None:
         self.name = name
         self.attributeValue = attributeValue
         self.value = value
@@ -47,7 +47,7 @@ class OIDCRequestParameter(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "attributeValue":
-                    valid_data[k] = AttributeFulfillmentValue(**v)
+                    valid_data[k] = AttributeFulfillmentValue.from_dict(v)
                 if k == "value":
                     valid_data[k] = str(v)
                 if k == "applicationEndpointOverride":

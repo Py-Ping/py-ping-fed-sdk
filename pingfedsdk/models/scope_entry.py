@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ScopeEntry(Model):
@@ -17,8 +18,7 @@ class ScopeEntry(Model):
         True if the scope is dynamic. (Defaults to false)
 
     """
-
-    def __init__(self, description: str, name: str, dynamic: bool = None) -> None:
+    def __init__(self, name: str, description: str, dynamic: bool = None) -> None:
         self.name = name
         self.description = description
         self.dynamic = dynamic

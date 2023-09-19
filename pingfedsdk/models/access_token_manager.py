@@ -1,11 +1,12 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.atm_selection_settings import AtmSelectionSettings
-from pingfedsdk.models.session_validation_settings import SessionValidationSettings
-from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.models.plugin_configuration import PluginConfiguration
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.access_token_attribute_contract import AccessTokenAttributeContract
 from pingfedsdk.models.atm_access_control_settings import AtmAccessControlSettings
+from pingfedsdk.models.atm_selection_settings import AtmSelectionSettings
+from pingfedsdk.models.plugin_configuration import PluginConfiguration
+from pingfedsdk.models.resource_link import ResourceLink
+from pingfedsdk.models.session_validation_settings import SessionValidationSettings
 
 
 class AccessTokenManager(Model):
@@ -48,8 +49,7 @@ class AccessTokenManager(Model):
         Number added to an access token to identify which Access Token Manager issued the token.
 
     """
-
-    def __init__(self, configuration: PluginConfiguration, id: str, name: str, pluginDescriptorRef: ResourceLink, parentRef: ResourceLink = None, attributeContract: AccessTokenAttributeContract = None, selectionSettings: AtmSelectionSettings = None, accessControlSettings: AtmAccessControlSettings = None, sessionValidationSettings: SessionValidationSettings = None, sequenceNumber: int = None) -> None:
+    def __init__(self, id: str, name: str, pluginDescriptorRef: ResourceLink, configuration: PluginConfiguration, parentRef: ResourceLink = None, attributeContract: AccessTokenAttributeContract = None, selectionSettings: AtmSelectionSettings = None, accessControlSettings: AtmAccessControlSettings = None, sessionValidationSettings: SessionValidationSettings = None, sequenceNumber: int = None) -> None:
         self.id = id
         self.name = name
         self.pluginDescriptorRef = pluginDescriptorRef
@@ -82,19 +82,19 @@ class AccessTokenManager(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "pluginDescriptorRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "parentRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "configuration":
-                    valid_data[k] = PluginConfiguration(**v)
+                    valid_data[k] = PluginConfiguration.from_dict(v)
                 if k == "attributeContract":
-                    valid_data[k] = AccessTokenAttributeContract(**v)
+                    valid_data[k] = AccessTokenAttributeContract.from_dict(v)
                 if k == "selectionSettings":
-                    valid_data[k] = AtmSelectionSettings(**v)
+                    valid_data[k] = AtmSelectionSettings.from_dict(v)
                 if k == "accessControlSettings":
-                    valid_data[k] = AtmAccessControlSettings(**v)
+                    valid_data[k] = AtmAccessControlSettings.from_dict(v)
                 if k == "sessionValidationSettings":
-                    valid_data[k] = SessionValidationSettings(**v)
+                    valid_data[k] = SessionValidationSettings.from_dict(v)
                 if k == "sequenceNumber":
                     valid_data[k] = int(v)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -27,7 +28,6 @@ class AuthnApiApplication(Model):
         The client this application must use if it invokes the authentication API in redirectless mode. No client may be specified if restrictAccessToRedirectlessMode is false under /authenticationApi/settings.
 
     """
-
     def __init__(self, id: str, name: str, url: str, description: str = None, additionalAllowedOrigins: list = None, clientForRedirectlessModeRef: ResourceLink = None) -> None:
         self.id = id
         self.name = name
@@ -63,7 +63,7 @@ class AuthnApiApplication(Model):
                 if k == "additionalAllowedOrigins":
                     valid_data[k] = [str(x) for x in v]
                 if k == "clientForRedirectlessModeRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

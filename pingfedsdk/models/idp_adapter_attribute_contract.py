@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.idp_adapter_attribute import IdpAdapterAttribute
 
 
@@ -24,7 +25,6 @@ class IdpAdapterAttributeContract(Model):
         Whether this attribute contract is inherited from its parent instance. If true, the rest of the properties in this model become read-only. The default value is false.
 
     """
-
     def __init__(self, coreAttributes: list, extendedAttributes: list = None, uniqueUserKeyAttribute: str = None, maskOgnlValues: bool = None, inherited: bool = None) -> None:
         self.coreAttributes = coreAttributes
         self.extendedAttributes = extendedAttributes
@@ -49,9 +49,9 @@ class IdpAdapterAttributeContract(Model):
         for k, v in python_dict.items():
             if k in ["coreAttributes", "extendedAttributes", "uniqueUserKeyAttribute", "maskOgnlValues", "inherited"] and v is not None:
                 if k == "coreAttributes":
-                    valid_data[k] = [IdpAdapterAttribute(**x) for x in v]
+                    valid_data[k] = [IdpAdapterAttribute.from_dict(x) for x in v]
                 if k == "extendedAttributes":
-                    valid_data[k] = [IdpAdapterAttribute(**x) for x in v]
+                    valid_data[k] = [IdpAdapterAttribute.from_dict(x) for x in v]
                 if k == "uniqueUserKeyAttribute":
                     valid_data[k] = str(v)
                 if k == "maskOgnlValues":

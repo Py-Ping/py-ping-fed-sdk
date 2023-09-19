@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
 from pingfedsdk.enums import EmailVerificationType
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class EmailVerificationConfig(Model):
@@ -71,7 +72,6 @@ class EmailVerificationConfig(Model):
         Note:Only applicable if EmailVerificationType is OTL and requireVerifiedEmail is true.
 
     """
-
     def __init__(self, fieldForEmailToVerify: str, fieldStoringVerificationStatus: str, emailVerificationEnabled: bool = None, verifyEmailTemplateName: str = None, emailVerificationSentTemplateName: str = None, emailVerificationSuccessTemplateName: str = None, emailVerificationErrorTemplateName: str = None, emailVerificationType: EmailVerificationType = None, otpLength: int = None, otpRetryAttempts: int = None, allowedOtpCharacterSet: str = None, otpTimeToLive: int = None, emailVerificationOtpTemplateName: str = None, otlTimeToLive: int = None, notificationPublisherRef: ResourceLink = None, requireVerifiedEmail: bool = None, requireVerifiedEmailTemplateName: str = None) -> None:
         self.emailVerificationEnabled = emailVerificationEnabled
         self.verifyEmailTemplateName = verifyEmailTemplateName
@@ -136,7 +136,7 @@ class EmailVerificationConfig(Model):
                 if k == "fieldStoringVerificationStatus":
                     valid_data[k] = str(v)
                 if k == "notificationPublisherRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "requireVerifiedEmail":
                     valid_data[k] = bool(v)
                 if k == "requireVerifiedEmailTemplateName":

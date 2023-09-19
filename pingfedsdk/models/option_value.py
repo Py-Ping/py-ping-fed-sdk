@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class OptionValue(Model):
@@ -14,7 +15,6 @@ class OptionValue(Model):
         The value associated with this option.
 
     """
-
     def __init__(self, name: str = None, value: str = None) -> None:
         self.name = name
         self.value = value

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.action_descriptor import ActionDescriptor
 from pingfedsdk.models.field_descriptor import FieldDescriptor
 from pingfedsdk.models.table_descriptor import TableDescriptor
@@ -23,7 +24,6 @@ class PluginConfigDescriptor(Model):
         The available actions for this plugin.
 
     """
-
     def __init__(self, description: str = None, fields: list = None, tables: list = None, actionDescriptors: list = None) -> None:
         self.description = description
         self.fields = fields
@@ -49,11 +49,11 @@ class PluginConfigDescriptor(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "fields":
-                    valid_data[k] = [FieldDescriptor(**x) for x in v]
+                    valid_data[k] = [FieldDescriptor.from_dict(x) for x in v]
                 if k == "tables":
-                    valid_data[k] = [TableDescriptor(**x) for x in v]
+                    valid_data[k] = [TableDescriptor.from_dict(x) for x in v]
                 if k == "actionDescriptors":
-                    valid_data[k] = [ActionDescriptor(**x) for x in v]
+                    valid_data[k] = [ActionDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

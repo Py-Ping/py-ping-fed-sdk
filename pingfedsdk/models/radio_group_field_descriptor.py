@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.enums import RadioGroupFieldDescriptorType
+from pingfedsdk.model import Model
 from pingfedsdk.models.option_value import OptionValue
-from pingfedsdk.enums import FieldDescriptor
 
 
 class RadioGroupFieldDescriptor(Model):
@@ -9,7 +10,7 @@ class RadioGroupFieldDescriptor(Model):
 
     Attributes
     ----------
-    type: FieldDescriptor
+    type: RadioGroupFieldDescriptorType
         The type of field descriptor.
 
     name: str
@@ -34,8 +35,7 @@ class RadioGroupFieldDescriptor(Model):
         The list of option values for this selection field.
 
     """
-
-    def __init__(self, type: FieldDescriptor = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, optionValues: list = None) -> None:
+    def __init__(self, type: RadioGroupFieldDescriptorType = None, name: str = None, description: str = None, defaultValue: str = None, advanced: bool = None, required: bool = None, label: str = None, optionValues: list = None) -> None:
         self.type = type
         self.name = name
         self.description = description
@@ -62,7 +62,7 @@ class RadioGroupFieldDescriptor(Model):
         for k, v in python_dict.items():
             if k in ["type", "name", "description", "defaultValue", "advanced", "required", "label", "optionValues"] and v is not None:
                 if k == "type":
-                    valid_data[k] = FieldDescriptor[v]
+                    valid_data[k] = RadioGroupFieldDescriptorType[v]
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "description":
@@ -76,7 +76,7 @@ class RadioGroupFieldDescriptor(Model):
                 if k == "label":
                     valid_data[k] = str(v)
                 if k == "optionValues":
-                    valid_data[k] = [OptionValue(**x) for x in v]
+                    valid_data[k] = [OptionValue.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

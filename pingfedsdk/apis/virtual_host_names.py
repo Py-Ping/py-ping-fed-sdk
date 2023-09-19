@@ -1,13 +1,14 @@
-import os
+from json import dumps
 import logging
+import os
 import traceback
 
-from json import dumps
 from requests import Session
 from requests.exceptions import HTTPError
+
 from pingfedsdk.exceptions import ValidationError
-from pingfedsdk.models.virtual_host_name_settings import VirtualHostNameSettings as ModelVirtualHostNameSettings
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from pingfedsdk.models.virtual_host_name_settings import VirtualHostNameSettings as ModelVirtualHostNameSettings
 
 
 class VirtualHostNames:
@@ -62,8 +63,6 @@ class VirtualHostNames:
             raise err
         else:
             if response.status_code == 200:
-                return ModelApiResult.from_dict(response.json())
+                return ModelVirtualHostNameSettings.from_dict(response.json())
             if response.status_code == 422:
-                message = "(422) Validation error(s) occurred."
-                self.logger.info(message)
-                raise ValidationError(message)
+                raise ValidationError(response.json())

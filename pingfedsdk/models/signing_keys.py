@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -45,7 +46,6 @@ class SigningKeys(Model):
         Enable publishing of the RSA certificate chain associated with the active key.
 
     """
-
     def __init__(self, p256ActiveCertRef: ResourceLink = None, p256PreviousCertRef: ResourceLink = None, p256PublishX5cParameter: bool = None, p384ActiveCertRef: ResourceLink = None, p384PreviousCertRef: ResourceLink = None, p384PublishX5cParameter: bool = None, p521ActiveCertRef: ResourceLink = None, p521PreviousCertRef: ResourceLink = None, p521PublishX5cParameter: bool = None, rsaActiveCertRef: ResourceLink = None, rsaPreviousCertRef: ResourceLink = None, rsaPublishX5cParameter: bool = None) -> None:
         self.p256ActiveCertRef = p256ActiveCertRef
         self.p256PreviousCertRef = p256PreviousCertRef
@@ -77,27 +77,27 @@ class SigningKeys(Model):
         for k, v in python_dict.items():
             if k in ["p256ActiveCertRef", "p256PreviousCertRef", "p256PublishX5cParameter", "p384ActiveCertRef", "p384PreviousCertRef", "p384PublishX5cParameter", "p521ActiveCertRef", "p521PreviousCertRef", "p521PublishX5cParameter", "rsaActiveCertRef", "rsaPreviousCertRef", "rsaPublishX5cParameter"] and v is not None:
                 if k == "p256ActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p256PreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p256PublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "p384ActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p384PreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p384PublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "p521ActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p521PreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "p521PublishX5cParameter":
                     valid_data[k] = bool(v)
                 if k == "rsaActiveCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "rsaPreviousCertRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "rsaPublishX5cParameter":
                     valid_data[k] = bool(v)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.out_of_band_auth_plugin_descriptor import OutOfBandAuthPluginDescriptor
 
 
@@ -12,7 +13,6 @@ class OutOfBandAuthPluginDescriptors(Model):
         The list of out of band authenticator plugin descriptors.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class OutOfBandAuthPluginDescriptors(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [OutOfBandAuthPluginDescriptor(**x) for x in v]
+                    valid_data[k] = [OutOfBandAuthPluginDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

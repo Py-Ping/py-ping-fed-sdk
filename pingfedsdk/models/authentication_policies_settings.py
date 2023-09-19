@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AuthenticationPoliciesSettings(Model):
@@ -14,7 +15,6 @@ class AuthenticationPoliciesSettings(Model):
         Enable SP authentication policies.
 
     """
-
     def __init__(self, enableIdpAuthnSelection: bool = None, enableSpAuthnSelection: bool = None) -> None:
         self.enableIdpAuthnSelection = enableIdpAuthnSelection
         self.enableSpAuthnSelection = enableSpAuthnSelection

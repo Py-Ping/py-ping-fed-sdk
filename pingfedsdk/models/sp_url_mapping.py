@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.resource_link import ResourceLink
+
 from pingfedsdk.enums import SpUrlMappingType
+from pingfedsdk.model import Model
+from pingfedsdk.models.resource_link import ResourceLink
 
 
 class SpUrlMapping(Model):
@@ -19,7 +20,6 @@ class SpUrlMapping(Model):
         The adapter or connection instance mapped for this URL.
 
     """
-
     def __init__(self, url: str = None, type: SpUrlMappingType = None, ref: ResourceLink = None) -> None:
         self.url = url
         self.type = type
@@ -46,7 +46,7 @@ class SpUrlMapping(Model):
                 if k == "type":
                     valid_data[k] = SpUrlMappingType[v]
                 if k == "ref":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

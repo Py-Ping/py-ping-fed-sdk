@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ArtifactResolverLocation(Model):
@@ -14,7 +15,6 @@ class ArtifactResolverLocation(Model):
         Remote party URLs that you will use to resolve/translate the artifact and get the actual protocol message
 
     """
-
     def __init__(self, index: int, url: str) -> None:
         self.index = index
         self.url = url

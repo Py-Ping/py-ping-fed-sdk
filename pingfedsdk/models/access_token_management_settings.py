@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -12,7 +13,6 @@ class AccessTokenManagementSettings(Model):
         Reference to the default access token manager, if one is defined.
 
     """
-
     def __init__(self, defaultAccessTokenManagerRef: ResourceLink = None) -> None:
         self.defaultAccessTokenManagerRef = defaultAccessTokenManagerRef
 
@@ -33,7 +33,7 @@ class AccessTokenManagementSettings(Model):
         for k, v in python_dict.items():
             if k in ["defaultAccessTokenManagerRef"] and v is not None:
                 if k == "defaultAccessTokenManagerRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
 
         return cls(**valid_data)
 

@@ -1,7 +1,8 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.enums import DataStoreConfigType
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
-from pingfedsdk.enums import DataStoreType
 
 
 class DataStoreConfig(Model):
@@ -9,7 +10,7 @@ class DataStoreConfig(Model):
 
     Attributes
     ----------
-    type: DataStoreType
+    type: DataStoreConfigType
         The data store config type.
 
     dataStoreRef: ResourceLink
@@ -19,8 +20,7 @@ class DataStoreConfig(Model):
         The data store mapping.
 
     """
-
-    def __init__(self, dataStoreRef: ResourceLink, type: DataStoreType, dataStoreMapping: object = None) -> None:
+    def __init__(self, type: DataStoreConfigType, dataStoreRef: ResourceLink, dataStoreMapping: object = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.dataStoreMapping = dataStoreMapping
@@ -42,11 +42,11 @@ class DataStoreConfig(Model):
         for k, v in python_dict.items():
             if k in ["type", "dataStoreRef", "dataStoreMapping"] and v is not None:
                 if k == "type":
-                    valid_data[k] = DataStoreType[v]
+                    valid_data[k] = DataStoreConfigType[v]
                 if k == "dataStoreRef":
-                    valid_data[k] = ResourceLink(**v)
+                    valid_data[k] = ResourceLink.from_dict(v)
                 if k == "dataStoreMapping":
-                    valid_data[k] = object(**v)
+                    valid_data[k] = object.from_dict(v)
 
         return cls(**valid_data)
 

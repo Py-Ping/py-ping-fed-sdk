@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.secret_manager_descriptor import SecretManagerDescriptor
 
 
@@ -12,7 +13,6 @@ class SecretManagerDescriptors(Model):
         The list of secret manager plugin descriptors.
 
     """
-
     def __init__(self, items: list = None) -> None:
         self.items = items
 
@@ -33,7 +33,7 @@ class SecretManagerDescriptors(Model):
         for k, v in python_dict.items():
             if k in ["items"] and v is not None:
                 if k == "items":
-                    valid_data[k] = [SecretManagerDescriptor(**x) for x in v]
+                    valid_data[k] = [SecretManagerDescriptor.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.username_password_credentials import UsernamePasswordCredentials
 
@@ -31,7 +32,6 @@ class WsTrustStsSettings(Model):
         List of certificate Issuers that are used to validate certificates for access to the WS-Trust STS endpoints. Required if restrictByIssuerCert is enabled.
 
     """
-
     def __init__(self, basicAuthnEnabled: bool = None, clientCertAuthnEnabled: bool = None, restrictBySubjectDn: bool = None, restrictByIssuerCert: bool = None, subjectDns: list = None, users: list = None, issuerCerts: list = None) -> None:
         self.basicAuthnEnabled = basicAuthnEnabled
         self.clientCertAuthnEnabled = clientCertAuthnEnabled
@@ -68,9 +68,9 @@ class WsTrustStsSettings(Model):
                 if k == "subjectDns":
                     valid_data[k] = [str(x) for x in v]
                 if k == "users":
-                    valid_data[k] = [UsernamePasswordCredentials(**x) for x in v]
+                    valid_data[k] = [UsernamePasswordCredentials.from_dict(x) for x in v]
                 if k == "issuerCerts":
-                    valid_data[k] = [ResourceLink(**x) for x in v]
+                    valid_data[k] = [ResourceLink.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

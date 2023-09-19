@@ -1,9 +1,10 @@
-from pingfedsdk.model import Model
 from enum import Enum
-from pingfedsdk.models.o_i_d_c_request_parameter import OIDCRequestParameter
+
 from pingfedsdk.enums import AuthenticationScheme
 from pingfedsdk.enums import LoginType
 from pingfedsdk.enums import SigningAlgorithm
+from pingfedsdk.model import Model
+from pingfedsdk.models.o_i_d_c_request_parameter import OIDCRequestParameter
 
 
 class OIDCProviderSettings(Model):
@@ -48,8 +49,7 @@ class OIDCProviderSettings(Model):
         A list of request parameters. Request parameters with same name but different attribute values are treated as a multi-valued request parameter.
 
     """
-
-    def __init__(self, authorizationEndpoint: str, jwksURL: str, loginType: LoginType, scopes: str, authenticationScheme: AuthenticationScheme = None, authenticationSigningAlgorithm: SigningAlgorithm = None, requestSigningAlgorithm: SigningAlgorithm = None, enablePKCE: bool = None, tokenEndpoint: str = None, userInfoEndpoint: str = None, requestParameters: list = None) -> None:
+    def __init__(self, scopes: str, authorizationEndpoint: str, loginType: LoginType, jwksURL: str, authenticationScheme: AuthenticationScheme = None, authenticationSigningAlgorithm: SigningAlgorithm = None, requestSigningAlgorithm: SigningAlgorithm = None, enablePKCE: bool = None, tokenEndpoint: str = None, userInfoEndpoint: str = None, requestParameters: list = None) -> None:
         self.scopes = scopes
         self.authorizationEndpoint = authorizationEndpoint
         self.loginType = loginType
@@ -99,7 +99,7 @@ class OIDCProviderSettings(Model):
                 if k == "jwksURL":
                     valid_data[k] = str(v)
                 if k == "requestParameters":
-                    valid_data[k] = [OIDCRequestParameter(**x) for x in v]
+                    valid_data[k] = [OIDCRequestParameter.from_dict(x) for x in v]
 
         return cls(**valid_data)
 

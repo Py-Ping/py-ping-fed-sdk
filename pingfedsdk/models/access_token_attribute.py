@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class AccessTokenAttribute(Model):
@@ -14,7 +15,6 @@ class AccessTokenAttribute(Model):
         Indicates whether attribute value is always returned as an array.
 
     """
-
     def __init__(self, name: str, multiValued: bool = None) -> None:
         self.name = name
         self.multiValued = multiValued

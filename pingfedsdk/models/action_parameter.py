@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class ActionParameter(Model):
@@ -14,7 +15,6 @@ class ActionParameter(Model):
         The value for the action parameter.
 
     """
-
     def __init__(self, name: str, value: str = None) -> None:
         self.name = name
         self.value = value

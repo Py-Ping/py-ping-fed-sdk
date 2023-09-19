@@ -1,6 +1,7 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
 from pingfedsdk.enums import CryptoProvider
+from pingfedsdk.model import Model
 
 
 class NewKeyPairSettings(Model):
@@ -48,8 +49,7 @@ class NewKeyPairSettings(Model):
         Cryptographic Provider.  This is only applicable if Hybrid HSM mode is true.
 
     """
-
-    def __init__(self, commonName: str, country: str, keyAlgorithm: str, organization: str, validDays: int, id: str = None, subjectAlternativeNames: list = None, organizationUnit: str = None, city: str = None, state: str = None, keySize: int = None, signatureAlgorithm: str = None, cryptoProvider: CryptoProvider = None) -> None:
+    def __init__(self, commonName: str, organization: str, country: str, validDays: int, keyAlgorithm: str, id: str = None, subjectAlternativeNames: list = None, organizationUnit: str = None, city: str = None, state: str = None, keySize: int = None, signatureAlgorithm: str = None, cryptoProvider: CryptoProvider = None) -> None:
         self.id = id
         self.commonName = commonName
         self.subjectAlternativeNames = subjectAlternativeNames

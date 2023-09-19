@@ -1,5 +1,6 @@
-from pingfedsdk.model import Model
 from enum import Enum
+
+from pingfedsdk.model import Model
 
 
 class LicenseAgreementInfo(Model):
@@ -14,7 +15,6 @@ class LicenseAgreementInfo(Model):
         Indicates whether license agreement has been accepted. The default value is false.
 
     """
-
     def __init__(self, licenseAgreementUrl: str = None, accepted: bool = None) -> None:
         self.licenseAgreementUrl = licenseAgreementUrl
         self.accepted = accepted
