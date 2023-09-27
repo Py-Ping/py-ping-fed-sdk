@@ -18,14 +18,14 @@ class ConfigStoreSetting(Model):
     listValue: list
         The list of values for the configuration setting. This is used when the setting has a list of string values.
 
-    mapValue: object
+    mapValue: dict
         The map of key/value pairs for the configuration setting. This is used when the setting has a map of string keys and values.
 
     type: ConfigStoreSettingType
         The type of configuration setting. This could be a single string, list of strings, or map of string keys and values.
 
     """
-    def __init__(self, id: str, type: ConfigStoreSettingType, stringValue: str = None, listValue: list = None, mapValue: object = None) -> None:
+    def __init__(self, id: str, type: ConfigStoreSettingType, stringValue: str = None, listValue: list = None, mapValue: dict = None) -> None:
         self.id = id
         self.stringValue = stringValue
         self.listValue = listValue
@@ -55,7 +55,7 @@ class ConfigStoreSetting(Model):
                 if k == "listValue":
                     valid_data[k] = [str(x) for x in v]
                 if k == "mapValue":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): str(y) for x, y in v.items()}
                 if k == "type":
                     valid_data[k] = ConfigStoreSettingType[v]
 

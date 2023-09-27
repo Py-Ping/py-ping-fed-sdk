@@ -15,11 +15,11 @@ class DataStoreAttribute(Model):
     name: str
         The data store attribute name.
 
-    metadata: object
+    metadata: dict
         The data store attribute metadata.
 
     """
-    def __init__(self, type: DataStoreAttributeType, name: str, metadata: object = None) -> None:
+    def __init__(self, type: DataStoreAttributeType, name: str, metadata: dict = None) -> None:
         self.type = type
         self.name = name
         self.metadata = metadata
@@ -45,7 +45,7 @@ class DataStoreAttribute(Model):
                 if k == "name":
                     valid_data[k] = str(v)
                 if k == "metadata":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): str(y) for x, y in v.items()}
 
         return cls(**valid_data)
 

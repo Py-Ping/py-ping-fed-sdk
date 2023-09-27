@@ -24,14 +24,14 @@ class CheckboxLocalIdentityField(Model):
     profilePageField: bool
         Whether this is a profile page field or not.
 
-    attributes: object
+    attributes: dict
         Attributes of the local identity field.
 
     defaultValue: str
         The default value for this field.
 
     """
-    def __init__(self, type: CheckboxLocalIdentityFieldType, id: str, label: str, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None, defaultValue: str = None) -> None:
+    def __init__(self, type: CheckboxLocalIdentityFieldType, id: str, label: str, registrationPageField: bool = None, profilePageField: bool = None, attributes: dict = None, defaultValue: str = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -67,7 +67,7 @@ class CheckboxLocalIdentityField(Model):
                 if k == "profilePageField":
                     valid_data[k] = bool(v)
                 if k == "attributes":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): bool(y) for x, y in v.items()}
                 if k == "defaultValue":
                     valid_data[k] = str(v)
 

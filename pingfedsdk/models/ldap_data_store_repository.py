@@ -2,6 +2,7 @@ from enum import Enum
 
 from pingfedsdk.enums import LdapDataStoreRepositoryType
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -16,7 +17,7 @@ class LdapDataStoreRepository(Model):
     dataStoreRef: ResourceLink
         Reference to the associated data store.
 
-    jitRepositoryAttributeMapping: object
+    jitRepositoryAttributeMapping: dict
         A list of user repository mappings from attribute names to their fulfillment values.
 
     baseDn: str
@@ -26,7 +27,7 @@ class LdapDataStoreRepository(Model):
         The expression that results in a unique user identifier, when combined with the Base DN.
 
     """
-    def __init__(self, uniqueUserIdFilter: str, jitRepositoryAttributeMapping: object, type: LdapDataStoreRepositoryType = None, dataStoreRef: ResourceLink = None, baseDn: str = None) -> None:
+    def __init__(self, uniqueUserIdFilter: str, jitRepositoryAttributeMapping: dict, type: LdapDataStoreRepositoryType = None, dataStoreRef: ResourceLink = None, baseDn: str = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.jitRepositoryAttributeMapping = jitRepositoryAttributeMapping
@@ -54,7 +55,7 @@ class LdapDataStoreRepository(Model):
                 if k == "dataStoreRef":
                     valid_data[k] = ResourceLink.from_dict(v)
                 if k == "jitRepositoryAttributeMapping":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
                 if k == "baseDn":
                     valid_data[k] = str(v)
                 if k == "uniqueUserIdFilter":

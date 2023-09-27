@@ -13,6 +13,7 @@ from pingfedsdk.models.idp_inbound_provisioning import IdpInboundProvisioning
 from pingfedsdk.models.idp_o_auth_grant_attribute_mapping import IdpOAuthGrantAttributeMapping
 from pingfedsdk.models.idp_ws_trust import IdpWsTrust
 from pingfedsdk.models.o_i_d_c_client_credentials import OIDCClientCredentials
+from pingfedsdk.models.parameter_values import ParameterValues
 
 
 class IdpConnection(Model):
@@ -62,7 +63,7 @@ class IdpConnection(Model):
     additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration
         Additional allowed entities or issuers configuration. Currently only used in OIDC IdP (RP) connection.
 
-    extendedProperties: object
+    extendedProperties: dict
         Extended Properties allows to store additional information for IdP/SP Connections. The names of these extended properties should be defined in /extendedProperties.
 
     oidcClientCredentials: OIDCClientCredentials
@@ -87,7 +88,7 @@ class IdpConnection(Model):
         Identifier that specifies the message displayed on a user-facing error page.
 
     """
-    def __init__(self, entityId: str, name: str, type: IdpConnectionEnum = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, oidcClientCredentials: OIDCClientCredentials = None, idpBrowserSso: IdpBrowserSso = None, attributeQuery: IdpAttributeQuery = None, idpOAuthGrantAttributeMapping: IdpOAuthGrantAttributeMapping = None, virtualEntityIds: list = None, wsTrust: IdpWsTrust = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, inboundProvisioning: IdpInboundProvisioning = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: object = None, errorPageMsgId: str = None) -> None:
+    def __init__(self, entityId: str, name: str, type: IdpConnectionEnum = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, oidcClientCredentials: OIDCClientCredentials = None, idpBrowserSso: IdpBrowserSso = None, attributeQuery: IdpAttributeQuery = None, idpOAuthGrantAttributeMapping: IdpOAuthGrantAttributeMapping = None, virtualEntityIds: list = None, wsTrust: IdpWsTrust = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, inboundProvisioning: IdpInboundProvisioning = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: dict = None, errorPageMsgId: str = None) -> None:
         self.type = type
         self.id = id
         self.entityId = entityId
@@ -156,7 +157,7 @@ class IdpConnection(Model):
                 if k == "additionalAllowedEntitiesConfiguration":
                     valid_data[k] = AdditionalAllowedEntitiesConfiguration.from_dict(v)
                 if k == "extendedProperties":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): ParameterValues.from_dict(y) for x, y in v.items()}
                 if k == "oidcClientCredentials":
                     valid_data[k] = OIDCClientCredentials.from_dict(v)
                 if k == "idpBrowserSso":

@@ -2,6 +2,7 @@ from enum import Enum
 
 from pingfedsdk.enums import DataStoreType
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -24,11 +25,11 @@ class AttributeSource(Model):
         The description of this attribute source. The description needs to be unique amongst the attribute sources for the mapping.
         Note: Required for APC-to-SP Adapter Mappings
 
-    attributeContractFulfillment: object
+    attributeContractFulfillment: dict
         A list of mappings from attribute names to their fulfillment values. This field is only valid for the SP Connection's Browser SSO mappings
 
     """
-    def __init__(self, type: DataStoreType, dataStoreRef: ResourceLink, id: str = None, description: str = None, attributeContractFulfillment: object = None) -> None:
+    def __init__(self, type: DataStoreType, dataStoreRef: ResourceLink, id: str = None, description: str = None, attributeContractFulfillment: dict = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -60,7 +61,7 @@ class AttributeSource(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
 
         return cls(**valid_data)
 

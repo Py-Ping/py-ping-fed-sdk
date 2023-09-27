@@ -1,6 +1,7 @@
 from enum import Enum
 
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 
 
 class WriteUsers(Model):
@@ -8,11 +9,11 @@ class WriteUsers(Model):
 
     Attributes
     ----------
-    attributeFulfillment: object
+    attributeFulfillment: dict
         A list of user repository mappings from attribute names to their fulfillment values.
 
     """
-    def __init__(self, attributeFulfillment: object) -> None:
+    def __init__(self, attributeFulfillment: dict) -> None:
         self.attributeFulfillment = attributeFulfillment
 
     def _validate(self) -> bool:
@@ -32,7 +33,7 @@ class WriteUsers(Model):
         for k, v in python_dict.items():
             if k in ["attributeFulfillment"] and v is not None:
                 if k == "attributeFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
 
         return cls(**valid_data)
 

@@ -7,6 +7,7 @@ from pingfedsdk.models.additional_allowed_entities_configuration import Addition
 from pingfedsdk.models.connection_credentials import ConnectionCredentials
 from pingfedsdk.models.connection_metadata_url import ConnectionMetadataUrl
 from pingfedsdk.models.contact_info import ContactInfo
+from pingfedsdk.models.parameter_values import ParameterValues
 
 
 class Connection(Model):
@@ -56,11 +57,11 @@ class Connection(Model):
     additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration
         Additional allowed entities or issuers configuration. Currently only used in OIDC IdP (RP) connection.
 
-    extendedProperties: object
+    extendedProperties: dict
         Extended Properties allows to store additional information for IdP/SP Connections. The names of these extended properties should be defined in /extendedProperties.
 
     """
-    def __init__(self, entityId: str, name: str, type: ConnectionType = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, virtualEntityIds: list = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: object = None) -> None:
+    def __init__(self, entityId: str, name: str, type: ConnectionType = None, id: str = None, active: bool = None, baseUrl: str = None, defaultVirtualEntityId: str = None, virtualEntityIds: list = None, metadataReloadSettings: ConnectionMetadataUrl = None, credentials: ConnectionCredentials = None, contactInfo: ContactInfo = None, licenseConnectionGroup: str = None, loggingMode: LoggingMode = None, additionalAllowedEntitiesConfiguration: AdditionalAllowedEntitiesConfiguration = None, extendedProperties: dict = None) -> None:
         self.type = type
         self.id = id
         self.entityId = entityId
@@ -122,7 +123,7 @@ class Connection(Model):
                 if k == "additionalAllowedEntitiesConfiguration":
                     valid_data[k] = AdditionalAllowedEntitiesConfiguration.from_dict(v)
                 if k == "extendedProperties":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): ParameterValues.from_dict(y) for x, y in v.items()}
 
         return cls(**valid_data)
 

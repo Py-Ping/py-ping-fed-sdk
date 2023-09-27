@@ -24,14 +24,14 @@ class CheckboxGroupLocalIdentityField(Model):
     profilePageField: bool
         Whether this is a profile page field or not.
 
-    attributes: object
+    attributes: dict
         Attributes of the local identity field.
 
     options: list
         The list of options for this selection field.
 
     """
-    def __init__(self, options: list, type: CheckboxGroupLocalIdentityFieldType = None, id: str = None, label: str = None, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None) -> None:
+    def __init__(self, options: list, type: CheckboxGroupLocalIdentityFieldType = None, id: str = None, label: str = None, registrationPageField: bool = None, profilePageField: bool = None, attributes: dict = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -67,7 +67,7 @@ class CheckboxGroupLocalIdentityField(Model):
                 if k == "profilePageField":
                     valid_data[k] = bool(v)
                 if k == "attributes":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): bool(y) for x, y in v.items()}
                 if k == "options":
                     valid_data[k] = [str(x) for x in v]
 

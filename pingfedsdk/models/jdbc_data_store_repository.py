@@ -2,6 +2,7 @@ from enum import Enum
 
 from pingfedsdk.enums import JdbcDataStoreRepositoryType
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.resource_link import ResourceLink
 from pingfedsdk.models.sql_method import SqlMethod
 
@@ -17,14 +18,14 @@ class JdbcDataStoreRepository(Model):
     dataStoreRef: ResourceLink
         Reference to the associated data store.
 
-    jitRepositoryAttributeMapping: object
+    jitRepositoryAttributeMapping: dict
         A list of user repository mappings from attribute names to their fulfillment values.
 
     sqlMethod: SqlMethod
         The method to map attributes from the assertion directly to database table columns or to stored-procedure parameters.
 
     """
-    def __init__(self, sqlMethod: SqlMethod, jitRepositoryAttributeMapping: object, type: JdbcDataStoreRepositoryType = None, dataStoreRef: ResourceLink = None) -> None:
+    def __init__(self, sqlMethod: SqlMethod, jitRepositoryAttributeMapping: dict, type: JdbcDataStoreRepositoryType = None, dataStoreRef: ResourceLink = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.jitRepositoryAttributeMapping = jitRepositoryAttributeMapping
@@ -51,7 +52,7 @@ class JdbcDataStoreRepository(Model):
                 if k == "dataStoreRef":
                     valid_data[k] = ResourceLink.from_dict(v)
                 if k == "jitRepositoryAttributeMapping":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
                 if k == "sqlMethod":
                     valid_data[k] = SqlMethod.from_dict(v)
 

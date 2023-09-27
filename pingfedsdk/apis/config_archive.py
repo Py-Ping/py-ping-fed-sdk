@@ -8,6 +8,7 @@ from requests.exceptions import HTTPError
 
 from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
+from tempfile import SpooledTemporaryFile
 
 
 class ConfigArchive:
@@ -21,14 +22,15 @@ class ConfigArchive:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def importConfigArchive(self, file: str = None, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
+    def importConfigArchive(self, file: SpooledTemporaryFile, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
         """ Import a configuration archive.
         """
 
         try:
             response = self.session.post(
+                files={'file': file},
                 url=self._build_uri("/configArchive/import"),
-                headers={"Content-Type": "application/json"}
+                headers={"Accept": "application/json"}
             )
         except HTTPError as http_err:
             print(traceback.format_exc())
@@ -41,6 +43,10 @@ class ConfigArchive:
         else:
             if response.status_code == 200:
                 return ModelApiResult.from_dict(response.json())
+            if response.status_code == 400:
+                raise ValidationError(response.json())
+            if response.status_code == 415:
+                raise ValidationError(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 

@@ -1,6 +1,7 @@
 from enum import Enum
 
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 
@@ -13,7 +14,7 @@ class IdpToSpAdapterMapping(Model):
     attributeSources: list
         A list of configured data stores to look up attributes from.
 
-    attributeContractFulfillment: object
+    attributeContractFulfillment: dict
         A list of mappings from attribute names to their fulfillment values.
 
     issuanceCriteria: IssuanceCriteria
@@ -41,7 +42,7 @@ class IdpToSpAdapterMapping(Model):
         The application icon URL.
 
     """
-    def __init__(self, attributeContractFulfillment: object, sourceId: str, targetId: str, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None, id: str = None, defaultTargetResource: str = None, licenseConnectionGroupAssignment: str = None, applicationName: str = None, applicationIconUrl: str = None) -> None:
+    def __init__(self, attributeContractFulfillment: dict, sourceId: str, targetId: str, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None, id: str = None, defaultTargetResource: str = None, licenseConnectionGroupAssignment: str = None, applicationName: str = None, applicationIconUrl: str = None) -> None:
         self.attributeSources = attributeSources
         self.attributeContractFulfillment = attributeContractFulfillment
         self.issuanceCriteria = issuanceCriteria
@@ -72,7 +73,7 @@ class IdpToSpAdapterMapping(Model):
                 if k == "attributeSources":
                     valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
                 if k == "issuanceCriteria":
                     valid_data[k] = IssuanceCriteria.from_dict(v)
                 if k == "sourceId":

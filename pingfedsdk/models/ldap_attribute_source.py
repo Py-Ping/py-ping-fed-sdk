@@ -3,6 +3,8 @@ from enum import Enum
 from pingfedsdk.enums import LdapAttributeSourceType
 from pingfedsdk.enums import SearchScope
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
+from pingfedsdk.models.binary_ldap_attribute_settings import BinaryLdapAttributeSettings
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -25,7 +27,7 @@ class LdapAttributeSource(Model):
         The description of this attribute source. The description needs to be unique amongst the attribute sources for the mapping.
         Note: Required for APC-to-SP Adapter Mappings
 
-    attributeContractFulfillment: object
+    attributeContractFulfillment: dict
         A list of mappings from attribute names to their fulfillment values. This field is only valid for the SP Connection's Browser SSO mappings
 
     baseDn: str
@@ -40,14 +42,14 @@ class LdapAttributeSource(Model):
     searchAttributes: list
         A list of LDAP attributes returned from search and available for mapping.
 
-    binaryAttributeSettings: object
+    binaryAttributeSettings: dict
         The advanced settings for binary LDAP attributes.
 
     memberOfNestedGroup: bool
         Set this to true to return transitive group memberships for the 'memberOf' attribute.  This only applies for Active Directory data sources.  All other data sources will be set to false.
 
     """
-    def __init__(self, searchScope: SearchScope, searchFilter: str, type: LdapAttributeSourceType = None, dataStoreRef: ResourceLink = None, id: str = None, baseDn: str = None, description: str = None, attributeContractFulfillment: object = None, searchAttributes: list = None, binaryAttributeSettings: object = None, memberOfNestedGroup: bool = None) -> None:
+    def __init__(self, searchScope: SearchScope, searchFilter: str, type: LdapAttributeSourceType = None, dataStoreRef: ResourceLink = None, id: str = None, baseDn: str = None, description: str = None, attributeContractFulfillment: dict = None, searchAttributes: list = None, binaryAttributeSettings: dict = None, memberOfNestedGroup: bool = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -85,7 +87,7 @@ class LdapAttributeSource(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
                 if k == "baseDn":
                     valid_data[k] = str(v)
                 if k == "searchScope":
@@ -95,7 +97,7 @@ class LdapAttributeSource(Model):
                 if k == "searchAttributes":
                     valid_data[k] = [str(x) for x in v]
                 if k == "binaryAttributeSettings":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): BinaryLdapAttributeSettings.from_dict(y) for x, y in v.items()}
                 if k == "memberOfNestedGroup":
                     valid_data[k] = bool(v)
 

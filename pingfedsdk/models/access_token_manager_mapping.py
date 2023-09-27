@@ -1,6 +1,7 @@
 from enum import Enum
 
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 from pingfedsdk.models.resource_link import ResourceLink
@@ -17,14 +18,14 @@ class AccessTokenManagerMapping(Model):
     attributeSources: list
         A list of configured data stores to look up attributes from.
 
-    attributeContractFulfillment: object
+    attributeContractFulfillment: dict
         A list of mappings from attribute names to their fulfillment values.
 
     issuanceCriteria: IssuanceCriteria
         The issuance criteria that this transaction must meet before the corresponding attribute contract is fulfilled.
 
     """
-    def __init__(self, attributeContractFulfillment: object, accessTokenManagerRef: ResourceLink = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
+    def __init__(self, attributeContractFulfillment: dict, accessTokenManagerRef: ResourceLink = None, attributeSources: list = None, issuanceCriteria: IssuanceCriteria = None) -> None:
         self.accessTokenManagerRef = accessTokenManagerRef
         self.attributeSources = attributeSources
         self.attributeContractFulfillment = attributeContractFulfillment
@@ -51,7 +52,7 @@ class AccessTokenManagerMapping(Model):
                 if k == "attributeSources":
                     valid_data[k] = [AttributeSource.from_dict(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
                 if k == "issuanceCriteria":
                     valid_data[k] = IssuanceCriteria.from_dict(v)
 

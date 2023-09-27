@@ -24,11 +24,11 @@ class LocalIdentityField(Model):
     profilePageField: bool
         Whether this is a profile page field or not.
 
-    attributes: object
+    attributes: dict
         Attributes of the local identity field.
 
     """
-    def __init__(self, type: LocalIdentityFieldType, id: str, label: str, registrationPageField: bool = None, profilePageField: bool = None, attributes: object = None) -> None:
+    def __init__(self, type: LocalIdentityFieldType, id: str, label: str, registrationPageField: bool = None, profilePageField: bool = None, attributes: dict = None) -> None:
         self.type = type
         self.id = id
         self.label = label
@@ -63,7 +63,7 @@ class LocalIdentityField(Model):
                 if k == "profilePageField":
                     valid_data[k] = bool(v)
                 if k == "attributes":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): bool(y) for x, y in v.items()}
 
         return cls(**valid_data)
 

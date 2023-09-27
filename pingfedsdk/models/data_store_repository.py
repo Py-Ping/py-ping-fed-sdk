@@ -2,6 +2,7 @@ from enum import Enum
 
 from pingfedsdk.enums import DataStoreRepositoryType
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -16,11 +17,11 @@ class DataStoreRepository(Model):
     dataStoreRef: ResourceLink
         Reference to the associated data store.
 
-    jitRepositoryAttributeMapping: object
+    jitRepositoryAttributeMapping: dict
         The user repository attribute mapping.
 
     """
-    def __init__(self, type: DataStoreRepositoryType, dataStoreRef: ResourceLink, jitRepositoryAttributeMapping: object) -> None:
+    def __init__(self, type: DataStoreRepositoryType, dataStoreRef: ResourceLink, jitRepositoryAttributeMapping: dict) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.jitRepositoryAttributeMapping = jitRepositoryAttributeMapping
@@ -46,7 +47,7 @@ class DataStoreRepository(Model):
                 if k == "dataStoreRef":
                     valid_data[k] = ResourceLink.from_dict(v)
                 if k == "jitRepositoryAttributeMapping":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
 
         return cls(**valid_data)
 

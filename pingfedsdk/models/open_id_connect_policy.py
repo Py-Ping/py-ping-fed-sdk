@@ -3,6 +3,7 @@ from enum import Enum
 from pingfedsdk.model import Model
 from pingfedsdk.models.attribute_mapping import AttributeMapping
 from pingfedsdk.models.open_id_connect_attribute_contract import OpenIdConnectAttributeContract
+from pingfedsdk.models.parameter_values import ParameterValues
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -44,11 +45,11 @@ class OpenIdConnectPolicy(Model):
     attributeMapping: AttributeMapping
         The attributes mapping from attribute sources to attribute targets.
 
-    scopeAttributeMappings: object
+    scopeAttributeMappings: dict
         The attribute scope mappings from scopes to attribute names.
 
     """
-    def __init__(self, id: str, name: str, accessTokenManagerRef: ResourceLink, attributeContract: OpenIdConnectAttributeContract, attributeMapping: AttributeMapping, idTokenLifetime: int = None, includeSriInIdToken: bool = None, includeUserInfoInIdToken: bool = None, includeSHashInIdToken: bool = None, returnIdTokenOnRefreshGrant: bool = None, reissueIdTokenInHybridFlow: bool = None, scopeAttributeMappings: object = None) -> None:
+    def __init__(self, id: str, name: str, accessTokenManagerRef: ResourceLink, attributeContract: OpenIdConnectAttributeContract, attributeMapping: AttributeMapping, idTokenLifetime: int = None, includeSriInIdToken: bool = None, includeUserInfoInIdToken: bool = None, includeSHashInIdToken: bool = None, returnIdTokenOnRefreshGrant: bool = None, reissueIdTokenInHybridFlow: bool = None, scopeAttributeMappings: dict = None) -> None:
         self.id = id
         self.name = name
         self.accessTokenManagerRef = accessTokenManagerRef
@@ -101,7 +102,7 @@ class OpenIdConnectPolicy(Model):
                 if k == "attributeMapping":
                     valid_data[k] = AttributeMapping.from_dict(v)
                 if k == "scopeAttributeMappings":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): ParameterValues.from_dict(y) for x, y in v.items()}
 
         return cls(**valid_data)
 

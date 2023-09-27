@@ -2,6 +2,7 @@ from enum import Enum
 
 from pingfedsdk.enums import LdapDataStoreConfigType
 from pingfedsdk.model import Model
+from pingfedsdk.models.data_store_attribute import DataStoreAttribute
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -16,7 +17,7 @@ class LdapDataStoreConfig(Model):
     dataStoreRef: ResourceLink
         Reference to the associated data store.
 
-    dataStoreMapping: object
+    dataStoreMapping: dict
         The data store mapping.
 
     baseDn: str
@@ -32,7 +33,7 @@ class LdapDataStoreConfig(Model):
         The Auxiliary Object Classes used by the new objects stored in the LDAP data store.
 
     """
-    def __init__(self, baseDn: str, createPattern: str, objectClass: str, dataStoreMapping: object, type: LdapDataStoreConfigType = None, dataStoreRef: ResourceLink = None, auxiliaryObjectClasses: list = None) -> None:
+    def __init__(self, baseDn: str, createPattern: str, objectClass: str, dataStoreMapping: dict, type: LdapDataStoreConfigType = None, dataStoreRef: ResourceLink = None, auxiliaryObjectClasses: list = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.dataStoreMapping = dataStoreMapping
@@ -62,7 +63,7 @@ class LdapDataStoreConfig(Model):
                 if k == "dataStoreRef":
                     valid_data[k] = ResourceLink.from_dict(v)
                 if k == "dataStoreMapping":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): DataStoreAttribute.from_dict(y) for x, y in v.items()}
                 if k == "baseDn":
                     valid_data[k] = str(v)
                 if k == "createPattern":

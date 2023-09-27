@@ -2,6 +2,7 @@ from enum import Enum
 
 from pingfedsdk.enums import JdbcAttributeSourceType
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.resource_link import ResourceLink
 
 
@@ -24,7 +25,7 @@ class JdbcAttributeSource(Model):
         The description of this attribute source. The description needs to be unique amongst the attribute sources for the mapping.
         Note: Required for APC-to-SP Adapter Mappings
 
-    attributeContractFulfillment: object
+    attributeContractFulfillment: dict
         A list of mappings from attribute names to their fulfillment values. This field is only valid for the SP Connection's Browser SSO mappings
 
     schema: str
@@ -40,7 +41,7 @@ class JdbcAttributeSource(Model):
         The JDBC WHERE clause used to query your data store to locate a user record.
 
     """
-    def __init__(self, table: str, filter: str, type: JdbcAttributeSourceType = None, dataStoreRef: ResourceLink = None, id: str = None, schema: str = None, description: str = None, attributeContractFulfillment: object = None, columnNames: list = None) -> None:
+    def __init__(self, table: str, filter: str, type: JdbcAttributeSourceType = None, dataStoreRef: ResourceLink = None, id: str = None, schema: str = None, description: str = None, attributeContractFulfillment: dict = None, columnNames: list = None) -> None:
         self.type = type
         self.dataStoreRef = dataStoreRef
         self.id = id
@@ -76,7 +77,7 @@ class JdbcAttributeSource(Model):
                 if k == "description":
                     valid_data[k] = str(v)
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
                 if k == "schema":
                     valid_data[k] = str(v)
                 if k == "table":

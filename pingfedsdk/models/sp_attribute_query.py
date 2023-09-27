@@ -1,6 +1,7 @@
 from enum import Enum
 
 from pingfedsdk.model import Model
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.attribute_source import AttributeSource
 from pingfedsdk.models.issuance_criteria import IssuanceCriteria
 from pingfedsdk.models.sp_attribute_query_policy import SpAttributeQueryPolicy
@@ -14,7 +15,7 @@ class SpAttributeQuery(Model):
     attributes: list
         The list of attributes that may be returned to the SP in the response to an attribute request.
 
-    attributeContractFulfillment: object
+    attributeContractFulfillment: dict
         A list of mappings from attribute names to their fulfillment values.
 
     issuanceCriteria: IssuanceCriteria
@@ -27,7 +28,7 @@ class SpAttributeQuery(Model):
         A list of configured data stores to look up attributes from.
 
     """
-    def __init__(self, attributes: list, attributeContractFulfillment: object, attributeSources: list, issuanceCriteria: IssuanceCriteria = None, policy: SpAttributeQueryPolicy = None) -> None:
+    def __init__(self, attributes: list, attributeContractFulfillment: dict, attributeSources: list, issuanceCriteria: IssuanceCriteria = None, policy: SpAttributeQueryPolicy = None) -> None:
         self.attributes = attributes
         self.attributeContractFulfillment = attributeContractFulfillment
         self.issuanceCriteria = issuanceCriteria
@@ -53,7 +54,7 @@ class SpAttributeQuery(Model):
                 if k == "attributes":
                     valid_data[k] = [str(x) for x in v]
                 if k == "attributeContractFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
                 if k == "issuanceCriteria":
                     valid_data[k] = IssuanceCriteria.from_dict(v)
                 if k == "policy":

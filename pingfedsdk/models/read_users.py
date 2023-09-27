@@ -2,6 +2,7 @@ from enum import Enum
 
 from pingfedsdk.model import Model
 from pingfedsdk.models.attribute import Attribute
+from pingfedsdk.models.attribute_fulfillment_value import AttributeFulfillmentValue
 from pingfedsdk.models.idp_inbound_provisioning_attribute_contract import IdpInboundProvisioningAttributeContract
 
 
@@ -16,11 +17,11 @@ class ReadUsers(Model):
     attributes: list
         A list of LDAP data store attributes to populate a response to a user-provisioning request.
 
-    attributeFulfillment: object
+    attributeFulfillment: dict
         A list of user repository mappings from attribute names to their fulfillment values.
 
     """
-    def __init__(self, attributeContract: IdpInboundProvisioningAttributeContract, attributes: list, attributeFulfillment: object) -> None:
+    def __init__(self, attributeContract: IdpInboundProvisioningAttributeContract, attributes: list, attributeFulfillment: dict) -> None:
         self.attributeContract = attributeContract
         self.attributes = attributes
         self.attributeFulfillment = attributeFulfillment
@@ -46,7 +47,7 @@ class ReadUsers(Model):
                 if k == "attributes":
                     valid_data[k] = [Attribute.from_dict(x) for x in v]
                 if k == "attributeFulfillment":
-                    valid_data[k] = object.from_dict(v)
+                    valid_data[k] = {str(x): AttributeFulfillmentValue.from_dict(y) for x, y in v.items()}
 
         return cls(**valid_data)
 
