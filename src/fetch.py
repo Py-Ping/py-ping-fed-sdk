@@ -1,15 +1,24 @@
+import importlib.util
 import json
 import os
+from pathlib import Path
 import requests
 import logging
 import glob
 import urllib3
+import pkgutil
+from urllib.parse import urljoin
 
 from copy import deepcopy
 from helpers import safe_name, get_auth_session, strip_ref
 from property import Property
 from api import ApiEndpoint
 from overrides import Override
+import patches
+
+
+class PatchesNotFound(Exception):
+    """No patches found for a particular PingFed version"""
 
 
 class Fetch():
@@ -36,6 +45,7 @@ class Fetch():
         self.models = {}
         self.apis = {}
         self.enums = {}
+        self.server_version = None
 
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -88,6 +98,97 @@ class Fetch():
                 return json.loads(file.read())
         except IOError:
             return False
+
+    def get_server_version(self):
+        """Get version of server which is being processed
+
+        Note that the path to the version is the same across Ping Federate
+        versions."""
+        api_path = f'{self.ping_data["basePath"]}/version'
+        response = self.session.get(urljoin(self.swagger_url, api_path))
+        response.raise_for_status()
+        response = response.json()
+        return response['version']
+
+    def apply_20_patches(self, patch_root: Path):
+        self.logger.debug('Searching for patches in:%s', patch_root)
+        if not patch_root.exists():
+            raise PatchesNotFound(f'{patch_root} does not exist')
+        modules = pkgutil.iter_modules([str(patch_root)])
+        patch_modules = sorted([p for p in modules if not p.ispkg],
+                               key=lambda mi: mi.name)
+        self.logger.debug('%s patch_modules:%s', patch_root, patch_modules)
+        for patch_mod in patch_modules:
+            self.logger.debug('Applying patch:%s in:%s',
+                              patch_mod.name, patch_mod.module_finder.path)
+            mod_spec = patch_mod.module_finder.find_spec(patch_mod.name)
+            module = importlib.util.module_from_spec(mod_spec)
+            mod_spec.loader.exec_module(module)
+            patch_callable = vars(module).get('patch', None)
+            if patch_callable:
+                patch_callable(self.swagger_version, self.ping_data)
+            else:
+                self.logger.warning('No callable found for:%s, skipping',
+                                    patch_mod.name)
+
+    def patch_20_source(self):
+        """
+        Patch the parsed swagger 2.0 json by running (python) hooks.
+
+        Note that swagger 2.0 presents its info in a totally different
+        structure than swagger 1.0. which makes the v1.0 patching mechanism
+        unusable for v2.0.
+
+        Patch modules must define a "patch" callable which must conform to
+        the following signature:
+
+          def patch(swagger_version: str, input_swagger: dict) -> None:
+
+        i.e. the callable takes a swagger version and an input dictionary which
+        is the Python representation of the swagger definition (i.e. the
+        original swagger has already been parsed into Python) in the patch
+        chain. The callable should examine the input dictionary and modify it
+        as necessary. The modified result of the swagger definition will be
+        then passed as input to the next patch and so on until all patches have
+        been applied.
+
+        Patches reside in the "patches" submodule of this module and are
+        applied in the following order:
+            - the "patches" directory is scanned for all patch modules (i.e.
+              *.py). These should be version agnostic patches.
+            - The patch modules are imported in alphabetical order and their
+              "patch" callable called with the output of a "patch" call being
+              fed to the next "patch" call as its input.
+
+        Next the patches in the subdirectory corresponding to the PingFederate
+        server's major version are loaded and processed in the same manner as
+        above. To make it easy to import the version specific patches the
+        subdirectories take the format "v_$majorversion", e.g.
+        "v_11" holds all patches across PingFederate 11.y.z.
+
+        Following that the subdirectories in the major version specific
+        directory (which would represent the minor version) are processed in
+        the same manner. The subdirectories must be named with the full version
+        upto the minor version (e.g. "v_11_3" represents patches for
+        PingFederate 11.3).
+
+        Patch levels can be arbitrarily deep - the patch engine traverses the
+        directory tree for each patch component and (if it exists) it applies
+        all the patches found in that directory.
+        """
+        curr_path = Path(patches.__path__[0])
+        patch_paths = [curr_path]
+        curr_prefix = 'v'
+        for vpart in self.server_version:
+            curr_prefix = f'{curr_prefix}_{vpart}'
+            curr_path = curr_path / curr_prefix
+            patch_paths.append(curr_path)
+
+        for patch_path in patch_paths:
+            try:
+                self.apply_20_patches(patch_path)
+            except PatchesNotFound:
+                break
 
     def apply_override_patch(self, api_name, api_version, api_data):
         override_path = f"src/overrides/{api_name}"
@@ -163,9 +264,9 @@ class Fetch():
         Versions of Ping Federate greater than v11 use Swagger 2.0 and a cleaner
         implementation exists.
         """
-        for api in self.ping_data_v11:
+        for api, api_data in self.ping_data_v11.items():
             safe_api_name = safe_name(api, rem_leading_char=True)
-            self.apis[safe_api_name] = ApiEndpoint(api, self.ping_data_v11[api], v11=True)
+            self.apis[safe_api_name] = ApiEndpoint(api, api_data, v11=True)
         self.models = self.ping_data.get("definitions", {})
 
         for model_name, model_data in self.models.items():
@@ -270,6 +371,8 @@ class Fetch():
             self.logger.info("Getting API schemas for swagger version 1.2")
             self.get_api_schemas()
         elif self.swagger_version == "2.0":
+            self.server_version = self.get_server_version().split('.')
+            self.patch_20_source()
             self.logger.info("Getting API schemas for swagger version 2.0")
             self.update_v11_schema()
             self.get_v11_plus_schemas()
@@ -284,4 +387,4 @@ class Fetch():
 
 
 if __name__ == "__main__":
-    Fetch("https://localhost:9999/pf-admin-api/v1/api-docs").fetch()
+    Fetch("https://localhost:9999/pf-admin-api/v1/swagger.json", swagger_version='2.0').fetch()
