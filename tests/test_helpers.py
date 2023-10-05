@@ -62,6 +62,10 @@ class TestHelpers(TestCase):
             "int"
         )
         self.assertEqual(
+            get_py_type("int"),
+            "int"
+        )
+        self.assertEqual(
             get_py_type("number"),
             "float"
         )

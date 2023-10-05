@@ -70,22 +70,23 @@ def get_py_type(json_type):
     Given a JSON type return a corresponding Python type.
     If no type can be determined, return an empty string.
     """
-
-    if json_type in ("enum", "string", "File", "file"):
-        return "str"
-    elif json_type == "boolean":
-        return "bool"
-    elif json_type == "array":
-        return "list"
-    elif json_type == "integer":
-        return "int"
-    elif json_type == "int":
-        return "int"
-    elif json_type == "number":
-        return "float"
-    elif json_type == "void":
-        return "None"
-    return ""
+    match json_type:
+        case 'enum' | 'string' | 'File' | 'file':
+            return 'str'
+        case 'boolean':
+            return 'bool'
+        case 'array':
+            return 'list'
+        case 'integer':
+            return 'int'
+        case 'int':
+            return 'int'
+        case 'number':
+            return 'float'
+        case 'void' | 'None':
+            return 'None'
+        case _:
+            return ''
 
 
 def get_auth_session():

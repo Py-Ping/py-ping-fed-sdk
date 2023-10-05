@@ -52,6 +52,8 @@ class ApiEndpoint:
                     op_code["type"] = response_data["schema"]["$ref"].split("/")[-1]
                 elif "schema" in response_data and "type" in response_data["schema"]:
                     op_code["type"] = response_data["schema"]["type"]
+                elif "schema" not in response_data and response_code == "200":
+                    op_code["type"] = str(op_type)
                 else:
                     op_code["type"] = "void"
 
