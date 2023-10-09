@@ -69,4 +69,4 @@ class ConfigArchive:
             raise err
         else:
             if response.status_code == 200:
-                return Modelvoid.from_dict(response.json())
+                return response

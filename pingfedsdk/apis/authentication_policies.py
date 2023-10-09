@@ -393,7 +393,7 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
-                return Modelvoid.from_dict(response.json())
+                return response.json()
             if response.status_code == 422:
                 raise ValidationError(response.json())
             if response.status_code == 404:

@@ -69,7 +69,7 @@ class Bulk:
             raise err
         else:
             if response.status_code == 200:
-                return Modelvoid.from_dict(response.json())
+                return response.json()
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
