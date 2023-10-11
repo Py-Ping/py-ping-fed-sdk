@@ -45,6 +45,11 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenToTokenMappings.from_dict(response_dict)
+            else:
                 return ModelTokenToTokenMappings.from_dict(response.json())
 
     def createTokenToTokenMapping(self, body: ModelTokenToTokenMapping, XBypassExternalValidation: bool = None):
@@ -67,6 +72,11 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Token Processor to Token Generator mapping created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenToTokenMapping.from_dict(response_dict)
+            else:
                 return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -94,6 +104,11 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenToTokenMapping.from_dict(response_dict)
+            else:
                 return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -120,6 +135,11 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Token Processor to Token Generator mapping updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenToTokenMapping.from_dict(response_dict)
+            else:
                 return ModelTokenToTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -151,9 +171,8 @@ class TokenProcessorToTokenGeneratorMappings:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Token Processor to Token Generator mapping deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Token Processor to Token Generator mapping deleted.")
+                return ModelApiResult(message="Token Processor to Token Generator mapping deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

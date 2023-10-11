@@ -49,6 +49,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPoliciesSettings.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPoliciesSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelAuthenticationPoliciesSettings):
@@ -71,6 +76,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPoliciesSettings.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPoliciesSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -96,6 +106,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicyTree.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicyTree.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -122,6 +137,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Authentication policy updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicyTree.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicyTree.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -153,9 +173,8 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Authentication policy deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Authentication policy deleted.")
+                return ModelApiResult(message="Authentication policy deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -180,6 +199,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicyFragment.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicyFragment.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -206,6 +230,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Authentication policy fragment updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicyFragment.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicyFragment.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -237,9 +266,8 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Authentication policy fragment deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Authentication policy fragment deleted.")
+                return ModelApiResult(message="Authentication policy fragment deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -267,6 +295,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Authentication policy created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicyTree.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicyTree.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -294,6 +327,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicyFragments.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicyFragments.from_dict(response.json())
 
     def createFragment(self, body: ModelAuthenticationPolicyFragment, XBypassExternalValidation: bool = None):
@@ -316,6 +354,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Authentication policy fragment created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicyFragment.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicyFragment.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -343,6 +386,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicy.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicy.from_dict(response.json())
 
     def updateDefaultAuthenticationPolicy(self, body: ModelAuthenticationPolicy, XBypassExternalValidation: bool = None):
@@ -365,6 +413,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Default authentication policy updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationPolicy.from_dict(response_dict)
+            else:
                 return ModelAuthenticationPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -393,6 +446,11 @@ class AuthenticationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelNone.from_dict(response_dict)
+            else:
                 return response.json()
             if response.status_code == 422:
                 raise ValidationError(response.json())

@@ -46,6 +46,11 @@ class OauthCibaServerPolicy:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelCibaServerPolicySettings.from_dict(response_dict)
+            else:
                 return ModelCibaServerPolicySettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelCibaServerPolicySettings, XBypassExternalValidation: bool = None):
@@ -68,6 +73,11 @@ class OauthCibaServerPolicy:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelCibaServerPolicySettings.from_dict(response_dict)
+            else:
                 return ModelCibaServerPolicySettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -95,6 +105,11 @@ class OauthCibaServerPolicy:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelRequestPolicy.from_dict(response_dict)
+            else:
                 return ModelRequestPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -121,6 +136,11 @@ class OauthCibaServerPolicy:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Request Handling Policy updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelRequestPolicy.from_dict(response_dict)
+            else:
                 return ModelRequestPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -152,9 +172,8 @@ class OauthCibaServerPolicy:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Request Handling Policy deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Request Handling Policy deleted.")
+                return ModelApiResult(message="Request Handling Policy deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -181,6 +200,11 @@ class OauthCibaServerPolicy:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelRequestPolicies.from_dict(response_dict)
+            else:
                 return ModelRequestPolicies.from_dict(response.json())
 
     def createPolicy(self, body: ModelRequestPolicy, XBypassExternalValidation: bool = None):
@@ -203,6 +227,11 @@ class OauthCibaServerPolicy:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Request Handling Policy created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelRequestPolicy.from_dict(response_dict)
+            else:
                 return ModelRequestPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

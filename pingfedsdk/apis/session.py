@@ -48,6 +48,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelSessionSettings.from_dict(response_dict)
+            else:
                 return ModelSessionSettings.from_dict(response.json())
 
     def updateSessionSettings(self, body: ModelSessionSettings):
@@ -70,6 +75,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("General session management settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelSessionSettings.from_dict(response_dict)
+            else:
                 return ModelSessionSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -97,6 +107,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelGlobalAuthenticationSessionPolicy.from_dict(response_dict)
+            else:
                 return ModelGlobalAuthenticationSessionPolicy.from_dict(response.json())
 
     def updateGlobalPolicy(self, body: ModelGlobalAuthenticationSessionPolicy):
@@ -119,6 +134,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Global authentication session policy updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelGlobalAuthenticationSessionPolicy.from_dict(response_dict)
+            else:
                 return ModelGlobalAuthenticationSessionPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -146,6 +166,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelApplicationSessionPolicy.from_dict(response_dict)
+            else:
                 return ModelApplicationSessionPolicy.from_dict(response.json())
 
     def updateApplicationPolicy(self, body: ModelApplicationSessionPolicy):
@@ -168,6 +193,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Application session policy updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelApplicationSessionPolicy.from_dict(response_dict)
+            else:
                 return ModelApplicationSessionPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -195,6 +225,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSessionPolicies.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSessionPolicies.from_dict(response.json())
 
     def createSourcePolicy(self, body: ModelAuthenticationSessionPolicy):
@@ -217,6 +252,11 @@ class Session:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Authentication session policy created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSessionPolicy.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSessionPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -244,6 +284,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSessionPolicy.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSessionPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -270,6 +315,11 @@ class Session:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Authentication session policy updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSessionPolicy.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSessionPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -301,9 +351,8 @@ class Session:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Authentication session policy deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Authentication session policy deleted.")
+                return ModelApiResult(message="Authentication session policy deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

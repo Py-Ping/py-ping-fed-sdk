@@ -51,6 +51,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAction.from_dict(response_dict)
+            else:
                 return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -77,6 +82,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Action invoked on adapter.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelActionResult.from_dict(response_dict)
+            else:
                 return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -102,6 +112,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpAdapterDescriptors.from_dict(response_dict)
+            else:
                 return ModelIdpAdapterDescriptors.from_dict(response.json())
 
     def getIdpAdapterDescriptorsById(self, id: str):
@@ -123,6 +138,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpAdapterDescriptor.from_dict(response_dict)
+            else:
                 return ModelIdpAdapterDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -148,6 +168,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpAdapters.from_dict(response_dict)
+            else:
                 return ModelIdpAdapters.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
@@ -172,6 +197,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Adapter created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpAdapter.from_dict(response_dict)
+            else:
                 return ModelIdpAdapter.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -199,6 +229,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpAdapter.from_dict(response_dict)
+            else:
                 return ModelIdpAdapter.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -225,6 +260,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Adapter updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpAdapter.from_dict(response_dict)
+            else:
                 return ModelIdpAdapter.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -256,9 +296,8 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Adapter deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Adapter deleted.")
+                return ModelApiResult(message="Adapter deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -285,6 +324,11 @@ class IdpAdapters:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelActions.from_dict(response_dict)
+            else:
                 return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."

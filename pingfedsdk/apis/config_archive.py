@@ -8,7 +8,6 @@ from requests.exceptions import HTTPError
 
 from pingfedsdk.exceptions import ValidationError
 from pingfedsdk.models.api_result import ApiResult as ModelApiResult
-from tempfile import SpooledTemporaryFile
 
 
 class ConfigArchive:
@@ -22,15 +21,14 @@ class ConfigArchive:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def importConfigArchive(self, file: SpooledTemporaryFile, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
+    def importConfigArchive(self, file: str = None, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
         """ Import a configuration archive.
         """
 
         try:
             response = self.session.post(
-                files={'file': file},
                 url=self._build_uri("/configArchive/import"),
-                headers={"Accept": "application/json"}
+                headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
             print(traceback.format_exc())
@@ -42,11 +40,12 @@ class ConfigArchive:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Configuration Archive imported.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
                 return ModelApiResult.from_dict(response.json())
-            if response.status_code == 400:
-                raise ValidationError(response.json())
-            if response.status_code == 415:
-                raise ValidationError(response.json())
+            else:
+                return ModelApiResult.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -69,4 +68,9 @@ class ConfigArchive:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelNone.from_dict(response_dict)
+            else:
                 return response

@@ -47,6 +47,11 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSelector.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -73,6 +78,11 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Authentication selector updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSelector.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -104,9 +114,8 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Authentication selector deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Authentication selector deleted.")
+                return ModelApiResult(message="Authentication selector deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -133,6 +142,11 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSelectorDescriptors.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSelectorDescriptors.from_dict(response.json())
 
     def getAuthenticationSelectorDescriptorsById(self, id: str):
@@ -154,6 +168,11 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSelectorDescriptor.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSelectorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -179,6 +198,11 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSelectors.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSelectors.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
@@ -203,6 +227,11 @@ class AuthenticationSelectors:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Authentication selector created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthenticationSelector.from_dict(response_dict)
+            else:
                 return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

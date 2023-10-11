@@ -46,6 +46,11 @@ class CertificatesCa:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelCertViews.from_dict(response_dict)
+            else:
                 return ModelCertViews.from_dict(response.json())
 
     def getTrustedCert(self, id: str):
@@ -67,6 +72,11 @@ class CertificatesCa:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelCertView.from_dict(response_dict)
+            else:
                 return ModelCertView.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -92,9 +102,8 @@ class CertificatesCa:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Certificate Authority deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Certificate Authority deleted.")
+                return ModelApiResult(message="Certificate Authority deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -119,6 +128,11 @@ class CertificatesCa:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return Modelstr.from_dict(response_dict)
+            else:
                 return str(response)
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -145,6 +159,11 @@ class CertificatesCa:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Certificate Authority imported.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelCertView.from_dict(response_dict)
+            else:
                 return ModelCertView.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

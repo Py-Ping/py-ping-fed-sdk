@@ -41,6 +41,11 @@ class Cluster:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelClusterStatus.from_dict(response_dict)
+            else:
                 return ModelClusterStatus.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) This PingFederate instance is not deployed in clustered mode."
@@ -66,6 +71,11 @@ class Cluster:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Replication completed successfully.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelApiResult.from_dict(response.json())
+            else:
                 return ModelApiResult.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) This PingFederate instance is not deployed in clustered mode."

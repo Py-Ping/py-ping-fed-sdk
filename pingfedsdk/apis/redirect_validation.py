@@ -42,6 +42,11 @@ class RedirectValidation:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelRedirectValidationSettings.from_dict(response_dict)
+            else:
                 return ModelRedirectValidationSettings.from_dict(response.json())
 
     def updateRedirectValidationSettings(self, body: ModelRedirectValidationSettings):
@@ -64,6 +69,11 @@ class RedirectValidation:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Redirect validation settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelRedirectValidationSettings.from_dict(response_dict)
+            else:
                 return ModelRedirectValidationSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

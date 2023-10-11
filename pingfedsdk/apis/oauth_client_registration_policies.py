@@ -48,6 +48,11 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelClientRegistrationPolicyDescriptors.from_dict(response_dict)
+            else:
                 return ModelClientRegistrationPolicyDescriptors.from_dict(response.json())
 
     def getDynamicClientRegistrationDescriptor(self, id: str):
@@ -69,6 +74,11 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelClientRegistrationPolicyDescriptor.from_dict(response_dict)
+            else:
                 return ModelClientRegistrationPolicyDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -94,6 +104,11 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelClientRegistrationPolicies.from_dict(response_dict)
+            else:
                 return ModelClientRegistrationPolicies.from_dict(response.json())
 
     def createDynamicClientRegistrationPolicy(self, body: ModelClientRegistrationPolicy):
@@ -116,6 +131,11 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Client Registration Policy plugin created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelClientRegistrationPolicy.from_dict(response_dict)
+            else:
                 return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -143,6 +163,11 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelClientRegistrationPolicy.from_dict(response_dict)
+            else:
                 return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -169,6 +194,11 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Client Registration Policy plugin updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelClientRegistrationPolicy.from_dict(response_dict)
+            else:
                 return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -200,9 +230,8 @@ class OauthClientRegistrationPolicies:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Client Registration Policy plugin deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Client Registration Policy plugin deleted.")
+                return ModelApiResult(message="Client Registration Policy plugin deleted.", validationErrors=[])
             if response.status_code == 403:
                 message = "(403) The operation is not permitted, based on the current configuration of the server."
                 self.logger.info(message)

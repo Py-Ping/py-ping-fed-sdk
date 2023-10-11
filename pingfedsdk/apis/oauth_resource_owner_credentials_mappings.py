@@ -45,6 +45,11 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelResourceOwnerCredentialsMappings.from_dict(response_dict)
+            else:
                 return ModelResourceOwnerCredentialsMappings.from_dict(response.json())
 
     def createResourceOwnerCredentialsMapping(self, body: ModelResourceOwnerCredentialsMapping, XBypassExternalValidation: bool = None):
@@ -67,6 +72,11 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Resource owner credentials mapping created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelResourceOwnerCredentialsMapping.from_dict(response_dict)
+            else:
                 return ModelResourceOwnerCredentialsMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -94,6 +104,11 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelResourceOwnerCredentialsMapping.from_dict(response_dict)
+            else:
                 return ModelResourceOwnerCredentialsMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -120,6 +135,11 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Resource owner credentials mapping updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelResourceOwnerCredentialsMapping.from_dict(response_dict)
+            else:
                 return ModelResourceOwnerCredentialsMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -151,9 +171,8 @@ class OauthResourceOwnerCredentialsMappings:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Resource owner credentials mapping deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Resource owner credentials mapping deleted.")
+                return ModelApiResult(message="Resource owner credentials mapping deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

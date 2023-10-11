@@ -47,6 +47,11 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelPasswordCredentialValidator.from_dict(response_dict)
+            else:
                 return ModelPasswordCredentialValidator.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -73,6 +78,11 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Password credential validator updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelPasswordCredentialValidator.from_dict(response_dict)
+            else:
                 return ModelPasswordCredentialValidator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -104,9 +114,8 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Password credential validator deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Password credential validator deleted.")
+                return ModelApiResult(message="Password credential validator deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -133,6 +142,11 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelPasswordCredentialValidatorDescriptors.from_dict(response_dict)
+            else:
                 return ModelPasswordCredentialValidatorDescriptors.from_dict(response.json())
 
     def getPasswordCredentialValidatorDescriptor(self, id: str):
@@ -154,6 +168,11 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelPasswordCredentialValidatorDescriptor.from_dict(response_dict)
+            else:
                 return ModelPasswordCredentialValidatorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -179,6 +198,11 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelPasswordCredentialValidators.from_dict(response_dict)
+            else:
                 return ModelPasswordCredentialValidators.from_dict(response.json())
 
     def createPasswordCredentialValidator(self, body: ModelPasswordCredentialValidator):
@@ -201,6 +225,11 @@ class PasswordCredentialValidators:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Password credential validator created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelPasswordCredentialValidator.from_dict(response_dict)
+            else:
                 return ModelPasswordCredentialValidator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

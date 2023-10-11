@@ -395,11 +395,6 @@ class ConfigStoreSettingType(AutoName):
     MAP = auto()
 
 
-class ConnectionType(AutoName):
-    DIRECT = auto()
-    LDAP_GATEWAY = auto()
-
-
 class AccountStatusAlgorithm(AutoName):
     ACCOUNT_STATUS_ALGORITHM_AD = auto()
     ACCOUNT_STATUS_ALGORITHM_FLAG = auto()
@@ -414,6 +409,11 @@ class ChangedUsersAlgorithm(AutoName):
     ACTIVE_DIRECTORY_USN = auto()
     TIMESTAMP = auto()
     TIMESTAMP_NO_NEGATION = auto()
+
+
+class ConnectionType(AutoName):
+    DIRECT = auto()
+    LDAP_GATEWAY = auto()
 
 
 class LoggingMode(AutoName):
@@ -989,12 +989,6 @@ class ClientCertIssuerType(AutoName):
     CERTIFICATE = auto()
 
 
-class PingOneCredentialStatus(AutoName):
-    VALID = auto()
-    INVALID = auto()
-    UNKNOWN = auto()
-
-
 class ResourceCategory(AutoName):
     IDP_CONNECTION = auto()
     SP_CONNECTION = auto()
@@ -1010,6 +1004,12 @@ class ResourceCategory(AutoName):
     DATA_STORE = auto()
     DYNAMIC_CLIENT_REGISTRATION_PLUGIN = auto()
     IDENTITY_STORE_PROVISIONER = auto()
+
+
+class PingOneCredentialStatus(AutoName):
+    VALID = auto()
+    INVALID = auto()
+    UNKNOWN = auto()
 
 
 class IdpConnectionTransactionLoggingOverride(AutoName):

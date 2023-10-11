@@ -43,6 +43,11 @@ class ProtocolMetadata:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelMetadataLifetimeSettings.from_dict(response_dict)
+            else:
                 return ModelMetadataLifetimeSettings.from_dict(response.json())
 
     def updateLifetimeSettings(self, body: ModelMetadataLifetimeSettings):
@@ -65,6 +70,11 @@ class ProtocolMetadata:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Metadata lifetime settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelMetadataLifetimeSettings.from_dict(response_dict)
+            else:
                 return ModelMetadataLifetimeSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -92,6 +102,11 @@ class ProtocolMetadata:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelMetadataSigningSettings.from_dict(response_dict)
+            else:
                 return ModelMetadataSigningSettings.from_dict(response.json())
 
     def updateSigningSettings(self, body: ModelMetadataSigningSettings = None):
@@ -114,6 +129,11 @@ class ProtocolMetadata:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Metadata signing settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelMetadataSigningSettings.from_dict(response_dict)
+            else:
                 return ModelMetadataSigningSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

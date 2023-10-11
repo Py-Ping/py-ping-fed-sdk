@@ -25,34 +25,6 @@ class ConnectionMetadata:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def export(self, body: ModelExportMetadataRequest):
-        """ Export a connection's SAML metadata that can be given to a partner.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/connectionMetadata/export"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return str(response)
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
     def convert(self, body: ModelConvertMetadataRequest):
         """ Convert a partner's SAML metadata into a JSON representation.
         """
@@ -73,7 +45,45 @@ class ConnectionMetadata:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Partner's SAML metadata converted.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelConvertMetadataResponse.from_dict(response_dict)
+            else:
                 return ModelConvertMetadataResponse.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def export(self, body: ModelExportMetadataRequest):
+        """ Export a connection's SAML metadata that can be given to a partner.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/connectionMetadata/export"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Connection SAML metadata exported.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return Modelstr.from_dict(response_dict)
+            else:
+                return str(response)
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

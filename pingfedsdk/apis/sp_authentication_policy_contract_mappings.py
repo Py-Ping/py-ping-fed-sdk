@@ -45,6 +45,11 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelApcToSpAdapterMappings.from_dict(response_dict)
+            else:
                 return ModelApcToSpAdapterMappings.from_dict(response.json())
 
     def createApcToSpAdapterMapping(self, body: ModelApcToSpAdapterMapping, XBypassExternalValidation: bool = None):
@@ -67,6 +72,11 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Authentication policy contract-to-SP adapter mapping created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelApcToSpAdapterMapping.from_dict(response_dict)
+            else:
                 return ModelApcToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -94,6 +104,11 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelApcToSpAdapterMapping.from_dict(response_dict)
+            else:
                 return ModelApcToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -120,6 +135,11 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Authentication policy contract-to-SP adapter mapping updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelApcToSpAdapterMapping.from_dict(response_dict)
+            else:
                 return ModelApcToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -151,9 +171,8 @@ class SpAuthenticationPolicyContractMappings:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Authentication policy contract-to-SP adapter mapping deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Authentication policy contract-to-SP adapter mapping deleted.")
+                return ModelApiResult(message="Authentication policy contract-to-SP adapter mapping deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

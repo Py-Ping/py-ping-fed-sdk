@@ -46,6 +46,11 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenExchangeGeneratorSettings.from_dict(response_dict)
+            else:
                 return ModelTokenExchangeGeneratorSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelTokenExchangeGeneratorSettings, bypassExternalValidation: bool = None):
@@ -68,6 +73,11 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenExchangeGeneratorSettings.from_dict(response_dict)
+            else:
                 return ModelTokenExchangeGeneratorSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -95,6 +105,11 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenExchangeGeneratorGroups.from_dict(response_dict)
+            else:
                 return ModelTokenExchangeGeneratorGroups.from_dict(response.json())
 
     def createGroup(self, body: ModelTokenExchangeGeneratorGroup, bypassExternalValidation: bool = None):
@@ -117,6 +132,11 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Token Exchange Processor Policy created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
+            else:
                 return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -144,6 +164,11 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
+            else:
                 return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -170,6 +195,11 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Token Exchange Processor Policy updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
+            else:
                 return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -201,9 +231,8 @@ class OauthTokenExchangeGenerator:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Token Exchange Processor Policy deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Token Exchange Processor Policy deleted.")
+                return ModelApiResult(message="Token Exchange Processor Policy deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

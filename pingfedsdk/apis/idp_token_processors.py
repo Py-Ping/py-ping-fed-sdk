@@ -47,6 +47,11 @@ class IdpTokenProcessors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenProcessor.from_dict(response_dict)
+            else:
                 return ModelTokenProcessor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -73,6 +78,11 @@ class IdpTokenProcessors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Token Processor updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenProcessor.from_dict(response_dict)
+            else:
                 return ModelTokenProcessor.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -104,9 +114,8 @@ class IdpTokenProcessors:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Token processor deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Token processor deleted.")
+                return ModelApiResult(message="Token processor deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -133,6 +142,11 @@ class IdpTokenProcessors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenProcessorDescriptors.from_dict(response_dict)
+            else:
                 return ModelTokenProcessorDescriptors.from_dict(response.json())
 
     def getTokenProcessorDescriptorsById(self, id: str):
@@ -154,6 +168,11 @@ class IdpTokenProcessors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenProcessorDescriptor.from_dict(response_dict)
+            else:
                 return ModelTokenProcessorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -179,6 +198,11 @@ class IdpTokenProcessors:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenProcessors.from_dict(response_dict)
+            else:
                 return ModelTokenProcessors.from_dict(response.json())
 
     def createTokenProcessor(self, body: ModelTokenProcessor):
@@ -201,6 +225,11 @@ class IdpTokenProcessors:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Token processor created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelTokenProcessor.from_dict(response_dict)
+            else:
                 return ModelTokenProcessor.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

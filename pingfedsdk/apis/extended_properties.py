@@ -41,6 +41,11 @@ class ExtendedProperties:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelExtendedProperties.from_dict(response_dict)
+            else:
                 return ModelExtendedProperties.from_dict(response.json())
 
     def updateExtendedProperties(self, body: ModelExtendedProperties):
@@ -63,6 +68,11 @@ class ExtendedProperties:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Extended properties updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelExtendedProperties.from_dict(response_dict)
+            else:
                 return ModelExtendedProperties.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())

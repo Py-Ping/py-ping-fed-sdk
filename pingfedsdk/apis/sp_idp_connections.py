@@ -49,6 +49,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpConnection.from_dict(response_dict)
+            else:
                 return ModelIdpConnection.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -75,6 +80,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Connection updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpConnection.from_dict(response_dict)
+            else:
                 return ModelIdpConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -106,9 +116,8 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Connection deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Connection deleted.")
+                return ModelApiResult(message="Connection deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -135,6 +144,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpConnections.from_dict(response_dict)
+            else:
                 return ModelIdpConnections.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
@@ -159,6 +173,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Connection created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIdpConnection.from_dict(response_dict)
+            else:
                 return ModelIdpConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -186,6 +205,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelSigningSettings.from_dict(response_dict)
+            else:
                 return ModelSigningSettings.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -212,6 +236,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Connection updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelSigningSettings.from_dict(response_dict)
+            else:
                 return ModelSigningSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -243,6 +272,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelConnectionCerts.from_dict(response_dict)
+            else:
                 return ModelConnectionCerts.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -269,6 +303,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Connection Certificate added.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelConnectionCert.from_dict(response_dict)
+            else:
                 return ModelConnectionCert.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -301,6 +340,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Connection updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelConnectionCerts.from_dict(response_dict)
+            else:
                 return ModelConnectionCerts.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -332,6 +376,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelDecryptionKeys.from_dict(response_dict)
+            else:
                 return ModelDecryptionKeys.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -358,6 +407,11 @@ class SpIdpConnections:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Connection updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelDecryptionKeys.from_dict(response_dict)
+            else:
                 return ModelDecryptionKeys.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

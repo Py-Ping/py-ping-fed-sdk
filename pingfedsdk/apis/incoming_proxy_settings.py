@@ -42,6 +42,11 @@ class IncomingProxySettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIncomingProxySettings.from_dict(response_dict)
+            else:
                 return ModelIncomingProxySettings.from_dict(response.json())
 
     def updateIncomingProxySettings(self, body: ModelIncomingProxySettings):
@@ -64,6 +69,11 @@ class IncomingProxySettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Incoming proxy settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelIncomingProxySettings.from_dict(response_dict)
+            else:
                 return ModelIncomingProxySettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."

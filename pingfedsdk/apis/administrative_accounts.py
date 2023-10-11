@@ -46,7 +46,45 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Administrator password changed.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelUserCredentials.from_dict(response_dict)
+            else:
                 return ModelUserCredentials.from_dict(response.json())
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def resetPassword(self, body: ModelUserCredentials, username: str):
+        """ Reset the Password of an existing PingFederate native Administrative Account.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri(f"/administrativeAccounts/{username}/resetPassword"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Administrator password reset.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelUserCredentials.from_dict(response_dict)
+            else:
+                return ModelUserCredentials.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -69,6 +107,11 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAdministrativeAccounts.from_dict(response_dict)
+            else:
                 return ModelAdministrativeAccounts.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
@@ -93,6 +136,11 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("New Administrative Account created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAdministrativeAccount.from_dict(response_dict)
+            else:
                 return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -120,6 +168,11 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAdministrativeAccount.from_dict(response_dict)
+            else:
                 return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -146,6 +199,11 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Administrator Account updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAdministrativeAccount.from_dict(response_dict)
+            else:
                 return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -173,37 +231,8 @@ class AdministrativeAccounts:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Administrator Account Deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
-    def resetPassword(self, body: ModelUserCredentials, username: str):
-        """ Reset the Password of an existing PingFederate native Administrative Account.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri(f"/administrativeAccounts/{username}/resetPassword"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                return ModelUserCredentials.from_dict(response.json())
+                self.logger.info("Administrator Account Deleted.")
+                return ModelApiResult(message="Administrator Account Deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

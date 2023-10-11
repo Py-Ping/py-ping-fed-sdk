@@ -46,6 +46,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthorizationServerSettings.from_dict(response_dict)
+            else:
                 return ModelAuthorizationServerSettings.from_dict(response.json())
 
     def updateAuthorizationServerSettings(self, body: ModelAuthorizationServerSettings):
@@ -68,6 +73,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Authorization Server Settings updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelAuthorizationServerSettings.from_dict(response_dict)
+            else:
                 return ModelAuthorizationServerSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -96,6 +106,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Common Scope added.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeEntry.from_dict(response_dict)
+            else:
                 return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -123,6 +138,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeEntry.from_dict(response_dict)
+            else:
                 return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -149,6 +169,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Common Scope updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeEntry.from_dict(response_dict)
+            else:
                 return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -176,9 +201,8 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Common Scope deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Common Scope deleted.")
+                return ModelApiResult(message="Common Scope deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -206,6 +230,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Common Scope Group created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeGroupEntry.from_dict(response_dict)
+            else:
                 return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -233,6 +262,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeGroupEntry.from_dict(response_dict)
+            else:
                 return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -259,6 +293,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Common Scope Group updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeGroupEntry.from_dict(response_dict)
+            else:
                 return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -290,9 +329,8 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Common Scope Group deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Common Scope Group deleted.")
+                return ModelApiResult(message="Common Scope Group deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -320,6 +358,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Exclusive Scope added.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeEntry.from_dict(response_dict)
+            else:
                 return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -351,6 +394,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeEntry.from_dict(response_dict)
+            else:
                 return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -377,6 +425,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Exclusive Scope updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeEntry.from_dict(response_dict)
+            else:
                 return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -404,9 +457,8 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Exclusive Scope deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Exclusive Scope deleted.")
+                return ModelApiResult(message="Exclusive Scope deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -432,6 +484,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 201:
+                self.logger.info("Exclusive Scope Group created.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeGroupEntry.from_dict(response_dict)
+            else:
                 return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -459,6 +516,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Success.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeGroupEntry.from_dict(response_dict)
+            else:
                 return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
@@ -485,6 +547,11 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 200:
+                self.logger.info("Exclusive Scope Group updated.")
+            if isinstance(response.json(), list):
+                response_dict = {'items': response.json()}
+                return ModelScopeGroupEntry.from_dict(response_dict)
+            else:
                 return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
@@ -512,9 +579,8 @@ class OauthAuthServerSettings:
             raise err
         else:
             if response.status_code == 204:
-                message = "(204) Exclusive Scope Group deleted."
-                self.logger.info(message)
-                raise ObjectDeleted(message)
+                self.logger.info("Exclusive Scope Group deleted.")
+                return ModelApiResult(message="Exclusive Scope Group deleted.", validationErrors=[])
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
