@@ -1,6 +1,7 @@
 from json import dumps
 import logging
 import os
+from tempfile import SpooledTemporaryFile
 import traceback
 
 from requests import Session
@@ -21,14 +22,15 @@ class ConfigArchive:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def importConfigArchive(self, file: str = None, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
+    def importConfigArchive(self, file: SpooledTemporaryFile, forceImport: bool = None, forceUnsupportedImport: bool = None, reencryptData: bool = None):
         """ Import a configuration archive.
         """
 
         try:
             response = self.session.post(
+                files={'file': file},
                 url=self._build_uri("/configArchive/import"),
-                headers={"Content-Type": "application/json"}
+                headers={"Accept": "application/json"}
             )
         except HTTPError as http_err:
             print(traceback.format_exc())
@@ -46,7 +48,7 @@ class ConfigArchive:
                     return ModelApiResult.from_dict(response.json())
                 else:
                     return ModelApiResult.from_dict(response.json())
-            if response.status_code == 422:
+            elif response.status_code in (400, 415, 422):
                 raise ValidationError(response.json())
 
     def exportConfigArchive(self):
@@ -69,8 +71,4 @@ class ConfigArchive:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelNone.from_dict(response_dict)
-                else:
-                    return response
+                return response
