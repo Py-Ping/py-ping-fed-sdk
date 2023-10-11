@@ -9,6 +9,10 @@ def is_post_version_11(version_str):
     Ping Federate v11 on uses Swagger 2.0 conventions.
     Return true if the version can be identified as v11 or greater
     """
+
+    if version_str == "latest":
+        return True
+
     version_list = version_str.split(".")
     # no dot, likely latest or edge, which is greater than v11
     if len(version_list) == 1:
