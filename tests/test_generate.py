@@ -38,7 +38,7 @@ class TestGenerate(TestCase):
             "apis": {
                 "/penguins": {
                     "imports": set(["Penguin"]),
-                    "codes": {200, 404},
+                    "codes": {"200", "404"},
                     "details": [{
                         "operations": [
                             {
@@ -48,7 +48,7 @@ class TestGenerate(TestCase):
                                 "parameters": [],
                                 "responseMessages": [
                                     {
-                                        "code": 200,
+                                        "code": "200",
                                         "message": "Success."
                                     }
                                 ],
@@ -72,11 +72,11 @@ class TestGenerate(TestCase):
                                 ],
                                 "responseMessages": [
                                     {
-                                        "code": 200,
+                                        "code": "200",
                                         "message": "Penguin uploaded."
                                     },
                                     {
-                                        "code": 404,
+                                        "code": "404",
                                         "message":
                                         "Validation error(s) occurred."
                                     }
