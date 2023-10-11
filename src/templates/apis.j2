@@ -66,11 +66,11 @@ class {{ safe_class_name(class_name) }}:
                 raise ValidationError(response.json())
 {% elif response_code["code"] | string in ("200", "201") %}
                 self.logger.info("{{ response_code["message"] }}")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return {{ operation.get_response_str(response_code["code"], True) }}
-            else:
-                return {{ operation.get_response_str(response_code["code"]) }}
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return {{ operation.get_response_str(response_code["code"], True) }}
+                else:
+                    return {{ operation.get_response_str(response_code["code"]) }}
 {% elif response_code["code"] | string == "204" %}
                 self.logger.info("{{ response_code["message"] }}")
                 return ModelApiResult(message="{{ response_code["message"] }}", validationErrors=[])
