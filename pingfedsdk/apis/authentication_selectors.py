@@ -48,11 +48,11 @@ class AuthenticationSelectors:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationSelector.from_dict(response_dict)
-            else:
-                return ModelAuthenticationSelector.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationSelector.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -79,11 +79,11 @@ class AuthenticationSelectors:
         else:
             if response.status_code == 200:
                 self.logger.info("Authentication selector updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationSelector.from_dict(response_dict)
-            else:
-                return ModelAuthenticationSelector.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationSelector.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -143,11 +143,11 @@ class AuthenticationSelectors:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationSelectorDescriptors.from_dict(response_dict)
-            else:
-                return ModelAuthenticationSelectorDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationSelectorDescriptors.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationSelectorDescriptors.from_dict(response.json())
 
     def getAuthenticationSelectorDescriptorsById(self, id: str):
         """ Get the description of an Authentication Selector plugin by ID.
@@ -169,11 +169,11 @@ class AuthenticationSelectors:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationSelectorDescriptor.from_dict(response_dict)
-            else:
-                return ModelAuthenticationSelectorDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationSelectorDescriptor.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationSelectorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -199,11 +199,11 @@ class AuthenticationSelectors:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationSelectors.from_dict(response_dict)
-            else:
-                return ModelAuthenticationSelectors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationSelectors.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationSelectors.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -228,11 +228,11 @@ class AuthenticationSelectors:
         else:
             if response.status_code == 201:
                 self.logger.info("Authentication selector created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationSelector.from_dict(response_dict)
-            else:
-                return ModelAuthenticationSelector.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationSelector.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationSelector.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

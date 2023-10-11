@@ -53,11 +53,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAction.from_dict(response_dict)
-            else:
-                return ModelAction.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAction.from_dict(response_dict)
+                else:
+                    return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -83,11 +83,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSecretManager.from_dict(response_dict)
-            else:
-                return ModelSecretManager.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSecretManager.from_dict(response_dict)
+                else:
+                    return ModelSecretManager.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -114,11 +114,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Secret Manager plugin updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSecretManager.from_dict(response_dict)
-            else:
-                return ModelSecretManager.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSecretManager.from_dict(response_dict)
+                else:
+                    return ModelSecretManager.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -181,11 +181,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Secret Manager plugin action invoked.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActionResult.from_dict(response_dict)
-            else:
-                return ModelActionResult.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActionResult.from_dict(response_dict)
+                else:
+                    return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -211,11 +211,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSecretManagerDescriptors.from_dict(response_dict)
-            else:
-                return ModelSecretManagerDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSecretManagerDescriptors.from_dict(response_dict)
+                else:
+                    return ModelSecretManagerDescriptors.from_dict(response.json())
 
     def getSecretManagerPluginDescriptor(self, id: str):
         """ Get a secret manager plugin descriptor.
@@ -237,11 +237,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSecretManagerDescriptor.from_dict(response_dict)
-            else:
-                return ModelSecretManagerDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSecretManagerDescriptor.from_dict(response_dict)
+                else:
+                    return ModelSecretManagerDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -267,11 +267,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSecretManagers.from_dict(response_dict)
-            else:
-                return ModelSecretManagers.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSecretManagers.from_dict(response_dict)
+                else:
+                    return ModelSecretManagers.from_dict(response.json())
 
     def createSecretManager(self, body: ModelSecretManager):
         """ Create a secret manager plugin instance.
@@ -294,11 +294,11 @@ class SecretManagers:
         else:
             if response.status_code == 201:
                 self.logger.info("Secret Manager plugin created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSecretManager.from_dict(response_dict)
-            else:
-                return ModelSecretManager.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSecretManager.from_dict(response_dict)
+                else:
+                    return ModelSecretManager.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -326,11 +326,11 @@ class SecretManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActions.from_dict(response_dict)
-            else:
-                return ModelActions.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

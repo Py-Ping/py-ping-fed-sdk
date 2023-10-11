@@ -44,11 +44,11 @@ class ProtocolMetadata:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataLifetimeSettings.from_dict(response_dict)
-            else:
-                return ModelMetadataLifetimeSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataLifetimeSettings.from_dict(response_dict)
+                else:
+                    return ModelMetadataLifetimeSettings.from_dict(response.json())
 
     def updateLifetimeSettings(self, body: ModelMetadataLifetimeSettings):
         """ Update metadata cache duration and reload delay for automated reloading.
@@ -71,11 +71,11 @@ class ProtocolMetadata:
         else:
             if response.status_code == 200:
                 self.logger.info("Metadata lifetime settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataLifetimeSettings.from_dict(response_dict)
-            else:
-                return ModelMetadataLifetimeSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataLifetimeSettings.from_dict(response_dict)
+                else:
+                    return ModelMetadataLifetimeSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -103,11 +103,11 @@ class ProtocolMetadata:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataSigningSettings.from_dict(response_dict)
-            else:
-                return ModelMetadataSigningSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataSigningSettings.from_dict(response_dict)
+                else:
+                    return ModelMetadataSigningSettings.from_dict(response.json())
 
     def updateSigningSettings(self, body: ModelMetadataSigningSettings = None):
         """ Update the certificate and algorithm for metadata signing.
@@ -130,11 +130,11 @@ class ProtocolMetadata:
         else:
             if response.status_code == 200:
                 self.logger.info("Metadata signing settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataSigningSettings.from_dict(response_dict)
-            else:
-                return ModelMetadataSigningSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataSigningSettings.from_dict(response_dict)
+                else:
+                    return ModelMetadataSigningSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

@@ -43,11 +43,11 @@ class ServiceAuthentication:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelServiceAuthentication.from_dict(response_dict)
-            else:
-                return ModelServiceAuthentication.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelServiceAuthentication.from_dict(response_dict)
+                else:
+                    return ModelServiceAuthentication.from_dict(response.json())
 
     def updateServiceAuthentication(self, body: ModelServiceAuthentication):
         """ Update the service authentication settings.
@@ -70,11 +70,11 @@ class ServiceAuthentication:
         else:
             if response.status_code == 200:
                 self.logger.info("Service authentication settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelServiceAuthentication.from_dict(response_dict)
-            else:
-                return ModelServiceAuthentication.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelServiceAuthentication.from_dict(response_dict)
+                else:
+                    return ModelServiceAuthentication.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

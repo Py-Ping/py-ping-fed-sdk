@@ -56,11 +56,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIssuerCerts.from_dict(response_dict)
-            else:
-                return ModelIssuerCerts.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIssuerCerts.from_dict(response_dict)
+                else:
+                    return ModelIssuerCerts.from_dict(response.json())
 
     def importCertificate(self, body: ModelX509File):
         """ Import a new certificate.
@@ -83,11 +83,11 @@ class ServerSettings:
         else:
             if response.status_code == 201:
                 self.logger.info("New certificate has been imported to WS-Trust STS Settings")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelApiResponse.from_dict(response_dict)
-            else:
-                return ModelApiResponse.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelApiResponse.from_dict(response_dict)
+                else:
+                    return ModelApiResponse.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -115,11 +115,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelCaptchaSettings.from_dict(response_dict)
-            else:
-                return ModelCaptchaSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelCaptchaSettings.from_dict(response_dict)
+                else:
+                    return ModelCaptchaSettings.from_dict(response.json())
 
     def updateCaptchaSettings(self, body: ModelCaptchaSettings):
         """ Update the CAPTCHA settings.
@@ -142,11 +142,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Captcha settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelCaptchaSettings.from_dict(response_dict)
-            else:
-                return ModelCaptchaSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelCaptchaSettings.from_dict(response_dict)
+                else:
+                    return ModelCaptchaSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -174,11 +174,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationSettings.from_dict(response_dict)
-            else:
-                return ModelNotificationSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationSettings.from_dict(response_dict)
+                else:
+                    return ModelNotificationSettings.from_dict(response.json())
 
     def updateNotificationSettings(self, body: ModelNotificationSettings):
         """ Update the notification settings.
@@ -201,11 +201,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Notifications updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationSettings.from_dict(response_dict)
-            else:
-                return ModelNotificationSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationSettings.from_dict(response_dict)
+                else:
+                    return ModelNotificationSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -233,11 +233,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelApiResponse.from_dict(response_dict)
-            else:
-                return ModelApiResponse.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelApiResponse.from_dict(response_dict)
+                else:
+                    return ModelApiResponse.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -291,11 +291,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSystemKeys.from_dict(response_dict)
-            else:
-                return ModelSystemKeys.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSystemKeys.from_dict(response_dict)
+                else:
+                    return ModelSystemKeys.from_dict(response.json())
 
     def updateSystemKeys(self, body: ModelSystemKeys):
         """ Update the system keys.
@@ -318,11 +318,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("System keys updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSystemKeys.from_dict(response_dict)
-            else:
-                return ModelSystemKeys.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSystemKeys.from_dict(response_dict)
+                else:
+                    return ModelSystemKeys.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -350,11 +350,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelServerSettings.from_dict(response_dict)
-            else:
-                return ModelServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelServerSettings.from_dict(response_dict)
+                else:
+                    return ModelServerSettings.from_dict(response.json())
 
     def updateServerSettings(self, body: ModelServerSettings):
         """ Update the server settings.
@@ -377,11 +377,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Server Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelServerSettings.from_dict(response_dict)
-            else:
-                return ModelServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelServerSettings.from_dict(response_dict)
+                else:
+                    return ModelServerSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -413,11 +413,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelEmailServerSettings.from_dict(response_dict)
-            else:
-                return ModelEmailServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelEmailServerSettings.from_dict(response_dict)
+                else:
+                    return ModelEmailServerSettings.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -444,11 +444,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Email Server updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelEmailServerSettings.from_dict(response_dict)
-            else:
-                return ModelEmailServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelEmailServerSettings.from_dict(response_dict)
+                else:
+                    return ModelEmailServerSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -480,18 +480,18 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("successful operation")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSystemKeys.from_dict(response_dict)
-            else:
-                return ModelSystemKeys.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSystemKeys.from_dict(response_dict)
+                else:
+                    return ModelSystemKeys.from_dict(response.json())
             if response.status_code == 201:
                 self.logger.info("System Keys rotated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSystemKeys.from_dict(response_dict)
-            else:
-                return ModelSystemKeys.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSystemKeys.from_dict(response_dict)
+                else:
+                    return ModelSystemKeys.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -519,11 +519,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutboundProvisionDatabase.from_dict(response_dict)
-            else:
-                return ModelOutboundProvisionDatabase.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutboundProvisionDatabase.from_dict(response_dict)
+                else:
+                    return ModelOutboundProvisionDatabase.from_dict(response.json())
 
     def updateOutBoundProvisioningSettings(self, body: ModelOutboundProvisionDatabase):
         """ Update database used for outbound provisioning
@@ -546,11 +546,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Database updated for outbound provisioning.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutboundProvisionDatabase.from_dict(response_dict)
-            else:
-                return ModelOutboundProvisionDatabase.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutboundProvisionDatabase.from_dict(response_dict)
+                else:
+                    return ModelOutboundProvisionDatabase.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -574,11 +574,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelWsTrustStsSettings.from_dict(response_dict)
-            else:
-                return ModelWsTrustStsSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelWsTrustStsSettings.from_dict(response_dict)
+                else:
+                    return ModelWsTrustStsSettings.from_dict(response.json())
 
     def updateWsTrustStsSettings(self, body: ModelWsTrustStsSettings):
         """ Update WS-Trust STS Settings.
@@ -601,11 +601,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Server Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelWsTrustStsSettings.from_dict(response_dict)
-            else:
-                return ModelWsTrustStsSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelWsTrustStsSettings.from_dict(response_dict)
+                else:
+                    return ModelWsTrustStsSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -633,11 +633,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelGeneralSettings.from_dict(response_dict)
-            else:
-                return ModelGeneralSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelGeneralSettings.from_dict(response_dict)
+                else:
+                    return ModelGeneralSettings.from_dict(response.json())
 
     def updateGeneralSettings(self, body: ModelGeneralSettings):
         """ Update general settings.
@@ -660,11 +660,11 @@ class ServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("General settings have been updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelGeneralSettings.from_dict(response_dict)
-            else:
-                return ModelGeneralSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelGeneralSettings.from_dict(response_dict)
+                else:
+                    return ModelGeneralSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

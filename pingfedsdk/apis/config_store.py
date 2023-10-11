@@ -47,11 +47,11 @@ class ConfigStore:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelConfigStoreBundle.from_dict(response_dict)
-            else:
-                return ModelConfigStoreBundle.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelConfigStoreBundle.from_dict(response_dict)
+                else:
+                    return ModelConfigStoreBundle.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) The specified configuration bundle is unavailable."
                 self.logger.info(message)
@@ -81,11 +81,11 @@ class ConfigStore:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelConfigStoreSetting.from_dict(response_dict)
-            else:
-                return ModelConfigStoreSetting.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelConfigStoreSetting.from_dict(response_dict)
+                else:
+                    return ModelConfigStoreSetting.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) The specified configuration bundle is unavailable."
                 self.logger.info(message)
@@ -116,11 +116,11 @@ class ConfigStore:
         else:
             if response.status_code == 200:
                 self.logger.info("Configuration setting created/updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelConfigStoreSetting.from_dict(response_dict)
-            else:
-                return ModelConfigStoreSetting.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelConfigStoreSetting.from_dict(response_dict)
+                else:
+                    return ModelConfigStoreSetting.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

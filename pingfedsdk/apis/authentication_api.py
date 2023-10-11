@@ -47,11 +47,11 @@ class AuthenticationApi:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthnApiApplication.from_dict(response_dict)
-            else:
-                return ModelAuthnApiApplication.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiApplication.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiApplication.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -78,11 +78,11 @@ class AuthenticationApi:
         else:
             if response.status_code == 200:
                 self.logger.info("Authentication API Application updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthnApiApplication.from_dict(response_dict)
-            else:
-                return ModelAuthnApiApplication.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiApplication.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiApplication.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -142,11 +142,11 @@ class AuthenticationApi:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthnApiSettings.from_dict(response_dict)
-            else:
-                return ModelAuthnApiSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiSettings.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiSettings.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -171,11 +171,11 @@ class AuthenticationApi:
         else:
             if response.status_code == 200:
                 self.logger.info("Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthnApiSettings.from_dict(response_dict)
-            else:
-                return ModelAuthnApiSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiSettings.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -203,11 +203,11 @@ class AuthenticationApi:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthnApiApplications.from_dict(response_dict)
-            else:
-                return ModelAuthnApiApplications.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiApplications.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiApplications.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -232,11 +232,11 @@ class AuthenticationApi:
         else:
             if response.status_code == 201:
                 self.logger.info("Authentication API Application created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthnApiApplication.from_dict(response_dict)
-            else:
-                return ModelAuthnApiApplication.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiApplication.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiApplication.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

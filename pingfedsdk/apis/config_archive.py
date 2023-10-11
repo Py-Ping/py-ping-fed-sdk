@@ -41,11 +41,11 @@ class ConfigArchive:
         else:
             if response.status_code == 200:
                 self.logger.info("Configuration Archive imported.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelApiResult.from_dict(response.json())
-            else:
-                return ModelApiResult.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelApiResult.from_dict(response.json())
+                else:
+                    return ModelApiResult.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -69,8 +69,8 @@ class ConfigArchive:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNone.from_dict(response_dict)
-            else:
-                return response
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNone.from_dict(response_dict)
+                else:
+                    return response

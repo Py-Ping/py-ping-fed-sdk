@@ -47,11 +47,11 @@ class KerberosRealms:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKerberosRealms.from_dict(response_dict)
-            else:
-                return ModelKerberosRealms.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKerberosRealms.from_dict(response_dict)
+                else:
+                    return ModelKerberosRealms.from_dict(response.json())
 
     def createKerberosRealm(self, body: ModelKerberosRealm, XBypassExternalValidation: bool = None):
         """ Create a new Kerberos Realm.
@@ -74,11 +74,11 @@ class KerberosRealms:
         else:
             if response.status_code == 201:
                 self.logger.info("Kerberos realm created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKerberosRealm.from_dict(response_dict)
-            else:
-                return ModelKerberosRealm.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKerberosRealm.from_dict(response_dict)
+                else:
+                    return ModelKerberosRealm.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -106,11 +106,11 @@ class KerberosRealms:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKerberosRealm.from_dict(response_dict)
-            else:
-                return ModelKerberosRealm.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKerberosRealm.from_dict(response_dict)
+                else:
+                    return ModelKerberosRealm.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -137,11 +137,11 @@ class KerberosRealms:
         else:
             if response.status_code == 200:
                 self.logger.info("Kerberos realm updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKerberosRealm.from_dict(response_dict)
-            else:
-                return ModelKerberosRealm.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKerberosRealm.from_dict(response_dict)
+                else:
+                    return ModelKerberosRealm.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -201,11 +201,11 @@ class KerberosRealms:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKerberosRealmsSettings.from_dict(response_dict)
-            else:
-                return ModelKerberosRealmsSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKerberosRealmsSettings.from_dict(response_dict)
+                else:
+                    return ModelKerberosRealmsSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelKerberosRealmsSettings):
         """ Set/Update the Kerberos Realms Settings.
@@ -228,11 +228,11 @@ class KerberosRealms:
         else:
             if response.status_code == 200:
                 self.logger.info("Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKerberosRealmsSettings.from_dict(response_dict)
-            else:
-                return ModelKerberosRealmsSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKerberosRealmsSettings.from_dict(response_dict)
+                else:
+                    return ModelKerberosRealmsSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

@@ -50,11 +50,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManagementSettings.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManagementSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManagementSettings.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManagementSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelAccessTokenManagementSettings):
         """ Update general access token management settings.
@@ -77,11 +77,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManagementSettings.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManagementSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManagementSettings.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManagementSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -109,11 +109,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManager.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManager.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManager.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManager.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -140,11 +140,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Access Token Management instance updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManager.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManager.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManager.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManager.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -206,11 +206,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManagerDescriptors.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManagerDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManagerDescriptors.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManagerDescriptors.from_dict(response.json())
 
     def getTokenManagerDescriptor(self, id: str):
         """ Get the description of a token management plugin descriptor.
@@ -232,11 +232,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManagerDescriptor.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManagerDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManagerDescriptor.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManagerDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -262,11 +262,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManagers.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManagers.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManagers.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManagers.from_dict(response.json())
 
     def createTokenManager(self, body: ModelAccessTokenManager):
         """ Create a token management plugin instance.
@@ -289,11 +289,11 @@ class OauthAccessTokenManagers:
         else:
             if response.status_code == 201:
                 self.logger.info("Access Token Management instance created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenManager.from_dict(response_dict)
-            else:
-                return ModelAccessTokenManager.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManager.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManager.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

@@ -51,11 +51,11 @@ class PingOneConnections:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneConnection.from_dict(response_dict)
-            else:
-                return ModelPingOneConnection.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneConnection.from_dict(response_dict)
+                else:
+                    return ModelPingOneConnection.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -82,11 +82,11 @@ class PingOneConnections:
         else:
             if response.status_code == 200:
                 self.logger.info("PingOne connection updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneConnection.from_dict(response_dict)
-            else:
-                return ModelPingOneConnection.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneConnection.from_dict(response_dict)
+                else:
+                    return ModelPingOneConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -146,11 +146,11 @@ class PingOneConnections:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelServiceAssociations.from_dict(response_dict)
-            else:
-                return ModelServiceAssociations.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelServiceAssociations.from_dict(response_dict)
+                else:
+                    return ModelServiceAssociations.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -176,11 +176,11 @@ class PingOneConnections:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneConnections.from_dict(response_dict)
-            else:
-                return ModelPingOneConnections.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneConnections.from_dict(response_dict)
+                else:
+                    return ModelPingOneConnections.from_dict(response.json())
 
     def createPingOneConnection(self, body: ModelPingOneConnection, XBypassExternalValidation: bool = None):
         """ Create a new PingOne connection.
@@ -203,11 +203,11 @@ class PingOneConnections:
         else:
             if response.status_code == 201:
                 self.logger.info("PingOne connection created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneConnection.from_dict(response_dict)
-            else:
-                return ModelPingOneConnection.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneConnection.from_dict(response_dict)
+                else:
+                    return ModelPingOneConnection.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -235,11 +235,11 @@ class PingOneConnections:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneEnvironments.from_dict(response_dict)
-            else:
-                return ModelPingOneEnvironments.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneEnvironments.from_dict(response_dict)
+                else:
+                    return ModelPingOneEnvironments.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -269,11 +269,11 @@ class PingOneConnections:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelResourceUsages.from_dict(response_dict)
-            else:
-                return ModelResourceUsages.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelResourceUsages.from_dict(response_dict)
+                else:
+                    return ModelResourceUsages.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -299,11 +299,11 @@ class PingOneConnections:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneCredentialStatus.from_dict(response_dict)
-            else:
-                return ModelPingOneCredentialStatus.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneCredentialStatus.from_dict(response_dict)
+                else:
+                    return ModelPingOneCredentialStatus.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

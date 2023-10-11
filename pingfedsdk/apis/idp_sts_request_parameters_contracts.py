@@ -46,11 +46,11 @@ class IdpStsRequestParametersContracts:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelStsRequestParametersContracts.from_dict(response_dict)
-            else:
-                return ModelStsRequestParametersContracts.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelStsRequestParametersContracts.from_dict(response_dict)
+                else:
+                    return ModelStsRequestParametersContracts.from_dict(response.json())
 
     def createStsRequestParamContract(self, body: ModelStsRequestParametersContract):
         """ Create a new STS Request Parameters Contract.
@@ -73,11 +73,11 @@ class IdpStsRequestParametersContracts:
         else:
             if response.status_code == 201:
                 self.logger.info("STS Request Parameters Contract created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelStsRequestParametersContract.from_dict(response_dict)
-            else:
-                return ModelStsRequestParametersContract.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelStsRequestParametersContract.from_dict(response_dict)
+                else:
+                    return ModelStsRequestParametersContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -105,11 +105,11 @@ class IdpStsRequestParametersContracts:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelStsRequestParametersContract.from_dict(response_dict)
-            else:
-                return ModelStsRequestParametersContract.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelStsRequestParametersContract.from_dict(response_dict)
+                else:
+                    return ModelStsRequestParametersContract.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -136,11 +136,11 @@ class IdpStsRequestParametersContracts:
         else:
             if response.status_code == 200:
                 self.logger.info("STS Request Parameters Contract updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelStsRequestParametersContract.from_dict(response_dict)
-            else:
-                return ModelStsRequestParametersContract.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelStsRequestParametersContract.from_dict(response_dict)
+                else:
+                    return ModelStsRequestParametersContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

@@ -47,11 +47,11 @@ class OauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOpenIdConnectSettings.from_dict(response_dict)
-            else:
-                return ModelOpenIdConnectSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOpenIdConnectSettings.from_dict(response_dict)
+                else:
+                    return ModelOpenIdConnectSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelOpenIdConnectSettings):
         """ Set the OpenID Connect Settings.
@@ -74,11 +74,11 @@ class OauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOpenIdConnectSettings.from_dict(response_dict)
-            else:
-                return ModelOpenIdConnectSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOpenIdConnectSettings.from_dict(response_dict)
+                else:
+                    return ModelOpenIdConnectSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -106,11 +106,11 @@ class OauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOpenIdConnectPolicy.from_dict(response_dict)
-            else:
-                return ModelOpenIdConnectPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOpenIdConnectPolicy.from_dict(response_dict)
+                else:
+                    return ModelOpenIdConnectPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -137,11 +137,11 @@ class OauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Policy updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOpenIdConnectPolicy.from_dict(response_dict)
-            else:
-                return ModelOpenIdConnectPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOpenIdConnectPolicy.from_dict(response_dict)
+                else:
+                    return ModelOpenIdConnectPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -201,11 +201,11 @@ class OauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOpenIdConnectPolicies.from_dict(response_dict)
-            else:
-                return ModelOpenIdConnectPolicies.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOpenIdConnectPolicies.from_dict(response_dict)
+                else:
+                    return ModelOpenIdConnectPolicies.from_dict(response.json())
 
     def createPolicy(self, body: ModelOpenIdConnectPolicy, XBypassExternalValidation: bool = None):
         """ Create a new OpenID Connect Policy.
@@ -228,11 +228,11 @@ class OauthOpenIdConnect:
         else:
             if response.status_code == 201:
                 self.logger.info("Policy created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOpenIdConnectPolicy.from_dict(response_dict)
-            else:
-                return ModelOpenIdConnectPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOpenIdConnectPolicy.from_dict(response_dict)
+                else:
+                    return ModelOpenIdConnectPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

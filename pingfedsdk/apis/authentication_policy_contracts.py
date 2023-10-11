@@ -46,11 +46,11 @@ class AuthenticationPolicyContracts:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationPolicyContracts.from_dict(response_dict)
-            else:
-                return ModelAuthenticationPolicyContracts.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationPolicyContracts.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationPolicyContracts.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -75,11 +75,11 @@ class AuthenticationPolicyContracts:
         else:
             if response.status_code == 201:
                 self.logger.info("Authentication policy contract created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationPolicyContract.from_dict(response_dict)
-            else:
-                return ModelAuthenticationPolicyContract.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationPolicyContract.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationPolicyContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -107,11 +107,11 @@ class AuthenticationPolicyContracts:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationPolicyContract.from_dict(response_dict)
-            else:
-                return ModelAuthenticationPolicyContract.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationPolicyContract.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationPolicyContract.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -138,11 +138,11 @@ class AuthenticationPolicyContracts:
         else:
             if response.status_code == 200:
                 self.logger.info("Authentication policy contract updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthenticationPolicyContract.from_dict(response_dict)
-            else:
-                return ModelAuthenticationPolicyContract.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthenticationPolicyContract.from_dict(response_dict)
+                else:
+                    return ModelAuthenticationPolicyContract.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

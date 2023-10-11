@@ -48,11 +48,11 @@ class SpTokenGenerators:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenGenerator.from_dict(response_dict)
-            else:
-                return ModelTokenGenerator.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenGenerator.from_dict(response_dict)
+                else:
+                    return ModelTokenGenerator.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -79,11 +79,11 @@ class SpTokenGenerators:
         else:
             if response.status_code == 200:
                 self.logger.info("Token generator updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenGenerator.from_dict(response_dict)
-            else:
-                return ModelTokenGenerator.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenGenerator.from_dict(response_dict)
+                else:
+                    return ModelTokenGenerator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -143,11 +143,11 @@ class SpTokenGenerators:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenGeneratorDescriptors.from_dict(response_dict)
-            else:
-                return ModelTokenGeneratorDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenGeneratorDescriptors.from_dict(response_dict)
+                else:
+                    return ModelTokenGeneratorDescriptors.from_dict(response.json())
 
     def getTokenGeneratorDescriptorsById(self, id: str):
         """ Get the description of a token generator plugin by ID.
@@ -169,11 +169,11 @@ class SpTokenGenerators:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenGeneratorDescriptor.from_dict(response_dict)
-            else:
-                return ModelTokenGeneratorDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenGeneratorDescriptor.from_dict(response_dict)
+                else:
+                    return ModelTokenGeneratorDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -199,11 +199,11 @@ class SpTokenGenerators:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenGenerators.from_dict(response_dict)
-            else:
-                return ModelTokenGenerators.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenGenerators.from_dict(response_dict)
+                else:
+                    return ModelTokenGenerators.from_dict(response.json())
 
     def createTokenGenerator(self, body: ModelTokenGenerator):
         """ Create a new token generator instance.
@@ -226,11 +226,11 @@ class SpTokenGenerators:
         else:
             if response.status_code == 201:
                 self.logger.info("Token generator created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenGenerator.from_dict(response_dict)
-            else:
-                return ModelTokenGenerator.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenGenerator.from_dict(response_dict)
+                else:
+                    return ModelTokenGenerator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

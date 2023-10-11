@@ -46,11 +46,11 @@ class OauthAccessTokenMappings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenMapping.from_dict(response_dict)
-            else:
-                return ModelAccessTokenMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenMapping.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -77,11 +77,11 @@ class OauthAccessTokenMappings:
         else:
             if response.status_code == 200:
                 self.logger.info("Access token attribute mapping updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenMapping.from_dict(response_dict)
-            else:
-                return ModelAccessTokenMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenMapping.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -139,11 +139,11 @@ class OauthAccessTokenMappings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenMappings.from_dict(response_dict)
-            else:
-                return ModelAccessTokenMappings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenMappings.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenMappings.from_dict(response.json())
 
     def createMapping(self, body: ModelAccessTokenMapping, XBypassExternalValidation: bool = None):
         """ Create a new Access Token Mapping.
@@ -166,11 +166,11 @@ class OauthAccessTokenMappings:
         else:
             if response.status_code == 201:
                 self.logger.info("Access token attribute mapping created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAccessTokenMapping.from_dict(response_dict)
-            else:
-                return ModelAccessTokenMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenMapping.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

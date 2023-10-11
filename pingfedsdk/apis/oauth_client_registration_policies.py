@@ -49,11 +49,11 @@ class OauthClientRegistrationPolicies:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientRegistrationPolicyDescriptors.from_dict(response_dict)
-            else:
-                return ModelClientRegistrationPolicyDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientRegistrationPolicyDescriptors.from_dict(response_dict)
+                else:
+                    return ModelClientRegistrationPolicyDescriptors.from_dict(response.json())
 
     def getDynamicClientRegistrationDescriptor(self, id: str):
         """ Get the description of a client registration policy plugin descriptor.
@@ -75,11 +75,11 @@ class OauthClientRegistrationPolicies:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientRegistrationPolicyDescriptor.from_dict(response_dict)
-            else:
-                return ModelClientRegistrationPolicyDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientRegistrationPolicyDescriptor.from_dict(response_dict)
+                else:
+                    return ModelClientRegistrationPolicyDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -105,11 +105,11 @@ class OauthClientRegistrationPolicies:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientRegistrationPolicies.from_dict(response_dict)
-            else:
-                return ModelClientRegistrationPolicies.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientRegistrationPolicies.from_dict(response_dict)
+                else:
+                    return ModelClientRegistrationPolicies.from_dict(response.json())
 
     def createDynamicClientRegistrationPolicy(self, body: ModelClientRegistrationPolicy):
         """ Create a client registration policy plugin instance.
@@ -132,11 +132,11 @@ class OauthClientRegistrationPolicies:
         else:
             if response.status_code == 201:
                 self.logger.info("Client Registration Policy plugin created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientRegistrationPolicy.from_dict(response_dict)
-            else:
-                return ModelClientRegistrationPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientRegistrationPolicy.from_dict(response_dict)
+                else:
+                    return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -164,11 +164,11 @@ class OauthClientRegistrationPolicies:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientRegistrationPolicy.from_dict(response_dict)
-            else:
-                return ModelClientRegistrationPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientRegistrationPolicy.from_dict(response_dict)
+                else:
+                    return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -195,11 +195,11 @@ class OauthClientRegistrationPolicies:
         else:
             if response.status_code == 200:
                 self.logger.info("Client Registration Policy plugin updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientRegistrationPolicy.from_dict(response_dict)
-            else:
-                return ModelClientRegistrationPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientRegistrationPolicy.from_dict(response_dict)
+                else:
+                    return ModelClientRegistrationPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

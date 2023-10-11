@@ -52,11 +52,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSslServerSettings.from_dict(response_dict)
-            else:
-                return ModelSslServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSslServerSettings.from_dict(response_dict)
+                else:
+                    return ModelSslServerSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelSslServerSettings):
         """ Update the SSL Server Certificate Settings.
@@ -79,11 +79,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("SSL Certificate Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSslServerSettings.from_dict(response_dict)
-            else:
-                return ModelSslServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSslServerSettings.from_dict(response_dict)
+                else:
+                    return ModelSslServerSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -112,11 +112,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 201:
                 self.logger.info("Key Pair imported.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKeyPairView.from_dict(response_dict)
-            else:
-                return ModelKeyPairView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKeyPairView.from_dict(response_dict)
+                else:
+                    return ModelKeyPairView.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -148,11 +148,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKeyPairView.from_dict(response_dict)
-            else:
-                return ModelKeyPairView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKeyPairView.from_dict(response_dict)
+                else:
+                    return ModelKeyPairView.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -206,11 +206,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKeyPairViews.from_dict(response_dict)
-            else:
-                return ModelKeyPairViews.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKeyPairViews.from_dict(response_dict)
+                else:
+                    return ModelKeyPairViews.from_dict(response.json())
 
     def createKeyPair(self, body: ModelNewKeyPairSettings):
         """ Generate a new key pair.
@@ -233,11 +233,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 201:
                 self.logger.info("Key Pair created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKeyPairView.from_dict(response_dict)
-            else:
-                return ModelKeyPairView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKeyPairView.from_dict(response_dict)
+                else:
+                    return ModelKeyPairView.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -265,11 +265,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return Modelstr.from_dict(response_dict)
-            else:
-                return str(response)
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return Modelstr.from_dict(response_dict)
+                else:
+                    return str(response)
 
     def importCsrResponse(self, body: ModelCSRResponse, id: str):
         """ Import a CSR response for this key pair.
@@ -292,11 +292,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("CSR Response imported.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKeyPairView.from_dict(response_dict)
-            else:
-                return ModelKeyPairView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKeyPairView.from_dict(response_dict)
+                else:
+                    return ModelKeyPairView.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -329,11 +329,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("Key Pair downloaded.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return Modelstr.from_dict(response_dict)
-            else:
-                return str(response)
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return Modelstr.from_dict(response_dict)
+                else:
+                    return str(response)
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -370,11 +370,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("Key Pair downloaded.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return Modelstr.from_dict(response_dict)
-            else:
-                return str(response)
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return Modelstr.from_dict(response_dict)
+                else:
+                    return str(response)
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -410,11 +410,11 @@ class KeyPairsSslServer:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return Modelstr.from_dict(response_dict)
-            else:
-                return str(response)
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return Modelstr.from_dict(response_dict)
+                else:
+                    return str(response)
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

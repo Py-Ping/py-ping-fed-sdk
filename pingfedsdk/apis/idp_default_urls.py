@@ -43,11 +43,11 @@ class IdpDefaultUrls:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdpDefaultUrl.from_dict(response_dict)
-            else:
-                return ModelIdpDefaultUrl.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdpDefaultUrl.from_dict(response_dict)
+                else:
+                    return ModelIdpDefaultUrl.from_dict(response.json())
 
     def updateDefaultUrlSettings(self, body: ModelIdpDefaultUrl):
         """ Update the IDP Default URL settings.
@@ -70,11 +70,11 @@ class IdpDefaultUrls:
         else:
             if response.status_code == 200:
                 self.logger.info("Default URL updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdpDefaultUrl.from_dict(response_dict)
-            else:
-                return ModelIdpDefaultUrl.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdpDefaultUrl.from_dict(response_dict)
+                else:
+                    return ModelIdpDefaultUrl.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

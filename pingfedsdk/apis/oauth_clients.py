@@ -47,11 +47,11 @@ class OauthClients:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientSecret.from_dict(response_dict)
-            else:
-                return ModelClientSecret.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientSecret.from_dict(response_dict)
+                else:
+                    return ModelClientSecret.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -84,11 +84,11 @@ class OauthClients:
         else:
             if response.status_code == 200:
                 self.logger.info("Client updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClientSecret.from_dict(response_dict)
-            else:
-                return ModelClientSecret.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClientSecret.from_dict(response_dict)
+                else:
+                    return ModelClientSecret.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -120,11 +120,11 @@ class OauthClients:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClients.from_dict(response_dict)
-            else:
-                return ModelClients.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClients.from_dict(response_dict)
+                else:
+                    return ModelClients.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -149,11 +149,11 @@ class OauthClients:
         else:
             if response.status_code == 201:
                 self.logger.info("Client created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClient.from_dict(response_dict)
-            else:
-                return ModelClient.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClient.from_dict(response_dict)
+                else:
+                    return ModelClient.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -181,11 +181,11 @@ class OauthClients:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClient.from_dict(response_dict)
-            else:
-                return ModelClient.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClient.from_dict(response_dict)
+                else:
+                    return ModelClient.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -212,11 +212,11 @@ class OauthClients:
         else:
             if response.status_code == 200:
                 self.logger.info("Client updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelClient.from_dict(response_dict)
-            else:
-                return ModelClient.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelClient.from_dict(response_dict)
+                else:
+                    return ModelClient.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

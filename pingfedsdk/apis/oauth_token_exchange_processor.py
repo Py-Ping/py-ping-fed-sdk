@@ -47,11 +47,11 @@ class OauthTokenExchangeProcessor:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeProcessorSettings.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeProcessorSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeProcessorSettings.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeProcessorSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelTokenExchangeProcessorSettings, bypassExternalValidation: bool = None):
         """ Update general OAuth 2.0 Token Exchange Processor settings.
@@ -74,11 +74,11 @@ class OauthTokenExchangeProcessor:
         else:
             if response.status_code == 200:
                 self.logger.info("Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeProcessorSettings.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeProcessorSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeProcessorSettings.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeProcessorSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -106,11 +106,11 @@ class OauthTokenExchangeProcessor:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeProcessorPolicy.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeProcessorPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeProcessorPolicy.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeProcessorPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -137,11 +137,11 @@ class OauthTokenExchangeProcessor:
         else:
             if response.status_code == 200:
                 self.logger.info("Token Exchange Processor Policy updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeProcessorPolicy.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeProcessorPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeProcessorPolicy.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeProcessorPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -201,11 +201,11 @@ class OauthTokenExchangeProcessor:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeProcessorPolicies.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeProcessorPolicies.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeProcessorPolicies.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeProcessorPolicies.from_dict(response.json())
 
     def createPolicy(self, body: ModelTokenExchangeProcessorPolicy, bypassExternalValidation: bool = None):
         """ Create a new OAuth 2.0 Token Exchange Processor policy.
@@ -228,11 +228,11 @@ class OauthTokenExchangeProcessor:
         else:
             if response.status_code == 201:
                 self.logger.info("Token Exchange Processor Policy created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeProcessorPolicy.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeProcessorPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeProcessorPolicy.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeProcessorPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

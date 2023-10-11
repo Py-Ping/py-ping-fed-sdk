@@ -48,11 +48,11 @@ class IdentityStoreProvisioners:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdentityStoreProvisioner.from_dict(response_dict)
-            else:
-                return ModelIdentityStoreProvisioner.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdentityStoreProvisioner.from_dict(response_dict)
+                else:
+                    return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -79,11 +79,11 @@ class IdentityStoreProvisioners:
         else:
             if response.status_code == 200:
                 self.logger.info("Identity store provisioner updated")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdentityStoreProvisioner.from_dict(response_dict)
-            else:
-                return ModelIdentityStoreProvisioner.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdentityStoreProvisioner.from_dict(response_dict)
+                else:
+                    return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -143,11 +143,11 @@ class IdentityStoreProvisioners:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdentityStoreProvisioners.from_dict(response_dict)
-            else:
-                return ModelIdentityStoreProvisioners.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdentityStoreProvisioners.from_dict(response_dict)
+                else:
+                    return ModelIdentityStoreProvisioners.from_dict(response.json())
 
     def createIdentityStoreProvisioner(self, body: ModelIdentityStoreProvisioner):
         """ Create a new identity store provisioner instance.
@@ -170,18 +170,18 @@ class IdentityStoreProvisioners:
         else:
             if response.status_code == 200:
                 self.logger.info("successful operation")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdentityStoreProvisioner.from_dict(response_dict)
-            else:
-                return ModelIdentityStoreProvisioner.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdentityStoreProvisioner.from_dict(response_dict)
+                else:
+                    return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 201:
                 self.logger.info("Identity store provisioner created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdentityStoreProvisioner.from_dict(response_dict)
-            else:
-                return ModelIdentityStoreProvisioner.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdentityStoreProvisioner.from_dict(response_dict)
+                else:
+                    return ModelIdentityStoreProvisioner.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -209,11 +209,11 @@ class IdentityStoreProvisioners:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdentityStoreProvisionerDescriptors.from_dict(response_dict)
-            else:
-                return ModelIdentityStoreProvisionerDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdentityStoreProvisionerDescriptors.from_dict(response_dict)
+                else:
+                    return ModelIdentityStoreProvisionerDescriptors.from_dict(response.json())
 
     def getIdentityStoreProvisionerDescriptorById(self, id: str):
         """ Get the descriptor of an identity store provisioner by ID.
@@ -235,11 +235,11 @@ class IdentityStoreProvisioners:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdentityStoreProvisionerDescriptor.from_dict(response_dict)
-            else:
-                return ModelIdentityStoreProvisionerDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdentityStoreProvisionerDescriptor.from_dict(response_dict)
+                else:
+                    return ModelIdentityStoreProvisionerDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

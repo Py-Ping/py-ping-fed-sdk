@@ -45,11 +45,11 @@ class License:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelLicenseView.from_dict(response_dict)
-            else:
-                return ModelLicenseView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelLicenseView.from_dict(response_dict)
+                else:
+                    return ModelLicenseView.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
             if response.status_code == 404:
@@ -78,11 +78,11 @@ class License:
         else:
             if response.status_code == 200:
                 self.logger.info("License imported.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelLicenseView.from_dict(response_dict)
-            else:
-                return ModelLicenseView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelLicenseView.from_dict(response_dict)
+                else:
+                    return ModelLicenseView.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -106,11 +106,11 @@ class License:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelLicenseAgreementInfo.from_dict(response_dict)
-            else:
-                return ModelLicenseAgreementInfo.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelLicenseAgreementInfo.from_dict(response_dict)
+                else:
+                    return ModelLicenseAgreementInfo.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -135,10 +135,10 @@ class License:
         else:
             if response.status_code == 200:
                 self.logger.info("License agreement accepted.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelLicenseAgreementInfo.from_dict(response_dict)
-            else:
-                return ModelLicenseAgreementInfo.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelLicenseAgreementInfo.from_dict(response_dict)
+                else:
+                    return ModelLicenseAgreementInfo.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())

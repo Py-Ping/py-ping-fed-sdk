@@ -44,11 +44,11 @@ class PingOneForEnterprise:
         else:
             if response.status_code == 200:
                 self.logger.info("Disconnected from PingOne for Enterprise")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
-            else:
-                return ModelPingOneForEnterpriseSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
+                else:
+                    return ModelPingOneForEnterpriseSettings.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
                 self.logger.info(message)
@@ -76,11 +76,11 @@ class PingOneForEnterprise:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelP14EKeysView.from_dict(response_dict)
-            else:
-                return ModelP14EKeysView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelP14EKeysView.from_dict(response_dict)
+                else:
+                    return ModelP14EKeysView.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
                 self.logger.info(message)
@@ -106,11 +106,11 @@ class PingOneForEnterprise:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
-            else:
-                return ModelPingOneForEnterpriseSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
+                else:
+                    return ModelPingOneForEnterpriseSettings.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
                 self.logger.info(message)
@@ -137,11 +137,11 @@ class PingOneForEnterprise:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
-            else:
-                return ModelPingOneForEnterpriseSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
+                else:
+                    return ModelPingOneForEnterpriseSettings.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
                 self.logger.info(message)
@@ -169,11 +169,11 @@ class PingOneForEnterprise:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
-            else:
-                return ModelPingOneForEnterpriseSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneForEnterpriseSettings.from_dict(response_dict)
+                else:
+                    return ModelPingOneForEnterpriseSettings.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
                 self.logger.info(message)
@@ -201,11 +201,11 @@ class PingOneForEnterprise:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelP14EKeysView.from_dict(response_dict)
-            else:
-                return ModelP14EKeysView.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelP14EKeysView.from_dict(response_dict)
+                else:
+                    return ModelP14EKeysView.from_dict(response.json())
             if response.status_code == 403:
                 message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
                 self.logger.info(message)

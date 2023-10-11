@@ -46,11 +46,11 @@ class OauthTokenExchangeTokenGeneratorMappings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelProcessorPolicyToGeneratorMappings.from_dict(response_dict)
-            else:
-                return ModelProcessorPolicyToGeneratorMappings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelProcessorPolicyToGeneratorMappings.from_dict(response_dict)
+                else:
+                    return ModelProcessorPolicyToGeneratorMappings.from_dict(response.json())
 
     def createTokenGeneratorMapping(self, body: ModelProcessorPolicyToGeneratorMapping, XBypassExternalValidation: bool = None):
         """ Create a new Token Exchange Processor policy to Token Generator Mapping.
@@ -73,11 +73,11 @@ class OauthTokenExchangeTokenGeneratorMappings:
         else:
             if response.status_code == 201:
                 self.logger.info("Token Exchange Processor policy to Token Generator mapping created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelProcessorPolicyToGeneratorMapping.from_dict(response_dict)
-            else:
-                return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelProcessorPolicyToGeneratorMapping.from_dict(response_dict)
+                else:
+                    return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -105,11 +105,11 @@ class OauthTokenExchangeTokenGeneratorMappings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelProcessorPolicyToGeneratorMapping.from_dict(response_dict)
-            else:
-                return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelProcessorPolicyToGeneratorMapping.from_dict(response_dict)
+                else:
+                    return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -136,11 +136,11 @@ class OauthTokenExchangeTokenGeneratorMappings:
         else:
             if response.status_code == 200:
                 self.logger.info("Token Exchange Processor policy to Token Generator mapping updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelProcessorPolicyToGeneratorMapping.from_dict(response_dict)
-            else:
-                return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelProcessorPolicyToGeneratorMapping.from_dict(response_dict)
+                else:
+                    return ModelProcessorPolicyToGeneratorMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

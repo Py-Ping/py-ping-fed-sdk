@@ -47,11 +47,11 @@ class OauthTokenExchangeGenerator:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeGeneratorSettings.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeGeneratorSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeGeneratorSettings.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeGeneratorSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelTokenExchangeGeneratorSettings, bypassExternalValidation: bool = None):
         """ Update general OAuth 2.0 Token Exchange Generator settings.
@@ -74,11 +74,11 @@ class OauthTokenExchangeGenerator:
         else:
             if response.status_code == 200:
                 self.logger.info("Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeGeneratorSettings.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeGeneratorSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeGeneratorSettings.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeGeneratorSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -106,11 +106,11 @@ class OauthTokenExchangeGenerator:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeGeneratorGroups.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeGeneratorGroups.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeGeneratorGroups.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeGeneratorGroups.from_dict(response.json())
 
     def createGroup(self, body: ModelTokenExchangeGeneratorGroup, bypassExternalValidation: bool = None):
         """ Create a new OAuth 2.0 Token Exchange Generator group.
@@ -133,11 +133,11 @@ class OauthTokenExchangeGenerator:
         else:
             if response.status_code == 201:
                 self.logger.info("Token Exchange Processor Policy created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -165,11 +165,11 @@ class OauthTokenExchangeGenerator:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -196,11 +196,11 @@ class OauthTokenExchangeGenerator:
         else:
             if response.status_code == 200:
                 self.logger.info("Token Exchange Processor Policy updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
-            else:
-                return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelTokenExchangeGeneratorGroup.from_dict(response_dict)
+                else:
+                    return ModelTokenExchangeGeneratorGroup.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

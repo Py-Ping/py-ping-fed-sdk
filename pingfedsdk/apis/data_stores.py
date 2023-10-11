@@ -52,11 +52,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAction.from_dict(response_dict)
-            else:
-                return ModelAction.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAction.from_dict(response_dict)
+                else:
+                    return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -83,11 +83,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Action invoked on Data store.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActionResult.from_dict(response_dict)
-            else:
-                return ModelActionResult.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActionResult.from_dict(response_dict)
+                else:
+                    return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -113,11 +113,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelCustomDataStoreDescriptors.from_dict(response_dict)
-            else:
-                return ModelCustomDataStoreDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelCustomDataStoreDescriptors.from_dict(response_dict)
+                else:
+                    return ModelCustomDataStoreDescriptors.from_dict(response.json())
 
     def getCustomDataStoreDescriptor(self, id: str):
         """ Get the description of a custom data store plugin by ID.
@@ -139,11 +139,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelCustomDataStoreDescriptor.from_dict(response_dict)
-            else:
-                return ModelCustomDataStoreDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelCustomDataStoreDescriptor.from_dict(response_dict)
+                else:
+                    return ModelCustomDataStoreDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -169,11 +169,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelDataStores.from_dict(response_dict)
-            else:
-                return ModelDataStores.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelDataStores.from_dict(response_dict)
+                else:
+                    return ModelDataStores.from_dict(response.json())
 
     def createDataStore(self, body: ModelDataStore, XBypassExternalValidation: bool = None):
         """ Create a new data store.
@@ -196,11 +196,11 @@ class DataStores:
         else:
             if response.status_code == 201:
                 self.logger.info("Data store created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelDataStore.from_dict(response_dict)
-            else:
-                return ModelDataStore.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelDataStore.from_dict(response_dict)
+                else:
+                    return ModelDataStore.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -228,11 +228,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelDataStore.from_dict(response_dict)
-            else:
-                return ModelDataStore.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelDataStore.from_dict(response_dict)
+                else:
+                    return ModelDataStore.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -259,11 +259,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Data store updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelDataStore.from_dict(response_dict)
-            else:
-                return ModelDataStore.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelDataStore.from_dict(response_dict)
+                else:
+                    return ModelDataStore.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -323,11 +323,11 @@ class DataStores:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActions.from_dict(response_dict)
-            else:
-                return ModelActions.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

@@ -40,11 +40,11 @@ class ConfigurationEncryptionKeys:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelConfigurationEncryptionKeys.from_dict(response_dict)
-            else:
-                return ModelConfigurationEncryptionKeys.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelConfigurationEncryptionKeys.from_dict(response_dict)
+                else:
+                    return ModelConfigurationEncryptionKeys.from_dict(response.json())
 
     def rotateConfigurationEncryptionKey(self):
         """ Rotate the current Configuration Encryption Key.
@@ -66,8 +66,8 @@ class ConfigurationEncryptionKeys:
         else:
             if response.status_code == 201:
                 self.logger.info("Configuration encryption key rotated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelConfigurationEncryptionKeys.from_dict(response_dict)
-            else:
-                return ModelConfigurationEncryptionKeys.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelConfigurationEncryptionKeys.from_dict(response_dict)
+                else:
+                    return ModelConfigurationEncryptionKeys.from_dict(response.json())

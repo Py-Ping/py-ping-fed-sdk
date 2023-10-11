@@ -46,11 +46,11 @@ class ConnectionMetadata:
         else:
             if response.status_code == 200:
                 self.logger.info("Partner's SAML metadata converted.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelConvertMetadataResponse.from_dict(response_dict)
-            else:
-                return ModelConvertMetadataResponse.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelConvertMetadataResponse.from_dict(response_dict)
+                else:
+                    return ModelConvertMetadataResponse.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -79,11 +79,11 @@ class ConnectionMetadata:
         else:
             if response.status_code == 200:
                 self.logger.info("Connection SAML metadata exported.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return Modelstr.from_dict(response_dict)
-            else:
-                return str(response)
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return Modelstr.from_dict(response_dict)
+                else:
+                    return str(response)
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

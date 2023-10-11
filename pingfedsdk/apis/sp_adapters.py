@@ -53,11 +53,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAction.from_dict(response_dict)
-            else:
-                return ModelAction.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAction.from_dict(response_dict)
+                else:
+                    return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -84,11 +84,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Action invoked on adapter.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActionResult.from_dict(response_dict)
-            else:
-                return ModelActionResult.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActionResult.from_dict(response_dict)
+                else:
+                    return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -114,11 +114,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapterDescriptors.from_dict(response_dict)
-            else:
-                return ModelSpAdapterDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapterDescriptors.from_dict(response_dict)
+                else:
+                    return ModelSpAdapterDescriptors.from_dict(response.json())
 
     def getSpAdapterDescriptorsById(self, id: str):
         """ Get the description of an SP adapter plugin by ID.
@@ -140,11 +140,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapterDescriptor.from_dict(response_dict)
-            else:
-                return ModelSpAdapterDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapterDescriptor.from_dict(response_dict)
+                else:
+                    return ModelSpAdapterDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -170,11 +170,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapters.from_dict(response_dict)
-            else:
-                return ModelSpAdapters.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapters.from_dict(response_dict)
+                else:
+                    return ModelSpAdapters.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -199,11 +199,11 @@ class SpAdapters:
         else:
             if response.status_code == 201:
                 self.logger.info("Adapter created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapter.from_dict(response_dict)
-            else:
-                return ModelSpAdapter.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapter.from_dict(response_dict)
+                else:
+                    return ModelSpAdapter.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -231,11 +231,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapter.from_dict(response_dict)
-            else:
-                return ModelSpAdapter.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapter.from_dict(response_dict)
+                else:
+                    return ModelSpAdapter.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -262,11 +262,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Adapter updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapter.from_dict(response_dict)
-            else:
-                return ModelSpAdapter.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapter.from_dict(response_dict)
+                else:
+                    return ModelSpAdapter.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -326,11 +326,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapterUrlMappings.from_dict(response_dict)
-            else:
-                return ModelSpAdapterUrlMappings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapterUrlMappings.from_dict(response_dict)
+                else:
+                    return ModelSpAdapterUrlMappings.from_dict(response.json())
 
     def updateUrlMappings(self, body: ModelSpAdapterUrlMappings):
         """ (Deprecated) Update the mappings between URLs and adapters instances.
@@ -353,11 +353,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Mapping updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelSpAdapterUrlMappings.from_dict(response_dict)
-            else:
-                return ModelSpAdapterUrlMappings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapterUrlMappings.from_dict(response_dict)
+                else:
+                    return ModelSpAdapterUrlMappings.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -381,11 +381,11 @@ class SpAdapters:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActions.from_dict(response_dict)
-            else:
-                return ModelActions.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

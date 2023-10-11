@@ -47,11 +47,11 @@ class OauthCibaServerPolicy:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelCibaServerPolicySettings.from_dict(response_dict)
-            else:
-                return ModelCibaServerPolicySettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelCibaServerPolicySettings.from_dict(response_dict)
+                else:
+                    return ModelCibaServerPolicySettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelCibaServerPolicySettings, XBypassExternalValidation: bool = None):
         """ Update general ciba server request policy settings.
@@ -74,11 +74,11 @@ class OauthCibaServerPolicy:
         else:
             if response.status_code == 200:
                 self.logger.info("Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelCibaServerPolicySettings.from_dict(response_dict)
-            else:
-                return ModelCibaServerPolicySettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelCibaServerPolicySettings.from_dict(response_dict)
+                else:
+                    return ModelCibaServerPolicySettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -106,11 +106,11 @@ class OauthCibaServerPolicy:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelRequestPolicy.from_dict(response_dict)
-            else:
-                return ModelRequestPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelRequestPolicy.from_dict(response_dict)
+                else:
+                    return ModelRequestPolicy.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -137,11 +137,11 @@ class OauthCibaServerPolicy:
         else:
             if response.status_code == 200:
                 self.logger.info("Request Handling Policy updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelRequestPolicy.from_dict(response_dict)
-            else:
-                return ModelRequestPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelRequestPolicy.from_dict(response_dict)
+                else:
+                    return ModelRequestPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -201,11 +201,11 @@ class OauthCibaServerPolicy:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelRequestPolicies.from_dict(response_dict)
-            else:
-                return ModelRequestPolicies.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelRequestPolicies.from_dict(response_dict)
+                else:
+                    return ModelRequestPolicies.from_dict(response.json())
 
     def createPolicy(self, body: ModelRequestPolicy, XBypassExternalValidation: bool = None):
         """ Create a new request policy.
@@ -228,11 +228,11 @@ class OauthCibaServerPolicy:
         else:
             if response.status_code == 201:
                 self.logger.info("Request Handling Policy created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelRequestPolicy.from_dict(response_dict)
-            else:
-                return ModelRequestPolicy.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelRequestPolicy.from_dict(response_dict)
+                else:
+                    return ModelRequestPolicy.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

@@ -46,11 +46,11 @@ class IdpToSpAdapterMapping:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdpToSpAdapterMappings.from_dict(response_dict)
-            else:
-                return ModelIdpToSpAdapterMappings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdpToSpAdapterMappings.from_dict(response_dict)
+                else:
+                    return ModelIdpToSpAdapterMappings.from_dict(response.json())
 
     def createIdpToSpAdapterMapping(self, body: ModelIdpToSpAdapterMapping, XBypassExternalValidation: bool = None):
         """ Create a new IdP-to-SP Adapter mapping.
@@ -73,11 +73,11 @@ class IdpToSpAdapterMapping:
         else:
             if response.status_code == 201:
                 self.logger.info("IdP-to-SP adapter mapping created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdpToSpAdapterMapping.from_dict(response_dict)
-            else:
-                return ModelIdpToSpAdapterMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdpToSpAdapterMapping.from_dict(response_dict)
+                else:
+                    return ModelIdpToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -105,11 +105,11 @@ class IdpToSpAdapterMapping:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdpToSpAdapterMapping.from_dict(response_dict)
-            else:
-                return ModelIdpToSpAdapterMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdpToSpAdapterMapping.from_dict(response_dict)
+                else:
+                    return ModelIdpToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -136,11 +136,11 @@ class IdpToSpAdapterMapping:
         else:
             if response.status_code == 200:
                 self.logger.info("IdP-to-SP adapter mapping updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelIdpToSpAdapterMapping.from_dict(response_dict)
-            else:
-                return ModelIdpToSpAdapterMapping.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelIdpToSpAdapterMapping.from_dict(response_dict)
+                else:
+                    return ModelIdpToSpAdapterMapping.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

@@ -47,11 +47,11 @@ class AdministrativeAccounts:
         else:
             if response.status_code == 200:
                 self.logger.info("Administrator password changed.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelUserCredentials.from_dict(response_dict)
-            else:
-                return ModelUserCredentials.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelUserCredentials.from_dict(response_dict)
+                else:
+                    return ModelUserCredentials.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -76,11 +76,11 @@ class AdministrativeAccounts:
         else:
             if response.status_code == 200:
                 self.logger.info("Administrator password reset.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelUserCredentials.from_dict(response_dict)
-            else:
-                return ModelUserCredentials.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelUserCredentials.from_dict(response_dict)
+                else:
+                    return ModelUserCredentials.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -108,11 +108,11 @@ class AdministrativeAccounts:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdministrativeAccounts.from_dict(response_dict)
-            else:
-                return ModelAdministrativeAccounts.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdministrativeAccounts.from_dict(response_dict)
+                else:
+                    return ModelAdministrativeAccounts.from_dict(response.json())
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
@@ -137,11 +137,11 @@ class AdministrativeAccounts:
         else:
             if response.status_code == 200:
                 self.logger.info("New Administrative Account created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdministrativeAccount.from_dict(response_dict)
-            else:
-                return ModelAdministrativeAccount.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdministrativeAccount.from_dict(response_dict)
+                else:
+                    return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -169,11 +169,11 @@ class AdministrativeAccounts:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdministrativeAccount.from_dict(response_dict)
-            else:
-                return ModelAdministrativeAccount.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdministrativeAccount.from_dict(response_dict)
+                else:
+                    return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -200,11 +200,11 @@ class AdministrativeAccounts:
         else:
             if response.status_code == 200:
                 self.logger.info("Administrator Account updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdministrativeAccount.from_dict(response_dict)
-            else:
-                return ModelAdministrativeAccount.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdministrativeAccount.from_dict(response_dict)
+                else:
+                    return ModelAdministrativeAccount.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

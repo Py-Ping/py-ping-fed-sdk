@@ -47,11 +47,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthorizationServerSettings.from_dict(response_dict)
-            else:
-                return ModelAuthorizationServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthorizationServerSettings.from_dict(response_dict)
+                else:
+                    return ModelAuthorizationServerSettings.from_dict(response.json())
 
     def updateAuthorizationServerSettings(self, body: ModelAuthorizationServerSettings):
         """ Update the Authorization Server Settings.
@@ -74,11 +74,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Authorization Server Settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAuthorizationServerSettings.from_dict(response_dict)
-            else:
-                return ModelAuthorizationServerSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthorizationServerSettings.from_dict(response_dict)
+                else:
+                    return ModelAuthorizationServerSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -107,11 +107,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 201:
                 self.logger.info("Common Scope added.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeEntry.from_dict(response_dict)
-            else:
-                return ModelScopeEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -139,11 +139,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeEntry.from_dict(response_dict)
-            else:
-                return ModelScopeEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -170,11 +170,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Common Scope updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeEntry.from_dict(response_dict)
-            else:
-                return ModelScopeEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -231,11 +231,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 201:
                 self.logger.info("Common Scope Group created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeGroupEntry.from_dict(response_dict)
-            else:
-                return ModelScopeGroupEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeGroupEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -263,11 +263,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeGroupEntry.from_dict(response_dict)
-            else:
-                return ModelScopeGroupEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeGroupEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -294,11 +294,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Common Scope Group updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeGroupEntry.from_dict(response_dict)
-            else:
-                return ModelScopeGroupEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeGroupEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -359,11 +359,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 201:
                 self.logger.info("Exclusive Scope added.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeEntry.from_dict(response_dict)
-            else:
-                return ModelScopeEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -395,11 +395,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeEntry.from_dict(response_dict)
-            else:
-                return ModelScopeEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -426,11 +426,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Exclusive Scope updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeEntry.from_dict(response_dict)
-            else:
-                return ModelScopeEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -485,11 +485,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 201:
                 self.logger.info("Exclusive Scope Group created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeGroupEntry.from_dict(response_dict)
-            else:
-                return ModelScopeGroupEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeGroupEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -517,11 +517,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeGroupEntry.from_dict(response_dict)
-            else:
-                return ModelScopeGroupEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeGroupEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -548,11 +548,11 @@ class OauthAuthServerSettings:
         else:
             if response.status_code == 200:
                 self.logger.info("Exclusive Scope Group updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelScopeGroupEntry.from_dict(response_dict)
-            else:
-                return ModelScopeGroupEntry.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelScopeGroupEntry.from_dict(response_dict)
+                else:
+                    return ModelScopeGroupEntry.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

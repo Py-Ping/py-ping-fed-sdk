@@ -54,11 +54,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublishersSettings.from_dict(response_dict)
-            else:
-                return ModelNotificationPublishersSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublishersSettings.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublishersSettings.from_dict(response.json())
 
     def updateSettings(self, body: ModelNotificationPublishersSettings):
         """ Update general notification publisher settings.
@@ -81,11 +81,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Notification publisher settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublishersSettings.from_dict(response_dict)
-            else:
-                return ModelNotificationPublishersSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublishersSettings.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublishersSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -113,11 +113,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAction.from_dict(response_dict)
-            else:
-                return ModelAction.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAction.from_dict(response_dict)
+                else:
+                    return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -143,11 +143,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublisherDescriptors.from_dict(response_dict)
-            else:
-                return ModelNotificationPublisherDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublisherDescriptors.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublisherDescriptors.from_dict(response.json())
 
     def getNotificationPublisherPluginDescriptor(self, id: str):
         """ Get the description of a notification publisher plugin descriptor.
@@ -169,11 +169,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublisherDescriptor.from_dict(response_dict)
-            else:
-                return ModelNotificationPublisherDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublisherDescriptor.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublisherDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -199,11 +199,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublishers.from_dict(response_dict)
-            else:
-                return ModelNotificationPublishers.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublishers.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublishers.from_dict(response.json())
 
     def createNotificationPublisher(self, body: ModelNotificationPublisher):
         """ Create a notification publisher plugin instance.
@@ -226,11 +226,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 201:
                 self.logger.info("Notification Publisher plugin created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublisher.from_dict(response_dict)
-            else:
-                return ModelNotificationPublisher.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublisher.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublisher.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -258,11 +258,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublisher.from_dict(response_dict)
-            else:
-                return ModelNotificationPublisher.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublisher.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublisher.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -289,11 +289,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Notification Publisher plugin updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelNotificationPublisher.from_dict(response_dict)
-            else:
-                return ModelNotificationPublisher.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelNotificationPublisher.from_dict(response_dict)
+                else:
+                    return ModelNotificationPublisher.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -356,11 +356,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Notification Publisher plugin action invoked.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActionResult.from_dict(response_dict)
-            else:
-                return ModelActionResult.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActionResult.from_dict(response_dict)
+                else:
+                    return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -386,11 +386,11 @@ class NotificationPublishers:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActions.from_dict(response_dict)
-            else:
-                return ModelActions.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

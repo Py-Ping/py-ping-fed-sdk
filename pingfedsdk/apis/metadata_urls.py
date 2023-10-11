@@ -46,11 +46,11 @@ class MetadataUrls:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataUrl.from_dict(response_dict)
-            else:
-                return ModelMetadataUrl.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataUrl.from_dict(response_dict)
+                else:
+                    return ModelMetadataUrl.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -77,11 +77,11 @@ class MetadataUrls:
         else:
             if response.status_code == 200:
                 self.logger.info("Metadata URL updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataUrl.from_dict(response_dict)
-            else:
-                return ModelMetadataUrl.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataUrl.from_dict(response_dict)
+                else:
+                    return ModelMetadataUrl.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -141,11 +141,11 @@ class MetadataUrls:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataUrls.from_dict(response_dict)
-            else:
-                return ModelMetadataUrls.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataUrls.from_dict(response_dict)
+                else:
+                    return ModelMetadataUrls.from_dict(response.json())
 
     def addMetadataUrl(self, body: ModelMetadataUrl):
         """ Add a new Metadata URL.
@@ -168,11 +168,11 @@ class MetadataUrls:
         else:
             if response.status_code == 201:
                 self.logger.info("Metadata URL added.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelMetadataUrl.from_dict(response_dict)
-            else:
-                return ModelMetadataUrl.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelMetadataUrl.from_dict(response_dict)
+                else:
+                    return ModelMetadataUrl.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)

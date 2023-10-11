@@ -53,11 +53,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAction.from_dict(response_dict)
-            else:
-                return ModelAction.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAction.from_dict(response_dict)
+                else:
+                    return ModelAction.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -84,11 +84,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Action invoked on Out of Band authenticator.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActionResult.from_dict(response_dict)
-            else:
-                return ModelActionResult.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActionResult.from_dict(response_dict)
+                else:
+                    return ModelActionResult.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -114,11 +114,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutOfBandAuthPluginDescriptors.from_dict(response_dict)
-            else:
-                return ModelOutOfBandAuthPluginDescriptors.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthPluginDescriptors.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthPluginDescriptors.from_dict(response.json())
 
     def getOOBAuthPluginDescriptor(self, id: str):
         """ Get the descriptor of an Out of Band authenticator plugin.
@@ -140,11 +140,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutOfBandAuthPluginDescriptor.from_dict(response_dict)
-            else:
-                return ModelOutOfBandAuthPluginDescriptor.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthPluginDescriptor.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthPluginDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -170,11 +170,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutOfBandAuthenticators.from_dict(response_dict)
-            else:
-                return ModelOutOfBandAuthenticators.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthenticators.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthenticators.from_dict(response.json())
 
     def createOOBAuthenticator(self, body: ModelOutOfBandAuthenticator):
         """ Create an Out of Band authenticator plugin instance.
@@ -197,11 +197,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 201:
                 self.logger.info("Out of Band Authenticator created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutOfBandAuthenticator.from_dict(response_dict)
-            else:
-                return ModelOutOfBandAuthenticator.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthenticator.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthenticator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -229,11 +229,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutOfBandAuthenticator.from_dict(response_dict)
-            else:
-                return ModelOutOfBandAuthenticator.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthenticator.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthenticator.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -260,11 +260,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Out of Band Authenticator updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOutOfBandAuthenticator.from_dict(response_dict)
-            else:
-                return ModelOutOfBandAuthenticator.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthenticator.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthenticator.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -326,11 +326,11 @@ class OauthOutOfBandAuthPlugins:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelActions.from_dict(response_dict)
-            else:
-                return ModelActions.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

@@ -40,8 +40,8 @@ class KeyPairs:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelKeyAlgorithms.from_dict(response_dict)
-            else:
-                return ModelKeyAlgorithms.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKeyAlgorithms.from_dict(response_dict)
+                else:
+                    return ModelKeyAlgorithms.from_dict(response.json())

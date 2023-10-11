@@ -47,11 +47,11 @@ class KeyPairsOauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdditionalKeySets.from_dict(response_dict)
-            else:
-                return ModelAdditionalKeySets.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdditionalKeySets.from_dict(response_dict)
+                else:
+                    return ModelAdditionalKeySets.from_dict(response.json())
 
     def createKeySet(self, body: ModelAdditionalKeySet):
         """ Create a new OAuth/OpenID Connect additional signing key set.
@@ -74,11 +74,11 @@ class KeyPairsOauthOpenIdConnect:
         else:
             if response.status_code == 201:
                 self.logger.info("OAuth/OpenID Connect key set created.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdditionalKeySet.from_dict(response_dict)
-            else:
-                return ModelAdditionalKeySet.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdditionalKeySet.from_dict(response_dict)
+                else:
+                    return ModelAdditionalKeySet.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -106,11 +106,11 @@ class KeyPairsOauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdditionalKeySet.from_dict(response_dict)
-            else:
-                return ModelAdditionalKeySet.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdditionalKeySet.from_dict(response_dict)
+                else:
+                    return ModelAdditionalKeySet.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -137,11 +137,11 @@ class KeyPairsOauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("OAuth/OpenID Connect key set updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelAdditionalKeySet.from_dict(response_dict)
-            else:
-                return ModelAdditionalKeySet.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAdditionalKeySet.from_dict(response_dict)
+                else:
+                    return ModelAdditionalKeySet.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
@@ -199,11 +199,11 @@ class KeyPairsOauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("Success.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOAuthOidcKeysSettings.from_dict(response_dict)
-            else:
-                return ModelOAuthOidcKeysSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOAuthOidcKeysSettings.from_dict(response_dict)
+                else:
+                    return ModelOAuthOidcKeysSettings.from_dict(response.json())
 
     def updateOAuthOidcKeysSettings(self, body: ModelOAuthOidcKeysSettings):
         """ Update OAuth/OpenID Connect key settings.
@@ -226,11 +226,11 @@ class KeyPairsOauthOpenIdConnect:
         else:
             if response.status_code == 200:
                 self.logger.info("OAuth/Open ID Connect key settings updated.")
-            if isinstance(response.json(), list):
-                response_dict = {'items': response.json()}
-                return ModelOAuthOidcKeysSettings.from_dict(response_dict)
-            else:
-                return ModelOAuthOidcKeysSettings.from_dict(response.json())
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOAuthOidcKeysSettings.from_dict(response_dict)
+                else:
+                    return ModelOAuthOidcKeysSettings.from_dict(response.json())
             if response.status_code == 400:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
