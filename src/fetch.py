@@ -373,6 +373,10 @@ class Fetch():
         elif self.swagger_version == "2.0":
             self.server_version = self.get_server_version().split('.')
             self.patch_20_source()
+            self.write_json(
+                data=self.ping_data, name='pf-admin-api-patched',
+                directory="../pingfedsdk/source/"
+            )
             self.logger.info("Getting API schemas for swagger version 2.0")
             self.update_v11_schema()
             self.get_v11_plus_schemas()
