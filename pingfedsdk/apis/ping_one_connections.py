@@ -126,6 +126,36 @@ class PingOneConnections:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
+    def getPingOneConnectionUsages(self, id: str):
+        """ Get the list of resources that reference this PingOne connection.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/pingOneConnections/{id}/usage"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelResourceUsages.from_dict(response_dict)
+                else:
+                    return ModelResourceUsages.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
     def getPingOneConnectionAssociations(self, id: str):
         """ Get information about components using this connection to access PingOne services.
         """
@@ -215,6 +245,36 @@ class PingOneConnections:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
+    def getCredentialStatus(self, id: str):
+        """ Get the status of the credential associated with the PingOne connection
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/pingOneConnections/{id}/credentialStatus"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelPingOneCredentialStatus.from_dict(response_dict)
+                else:
+                    return ModelPingOneCredentialStatus.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
     def getPingOneConnectionEnvironments(self, id: str, filter: str = None, numberPerPage: int = None, page: int = None):
         """ Get the list of environments that the PingOne connection has access to.
         """
@@ -248,63 +308,3 @@ class PingOneConnections:
                 message = "(500) Error connecting to PingOne"
                 self.logger.info(message)
                 raise ServerError(message)
-
-    def getPingOneConnectionUsages(self, id: str):
-        """ Get the list of resources that reference this PingOne connection.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/pingOneConnections/{id}/usage"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelResourceUsages.from_dict(response_dict)
-                else:
-                    return ModelResourceUsages.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def getCredentialStatus(self, id: str):
-        """ Get the status of the credential associated with the PingOne connection
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/pingOneConnections/{id}/credentialStatus"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelPingOneCredentialStatus.from_dict(response_dict)
-                else:
-                    return ModelPingOneCredentialStatus.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)

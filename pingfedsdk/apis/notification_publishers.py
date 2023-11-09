@@ -93,13 +93,13 @@ class NotificationPublishers:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
-    def getAction(self, actionId: str, id: str):
-        """ Find an notification publisher plugin instance's action by ID.
+    def getActions(self, id: str):
+        """ List the actions for a notification publisher plugin instance.
         """
 
         try:
             response = self.session.get(
-                url=self._build_uri(f"/notificationPublishers/{id}/actions/{actionId}"),
+                url=self._build_uri(f"/notificationPublishers/{id}/actions"),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
@@ -115,9 +115,9 @@ class NotificationPublishers:
                 self.logger.info("Success.")
                 if isinstance(response.json(), list):
                     response_dict = {'items': response.json()}
-                    return ModelAction.from_dict(response_dict)
+                    return ModelActions.from_dict(response_dict)
                 else:
-                    return ModelAction.from_dict(response.json())
+                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -148,6 +148,36 @@ class NotificationPublishers:
                     return ModelNotificationPublisherDescriptors.from_dict(response_dict)
                 else:
                     return ModelNotificationPublisherDescriptors.from_dict(response.json())
+
+    def getAction(self, actionId: str, id: str):
+        """ Find an notification publisher plugin instance's action by ID.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/notificationPublishers/{id}/actions/{actionId}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAction.from_dict(response_dict)
+                else:
+                    return ModelAction.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
 
     def getNotificationPublisherPluginDescriptor(self, id: str):
         """ Get the description of a notification publisher plugin descriptor.
@@ -361,36 +391,6 @@ class NotificationPublishers:
                     return ModelActionResult.from_dict(response_dict)
                 else:
                     return ModelActionResult.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def getActions(self, id: str):
-        """ List the actions for a notification publisher plugin instance.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/notificationPublishers/{id}/actions"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelActions.from_dict(response_dict)
-                else:
-                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

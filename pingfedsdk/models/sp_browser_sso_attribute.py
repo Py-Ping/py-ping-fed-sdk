@@ -15,12 +15,12 @@ class SpBrowserSsoAttribute(Model):
         The SAML Name Format for the attribute.
 
     """
-    def __init__(self, name: str, nameFormat: str) -> None:
+    def __init__(self, name: str, nameFormat: str = None) -> None:
         self.name = name
         self.nameFormat = nameFormat
 
     def _validate(self) -> bool:
-        return any(x for x in ["name", "nameFormat"] if self.__dict__[x] is not None)
+        return any(x for x in ["name"] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, SpBrowserSsoAttribute):

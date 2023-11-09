@@ -16,12 +16,12 @@ class AttributeFulfillmentValue(Model):
         The value for this attribute.
 
     """
-    def __init__(self, source: SourceTypeIdKey, value: str) -> None:
+    def __init__(self, source: SourceTypeIdKey, value: str = None) -> None:
         self.source = source
         self.value = value
 
     def _validate(self) -> bool:
-        return any(x for x in ["source", "value"] if self.__dict__[x] is not None)
+        return any(x for x in ["source"] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, AttributeFulfillmentValue):

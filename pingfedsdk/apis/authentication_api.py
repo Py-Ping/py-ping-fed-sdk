@@ -27,101 +27,6 @@ class AuthenticationApi:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def getApplication(self, id: str):
-        """ Find Authentication API Application by ID.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/authenticationApi/applications/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelAuthnApiApplication.from_dict(response_dict)
-                else:
-                    return ModelAuthnApiApplication.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def updateApplication(self, body: ModelAuthnApiApplication, id: str):
-        """ Update an Authentication API Application.
-        """
-
-        try:
-            response = self.session.put(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri(f"/authenticationApi/applications/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Authentication API Application updated.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelAuthnApiApplication.from_dict(response_dict)
-                else:
-                    return ModelAuthnApiApplication.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
-    def deleteApplication(self, id: str):
-        """ Delete an Authentication API Application.
-        """
-
-        try:
-            response = self.session.delete(
-                url=self._build_uri(f"/authenticationApi/applications/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 204:
-                self.logger.info("Authentication API Application deleted.")
-                return ModelApiResult(message="Authentication API Application deleted.", validationErrors=[])
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
     def getAuthenticationApiSettings(self):
         """ Get the Authentication API settings.
         """
@@ -241,5 +146,100 @@ class AuthenticationApi:
                 message = "(400) The request was improperly formatted or contained invalid fields."
                 self.logger.info(message)
                 raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def getApplication(self, id: str):
+        """ Find Authentication API Application by ID.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/authenticationApi/applications/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiApplication.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiApplication.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
+    def updateApplication(self, body: ModelAuthnApiApplication, id: str):
+        """ Update an Authentication API Application.
+        """
+
+        try:
+            response = self.session.put(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri(f"/authenticationApi/applications/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Authentication API Application updated.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAuthnApiApplication.from_dict(response_dict)
+                else:
+                    return ModelAuthnApiApplication.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def deleteApplication(self, id: str):
+        """ Delete an Authentication API Application.
+        """
+
+        try:
+            response = self.session.delete(
+                url=self._build_uri(f"/authenticationApi/applications/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 204:
+                self.logger.info("Authentication API Application deleted.")
+                return ModelApiResult(message="Authentication API Application deleted.", validationErrors=[])
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
             if response.status_code == 422:
                 raise ValidationError(response.json())

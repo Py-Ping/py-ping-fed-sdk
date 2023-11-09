@@ -33,13 +33,13 @@ class SpAdapters:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
-    def getAction(self, actionId: str, id: str):
-        """ Find an SP adapter instance's action by ID.
+    def getActions(self, id: str):
+        """ List the actions for an SP adapter instance.
         """
 
         try:
             response = self.session.get(
-                url=self._build_uri(f"/sp/adapters/{id}/actions/{actionId}"),
+                url=self._build_uri(f"/sp/adapters/{id}/actions"),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
@@ -55,96 +55,9 @@ class SpAdapters:
                 self.logger.info("Success.")
                 if isinstance(response.json(), list):
                     response_dict = {'items': response.json()}
-                    return ModelAction.from_dict(response_dict)
+                    return ModelActions.from_dict(response_dict)
                 else:
-                    return ModelAction.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def invokeActionWithOptions(self, actionId: str, id: str, body: ModelActionOptions = None):
-        """ Invokes an action for an SP adapter instance.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri(f"/sp/adapters/{id}/actions/{actionId}/invokeAction"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Action invoked on adapter.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelActionResult.from_dict(response_dict)
-                else:
-                    return ModelActionResult.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def getSpAdapterDescriptors(self):
-        """ Get the list of available SP adapter descriptors.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/sp/adapters/descriptors"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelSpAdapterDescriptors.from_dict(response_dict)
-                else:
-                    return ModelSpAdapterDescriptors.from_dict(response.json())
-
-    def getSpAdapterDescriptorsById(self, id: str):
-        """ Get the description of an SP adapter plugin by ID.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/sp/adapters/descriptors/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelSpAdapterDescriptor.from_dict(response_dict)
-                else:
-                    return ModelSpAdapterDescriptor.from_dict(response.json())
+                    return ModelActions.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)
@@ -361,13 +274,13 @@ class SpAdapters:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
-    def getActions(self, id: str):
-        """ List the actions for an SP adapter instance.
+    def getAction(self, actionId: str, id: str):
+        """ Find an SP adapter instance's action by ID.
         """
 
         try:
             response = self.session.get(
-                url=self._build_uri(f"/sp/adapters/{id}/actions"),
+                url=self._build_uri(f"/sp/adapters/{id}/actions/{actionId}"),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
@@ -383,9 +296,96 @@ class SpAdapters:
                 self.logger.info("Success.")
                 if isinstance(response.json(), list):
                     response_dict = {'items': response.json()}
-                    return ModelActions.from_dict(response_dict)
+                    return ModelAction.from_dict(response_dict)
                 else:
-                    return ModelActions.from_dict(response.json())
+                    return ModelAction.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
+    def invokeActionWithOptions(self, actionId: str, id: str, body: ModelActionOptions = None):
+        """ Invokes an action for an SP adapter instance.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri(f"/sp/adapters/{id}/actions/{actionId}/invokeAction"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Action invoked on adapter.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActionResult.from_dict(response_dict)
+                else:
+                    return ModelActionResult.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
+    def getSpAdapterDescriptors(self):
+        """ Get the list of available SP adapter descriptors.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/sp/adapters/descriptors"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapterDescriptors.from_dict(response_dict)
+                else:
+                    return ModelSpAdapterDescriptors.from_dict(response.json())
+
+    def getSpAdapterDescriptorsById(self, id: str):
+        """ Get the description of an SP adapter plugin by ID.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/sp/adapters/descriptors/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSpAdapterDescriptor.from_dict(response_dict)
+                else:
+                    return ModelSpAdapterDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

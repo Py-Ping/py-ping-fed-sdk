@@ -33,6 +33,36 @@ class OauthOutOfBandAuthPlugins:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
+    def getActions(self, id: str):
+        """ List of actions for an Out of Band authenticator plugin instance.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/{id}/actions"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
     def getAction(self, actionId: str, id: str):
         """ Find an Out of Band authenticator plugin instance's action by ID.
         """
@@ -93,121 +123,6 @@ class OauthOutOfBandAuthPlugins:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
-
-    def getOOBAuthPluginDescriptors(self):
-        """ Get the list of available Out of Band authenticator plugin descriptors.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/oauth/outOfBandAuthPlugins/descriptors"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelOutOfBandAuthPluginDescriptors.from_dict(response_dict)
-                else:
-                    return ModelOutOfBandAuthPluginDescriptors.from_dict(response.json())
-
-    def getOOBAuthPluginDescriptor(self, id: str):
-        """ Get the descriptor of an Out of Band authenticator plugin.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/descriptors/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelOutOfBandAuthPluginDescriptor.from_dict(response_dict)
-                else:
-                    return ModelOutOfBandAuthPluginDescriptor.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def getOOBAuthenticators(self):
-        """ Get a list of Out of Band authenticator plugin instances.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/oauth/outOfBandAuthPlugins"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelOutOfBandAuthenticators.from_dict(response_dict)
-                else:
-                    return ModelOutOfBandAuthenticators.from_dict(response.json())
-
-    def createOOBAuthenticator(self, body: ModelOutOfBandAuthenticator):
-        """ Create an Out of Band authenticator plugin instance.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/oauth/outOfBandAuthPlugins"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 201:
-                self.logger.info("Out of Band Authenticator created.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelOutOfBandAuthenticator.from_dict(response_dict)
-                else:
-                    return ModelOutOfBandAuthenticator.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
 
     def getOOBAuthenticator(self, id: str):
         """ Get a specific Out of Band authenticator plugin instance.
@@ -306,13 +221,13 @@ class OauthOutOfBandAuthPlugins:
                 self.logger.info(message)
                 raise NotFound(message)
 
-    def getActions(self, id: str):
-        """ List of actions for an Out of Band authenticator plugin instance.
+    def getOOBAuthenticators(self):
+        """ Get a list of Out of Band authenticator plugin instances.
         """
 
         try:
             response = self.session.get(
-                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/{id}/actions"),
+                url=self._build_uri("/oauth/outOfBandAuthPlugins"),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:
@@ -328,9 +243,94 @@ class OauthOutOfBandAuthPlugins:
                 self.logger.info("Success.")
                 if isinstance(response.json(), list):
                     response_dict = {'items': response.json()}
-                    return ModelActions.from_dict(response_dict)
+                    return ModelOutOfBandAuthenticators.from_dict(response_dict)
                 else:
-                    return ModelActions.from_dict(response.json())
+                    return ModelOutOfBandAuthenticators.from_dict(response.json())
+
+    def createOOBAuthenticator(self, body: ModelOutOfBandAuthenticator):
+        """ Create an Out of Band authenticator plugin instance.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/oauth/outOfBandAuthPlugins"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 201:
+                self.logger.info("Out of Band Authenticator created.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthenticator.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthenticator.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def getOOBAuthPluginDescriptors(self):
+        """ Get the list of available Out of Band authenticator plugin descriptors.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/oauth/outOfBandAuthPlugins/descriptors"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthPluginDescriptors.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthPluginDescriptors.from_dict(response.json())
+
+    def getOOBAuthPluginDescriptor(self, id: str):
+        """ Get the descriptor of an Out of Band authenticator plugin.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/oauth/outOfBandAuthPlugins/descriptors/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelOutOfBandAuthPluginDescriptor.from_dict(response_dict)
+                else:
+                    return ModelOutOfBandAuthPluginDescriptor.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

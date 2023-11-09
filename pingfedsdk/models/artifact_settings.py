@@ -19,13 +19,13 @@ class ArtifactSettings(Model):
         Source ID for SAML1.x connections
 
     """
-    def __init__(self, lifetime: int, resolverLocations: list, sourceId: str = None) -> None:
+    def __init__(self, resolverLocations: list, lifetime: int = None, sourceId: str = None) -> None:
         self.lifetime = lifetime
         self.resolverLocations = resolverLocations
         self.sourceId = sourceId
 
     def _validate(self) -> bool:
-        return any(x for x in ["lifetime", "resolverLocations"] if self.__dict__[x] is not None)
+        return any(x for x in ["resolverLocations"] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, ArtifactSettings):

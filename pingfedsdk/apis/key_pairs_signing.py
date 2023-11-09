@@ -220,32 +220,6 @@ class KeyPairsSigning:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
-    def getKeyPairs(self):
-        """ Get list of key pairs.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/keyPairs/signing"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelKeyPairViews.from_dict(response_dict)
-                else:
-                    return ModelKeyPairViews.from_dict(response.json())
-
     def createKeyPair(self, body: ModelNewKeyPairSettings):
         """ Generate a new key pair.
         """
@@ -453,3 +427,29 @@ class KeyPairsSigning:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
+
+    def getKeyPairs(self):
+        """ Get list of key pairs.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/keyPairs/signing"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelKeyPairViews.from_dict(response_dict)
+                else:
+                    return ModelKeyPairViews.from_dict(response.json())

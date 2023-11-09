@@ -271,65 +271,6 @@ class ServerSettings:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
-    def getSystemKeys(self):
-        """ Get the system keys.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/serverSettings/systemKeys"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelSystemKeys.from_dict(response_dict)
-                else:
-                    return ModelSystemKeys.from_dict(response.json())
-
-    def updateSystemKeys(self, body: ModelSystemKeys):
-        """ Update the system keys.
-        """
-
-        try:
-            response = self.session.put(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/serverSettings/systemKeys"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("System keys updated.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelSystemKeys.from_dict(response_dict)
-                else:
-                    return ModelSystemKeys.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
     def getServerSettings(self):
         """ Gets the server settings
         """
@@ -457,6 +398,65 @@ class ServerSettings:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def getSystemKeys(self):
+        """ Get the system keys.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/serverSettings/systemKeys"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSystemKeys.from_dict(response_dict)
+                else:
+                    return ModelSystemKeys.from_dict(response.json())
+
+    def updateSystemKeys(self, body: ModelSystemKeys):
+        """ Update the system keys.
+        """
+
+        try:
+            response = self.session.put(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/serverSettings/systemKeys"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("System keys updated.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelSystemKeys.from_dict(response_dict)
+                else:
+                    return ModelSystemKeys.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
             if response.status_code == 422:
                 raise ValidationError(response.json())
 

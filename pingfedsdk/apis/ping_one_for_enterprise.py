@@ -56,36 +56,6 @@ class PingOneForEnterprise:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
-    def getKeyPairs(self):
-        """ Get the PingOne for Enterprise key pair settings
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/pingOneForEnterprise/keyPairs"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelP14EKeysView.from_dict(response_dict)
-                else:
-                    return ModelP14EKeysView.from_dict(response.json())
-            if response.status_code == 403:
-                message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
-                self.logger.info(message)
-                raise NotImplementedError(message)
-
     def getPingOneForEnterpriseSettings(self):
         """ Get the PingOne for Enterprise settings
         """
@@ -188,6 +158,36 @@ class PingOneForEnterprise:
         try:
             response = self.session.post(
                 url=self._build_uri("/pingOneForEnterprise/keyPairs/rotate"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelP14EKeysView.from_dict(response_dict)
+                else:
+                    return ModelP14EKeysView.from_dict(response.json())
+            if response.status_code == 403:
+                message = "(403) PingFederate is not connected to PingOne for Enterprise. Operation not available."
+                self.logger.info(message)
+                raise NotImplementedError(message)
+
+    def getKeyPairs(self):
+        """ Get the PingOne for Enterprise key pair settings
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/pingOneForEnterprise/keyPairs"),
                 headers={"Content-Type": "application/json"}
             )
         except HTTPError as http_err:

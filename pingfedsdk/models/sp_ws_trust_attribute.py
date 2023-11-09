@@ -15,12 +15,12 @@ class SpWsTrustAttribute(Model):
         The attribute namespace.  This is required when the Default Token Type is SAML2.0 or SAML1.1 or SAML1.1 for Office 365.
 
     """
-    def __init__(self, name: str, namespace: str) -> None:
+    def __init__(self, name: str, namespace: str = None) -> None:
         self.name = name
         self.namespace = namespace
 
     def _validate(self) -> bool:
-        return any(x for x in ["name", "namespace"] if self.__dict__[x] is not None)
+        return any(x for x in ["name"] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, SpWsTrustAttribute):

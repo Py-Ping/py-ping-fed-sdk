@@ -89,6 +89,65 @@ class OauthAccessTokenManagers:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
+    def getTokenManagers(self):
+        """ Get a list of all token management plugin instances.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri("/oauth/accessTokenManagers"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManagers.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManagers.from_dict(response.json())
+
+    def createTokenManager(self, body: ModelAccessTokenManager):
+        """ Create a token management plugin instance.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri("/oauth/accessTokenManagers"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 201:
+                self.logger.info("Access Token Management instance created.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelAccessTokenManager.from_dict(response_dict)
+                else:
+                    return ModelAccessTokenManager.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
     def getTokenManager(self, id: str):
         """ Get a specific token management plugin instance.
         """
@@ -241,62 +300,3 @@ class OauthAccessTokenManagers:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
-
-    def getTokenManagers(self):
-        """ Get a list of all token management plugin instances.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri("/oauth/accessTokenManagers"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelAccessTokenManagers.from_dict(response_dict)
-                else:
-                    return ModelAccessTokenManagers.from_dict(response.json())
-
-    def createTokenManager(self, body: ModelAccessTokenManager):
-        """ Create a token management plugin instance.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri("/oauth/accessTokenManagers"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 201:
-                self.logger.info("Access Token Management instance created.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelAccessTokenManager.from_dict(response_dict)
-                else:
-                    return ModelAccessTokenManager.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())

@@ -90,7 +90,7 @@ class SpBrowserSso(Model):
         The timeframe of validity before and after the issuance of the assertion.
 
     """
-    def __init__(self, protocol: Protocol, ssoServiceEndpoints: list, encryptionPolicy: EncryptionPolicy, attributeContract: SpBrowserSsoAttributeContract, adapterMappings: list, assertionLifetime: AssertionLifetime, wsFedTokenType: WsFedTokenType = None, wsTrustVersion: WsTrustVersion = None, enabledProfiles: list = None, incomingBindings: list = None, messageCustomizations: list = None, urlWhitelistEntries: list = None, artifact: ArtifactSettings = None, sloServiceEndpoints: list = None, defaultTargetUrl: str = None, alwaysSignArtifactResponse: bool = None, spSamlIdentityMapping: SpSamlIdentityMapping = None, spWsFedIdentityMapping: SpWsFedIdentityMapping = None, signResponseAsRequired: bool = None, signAssertions: bool = None, requireSignedAuthnRequests: bool = None, authenticationPolicyContractAssertionMappings: list = None) -> None:
+    def __init__(self, protocol: Protocol, ssoServiceEndpoints: list, attributeContract: SpBrowserSsoAttributeContract, adapterMappings: list, assertionLifetime: AssertionLifetime, wsFedTokenType: WsFedTokenType = None, wsTrustVersion: WsTrustVersion = None, enabledProfiles: list = None, incomingBindings: list = None, messageCustomizations: list = None, urlWhitelistEntries: list = None, artifact: ArtifactSettings = None, sloServiceEndpoints: list = None, defaultTargetUrl: str = None, alwaysSignArtifactResponse: bool = None, spSamlIdentityMapping: SpSamlIdentityMapping = None, spWsFedIdentityMapping: SpWsFedIdentityMapping = None, signResponseAsRequired: bool = None, signAssertions: bool = None, requireSignedAuthnRequests: bool = None, encryptionPolicy: EncryptionPolicy = None, authenticationPolicyContractAssertionMappings: list = None) -> None:
         self.protocol = protocol
         self.wsFedTokenType = wsFedTokenType
         self.wsTrustVersion = wsTrustVersion
@@ -115,7 +115,7 @@ class SpBrowserSso(Model):
         self.assertionLifetime = assertionLifetime
 
     def _validate(self) -> bool:
-        return any(x for x in ["adapterMappings", "assertionLifetime", "attributeContract", "encryptionPolicy", "protocol", "ssoServiceEndpoints"] if self.__dict__[x] is not None)
+        return any(x for x in ["adapterMappings", "assertionLifetime", "attributeContract", "protocol", "ssoServiceEndpoints"] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, SpBrowserSso):

@@ -32,6 +32,36 @@ class IdpAdapters:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
+    def getActions(self, id: str):
+        """ List the actions for an IdP adapter instance.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/idp/adapters/{id}/actions"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
     def getAction(self, actionId: str, id: str):
         """ Find an IdP adapter instance's action by ID.
         """
@@ -304,33 +334,3 @@ class IdpAdapters:
                 raise NotFound(message)
             if response.status_code == 422:
                 raise ValidationError(response.json())
-
-    def getActions(self, id: str):
-        """ List the actions for an IdP adapter instance.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/idp/adapters/{id}/actions"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelActions.from_dict(response_dict)
-                else:
-                    return ModelActions.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)

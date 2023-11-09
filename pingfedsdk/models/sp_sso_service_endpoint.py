@@ -22,14 +22,14 @@ class SpSsoServiceEndpoint(Model):
         The priority of the endpoint.
 
     """
-    def __init__(self, binding: Binding, url: str, index: int, isDefault: bool = None) -> None:
+    def __init__(self, url: str, binding: Binding = None, isDefault: bool = None, index: int = None) -> None:
         self.binding = binding
         self.url = url
         self.isDefault = isDefault
         self.index = index
 
     def _validate(self) -> bool:
-        return any(x for x in ["binding", "index", "url"] if self.__dict__[x] is not None)
+        return any(x for x in ["url"] if self.__dict__[x] is not None)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, SpSsoServiceEndpoint):

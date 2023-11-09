@@ -55,39 +55,6 @@ class AdministrativeAccounts:
             if response.status_code == 422:
                 raise ValidationError(response.json())
 
-    def resetPassword(self, body: ModelUserCredentials, username: str):
-        """ Reset the Password of an existing PingFederate native Administrative Account.
-        """
-
-        try:
-            response = self.session.post(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri(f"/administrativeAccounts/{username}/resetPassword"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Administrator password reset.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelUserCredentials.from_dict(response_dict)
-                else:
-                    return ModelUserCredentials.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
     def getAccounts(self):
         """ Get all the PingFederate native Administrative Accounts.
         """
@@ -233,6 +200,39 @@ class AdministrativeAccounts:
             if response.status_code == 204:
                 self.logger.info("Administrator Account Deleted.")
                 return ModelApiResult(message="Administrator Account Deleted.", validationErrors=[])
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def resetPassword(self, body: ModelUserCredentials, username: str):
+        """ Reset the Password of an existing PingFederate native Administrative Account.
+        """
+
+        try:
+            response = self.session.post(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri(f"/administrativeAccounts/{username}/resetPassword"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Administrator password reset.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelUserCredentials.from_dict(response_dict)
+                else:
+                    return ModelUserCredentials.from_dict(response.json())
             if response.status_code == 404:
                 message = "(404) Resource not found."
                 self.logger.info(message)

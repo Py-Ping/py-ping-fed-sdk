@@ -32,6 +32,36 @@ class DataStores:
     def _build_uri(self, path: str):
         return f"{self.endpoint}{path}"
 
+    def getActions(self, id: str):
+        """ List the actions for a data store instance.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/dataStores/{id}/actions"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelActions.from_dict(response_dict)
+                else:
+                    return ModelActions.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
     def getAction(self, actionId: str, id: str):
         """ Find a data store instance's action by ID.
         """
@@ -92,6 +122,101 @@ class DataStores:
                 message = "(404) Resource not found."
                 self.logger.info(message)
                 raise NotFound(message)
+
+    def getDataStore(self, id: str):
+        """ Find data store by ID.
+        """
+
+        try:
+            response = self.session.get(
+                url=self._build_uri(f"/dataStores/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Success.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelDataStore.from_dict(response_dict)
+                else:
+                    return ModelDataStore.from_dict(response.json())
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+
+    def updateDataStore(self, body: ModelDataStore, id: str, XBypassExternalValidation: bool = None):
+        """ Update a data store.
+        """
+
+        try:
+            response = self.session.put(
+                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
+                url=self._build_uri(f"/dataStores/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 200:
+                self.logger.info("Data store updated.")
+                if isinstance(response.json(), list):
+                    response_dict = {'items': response.json()}
+                    return ModelDataStore.from_dict(response_dict)
+                else:
+                    return ModelDataStore.from_dict(response.json())
+            if response.status_code == 400:
+                message = "(400) The request was improperly formatted or contained invalid fields."
+                self.logger.info(message)
+                raise BadRequest(message)
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
+
+    def deleteDataStore(self, id: str):
+        """ Delete a data store.
+        """
+
+        try:
+            response = self.session.delete(
+                url=self._build_uri(f"/dataStores/{id}"),
+                headers={"Content-Type": "application/json"}
+            )
+        except HTTPError as http_err:
+            print(traceback.format_exc())
+            self.logger.error(f"HTTP error occurred: {http_err}")
+            raise http_err
+        except Exception as err:
+            print(traceback.format_exc())
+            self.logger.error(f"Error occurred: {err}")
+            raise err
+        else:
+            if response.status_code == 204:
+                self.logger.info("Data store deleted.")
+                return ModelApiResult(message="Data store deleted.", validationErrors=[])
+            if response.status_code == 404:
+                message = "(404) Resource not found."
+                self.logger.info(message)
+                raise NotFound(message)
+            if response.status_code == 422:
+                raise ValidationError(response.json())
 
     def getCustomDataStoreDescriptors(self):
         """ Get the list of available custom data store descriptors.
@@ -207,128 +332,3 @@ class DataStores:
                 raise BadRequest(message)
             if response.status_code == 422:
                 raise ValidationError(response.json())
-
-    def getDataStore(self, id: str):
-        """ Find data store by ID.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/dataStores/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelDataStore.from_dict(response_dict)
-                else:
-                    return ModelDataStore.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-
-    def updateDataStore(self, body: ModelDataStore, id: str, XBypassExternalValidation: bool = None):
-        """ Update a data store.
-        """
-
-        try:
-            response = self.session.put(
-                data=dumps({x: y for x, y in body.to_dict().items() if y is not None}),
-                url=self._build_uri(f"/dataStores/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Data store updated.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelDataStore.from_dict(response_dict)
-                else:
-                    return ModelDataStore.from_dict(response.json())
-            if response.status_code == 400:
-                message = "(400) The request was improperly formatted or contained invalid fields."
-                self.logger.info(message)
-                raise BadRequest(message)
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
-    def deleteDataStore(self, id: str):
-        """ Delete a data store.
-        """
-
-        try:
-            response = self.session.delete(
-                url=self._build_uri(f"/dataStores/{id}"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 204:
-                self.logger.info("Data store deleted.")
-                return ModelApiResult(message="Data store deleted.", validationErrors=[])
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
-            if response.status_code == 422:
-                raise ValidationError(response.json())
-
-    def getActions(self, id: str):
-        """ List the actions for a data store instance.
-        """
-
-        try:
-            response = self.session.get(
-                url=self._build_uri(f"/dataStores/{id}/actions"),
-                headers={"Content-Type": "application/json"}
-            )
-        except HTTPError as http_err:
-            print(traceback.format_exc())
-            self.logger.error(f"HTTP error occurred: {http_err}")
-            raise http_err
-        except Exception as err:
-            print(traceback.format_exc())
-            self.logger.error(f"Error occurred: {err}")
-            raise err
-        else:
-            if response.status_code == 200:
-                self.logger.info("Success.")
-                if isinstance(response.json(), list):
-                    response_dict = {'items': response.json()}
-                    return ModelActions.from_dict(response_dict)
-                else:
-                    return ModelActions.from_dict(response.json())
-            if response.status_code == 404:
-                message = "(404) Resource not found."
-                self.logger.info(message)
-                raise NotFound(message)
