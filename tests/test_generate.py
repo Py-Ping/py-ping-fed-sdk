@@ -239,6 +239,9 @@ class TestGenerate(TestCase):
         penguins = __import__("pingfedsdk.apis.penguins", fromlist=[""])
         penguin = __import__("pingfedsdk.models.penguin", fromlist=[""])
         session_mock = MagicMock()
+        post_response = MagicMock(status_code=200)
+        post_response.json.return_value = self.penguin_dict
+        session_mock.post.return_value = post_response
         penguin_api = penguins.Penguins("test-endpoint", session_mock)
         self.assertEqual(
             penguin_api.addPenguin(penguin.Penguin().from_dict(
@@ -247,6 +250,8 @@ class TestGenerate(TestCase):
             penguin_mock.from_dict.return_value
         )
 
+        get_response = MagicMock(status_code=200)
+        session_mock.get.return_value = get_response
         self.assertEqual(
             penguin_api.getPenguinDetails(),
             penguin_mock.from_dict.return_value
